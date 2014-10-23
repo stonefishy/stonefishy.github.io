@@ -1,15 +1,10 @@
 ---
 layout: post
 title: "markdonw syntax for block elements"
-<<<<<<< HEAD
 description: "markdown syntax"
 category: Technique
 tags: [Markdown]
 =======
-description: ""
-category: 
-tags: []
->>>>>>> d0848301e9c4dd2808c034008bc836790e908baa
 ---
 {% include JB/setup %}
 #Markdown syntax for block elements
