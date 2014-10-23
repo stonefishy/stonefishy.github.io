@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "markdonw syntax for block elements"
-description: ""
+description: "markdown syntax"
 category: Technique
 tags: [Markdown]
 ---
