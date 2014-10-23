@@ -4,7 +4,6 @@ title: "markdonw syntax for block elements"
 description: "markdown syntax"
 category: Technique
 tags: [Markdown]
-=======
 ---
 {% include JB/setup %}
 #Markdown syntax for block elements
