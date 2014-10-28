@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Backslash escapes"
+title: "Backslash escapes in Markdown"
 description: ""
 category: Technique
 tags: [Markdown]
