@@ -41,3 +41,12 @@ tags: [Git]
 
 - Downloads bookmark history and incorporates changes:   
 `$ git pull`
+
+- Copy a commit and create a new commit on the current branch with the same message and patch as another commit:   
+`$ git cherry-pick [commit]`
+
+- merge the version history of current branch onto another specified branch:   
+`$ git rebase [branch]`
+
+- merge the version history after specified commit of current branch onto another specified branch:   
+`$ git rebase --onto [branch] [commit]`
