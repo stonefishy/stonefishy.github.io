@@ -6,7 +6,7 @@ category: Tools
 tags: [Git]
 ---
 {% include JB/setup %}
-# Git Commands (3)
+# Git commands (3)
 ---
 
 ###Redo Commits
