@@ -16,7 +16,7 @@ tags: [Git]
 `$ git config --global user.email "[email]"`   
 
 - Enable git color for command line output:   
-`$ git config --global color.ui auto`
+`$ git config --global color.ui true`
 
 ###Create Repositories
 - Create a new repository with the specifical name, it will create a specified name directory with git:   
@@ -27,6 +27,9 @@ tags: [Git]
 
 - Downloads a project by repository url:   
 `$ git clone [url]`   
+
+- add local repository to remote repository:   
+`$ git remote add [remote-name] [remote-repository-url]`
 
 ###Make Changes
 - List all currently new or modified or deleted files:   
@@ -42,7 +45,7 @@ tags: [Git]
 `$ git diff --staged`   
 
 - Add all new or modified files to snapshot for commit:    
-`$ git add .`   
+`$ git add .` or `$ git add --all`   
 
 - Add specified file to stage for commit:   
 `$ git add [file]`   
