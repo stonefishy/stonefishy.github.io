@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "visual git guide (diff command)"
+title: "Visual git guide (diff command)"
 description: ""
 category: Tools
 tags: [Git]

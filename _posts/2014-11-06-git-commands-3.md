@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Git commands (3)"
+title: "Git Commands (3)"
 description: ""
 category: Tools
 tags: [Git]
