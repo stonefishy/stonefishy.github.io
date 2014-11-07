@@ -9,7 +9,7 @@ tags: [Git]
 #Visual git guide (commit command)
 ---
 
-**Note:** the original website address is [here](http://marklodato.github.io/visual-git-guide/index-en.html?no-svg)
+**Note:** the original website address in [here](http://marklodato.github.io/visual-git-guide/index-en.html?no-svg)
 
 ###Commit command
 When you commit, git creates a new commit object using the files from the stage and sets the parent to the current commit. It then points the current branch to this new commit. In the image below, the current branch is *master*. Before the command was run, *master* pointed to ed489. Afterward, a new commit, f0cec, was created, with parent ed489, and then *master* was moved to the new commit.   
