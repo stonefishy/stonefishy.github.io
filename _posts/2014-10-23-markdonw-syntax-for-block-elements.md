@@ -12,6 +12,8 @@ tags: [Markdown]
 ###Line breaks
 Markdown can't break line automatically in paragraph. The break line is a break tag `< br />` in HTML. If you want to break line in paragraph, you need to `end a line with two or more spaces`, then type return.  
 
+<!--break-->
+
 ###Heads
 Markdown supports two styles for heads, one style is Setext, another is atx.  
 

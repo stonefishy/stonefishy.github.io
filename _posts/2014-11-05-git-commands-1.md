@@ -18,6 +18,8 @@ tags: [Git]
 - Enable git color for command line output:   
 `$ git config --global color.ui true`
 
+<!--break-->
+
 ###Create Repositories
 - Create a new repository with the specifical name, it will create a specified name directory with git:   
 `$ git init [project-name]`   

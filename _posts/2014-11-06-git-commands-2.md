@@ -25,6 +25,8 @@ tags: [Git]
 - Delete the specified branch:   
 `$ git branch -d [branch-name]`
 
+<!--break-->
+
 ###Suppress Tracking
 - A text file named `.gitigore` suppresses accidental versioning of files and paths matching the specified patterns, for example:   
 `*.log temp-* dir/*`   

@@ -14,6 +14,8 @@ tags: [Git]
 ###Rebase command
 A rebase is an alternative to a merge for combining multiple branches. Whereas a merge creates a single commit with two parents, leaving a non-linear history, a rebase replays the commits from the current branch onto another, leaving a linear history. *In essence, this is an automated way of performing several cherry-picks in a row*.
 
+<!--break-->
+
 ![rebase](/assets/images/rebase.png)
 
 The above command takes all the commits that exist in topic but not in master (namely 169a6 and 2c33a), replays them onto master, and then moves the branch head to the new tip. Note that the old commits will be garbage collected if they are no longer referenced.    

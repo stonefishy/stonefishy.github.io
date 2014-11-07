@@ -16,6 +16,8 @@ tags: [Git]
 - Discard all history and changes back to the specified commit:   
 `$ git reset --hard [commit]`
 
+<!--break-->
+
 ###Save Fragments
 - Temporarily stores all modified **tracked** files:   
 `$ git stash`

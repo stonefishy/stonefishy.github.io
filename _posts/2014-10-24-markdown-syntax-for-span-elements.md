@@ -27,6 +27,8 @@ tags: [Markdown]
    >***Effect:***  
    >[reference link text][1]
 
+<!--break-->
+
 >***Note:***  
 >The `optional title` is not necessary.  You can input it for your demand.
 >Link definitions can be placed anywhere in your `Markdown` document.

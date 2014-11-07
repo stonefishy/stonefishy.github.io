@@ -20,6 +20,8 @@ When a filename (and/or -p) is given, git copies those files from the given comm
 
 ![checkout-files](/assets/images/checkout-files.png)
 
+<!--break-->
+
 When a filename is not given but the reference is a (local) branch, HEAD is moved to that branch (that is, we "switch to" that branch), and then the stage and working directory are set to match the contents of that commit. Any file that exists in the new commit (a47c3 below) is copied; any file that exists in the old commit (ed489) but not in the new one is deleted; and any file that exists in neither is ignored.   
 
 ![checkout-branch](/assets/images/checkout-branch.png)

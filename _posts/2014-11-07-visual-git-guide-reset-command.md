@@ -14,7 +14,9 @@ tags: [Git]
 ###Reset command
 **The reset command moves the current branch to another position**, and optionally updates the stage and the working directory. It also is used to copy files from the history to the stage without touching the working directory.   
 
-If a commit is given with no filenames, the current branch is moved to that commit, and then the stage is updated to match this commit. If --hard is given, the working directory is also updated. If --soft is given, neither is updated.   
+If a commit is given with no filenames, the current branch is moved to that commit, and then the stage is updated to match this commit. If --hard is given, the working directory is also updated. If --soft is given, neither is updated.
+
+<!--break-->   
 
 ![reset-commit](/assets/images/reset-commit.png)
 

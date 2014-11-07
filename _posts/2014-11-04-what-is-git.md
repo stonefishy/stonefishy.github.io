@@ -9,7 +9,9 @@ tags: [Git]
 #What is Git
 ---
 ###Introduction
-![Git](/assets/images/git-logo.png) is `open source distributed version control system` that allows a team of people to work together, all using the same files. And it helps the team cope with the confusion that tends to happen when multiple people are editing the same files.   
+![Git](/assets/images/git-logo.png) is `open source distributed version control system` that allows a team of people to work together, all using the same files. And it helps the team cope with the confusion that tends to happen when multiple people are editing the same files.
+
+<!--break-->   
 
 And also `git` supplies the GUI client mode and command line mode. You can choose which you prefer to.   
 

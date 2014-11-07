@@ -16,6 +16,8 @@ tags: [Git]
    
 The four commands above copy files between the working directory, the stage (also called the index), and the history (in the form of commits).
 
+<!--break-->
+
 - `git add [files]` copies files (at their current state) to the stage.
 
 - `git commit` saves a snapshot of the stage as a commit.

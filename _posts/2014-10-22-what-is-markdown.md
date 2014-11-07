@@ -11,6 +11,8 @@ tags: [Markdown]
 
 Markdown is a **text-to-HTML** conversion tool for web writer. It can convert plain text format to  valid `XHTML`(or `HTML`) structure that can be represented by browser.
 
+<!--break-->
+
 Markdown is very easy to read, very easy to write plain text format. Even though for these people who don't know web technique. 
 
 Thus, Markdown is two things:

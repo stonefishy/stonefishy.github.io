@@ -16,6 +16,8 @@ There have many editor tools for Markdown now, but we just recommend a few of po
 
 	 In browser Markdown editor, it supplies many commands to create Markdown syntax instead of type it manually. And also it have supported many other functions, for example import, export and manage Markdown files.
 	 
+<!--break-->
+	 
 - [Dillinger](http://dillinger.io/)
 
 	It's online Markdown editor too,  but it supports functions less than `StackEdit` supports. Oh, one interesting things, you can change the theme whatever you like.

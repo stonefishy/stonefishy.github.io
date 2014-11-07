@@ -9,7 +9,9 @@ tags: [Andriod]
 #What is Andriod
 ---
 ![Andriod](/assets/images/android.jpg)
-`Andriod` is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware resource in a mobile environment.   
+`Andriod` is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware resource in a mobile environment.
+
+<!--break-->   
 
 And this virtual machine is called `Dalvik` virtual machine(`DalvikVM`), which is  a register based on virtual machine, designed and written by *Dan Bornstein* and some other Google engineers, it's an important part of the `Andriod` platform. And it differece to normal Java virtual machines(`JVM`) which are stack based.   
 
