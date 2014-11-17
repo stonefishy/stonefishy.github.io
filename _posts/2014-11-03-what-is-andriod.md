@@ -3,7 +3,7 @@ layout: post
 title: "What is Andriod"
 description: ""
 category: Technique
-tags: [Andriod]
+tags: [Android]
 ---
 {% include JB/setup %}
 #What is Andriod

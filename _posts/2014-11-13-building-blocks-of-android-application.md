@@ -4,7 +4,7 @@ title: "Building blocks of Android Application
 "
 description: ""
 category: Technique
-tags: [Andriod]
+tags: [Android]
 ---
 {% include JB/setup %}
 #Building blocks of Android Application
