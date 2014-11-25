@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2014-11-25T21:32:34+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu SHI]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Guava -- Optional]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/21/guava-optional/"/>
+    <updated>2014-11-21T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/21/guava-optional</id>
+    <content type="html"><![CDATA[<p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
+
+<!--more-->
+
+
+<h3>Usage</h3>
+
+<p><code>Optional.of(T)</code>    <br/>
+Make an Optional containing the given non-null value, or fail fast on null.</p>
+
+<p><code>Optional.absent()</code> <br/>
+Return an absent Optional of some type.</p>
+
+<p><code>Optional.fromNullable(T)</code> <br/>
+Turn the given possibly-null reference into an Optional, treating non-null as present and null as absent.</p>
+
+<p><code>boolean isPresent()</code>    <br/>
+Returns true if this Optional contains a non-null instance.</p>
+
+<p><code>T get()</code> <br/>
+Returns the contained T instance, which must be present; otherwise, throws an IllegalStateException.</p>
+
+<p><code>T or()</code> <br/>
+Returns the present value in this Optional, or if there is none, returns the specified default.</p>
+
+<p><code>T orNull()</code> <br/>
+Returns the present value in this Optional, or if there is none, returns null. The inverse operation of fromNullable.</p>
+
+<h3>Example:</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return true</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 100</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">absent</span><span class="o">();</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">// return false</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//return 0;</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 1;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return false;</span>
+</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Lifecycle of Android Activity]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity/"/>
+    <updated>2014-11-17T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity</id>
+    <content type="html"><![CDATA[<p><img src="http://stonefishy.github.io/assets/images/android-lifecycle.png" alt="lifecycle of activity" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Building Blocks of Android Application]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application/"/>
+    <updated>2014-11-13T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application</id>
+    <content type="html"><![CDATA[<p>There are four builidng blocks for Android Application:</p>
+
+<ul>
+<li><strong><code>Activity</code></strong></li>
+<li><strong><code>Intent Receiver</code></strong></li>
+<li><strong><code>Service</code></strong></li>
+<li><strong><code>Content Provider</code></strong></li>
+</ul>
+
+
+<p>But Not every application needs have all them.</p>
+
+<p><code>AndroidManifest.xml</code> is XML file, it contains some information that where you declare the components of your application and what their capabilities and requirements are.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<h3>Activity</h3>
+
+<p>Activities are the most common of the four Android building blocks. An activity is usually a single screen in your application. Each activity is implemented as single class that extends the Activity base class.</p>
+
+<p>When a new screen is opened, the previous screen is paused and put onto a history stack. The user can navigate backward through previously opened screens in the history.</p>
+
+<h3>Intent</h3>
+
+<p>Android uses a special class called <code>Intent</code> to move from screen to screen. Intent describe what an application wants done. The two most important parts of the intent data structure are the action and the data to act upon.</p>
+
+<p>Typical values for actioin are <code>MAIN</code> (the front door of the application), VIEW, PICK, EDIT, etc. The data is expressed as a Uniform Resource Indicator (URI).</p>
+
+<blockquote><p>new Intent(android.content.Intent.VIEW_ACTION, ContentURI.create(&ldquo;<a href="http://anddev.org">http://anddev.org</a>&rdquo;);</p></blockquote>
+
+<h3>Intent Filter</h3>
+
+<p>Navigating from screen to screen is accomplished by resolving intents. An activity calls <code>startActivity(myIntent)</code> to navigation. The system then looks at the intent filters for all installed applications and picks activity whose intent filters best matches <code>myIntent</code>. And the new activity is informed by the intent which cause it to be launched.</p>
+
+<h3>Intent Receiver</h3>
+
+<p>You can use an IntentReceiver when you want code in your application to execute in reaction to an external event, for example, when the phone rings, or when the data network is available, or when it&rsquo;s midnight. Intent receivers do not display UI.</p>
+
+<p>Intent receivers can be registered in the <code>AndroidManifest.xml</code> file, and also you can register it in your code with <code>Context.registerReceiver()</code>.</p>
+
+<p>Applications can also send their own intent broadcasts to others with <code>Context.broadcastIntent()</code>.</p>
+
+<h3>Service</h3>
+
+<p>A <code>Service</code> is long-lived and runs without a UI, such as media player.</p>
+
+<p>You can start a service with <code>Context.startService()</code> to run in the background. And you can connect to a service with the <code>Context.bindService()</code> method. When you connected to a service. you can communicate with it through an interface exposed by the service. For the music service you can pause and rewind it etc.</p>
+
+<h3>ContentProvider</h3>
+
+<p>Applications can store their data in files, a SQLite database, preferences or any other mechanism that makes sense.</p>
+
+<p>A content provider is useful if you want your application&rsquo;s data to be shared with other applications.</p>
+
+<p>A content provider is a class that implements a standard set of methods to let other applications store and retrieve the type of data that is handled by that content provider.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Technical Notes)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-technical-notes/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-technical-notes</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Technical notes</h3>
+
+<p>The contents of files are not actually stored in the index (.git/index) or in commit objects. Rather, each file is stored in the object database (.git/objects) as a blob, identified by its SHA-1 hash. The index file lists the filenames along with the identifier of the associated blob, as well as some other data. For commits, there is an additional data type, a tree, also identified by its hash. Trees correspond to directories in the working directory, and contain a list of trees and blobs corresponding to each filename within that directory. Each commit stores the identifier of its top-level tree, which in turn contains all of the blobs and other trees associated with that commit.</p>
+
+<!--more-->
+
+
+<p>If you make a commit using a detached HEAD, the last commit really is referenced by something: the reflog for HEAD. However, this will expire after a while, so the commit will eventually be garbage collected, similar to commits discarded with <code>git commit --amend</code> or <code>git rebase</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Reset Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-reset-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-reset-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Reset command</h3>
+
+<p><strong>The reset command moves the current branch to another position</strong>, and optionally updates the stage and the working directory. It also is used to copy files from the history to the stage without touching the working directory.</p>
+
+<p>If a commit is given with no filenames, the current branch is moved to that commit, and then the stage is updated to match this commit. If &ndash;hard is given, the working directory is also updated. If &ndash;soft is given, neither is updated.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p><img src="http://stonefishy.github.io/assets/images/reset-commit.png" alt="reset-commit" /></p>
+
+<p>If a commit is not given, it defaults to HEAD. In this case, the branch is not moved, but the stage (and optionally the working directory, if &ndash;hard is given) are reset to the contents of the last commit.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/reset.png" alt="reset" /></p>
+
+<p>If a filename (and/or -p) is given, then the command works similarly to checkout with a filename, except only the stage (and not the working directory) is updated. (You may also specify the commit from which to take files, rather than HEAD.)</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/reset-files.png" alt="reset-files" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Rebase Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-rebase-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-rebase-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Rebase command</h3>
+
+<p>A rebase is an alternative to a merge for combining multiple branches. Whereas a merge creates a single commit with two parents, leaving a non-linear history, a rebase replays the commits from the current branch onto another, leaving a linear history. <em>In essence, this is an automated way of performing several cherry-picks in a row</em>.</p>
+
+<!--more-->
+
+
+<p><img src="http://stonefishy.github.io/assets/images/rebase.png" alt="rebase" /></p>
+
+<p>The above command takes all the commits that exist in topic but not in master (namely 169a6 and 2c33a), replays them onto master, and then moves the branch head to the new tip. Note that the old commits will be garbage collected if they are no longer referenced.</p>
+
+<p>To limit how far back to go, use the &ndash;onto option. The following command replays onto master the most recent commits on the current branch since 169a6 (exclusive), namely 2c33a.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/rebase-onto.png" alt="rebase-onto" /></p>
+
+<p>There is also <code>git rebase --interactive</code>, which allows one to do more complicated things than simply replaying commits, namely dropping, reordering, modifying, and squashing commits. There is no obvious picture to draw for this; see git-rebase(1) for more details.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Merge Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Merge command</h3>
+
+<p>A merge creates a new commit that incorporates changes from other commits. Before merging, the stage must match the current commit. The trivial case is if the other commit is an ancestor of the current commit, in which case nothing is done. The next most simple is if the current commit is an ancestor of the other commit. This results in a fast-forward merge. The reference is simply moved, and then the new commit is checked out.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p><img src="http://stonefishy.github.io/assets/images/merge-ff.png" alt="merge-ff" /></p>
+
+<p>Otherwise, a &ldquo;real&rdquo; merge must occur. You can choose other strategies, but the default is to perform a &ldquo;recursive&rdquo; merge, which basically takes the current commit (ed489 below), the other commit (33104), and their common ancestor (b325c), and performs a three-way merge. The result is saved to the working directory and the stage, and then a commit occurs, with an extra parent (33104) for the new commit.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/merge.png" alt="merge" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Diff Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-diff-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-diff-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Diff Command</h3>
+
+<p>There are various ways to look at differences between commits. Below are some common examples. Any of these commands can optionally take extra filename arguments that limit the differences to the named files.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p><img src="http://stonefishy.github.io/assets/images/diff.png" alt="diff" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Commit Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-commit-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-commit-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Commit command</h3>
+
+<p>When you commit, git creates a new commit object using the files from the stage and sets the parent to the current commit. It then points the current branch to this new commit. In the image below, the current branch is <em>master</em>. Before the command was run, <em>master</em> pointed to ed489. Afterward, a new commit, f0cec, was created, with parent ed489, and then <em>master</em> was moved to the new commit.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p><img src="http://stonefishy.github.io/assets/images/commit-master.png" alt="commit-master" /></p>
+
+<p>This same process happens even when the current branch is an ancestor of another. Below, a commit occurs on branch <em>maint</em>, which was an ancestor of <em>master</em>, resulting in 1800b. Afterward, <em>maint</em> is no longer an ancestor of <em>master</em>. To join the two histories, a <strong>merge</strong> (or <strong>rebase</strong>) will be necessary.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/commit-maint.png" alt="commit-maint" /></p>
+
+<p>Sometimes a mistake is made in a commit, but this is easy to correct with <code>git commit --amend</code>. When you use this command, git creates a new commit with the same parent as the current commit. (<em>The old commit will be discarded if nothing else references it.</em>)</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/commit-amend.png" alt="commit-amend" /></p>
+
+<p>When <strong>HEAD</strong> is detached, commits work like normal, except no named branch gets updated. (<em>You can think of this as an anonymous branch.</em>)</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/commit-detached.png" alt="commit-detached" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Cherry Pick Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-cherry-pick-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-cherry-pick-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Cherry-pick command</h3>
+
+<p>The cherry-pick command &ldquo;copies&rdquo; a commit, creating a new commit on the current branch with the same message and patch as another commit.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/cherry-pick.png" alt="cherry-pick" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Checkout Command)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-checkout-command/"/>
+    <updated>2014-11-07T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-checkout-command</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Checkout</h3>
+
+<p>The checkout command is used to copy files from the history (or stage) to the working directory, and to optionally switch branches.</p>
+
+<p>When a filename (and/or -p) is given, git copies those files from the given commit to the stage and the working directory. For example, git checkout HEAD~ foo.c copies the file foo.c from the commit called HEAD~ (the parent of the current commit) to the working directory, and also stages it. (<em>If no commit name is given, files are copied from the stage.</em>) <strong>Note that the current branch is not changed.</strong></p>
+
+<p><img src="http://stonefishy.github.io/assets/images/checkout-files.png" alt="checkout-files" /></p>
+
+<!--more-->
+
+
+<p>When a filename is not given but the reference is a (local) branch, HEAD is moved to that branch (that is, we &ldquo;switch to&rdquo; that branch), and then the stage and working directory are set to match the contents of that commit. Any file that exists in the new commit (a47c3 below) is copied; any file that exists in the old commit (ed489) but not in the new one is deleted; and any file that exists in neither is ignored.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/checkout-branch.png" alt="checkout-branch" /></p>
+
+<p>When a filename is not given and the reference is not a (local) branch — say, it is a tag, a remote branch, a SHA-1 ID, or something like master~3 — we get an anonymous branch, called a detached HEAD. This is useful for jumping around the history. Say you want to compile version 1.6.6.1 of git. You can git checkout v1.6.6.1 (which is a tag, not a branch), compile, install, and then switch back to another branch, say git checkout master. However, committing works slightly differently with a detached HEAD; this is covered below.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/checkout-detached.png" alt="checkout-detached" /></p>
+
+<p>Once you check out something else, say master, the commit is (presumably) no longer referenced by anything else, and gets lost. Note that after the command, there is nothing referencing 2eecb.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/checkout-after-detached.png" alt="checkout-after-detached" /></p>
+
+<p>If, on the other hand, you want to save this state, you can create a new named branch using <code>git checkout -b name</code>.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/checkout-b-detached.png" alt="checkout-b-detached" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Conventions)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/06/visual-git-guide-conventions/"/>
+    <updated>2014-11-06T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/06/visual-git-guide-conventions</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Conventions</h3>
+
+<p><img src="http://stonefishy.github.io/assets/images/conventions.png" alt="conventions" /></p>
+
+<!--more-->
+
+
+<p>Commits are shown in green as 5-character IDs, and they point to their parents. Branches are shown in orange, and they point to particular commits.The current branch is identified by the special reference HEAD, which is &ldquo;attached&rdquo; to that branch. In this image, the five latest commits are shown, with ed489 being the most recent. master (the current branch) points to this commit, while maint (another branch) points to an ancestor of master&rsquo;s commit.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Git Guide (Basic Usage)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/06/visual-git-guide-basic-usage/"/>
+    <updated>2014-11-06T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/06/visual-git-guide-basic-usage</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Basic Usage</h3>
+
+<p><img src="http://stonefishy.github.io/assets/images/basic-usage.png" alt="basic-usage" /></p>
+
+<p>The four commands above copy files between the working directory, the stage (also called the index), and the history (in the form of commits).</p>
+
+<!--more-->
+
+
+<ul>
+<li><p><code>git add [files]</code> copies files (at their current state) to the stage.</p></li>
+<li><p><code>git commit</code> saves a snapshot of the stage as a commit.</p></li>
+<li><p><code>git reset -- [files]</code> unstages files; that is, it copies files from the latest commit to the stage. Use this command to &ldquo;undo&rdquo; a <em>git add files</em>. You can also <em>git reset</em> to unstage everything.</p></li>
+<li><p><code>git checkout -- [files]</code> copies files from the stage to the working directory. Use this to throw away local changes.</p></li>
+</ul>
+
+
+<p>You can use <code>git reset -p</code>, <code>git checkout -p</code>, or <code>git add -p</code> instead of (or in addition to) specifying particular files to interactively choose which hunks copy.</p>
+
+<p>It is also possible to jump over the stage and check out files directly from the history or commit files without staging first.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/basic-usage-2.png" alt="basic-usage-2" /></p>
+
+<ul>
+<li><p><code>git commit -a</code> is equivalent to running git add on all filenames that existed in the latest commit, and then running git commit.</p></li>
+<li><p><code>git commit [files]</code> creates a new commit containing the contents of the latest commit, plus a snapshot of files taken from the working directory. Additionally, files are copied to the stage.</p></li>
+<li><p><code>git checkout HEAD -- [files]</code> copies files from the latest commit to both the stage and the working directory.</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Commands (3)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/06/git-commands-3/"/>
+    <updated>2014-11-06T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/06/git-commands-3</id>
+    <content type="html"><![CDATA[<h3>Redo Commits</h3>
+
+<ul>
+<li><p>Undo all commits after [commit], and preserve changes locally: <br/>
+<code>$ git reset [commit]</code></p></li>
+<li><p>Discard all history and changes back to the specified commit: <br/>
+<code>$ git reset --hard [commit]</code></p></li>
+</ul>
+
+
+<!--more-->
+
+
+<h3>Save Fragments</h3>
+
+<ul>
+<li><p>Temporarily stores all modified <strong>tracked</strong> files: <br/>
+<code>$ git stash</code></p></li>
+<li><p>Retore the most recently stashed files: <br/>
+<code>$ git stash pop</code></p></li>
+<li><p>List all stashed changesets: <br/>
+<code>$ git stash list</code></p></li>
+<li><p>Discard the most recently stashed changeset: <br/>
+<code>$ git stash drop</code></p></li>
+</ul>
+
+
+<h3>Synchronize Changes</h3>
+
+<ul>
+<li><p>Download all history from the repostory bookmark: <br/>
+<code>$ git fetch [bookmark]</code></p></li>
+<li><p>Combine bookmark&rsquo;s branch into current branch:  <br/>
+<code>$ git merge [bookmark]/[branch]</code></p></li>
+<li><p>Upload all local branch commits to Github: <br/>
+<code>$ git push [alias] [branch]</code></p></li>
+<li><p>Downloads bookmark history and incorporates changes: <br/>
+<code>$ git pull</code></p></li>
+<li><p>Copy a commit and create a new commit on the current branch with the same message and patch as another commit: <br/>
+<code>$ git cherry-pick [commit]</code></p></li>
+<li><p>merge the version history of current branch onto another specified branch: <br/>
+<code>$ git rebase [branch]</code></p></li>
+<li><p>merge the version history after specified commit of current branch onto another specified branch: <br/>
+<code>$ git rebase --onto [branch] [commit]</code></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Commands (2)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/06/git-commands-2/"/>
+    <updated>2014-11-06T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/06/git-commands-2</id>
+    <content type="html"><![CDATA[<h3>Group Changes</h3>
+
+<ul>
+<li><p>List all local branches in the current repository: <br/>
+<code>$ git branch</code></p></li>
+<li><p>Create a new branch with specified name: <br/>
+<code>$ git branch [branch-new]</code></p></li>
+<li><p>Switch to the specified branch and updates the working directory: <br/>
+<code>$ git checkout [branch-name]</code></p></li>
+<li><p>Combine the specified branch to the current branch: <br/>
+<code>$ git merge [branch-name]</code></p></li>
+<li><p>Delete the specified branch: <br/>
+<code>$ git branch -d [branch-name]</code></p></li>
+</ul>
+
+
+<!--more-->
+
+
+<h3>Suppress Tracking</h3>
+
+<ul>
+<li><p>A text file named <code>.gitigore</code> suppresses accidental versioning of files and paths matching the specified patterns, for example: <br/>
+<code>*.log temp-* dir/*</code> <br/>
+will ignore log file and started with temp- files and all files in dir directory.</p></li>
+<li><p>List all ignore files in this project: <br/>
+<code>$ git ls-files --other --ignored --exclude-standard</code></p></li>
+</ul>
+
+
+<h3>Review History</h3>
+
+<ul>
+<li><p>List all version history for the current branch: <br/>
+<code>$ git log</code></p></li>
+<li><p>List viewsion history for a single file, including rename: <br/>
+<code>$ git log --follow [file]</code></p></li>
+<li><p>Show content differences between two branchs: <br/>
+<code>$ git diff [first-branch] [second-branch]</code></p></li>
+<li><p>Output metadata and content changes of the specified name: <br/>
+<code>$ git show [commit]</code></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Commands (1)]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/05/git-commands-1/"/>
+    <updated>2014-11-05T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/05/git-commands-1</id>
+    <content type="html"><![CDATA[<h3>Configure</h3>
+
+<ul>
+<li><p>Sets the name you want attached to your commit transactions: <br/>
+<code>$ git config --global user.name "[name]"</code></p></li>
+<li><p>Sets the email you want attached to your commit transactions: <br/>
+<code>$ git config --global user.email "[email]"</code></p></li>
+<li><p>Enable git color for command line output: <br/>
+<code>$ git config --global color.ui true</code></p></li>
+</ul>
+
+
+<!--more-->
+
+
+<h3>Create Repositories</h3>
+
+<ul>
+<li><p>Create a new repository with the specifical name, it will create a specified name directory with git: <br/>
+<code>$ git init [project-name]</code></p></li>
+<li><p>Init current directory to git repository: <br/>
+<code>$ git init</code></p></li>
+<li><p>Downloads a project by repository url: <br/>
+<code>$ git clone [url]</code></p></li>
+<li><p>add local repository to remote repository: <br/>
+<code>$ git remote add [remote-name] [remote-repository-url]</code></p></li>
+</ul>
+
+
+<h3>Make Changes</h3>
+
+<ul>
+<li><p>List all currently new or modified or deleted files: <br/>
+<code>$ git status</code></p></li>
+<li><p>Show all differences of each modified file before staged: <br/>
+<code>$ git diff</code></p></li>
+<li><p>Show differences of specified file before staged: <br/>
+<code>$ git diff [file]</code></p></li>
+<li><p>Show differences of file between staging and the last file version: <br/>
+<code>$ git diff --staged</code></p></li>
+<li><p>Add all new or modified files to snapshot for commit:  <br/>
+<code>$ git add .</code> or <code>$ git add --all</code></p></li>
+<li><p>Add specified file to stage for commit: <br/>
+<code>$ git add [file]</code></p></li>
+<li><p>Discard the changes of specified file in working directory: <br/>
+<code>$ git checkout [file]</code></p></li>
+<li><p>remove the file which has been deleted from local from stage: <br/>
+<code>$ git rm [file]</code></p></li>
+<li><p>Removes the file from version control but preserves the file locally: <br/>
+<code>$ git rm --cached [file]</code></p></li>
+<li><p>Change the file name and prepare it for commit: <br/>
+<code>$ git mv [file-original] [file-renamed]</code></p></li>
+<li><p>Unstage the file, but preserve its content: <br/>
+<code>$ git reset [file]</code></p></li>
+<li><p>Commit files which was newed or modified or deleted: <br/>
+<code>$ git commit -m"[descriptive message]"</code></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What Is Git]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/04/what-is-git/"/>
+    <updated>2014-11-04T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/04/what-is-git</id>
+    <content type="html"><![CDATA[<h3>Introduction</h3>
+
+<p><img src="http://stonefishy.github.io/assets/images/git-logo.png" alt="Git" /> is <code>open source distributed version control system</code> that allows a team of people to work together, all using the same files. And it helps the team cope with the confusion that tends to happen when multiple people are editing the same files.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p>And also <code>git</code> supplies the GUI client mode and command line mode. You can choose which you prefer to.</p>
+
+<h3>Install</h3>
+
+<ul>
+<li><p>GitHub for windows <br/>
+You can go to offical website and download windows version as below address: <br/>
+<a href="https://windows.github.com">https://windows.github.com</a></p></li>
+<li><p>GitHub for Mac
+Go to offical website and download mac version as below address: <br/>
+<a href="https://mac.github.com">https://mac.github.com</a></p></li>
+<li><p>Git for all platforms
+<code>Git</code> distributions for Linux and POSIX systems are available on the offical Git SCM web sit: <br/>
+<a href="http://git-scm.com">http://git-scm.com</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What Is Andriod]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/03/what-is-andriod/"/>
+    <updated>2014-11-03T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/03/what-is-andriod</id>
+    <content type="html"><![CDATA[<p><img src="http://stonefishy.github.io/assets/images/android.jpg" alt="Andriod" />
+<code>Andriod</code> is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware resource in a mobile environment.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p>And this virtual machine is called <code>Dalvik</code> virtual machine(<code>DalvikVM</code>), which is  a register based on virtual machine, designed and written by <em>Dan Bornstein</em> and some other Google engineers, it&rsquo;s an important part of the <code>Andriod</code> platform. And it differece to normal Java virtual machines(<code>JVM</code>) which are stack based.</p>
+
+<p>Developers can 100% customize their <code>Andriod-Device</code>. The <code>Andriod</code> System Communication is based on called <code>Intents</code>, which are more or less just a String(with some data attached) which defines an anction that needs to be handled.For example:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"android.provider.Telephony.SMS_RECEIVED"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you want to develope <code>Andriod</code> applications, firstly you need to install the development tools just like <code>ADT</code>(Andriod Development Tools), you can download it  for mac from <a href="https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">here</a>, or go to this <a href="http://developer.android.com/sdk/index.html">website</a> download it for other os.</p>
+
+<p>And you can visit the offical website of <code>Andriod</code> from <a href="http://developer.android.com/index.html">here</a>. There have some steps which can teach how to get started and how to develop an Andriod application, even supplies lots of application examples.</p>
+
+<p>So just enjoy it. Have your fun!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Backslash Escapes in Markdown]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/10/28/backslash-escapes-in-markdown/"/>
+    <updated>2014-10-28T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/10/28/backslash-escapes-in-markdown</id>
+    <content type="html"><![CDATA[<p><code>Markdown</code> allows you to use backslash to generate literal characters that possesses
+special meaning in <code>Markdown</code> syntax.</p>
+
+<p><code>Markdown</code> provides backslash escapes for the following characters:</p>
+
+<blockquote><ul>
+<li>\ blackslash</li>
+<li>` backtick</li>
+<li>* asterisk</li>
+<li>_ underscore</li>
+<li>{} curly braces</li>
+<li>[] square brackets</li>
+<li>() parentheses</li>
+<li># hash mark</li>
+<li>+ push sign</li>
+<li>- minus sign (hyphen)</li>
+<li>. dot</li>
+<li>! exclamation mark</li>
+</ul>
+</blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Markdown Syntax for Span Elements]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements/"/>
+    <updated>2014-10-24T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements</id>
+    <content type="html"><![CDATA[<h3>Links</h3>
+
+<p><code>Markdown</code> supports two styles for Links:</p>
+
+<ul>
+<li><em>inline</em>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>[inline link text](www.inlinelink.com "optional title")</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<a href="www.inlinelink.com" title="optional title">inline link text</a></p></blockquote></li>
+</ul>
+
+
+<!--more-->
+
+
+<ul>
+<li><em>reference</em>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>[reference link text][id]</code>
+<code>[id]: www.referencelink.com "optional title"</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<a href="www.referencelink.com" title="optional title">reference link text</a></p></blockquote></li>
+</ul>
+
+
+<blockquote><p><strong><em>Note:</em></strong><br/>
+The <code>optional title</code> is not necessary.  You can input it for your demand.
+Link definitions can be placed anywhere in your <code>Markdown</code> document.</p></blockquote>
+
+<h3>Emphasis</h3>
+
+<p><code>Markdown</code> uses asterisk(*) and underscore(_) symbol to wraps the text that you want to emphasis.</p>
+
+<ul>
+<li><p>Use one symbol asterisk<code>*</code> or underscore<code>_</code> to wrap text, it will produce the <code>&lt; em&gt;</code> tag of HTML Tags.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>*Sample Text*</code>  or <code>_Sample Text_</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<em>Sample Text</em> or <em>Sample Text</em></p></blockquote></li>
+<li><p>Use double symbols asterisk<code>*</code> or underscore<code>_</code>, it will produce the <code>&lt; strong&gt;</code> tag of HTML Tags.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>**Sample Text**</code> or <code>__Sample Text__</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<strong>Sample Text</strong> or <strong>Sample Text</strong></p></blockquote></li>
+</ul>
+
+
+<h3>Code</h3>
+
+<p><code>Markdown</code> uses backtick quotes<code>`</code> to wrap the code text. It will produce the <code>&lt; code&gt;</code> tag of HTML tags.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>`Code statement`</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<code>Code statement</code></p></blockquote>
+
+<p>And if you want to wrap the backtick quote<code>`</code> symbol. you can use double backticks as the opening and closing delimiter.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+` ` There is a literal backtick(`) here ` `</p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<code>There is a literal backtick(`) here</code></p></blockquote>
+
+<h3>Image</h3>
+
+<p><code>Markdown</code> uses an image syntax that is intended to resemble the syntax for links, allowing <em>inline</em> and <em>reference</em></p>
+
+<ul>
+<li><p><em>inline</em></p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>![alt text](http://daringfireball.net/graphics/logos/ "optional title")</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<img src="http://daringfireball.net/graphics/logos/" title="optional title" alt="alt text" /></p></blockquote></li>
+<li><p><em>reference</em></p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>![alt text][id]</code>
+<code>[id]:http://daringfireball.net/graphics/logos/ "optional title"</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<img src="http://daringfireball.net/graphics/logos/" title="optional title" alt="alt text" /></p></blockquote></li>
+</ul>
+
+
+<blockquote><p><strong><em>Note:</em></strong><br/>
+<code>Markdown</code> has no syntax for specifying the dimensions of an image; if this is important to you, you can simply use regular HTML <code>&lt; img&gt;</code> tags.</p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

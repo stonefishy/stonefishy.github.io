@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git Commands (1) - Stonefishy Blog</title>
+  <meta name="author" content="Yu SHI">
+
+  
+  <meta name="description" content="">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2014/11/05/git-commands-1">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git Commands (1)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-05T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>Configure</h3>
+
+<ul>
+<li><p>Sets the name you want attached to your commit transactions: <br/>
+<code>$ git config --global user.name "[name]"</code></p></li>
+<li><p>Sets the email you want attached to your commit transactions: <br/>
+<code>$ git config --global user.email "[email]"</code></p></li>
+<li><p>Enable git color for command line output: <br/>
+<code>$ git config --global color.ui true</code></p></li>
+</ul>
+
+
+<!--more-->
+
+
+<h3>Create Repositories</h3>
+
+<ul>
+<li><p>Create a new repository with the specifical name, it will create a specified name directory with git: <br/>
+<code>$ git init [project-name]</code></p></li>
+<li><p>Init current directory to git repository: <br/>
+<code>$ git init</code></p></li>
+<li><p>Downloads a project by repository url: <br/>
+<code>$ git clone [url]</code></p></li>
+<li><p>add local repository to remote repository: <br/>
+<code>$ git remote add [remote-name] [remote-repository-url]</code></p></li>
+</ul>
+
+
+<h3>Make Changes</h3>
+
+<ul>
+<li><p>List all currently new or modified or deleted files: <br/>
+<code>$ git status</code></p></li>
+<li><p>Show all differences of each modified file before staged: <br/>
+<code>$ git diff</code></p></li>
+<li><p>Show differences of specified file before staged: <br/>
+<code>$ git diff [file]</code></p></li>
+<li><p>Show differences of file between staging and the last file version: <br/>
+<code>$ git diff --staged</code></p></li>
+<li><p>Add all new or modified files to snapshot for commit:  <br/>
+<code>$ git add .</code> or <code>$ git add --all</code></p></li>
+<li><p>Add specified file to stage for commit: <br/>
+<code>$ git add [file]</code></p></li>
+<li><p>Discard the changes of specified file in working directory: <br/>
+<code>$ git checkout [file]</code></p></li>
+<li><p>remove the file which has been deleted from local from stage: <br/>
+<code>$ git rm [file]</code></p></li>
+<li><p>Removes the file from version control but preserves the file locally: <br/>
+<code>$ git rm --cached [file]</code></p></li>
+<li><p>Change the file name and prepare it for commit: <br/>
+<code>$ git mv [file-original] [file-renamed]</code></p></li>
+<li><p>Unstage the file, but preserve its content: <br/>
+<code>$ git reset [file]</code></p></li>
+<li><p>Commit files which was newed or modified or deleted: <br/>
+<code>$ git commit -m"[descriptive message]"</code></p></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu SHI</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-05T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/04/what-is-git/" title="Previous Post: What is Git">&laquo; What is Git</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/11/06/git-commands-2/" title="Next Post: Git Commands (2)">Git Commands (2) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/21/guava-optional/">Guava &#8211; Optional</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/17/the-lifecycle-of-android-activity/">The Lifecycle of Android Activity</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/13/building-blocks-of-android-application/">Building Blocks of Android Application</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/07/visual-git-guide-technical-notes/">Visual Git Guide (Technical Notes)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/07/visual-git-guide-reset-command/">Visual Git Guide (Reset Command)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Yu SHI -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
