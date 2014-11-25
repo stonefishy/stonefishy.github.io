@@ -1,0 +1,16 @@
+<div class="highlight"><pre><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return true</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 100</span>
+
+<span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">absent</span><span class="o">();</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">// return false</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//return 0;</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
+
+<span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 1;</span>
+
+<span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return false;</span>
+<span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
+</pre></div>
