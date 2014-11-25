@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://stonefishy.github.io/sitemap.xml 
