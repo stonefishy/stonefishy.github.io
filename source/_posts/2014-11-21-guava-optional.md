@@ -2,7 +2,8 @@
 layout: post
 title: "Guava -- Optional"
 description: ""
-category: Java, Guava
+category: [Java, Guava]
+
 ---
 
 `Optional<T>` is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is "present"), or it may contain nothing (in which case we say the reference is "absent"). It is never said to "contain null."
