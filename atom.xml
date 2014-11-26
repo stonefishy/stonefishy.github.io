@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-11-25T23:15:15+08:00</updated>
+  <updated>2014-11-26T23:01:45+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Guava -- Preconditions]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/26/guava-preconditions/"/>
+    <updated>2014-11-26T22:36:07+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/26/guava-preconditions</id>
+    <content type="html"><![CDATA[<p>Guava provides a number of precondition checking utilities. It&rsquo;s <code>Preconditions</code> class. You can use it into your project.</p>
+
+<h3>Usage</h3>
+
+<p><code>checkArgument(boolean)</code> <br/>
+Checks that the boolean is true. Use for validating arguments to methods.</p>
+
+<p><code>checkNotNull(T)</code> <br/>
+Checks that the value is not null. Returns the value directly, so you can use checkNotNull(value) inline.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p><code>checkElementIndex(int index, int size)</code> <br/>
+Checks that index is a valid element index into a list, string, or array with the specified size. An element index may range from 0 inclusive to size exclusive. You don&rsquo;t pass the list, string, or array directly; you just pass its size.
+Returns index.</p>
+
+<p><code>checkPositionIndex(int index, int size)</code> <br/>
+Checks that index is a valid position index into a list, string, or array with the specified size. A position index may range from 0 inclusive to size inclusive. You don&rsquo;t pass the list, string, or array directly; you just pass its size.
+Returns index.</p>
+
+<h3>Example</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkArgument</span><span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">,</span> <span class="s">&quot;Argument %s is not larger than 5&quot;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+</span><span class='line'><span class="c1">// will throw IllegalArgumentException with &quot;Argument 3 is not larger than 5&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <span class="c1">// return 3;</span>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span> <span class="c1">// throw NullPointerException;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkElementIndex</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="mi">4</span><span class="o">);</span> <span class="c1">// return 3</span>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkElementIndex</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// throw IndexOutOfBoundsException</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkPositionIndex</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// return 3</span>
+</span><span class='line'><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkPositionIndex</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span> <span class="c1">// throw IndexOutOfBoundsException</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Guava -- Optional]]></title>
@@ -676,113 +737,6 @@ special meaning in <code>Markdown</code> syntax.</p>
 <li>! exclamation mark</li>
 </ul>
 </blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Markdown Syntax for Span Elements]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements/"/>
-    <updated>2014-10-24T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements</id>
-    <content type="html"><![CDATA[<h3>Links</h3>
-
-<p><code>Markdown</code> supports two styles for Links:</p>
-
-<ul>
-<li><em>inline</em>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>[inline link text](www.inlinelink.com "optional title")</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<a href="www.inlinelink.com" title="optional title">inline link text</a></p></blockquote></li>
-</ul>
-
-
-<!--more-->
-
-
-<ul>
-<li><em>reference</em>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>[reference link text][id]</code>
-<code>[id]: www.referencelink.com "optional title"</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<a href="www.referencelink.com" title="optional title">reference link text</a></p></blockquote></li>
-</ul>
-
-
-<blockquote><p><strong><em>Note:</em></strong><br/>
-The <code>optional title</code> is not necessary.  You can input it for your demand.
-Link definitions can be placed anywhere in your <code>Markdown</code> document.</p></blockquote>
-
-<h3>Emphasis</h3>
-
-<p><code>Markdown</code> uses asterisk(*) and underscore(_) symbol to wraps the text that you want to emphasis.</p>
-
-<ul>
-<li><p>Use one symbol asterisk<code>*</code> or underscore<code>_</code> to wrap text, it will produce the <code>&lt; em&gt;</code> tag of HTML Tags.</p>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>*Sample Text*</code>  or <code>_Sample Text_</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<em>Sample Text</em> or <em>Sample Text</em></p></blockquote></li>
-<li><p>Use double symbols asterisk<code>*</code> or underscore<code>_</code>, it will produce the <code>&lt; strong&gt;</code> tag of HTML Tags.</p>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>**Sample Text**</code> or <code>__Sample Text__</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<strong>Sample Text</strong> or <strong>Sample Text</strong></p></blockquote></li>
-</ul>
-
-
-<h3>Code</h3>
-
-<p><code>Markdown</code> uses backtick quotes<code>`</code> to wrap the code text. It will produce the <code>&lt; code&gt;</code> tag of HTML tags.</p>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>`Code statement`</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<code>Code statement</code></p></blockquote>
-
-<p>And if you want to wrap the backtick quote<code>`</code> symbol. you can use double backticks as the opening and closing delimiter.</p>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-` ` There is a literal backtick(`) here ` `</p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<code>There is a literal backtick(`) here</code></p></blockquote>
-
-<h3>Image</h3>
-
-<p><code>Markdown</code> uses an image syntax that is intended to resemble the syntax for links, allowing <em>inline</em> and <em>reference</em></p>
-
-<ul>
-<li><p><em>inline</em></p>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>![alt text](http://daringfireball.net/graphics/logos/ "optional title")</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<img src="http://daringfireball.net/graphics/logos/" title="optional title" alt="alt text" /></p></blockquote></li>
-<li><p><em>reference</em></p>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>![alt text][id]</code>
-<code>[id]:http://daringfireball.net/graphics/logos/ "optional title"</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<img src="http://daringfireball.net/graphics/logos/" title="optional title" alt="alt text" /></p></blockquote></li>
-</ul>
-
-
-<blockquote><p><strong><em>Note:</em></strong><br/>
-<code>Markdown</code> has no syntax for specifying the dimensions of an image; if this is important to you, you can simply use regular HTML <code>&lt; img&gt;</code> tags.</p></blockquote>
 ]]></content>
   </entry>
   
