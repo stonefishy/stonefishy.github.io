@@ -14,7 +14,7 @@ Objects.equal("a", "a"); // return true;
 Objects.equal(null, "a"); // return false;
 Objects.equal(null, null); // return true;
 ```
-
+<!--more-->
 `Objects.hashCode(Object, ....)`   
 Generating hash code with multiple object will be simple. And it also can hash all fields of an Object to get more sensible code value.   
 ``` java
