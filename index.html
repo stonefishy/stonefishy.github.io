@@ -99,40 +99,12 @@ Invoking this method then it will avoid the risking of NullPointerException when
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>Objects.hashCode(Object, ....)</code> <br/>
-Generating hash code with multiple object will be simple. And it also can hash all fields of an Object to get more sensible code value.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// generate hash code with multi object</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">intField</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">charField</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">stringField</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">dateField</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>ComparisonChain</code> <br/>
-ComparisonChain is a fluent idiom and much more readable. less prone to accidental typos, and smart enough not to do more work than it must. <br/>
-It only performs comparisons until it finds a non-zero result, after which it ignores further input.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ObjectsTraining</span> <span class="n">objectsTraining</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ObjectsTraining</span><span class="o">();</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">intField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">intField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">stringField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">stringField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">charField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">charField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">dateField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">dateField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">result</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/27/guava-common-object-method/">Read on &rarr;</a>
+    </footer>
   
 
 
