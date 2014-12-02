@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Jsp | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/jsp/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
   <updated>2014-12-03T00:31:39+08:00</updated>
   <id>http://stonefishy.github.io/</id>
@@ -216,147 +216,6 @@ public class SystemTag extends SimpleTagSupport {
     &lt;/body&gt;
 &lt;/html&gt;
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Common Object Methods]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method/"/>
-    <updated>2014-11-27T20:41:45+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method</id>
-    <content type="html"><![CDATA[<h3>Usage</h3>
-
-<p><code>Objects.equal(Object, Object)</code> <br/>
-Invoking this method then it will avoid the risking of NullPointerException when we need to compare two object whether they equal.
-<code>java
-Objects.equal("a", "a"); // return true;
-Objects.equal(null, "a"); // return false;
-Objects.equal(null, null); // return true;
-</code></p>
-
-<!--more-->
-
-
-<p><code>Objects.hashCode(Object, ....)</code> <br/>
-Generating hash code with multiple object will be simple. And it also can hash all fields of an Object to get more sensible code value. <br/>
-<code>java
-// generate hash code with multi object
-Objects.hashCode(this.intField, this.charField, this.stringField, this.dateField);
-</code></p>
-
-<p><code>ComparisonChain</code> <br/>
-ComparisonChain is a fluent idiom and much more readable. less prone to accidental typos, and smart enough not to do more work than it must. <br/>
-It only performs comparisons until it finds a non-zero result, after which it ignores further input.
-<code>java
-ObjectsTraining objectsTraining = new ObjectsTraining();
-int result = ComparisonChain.start()
-               .compare(this.intField, objectsTraining.intField)
-             .compare(this.stringField, objectsTraining.stringField)
-             .compare(this.charField, objectsTraining.charField)
-             .compare(this.dateField, objectsTraining.dateField)
-             .result();
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Preconditions]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/26/guava-preconditions/"/>
-    <updated>2014-11-26T22:36:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/26/guava-preconditions</id>
-    <content type="html"><![CDATA[<p>Guava provides a number of precondition checking utilities. It&rsquo;s <code>Preconditions</code> class. You can use it into your project.</p>
-
-<h3>Usage</h3>
-
-<p><code>checkArgument(boolean)</code> <br/>
-Checks that the boolean is true. Use for validating arguments to methods.</p>
-
-<p><code>checkNotNull(T)</code> <br/>
-Checks that the value is not null. Returns the value directly, so you can use checkNotNull(value) inline.</p>
-
-<!--more-->
-
-
-<p></p>
-
-<p><code>checkElementIndex(int index, int size)</code> <br/>
-Checks that index is a valid element index into a list, string, or array with the specified size. An element index may range from 0 inclusive to size exclusive. You don&rsquo;t pass the list, string, or array directly; you just pass its size.
-Returns index.</p>
-
-<p><code>checkPositionIndex(int index, int size)</code> <br/>
-Checks that index is a valid position index into a list, string, or array with the specified size. A position index may range from 0 inclusive to size inclusive. You don&rsquo;t pass the list, string, or array directly; you just pass its size.
-Returns index.</p>
-
-<h3>Example</h3>
-
-<pre><code class="java ">
-int i = 3;
-Preconditions.checkArgument(i &gt; 5, "Argument %s is not larger than 5", i);
-// will throw IllegalArgumentException with "Argument 3 is not larger than 5"
-
-Preconditions.checkNotNull(i); // return 3;
-Preconditions.checkNotNull(null); // throw NullPointerException;
-
-Preconditions.checkElementIndex(i,4); // return 3
-Preconditions.checkElementIndex(i,3); // throw IndexOutOfBoundsException
-
-Preconditions.checkPositionIndex(i,3); // return 3
-Preconditions.checkPositionIndex(i,2); // throw IndexOutOfBoundsException
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Optional]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/21/guava-optional/"/>
-    <updated>2014-11-21T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/21/guava-optional</id>
-    <content type="html"><![CDATA[<p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
-
-<!--more-->
-
-
-<h3>Usage</h3>
-
-<p><code>Optional.of(T)</code>    <br/>
-Make an Optional containing the given non-null value, or fail fast on null.</p>
-
-<p><code>Optional.absent()</code> <br/>
-Return an absent Optional of some type.</p>
-
-<p><code>Optional.fromNullable(T)</code> <br/>
-Turn the given possibly-null reference into an Optional, treating non-null as present and null as absent.</p>
-
-<p><code>boolean isPresent()</code>    <br/>
-Returns true if this Optional contains a non-null instance.</p>
-
-<p><code>T get()</code> <br/>
-Returns the contained T instance, which must be present; otherwise, throws an IllegalStateException.</p>
-
-<p><code>T or()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns the specified default.</p>
-
-<p><code>T orNull()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns null. The inverse operation of fromNullable.</p>
-
-<h3>Example:</h3>
-
-<pre><code class="java   ">Optional&lt;Integer&gt; numberOptional = Optional.of(100);
-numberOptional.isPresent(); //return true
-numberOptional.get(); //return 100
-
-numberOptional = Optional.absent();
-numberOptional.isPresent(); // return false
-numberOptional.or(0); //return 0;
-numberOptional.orNull(); //return null;
-
-numberOptional = Optional.fromNullable(1);
-numberOptional.get(); //return 1;
-
-numberOptional = Optional.fromNullable(null);
-numberOptional.isPresent(); //return false;
-numberOptional.orNull(); //return null;
-</code></pre>
 ]]></content>
   </entry>
   
