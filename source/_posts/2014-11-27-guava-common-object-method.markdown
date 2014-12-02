@@ -3,7 +3,7 @@ layout: post
 title: "Guava -- Common Object Methods"
 date: 2014-11-27 20:41:45 +0800
 comments: true
-categories: [Guava, Java]
+categories: [Guava, Java]	
 ---
 
 ###Usage
