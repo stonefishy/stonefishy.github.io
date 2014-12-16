@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Guava | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/guava/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-12T12:52:47+08:00</updated>
+  <updated>2014-12-16T22:17:25+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,232 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Guava - Ordering]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/12/12/guava-ordering/"/>
+    <updated>2014-12-12T17:28:07+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/12/12/guava-ordering</id>
+    <content type="html"><![CDATA[<p><code>Ordering</code> is Guava&rsquo;s fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to collections of objects.</p>
+
+<p>Okay, so let&rsquo;s getting started. Firstly, we declared a <code>String</code> type List: <br/>
+<code>Java
+    private List&lt;String&gt; locations = Lists.newArrayList(
+            "Guang zhou",
+            "Cheng du",
+            "",
+            "Shang hai"
+    );
+</code>
+We will use this locations variable later.</p>
+
+<!-- more -->
+
+
+<p><code>natural()</code> <br/>
+Use natural ordering for comparatable types. such as number from small to large. date from start to end. It is static method. <br/>
+<code>Java
+    // use natural comparator, such as a -&gt; z
+    // so the result is: [, Cheng du, Guang zhou, Shang hai]
+    System.out.println(Ordering.natural().sortedCopy(locations));
+</code></p>
+
+<p><code>sortedCopy(Iterable)</code> <br/>
+Return a sorted copy of the specified elements as a List.  <br/>
+We create a customized <code>Ordering</code> that sorted by the length of element from small to large. Let&rsquo;s get the code:
+<code>Java
+    private Ordering&lt;String&gt; getCustomzieStringOrder() {
+        return new Ordering&lt;String&gt;() {
+            @Override
+            public int compare(String first, String second) {
+                return Ints.compare(first.length(), second.length());
+            }
+        };
+    }
+</code>
+Order the locations list with our new customize <code>Ordering</code>: <br/>
+&#8220;` Java
+    Ordering<String> byLengthOrdering = getCustomzieStringOrder();</p>
+
+<pre><code>// use natural comparator, such as a -&gt; z
+// so the result is: [, Cheng du, Shang hai, Guang zhou]
+System.out.println(byLengthOrdering.sortedCopy(locations));
+</code></pre>
+
+<pre><code>
+`isOrdered(Iterable)`   
+Return a Boolean variable that can describe the Iterable if sorted.
+</code></pre>
+
+<pre><code>// will return false. because the locations array is not sorted.
+System.out.println(byLengthOrdering.isOrdered(locations));
+</code></pre>
+
+<pre><code>
+`reverse()`   
+Return the reverse `Ordering`.
+</code></pre>
+
+<pre><code>// reverse customize comparator.
+// so the result is: [Guang zhou, Shang hai, Cheng du, ]
+System.out.println(byLengthOrdering.reverse().sortedCopy(locations));
+</code></pre>
+
+<pre><code>
+`nullsFirst()`   
+Return an `Ordering` that will put the null object at the first.
+</code></pre>
+
+<pre><code>// add null object to the locations array.
+locations.add(null);
+
+// null obejct will at first.
+// so the result is : [null, , Cheng du, Shang hai, Guang zhou]
+System.out.println(byLengthOrdering.nullsFirst().sortedCopy(locations));
+</code></pre>
+
+<pre><code>
+`nullsLast()`   
+Return an `Ordering` that will put the null object at the last.
+</code></pre>
+
+<pre><code>// null object will at last.
+// the result is : [, Cheng du, Shang hai, Guang zhou, null]
+System.out.println(byLengthOrdering.nullsLast().sortedCopy(locations));
+
+// will throw NullPointerException, because the location contains null object.
+// and here doesn't have nullsFirst() or nullsLast() to deal with null object.
+byLengthOrdering.sortedCopy(locations);
+
+// remove the null object.
+locations.remove(null);
+</code></pre>
+
+<pre><code>
+`compound()`   
+Returns an `Ordering` which uses the specified Comparator to "break ties."
+</code></pre>
+
+<pre><code>// the "AAAAAAAA" length is equal to "Cheng du" length. (8 characters)
+// and it will be appended at last.
+locations.add("AAAAAAAA");
+
+// use natrual ordering with second comparator to deal with equal situation.
+Ordering&lt;String&gt; compoundOrdering = byLengthOrdering.compound(Ordering.natural());
+
+// the result will be : [, AAAAAAAA, Cheng du, Shang hai, Guang zhou]
+System.out.println(compoundOrdering.sortedCopy(locations));
+</code></pre>
+
+<pre><code>
+`onResultOf(Fuction)`   
+Returns an Ordering which orders values by applying the function to them and then comparing the results using the original Ordering.   
+Declaring a Foo class:
+</code></pre>
+
+<pre><code> public class Foo {
+    @Nullable
+    private Integer sortedBy;
+
+    private String nonSortedBy;
+
+    public Foo(Integer sortedBy, String nonSortedBy) {
+        this.sortedBy = sortedBy;
+        this.nonSortedBy = nonSortedBy;
+    }
+
+    public String getNonSortedBy() {
+        return nonSortedBy;
+    }
+
+    public void setNonSortedBy(String nonSortedBy) {
+        this.nonSortedBy = nonSortedBy;
+    }
+
+    public Integer getSortedBy() {
+        return sortedBy;
+    }
+
+    public void setSortedBy(int sortedBy) {
+        this.sortedBy = sortedBy;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s+%s", this.sortedBy, this.nonSortedBy);
+    }
+}
+</code></pre>
+
+<pre><code>Declaring a new List with Foo class type:
+</code></pre>
+
+<pre><code>private List&lt;Foo&gt; fooList = Lists.newArrayList(
+    new Foo(null, "abc"),
+    new Foo(23, "abc"),
+    new Foo(10, "abc")
+);  
+</code></pre>
+
+<pre><code>Define a new function that will return an customized `Ordering`:
+</code></pre>
+
+<pre><code>private Ordering&lt;Foo&gt; getNaturalFooOrder() {
+    return Ordering.natural().nullsFirst().onResultOf(new Function&lt;Foo, Integer&gt;() {
+        @Override
+        public Integer apply(@Nullable Foo foo) {
+            return foo.getSortedBy();
+        }
+    });
+}
+
+Ordering&lt;Foo&gt; fooOrdering = getNaturalFooOrder();
+// the result will be [null+abc, 10+abc, 23+abc]
+System.out.println(fooOrdering.sortedCopy(fooList));
+</code></pre>
+
+<pre><code>
+`greatestOf(Iterable iterable, int k)`   
+Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.
+</code></pre>
+
+<pre><code>// the result will be [23+abc]
+System.out.println(fooOrdering.greatestOf(fooList, 1));
+
+// the result will be [23+abc, 10+abc]
+System.out.println(fooOrdering.greatestOf(fooList, 2));
+</code></pre>
+
+<pre><code>
+`leastOf(Iterable iterable, int k)`   
+Returns the k least elements of the specified iterable, according to this ordering, in order from least to greatest. Not necessarily stable.
+</code></pre>
+
+<pre><code>// the result will be [null+abc, 10+abc]
+System.out.println(fooOrdering.leastOf(fooList, 2));
+</code></pre>
+
+<pre><code class="">
+`min(Iterable)`   
+Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.   
+</code></pre>
+
+<pre><code>// the result will be null+abc
+System.out.println(fooOrdering.min(fooList));
+</code></pre>
+
+<pre><code>
+`max(Iterable)`   
+Returns the maximum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.   
+</code></pre>
+
+<pre><code>// the result will be 23+abc
+System.out.println(fooOrdering.max(fooList));
+</code></pre>
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Guava -- Common Object Methods]]></title>
