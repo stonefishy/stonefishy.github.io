@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-19T00:51:41+08:00</updated>
+  <updated>2014-12-20T01:36:25+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,110 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Is Ractive.js]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js/"/>
+    <updated>2014-12-19T22:18:45+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js</id>
+    <content type="html"><![CDATA[<p><code>Ractive.js</code> is a <code>template-driven</code> UI library, it transforms your templates into blueprints for application that are interative by default. <code>Ractive.js</code> is very similar with <code>AngularJS</code>, and it supports <code>Two-way binding</code>, <code>animations</code> as well. Another powerfull feature is <code>SVG</code> support.</p>
+
+<h3>Template + Data = UI</h3>
+
+<p>You just need to prepare your html template and datas, and the <code>Ractive.js</code> will automatically to combine them then give you what you want. Whe you change your datas, it intelligently updates the real DOM.</p>
+
+<h3>Usage</h3>
+
+<p>First, you need to include <code>Ractive.js</code> to your application. Just like include other javascript librarys easily. You can download it to local and then include it. And if you want include latest version, you just put below codes to your project.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://cdn.ractivejs.org/latest/ractive.js&#39;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>Second, we define a container that we want to render. Let&rsquo;s give it id container.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And third, just need to define a template. Load template in many ways, for example we can use ajax call to get the template string. and here, we use script tag to include the template.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">id=</span><span class="s">&quot;template&quot;</span> <span class="na">type=</span><span class="s">&quot;text/ractive&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>           <span class="nx">opacity</span><span class="o">=</span><span class="s2">&quot;\{\{0.4+temperature/100}}&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Note:</em> don&rsquo;t mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don&rsquo;t need to add it. remember that!</p>
+
+<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data {{10 + temperature}}，so the radius will update with 10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
+
+<p>And last step, Let&rsquo;s combine the template and data with <code>Ractive.js</code>. the code as below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">ractive</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ractive</span><span class="p">({</span>
+</span><span class='line'>  <span class="c1">// The el option can be a node, an ID, or a CSS selector.</span>
+</span><span class='line'>  <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;container&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="c1">// We could pass in a string, but for the sake of convenience</span>
+</span><span class='line'>  <span class="c1">// we&#39;re passing the ID of the &lt;script&gt; tag above.</span>
+</span><span class='line'>  <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;#template&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="c1">// Here, we&#39;re passing in some initial data</span>
+</span><span class='line'>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>       <span class="nx">temperature</span><span class="o">:</span><span class="mi">50</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>So the style as we can see below: <br/>
+<img src="http://stonefishy.github.io/assets/images/ractive-svg-test.png" width="400" height="200"></p>
+
+<p>Now, we can change the temperature data and let <code>Ractive.js</code> to update the DOM automatically. So there we increase the temperature by 1 per 100 millisecond, and when the temperature larger than 60 then reset it to 0.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">ractive</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">temp</span> <span class="o">=</span> <span class="nx">temp</span> <span class="o">&gt;=</span> <span class="mi">60</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">++</span><span class="nx">temp</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">ractive</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span><span class="nx">temp</span><span class="p">);</span>
+</span><span class='line'> <span class="p">},</span><span class="mi">100</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So the radius of circle and the text will automatically changed. This is <code>Ractive.js</code> simple usage. Hopeful you like it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Learn Any Language in Six Months]]></title>
@@ -1334,57 +1438,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 <code>$ git rebase [branch]</code></p></li>
 <li><p>merge the version history after specified commit of current branch onto another specified branch: <br/>
 <code>$ git rebase --onto [branch] [commit]</code></p></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git Commands (2)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/06/git-commands-2/"/>
-    <updated>2014-11-06T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/06/git-commands-2</id>
-    <content type="html"><![CDATA[<h3>Group Changes</h3>
-
-<ul>
-<li><p>List all local branches in the current repository: <br/>
-<code>$ git branch</code></p></li>
-<li><p>Create a new branch with specified name: <br/>
-<code>$ git branch [branch-new]</code></p></li>
-<li><p>Switch to the specified branch and updates the working directory: <br/>
-<code>$ git checkout [branch-name]</code></p></li>
-<li><p>Combine the specified branch to the current branch: <br/>
-<code>$ git merge [branch-name]</code></p></li>
-<li><p>Delete the specified branch: <br/>
-<code>$ git branch -d [branch-name]</code></p></li>
-</ul>
-
-
-<!--more-->
-
-
-<h3>Suppress Tracking</h3>
-
-<ul>
-<li><p>A text file named <code>.gitigore</code> suppresses accidental versioning of files and paths matching the specified patterns, for example: <br/>
-<code>*.log temp-* dir/*</code> <br/>
-will ignore log file and started with temp- files and all files in dir directory.</p></li>
-<li><p>List all ignore files in this project: <br/>
-<code>$ git ls-files --other --ignored --exclude-standard</code></p></li>
-</ul>
-
-
-<h3>Review History</h3>
-
-<ul>
-<li><p>List all version history for the current branch: <br/>
-<code>$ git log</code></p></li>
-<li><p>List viewsion history for a single file, including rename: <br/>
-<code>$ git log --follow [file]</code></p></li>
-<li><p>Show content differences between two branchs: <br/>
-<code>$ git diff [first-branch] [second-branch]</code></p></li>
-<li><p>Output metadata and content changes of the specified name: <br/>
-<code>$ git show [commit]</code></p></li>
 </ul>
 
 ]]></content>

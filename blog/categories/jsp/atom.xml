@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jsp | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/jsp/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-19T00:51:41+08:00</updated>
+  <updated>2014-12-20T01:36:28+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -33,111 +33,60 @@ As you can see below, consider we want to create two tag, one is user tag with n
 
 
 <p>So firstly what we need to do is create two java classes that act as a tag handler for each other tag. and them must extends <code>SimpleTagSupport</code> class. <br/>
-<figure class='code'><figcaption><span>UserTag.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">custom</span><span class="o">.</span><span class="na">tag</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspWriter</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.SimpleTagSupport</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.StringWriter</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;*</span>
-</span><span class='line'> <span class="o">*</span> <span class="n">Created</span> <span class="n">by</span> <span class="n">yushi</span> <span class="n">on</span> <span class="mi">12</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">14</span><span class="o">.</span>
-</span><span class='line'> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserTag</span> <span class="kd">extends</span> <span class="n">SimpleTagSupport</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">Boolean</span> <span class="n">isMale</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">Date</span> <span class="n">birthday</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">private</span> <span class="n">StringWriter</span> <span class="n">sw</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringWriter</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span><span class="o">,</span> <span class="n">IOException</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>    <span class="n">JspWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// print name info with name attribute</span>
-</span><span class='line'>    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// print gender info via isMale attribute</span>
-</span><span class='line'>    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isMale</span> <span class="o">?</span> <span class="s">&quot;I&#39;m male!&quot;</span> <span class="o">:</span> <span class="s">&quot;I&#39;m female!&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">birthday</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;My birthday is %s&quot;</span><span class="o">,</span> <span class="n">birthday</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// print body text with body content</span>
-</span><span class='line'>    <span class="n">getJspBody</span><span class="o">().</span><span class="na">invoke</span><span class="o">(</span><span class="n">sw</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">().</span><span class="na">println</span><span class="o">(</span><span class="n">sw</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsMale</span><span class="o">(</span><span class="n">Boolean</span> <span class="n">isMale</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">isMale</span> <span class="o">=</span> <span class="n">isMale</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBirthday</span><span class="o">(</span><span class="n">Date</span> <span class="n">birthday</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">birthday</span> <span class="o">=</span> <span class="n">birthday</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
-</span></code></pre></td></tr></table></div></figure></p>
+&#8220;` java UserTag.java
+package com.jsp.custom.tag;</p>
+
+<p>import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Date;</p>
+
+<p>/<em>*
+ * Created by yushi on 12/1/14.
+ </em>/
+public class UserTag extends SimpleTagSupport {
+    private String name;
+    private Boolean isMale;
+    private Date birthday;</p>
+
+<pre><code>private StringWriter sw = new StringWriter();
+
+public void doTag() throws JspException, IOException
+{
+    JspWriter out = getJspContext().getOut();
+
+    // print name info with name attribute
+    out.println(name);
+
+    // print gender info via isMale attribute
+    out.println(isMale ? "I'm male!" : "I'm female!");
+
+    if (birthday != null) {
+        out.println(String.format("My birthday is %s", birthday.toString()));
+    }
+
+    // print body text with body content
+    getJspBody().invoke(sw);
+    getJspContext().getOut().println(sw.toString());
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+public void setIsMale(Boolean isMale) {
+    this.isMale = isMale;
+}
+
+public void setBirthday(Date birthday) {
+    this.birthday = birthday;
+}
+</code></pre>
+
+<p>}
+&#8220;`</p>
 
 <pre><code class="java SystemTag.java">package com.jsp.custom.tag;
 
