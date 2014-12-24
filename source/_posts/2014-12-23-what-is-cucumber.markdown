@@ -10,7 +10,7 @@ categories: [Cucumber, Test]
 
 ###Install
 Firstly, we need to install `Ruby` and `RubyGems`, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:
-``` linux
+```
 ~  ruby --version
 ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
 ~  gem --version
@@ -18,14 +18,15 @@ ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
 ```
 
 And then we can run the command below to install `Cucumber`:
-``` linux
+```
 ~  gem install cucumber
 ```
 
 After this, put below command to see how to use it.
-``` linux
-cucumber --help
 ```
+~  cucumber --help
+```
+<!--more-->
 
 ###Gherkin
 `Gherkin` is a language that can be understand by `Cucumber`. It's a `Business Readable`, `Domain Specific Language`. Very easy to understand what the functional want to do.    
@@ -41,10 +42,20 @@ Like `YAML(Yet Another Markup Language)`, Gherkin is a line-oriented language t
 A Gherkin source file usually looks like this
 
 ``` gherkin
- 1: Feature: Some terse yet descriptive text of what is desired 2:   Textual description of the business value of this feature 3:   Business rules that govern the scope of the feature 4:   Any additional information that will make the feature easier to understand 5:  6:   Scenario: Some determinable business situation 7:     Given some precondition 8:       And some other precondition 9:      When some action by the actor10:       And some other action11:       And yet another action12:      Then some testable outcome is achieved13:       And something else we can check happens too14: 15:   Scenario: A different situation
+ 1: Feature: Some terse yet descriptive text of what is desired
+ 2:   Textual description of the business value of this feature
+ 3:   Business rules that govern the scope of the feature
+ 4:   Any additional information that will make the feature easier to understand
+ 5: 
+ 6:   Scenario: Some determinable business situation
+ 7:     Given some precondition
+ 8:       And some other precondition
+ 9:      When some action by the actor
+10:       And some other action
+11:       And yet another action
+12:      Then some testable outcome is achieved
+13:       And something else we can check happens too
+14: 
+15:   Scenario: A different situation
 ```
-Above the codes, It's very similar with `Given-When-Then` structure, and the `Feature`, `Scenario`, `Given`, `And`, `When`, `Then` all are keywords of `Gherkin`.
-
-
-
-
+Above the codes, It's very similar with `Given-When-Then` the `Feature`, `Scenario`, `Given`, `And`, `When`, `Then` all are keywords of `Gherkin`.

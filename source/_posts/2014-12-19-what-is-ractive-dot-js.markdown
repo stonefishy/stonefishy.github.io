@@ -5,6 +5,7 @@ date: 2014-12-19 22:18:45 +0800
 comments: true
 categories: [Ractive.js, JS] 
 ---
+
 `Ractive.js` is a `template-driven` UI library, it transforms your templates into blueprints for application that are interative by default. `Ractive.js` is very similar with `AngularJS`, and it supports `Two-way binding`, `animations` as well. Another powerfull feature is `SVG` support.   
 
 ###Template + Data = UI
@@ -17,15 +18,15 @@ First, you need to include `Ractive.js` to your application. Just like include o
 ```
 <!-- more -->
 Second, we define a container that we want to render. Let's give it id container.
-```html
-<div id="container"></div>
+``` html
+	<div id="container"></div>
 ```
 And third, just need to define a template. Load template in many ways, for example we can use ajax call to get the template string. and here, we use script tag to include the template.  
 ``` html
     <script id="template" type="text/ractive">
 		<svg width="400" height="200">
     		<rect fill="lightblue" width="100%" height="100%"/>
-    		<circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow" 			opacity="\{\{0.4+temperature/100}}"/>
+    		<circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow" 				opacity='\{\{0.4+temperature/100}}'/>
     		<text x="50%" y="65%" font-size="80" fill="white">\{\{temperature}}℃</text>
 		</svg>
 	</script>
