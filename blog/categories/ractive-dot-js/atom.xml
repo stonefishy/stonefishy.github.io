@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ractive.js | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ractive-dot-js/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-23T23:35:59+08:00</updated>
+  <updated>2014-12-24T22:28:47+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -35,59 +35,50 @@
 
 
 <p>Second, we define a container that we want to render. Let&rsquo;s give it id container.
-&#8220;`html</p>
+<code>html
+    &lt;div id="container"&gt;&lt;/div&gt;
+</code>
+And third, just need to define a template. Load template in many ways, for example we can use ajax call to get the template string. and here, we use script tag to include the template.<br/>
+<code>html
+    &lt;script id="template" type="text/ractive"&gt;
+        &lt;svg width="400" height="200"&gt;
+            &lt;rect fill="lightblue" width="100%" height="100%"/&gt;
+            &lt;circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow"              opacity='\{\{0.4+temperature/100}}'/&gt;
+            &lt;text x="50%" y="65%" font-size="80" fill="white"&gt;\{\{temperature}}℃&lt;/text&gt;
+        &lt;/svg&gt;
+    &lt;/script&gt;
+</code>
+<em>Note:</em> don&rsquo;t mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don&rsquo;t need to add it. remember that!</p>
 
-<div id="container"></div>
+<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data 10，so the radius will update with 10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
 
+<p>And last step, Let&rsquo;s combine the template and data with <code>Ractive.js</code>. the code as below:</p>
 
-<pre><code>And third, just need to define a template. Load template in many ways, for example we can use ajax call to get the template string. and here, we use script tag to include the template.  
+<pre><code class="javascript">    var ractive = new Ractive({
+        // The el option can be a node, an ID, or a CSS selector.
+        el:'container',
+        // We could pass in a string, but for the sake of convenience
+        // we're passing the ID of the &lt;script&gt; tag above.
+        template:'#template',
+        // Here, we're passing in some initial data
+        data: {
+         temperature:50
+        }
+    });
 </code></pre>
 
-<pre><code>&lt;script id="template" type="text/ractive"&gt;
-    &lt;svg width="400" height="200"&gt;
-        &lt;rect fill="lightblue" width="100%" height="100%"/&gt;
-        &lt;circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow"          opacity="\{\{0.4+temperature/100}}"/&gt;
-        &lt;text x="50%" y="65%" font-size="80" fill="white"&gt;\{\{temperature}}℃&lt;/text&gt;
-    &lt;/svg&gt;
-&lt;/script&gt;
-</code></pre>
+<p>So the style as we can see below: <br/>
+<img src="/assets/images/ractive-svg-test.png" width="400" height="200"></p>
 
-<pre><code>*Note:* don't mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don't need to add it. remember that!   
-
-As above. We define a svg tag and it contains rectangle,circle shape and text. The circle's radius bind the data \{\{10 + temperature}}，so the radius will update with 10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.   
-
-And last step, Let's combine the template and data with `Ractive.js`. the code as below:   
-</code></pre>
-
-<pre><code>var ractive = new Ractive({
-    // The el option can be a node, an ID, or a CSS selector.
-    el:'container',
-    // We could pass in a string, but for the sake of convenience
-    // we're passing the ID of the &lt;script&gt; tag above.
-    template:'#template',
-    // Here, we're passing in some initial data
-    data: {
-     temperature:50
-    }
-});
-</code></pre>
-
-<pre><code class="">
-So the style as we can see below:   
-{% img /assets/images/ractive-svg-test.png 400 200 %}
-
-Now, we can change the temperature data and let `Ractive.js` to update the DOM automatically. So there we increase the temperature by 1 per 100 millisecond, and when the temperature larger than 60 then reset it to 0.   
-</code></pre>
-
-<pre><code> setInterval(function(){
-    var temp = ractive.get('temperature');
-    temp = temp &gt;= 60 ? 0 : ++temp; 
-    ractive.set('temperature',temp);
- },100);
-</code></pre>
-
-<p><code>``
-So the radius of circle and the text will automatically changed. This is</code>Ractive.js` simple usage. Hopeful you like it.</p>
+<p>Now, we can change the temperature data and let <code>Ractive.js</code> to update the DOM automatically. So there we increase the temperature by 1 per 100 millisecond, and when the temperature larger than 60 then reset it to 0. <br/>
+<code>javascript
+     setInterval(function(){
+        var temp = ractive.get('temperature');
+        temp = temp &gt;= 60 ? 0 : ++temp;
+        ractive.set('temperature',temp);
+     },100);
+</code>
+So the radius of circle and the text will automatically changed. This is <code>Ractive.js</code> simple usage. Hopeful you like it.</p>
 ]]></content>
   </entry>
   

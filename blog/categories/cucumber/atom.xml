@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cucumber | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/cucumber/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-23T23:33:17+08:00</updated>
+  <updated>2014-12-24T22:28:47+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -22,30 +22,25 @@
 
 <h3>Install</h3>
 
-<p>Firstly, we need to install <code>Ruby</code> and <code>RubyGems</code>, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:</p>
-
-<!--``` linux
+<p>Firstly, we need to install <code>Ruby</code> and <code>RubyGems</code>, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:
+<code>
 ~  ruby --version
 ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
 ~  gem --version
 2.0.14  
-```-->
+</code></p>
 
-
-<p>And then we can run the command below to install <code>Cucumber</code>:</p>
-
-<!--
-``` linux
+<p>And then we can run the command below to install <code>Cucumber</code>:
+<code>
 ~  gem install cucumber
-```-->
+</code></p>
 
+<p>After this, put below command to see how to use it.
+<code>
+~  cucumber --help
+</code></p>
 
-<p>After this, put below command to see how to use it.</p>
-
-<!--
-``` linux
-cucumber --help
-```-->
+<!--more-->
 
 
 <h3>Gherkin</h3>
@@ -62,13 +57,24 @@ cucumber --help
 
 <p>A Gherkin source file usually looks like this</p>
 
-<!--
-``` gherkin
- 1: Feature: Some terse yet descriptive text of what is desired 2:   Textual description of the business value of this feature 3:   Business rules that govern the scope of the feature 4:   Any additional information that will make the feature easier to understand 5:  6:   Scenario: Some determinable business situation 7:     Given some precondition 8:       And some other precondition 9:      When some action by the actor10:       And some other action11:       And yet another action12:      Then some testable outcome is achieved13:       And something else we can check happens too14: 15:   Scenario: A different situation
-```-->
+<pre><code class="gherkin"> 1: Feature: Some terse yet descriptive text of what is desired
+ 2:   Textual description of the business value of this feature
+ 3:   Business rules that govern the scope of the feature
+ 4:   Any additional information that will make the feature easier to understand
+ 5: 
+ 6:   Scenario: Some determinable business situation
+ 7:     Given some precondition
+ 8:       And some other precondition
+ 9:      When some action by the actor
+10:       And some other action
+11:       And yet another action
+12:      Then some testable outcome is achieved
+13:       And something else we can check happens too
+14: 
+15:   Scenario: A different situation
+</code></pre>
 
-
-<p>Above the codes, the <code>Feature</code>, <code>Scenario</code>, <code>Given</code>, <code>And</code>, <code>When</code>, <code>Then</code> all are keywords of <code>Gherkin</code>.</p>
+<p>Above the codes, It&rsquo;s very similar with <code>Given-When-Then</code> the <code>Feature</code>, <code>Scenario</code>, <code>Given</code>, <code>And</code>, <code>When</code>, <code>Then</code> all are keywords of <code>Gherkin</code>.</p>
 ]]></content>
   </entry>
   

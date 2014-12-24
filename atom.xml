@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-20T01:36:25+08:00</updated>
+  <updated>2014-12-24T22:28:47+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Is Cucumber]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/12/23/what-is-cucumber/"/>
+    <updated>2014-12-23T00:23:25+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/12/23/what-is-cucumber</id>
+    <content type="html"><![CDATA[<p><code>Cucumber</code> is a tool that can execute <code>plain-text</code> functional descriptions. And also it&rsquo;s  <code>BDD(Behaviour Driven Development)</code> <code>automated tests</code>. It is written by <code>Ruby</code>, and now it supports more than 40 languages, such as <code>Java</code>, <code>C#</code> and <code>Scala</code> etc.</p>
+
+<h3>Install</h3>
+
+<p>Firstly, we need to install <code>Ruby</code> and <code>RubyGems</code>, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  ruby --version
+</span><span class='line'>ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
+</span><span class='line'>~  gem --version
+</span><span class='line'>2.0.14  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>And then we can run the command below to install <code>Cucumber</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  gem install cucumber</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After this, put below command to see how to use it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  cucumber --help</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<h3>Gherkin</h3>
+
+<p><code>Gherkin</code> is a language that can be understand by <code>Cucumber</code>. It&rsquo;s a <code>Business Readable</code>, <code>Domain Specific Language</code>. Very easy to understand what the functional want to do.</p>
+
+<p>The <code>Gherkin</code> has two purpose, documention and automated test. The structure is Treetop grammer than is part of Cucumber codebase and use indentation to format it.</p>
+
+<p> The <code>Gherkin</code> has two conventions:
+ + Single <code>Gherkin</code> source file contains a description of single feature.
+ + The source file is feature extention file(<code>*.feature</code>).</p>
+
+<p>Like <code>YAML(Yet Another Markup Language)</code>, Gherkin is a line-oriented language that uses indentation to define structure. Most lines start with keyword. And you can start with a hash sign(#) to comment the text.</p>
+
+<p>A Gherkin source file usually looks like this</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf"> </span><span class="s">1</span><span class="nf">: Feature: Some terse yet descriptive text of what is desired</span>
+</span><span class='line'><span class="nf"> </span><span class="s">2</span><span class="nf">:   Textual description of the business value of this feature</span>
+</span><span class='line'><span class="nf"> </span><span class="s">3</span><span class="nf">:   Business rules that govern the scope of the feature</span>
+</span><span class='line'><span class="nf"> </span><span class="s">4</span><span class="nf">:   Any additional information that will make the feature easier to understand</span>
+</span><span class='line'><span class="nf"> </span><span class="s">5</span><span class="nf">: </span>
+</span><span class='line'><span class="nf"> </span><span class="s">6</span><span class="nf">:   Scenario: Some determinable business situation</span>
+</span><span class='line'><span class="nf"> </span><span class="s">7</span><span class="nf">:     Given some precondition</span>
+</span><span class='line'><span class="nf"> </span><span class="s">8</span><span class="nf">:       And some other precondition</span>
+</span><span class='line'><span class="nf"> </span><span class="s">9</span><span class="nf">:      When some action by the actor</span>
+</span><span class='line'><span class="s">10</span><span class="nf">:       And some other action</span>
+</span><span class='line'><span class="s">11</span><span class="nf">:       And yet another action</span>
+</span><span class='line'><span class="s">12</span><span class="nf">:      Then some testable outcome is achieved</span>
+</span><span class='line'><span class="s">13</span><span class="nf">:       And something else we can check happens too</span>
+</span><span class='line'><span class="s">14</span><span class="nf">: </span>
+</span><span class='line'><span class="s">15</span><span class="nf">:   Scenario: A different situation</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above the codes, It&rsquo;s very similar with <code>Given-When-Then</code> the <code>Feature</code>, <code>Scenario</code>, <code>Given</code>, <code>And</code>, <code>When</code>, <code>Then</code> all are keywords of <code>Gherkin</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Is Ractive.js]]></title>
@@ -55,7 +142,7 @@
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">id=</span><span class="s">&quot;template&quot;</span> <span class="na">type=</span><span class="s">&quot;text/ractive&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>           <span class="nx">opacity</span><span class="o">=</span><span class="s2">&quot;\{\{0.4+temperature/100}}&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>               <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
@@ -1384,60 +1471,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 <li><p><code>git commit -a</code> is equivalent to running git add on all filenames that existed in the latest commit, and then running git commit.</p></li>
 <li><p><code>git commit [files]</code> creates a new commit containing the contents of the latest commit, plus a snapshot of files taken from the working directory. Additionally, files are copied to the stage.</p></li>
 <li><p><code>git checkout HEAD -- [files]</code> copies files from the latest commit to both the stage and the working directory.</p></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git Commands (3)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/06/git-commands-3/"/>
-    <updated>2014-11-06T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/06/git-commands-3</id>
-    <content type="html"><![CDATA[<h3>Redo Commits</h3>
-
-<ul>
-<li><p>Undo all commits after [commit], and preserve changes locally: <br/>
-<code>$ git reset [commit]</code></p></li>
-<li><p>Discard all history and changes back to the specified commit: <br/>
-<code>$ git reset --hard [commit]</code></p></li>
-</ul>
-
-
-<!--more-->
-
-
-<h3>Save Fragments</h3>
-
-<ul>
-<li><p>Temporarily stores all modified <strong>tracked</strong> files: <br/>
-<code>$ git stash</code></p></li>
-<li><p>Retore the most recently stashed files: <br/>
-<code>$ git stash pop</code></p></li>
-<li><p>List all stashed changesets: <br/>
-<code>$ git stash list</code></p></li>
-<li><p>Discard the most recently stashed changeset: <br/>
-<code>$ git stash drop</code></p></li>
-</ul>
-
-
-<h3>Synchronize Changes</h3>
-
-<ul>
-<li><p>Download all history from the repostory bookmark: <br/>
-<code>$ git fetch [bookmark]</code></p></li>
-<li><p>Combine bookmark&rsquo;s branch into current branch:  <br/>
-<code>$ git merge [bookmark]/[branch]</code></p></li>
-<li><p>Upload all local branch commits to Github: <br/>
-<code>$ git push [alias] [branch]</code></p></li>
-<li><p>Downloads bookmark history and incorporates changes: <br/>
-<code>$ git pull</code></p></li>
-<li><p>Copy a commit and create a new commit on the current branch with the same message and patch as another commit: <br/>
-<code>$ git cherry-pick [commit]</code></p></li>
-<li><p>merge the version history of current branch onto another specified branch: <br/>
-<code>$ git rebase [branch]</code></p></li>
-<li><p>merge the version history after specified commit of current branch onto another specified branch: <br/>
-<code>$ git rebase --onto [branch] [commit]</code></p></li>
 </ul>
 
 ]]></content>
