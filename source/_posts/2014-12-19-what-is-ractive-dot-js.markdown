@@ -26,14 +26,14 @@ And third, just need to define a template. Load template in many ways, for examp
     <script id="template" type="text/ractive">
 		<svg width="400" height="200">
     		<rect fill="lightblue" width="100%" height="100%"/>
-    		<circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow" 				opacity='\{\{0.4+temperature/100}}'/>
+    		<circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow" 			opacity='\{\{0.4+temperature/100}}'/>
     		<text x="50%" y="65%" font-size="80" fill="white">\{\{temperature}}℃</text>
 		</svg>
 	</script>
 ```
 *Note:* don't mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don't need to add it. remember that!   
 
-As above. We define a svg tag and it contains rectangle,circle shape and text. The circle's radius bind the data \{\{10 + temperature}}，so the radius will update with 10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.   
+As above. We define a svg tag and it contains rectangle,circle shape and text. The circle's radius bind the data \{\{10 + temperature}}，so the radius will update with ß10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.   
 
 And last step, Let's combine the template and data with `Ractive.js`. the code as below:   
 
