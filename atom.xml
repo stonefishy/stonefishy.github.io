@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2014-12-24T22:28:47+08:00</updated>
+  <updated>2014-12-26T23:45:54+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Install Packages in Sublime Text 3]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin/"/>
+    <updated>2014-12-26T22:35:36+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin</id>
+    <content type="html"><![CDATA[<p><code>Sublime Text</code> is a sophisticated text editor for code, markup and prose. You can go to offical <strong><a href="http://www.sublimetext.com/">website</a></strong> to download and see how to use it. It&rsquo;s a very powerful weapon for developer. And also it has so many packages to expand its functional.</p>
+
+<p>If you want to install packages in your sublime text. First of all, you need to install <code>Package Control</code> that is <code>Sublime Text</code> package manager that makes it exceedingly simple to find, install and keep packages up-to-date.</p>
+
+<p>Open Sublime Text 3 and choose <code>View &gt; Show Console</code> menu. Paste below codes into console.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">hashlib</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="s">&#39;2deb499853c4371624f5a07e27c334aa&#39;</span> <span class="o">+</span> <span class="s">&#39;bf8c4e67d14fb0525ba4f89698a6d7e1&#39;</span><span class="p">;</span> <span class="n">pf</span> <span class="o">=</span> <span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">())</span> <span class="p">);</span> <span class="n">by</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span> <span class="s">&#39;http://packagecontrol.io/&#39;</span> <span class="o">+</span> <span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">();</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">();</span> <span class="k">print</span><span class="p">(</span><span class="s">&#39;Error validating download (got </span><span class="si">%s</span><span class="s"> instead of </span><span class="si">%s</span><span class="s">), please try manual install&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dh</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span> <span class="k">if</span> <span class="n">dh</span> <span class="o">!=</span> <span class="n">h</span> <span class="k">else</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">ipp</span><span class="p">,</span> <span class="n">pf</span><span class="p">),</span> <span class="s">&#39;wb&#39;</span> <span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<p>This code creates the Installed Packages folder for you (if necessary), and then downloads the <code>Package Control.sublime-package</code> into it.</p>
+
+<p>Since the <code>Package Control</code> install successfull, you can intall any packages which you want, such as less,less2css package. Press <code>Command+Shift+P</code> open the <code>Command palette</code> and find the <code>Package Control: Install Package</code>, like this: <br/>
+<img src="http://stonefishy.github.io/assets/images/command-palette.png" alt="command palette" /></p>
+
+<p>Choose <code>Package Control: Install Package</code> menu, and wait a seconds it will prompt package installer, and then you can search packages what you want and install it. <br/>
+<img src="http://stonefishy.github.io/assets/images/package-installer.png" alt="package installer" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Is Cucumber]]></title>
@@ -142,7 +171,7 @@
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">id=</span><span class="s">&quot;template&quot;</span> <span class="na">type=</span><span class="s">&quot;text/ractive&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>               <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>           <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
@@ -151,7 +180,7 @@
 
 <p><em>Note:</em> don&rsquo;t mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don&rsquo;t need to add it. remember that!</p>
 
-<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data {{10 + temperature}}，so the radius will update with 10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
+<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data {{10 + temperature}}，so the radius will update with ß10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
 
 <p>And last step, Let&rsquo;s combine the template and data with <code>Ractive.js</code>. the code as below:</p>
 
@@ -1434,45 +1463,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 
 
 <p>Commits are shown in green as 5-character IDs, and they point to their parents. Branches are shown in orange, and they point to particular commits.The current branch is identified by the special reference HEAD, which is &ldquo;attached&rdquo; to that branch. In this image, the five latest commits are shown, with ed489 being the most recent. master (the current branch) points to this commit, while maint (another branch) points to an ancestor of master&rsquo;s commit.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Visual Git Guide (Basic Usage)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/06/visual-git-guide-basic-usage/"/>
-    <updated>2014-11-06T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/06/visual-git-guide-basic-usage</id>
-    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Basic Usage</h3>
-
-<p><img src="http://stonefishy.github.io/assets/images/basic-usage.png" alt="basic-usage" /></p>
-
-<p>The four commands above copy files between the working directory, the stage (also called the index), and the history (in the form of commits).</p>
-
-<!--more-->
-
-
-<ul>
-<li><p><code>git add [files]</code> copies files (at their current state) to the stage.</p></li>
-<li><p><code>git commit</code> saves a snapshot of the stage as a commit.</p></li>
-<li><p><code>git reset -- [files]</code> unstages files; that is, it copies files from the latest commit to the stage. Use this command to &ldquo;undo&rdquo; a <em>git add files</em>. You can also <em>git reset</em> to unstage everything.</p></li>
-<li><p><code>git checkout -- [files]</code> copies files from the stage to the working directory. Use this to throw away local changes.</p></li>
-</ul>
-
-
-<p>You can use <code>git reset -p</code>, <code>git checkout -p</code>, or <code>git add -p</code> instead of (or in addition to) specifying particular files to interactively choose which hunks copy.</p>
-
-<p>It is also possible to jump over the stage and check out files directly from the history or commit files without staging first.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/basic-usage-2.png" alt="basic-usage-2" /></p>
-
-<ul>
-<li><p><code>git commit -a</code> is equivalent to running git add on all filenames that existed in the latest commit, and then running git commit.</p></li>
-<li><p><code>git commit [files]</code> creates a new commit containing the contents of the latest commit, plus a snapshot of files taken from the working directory. Additionally, files are copied to the stage.</p></li>
-<li><p><code>git checkout HEAD -- [files]</code> copies files from the latest commit to both the stage and the working directory.</p></li>
-</ul>
-
 ]]></content>
   </entry>
   

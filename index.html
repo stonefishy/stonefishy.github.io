@@ -9,7 +9,7 @@
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="Cucumber is a tool that can execute plain-text functional descriptions. And also it&rsquo;s BDD(Behaviour Driven Development) automated tests. It is &hellip;">
+  <meta name="description" content="Sublime Text is a sophisticated text editor for code, markup and prose. You can go to offical website to download and see how to use it. It&rsquo;s a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">How to Install Packages in Sublime Text 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-26T22:35:36+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Sublime Text</code> is a sophisticated text editor for code, markup and prose. You can go to offical <strong><a href="http://www.sublimetext.com/">website</a></strong> to download and see how to use it. It&rsquo;s a very powerful weapon for developer. And also it has so many packages to expand its functional.</p>
+
+<p>If you want to install packages in your sublime text. First of all, you need to install <code>Package Control</code> that is <code>Sublime Text</code> package manager that makes it exceedingly simple to find, install and keep packages up-to-date.</p>
+
+<p>Open Sublime Text 3 and choose <code>View &gt; Show Console</code> menu. Paste below codes into console.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">hashlib</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="s">&#39;2deb499853c4371624f5a07e27c334aa&#39;</span> <span class="o">+</span> <span class="s">&#39;bf8c4e67d14fb0525ba4f89698a6d7e1&#39;</span><span class="p">;</span> <span class="n">pf</span> <span class="o">=</span> <span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">())</span> <span class="p">);</span> <span class="n">by</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span> <span class="s">&#39;http://packagecontrol.io/&#39;</span> <span class="o">+</span> <span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">();</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">();</span> <span class="k">print</span><span class="p">(</span><span class="s">&#39;Error validating download (got </span><span class="si">%s</span><span class="s"> instead of </span><span class="si">%s</span><span class="s">), please try manual install&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dh</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span> <span class="k">if</span> <span class="n">dh</span> <span class="o">!=</span> <span class="n">h</span> <span class="k">else</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">ipp</span><span class="p">,</span> <span class="n">pf</span><span class="p">),</span> <span class="s">&#39;wb&#39;</span> <span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -477,52 +520,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/13/building-blocks-of-android-application/">Building Blocks of Android Application</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-13T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There are four builidng blocks for Android Application:</p>
-
-<ul>
-<li><strong><code>Activity</code></strong></li>
-<li><strong><code>Intent Receiver</code></strong></li>
-<li><strong><code>Service</code></strong></li>
-<li><strong><code>Content Provider</code></strong></li>
-</ul>
-
-
-<p>But Not every application needs have all them.</p>
-
-<p><code>AndroidManifest.xml</code> is XML file, it contains some information that where you declare the components of your application and what their capabilities and requirements are.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/13/building-blocks-of-android-application/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -538,6 +535,10 @@ Checks that the value is not null. Returns the value directly, so you can use ch
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">How to Install Packages in Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/23/what-is-cucumber/">What Is Cucumber</a>
       </li>
     
@@ -551,10 +552,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
     
       <li class="post">
         <a href="/blog/2014/12/12/guava-ordering/">Guava - Ordering</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/01/jsp-custom-tag/">JSP - Custom Tag</a>
       </li>
     
   </ul>

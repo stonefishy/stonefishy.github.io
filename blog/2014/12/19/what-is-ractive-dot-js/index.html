@@ -119,7 +119,7 @@
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">id=</span><span class="s">&quot;template&quot;</span> <span class="na">type=</span><span class="s">&quot;text/ractive&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>               <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>           <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
@@ -128,7 +128,7 @@
 
 <p><em>Note:</em> don&rsquo;t mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don&rsquo;t need to add it. remember that!</p>
 
-<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data {{10 + temperature}}，so the radius will update with 10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
+<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data {{10 + temperature}}，so the radius will update with ß10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
 
 <p>And last step, Let&rsquo;s combine the template and data with <code>Ractive.js</code>. the code as below:</p>
 
@@ -232,6 +232,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">How to Install Packages in Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/23/what-is-cucumber/">What Is Cucumber</a>
       </li>
     
@@ -245,10 +249,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/12/guava-ordering/">Guava - Ordering</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/01/jsp-custom-tag/">JSP - Custom Tag</a>
       </li>
     
   </ul>
