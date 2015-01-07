@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-01-08T00:35:05+08:00</updated>
+  <updated>2015-01-08T00:41:31+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -14,13 +14,16 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How to Run Multiple IE Version on Same Cotim]]></title>
+    <title type="html"><![CDATA[How to Run Multiple IE Version on Same Computer]]></title>
     <link href="http://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim/"/>
     <updated>2015-01-07T16:31:17+08:00</updated>
     <id>http://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim</id>
     <content type="html"><![CDATA[<p>As web developer, we usually need to face the challenge of making cross-browser compatible. Especially IE browser&rsquo;s multiple version. Because its quirks of rendering websites differently across its versions of <code>IE6</code>, <code>IE7</code>, <code>IE8</code> and possibly <code>IE9</code> and <code>IE10</code>.</p>
 
 <p>Most of us have only one version of IE browser on our computer, and the compatible mode of IE is not really specific version which you want to simulate.</p>
+
+<!-- more-->
+
 
 <p>So how to run multiple version of IE on same time. Many developers install virtual machine to use the different versions. But this is not the best way.</p>
 
