@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Tools | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/tools/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Guard | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/guard/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
   <updated>2015-01-14T17:34:02+08:00</updated>
   <id>http://stonefishy.github.io/</id>
@@ -160,58 +160,6 @@ It will prompt you that LiveReload is waiting for a browser to connect. And the 
 
 <p>So far, you have prepared all configurations. And now you can modify the source file and save it, then you will see the web application automatically refresh. <br/>
 <img src="/assets/images/auto-refresh-page.png" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Run Multiple IE Version on Same Computer]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim/"/>
-    <updated>2015-01-07T16:31:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim</id>
-    <content type="html"><![CDATA[<p>As web developer, we usually need to face the challenge of making cross-browser compatible. Especially IE browser&rsquo;s multiple version. Because its quirks of rendering websites differently across its versions of <code>IE6</code>, <code>IE7</code>, <code>IE8</code> and possibly <code>IE9</code> and <code>IE10</code>.</p>
-
-<p>Most of us have only one version of IE browser on our computer, and the compatible mode of IE is not really specific version which you want to simulate.</p>
-
-<!-- more-->
-
-
-<p>So how to run multiple version of IE on same time. Many developers install virtual machine to use the different versions. But this is not the best way.</p>
-
-<p>In there, I will tell you there has a free tool called <code>IETester</code> can solve your problem. Use this tool can quick and easy way to run IE6, IE7, IE8 and IE9 on the same computer at the same time. And this tool just only support windows operation system. It also supports develope tool which can help developer to check web application on different version of IE.</p>
-
-<p>This is a screen shot of <code>IETester</code>:  <br/>
-<img src="/assets/images/ie-tester.png" alt="" /></p>
-
-<p>You can download it from this address <a href="http://www.my-debugbar.com/ietester/install-ietester-v0.5.4.exe">IETester</a></p>
-
-<p>There has another online tools called <code>Browser Sandbox</code> can solve this problem, but it is not free, if you have money, this tool will be better for you. It support any versions of <code>Firefox</code>, <code>Opera</code>, <code>Safari</code>, <code>Chrome</code> and also <code>IE</code>. You can go to this <a href="http://spoon.net/browsers/">website</a> to visit.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Install Packages in Sublime Text 3]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin/"/>
-    <updated>2014-12-26T22:35:36+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin</id>
-    <content type="html"><![CDATA[<p><code>Sublime Text</code> is a sophisticated text editor for code, markup and prose. You can go to offical <strong><a href="http://www.sublimetext.com/">website</a></strong> to download and see how to use it. It&rsquo;s a very powerful weapon for developer. And also it has so many packages to expand its functional.</p>
-
-<p>If you want to install packages in your sublime text. First of all, you need to install <code>Package Control</code> that is <code>Sublime Text</code> package manager that makes it exceedingly simple to find, install and keep packages up-to-date.</p>
-
-<p>Open Sublime Text 3 and choose <code>View &gt; Show Console</code> menu. Paste below codes into console.
-<code>python
-import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
-</code></p>
-
-<!--more-->
-
-
-<p>This code creates the Installed Packages folder for you (if necessary), and then downloads the <code>Package Control.sublime-package</code> into it.</p>
-
-<p>Since the <code>Package Control</code> install successfull, you can intall any packages which you want, such as less,less2css package. Press <code>Command+Shift+P</code> open the <code>Command palette</code> and find the <code>Package Control: Install Package</code>, like this: <br/>
-<img src="/assets/images/command-palette.png" alt="command palette" /></p>
-
-<p>Choose <code>Package Control: Install Package</code> menu, and wait a seconds it will prompt package installer, and then you can search packages what you want and install it. <br/>
-<img src="/assets/images/package-installer.png" alt="package installer" /></p>
 ]]></content>
   </entry>
   
