@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Visual Git Guide (Commit Command) - Stonefishy Blog</title>
+  <title>Category: Css - Stonefishy Blog</title>
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="">
+  <meta name="description" content="Category: css">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-commit-command">
+  <link rel="canonical" href="http://stonefishy.github.io/blog/categories/css">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
@@ -62,93 +62,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Visual Git Guide (Commit Command)</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
+    <h1 class="entry-title">Category: Css</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
 
-<h3>Commit command</h3>
+  
+  <h2>2015</h2>
 
-<p>When you commit, git creates a new commit object using the files from the stage and sets the parent to the current commit. It then points the current branch to this new commit. In the image below, the current branch is <em>master</em>. Before the command was run, <em>master</em> pointed to ed489. Afterward, a new commit, f0cec, was created, with parent ed489, and then <em>master</em> was moved to the new commit.</p>
+<article>
+  
+<h1><a href="/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/">CSS Tricks for IE6,IE7,IE8,IE9</a></h1>
+<time datetime="2015-01-28T16:35:34+08:00" pubdate><span class='month'>Jan</span> <span class='day'>28</span> <span class='year'>2015</span></time>
 
-<!--more-->
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/ie/'>ie</a></span>
+</footer>
 
 
-<p></p>
+</article>
 
-<p><img src="/assets/images/commit-master.png" alt="commit-master" /></p>
-
-<p>This same process happens even when the current branch is an ancestor of another. Below, a commit occurs on branch <em>maint</em>, which was an ancestor of <em>master</em>, resulting in 1800b. Afterward, <em>maint</em> is no longer an ancestor of <em>master</em>. To join the two histories, a <strong>merge</strong> (or <strong>rebase</strong>) will be necessary.</p>
-
-<p><img src="/assets/images/commit-maint.png" alt="commit-maint" /></p>
-
-<p>Sometimes a mistake is made in a commit, but this is easy to correct with <code>git commit --amend</code>. When you use this command, git creates a new commit with the same parent as the current commit. (<em>The old commit will be discarded if nothing else references it.</em>)</p>
-
-<p><img src="/assets/images/commit-amend.png" alt="commit-amend" /></p>
-
-<p>When <strong>HEAD</strong> is detached, commits work like normal, except no named branch gets updated. (<em>You can think of this as an anonymous branch.</em>)</p>
-
-<p><img src="/assets/images/commit-detached.png" alt="commit-detached" /></p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Yu SHI</span></span>
-
-      
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/git/'>git</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/11/07/visual-git-guide-cherry-pick-command/" title="Previous Post: Visual git guide (cherry pick command)">&laquo; Visual git guide (cherry pick command)</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/11/07/visual-git-guide-diff-command/" title="Next Post: Visual git guide (diff command)">Visual git guide (diff command) &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>

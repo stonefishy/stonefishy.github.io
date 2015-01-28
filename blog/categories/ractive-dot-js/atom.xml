@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ractive.js | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ractive-dot-js/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-01-14T17:34:02+08:00</updated>
+  <updated>2015-01-28T16:57:15+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -44,7 +44,7 @@ And third, just need to define a template. Load template in many ways, for examp
         &lt;svg width="400" height="200"&gt;
             &lt;rect fill="lightblue" width="100%" height="100%"/&gt;
             &lt;circle cx="25%" cy="50%" r="\{\{10+temperature}}" fill="gold" stroke="yellow"
-        opacity='\{\{0.4+temperature/100}}'/&gt;
+            opacity='\{\{0.4+temperature/100}}'/&gt;
             &lt;text x="50%" y="65%" font-size="80" fill="white"&gt;\{\{temperature}}℃&lt;/text&gt;
         &lt;/svg&gt;
     &lt;/script&gt;

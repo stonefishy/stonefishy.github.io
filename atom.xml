@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-01-14T17:34:02+08:00</updated>
+  <updated>2015-01-28T16:57:15+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CSS Tricks for IE6,IE7,IE8,IE9]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/"/>
+    <updated>2015-01-28T16:35:34+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9</id>
+    <content type="html"><![CDATA[<p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful for you.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#ie-tricks</span><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* All browsers */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* All browsers but IE6 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span> <span class="cp">!important</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE6 */</span>
+</span><span class='line'>  <span class="n">_color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE6, IE7 */</span>
+</span><span class='line'>  <span class="o">*</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE7*/</span>
+</span><span class='line'>  <span class="o">+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE7 */</span>
+</span><span class='line'>  <span class="o">*+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE6, IE7, IE8, IE9 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE8, IE9 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/*Only works in IE9*/</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A New Way for Developing Web Application Front-End]]></title>
@@ -370,7 +442,7 @@ Even cooler, when you change a CSS file or an image, the browser is updated inst
 </span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>
-</span><span class='line'>    <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
+</span><span class='line'>        <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
@@ -1593,21 +1665,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 <p>When <strong>HEAD</strong> is detached, commits work like normal, except no named branch gets updated. (<em>You can think of this as an anonymous branch.</em>)</p>
 
 <p><img src="http://stonefishy.github.io/assets/images/commit-detached.png" alt="commit-detached" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Visual Git Guide (Cherry Pick Command)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-cherry-pick-command/"/>
-    <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-cherry-pick-command</id>
-    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Cherry-pick command</h3>
-
-<p>The cherry-pick command &ldquo;copies&rdquo; a commit, creating a new commit on the current branch with the same message and patch as another commit.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/cherry-pick.png" alt="cherry-pick" /></p>
 ]]></content>
   </entry>
   

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Guava &#8211; Optional - Stonefishy Blog</title>
+  <title>CSS Tricks for IE6,IE7,IE8,IE9 - Stonefishy Blog</title>
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="">
+  <meta name="description" content="As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://stonefishy.github.io/blog/2014/11/21/guava-optional">
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
@@ -66,7 +66,7 @@
   
   <header>
     
-      <h1 class="entry-title">Guava &#8211; Optional</h1>
+      <h1 class="entry-title">CSS Tricks for IE6,IE7,IE8,IE9</h1>
     
     
       <p class="meta">
@@ -75,42 +75,14 @@
 
 
 
-<time class='entry-date' datetime='2014-11-21T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-28T16:35:34+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:35 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
-
-<!--more-->
-
-
-<h3>Usage</h3>
-
-<p><code>Optional.of(T)</code>    <br/>
-Make an Optional containing the given non-null value, or fail fast on null.</p>
-
-<p><code>Optional.absent()</code> <br/>
-Return an absent Optional of some type.</p>
-
-<p><code>Optional.fromNullable(T)</code> <br/>
-Turn the given possibly-null reference into an Optional, treating non-null as present and null as absent.</p>
-
-<p><code>boolean isPresent()</code>    <br/>
-Returns true if this Optional contains a non-null instance.</p>
-
-<p><code>T get()</code> <br/>
-Returns the contained T instance, which must be present; otherwise, throws an IllegalStateException.</p>
-
-<p><code>T or()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns the specified default.</p>
-
-<p><code>T orNull()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns null. The inverse operation of fromNullable.</p>
-
-<h3>Example:</h3>
+<div class="entry-content"><p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful for you.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -127,25 +99,53 @@ Returns the present value in this Optional, or if there is none, returns null. T
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return true</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 100</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#ie-tricks</span><span class="p">{</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">absent</span><span class="o">();</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">// return false</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//return 0;</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
+</span><span class='line'>  <span class="c">/* All browsers */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 1;</span>
+</span><span class='line'>  <span class="c">/* All browsers but IE6 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span> <span class="cp">!important</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return false;</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
+</span><span class='line'>  <span class="c">/* Only works in IE6 */</span>
+</span><span class='line'>  <span class="n">_color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE6, IE7 */</span>
+</span><span class='line'>  <span class="o">*</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE7*/</span>
+</span><span class='line'>  <span class="o">+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE7 */</span>
+</span><span class='line'>  <span class="o">*+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE6, IE7, IE8, IE9 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE8, IE9 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/*Only works in IE9*/</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p></p>
 </div>
 
 
@@ -161,12 +161,12 @@ Returns the present value in this Optional, or if there is none, returns null. T
 
 
 
-<time class='entry-date' datetime='2014-11-21T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-28T16:35:34+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:35 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/guava/'>guava</a>, <a class='category' href='/blog/categories/java/'>java</a>
+    <a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/ie/'>ie</a>
   
 </span>
 
@@ -182,10 +182,8 @@ Returns the present value in this Optional, or if there is none, returns null. T
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/17/the-lifecycle-of-android-activity/" title="Previous Post: The lifecycle of Android Activity">&laquo; The lifecycle of Android Activity</a>
+        <a class="basic-alignment left" href="/blog/2015/01/13/a-new-way-for-developing-web-application-front-end/" title="Previous Post: A New Way For Developing Web Application Front-End">&laquo; A New Way For Developing Web Application Front-End</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/26/guava-preconditions/" title="Next Post: Guava -- Preconditions">Guava &#8211; Preconditions &raquo;</a>
       
     </p>
   </footer>
