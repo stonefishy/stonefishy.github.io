@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Css | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-01-28T16:57:15+08:00</updated>
+  <updated>2015-01-28T17:14:56+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -18,7 +18,7 @@
     <link href="http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/"/>
     <updated>2015-01-28T16:35:34+08:00</updated>
     <id>http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9</id>
-    <content type="html"><![CDATA[<p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful for you.</p>
+    <content type="html"><![CDATA[<p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for <code>IE6</code>, <code>IE7</code>, <code>IE8</code>, <code>IE9</code>. This is very helpful for you.</p>
 
 <pre><code class="css">#ie-tricks{
 
