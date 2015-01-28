@@ -9,7 +9,7 @@
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful &hellip;">
+  <meta name="description" content="The tool of choice for fighting IE problems is the conditional stylesheet. IE provides comment tags, supported all the way up to the current IE 8 to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/28/conditinal-stylesheets-for-ie-version/">Conditional Stylesheets for IE Version</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-28T17:35:06+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The tool of choice for fighting IE problems is the <code>conditional stylesheet</code>. IE provides comment tags, supported all the way up to the current IE 8 to target specific versions, as well as greater-than/less-than stuff for targeting multiple versions at once.</p>
+
+<h3>Why use conditional stylesheets?</h3>
+
+<ul>
+<li>You got problems, they need fixin&#8217;</li>
+<li>Keeps your code hack-free and valid</li>
+<li>Keeps your main stylesheet clean</li>
+<li>Perfectly acceptable technique, sanctioned by Microsoft</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/01/28/conditinal-stylesheets-for-ie-version/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -533,52 +577,6 @@ As you can see below, consider we want to create two tag, one is user tag with n
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/27/guava-common-object-method/">Guava &#8211; Common Object Methods</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-27T20:41:45+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:41 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Usage</h3>
-
-<p><code>Objects.equal(Object, Object)</code> <br/>
-Invoking this method then it will avoid the risking of NullPointerException when we need to compare two object whether they equal.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">);</span> <span class="c1">// return true;</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">);</span> <span class="c1">// return false;</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span> <span class="c1">// return true;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/27/guava-common-object-method/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -594,6 +592,10 @@ Invoking this method then it will avoid the risking of NullPointerException when
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/28/conditinal-stylesheets-for-ie-version/">Conditional Stylesheets for IE Version</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/">CSS Tricks for IE6,IE7,IE8,IE9</a>
       </li>
     
@@ -607,10 +609,6 @@ Invoking this method then it will avoid the risking of NullPointerException when
     
       <li class="post">
         <a href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">How to Install Packages in Sublime Text 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/23/what-is-cucumber/">What Is Cucumber</a>
       </li>
     
   </ul>

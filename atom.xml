@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-01-28T17:14:56+08:00</updated>
+  <updated>2015-01-28T18:01:08+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,206 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Conditional Stylesheets for IE Version]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version/"/>
+    <updated>2015-01-28T17:35:06+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version</id>
+    <content type="html"><![CDATA[<p>The tool of choice for fighting IE problems is the <code>conditional stylesheet</code>. IE provides comment tags, supported all the way up to the current IE 8 to target specific versions, as well as greater-than/less-than stuff for targeting multiple versions at once.</p>
+
+<h3>Why use conditional stylesheets?</h3>
+
+<ul>
+<li>You got problems, they need fixin&#8217;</li>
+<li>Keeps your code hack-free and valid</li>
+<li>Keeps your main stylesheet clean</li>
+<li>Perfectly acceptable technique, sanctioned by Microsoft</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>And remember, these conditional tags don&rsquo;t have to be used only for CSS. You could load JavaScript, or even use them down in the content of your site to display special IE-specific messages.</p>
+
+<h3>The Code</h3>
+
+<p>This would go in your <head> with all the other regular CSS \<link>ed CSS files. The opening and closing tags should be familiar, that&rsquo;s just regular ol&#8217; HTML comments. Then between the brackets, &ldquo;IF&rdquo; and &ldquo;IE&rdquo; should be fairly obvious. The syntax to note is &ldquo;!&rdquo; stand for &ldquo;not&rdquo;, so !IE means &ldquo;not IE&rdquo;. gt means &ldquo;greater than&rdquo;, gte means &ldquo;greater than or equal&rdquo;, lt means &ldquo;less than&rdquo;, lte means &ldquo;less than or equal.&rdquo;</p>
+
+<blockquote><p><strong>Note that IE 10 and up DO NOT support conditional comments at all.</strong></p></blockquote>
+
+<p>Target ALL VERSIONS of IE</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;all-ie-only.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target everything EXCEPT IE</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if !IE]&gt;&lt;!--&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;not-ie.css&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'> <span class="c">&lt;!--&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 7 ONLY</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 7]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7.css&quot;&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 6 ONLY</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 6]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 5 ONLY</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 5]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie5.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 5.5 ONLY</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 5.5000]&gt;</span>
+</span><span class='line'><span class="c">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie55.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 6 and LOWER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if lt IE 7]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-down.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span><span class='line'><span class="c">&lt;!--[if lte IE 6]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-down.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 7 and LOWER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if lt IE 8]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-down.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span><span class='line'><span class="c">&lt;!--[if lte IE 7]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-down.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 8 and LOWER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if lt IE 9]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-down.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span><span class='line'><span class="c">&lt;!--[if lte IE 8]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-down.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 6 and HIGHER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if gt IE 5.5]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-up.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span><span class='line'><span class="c">&lt;!--[if gte IE 6]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-up.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 7 and HIGHER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if gt IE 6]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-up.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span><span class='line'><span class="c">&lt;!--[if gte IE 7]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-up.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Target IE 8 and HIGHER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if gt IE 7]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-up.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span><span class='line'><span class="c">&lt;!--[if gte IE 8]&gt;</span>
+</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-up.css&quot; /&gt;</span>
+</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Note: The original artical you can see <a href="http://css-tricks.com/how-to-create-an-ie-only-stylesheet/">here</a></em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CSS Tricks for IE6,IE7,IE8,IE9]]></title>
@@ -442,7 +642,7 @@ Even cooler, when you change a CSS file or an image, the browser is updated inst
 </span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>
-</span><span class='line'>            <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
+</span><span class='line'>                    <span class="nx">opacity</span><span class="o">=</span><span class="s1">&#39;\{\{0.4+temperature/100}}&#39;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
@@ -1633,38 +1833,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 <p></p>
 
 <p><img src="http://stonefishy.github.io/assets/images/diff.png" alt="diff" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Visual Git Guide (Commit Command)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-commit-command/"/>
-    <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-commit-command</id>
-    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Commit command</h3>
-
-<p>When you commit, git creates a new commit object using the files from the stage and sets the parent to the current commit. It then points the current branch to this new commit. In the image below, the current branch is <em>master</em>. Before the command was run, <em>master</em> pointed to ed489. Afterward, a new commit, f0cec, was created, with parent ed489, and then <em>master</em> was moved to the new commit.</p>
-
-<!--more-->
-
-
-<p></p>
-
-<p><img src="http://stonefishy.github.io/assets/images/commit-master.png" alt="commit-master" /></p>
-
-<p>This same process happens even when the current branch is an ancestor of another. Below, a commit occurs on branch <em>maint</em>, which was an ancestor of <em>master</em>, resulting in 1800b. Afterward, <em>maint</em> is no longer an ancestor of <em>master</em>. To join the two histories, a <strong>merge</strong> (or <strong>rebase</strong>) will be necessary.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/commit-maint.png" alt="commit-maint" /></p>
-
-<p>Sometimes a mistake is made in a commit, but this is easy to correct with <code>git commit --amend</code>. When you use this command, git creates a new commit with the same parent as the current commit. (<em>The old commit will be discarded if nothing else references it.</em>)</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/commit-amend.png" alt="commit-amend" /></p>
-
-<p>When <strong>HEAD</strong> is detached, commits work like normal, except no named branch gets updated. (<em>You can think of this as an anonymous branch.</em>)</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/commit-detached.png" alt="commit-detached" /></p>
 ]]></content>
   </entry>
   
