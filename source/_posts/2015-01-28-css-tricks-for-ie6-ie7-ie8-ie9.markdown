@@ -6,7 +6,7 @@ comments: true
 categories: [CSS, IE] 
 ---
 
-As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful for you.   
+As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for `IE6`, `IE7`, `IE8`, `IE9`. This is very helpful for you.   
 
 ``` css
 #ie-tricks{

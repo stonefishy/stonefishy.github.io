@@ -3,7 +3,7 @@ layout: post
 title: "How to run multiple IE version on same computer"
 date: 2015-01-07 16:31:17 +0800
 comments: true
-categories: [IETester,tools]
+categories: [IETester,IE,tools]
 ---
 
 As web developer, we usually need to face the challenge of making cross-browser compatible. Especially IE browser's multiple version. Because its quirks of rendering websites differently across its versions of `IE6`, `IE7`, `IE8` and possibly `IE9` and `IE10`.   
