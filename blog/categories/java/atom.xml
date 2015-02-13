@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-02-06T18:01:22+08:00</updated>
+  <updated>2015-02-13T17:47:41+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -14,48 +14,33 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Guava - Ordering]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/12/guava-ordering/"/>
-    <updated>2014-12-12T17:28:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/12/guava-ordering</id>
-    <content type="html"><![CDATA[<p><code>Ordering</code> is Guava&rsquo;s fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to collections of objects.</p>
+    <title type="html"><![CDATA[Guave - Immutable Collection]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection/"/>
+    <updated>2015-02-13T14:58:17+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection</id>
+    <content type="html"><![CDATA[<p><code>Immutable</code> that means it can not be changed. Let&rsquo;s get example to see what&rsquo;s different with <code>mutable</code> objects.</p>
 
-<p>Okay, so let&rsquo;s getting started. Firstly, we declared a <code>String</code> type List: <br/>
-<code>Java
-    private List&lt;String&gt; locations = Lists.newArrayList(
-            "Guang zhou",
-            "Cheng du",
-            "",
-            "Shang hai"
-    );
-</code>
-We will use this locations variable later.</p>
+<p>Normal mutable collections: <br/>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//define a mutable list</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mutableList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">a</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">b</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">c</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;);&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">//modify the first item in the mutable list</span>
+</span><span class='line'><span class="c1">//will print [aa, b, c]</span>
+</span><span class='line'><span class="n">mutableList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">aa</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mutableList</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <!-- more -->
 
 
-<p><code>natural()</code> <br/>
-Use natural ordering for comparatable types. such as number from small to large. date from start to end. It is static method. <br/>
-<code>Java
-    // use natural comparator, such as a -&gt; z
-    // so the result is: [, Cheng du, Guang zhou, Shang hai]
-    System.out.println(Ordering.natural().sortedCopy(locations));
-</code></p>
-
-<p><code>sortedCopy(Iterable)</code> <br/>
-Return a sorted copy of the specified elements as a List.  <br/>
-We create a customized <code>Ordering</code> that sorted by the length of element from small to large. Let&rsquo;s get the code:
-<code>Java
-    private Ordering&lt;String&gt; getCustomzieStringOrder() {
-        return new Ordering&lt;String&gt;() {
-            @Override
-            public int compare(String first, String second) {
-                return Ints.compare(first.length(), second.length());
-            }
-        };
-    }
-</code>
-Order the locations list with our new customize <code>Ordering</code>: <br/>
+<p>Immutable collections:
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -163,357 +148,421 @@ Order the locations list with our new customize <code>Ordering</code>: <br/>
 <span class='line-number'>105</span>
 <span class='line-number'>106</span>
 <span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
-<span class='line-number'>184</span>
-<span class='line-number'>185</span>
-<span class='line-number'>186</span>
-<span class='line-number'>187</span>
-<span class='line-number'>188</span>
-<span class='line-number'>189</span>
-<span class='line-number'>190</span>
-<span class='line-number'>191</span>
-<span class='line-number'>192</span>
-<span class='line-number'>193</span>
-<span class='line-number'>194</span>
-<span class='line-number'>195</span>
-<span class='line-number'>196</span>
-<span class='line-number'>197</span>
-<span class='line-number'>198</span>
-<span class='line-number'>199</span>
-<span class='line-number'>200</span>
-<span class='line-number'>201</span>
-<span class='line-number'>202</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">byLengthOrdering</span> <span class="o">=</span> <span class="n">getCustomzieStringOrder</span><span class="o">();&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//define a immutable list</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableList</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">a</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">b</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">c</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;);&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// use natural comparator, such as a -&amp;gt; z</span>
-</span><span class='line'><span class="c1">// so the result is: [, Cheng du, Shang hai, Guang zhou]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">//can not modify the first item in the immutable list, any change item operation is unsuppproted.</span>
+</span><span class='line'><span class="c1">//it will throw UnsupportedOperationException</span>
+</span><span class='line'><span class="n">immutableList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">aa</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">immutableList</span><span class="o">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="err">``</span>
+</span><span class='line'><span class="n">From</span> <span class="n">above</span> <span class="n">example</span><span class="o">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">get</span> <span class="n">the</span> <span class="n">conclusion</span> <span class="n">is</span> <span class="n">that</span> <span class="n">immutable</span> <span class="n">collections</span> <span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">support</span> <span class="n">any</span> <span class="n">changing</span> <span class="n">content</span> <span class="n">API</span><span class="o">.</span> <span class="n">So</span> <span class="n">it</span> <span class="n">will</span> <span class="k">throw</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="n">UnsupportedOperationException</span><span class="err">`</span> <span class="n">when</span> <span class="n">you</span> <span class="k">try</span> <span class="n">to</span> <span class="n">modify</span> <span class="n">it</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">What</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">advantage</span> <span class="n">of</span> <span class="n">Immutable</span> <span class="n">Objects</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">According</span> <span class="n">to</span> <span class="n">Guava</span> <span class="n">Offical</span> <span class="n">explain</span> <span class="n">about</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Immutable</span> <span class="n">Objects</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="n">there</span> <span class="n">have</span> <span class="n">four</span> <span class="n">and</span> <span class="n">more</span> <span class="n">advantages</span> <span class="n">of</span> <span class="n">Immutable</span> <span class="nl">Objects:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Safe</span> <span class="k">for</span> <span class="n">use</span> <span class="n">by</span> <span class="n">untrusted</span> <span class="n">libraries</span><span class="o">.&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Thread</span><span class="o">-</span><span class="n">Safe</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;:</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">by</span> <span class="n">many</span> <span class="n">threads</span> <span class="n">with</span> <span class="n">no</span> <span class="n">risk</span> <span class="n">of</span> <span class="n">race</span> <span class="n">conditions</span><span class="o">.&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Doesn</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">t</span> <span class="n">need</span> <span class="n">to</span> <span class="n">support</span> <span class="n">mutation</span><span class="o">,</span> <span class="n">and</span> <span class="n">can</span> <span class="n">make</span> <span class="n">time</span> <span class="n">and</span> <span class="n">space</span> <span class="n">savings</span> <span class="n">with</span> <span class="n">that</span> <span class="n">assumption</span><span class="o">.</span> <span class="n">All</span> <span class="n">immutable</span> <span class="n">collection</span> <span class="n">implementations</span> <span class="n">are</span> <span class="n">more</span> <span class="n">memory</span><span class="o">-</span><span class="n">efficient</span> <span class="n">than</span> <span class="n">their</span> <span class="n">mutable</span> <span class="n">siblings</span><span class="o">.&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">as</span> <span class="n">a</span> <span class="n">constant</span><span class="o">,</span> <span class="n">with</span> <span class="n">the</span> <span class="n">expectation</span> <span class="n">that</span> <span class="n">it</span> <span class="n">will</span> <span class="n">remain</span> <span class="n">fixed</span><span class="o">.&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Making</span> <span class="n">immutable</span> <span class="n">copies</span> <span class="n">of</span> <span class="n">objects</span> <span class="n">is</span> <span class="n">a</span> <span class="n">good</span> <span class="n">defensive</span> <span class="n">programming</span> <span class="n">technique</span><span class="o">,</span> <span class="n">and</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Guava</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="n">provides</span> <span class="n">it</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="nl">Note:</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Each</span> <span class="n">of</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Guava</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">immutable</span> <span class="n">collection</span> <span class="n">implementations</span> <span class="n">reject</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="kc">null</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">blockquote</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">How</span> <span class="n">create</span> <span class="n">it</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">An</span> <span class="n">ImmutableXXX</span> <span class="n">collection</span> <span class="n">can</span> <span class="n">be</span> <span class="n">created</span> <span class="n">in</span> <span class="n">several</span> <span class="nl">ways:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Using</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">copyOf</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">,</span> <span class="n">like</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ImmutableList</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">collection</span><span class="o">)&lt;/</span><span class="n">code</span><span class="o">&gt;:&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;Java&quot;</span><span class="o">&gt;</span><span class="n">ImmutableList</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">mutableList</span><span class="o">);</span>
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">isOrdered</span><span class="o">(</span><span class="n">Iterable</span><span class="o">)</span><span class="err">`</span>
-</span><span class='line'><span class="n">Return</span> <span class="n">a</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="n">that</span> <span class="n">can</span> <span class="n">describe</span> <span class="n">the</span> <span class="n">Iterable</span> <span class="k">if</span> <span class="n">sorted</span><span class="o">.</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Using</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">of</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">,</span> <span class="n">like</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">)&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">or</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ImmutableMap</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="mi">2</span><span class="o">)&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;Java&quot;</span><span class="o">&gt;</span><span class="n">ImmutableList</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">);</span>
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// will return false. because the locations array is not sorted.</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">isOrdered</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Using</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Builder</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="k">for</span> <span class="nl">example:</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;Java&quot;</span><span class="o">&gt;</span><span class="n">ImmutableList</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">builder</span><span class="o">()</span>
+</span><span class='line'>                                    <span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">mutableList</span><span class="o">)</span>
+</span><span class='line'>                                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">reverse</span><span class="o">()</span><span class="err">`</span>
-</span><span class='line'><span class="n">Return</span> <span class="n">the</span> <span class="n">reverse</span> <span class="err">`</span><span class="n">Ordering</span><span class="err">`</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// reverse customize comparator.</span>
-</span><span class='line'><span class="c1">// so the result is: [Guang zhou, Shang hai, Cheng du, ]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">reverse</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">nullsFirst</span><span class="o">()</span><span class="err">`</span>
-</span><span class='line'><span class="n">Return</span> <span class="n">an</span> <span class="err">`</span><span class="n">Ordering</span><span class="err">`</span> <span class="n">that</span> <span class="n">will</span> <span class="n">put</span> <span class="n">the</span> <span class="kc">null</span> <span class="n">object</span> <span class="n">at</span> <span class="n">the</span> <span class="n">first</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// add null object to the locations array.</span>
-</span><span class='line'><span class="n">locations</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// null obejct will at first.</span>
-</span><span class='line'><span class="c1">// so the result is : [null, , Cheng du, Shang hai, Guang zhou]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">nullsFirst</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">nullsLast</span><span class="o">()</span><span class="err">`</span>
-</span><span class='line'><span class="n">Return</span> <span class="n">an</span> <span class="err">`</span><span class="n">Ordering</span><span class="err">`</span> <span class="n">that</span> <span class="n">will</span> <span class="n">put</span> <span class="n">the</span> <span class="kc">null</span> <span class="n">object</span> <span class="n">at</span> <span class="n">the</span> <span class="n">last</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// null object will at last.</span>
-</span><span class='line'><span class="c1">// the result is : [, Cheng du, Shang hai, Guang zhou, null]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">nullsLast</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// will throw NullPointerException, because the location contains null object.</span>
-</span><span class='line'><span class="c1">// and here doesn&#39;t have nullsFirst() or nullsLast() to deal with null object.</span>
-</span><span class='line'><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// remove the null object.</span>
-</span><span class='line'><span class="n">locations</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">compound</span><span class="o">()</span><span class="err">`</span>
-</span><span class='line'><span class="n">Returns</span> <span class="n">an</span> <span class="err">`</span><span class="n">Ordering</span><span class="err">`</span> <span class="n">which</span> <span class="n">uses</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">Comparator</span> <span class="n">to</span> <span class="s">&quot;break ties.&quot;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// the &quot;AAAAAAAA&quot; length is equal to &quot;Cheng du&quot; length. (8 characters)</span>
-</span><span class='line'><span class="c1">// and it will be appended at last.</span>
-</span><span class='line'><span class="n">locations</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;AAAAAAAA&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// use natrual ordering with second comparator to deal with equal situation.</span>
-</span><span class='line'><span class="n">Ordering</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">compoundOrdering</span> <span class="o">=</span> <span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">compound</span><span class="o">(</span><span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// the result will be : [, AAAAAAAA, Cheng du, Shang hai, Guang zhou]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">compoundOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">onResultOf</span><span class="o">(</span><span class="n">Fuction</span><span class="o">)</span><span class="err">`</span>
-</span><span class='line'><span class="n">Returns</span> <span class="n">an</span> <span class="n">Ordering</span> <span class="n">which</span> <span class="n">orders</span> <span class="n">values</span> <span class="n">by</span> <span class="n">applying</span> <span class="n">the</span> <span class="n">function</span> <span class="n">to</span> <span class="n">them</span> <span class="n">and</span> <span class="n">then</span> <span class="n">comparing</span> <span class="n">the</span> <span class="n">results</span> <span class="n">using</span> <span class="n">the</span> <span class="n">original</span> <span class="n">Ordering</span><span class="o">.</span>
-</span><span class='line'><span class="n">Declaring</span> <span class="n">a</span> <span class="n">Foo</span> <span class="nl">class:</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Foo</span> <span class="o">{</span>
-</span><span class='line'><span class="nd">@Nullable</span>
-</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">private</span> <span class="n">String</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="nf">Foo</span><span class="o">(</span><span class="n">Integer</span> <span class="n">sortedBy</span><span class="o">,</span> <span class="n">String</span> <span class="n">nonSortedBy</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">sortedBy</span> <span class="o">=</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">nonSortedBy</span> <span class="o">=</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">getNonSortedBy</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNonSortedBy</span><span class="o">(</span><span class="n">String</span> <span class="n">nonSortedBy</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">nonSortedBy</span> <span class="o">=</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getSortedBy</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSortedBy</span><span class="o">(</span><span class="kt">int</span> <span class="n">sortedBy</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">sortedBy</span> <span class="o">=</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@Override</span>
-</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s+%s&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">sortedBy</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">nonSortedBy</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Declaring</span> <span class="n">a</span> <span class="k">new</span> <span class="n">List</span> <span class="n">with</span> <span class="n">Foo</span> <span class="kd">class</span> <span class="nc">type</span><span class="o">:</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">private</span> <span class="n">List</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">Foo</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">fooList</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span>
-</span><span class='line'><span class="k">new</span> <span class="nf">Foo</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;abc&quot;</span><span class="o">),</span>
-</span><span class='line'><span class="k">new</span> <span class="nf">Foo</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="s">&quot;abc&quot;</span><span class="o">),</span>
-</span><span class='line'><span class="k">new</span> <span class="nf">Foo</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="s">&quot;abc&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Define</span> <span class="n">a</span> <span class="k">new</span> <span class="n">function</span> <span class="n">that</span> <span class="n">will</span> <span class="k">return</span> <span class="n">an</span> <span class="n">customized</span> <span class="err">`</span><span class="n">Ordering</span><span class="err">`</span><span class="o">:</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">private</span> <span class="n">Ordering</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">Foo</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">getNaturalFooOrder</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="k">return</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsFirst</span><span class="o">().</span><span class="na">onResultOf</span><span class="o">(</span><span class="k">new</span> <span class="n">Function</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">Foo</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">apply</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Foo</span> <span class="n">foo</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">foo</span><span class="o">.</span><span class="na">getSortedBy</span><span class="o">();</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">});</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Ordering</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">Foo</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">fooOrdering</span> <span class="o">=</span> <span class="n">getNaturalFooOrder</span><span class="o">();</span>
-</span><span class='line'><span class="c1">// the result will be [null+abc, 10+abc, 23+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">greatestOf</span><span class="o">(</span><span class="n">Iterable</span> <span class="n">iterable</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span><span class="err">`</span>
-</span><span class='line'><span class="n">Returns</span> <span class="n">the</span> <span class="n">k</span> <span class="n">greatest</span> <span class="n">elements</span> <span class="n">of</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">iterable</span><span class="o">,</span> <span class="n">according</span> <span class="n">to</span> <span class="k">this</span> <span class="n">ordering</span><span class="o">,</span> <span class="n">in</span> <span class="n">order</span> <span class="n">from</span> <span class="n">greatest</span> <span class="n">to</span> <span class="n">least</span><span class="o">.</span> <span class="n">Not</span> <span class="n">necessarily</span> <span class="n">stable</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// the result will be [23+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">greatestOf</span><span class="o">(</span><span class="n">fooList</span><span class="o">,</span> <span class="mi">1</span><span class="o">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// the result will be [23+abc, 10+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">greatestOf</span><span class="o">(</span><span class="n">fooList</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">leastOf</span><span class="o">(</span><span class="n">Iterable</span> <span class="n">iterable</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span><span class="err">`</span>
-</span><span class='line'><span class="n">Returns</span> <span class="n">the</span> <span class="n">k</span> <span class="n">least</span> <span class="n">elements</span> <span class="n">of</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">iterable</span><span class="o">,</span> <span class="n">according</span> <span class="n">to</span> <span class="k">this</span> <span class="n">ordering</span><span class="o">,</span> <span class="n">in</span> <span class="n">order</span> <span class="n">from</span> <span class="n">least</span> <span class="n">to</span> <span class="n">greatest</span><span class="o">.</span> <span class="n">Not</span> <span class="n">necessarily</span> <span class="n">stable</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// the result will be [null+abc, 10+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">leastOf</span><span class="o">(</span><span class="n">fooList</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">min</span><span class="o">(</span><span class="n">Iterable</span><span class="o">)</span><span class="err">`</span>
-</span><span class='line'><span class="n">Returns</span> <span class="n">the</span> <span class="n">minimum</span> <span class="n">element</span> <span class="n">of</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">Iterable</span><span class="o">.</span> <span class="n">Throws</span> <span class="n">a</span> <span class="n">NoSuchElementException</span> <span class="k">if</span> <span class="n">the</span> <span class="n">Iterable</span> <span class="n">is</span> <span class="n">empty</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// the result will be null+abc</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">`</span><span class="n">max</span><span class="o">(</span><span class="n">Iterable</span><span class="o">)</span><span class="err">`</span>
-</span><span class='line'><span class="n">Returns</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">element</span> <span class="n">of</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">Iterable</span><span class="o">.</span> <span class="n">Throws</span> <span class="n">a</span> <span class="n">NoSuchElementException</span> <span class="k">if</span> <span class="n">the</span> <span class="n">Iterable</span> <span class="n">is</span> <span class="n">empty</span><span class="o">.</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1">// the result will be 23+abc</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="err">```</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">All</span> <span class="n">immutable</span> <span class="n">collections</span> <span class="n">provide</span> <span class="n">an</span> <span class="n">ImmutableList</span> <span class="n">view</span> <span class="n">via</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">asList</span><span class="o">()&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="n">so</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="o">;</span> <span class="k">for</span> <span class="n">example</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="o">;</span> <span class="n">even</span> <span class="k">if</span> <span class="n">you</span> <span class="n">have</span> <span class="n">data</span> <span class="n">stored</span> <span class="n">as</span> <span class="n">an</span> <span class="n">ImmutableSortedSet</span><span class="o">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">get</span> <span class="n">the</span> <span class="n">kth</span> <span class="n">smallest</span> <span class="n">element</span> <span class="n">with</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">sortedSet</span><span class="o">.</span><span class="na">asList</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">k</span><span class="o">)&lt;/</span><span class="n">code</span><span class="o">&gt;.</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Java</span>
+</span><span class='line'><span class="c1">//get second item. print b</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">immutableList</span><span class="o">.</span><span class="na">asList</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'><span class="o">]]&gt;&lt;/</span><span class="n">content</span><span class="o">&gt;</span>
 </span><span class='line'>  <span class="o">&lt;/</span><span class="n">entry</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="o">&lt;</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">title</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[</span><span class="n">JSP</span> <span class="o">-</span> <span class="n">Custom</span> <span class="n">Tag</span><span class="o">]]&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag/&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">updated</span><span class="o">&gt;</span><span class="mi">2014</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">01</span><span class="nl">T21:</span><span class="mi">30</span><span class="o">:</span><span class="mi">41</span><span class="o">+</span><span class="mi">08</span><span class="o">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">updated</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">http:</span><span class="c1">//stonefishy.github.io/blog/2014/12/01/jsp-custom-tag&lt;/id&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Custom</span> <span class="n">Tag</span> <span class="n">is</span> <span class="n">a</span> <span class="n">user</span><span class="o">-</span><span class="n">defined</span> <span class="n">JSP</span> <span class="n">language</span> <span class="n">element</span><span class="o">.</span> <span class="n">When</span> <span class="n">it</span> <span class="n">is</span> <span class="n">contained</span> <span class="n">in</span> <span class="n">JSP</span> <span class="n">page</span> <span class="n">and</span> <span class="n">it</span> <span class="n">will</span> <span class="n">translate</span> <span class="n">into</span> <span class="n">a</span> <span class="n">servlet</span><span class="o">,</span> <span class="n">the</span> <span class="n">custom</span> <span class="n">tag</span> <span class="n">is</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">opertions</span> <span class="n">on</span> <span class="n">an</span> <span class="n">object</span> <span class="n">called</span> <span class="n">a</span> <span class="n">tag</span> <span class="n">handler</span><span class="o">.</span> <span class="n">The</span> <span class="n">web</span> <span class="n">container</span> <span class="n">then</span> <span class="n">invokes</span> <span class="n">those</span> <span class="n">operations</span> <span class="n">when</span> <span class="n">the</span> <span class="n">JSP</span> <span class="n">page</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">servlet</span> <span class="n">is</span> <span class="n">executed</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">title</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[</span><span class="n">Guava</span> <span class="o">-</span> <span class="n">Ordering</span><span class="o">]]&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://stonefishy.github.io/blog/2014/12/12/guava-ordering/&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">updated</span><span class="o">&gt;</span><span class="mi">2014</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="nl">T17:</span><span class="mi">28</span><span class="o">:</span><span class="mi">07</span><span class="o">+</span><span class="mi">08</span><span class="o">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">updated</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">http:</span><span class="c1">//stonefishy.github.io/blog/2014/12/12/guava-ordering&lt;/id&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Ordering</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">Guava</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">fluent</span> <span class="n">Comparator</span> <span class="kd">class</span> <span class="nc">and</span> <span class="kd">implements</span> <span class="n">Comparator</span> <span class="n">interface</span><span class="o">.</span> <span class="n">It</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">build</span> <span class="n">complex</span> <span class="n">comparators</span> <span class="n">and</span> <span class="n">apply</span> <span class="n">them</span> <span class="n">to</span> <span class="n">collections</span> <span class="n">of</span> <span class="n">objects</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">If</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">custom</span> <span class="n">tag</span><span class="o">,</span> <span class="n">what</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="k">do</span> <span class="n">is</span> <span class="n">simply</span> <span class="n">extend</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SimpleTagSupport</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="kd">class</span> <span class="nc">and</span> <span class="n">override</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">doTag</span><span class="o">()&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">,</span> <span class="n">where</span> <span class="n">you</span> <span class="n">can</span> <span class="n">place</span> <span class="n">your</span> <span class="n">code</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">tag</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">getting</span> <span class="n">started</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">custom</span> <span class="n">tag</span> <span class="n">now</span><span class="o">.</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span><span class='line'><span class="n">As</span> <span class="n">you</span> <span class="n">can</span> <span class="n">see</span> <span class="n">below</span><span class="o">,</span> <span class="n">consider</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">create</span> <span class="n">two</span> <span class="n">tag</span><span class="o">,</span> <span class="n">one</span> <span class="n">is</span> <span class="n">user</span> <span class="n">tag</span> <span class="n">with</span> <span class="n">name</span> <span class="n">and</span> <span class="n">isMale</span> <span class="n">attribute</span><span class="o">,</span> <span class="n">another</span> <span class="n">is</span> <span class="n">system</span> <span class="n">tag</span> <span class="n">with</span> <span class="n">size</span> <span class="n">attribute</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;jsp&quot;</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nl">custom:</span><span class="n">user</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;user1&quot;</span> <span class="n">isMale</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nl">custom:</span><span class="n">system</span> <span class="n">size</span><span class="o">=</span><span class="s">&quot;1024&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Okay</span><span class="o">,</span> <span class="n">so</span> <span class="n">let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">getting</span> <span class="n">started</span><span class="o">.</span> <span class="n">Firstly</span><span class="o">,</span> <span class="n">we</span> <span class="n">declared</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">String</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">type</span> <span class="nl">List:</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Java</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">List</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">locations</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span>
+</span><span class='line'>            <span class="s">&quot;Guang zhou&quot;</span><span class="o">,</span>
+</span><span class='line'>            <span class="s">&quot;Cheng du&quot;</span><span class="o">,</span>
+</span><span class='line'>            <span class="s">&quot;&quot;</span><span class="o">,</span>
+</span><span class='line'>            <span class="s">&quot;Shang hai&quot;</span>
+</span><span class='line'>    <span class="o">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="n">We</span> <span class="n">will</span> <span class="n">use</span> <span class="k">this</span> <span class="n">locations</span> <span class="n">variable</span> <span class="n">later</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">So</span> <span class="n">firstly</span> <span class="n">what</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="k">do</span> <span class="n">is</span> <span class="n">create</span> <span class="n">two</span> <span class="n">java</span> <span class="n">classes</span> <span class="n">that</span> <span class="n">act</span> <span class="n">as</span> <span class="n">a</span> <span class="n">tag</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">each</span> <span class="n">other</span> <span class="n">tag</span><span class="o">.</span> <span class="n">and</span> <span class="n">them</span> <span class="n">must</span> <span class="kd">extends</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SimpleTagSupport</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">class</span><span class="o">.</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure> java UserTag.java
-package com.jsp.custom.tag;</p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">natural</span><span class="o">()&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">Use</span> <span class="n">natural</span> <span class="n">ordering</span> <span class="k">for</span> <span class="n">comparatable</span> <span class="n">types</span><span class="o">.</span> <span class="n">such</span> <span class="n">as</span> <span class="n">number</span> <span class="n">from</span> <span class="n">small</span> <span class="n">to</span> <span class="n">large</span><span class="o">.</span> <span class="n">date</span> <span class="n">from</span> <span class="n">start</span> <span class="n">to</span> <span class="n">end</span><span class="o">.</span> <span class="n">It</span> <span class="n">is</span> <span class="kd">static</span> <span class="n">method</span><span class="o">.</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Java</span>
+</span><span class='line'>    <span class="c1">// use natural comparator, such as a -&amp;gt; z</span>
+</span><span class='line'>    <span class="c1">// so the result is: [, Cheng du, Guang zhou, Shang hai]</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">sortedCopy</span><span class="o">(</span><span class="n">Iterable</span><span class="o">)&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">Return</span> <span class="n">a</span> <span class="n">sorted</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">elements</span> <span class="n">as</span> <span class="n">a</span> <span class="n">List</span><span class="o">.</span>  <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">We</span> <span class="n">create</span> <span class="n">a</span> <span class="n">customized</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Ordering</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">that</span> <span class="n">sorted</span> <span class="n">by</span> <span class="n">the</span> <span class="n">length</span> <span class="n">of</span> <span class="n">element</span> <span class="n">from</span> <span class="n">small</span> <span class="n">to</span> <span class="n">large</span><span class="o">.</span> <span class="n">Let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">get</span> <span class="n">the</span> <span class="nl">code:</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Java</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Ordering</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">getCustomzieStringOrder</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="n">Ordering</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="nd">@Override</span>
+</span><span class='line'>            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">first</span><span class="o">,</span> <span class="n">String</span> <span class="n">second</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                <span class="k">return</span> <span class="n">Ints</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">second</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">};</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="n">Order</span> <span class="n">the</span> <span class="n">locations</span> <span class="n">list</span> <span class="n">with</span> <span class="n">our</span> <span class="k">new</span> <span class="n">customize</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Ordering</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;:</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure> Java
+    Ordering<String> byLengthOrdering = getCustomzieStringOrder();</p>
 
-<p>import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.Date;</p>
+<pre><code>// use natural comparator, such as a -&gt; z
+// so the result is: [, Cheng du, Shang hai, Guang zhou]
+System.out.println(byLengthOrdering.sortedCopy(locations));
+</code></pre>
 
-<p>/<em>*
- * Created by yushi on 12/1/14.
- </em>/
-public class UserTag extends SimpleTagSupport {
-    private String name;
-    private Boolean isMale;
-    private Date birthday;</p>
+<pre><code>
+`isOrdered(Iterable)`   
+Return a Boolean variable that can describe the Iterable if sorted.
+</code></pre>
 
-<pre><code>private StringWriter sw = new StringWriter();
+<pre><code>// will return false. because the locations array is not sorted.
+System.out.println(byLengthOrdering.isOrdered(locations));
+</code></pre>
 
-public void doTag() throws JspException, IOException
-{
-    JspWriter out = getJspContext().getOut();
+<pre><code>
+`reverse()`   
+Return the reverse `Ordering`.
+</code></pre>
 
-    // print name info with name attribute
-    out.println(name);
+<pre><code>// reverse customize comparator.
+// so the result is: [Guang zhou, Shang hai, Cheng du, ]
+System.out.println(byLengthOrdering.reverse().sortedCopy(locations));
+</code></pre>
 
-    // print gender info via isMale attribute
-    out.println(isMale ? "I'm male!" : "I'm female!");
+<pre><code>
+`nullsFirst()`   
+Return an `Ordering` that will put the null object at the first.
+</code></pre>
 
-    if (birthday != null) {
-        out.println(String.format("My birthday is %s", birthday.toString()));
+<pre><code>// add null object to the locations array.
+locations.add(null);
+
+// null obejct will at first.
+// so the result is : [null, , Cheng du, Shang hai, Guang zhou]
+System.out.println(byLengthOrdering.nullsFirst().sortedCopy(locations));
+</code></pre>
+
+<pre><code>
+`nullsLast()`   
+Return an `Ordering` that will put the null object at the last.
+</code></pre>
+
+<pre><code>// null object will at last.
+// the result is : [, Cheng du, Shang hai, Guang zhou, null]
+System.out.println(byLengthOrdering.nullsLast().sortedCopy(locations));
+
+// will throw NullPointerException, because the location contains null object.
+// and here doesn't have nullsFirst() or nullsLast() to deal with null object.
+byLengthOrdering.sortedCopy(locations);
+
+// remove the null object.
+locations.remove(null);
+</code></pre>
+
+<pre><code>
+`compound()`   
+Returns an `Ordering` which uses the specified Comparator to "break ties."
+</code></pre>
+
+<pre><code>// the "AAAAAAAA" length is equal to "Cheng du" length. (8 characters)
+// and it will be appended at last.
+locations.add("AAAAAAAA");
+
+// use natrual ordering with second comparator to deal with equal situation.
+Ordering&lt;String&gt; compoundOrdering = byLengthOrdering.compound(Ordering.natural());
+
+// the result will be : [, AAAAAAAA, Cheng du, Shang hai, Guang zhou]
+System.out.println(compoundOrdering.sortedCopy(locations));
+</code></pre>
+
+<pre><code>
+`onResultOf(Fuction)`   
+Returns an Ordering which orders values by applying the function to them and then comparing the results using the original Ordering.   
+Declaring a Foo class:
+</code></pre>
+
+<pre><code> public class Foo {
+    @Nullable
+    private Integer sortedBy;
+
+    private String nonSortedBy;
+
+    public Foo(Integer sortedBy, String nonSortedBy) {
+        this.sortedBy = sortedBy;
+        this.nonSortedBy = nonSortedBy;
     }
 
-    // print body text with body content
-    getJspBody().invoke(sw);
-    getJspContext().getOut().println(sw.toString());
-}
+    public String getNonSortedBy() {
+        return nonSortedBy;
+    }
 
-public void setName(String name) {
-    this.name = name;
-}
+    public void setNonSortedBy(String nonSortedBy) {
+        this.nonSortedBy = nonSortedBy;
+    }
 
-public void setIsMale(Boolean isMale) {
-    this.isMale = isMale;
-}
+    public Integer getSortedBy() {
+        return sortedBy;
+    }
 
-public void setBirthday(Date birthday) {
-    this.birthday = birthday;
+    public void setSortedBy(int sortedBy) {
+        this.sortedBy = sortedBy;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s+%s", this.sortedBy, this.nonSortedBy);
+    }
 }
 </code></pre>
 
-<p>}
-&#8220;`</p>
+<pre><code>Declaring a new List with Foo class type:
+</code></pre>
+
+<pre><code>private List&lt;Foo&gt; fooList = Lists.newArrayList(
+    new Foo(null, "abc"),
+    new Foo(23, "abc"),
+    new Foo(10, "abc")
+);  
+</code></pre>
+
+<pre><code>Define a new function that will return an customized `Ordering`:
+</code></pre>
+
+<pre><code>private Ordering&lt;Foo&gt; getNaturalFooOrder() {
+    return Ordering.natural().nullsFirst().onResultOf(new Function&lt;Foo, Integer&gt;() {
+        @Override
+        public Integer apply(@Nullable Foo foo) {
+            return foo.getSortedBy();
+        }
+    });
+}
+
+Ordering&lt;Foo&gt; fooOrdering = getNaturalFooOrder();
+// the result will be [null+abc, 10+abc, 23+abc]
+System.out.println(fooOrdering.sortedCopy(fooList));
+</code></pre>
+
+<pre><code>
+`greatestOf(Iterable iterable, int k)`   
+Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.
+</code></pre>
+
+<pre><code>// the result will be [23+abc]
+System.out.println(fooOrdering.greatestOf(fooList, 1));
+
+// the result will be [23+abc, 10+abc]
+System.out.println(fooOrdering.greatestOf(fooList, 2));
+</code></pre>
+
+<pre><code>
+`leastOf(Iterable iterable, int k)`   
+Returns the k least elements of the specified iterable, according to this ordering, in order from least to greatest. Not necessarily stable.
+</code></pre>
+
+<pre><code>// the result will be [null+abc, 10+abc]
+System.out.println(fooOrdering.leastOf(fooList, 2));
+</code></pre>
+
+<pre><code class="">
+`min(Iterable)`   
+Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.   
+</code></pre>
+
+<pre><code>// the result will be null+abc
+System.out.println(fooOrdering.min(fooList));
+</code></pre>
+
+<pre><code>
+`max(Iterable)`   
+Returns the maximum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.   
+</code></pre>
+
+<pre><code>// the result will be 23+abc
+System.out.println(fooOrdering.max(fooList));
+</code></pre>
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JSP - Custom Tag]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag/"/>
+    <updated>2014-12-01T21:30:41+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag</id>
+    <content type="html"><![CDATA[<p>Custom Tag is a user-defined JSP language element. When it is contained in JSP page and it will translate into a servlet, the custom tag is converted to opertions on an object called a tag handler. The web container then invokes those operations when the JSP page&rsquo;s servlet is executed.</p>
+
+<p>If we want to create a custom tag, what we need to do is simply extend <code>SimpleTagSupport</code> class and override the <code>doTag()</code> method, where you can place your code to generate content for the tag.</p>
+
+<p>Let&rsquo;s getting started to create a custom tag now. <br/>
+As you can see below, consider we want to create two tag, one is user tag with name and isMale attribute, another is system tag with size attribute.</p>
+
+<pre><code class="jsp">&lt;custom:user name="user1" isMale="true"/&gt;
+&lt;custom:system size="1024"/&gt;
+</code></pre>
+
+<!-- more -->
+
+
+<p>So firstly what we need to do is create two java classes that act as a tag handler for each other tag. and them must extends <code>SimpleTagSupport</code> class. <br/>
+<figure class='code'><figcaption><span>UserTag.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">custom</span><span class="o">.</span><span class="na">tag</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspException</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspWriter</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.SimpleTagSupport</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.StringWriter</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;*</span>
+</span><span class='line'> <span class="o">*</span> <span class="n">Created</span> <span class="n">by</span> <span class="n">yushi</span> <span class="n">on</span> <span class="mi">12</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">14</span><span class="o">.</span>
+</span><span class='line'> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserTag</span> <span class="kd">extends</span> <span class="n">SimpleTagSupport</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Boolean</span> <span class="n">isMale</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Date</span> <span class="n">birthday</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">private</span> <span class="n">StringWriter</span> <span class="n">sw</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringWriter</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span><span class="o">,</span> <span class="n">IOException</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>    <span class="n">JspWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// print name info with name attribute</span>
+</span><span class='line'>    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// print gender info via isMale attribute</span>
+</span><span class='line'>    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isMale</span> <span class="o">?</span> <span class="s">&quot;I&#39;m male!&quot;</span> <span class="o">:</span> <span class="s">&quot;I&#39;m female!&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">birthday</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;My birthday is %s&quot;</span><span class="o">,</span> <span class="n">birthday</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// print body text with body content</span>
+</span><span class='line'>    <span class="n">getJspBody</span><span class="o">().</span><span class="na">invoke</span><span class="o">(</span><span class="n">sw</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">().</span><span class="na">println</span><span class="o">(</span><span class="n">sw</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsMale</span><span class="o">(</span><span class="n">Boolean</span> <span class="n">isMale</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">isMale</span> <span class="o">=</span> <span class="n">isMale</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBirthday</span><span class="o">(</span><span class="n">Date</span> <span class="n">birthday</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">birthday</span> <span class="o">=</span> <span class="n">birthday</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <pre><code class="java SystemTag.java">package com.jsp.custom.tag;
 
@@ -678,60 +727,6 @@ Preconditions.checkElementIndex(i,3); // throw IndexOutOfBoundsException
 
 Preconditions.checkPositionIndex(i,3); // return 3
 Preconditions.checkPositionIndex(i,2); // throw IndexOutOfBoundsException
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Optional]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/21/guava-optional/"/>
-    <updated>2014-11-21T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/21/guava-optional</id>
-    <content type="html"><![CDATA[<p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
-
-<!--more-->
-
-
-<h3>Usage</h3>
-
-<p><code>Optional.of(T)</code>    <br/>
-Make an Optional containing the given non-null value, or fail fast on null.</p>
-
-<p><code>Optional.absent()</code> <br/>
-Return an absent Optional of some type.</p>
-
-<p><code>Optional.fromNullable(T)</code> <br/>
-Turn the given possibly-null reference into an Optional, treating non-null as present and null as absent.</p>
-
-<p><code>boolean isPresent()</code>    <br/>
-Returns true if this Optional contains a non-null instance.</p>
-
-<p><code>T get()</code> <br/>
-Returns the contained T instance, which must be present; otherwise, throws an IllegalStateException.</p>
-
-<p><code>T or()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns the specified default.</p>
-
-<p><code>T orNull()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns null. The inverse operation of fromNullable.</p>
-
-<h3>Example:</h3>
-
-<pre><code class="java   ">Optional&lt;Integer&gt; numberOptional = Optional.of(100);
-numberOptional.isPresent(); //return true
-numberOptional.get(); //return 100
-
-numberOptional = Optional.absent();
-numberOptional.isPresent(); // return false
-numberOptional.or(0); //return 0;
-numberOptional.orNull(); //return null;
-
-numberOptional = Optional.fromNullable(1);
-numberOptional.get(); //return 1;
-
-numberOptional = Optional.fromNullable(null);
-numberOptional.isPresent(); //return false;
-numberOptional.orNull(); //return null;
 </code></pre>
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-02-06T18:01:22+08:00</updated>
+  <updated>2015-02-13T17:47:41+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,124 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Guave - Immutable Collection]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection/"/>
+    <updated>2015-02-13T14:58:17+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection</id>
+    <content type="html"><![CDATA[<p><code>Immutable</code> that means it can not be changed. Let&rsquo;s get example to see what&rsquo;s different with <code>mutable</code> objects.</p>
+
+<p>Normal mutable collections:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//define a mutable list</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mutableList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//modify the first item in the mutable list</span>
+</span><span class='line'><span class="c1">//will print [aa, b, c]</span>
+</span><span class='line'><span class="n">mutableList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;aa&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mutableList</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<!-- more -->
+
+
+<p>Immutable collections:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//define a immutable list</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableList</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//can not modify the first item in the immutable list, any change item operation is unsuppproted.</span>
+</span><span class='line'><span class="c1">//it will throw UnsupportedOperationException</span>
+</span><span class='line'><span class="n">immutableList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;aa&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">immutableList</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  <br/>
+From above example, we can get the conclusion is that immutable collections doesn&rsquo;t support any changing content API. So it will throw <code>UnsupportedOperationException</code> when you try to modify it.</p>
+
+<h3>What&rsquo;s advantage of Immutable Objects</h3>
+
+<p>According to Guava Offical explain about <code>Immutable Objects</code>, there have four and more advantages of Immutable Objects:</p>
+
+<ul>
+<li>Safe for use by untrusted libraries.</li>
+<li><code>Thread-Safe</code>: can be used by many threads with no risk of race conditions.</li>
+<li>Doesn&rsquo;t need to support mutation, and can make time and space savings with that assumption. All immutable collection implementations are more memory-efficient than their mutable siblings.</li>
+<li>Can be used as a constant, with the expectation that it will remain fixed.</li>
+</ul>
+
+
+<p>Making immutable copies of objects is a good defensive programming technique, and <code>Guava</code>provides it.</p>
+
+<blockquote><p><em>Note:</em> Each of the <code>Guava</code> immutable collection implementations reject <em>null</em> values.</p></blockquote>
+
+<h3>How create it</h3>
+
+<p>An ImmutableXXX collection can be created in several ways:</p>
+
+<ul>
+<li>Using the <code>copyOf</code> method, like <code>ImmutableList.copyOf(collection)</code>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">mutableList</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Using the <code>of</code> method, like <code>ImmutableList.of("a", "b", "c")</code> or <code>ImmutableMap.of("a", 1, "b", 2)</code></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Using a <code>Builder</code>, for example:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+</span><span class='line'>                                  <span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">mutableList</span><span class="o">)</span>
+</span><span class='line'>                                  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>All immutable collections provide an ImmutableList view via <code>asList()</code>, so &ndash; for example &ndash; even if you have data stored as an ImmutableSortedSet, you can get the kth smallest element with <code>sortedSet.asList().get(k)</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//get second item. print b</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">immutableList</span><span class="o">.</span><span class="na">asList</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Understading MVC, MVP and MVVM Design Patterns]]></title>
@@ -742,7 +860,7 @@ Even cooler, when you change a CSS file or an image, the browser is updated inst
 </span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>
-</span><span class='line'>        <span class="nx">opacity</span><span class="o">=</span><span class="s2">&quot;\{\{0.4+temperature/100}}&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'>        <span class="nx">opacity</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">/&gt;</span>
 </span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
@@ -1889,30 +2007,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 <p><img src="http://stonefishy.github.io/assets/images/rebase-onto.png" alt="rebase-onto" /></p>
 
 <p>There is also <code>git rebase --interactive</code>, which allows one to do more complicated things than simply replaying commits, namely dropping, reordering, modifying, and squashing commits. There is no obvious picture to draw for this; see git-rebase(1) for more details.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Visual Git Guide (Merge Command)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command/"/>
-    <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command</id>
-    <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Merge command</h3>
-
-<p>A merge creates a new commit that incorporates changes from other commits. Before merging, the stage must match the current commit. The trivial case is if the other commit is an ancestor of the current commit, in which case nothing is done. The next most simple is if the current commit is an ancestor of the other commit. This results in a fast-forward merge. The reference is simply moved, and then the new commit is checked out.</p>
-
-<!--more-->
-
-
-<p></p>
-
-<p><img src="http://stonefishy.github.io/assets/images/merge-ff.png" alt="merge-ff" /></p>
-
-<p>Otherwise, a &ldquo;real&rdquo; merge must occur. You can choose other strategies, but the default is to perform a &ldquo;recursive&rdquo; merge, which basically takes the current commit (ed489 below), the other commit (33104), and their common ancestor (b325c), and performs a three-way merge. The result is saved to the working directory and the stage, and then a commit occurs, with an extra parent (33104) for the new commit.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/merge.png" alt="merge" /></p>
 ]]></content>
   </entry>
   
