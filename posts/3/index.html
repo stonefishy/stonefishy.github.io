@@ -9,7 +9,7 @@
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="Note: the original website address in here Reset command The reset command moves the current branch to another position, and optionally updates the &hellip;">
+  <meta name="description" content="Note: the original website address in here Technical notes The contents of files are not actually stored in the index (.git/index) or in commit &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-technical-notes/">Visual Git Guide (Technical Notes)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Technical notes</h3>
+
+<p>The contents of files are not actually stored in the index (.git/index) or in commit objects. Rather, each file is stored in the object database (.git/objects) as a blob, identified by its SHA-1 hash. The index file lists the filenames along with the identifier of the associated blob, as well as some other data. For commits, there is an additional data type, a tree, also identified by its hash. Trees correspond to directories in the working directory, and contain a list of trees and blobs corresponding to each filename within that directory. Each commit stores the identifier of its top-level tree, which in turn contains all of the blobs and other trees associated with that commit.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-technical-notes/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -411,48 +449,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-3/">Git Commands (3)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Redo Commits</h3>
-
-<ul>
-<li><p>Undo all commits after [commit], and preserve changes locally: <br/>
-<code>$ git reset [commit]</code></p></li>
-<li><p>Discard all history and changes back to the specified commit: <br/>
-<code>$ git reset --hard [commit]</code></p></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/06/git-commands-3/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -470,6 +466,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
       </li>
     
@@ -483,10 +483,6 @@
     
       <li class="post">
         <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/28/conditinal-stylesheets-for-ie-version/">Conditional Stylesheets for IE Version</a>
       </li>
     
   </ul>

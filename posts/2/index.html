@@ -9,7 +9,7 @@
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="Ractive.js is a template-driven UI library, it transforms your templates into blueprints for application that are interative by default. Ractive.js &hellip;">
+  <meta name="description" content="Cucumber is a tool that can execute plain-text functional descriptions. And also it&rsquo;s BDD(Behaviour Driven Development) automated tests. It is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/23/what-is-cucumber/">What Is Cucumber</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-23T00:23:25+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:23 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Cucumber</code> is a tool that can execute <code>plain-text</code> functional descriptions. And also it&rsquo;s  <code>BDD(Behaviour Driven Development)</code> <code>automated tests</code>. It is written by <code>Ruby</code>, and now it supports more than 40 languages, such as <code>Java</code>, <code>C#</code> and <code>Scala</code> etc.</p>
+
+<h3>Install</h3>
+
+<p>Firstly, we need to install <code>Ruby</code> and <code>RubyGems</code>, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  ruby --version
+</span><span class='line'>ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
+</span><span class='line'>~  gem --version
+</span><span class='line'>2.0.14  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>And then we can run the command below to install <code>Cucumber</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  gem install cucumber</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After this, put below command to see how to use it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  cucumber --help</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/12/23/what-is-cucumber/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -463,44 +523,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-technical-notes/">Visual Git Guide (Technical Notes)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Technical notes</h3>
-
-<p>The contents of files are not actually stored in the index (.git/index) or in commit objects. Rather, each file is stored in the object database (.git/objects) as a blob, identified by its SHA-1 hash. The index file lists the filenames along with the identifier of the associated blob, as well as some other data. For commits, there is an additional data type, a tree, also identified by its hash. Trees correspond to directories in the working directory, and contain a list of trees and blobs corresponding to each filename within that directory. Each commit stores the identifier of its top-level tree, which in turn contains all of the blobs and other trees associated with that commit.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-technical-notes/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -518,6 +540,10 @@ Checks that the value is not null. Returns the value directly, so you can use ch
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
       </li>
     
@@ -531,10 +557,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
     
       <li class="post">
         <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/28/conditinal-stylesheets-for-ie-version/">Conditional Stylesheets for IE Version</a>
       </li>
     
   </ul>

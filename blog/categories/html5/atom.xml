@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Html5 | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/html5/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-03-02T22:00:03+08:00</updated>
+  <updated>2015-03-03T23:04:38+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTML5 - New Common Elements]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements/"/>
+    <updated>2015-03-03T17:13:53+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements</id>
+    <content type="html"><![CDATA[<p>In <code>HTML5</code>, It adds a mount of elements, these elements are more easier to present the document in browser.</p>
+
+<h3>Structure element</h3>
+
+<p>Before <code>HTML5</code>, we just use <code>div</code> tag to act as the <code>Document Structure Element</code>, but now the <code>HTML5</code> supports more elements like <code>section</code>, <code>article</code>, <code>nav</code>, <code>aside</code>, <code>header</code>, <code>footer</code> and so on.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h5>article</h5>
+
+<p><code>article</code> use to present an entire, independent article. We should use it when we need to present a entire, independent document content. <br/>
+It can contain <code>header</code> tag to define the header of the article.    <br/>
+It can contain <code>footer</code> tag to define the footer of the article.  <br/>
+It can contain <code>section</code> tag to split content to multiple paragraphs.   <br/>
+Also, it can be nested by itself.</p>
+
+<h5>section</h5>
+
+<p><code>section</code> splits the page content to multiple blocks, and it usually contains title and content. And here the title stand for <code>h1</code>&hellip;.<code>h6</code> tag. <code>section</code> can contains <code>article</code> and <code>section</code> tag.</p>
+
+<h5>nav</h5>
+
+<p><code>nav</code> tag use to define the navigation bar, include the top of page, the left or right side, and the bottom and so on.</p>
+
+<h5>aside</h5>
+
+<p>It&rsquo;s recommend to use it to present the side of page with <code>CSS</code>.</p>
+
+<h5>header</h5>
+
+<p>The <code>header</code> tag use to define the header of the <code>article</code>, and it can contain multiple title tags (<code>h1</code>&hellip;.<code>h6</code>) with <code>hgroup</code> tag. And also the common tags like <code>p</code>, <code>span</code> can be nested in it.</p>
+
+<h5>hgroup</h5>
+
+<p>It&rsquo;s mainaly use for including multiple title tag.</p>
+
+<h5>footer</h5>
+
+<p>The footer of page, use to contains foot information, copy right and author related stuff.</p>
+
+<h5>figure</h5>
+
+<p><code>figure</code> tag express an independant image area, it may contain one or more images， in addition to this tag can contain a new tag <code>figcaption</code> to express the title of images.</p>
+
+<h3>Semantic related elemnent</h3>
+
+<h5>mark</h5>
+
+<p>It is mark some information need to be noticed.</p>
+
+<h4>time</h4>
+
+<p>It presents some content want to be time, date. Setting the <code>datetime</code> attribute&rsquo;s value to present which date formatter you want.</p>
+
+<h4>Special function element</h4>
+
+<h4>meter</h4>
+
+<p><code>meter</code> tag express an as known maxium and minimum counter. It has many attributes to set. <code>value</code>, <code>min</code>, <code>max</code>, <code>low</code>, <code>high</code>, <code>optimum</code>. <br/>
+&#8220;` html</p>
+
+<div>
+    current speed of car: <meter id="meter" max="200" min="0" low="0" high="180" value="150">kilometre/hour
+</div>
+
+
+<pre><code>{% img /assets/images/meter-tag.png 300 80 %}
+
+####progress
+`progress` tag use to express an progress bar. It has two attributes, one is `max`, another is `value`.
+</code></pre>
+
+<div>
+   the progress of un-finished task: <progress id="progress" max="1" value="0.4"/>
+</div>
+
+
+<p>&#8220;`
+{% img /assets/images/progress-tag.png 350 100 %}</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML5 - New Common Attributes]]></title>
@@ -85,10 +175,10 @@
 <p>The root div is can&rsquo;t be edited by default. when we click button to turn on contentEditable attribute. all children tags of this tag can be edited.</p>
 
 <p><code>contentEditable</code> attribute is false: <br/>
-<img src="/assets/images/contentEditable-before.png" width="300" height="350"></p>
+{% img /assets/images/contentEditable-before.png 300 350 %}</p>
 
 <p><code>contentEditable</code> attribute is true: <br/>
-<img src="/assets/images/contentEditable-after.png" width="300" height="350"></p>
+{% img /assets/images/contentEditable-after.png 300 350 %}</p>
 
 <h3>designMode</h3>
 
@@ -112,7 +202,7 @@
 <pre><code class="html">&lt;input type="text" spellcheck="true"/&gt;
 </code></pre>
 
-<p><img src="/assets/images/spellcheck.png" width="300" height="80"></p>
+<p>{% img /assets/images/spellcheck.png 300 80 %}</p>
 
 <blockquote><p><em>Note: Supports <code>spellcheck</code> attribute&rsquo;s browsers include <code>Chrome</code>, <code>Opera</code>, <code>Safari</code>, the <code>IE</code>, <code>FireFox</code> doesn&rsquo;t support it for now.</em></p></blockquote>
 ]]></content>
