@@ -9,7 +9,7 @@
   <meta name="author" content="Yu SHI">
 
   
-  <meta name="description" content="In HTML5, It adds a mount of elements, these elements are more easier to present the document in browser. Structure element Before HTML5, we just use &hellip;">
+  <meta name="description" content="is programming language, which is built on top of JavaScript. CoffeeScript compiles into JavaScript that is efficient and consistent with many best &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,42 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Give Me a Cup of Coffeescript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-19T15:47:18+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/assets/images/coffee-script-logo.png" width="200" height="100"> is programming language, which is built on top of <code>JavaScript</code>. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes <code>Python</code> or <code>Ruby</code>.</p>
+
+<p>Actually, The <code>CoffeeScript</code> is just a JavaScript. So you can use any exsiting JavaScript library seamlessly from CoffeeScript. And both <code>client-side</code> and <code>server-side</code> can be written by <code>CoffeeScript</code>. So CoffeeScript can write entire web application completely, not like JavaScript only write client-side.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -475,49 +511,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">How to Install Packages in Sublime Text 3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-26T22:35:36+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:35 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Sublime Text</code> is a sophisticated text editor for code, markup and prose. You can go to offical <strong><a href="http://www.sublimetext.com/">website</a></strong> to download and see how to use it. It&rsquo;s a very powerful weapon for developer. And also it has so many packages to expand its functional.</p>
-
-<p>If you want to install packages in your sublime text. First of all, you need to install <code>Package Control</code> that is <code>Sublime Text</code> package manager that makes it exceedingly simple to find, install and keep packages up-to-date.</p>
-
-<p>Open Sublime Text 3 and choose <code>View &gt; Show Console</code> menu. Paste below codes into console.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">hashlib</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="s">&#39;2deb499853c4371624f5a07e27c334aa&#39;</span> <span class="o">+</span> <span class="s">&#39;bf8c4e67d14fb0525ba4f89698a6d7e1&#39;</span><span class="p">;</span> <span class="n">pf</span> <span class="o">=</span> <span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">())</span> <span class="p">);</span> <span class="n">by</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span> <span class="s">&#39;http://packagecontrol.io/&#39;</span> <span class="o">+</span> <span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">();</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">();</span> <span class="k">print</span><span class="p">(</span><span class="s">&#39;Error validating download (got </span><span class="si">%s</span><span class="s"> instead of </span><span class="si">%s</span><span class="s">), please try manual install&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dh</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span> <span class="k">if</span> <span class="n">dh</span> <span class="o">!=</span> <span class="n">h</span> <span class="k">else</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">ipp</span><span class="p">,</span> <span class="n">pf</span><span class="p">),</span> <span class="s">&#39;wb&#39;</span> <span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/12/26/how-to-install-sublime-text-plugin/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -533,6 +526,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Give Me a Cup of Coffeescript</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
       </li>
     
@@ -546,10 +543,6 @@
     
       <li class="post">
         <a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
       </li>
     
   </ul>
