@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-03-19T17:46:33+08:00</updated>
+  <updated>2015-05-05T17:39:58+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,279 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Use Jdbc in Spring]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/05/how-to-use-jdbc-in-spring/"/>
+    <updated>2015-05-05T16:31:53+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/05/how-to-use-jdbc-in-spring</id>
+    <content type="html"><![CDATA[<p>As we know, we can use <code>jdbc</code> to access database in java programming. And now let us use <code>jdbc</code> in spring. The <code>spring framework</code> reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are <code>org.springframework.jdbc.datasource.DriverManagerDataSource</code> and <code>org.springframework.jdbc.core.JdbcTemplate</code>.</p>
+
+<p>And here we use the <code>hsqldb</code> to act as our memory database. You can go to <a href="http://hsqldb.org/">here</a> to look at it. we use the <code>Maven</code> tools to management our project. the dependencies is:</p>
+
+<!-- more -->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;dependencies&gt;
+</span><span class='line'>      &lt;dependency&gt;
+</span><span class='line'>          &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+</span><span class='line'>          &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+</span><span class='line'>          &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+</span><span class='line'>      &lt;/dependency&gt;
+</span><span class='line'>      &lt;dependency&gt;
+</span><span class='line'>          &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+</span><span class='line'>          &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+</span><span class='line'>          &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+</span><span class='line'>      &lt;/dependency&gt;
+</span><span class='line'>      &lt;dependency&gt;
+</span><span class='line'>          &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+</span><span class='line'>          &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+</span><span class='line'>          &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+</span><span class='line'>      &lt;/dependency&gt;
+</span><span class='line'>      &lt;dependency&gt;
+</span><span class='line'>          &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+</span><span class='line'>          &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+</span><span class='line'>          &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+</span><span class='line'>      &lt;/dependency&gt;
+</span><span class='line'>      &lt;dependency&gt;
+</span><span class='line'>          &lt;groupId&gt;org.hsqldb&lt;/groupId&gt;
+</span><span class='line'>          &lt;artifactId&gt;hsqldb&lt;/artifactId&gt;
+</span><span class='line'>          &lt;version&gt;1.8.0.10&lt;/version&gt;
+</span><span class='line'>      &lt;/dependency&gt;
+</span><span class='line'>&lt;/dependencies&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The spring configure file:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+</span><span class='line'>          "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+</span><span class='line'>          
+</span><span class='line'>&lt;beans&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+</span><span class='line'>      &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
+</span><span class='line'>      &lt;property name="url" value="jdbc:hsqldb:mem:MyDB"/&gt;
+</span><span class='line'>      &lt;property name="username" value="sa"/&gt;
+</span><span class='line'>      &lt;property name="password" value=""/&gt;
+</span><span class='line'>  &lt;/bean&gt;
+</span><span class='line'>  
+</span><span class='line'>  &lt;bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"&gt;
+</span><span class='line'>       &lt;constructor-arg&gt;
+</span><span class='line'>          &lt;ref bean="dataSource"/&gt;
+</span><span class='line'>       &lt;/constructor-arg&gt;    
+</span><span class='line'>  &lt;/bean&gt;
+</span><span class='line'>  
+</span><span class='line'>    &lt;bean id="createTable" class="java4s.SpringJdbcCreateTable"&gt;
+</span><span class='line'>          &lt;property name="jt"&gt;
+</span><span class='line'>              &lt;ref bean="jdbcTemplate"/&gt;
+</span><span class='line'>          &lt;/property&gt;
+</span><span class='line'>  &lt;/bean&gt;
+</span><span class='line'> 
+</span><span class='line'>&lt;/beans&gt;  </span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>we have a SpringJdbcCreateTable class to accesss database, this class has <code>JdbcTemplate</code> property,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">JdbcTemplate</span> <span class="n">jt</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJt</span><span class="o">(</span><span class="n">JdbcTemplate</span> <span class="n">jt</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="o">.</span><span class="na">jt</span> <span class="o">=</span> <span class="n">jt</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>we use spring bean to inject value to this property. And you will see it in above spring configure file.</p>
+
+<p>create table, the <code>execute</code> method doesn&rsquo;t return value.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createTable</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">jt</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">&quot;CREATE TABLE user(id int, name varchar(10), age int)&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="c1">// execute() returns void</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;table created&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>insert data, using the <code>update</code> method to insert data, this method will return how many rows have been inserted.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertData</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">jt</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">&quot;INSERT INTO user VALUES (99, &#39;user_99&#39;, 49)&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">showDatas</span><span class="o">();</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s row inserted&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>update data, using the <code>update</code> method to update data, it will return how many rows are affected.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateData</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">jt</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">&quot;UPDATE user set name=&#39;user_new&#39; where name=&#39;user_99&#39;&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">showDatas</span><span class="o">();</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s row updated&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>delete data, also using the <code>update</code> method.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteData</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">jt</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">&quot;DELETE from user where name=&#39;user_new&#39;&quot;</span><span class="o">);</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">showDatas</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s row deleted&quot;</span><span class="o">,</span> <span class="n">k</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>query data, the jdbctemplate has many query interfaces. Here we use <code>queryForRowSet</code> method to get the data by condition.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showDatas</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;|  ID |  NAME    |  AGE  |&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">SqlRowSet</span> <span class="n">rowSet</span> <span class="o">=</span> <span class="n">jt</span><span class="o">.</span><span class="na">queryForRowSet</span><span class="o">(</span><span class="s">&quot;SELECT * FROM user&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="o">(</span><span class="n">rowSet</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">rowSet</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">rowSet</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">rowSet</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">String</span>
+</span><span class='line'>              <span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;|  %s  |  %s  |  %s   |&quot;</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+</span><span class='line'>          
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>        
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>okay, to so far, let us call them in main entrance.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="n">ApplicationContext</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;spconfig.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">SpringJdbcCreateTable</span> <span class="n">st</span> <span class="o">=(</span><span class="n">SpringJdbcCreateTable</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;createTable&quot;</span><span class="o">);</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">st</span><span class="o">.</span><span class="na">createTable</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">st</span><span class="o">.</span><span class="na">initSomeDatas</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">st</span><span class="o">.</span><span class="na">insertData</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">st</span><span class="o">.</span><span class="na">updateData</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">st</span><span class="o">.</span><span class="na">deleteData</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Look, it&rsquo;s very easy to access database with spring framework.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Give Me a Cup of Coffeescript]]></title>
@@ -2055,7 +2328,7 @@ As you can see below, consider we want to create two tag, one is user tag with n
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I</p>
+
 ]]></content>
   </entry>
   
@@ -2246,15 +2519,6 @@ Returns the present value in this Optional, or if there is none, returns null. T
 
 
 <p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Lifecycle of Android Activity]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity/"/>
-    <updated>2014-11-17T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity</id>
-    <content type="html"><![CDATA[<p><img src="http://stonefishy.github.io/assets/images/android-lifecycle.png" alt="lifecycle of activity" /></p>
 ]]></content>
   </entry>
   
