@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coffeescript | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/coffeescript/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-16T12:08:54+08:00</updated>
+  <updated>2015-05-16T13:02:13+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -18,7 +18,7 @@
     <link href="http://stonefishy.github.io/blog/2015/03/19/give-me-a-cup-of-coffeescript/"/>
     <updated>2015-03-19T15:47:18+08:00</updated>
     <id>http://stonefishy.github.io/blog/2015/03/19/give-me-a-cup-of-coffeescript</id>
-    <content type="html"><![CDATA[<p><img src="/assets/images/coffee-script-logo.png" width="200" height="100"> is programming language, which is built on top of <code>JavaScript</code>. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes <code>Python</code> or <code>Ruby</code>.</p>
+    <content type="html"><![CDATA[<p>{% img /assets/images/coffee-script-logo.png 200 100 %} is programming language, which is built on top of <code>JavaScript</code>. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes <code>Python</code> or <code>Ruby</code>.</p>
 
 <p>Actually, The <code>CoffeeScript</code> is just a JavaScript. So you can use any exsiting JavaScript library seamlessly from CoffeeScript. And both <code>client-side</code> and <code>server-side</code> can be written by <code>CoffeeScript</code>. So CoffeeScript can write entire web application completely, not like JavaScript only write client-side.</p>
 

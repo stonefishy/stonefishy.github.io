@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Learning Skill | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/learning-skill/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-16T12:08:54+08:00</updated>
+  <updated>2015-05-16T13:02:13+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -47,7 +47,7 @@
 <h3>5 Principles of Rapid Language Acquisition</h3>
 
 <p>There have four words you need to keep in your mind: <strong>Meaning</strong>, <strong>Relevance</strong>, <strong>Attention</strong>, <strong>Memory</strong> <br/>
-<img src="/assets/images/learning-language-4-words.png" width="300" height="200"></p>
+{% img /assets/images/learning-language-4-words.png 300 200 %}</p>
 
 <h4>Principle #1:</h4>
 
@@ -61,7 +61,7 @@
 
 <p><strong>When you first <code>UNDERSTAND</code> the <code>MESSAGE</code>, you will unconsciously <code>ACQUIRE</code> the Language</strong></p>
 
-<p><img src="/assets/images/comprehension-is-key.png" width="400" height="300"></p>
+<p>{% img /assets/images/comprehension-is-key.png 400 300 %}</p>
 
 <p><em>Note:</em> <strong>Language learning is NOT ABOUT KNOWLEGE&hellip;, It&rsquo;s about <code>Physiological Training</code></strong></p>
 
@@ -93,12 +93,12 @@
 <p><strong>Start Mixing!</strong> <br/>
 - <em>So&hellip; get creative&hellip; start mixing!</em></p>
 
-<p><img src="/assets/images/words-mixing.png" width="400" height="300"></p>
+<p>{% img /assets/images/words-mixing.png 400 300%}</p>
 
 <h4>Action #4:</h4>
 
 <p><em>*Focus on the <code>Core</code></em>  <br/>
-<img src="/assets/images/high-frequency-language.png" width="400" height="300"></p>
+{% img /assets/images/high-frequency-language.png 400 300 %}</p>
 
 <h5>Week 1 (The Tool Box)</h5>
 
@@ -139,7 +139,7 @@ Language Parent &ldquo;Rules&rdquo;:      <br/>
 <h4>Action #7</h4>
 
 <p><strong><code>Direct Connect</code> to Mental Images</strong>    <br/>
-<img src="/assets/images/direct-connect-mental-image.png" width="300" height="200"></p>
+{% img /assets/images/direct-connect-mental-image.png 300 200 %}</p>
 
 <p><em>Note: The original video address is <a href="https://www.youtube.com/watch?v=d0yGdNEWdn0">https://www.youtube.com/watch?v=d0yGdNEWdn0</a></em></p>
 ]]></content>
