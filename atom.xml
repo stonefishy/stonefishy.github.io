@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-05T17:39:58+08:00</updated>
+  <updated>2015-05-16T12:08:54+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu SHI]]></name>
@@ -12,6 +12,129 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
+    <updated>2015-05-16T11:08:31+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
+    <content type="html"><![CDATA[<p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
+
+<h3>Usage</h3>
+
+<blockquote><p><code>angular.extend(dst, src);</code></p>
+
+<p>dst:        <strong>destination object</strong><br/>
+src:        <strong>source object(s)</strong></p>
+
+<p>return:     <strong>refercen to dst object</strong></p></blockquote>
+
+<!-- more -->
+
+
+<h3>Example</h3>
+
+<p>Let&rsquo;s understand how to use it with example instance. Create a normal controller which contains user&rsquo;s name, gender and age. And create a method to get the full description of the user.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">angular</span><span class="p">.</span><span class="nx">Module</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">,[])</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;UserController&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;angular&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">$scope</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;male&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">$scope</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">$scope</span><span class="p">.</span><span class="nx">getDescription</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="s2">&quot;My name is &quot;</span> <span class="o">+</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; and I am &quot;</span> <span class="o">+</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">gender</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">age</span> <span class="o">+</span>  <span class="s2">&quot; years old&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'><span class="p">}]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can use angular.extend function to do like above functionality, see below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;UserController&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">angular</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;angular&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">gender</span> <span class="o">:</span> <span class="s1">&#39;male&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">age</span> <span class="o">:</span> <span class="s1">&#39;2&#39;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">angular</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">getDescription</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="s2">&quot;My name is &quot;</span> <span class="o">+</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; and I am &quot;</span> <span class="o">+</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">gender</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">age</span> <span class="o">+</span> <span class="s2">&quot; years old&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And also we can use angular.extend() function to implement mixins. Let&rsquo;s consider the below contrived Logging class.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">debug</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">Logger</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">log</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">debug</span> <span class="o">?</span> <span class="nx">msg</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we set debug variable to true, so it will print message in the browser console window when we invoke the log function. Otherwise nothing will be printed.</p>
+
+<p>Okay, now we create a controler called LoggerController, and &ldquo;mixin&rdquo; Logger class to it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;LoggerController&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">angular</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">Logger</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">$scope</span><span class="p">.</span><span class="nx">print</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>In LoggerController, we &ldquo;mixin&rdquo; the Logger class to the $scope, and this will inovke the log function of the Logger class when the print function was called.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Use Jdbc in Spring]]></title>
@@ -2447,78 +2570,6 @@ Returns index.</p>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Optional]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/21/guava-optional/"/>
-    <updated>2014-11-21T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/21/guava-optional</id>
-    <content type="html"><![CDATA[<p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
-
-<!--more-->
-
-
-<h3>Usage</h3>
-
-<p><code>Optional.of(T)</code>    <br/>
-Make an Optional containing the given non-null value, or fail fast on null.</p>
-
-<p><code>Optional.absent()</code> <br/>
-Return an absent Optional of some type.</p>
-
-<p><code>Optional.fromNullable(T)</code> <br/>
-Turn the given possibly-null reference into an Optional, treating non-null as present and null as absent.</p>
-
-<p><code>boolean isPresent()</code>    <br/>
-Returns true if this Optional contains a non-null instance.</p>
-
-<p><code>T get()</code> <br/>
-Returns the contained T instance, which must be present; otherwise, throws an IllegalStateException.</p>
-
-<p><code>T or()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns the specified default.</p>
-
-<p><code>T orNull()</code> <br/>
-Returns the present value in this Optional, or if there is none, returns null. The inverse operation of fromNullable.</p>
-
-<h3>Example:</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return true</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 100</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">absent</span><span class="o">();</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">// return false</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//return 0;</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">//return 1;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">numberOptional</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">();</span> <span class="c1">//return false;</span>
-</span><span class='line'><span class="n">numberOptional</span><span class="o">.</span><span class="na">orNull</span><span class="o">();</span> <span class="c1">//return null;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
 ]]></content>
   </entry>
   
