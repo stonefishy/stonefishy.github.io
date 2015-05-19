@@ -65,7 +65,7 @@ default_asides: [custom/asides/about_me.html, asides/recent_posts.html, asides/g
 
 # Github repositories
 github_user: stonefishy
-github_repo_count: 0
+github_repo_count: 5
 github_show_profile_link: true
 github_skip_forks: true
 
