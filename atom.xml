@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-18T23:26:05+08:00</updated>
+  <updated>2015-05-19T17:35:38+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Destroy Your Website]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/19/destroy-your-website/"/>
+    <updated>2015-05-19T12:16:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/19/destroy-your-website</id>
+    <content type="html"><![CDATA[<p>Ha, Confusion? Don&rsquo;t, it&rsquo;s true. Let me introduce to you how to destroy the website you want. <br/>
+Click the below button:<br/>
+<button type="button" onclick="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</button>  <br/>
+Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Space</strong> key to fire. And also Press and hold <strong>B</strong> to find targets which can be destroy.</p>
+
+<!-- more -->
+
+
+<p>Visit <a href="http://erkie.github.com/">http://erkie.github.com/</a> and drag the graphic onto your bookmarks bar to use this on whatever webpage you want to destory.</p>
+
+<p>Actually, it&rsquo;s very easy to do this with javascript. <br/>
+1. Download this javascript library from <a href="">here</a>, and put it in your project directory. <br/>
+2. Adding below code snippet to your element target you want to triggle</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="kd">var</span> <span class="nx">jst</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">jst</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">jst</span><span class="p">);</span>
+</span><span class='line'><span class="nx">jst</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;/javascripts/libs/asteroids.min.js&#39;</span><span class="p">;</span><span class="k">void</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note: you need to change the src of the variable <strong>jst</strong> to your javascript library&rsquo;s location, like below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jst</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;YOUR LIBRARY LOCATION&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, it&rsquo;s quite simple.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text - Keyboard Shortcuts for Mac]]></title>
@@ -2868,63 +2909,6 @@ As you can see below, consider we want to create two tag, one is user tag with n
 </span><span class='line'>        <span class="nt">&lt;custom:system</span> <span class="na">size=</span><span class="s">&quot;1024&quot;</span><span class="nt">/&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Common Object Methods]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method/"/>
-    <updated>2014-11-27T20:41:45+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method</id>
-    <content type="html"><![CDATA[<h3>Usage</h3>
-
-<p><code>Objects.equal(Object, Object)</code> <br/>
-Invoking this method then it will avoid the risking of NullPointerException when we need to compare two object whether they equal.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">);</span> <span class="c1">// return true;</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">);</span> <span class="c1">// return false;</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span> <span class="c1">// return true;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!--more-->
-
-
-<p><code>Objects.hashCode(Object, ....)</code> <br/>
-Generating hash code with multiple object will be simple. And it also can hash all fields of an Object to get more sensible code value.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// generate hash code with multi object</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">intField</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">charField</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">stringField</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">dateField</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>ComparisonChain</code> <br/>
-ComparisonChain is a fluent idiom and much more readable. less prone to accidental typos, and smart enough not to do more work than it must. <br/>
-It only performs comparisons until it finds a non-zero result, after which it ignores further input.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ObjectsTraining</span> <span class="n">objectsTraining</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ObjectsTraining</span><span class="o">();</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">intField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">intField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">stringField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">stringField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">charField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">charField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">dateField</span><span class="o">,</span> <span class="n">objectsTraining</span><span class="o">.</span><span class="na">dateField</span><span class="o">)</span>
-</span><span class='line'>             <span class="o">.</span><span class="na">result</span><span class="o">();</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

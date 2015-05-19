@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-18T23:26:05+08:00</updated>
+  <updated>2015-05-19T17:35:38+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Destroy Your Website]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/19/destroy-your-website/"/>
+    <updated>2015-05-19T12:16:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/19/destroy-your-website</id>
+    <content type="html"><![CDATA[<p>Ha, Confusion? Don&rsquo;t, it&rsquo;s true. Let me introduce to you how to destroy the website you want. <br/>
+Click the below button:<br/>
+<button type="button" onclick="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</button>  <br/>
+Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Space</strong> key to fire. And also Press and hold <strong>B</strong> to find targets which can be destroy.</p>
+
+<!-- more -->
+
+
+<p>Visit <a href="http://erkie.github.com/">http://erkie.github.com/</a> and drag the graphic onto your bookmarks bar to use this on whatever webpage you want to destory.</p>
+
+<p>Actually, it&rsquo;s very easy to do this with javascript. <br/>
+1. Download this javascript library from <a href="">here</a>, and put it in your project directory. <br/>
+2. Adding below code snippet to your element target you want to triggle</p>
+
+<pre><code class="javascript">javascript:var jst = document.createElement('script');
+jst.type='text/javascript';
+document.body.appendChild(jst);
+jst.src='/javascripts/libs/asteroids.min.js';void(0);
+</code></pre>
+
+<p>Note: you need to change the src of the variable <strong>jst</strong> to your javascript library&rsquo;s location, like below:</p>
+
+<pre><code class="javascript">    jst.src = 'YOUR LIBRARY LOCATION';
+</code></pre>
+
+<p>So, it&rsquo;s quite simple.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
