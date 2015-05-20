@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-19T22:59:51+08:00</updated>
+  <updated>2015-05-20T20:46:27+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,138 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Analyze Call Function of Javascript]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript/"/>
+    <updated>2015-05-20T19:24:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript</id>
+    <content type="html"><![CDATA[<p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
+
+<h3>Syntax</h3>
+
+<p><code>call([thisObj[,arg1[, arg2[, [,.argN]]]]])</code> <br/>
+ - <strong>thisObj</strong> (optional): it&rsquo;s object which can be act as currently <code>this</code> object. <br/>
+ - <strong>arg1, arg2, argN</strong> (optional) : the parameters which can be passed to the method.</p>
+
+<p>The <em>call</em> method can be used to instead of another object to invoke a method. It can change the object context of a function to a new object which <em>thisObj</em> referenced.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<p><strong>Note</strong>: <em>The thisObj is a optional parameter, it will reference to Global object if it is not provided. And the <code>call</code> method is only used by <code>Function</code> object.</em></p>
+
+<h3>Example</h3>
+
+<p>Let&rsquo;s use fake code to explain it firstly. see below code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">obj1</span><span class="p">.</span><span class="nx">method1</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj2</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The functionality of <em>call</em> method is that <em>obj2</em> is able to invoke the <em>method1</em> of <em>obj1</em> with <em>arg1</em>, <em>arg2</em> parameters.</p>
+
+<p>Let&rsquo;s see a simple example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">add</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">sub</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The value of <em>result</em> variable is 3, not -1. Because the <em>sub</em> function object has been insteaded by <em>add</em> function object. So the <code>add.call(sub, 1, 2)</code> actually is <code>add(1, 2)</code>.</p>
+
+<p><strong>Note</strong>: <em>The </em>function<em> actually is a </em>object* in javascript, and the function name is a reference of <code>Fuction</code> object.</p>
+
+<p>Okay, so let&rsquo;s see a little complex example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">ClassOne</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;class one&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">showMessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">ClassTwo</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;class two&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">classOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClassOne</span><span class="p">();</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">classTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClassTwo</span><span class="p">();</span>
+</span><span class='line'><span class="nx">classOne</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">classTwo</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will print the &lsquo;class two&rsquo; message in the console window of browser. You can execute above code fragment to check it.  <br/>
+In this example, the <em>classTwo</em> object doesn&rsquo;t have <em>showMesage</em> function, but he want to display his message, so he can invoke <em>classOne</em>&rsquo;s with <code>call</code> method.</p>
+
+<p>So far, maybe you will think we can use the <code>call</code> function to simulate the <code>Inheritance</code> of <code>OOP</code>. You are right, let&rsquo;s get the example.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">BaseClass</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;base class&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">showMessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">MyClass</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">BaseClass</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">myClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
+</span><span class='line'><span class="nx">myClass</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+So the <em>MyClass</em> inherites the <em>BaseClass</em>. The <code>BaseClass.call(this)</code> that means using the object of <em>BaseClass</em> to instead of <em>this</em> object. So the <em>MyClass</em> can access the property and function of <em>BaseClass</em>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Destroy Your Website]]></title>
@@ -2629,286 +2761,6 @@ Returns the maximum element of the specified Iterable. Throws a NoSuchElementExc
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// the result will be 23+abc</span>
 </span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JSP - Custom Tag]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag/"/>
-    <updated>2014-12-01T21:30:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag</id>
-    <content type="html"><![CDATA[<p>Custom Tag is a user-defined JSP language element. When it is contained in JSP page and it will translate into a servlet, the custom tag is converted to opertions on an object called a tag handler. The web container then invokes those operations when the JSP page&rsquo;s servlet is executed.</p>
-
-<p>If we want to create a custom tag, what we need to do is simply extend <code>SimpleTagSupport</code> class and override the <code>doTag()</code> method, where you can place your code to generate content for the tag.</p>
-
-<p>Let&rsquo;s getting started to create a custom tag now. <br/>
-As you can see below, consider we want to create two tag, one is user tag with name and isMale attribute, another is system tag with size attribute.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='jsp'><span class='line'><span class="nt">&lt;custom:user</span> <span class="na">name=</span><span class="s">&quot;user1&quot;</span> <span class="na">isMale=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;custom:system</span> <span class="na">size=</span><span class="s">&quot;1024&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<p>So firstly what we need to do is create two java classes that act as a tag handler for each other tag. and them must extends <code>SimpleTagSupport</code> class.</p>
-
-<figure class='code'><figcaption><span>UserTag.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">custom</span><span class="o">.</span><span class="na">tag</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspWriter</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.SimpleTagSupport</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.StringWriter</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * Created by yushi on 12/1/14.</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserTag</span> <span class="kd">extends</span> <span class="n">SimpleTagSupport</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">Boolean</span> <span class="n">isMale</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">Date</span> <span class="n">birthday</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">StringWriter</span> <span class="n">sw</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringWriter</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span><span class="o">,</span> <span class="n">IOException</span>
-</span><span class='line'>    <span class="o">{</span>
-</span><span class='line'>        <span class="n">JspWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">// print name info with name attribute</span>
-</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">// print gender info via isMale attribute</span>
-</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isMale</span> <span class="o">?</span> <span class="s">&quot;I&#39;m male!&quot;</span> <span class="o">:</span> <span class="s">&quot;I&#39;m female!&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">birthday</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;My birthday is %s&quot;</span><span class="o">,</span> <span class="n">birthday</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">// print body text with body content</span>
-</span><span class='line'>        <span class="n">getJspBody</span><span class="o">().</span><span class="na">invoke</span><span class="o">(</span><span class="n">sw</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">().</span><span class="na">println</span><span class="o">(</span><span class="n">sw</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsMale</span><span class="o">(</span><span class="n">Boolean</span> <span class="n">isMale</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">isMale</span> <span class="o">=</span> <span class="n">isMale</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBirthday</span><span class="o">(</span><span class="n">Date</span> <span class="n">birthday</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">birthday</span> <span class="o">=</span> <span class="n">birthday</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<figure class='code'><figcaption><span>SystemTag.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">custom</span><span class="o">.</span><span class="na">tag</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.SimpleTagSupport</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * Created by yushi on 12/2/14.</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SystemTag</span> <span class="kd">extends</span> <span class="n">SimpleTagSupport</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">getJspContext</span><span class="o">().</span><span class="na">getOut</span><span class="o">().</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;The system&#39;s size is: %s&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">size</span><span class="o">))));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSize</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Above two class just override the <code>doTag()</code> method and take the current <code>JspContext</code> object using <code>getJspContext()</code> method, and then send message content to the current <code>JspWriter</code> object.</p>
-
-<p>Secondly we need to create tld extention file. It&rsquo;s a tag library file. let us see the codes.</p>
-
-<figure class='code'><figcaption><span>customTag.tld</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;taglib&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;tlib-version&gt;</span>1.0<span class="nt">&lt;/tlib-version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;jsp-version&gt;</span>2.0<span class="nt">&lt;/jsp-version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;short-name&gt;</span>custom tld<span class="nt">&lt;/short-name&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;tag&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;name&gt;</span>user<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;tag-class&gt;</span>com.jsp.custom.tag.UserTag<span class="nt">&lt;/tag-class&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;body-content&gt;</span>tagdependent<span class="nt">&lt;/body-content&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;name&gt;</span>name<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;required&gt;</span>true<span class="nt">&lt;/required&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;description&gt;</span>user name<span class="nt">&lt;/description&gt;</span>
-</span><span class='line'>            <span class="c">&lt;!-- the type default is String if it is not specified --&gt;</span>
-</span><span class='line'>            <span class="c">&lt;!--&lt;type&gt;java.lang.String&lt;/type&gt;--&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/attribute&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;name&gt;</span>isMale<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;required&gt;</span>false<span class="nt">&lt;/required&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;description&gt;</span>the use is male or not male<span class="nt">&lt;/description&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;type&gt;</span>java.lang.Boolean<span class="nt">&lt;/type&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/attribute&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;name&gt;</span>birthday<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;type&gt;</span>java.util.Date<span class="nt">&lt;/type&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/attribute&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/tag&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;tag&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;name&gt;</span>system<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;tag-class&gt;</span>com.jsp.custom.tag.SystemTag<span class="nt">&lt;/tag-class&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;body-content&gt;</span>empty<span class="nt">&lt;/body-content&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;name&gt;</span>size<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;required&gt;</span>false<span class="nt">&lt;/required&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;description&gt;</span>the size of system<span class="nt">&lt;/description&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/attribute&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/tag&gt;</span>
-</span><span class='line'><span class="nt">&lt;/taglib&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Finally, we can use these both tags in our JSP page.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='jsp'><span class='line'><span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;custom&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;WEB-INF/customTag.tld&quot;</span> <span class="k">%&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;title&gt;</span>custom tag training<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;custom:user</span> <span class="na">name=</span><span class="s">&quot;user1&quot;</span> <span class="na">isMale=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;custom:system</span> <span class="na">size=</span><span class="s">&quot;1024&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

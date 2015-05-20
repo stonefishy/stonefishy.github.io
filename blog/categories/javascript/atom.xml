@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-19T22:59:51+08:00</updated>
+  <updated>2015-05-20T20:46:27+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Analyze Call Function of Javascript]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript/"/>
+    <updated>2015-05-20T19:24:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript</id>
+    <content type="html"><![CDATA[<p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
+
+<h3>Syntax</h3>
+
+<p><code>call([thisObj[,arg1[, arg2[, [,.argN]]]]])</code> <br/>
+ - <strong>thisObj</strong> (optional): it&rsquo;s object which can be act as currently <code>this</code> object. <br/>
+ - <strong>arg1, arg2, argN</strong> (optional) : the parameters which can be passed to the method.</p>
+
+<p>The <em>call</em> method can be used to instead of another object to invoke a method. It can change the object context of a function to a new object which <em>thisObj</em> referenced.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<p><strong>Note</strong>: <em>The thisObj is a optional parameter, it will reference to Global object if it is not provided. And the <code>call</code> method is only used by <code>Function</code> object.</em></p>
+
+<h3>Example</h3>
+
+<p>Let&rsquo;s use fake code to explain it firstly. see below code:</p>
+
+<pre><code class="javascript">obj1.method1.call(obj2, arg1, arg2);
+</code></pre>
+
+<p>The functionality of <em>call</em> method is that <em>obj2</em> is able to invoke the <em>method1</em> of <em>obj1</em> with <em>arg1</em>, <em>arg2</em> parameters.</p>
+
+<p>Let&rsquo;s see a simple example:</p>
+
+<pre><code class="javascript">var add = function(a, b) {
+    return a + b;
+};
+
+var sub = function(a, b) {
+    return a - b;
+};
+
+var result = add.call(sub, 1, 2);
+</code></pre>
+
+<p>The value of <em>result</em> variable is 3, not -1. Because the <em>sub</em> function object has been insteaded by <em>add</em> function object. So the <code>add.call(sub, 1, 2)</code> actually is <code>add(1, 2)</code>.</p>
+
+<p><strong>Note</strong>: <em>The </em>function<em> actually is a </em>object* in javascript, and the function name is a reference of <code>Fuction</code> object.</p>
+
+<p>Okay, so let&rsquo;s see a little complex example:</p>
+
+<pre><code class="javascript">function ClassOne() {
+    this.message = "class one";
+    this.showMessage = function () {
+        console.log(this.message);
+    };
+};
+
+function ClassTwo() {
+    this.message = "class two";
+};
+
+var classOne = new ClassOne();
+var classTwo = new ClassTwo();
+classOne.showMessage.call(classTwo);
+</code></pre>
+
+<p>This will print the &lsquo;class two&rsquo; message in the console window of browser. You can execute above code fragment to check it.  <br/>
+In this example, the <em>classTwo</em> object doesn&rsquo;t have <em>showMesage</em> function, but he want to display his message, so he can invoke <em>classOne</em>&rsquo;s with <code>call</code> method.</p>
+
+<p>So far, maybe you will think we can use the <code>call</code> function to simulate the <code>Inheritance</code> of <code>OOP</code>. You are right, let&rsquo;s get the example.</p>
+
+<pre><code class="javascript">function BaseClass() {
+    this.message = "base class";
+    this.showMessage = function () {
+        console.log(this.message);
+    };
+};
+
+function MyClass() {
+    BaseClass.call(this);
+};
+
+var myClass = new MyClass();
+myClass.showMessage();
+</code></pre>
+
+<p>So the <em>MyClass</em> inherites the <em>BaseClass</em>. The <code>BaseClass.call(this)</code> that means using the object of <em>BaseClass</em> to instead of <em>this</em> object. So the <em>MyClass</em> can access the property and function of <em>BaseClass</em>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Destroy Your Website]]></title>
