@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-04T17:24:20+08:00</updated>
+  <updated>2015-06-04T21:22:08+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - What Is AOP?]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop/"/>
+    <updated>2015-06-04T20:43:03+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop</id>
+    <content type="html"><![CDATA[<p>What is <code>AOP</code>?, <code>AOP</code> stand for <code>Aspect Oriented Programming</code>. It&rsquo;s very important module for <code>Spring</code> framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called <code>cross-cutting</code> functionalities. <code>AOP</code> do this job.</p>
+
+<!-- more -->
+
+
+<p>Let&rsquo;s see a normal instance:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//There is my logic for one.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
+</span><span class='line'>      <span class="c1">//Call Logging Service</span>
+</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
+</span><span class='line'>      <span class="c1">//Call Email Service</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//There is my logic for two.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
+</span><span class='line'>      <span class="c1">//Call Logging Service</span>
+</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
+</span><span class='line'>      <span class="c1">//Call Email Service</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In above codes, we have a class called MyLogicClass, in this class there are two logic methods, and both them call authentication, logging, transaction, email services. We called these service are <code>cross-cutting</code> functionalities. So there are some problems, one is these <code>cross-cutting</code> functionalities increase the class size. Second is we need changed this class and recompile, re-deploy it again when we changed the services.</p>
+
+<p>So how to overcome these problems, can we separate the services and our logic client? Yep, we can do this in Spring <code>AOP</code>, adding these <code>cross-cutting</code> functionalities at runtime don&rsquo;t need to write them in the logic codes.</p>
+
+<p>So if we use <code>AOP</code>, our logic class will be like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//There is my logic for one.</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="c1">//Services will be injected here automatically at runtime, but in the codebase there is nothing</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//There is my logic for two.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Services will be injected here automatically at runtime, but in the codebase there is nothing</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In above codes, we separate the business logic and the services, we call this process of separation as <code>AOP</code>. So Using <code>AOP</code> business logic and <code>cross-cutting</code> functionalities are implemented separately and executed at runtime as combine automatically.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Cobalt2 Theme for iTerm2 and ZSH]]></title>
@@ -2249,112 +2345,6 @@ Even cooler, when you change a CSS file or an image, the browser is updated inst
 
 
 <p>Above the codes, It&rsquo;s very similar with <code>Given-When-Then</code> the <code>Feature</code>, <code>Scenario</code>, <code>Given</code>, <code>And</code>, <code>When</code>, <code>Then</code> all are keywords of <code>Gherkin</code>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Is Ractive.js]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js/"/>
-    <updated>2014-12-19T22:18:45+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js</id>
-    <content type="html"><![CDATA[<p><code>Ractive.js</code> is a <code>template-driven</code> UI library, it transforms your templates into blueprints for application that are interative by default. <code>Ractive.js</code> is very similar with <code>AngularJS</code>, and it supports <code>Two-way binding</code>, <code>animations</code> as well. Another powerfull feature is <code>SVG</code> support.</p>
-
-<h3>Template + Data = UI</h3>
-
-<p>You just need to prepare your html template and datas, and the <code>Ractive.js</code> will automatically to combine them then give you what you want. Whe you change your datas, it intelligently updates the real DOM.</p>
-
-<h3>Usage</h3>
-
-<p>First, you need to include <code>Ractive.js</code> to your application. Just like include other javascript librarys easily. You can download it to local and then include it. And if you want include latest version, you just put below codes to your project.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://cdn.ractivejs.org/latest/ractive.js&#39;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<p>Second, we define a container that we want to render. Let&rsquo;s give it id container.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And third, just need to define a template. Load template in many ways, for example we can use ajax call to get the template string. and here, we use script tag to include the template.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">id=</span><span class="s">&quot;template&quot;</span> <span class="na">type=</span><span class="s">&quot;text/ractive&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">svg</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;400&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">rect</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span> <span class="nx">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">circle</span> <span class="nx">cx</span><span class="o">=</span><span class="s2">&quot;25%&quot;</span> <span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">r</span><span class="o">=</span><span class="s2">&quot;\{\{10+temperature}}&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span> <span class="nx">stroke</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span>
-</span><span class='line'>        <span class="nx">opacity</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">text</span> <span class="nx">x</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span> <span class="nx">y</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span> <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;80&quot;</span> <span class="nx">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="o">&gt;</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}}</span><span class="err">℃</span><span class="o">&lt;</span><span class="err">/text&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="err">/svg&gt;</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>Note:</em> don&rsquo;t mind reverse slash symbol. we just use it to transfer meaning. And when you data binding you don&rsquo;t need to add it. remember that!</p>
-
-<p>As above. We define a svg tag and it contains rectangle,circle shape and text. The circle&rsquo;s radius bind the data {{10 + temperature}}，so the radius will update with ß10 plus temperature when the temperature changed. As we can see the temperature has binded the data as well.</p>
-
-<p>And last step, Let&rsquo;s combine the template and data with <code>Ractive.js</code>. the code as below:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">ractive</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ractive</span><span class="p">({</span>
-</span><span class='line'>  <span class="c1">// The el option can be a node, an ID, or a CSS selector.</span>
-</span><span class='line'>  <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;container&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="c1">// We could pass in a string, but for the sake of convenience</span>
-</span><span class='line'>  <span class="c1">// we&#39;re passing the ID of the &lt;script&gt; tag above.</span>
-</span><span class='line'>  <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;#template&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="c1">// Here, we&#39;re passing in some initial data</span>
-</span><span class='line'>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>       <span class="nx">temperature</span><span class="o">:</span><span class="mi">50</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>So the style as we can see below: <br/>
-<img src="http://stonefishy.github.io/assets/images/ractive-svg-test.png" width="400" height="200"></p>
-
-<p>Now, we can change the temperature data and let <code>Ractive.js</code> to update the DOM automatically. So there we increase the temperature by 1 per 100 millisecond, and when the temperature larger than 60 then reset it to 0.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">ractive</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">temp</span> <span class="o">=</span> <span class="nx">temp</span> <span class="o">&gt;=</span> <span class="mi">60</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">++</span><span class="nx">temp</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">ractive</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span><span class="nx">temp</span><span class="p">);</span>
-</span><span class='line'> <span class="p">},</span><span class="mi">100</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So the radius of circle and the text will automatically changed. This is <code>Ractive.js</code> simple usage. Hopeful you like it.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-04T17:24:20+08:00</updated>
+  <updated>2015-06-04T21:22:08+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - What Is AOP?]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop/"/>
+    <updated>2015-06-04T20:43:03+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop</id>
+    <content type="html"><![CDATA[<p>What is <code>AOP</code>?, <code>AOP</code> stand for <code>Aspect Oriented Programming</code>. It&rsquo;s very important module for <code>Spring</code> framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called <code>cross-cutting</code> functionalities. <code>AOP</code> do this job.</p>
+
+<!-- more -->
+
+
+<p>Let&rsquo;s see a normal instance:</p>
+
+<pre><code class="java">public class MyLogicClass
+{
+    public void logicOne() {
+        //There is my logic for one.
+
+        //Call Authentication Service 
+        //Call Logging Service
+        //Call Transcation Service
+        //Call Email Service
+    }
+
+    public void logicTwo() {
+        //There is my logic for two.
+
+        //Call Authentication Service 
+        //Call Logging Service
+        //Call Transcation Service
+        //Call Email Service
+    }
+}
+</code></pre>
+
+<p>In above codes, we have a class called MyLogicClass, in this class there are two logic methods, and both them call authentication, logging, transaction, email services. We called these service are <code>cross-cutting</code> functionalities. So there are some problems, one is these <code>cross-cutting</code> functionalities increase the class size. Second is we need changed this class and recompile, re-deploy it again when we changed the services.</p>
+
+<p>So how to overcome these problems, can we separate the services and our logic client? Yep, we can do this in Spring <code>AOP</code>, adding these <code>cross-cutting</code> functionalities at runtime don&rsquo;t need to write them in the logic codes.</p>
+
+<p>So if we use <code>AOP</code>, our logic class will be like this:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">//There is my logic for one.&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="c1">//Services will be injected here automatically at runtime, but in the codebase there is nothing</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">//There is my logic for two.</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">//Services will be injected here automatically at runtime, but in the codebase there is nothing</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>In above codes, we separate the business logic and the services, we call this process of separation as <code>AOP</code>. So Using <code>AOP</code> business logic and <code>cross-cutting</code> functionalities are implemented separately and executed at runtime as combine automatically.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Use Jdbc in Spring]]></title>
@@ -799,46 +876,6 @@ public class SystemTag extends SimpleTagSupport {
         &lt;custom:system size="1024"/&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava -- Common Object Methods]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method/"/>
-    <updated>2014-11-27T20:41:45+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method</id>
-    <content type="html"><![CDATA[<h3>Usage</h3>
-
-<p><code>Objects.equal(Object, Object)</code> <br/>
-Invoking this method then it will avoid the risking of NullPointerException when we need to compare two object whether they equal.
-<code>java
-Objects.equal("a", "a"); // return true;
-Objects.equal(null, "a"); // return false;
-Objects.equal(null, null); // return true;
-</code></p>
-
-<!--more-->
-
-
-<p><code>Objects.hashCode(Object, ....)</code> <br/>
-Generating hash code with multiple object will be simple. And it also can hash all fields of an Object to get more sensible code value. <br/>
-<code>java
-// generate hash code with multi object
-Objects.hashCode(this.intField, this.charField, this.stringField, this.dateField);
-</code></p>
-
-<p><code>ComparisonChain</code> <br/>
-ComparisonChain is a fluent idiom and much more readable. less prone to accidental typos, and smart enough not to do more work than it must. <br/>
-It only performs comparisons until it finds a non-zero result, after which it ignores further input.
-<code>java
-ObjectsTraining objectsTraining = new ObjectsTraining();
-int result = ComparisonChain.start()
-               .compare(this.intField, objectsTraining.intField)
-             .compare(this.stringField, objectsTraining.stringField)
-             .compare(this.charField, objectsTraining.charField)
-             .compare(this.dateField, objectsTraining.dateField)
-             .result();
 </code></p>
 ]]></content>
   </entry>
