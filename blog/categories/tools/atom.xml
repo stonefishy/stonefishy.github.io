@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-20T20:46:27+08:00</updated>
+  <updated>2015-06-04T16:35:05+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
+    <updated>2015-06-04T16:01:24+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
+    <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<!-- more -->
+
+
+<h4>Installation</h4>
+
+<ol>
+<li>Open package control via pressing <code>Command + Shift + P</code> (mac os) or <code>Ctrl + Shift + P</code> (windows) to open the command window, and then type <code>Install Package</code>.</li>
+<li>Search for <code>Cobalt2</code> and hit <code>enter</code> key.</li>
+<li>Once you installed finish, open <code>Preference</code> -> <code>Settings - User</code> and add the below lines:</li>
+</ol>
+
+
+<pre><code>"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+"theme": "Cobalt2.sublime-theme",
+</code></pre>
+
+<p><code>color_scheme</code> defines how the code looks and <code>theme</code> defines how the sidebar, tabs, search, command palette work.</p>
+
+<p><em>Note: the sidebar icons only supports  the latest version of sublime text3.</em></p>
+
+<h4>Screenshots</h4>
+
+<p>There have some screenshots of Cobalt2 theme from <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<p><img src="/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
+
+<p>So, it&rsquo;s really cool. Hope you like it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text - Keyboard Shortcuts for Mac]]></title>
@@ -638,33 +675,6 @@ It will prompt you that LiveReload is waiting for a browser to connect. And the 
 <p>You can download it from this address <a href="http://www.my-debugbar.com/ietester/install-ietester-v0.5.4.exe">IETester</a></p>
 
 <p>There has another online tools called <code>Browser Sandbox</code> can solve this problem, but it is not free, if you have money, this tool will be better for you. It support any versions of <code>Firefox</code>, <code>Opera</code>, <code>Safari</code>, <code>Chrome</code> and also <code>IE</code>. You can go to this <a href="http://spoon.net/browsers/">website</a> to visit.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Install Packages in Sublime Text 3]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin/"/>
-    <updated>2014-12-26T22:35:36+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin</id>
-    <content type="html"><![CDATA[<p><code>Sublime Text</code> is a sophisticated text editor for code, markup and prose. You can go to offical <strong><a href="http://www.sublimetext.com/">website</a></strong> to download and see how to use it. It&rsquo;s a very powerful weapon for developer. And also it has so many packages to expand its functional.</p>
-
-<p>If you want to install packages in your sublime text. First of all, you need to install <code>Package Control</code> that is <code>Sublime Text</code> package manager that makes it exceedingly simple to find, install and keep packages up-to-date.</p>
-
-<p>Open Sublime Text 3 and choose <code>View &gt; Show Console</code> menu. Paste below codes into console.
-<code>python
-import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
-</code></p>
-
-<!--more-->
-
-
-<p>This code creates the Installed Packages folder for you (if necessary), and then downloads the <code>Package Control.sublime-package</code> into it.</p>
-
-<p>Since the <code>Package Control</code> install successfull, you can intall any packages which you want, such as less,less2css package. Press <code>Command+Shift+P</code> open the <code>Command palette</code> and find the <code>Package Control: Install Package</code>, like this: <br/>
-<img src="/assets/images/command-palette.png" alt="command palette" /></p>
-
-<p>Choose <code>Package Control: Install Package</code> menu, and wait a seconds it will prompt package installer, and then you can search packages what you want and install it. <br/>
-<img src="/assets/images/package-installer.png" alt="package installer" /></p>
 ]]></content>
   </entry>
   

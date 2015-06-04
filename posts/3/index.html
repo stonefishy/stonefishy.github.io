@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Custom Tag is a user-defined JSP language element. When it is contained in JSP page and it will translate into a servlet, the custom tag is converted &hellip;">
+  <meta name="description" content="Ordering is Guava&rsquo;s fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/12/guava-ordering/">Guava - Ordering</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-12T17:28:07+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:28 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Ordering</code> is Guava&rsquo;s fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to collections of objects.</p>
+
+<p>Okay, so let&rsquo;s getting started. Firstly, we declared a <code>String</code> type List:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">locations</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span>
+</span><span class='line'>        <span class="s">&quot;Guang zhou&quot;</span><span class="o">,</span>
+</span><span class='line'>        <span class="s">&quot;Cheng du&quot;</span><span class="o">,</span>
+</span><span class='line'>        <span class="s">&quot;&quot;</span><span class="o">,</span>
+</span><span class='line'>        <span class="s">&quot;Shang hai&quot;</span>
+</span><span class='line'><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+We will use this locations variable later.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/12/12/guava-ordering/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -425,44 +479,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-merge-command/">Visual Git Guide (Merge Command)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Merge command</h3>
-
-<p>A merge creates a new commit that incorporates changes from other commits. Before merging, the stage must match the current commit. The trivial case is if the other commit is an ancestor of the current commit, in which case nothing is done. The next most simple is if the current commit is an ancestor of the other commit. This results in a fast-forward merge. The reference is simply moved, and then the new commit is checked out.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-merge-command/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -489,6 +505,10 @@ Checks that the value is not null. Returns the value directly, so you can use ch
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/05/20/analyze-call-function-of-javascript/">Analyze Call Function of Javascript</a>
       </li>
     
@@ -502,10 +522,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
     
       <li class="post">
         <a href="/blog/2015/05/16/angularjs-angular-dot-extend/">AngularJs - angular.extend()</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">How to Use Jdbc in Spring</a>
       </li>
     
   </ul>

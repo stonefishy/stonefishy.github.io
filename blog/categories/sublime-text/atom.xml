@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sublime Text | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/sublime-text/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-20T20:46:27+08:00</updated>
+  <updated>2015-06-04T16:35:05+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
+    <updated>2015-06-04T16:01:24+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
+    <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<!-- more -->
+
+
+<h4>Installation</h4>
+
+<ol>
+<li>Open package control via pressing <code>Command + Shift + P</code> (mac os) or <code>Ctrl + Shift + P</code> (windows) to open the command window, and then type <code>Install Package</code>.</li>
+<li>Search for <code>Cobalt2</code> and hit <code>enter</code> key.</li>
+<li>Once you installed finish, open <code>Preference</code> -> <code>Settings - User</code> and add the below lines:</li>
+</ol>
+
+
+<pre><code>"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+"theme": "Cobalt2.sublime-theme",
+</code></pre>
+
+<p><code>color_scheme</code> defines how the code looks and <code>theme</code> defines how the sidebar, tabs, search, command palette work.</p>
+
+<p><em>Note: the sidebar icons only supports  the latest version of sublime text3.</em></p>
+
+<h4>Screenshots</h4>
+
+<p>There have some screenshots of Cobalt2 theme from <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<p><img src="/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
+
+<p>So, it&rsquo;s really cool. Hope you like it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text - Keyboard Shortcuts for Mac]]></title>

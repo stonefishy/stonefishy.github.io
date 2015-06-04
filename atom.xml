@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-05-20T20:46:27+08:00</updated>
+  <updated>2015-06-04T16:35:05+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
+    <updated>2015-06-04T16:01:24+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
+    <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<!-- more -->
+
+
+<h4>Installation</h4>
+
+<ol>
+<li>Open package control via pressing <code>Command + Shift + P</code> (mac os) or <code>Ctrl + Shift + P</code> (windows) to open the command window, and then type <code>Install Package</code>.</li>
+<li>Search for <code>Cobalt2</code> and hit <code>enter</code> key.</li>
+<li>Once you installed finish, open <code>Preference</code> -> <code>Settings - User</code> and add the below lines:</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+</span><span class='line'>"theme": "Cobalt2.sublime-theme",</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>color_scheme</code> defines how the code looks and <code>theme</code> defines how the sidebar, tabs, search, command palette work.</p>
+
+<p><em>Note: the sidebar icons only supports  the latest version of sublime text3.</em></p>
+
+<h4>Screenshots</h4>
+
+<p>There have some screenshots of Cobalt2 theme from <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<p><img src="http://stonefishy.github.io/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
+
+<p>So, it&rsquo;s really cool. Hope you like it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Analyze Call Function of Javascript]]></title>
@@ -2428,343 +2467,6 @@ Language Parent &ldquo;Rules&rdquo;:      <br/>
 <img src="http://stonefishy.github.io/assets/images/direct-connect-mental-image.png" width="300" height="200"></p>
 
 <p><em>Note: The original video address is <a href="https://www.youtube.com/watch?v=d0yGdNEWdn0">https://www.youtube.com/watch?v=d0yGdNEWdn0</a></em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava - Ordering]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/12/guava-ordering/"/>
-    <updated>2014-12-12T17:28:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/12/guava-ordering</id>
-    <content type="html"><![CDATA[<p><code>Ordering</code> is Guava&rsquo;s fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to collections of objects.</p>
-
-<p>Okay, so let&rsquo;s getting started. Firstly, we declared a <code>String</code> type List:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">locations</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span>
-</span><span class='line'>        <span class="s">&quot;Guang zhou&quot;</span><span class="o">,</span>
-</span><span class='line'>        <span class="s">&quot;Cheng du&quot;</span><span class="o">,</span>
-</span><span class='line'>        <span class="s">&quot;&quot;</span><span class="o">,</span>
-</span><span class='line'>        <span class="s">&quot;Shang hai&quot;</span>
-</span><span class='line'><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-We will use this locations variable later.</p>
-
-<!-- more -->
-
-
-<p><code>natural()</code> <br/>
-Use natural ordering for comparatable types. such as number from small to large. date from start to end. It is static method.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// use natural comparator, such as a -&gt; z</span>
-</span><span class='line'><span class="c1">// so the result is: [, Cheng du, Guang zhou, Shang hai]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>sortedCopy(Iterable)</code> <br/>
-Return a sorted copy of the specified elements as a List.  <br/>
-We create a customized <code>Ordering</code> that sorted by the length of element from small to large. Let&rsquo;s get the code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getCustomzieStringOrder</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="nd">@Override</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">first</span><span class="o">,</span> <span class="n">String</span> <span class="n">second</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">Ints</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">second</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">};</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Order the locations list with our new customize <code>Ordering</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">byLengthOrdering</span> <span class="o">=</span> <span class="n">getCustomzieStringOrder</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// use natural comparator, such as a -&gt; z</span>
-</span><span class='line'><span class="c1">// so the result is: [, Cheng du, Shang hai, Guang zhou]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>isOrdered(Iterable)</code> <br/>
-Return a Boolean variable that can describe the Iterable if sorted.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// will return false. because the locations array is not sorted.</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">isOrdered</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>reverse()</code> <br/>
-Return the reverse <code>Ordering</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// reverse customize comparator.</span>
-</span><span class='line'><span class="c1">// so the result is: [Guang zhou, Shang hai, Cheng du, ]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">reverse</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>nullsFirst()</code> <br/>
-Return an <code>Ordering</code> that will put the null object at the first.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// add null object to the locations array.</span>
-</span><span class='line'><span class="n">locations</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// null obejct will at first.</span>
-</span><span class='line'><span class="c1">// so the result is : [null, , Cheng du, Shang hai, Guang zhou]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">nullsFirst</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>nullsLast()</code> <br/>
-Return an <code>Ordering</code> that will put the null object at the last.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// null object will at last.</span>
-</span><span class='line'><span class="c1">// the result is : [, Cheng du, Shang hai, Guang zhou, null]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">nullsLast</span><span class="o">().</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// will throw NullPointerException, because the location contains null object.</span>
-</span><span class='line'><span class="c1">// and here doesn&#39;t have nullsFirst() or nullsLast() to deal with null object.</span>
-</span><span class='line'><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// remove the null object.</span>
-</span><span class='line'><span class="n">locations</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>compound()</code> <br/>
-Returns an <code>Ordering</code> which uses the specified Comparator to &ldquo;break ties.&rdquo;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// the &quot;AAAAAAAA&quot; length is equal to &quot;Cheng du&quot; length. (8 characters)</span>
-</span><span class='line'><span class="c1">// and it will be appended at last.</span>
-</span><span class='line'><span class="n">locations</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;AAAAAAAA&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// use natrual ordering with second comparator to deal with equal situation.</span>
-</span><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">compoundOrdering</span> <span class="o">=</span> <span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">compound</span><span class="o">(</span><span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// the result will be : [, AAAAAAAA, Cheng du, Shang hai, Guang zhou]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">compoundOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">locations</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>onResultOf(Fuction)</code> <br/>
-Returns an Ordering which orders values by applying the function to them and then comparing the results using the original Ordering. <br/>
-Declaring a Foo class:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Foo</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Nullable</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="nf">Foo</span><span class="o">(</span><span class="n">Integer</span> <span class="n">sortedBy</span><span class="o">,</span> <span class="n">String</span> <span class="n">nonSortedBy</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">sortedBy</span> <span class="o">=</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">nonSortedBy</span> <span class="o">=</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getNonSortedBy</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNonSortedBy</span><span class="o">(</span><span class="n">String</span> <span class="n">nonSortedBy</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">nonSortedBy</span> <span class="o">=</span> <span class="n">nonSortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getSortedBy</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSortedBy</span><span class="o">(</span><span class="kt">int</span> <span class="n">sortedBy</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">sortedBy</span> <span class="o">=</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s+%s&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">sortedBy</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">nonSortedBy</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Declaring a new List with Foo class type:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">fooList</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span>
-</span><span class='line'>    <span class="k">new</span> <span class="nf">Foo</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;abc&quot;</span><span class="o">),</span>
-</span><span class='line'>    <span class="k">new</span> <span class="nf">Foo</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="s">&quot;abc&quot;</span><span class="o">),</span>
-</span><span class='line'>    <span class="k">new</span> <span class="nf">Foo</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="s">&quot;abc&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">);</span> 
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Define a new function that will return an customized <code>Ordering</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="nf">getNaturalFooOrder</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsFirst</span><span class="o">().</span><span class="na">onResultOf</span><span class="o">(</span><span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="nd">@Override</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">apply</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Foo</span> <span class="n">foo</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">foo</span><span class="o">.</span><span class="na">getSortedBy</span><span class="o">();</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">});</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">fooOrdering</span> <span class="o">=</span> <span class="n">getNaturalFooOrder</span><span class="o">();</span>
-</span><span class='line'><span class="c1">// the result will be [null+abc, 10+abc, 23+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">sortedCopy</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>greatestOf(Iterable iterable, int k)</code> <br/>
-Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// the result will be [23+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">greatestOf</span><span class="o">(</span><span class="n">fooList</span><span class="o">,</span> <span class="mi">1</span><span class="o">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// the result will be [23+abc, 10+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">greatestOf</span><span class="o">(</span><span class="n">fooList</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>leastOf(Iterable iterable, int k)</code> <br/>
-Returns the k least elements of the specified iterable, according to this ordering, in order from least to greatest. Not necessarily stable.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// the result will be [null+abc, 10+abc]</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">leastOf</span><span class="o">(</span><span class="n">fooList</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p><code>min(Iterable)</code> <br/>
-Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// the result will be null+abc</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>max(Iterable)</code> <br/>
-Returns the maximum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">// the result will be 23+abc</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fooOrdering</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">fooList</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   
