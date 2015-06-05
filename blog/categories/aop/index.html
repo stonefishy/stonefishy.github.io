@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Visual Git Guide (Checkout Command) - Stonefishy Blog</title>
+  <title>Category: Aop - Stonefishy Blog</title>
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="">
+  <meta name="description" content="Category: aop">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-checkout-command">
+  <link rel="canonical" href="http://stonefishy.github.io/blog/categories/aop">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
@@ -64,97 +64,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Visual Git Guide (Checkout Command)</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
+    <h1 class="entry-title">Category: Aop</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
 
-<h3>Checkout</h3>
+  
+  <h2>2015</h2>
 
-<p>The checkout command is used to copy files from the history (or stage) to the working directory, and to optionally switch branches.</p>
+<article>
+  
+<h1><a href="/blog/2015/06/05/spring-aop-aspect/">Spring AOP - Aspect</a></h1>
+<time datetime="2015-06-05T09:25:53+08:00" pubdate><span class='month'>Jun</span> <span class='day'>05</span> <span class='year'>2015</span></time>
 
-<p>When a filename (and/or -p) is given, git copies those files from the given commit to the stage and the working directory. For example, git checkout HEAD~ foo.c copies the file foo.c from the commit called HEAD~ (the parent of the current commit) to the working directory, and also stages it. (<em>If no commit name is given, files are copied from the stage.</em>) <strong>Note that the current branch is not changed.</strong></p>
-
-<p><img src="/assets/images/checkout-files.png" alt="checkout-files" /></p>
-
-<!--more-->
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/aop/'>aop</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a></span>
+</footer>
 
 
-<p>When a filename is not given but the reference is a (local) branch, HEAD is moved to that branch (that is, we &ldquo;switch to&rdquo; that branch), and then the stage and working directory are set to match the contents of that commit. Any file that exists in the new commit (a47c3 below) is copied; any file that exists in the old commit (ed489) but not in the new one is deleted; and any file that exists in neither is ignored.</p>
+</article>
 
-<p><img src="/assets/images/checkout-branch.png" alt="checkout-branch" /></p>
-
-<p>When a filename is not given and the reference is not a (local) branch — say, it is a tag, a remote branch, a SHA-1 ID, or something like master~3 — we get an anonymous branch, called a detached HEAD. This is useful for jumping around the history. Say you want to compile version 1.6.6.1 of git. You can git checkout v1.6.6.1 (which is a tag, not a branch), compile, install, and then switch back to another branch, say git checkout master. However, committing works slightly differently with a detached HEAD; this is covered below.</p>
-
-<p><img src="/assets/images/checkout-detached.png" alt="checkout-detached" /></p>
-
-<p>Once you check out something else, say master, the commit is (presumably) no longer referenced by anything else, and gets lost. Note that after the command, there is nothing referencing 2eecb.</p>
-
-<p><img src="/assets/images/checkout-after-detached.png" alt="checkout-after-detached" /></p>
-
-<p>If, on the other hand, you want to save this state, you can create a new named branch using <code>git checkout -b name</code>.</p>
-
-<p><img src="/assets/images/checkout-b-detached.png" alt="checkout-b-detached" /></p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
-
-      
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/git/'>git</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/11/06/visual-git-guide-conventions/" title="Previous Post: Visual git guide (conventions)">&laquo; Visual git guide (conventions)</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/11/07/visual-git-guide-cherry-pick-command/" title="Next Post: Visual git guide (cherry pick command)">Visual git guide (cherry pick command) &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>
