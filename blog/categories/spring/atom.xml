@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-05T14:49:57+08:00</updated>
+  <updated>2015-06-05T17:51:16+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,200 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Before Advice]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/05/spring-aop-before-advice/"/>
+    <updated>2015-06-05T15:33:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/05/spring-aop-before-advice</id>
+    <content type="html"><![CDATA[<p>As we know the <code>Aspect</code> is just the name of the <code>cross-cutting</code> functionality, not the implementation. So what&rsquo;s the implementation of the <code>cross-cutting</code> functionality? It&rsquo;s called <code>Advice</code>. An <code>Advice</code> provides the code for implementation of the service. It is like <em>Logging</em> service, <em>Logging</em> is a <code>Aspect</code> and <code>Advice</code> denotes the implementation of <em>Log4j</em>.</p>
+
+<!-- more -->
+
+
+<p>There are four types of <code>Adivce</code>:</p>
+
+<ul>
+<li><strong>Before Advice</strong></li>
+<li>After Advice</li>
+<li>Around Advice</li>
+<li>Throws Advice</li>
+</ul>
+
+
+<p>In this article, we only explain <code>Before Advice</code>. The other advices we will talk about it in later blogs.</p>
+
+<p>The <code>Before Advice</code> is the implementation of the service. It will be applied before the business logic of method is going to execute. So this means this advice will execute before the business logic. we can use it to do something like authentication before the business logic execution.</p>
+
+<p>It will be applied in the runtime of application, not the compilation of the code. And also it will generate a new <em>proxy</em> class which is combined by this advice and business logic class in the runtime automatically.</p>
+
+<p>When we create a <code>Before Advice</code>, we should implement the <code>MethodBeforeAdvice</code> interface, this interface is given by <em>org.springframework.aop.*</em> package. And then we need to override the <code>before</code> method of it.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.MethodBeforeAdvice;
+
+public class MyBeforeAdvice implements MethodBeforeAdvice {
+
+    @Override
+    public void before(Method method, Object[] args, Object target)
+            throws Throwable {
+        // TODO Auto-generated method stub
+
+    }
+
+}
+</code></pre>
+
+<p>There are 3 parameters in the <em>before</em> method.</p>
+
+<p>The first parameter <em><code>Method</code> method</em> is used to access the method name of the business logic via <code>getName()</code>.</p>
+
+<p>The second parameter <em>Object[] args</em> is Object array, it is used to access the arguments of the logic method.</p>
+
+<p>The last parameter <em>Object target</em> is an object to whom this service will be going to apply, usually this will taken care by <em>container</em>, actually we no need to care it.</p>
+
+<p>Okay, let&rsquo;s see a full example.</p>
+
+<pre><code class="xml">&lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre>
+
+<p>In the pom.xml file, we add above dependencies to our project. (this project use maven to manage)</p>
+
+<p>Okay, let us create our logic class, firstly we need to create interface for it.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+public interface MyLogicInterface {
+    void add(int a, int b);
+
+    void subtract(int a, int b);
+}
+</code></pre>
+
+<p>We created two method in this interface, this interface is very important for our <code>AOP</code> project.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+public class MyLogicClass implements MyLogicInterface {
+
+    @Override
+    public void add(int a, int b) {
+        String result = String.format("%s + %s = %s", a, b, a + b);
+        System.out.println(result);
+    }
+
+    @Override
+    public void subtract(int a, int b) {
+        String result = String.format("%s - %s = %s", a, b, a - b);
+        System.out.println(result);
+    }
+
+}
+</code></pre>
+
+<p>Our class implements the interface, just print the result of the add or subtract.</p>
+
+<p>For now, we have our logic class. but now we want to do something before the method logic is going to execute. So the <code>Before Advice</code> is comming.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.MethodBeforeAdvice;
+
+public class MyBeforeAdvice implements MethodBeforeAdvice {
+
+    @Override
+    public void before(Method method, Object[] args, Object target) throws Throwable {
+        System.out.println(String.format("This will be executed before the %s method", method.getName()));
+    }
+}
+</code></pre>
+
+<p>We print some messages in our <code>Before Advice</code>, this will be printed before the logic method result.</p>
+
+<p>Finally, we need to make the logic class and our <code>Before Advice</code> are combined together. so we need to config them in the xml file.</p>
+
+<pre><code class="xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myBeforeAdvice" class="spring.test.aop.MyBeforeAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myBeforeAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>In <code>AOP</code> always we need to create a spring bean in the form of interface and implementation class only, because the IOC container internally creates proxy class by implementing that interface with the help of <code>ProxyFactoryBean</code>.
+To run this application, we need a class which with <em>main</em> method. See below codes.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
+
+        myLogicInterface.add(10, 20);
+        myLogicInterface.subtract(10, 5);
+    }
+
+}
+</code></pre>
+
+<p>In the client application, we are passing id of <code>ProxyFactoryBean</code> (proxyFactoryBean) to get the object, because we need proxyed object to invoke our logic method.</p>
+
+<pre><code>The result of the execution is below:   
+
+This will be executed before the add method
+10 + 20 = 30
+This will be executed before the subtract method
+10 - 5 = 5
+</code></pre>
+
+<p>So, it is simple to use it. and we separate the logic and the services completely, only need to config the xml file when the services changed.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Aspect]]></title>
