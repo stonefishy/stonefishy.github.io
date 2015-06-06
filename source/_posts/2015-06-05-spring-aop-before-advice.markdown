@@ -180,11 +180,11 @@ public class App {
 ```
 In the client application, we are passing id of `ProxyFactoryBean` (proxyFactoryBean) to get the object, because we need proxyed object to invoke our logic method.
 
-	The result of the execution is below:   
+The result of the execution is below:   
 
 	This will be executed before the add method
 	10 + 20 = 30
 	This will be executed before the subtract method
 	10 - 5 = 5
 	
-So, it is simple to use it. and we separate the logic and the services completely, only need to config the xml file when the services changed.
+So, it is simple to use it. and we separated the logic and the services completely, only need to config the xml file when the services changed.
