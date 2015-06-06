@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="As we know the Aspect is just the name of the cross-cutting functionality, not the implementation. So what&rsquo;s the implementation of the cross- &hellip;">
+  <meta name="description" content="Advice is the implementation of the cross-cutting functionality. An Adivce provides the code for implementation of the service. There are four types &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-06T10:14:46+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:14 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
+
+<p>There are four types of Advice:</p>
+
+<ul>
+<li>Before Advice</li>
+<li><strong>After Advice</strong></li>
+<li>Around Advice</li>
+<li>Throws Advice</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/06/spring-aop-after-advice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -571,42 +615,6 @@ src:        <strong>source object(s)</strong></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">How to Use Jdbc in Spring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-05T16:31:53+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:31 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As we know, we can use <code>jdbc</code> to access database in java programming. And now let us use <code>jdbc</code> in spring. The <code>spring framework</code> reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are <code>org.springframework.jdbc.datasource.DriverManagerDataSource</code> and <code>org.springframework.jdbc.core.JdbcTemplate</code>.</p>
-
-<p>And here we use the <code>hsqldb</code> to act as our memory database. You can go to <a href="http://hsqldb.org/">here</a> to look at it. we use the <code>Maven</code> tools to management our project. the dependencies is:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -631,6 +639,10 @@ src:        <strong>source object(s)</strong></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/05/spring-aop-before-advice/">Spring AOP - Before Advice</a>
       </li>
     
@@ -644,10 +656,6 @@ src:        <strong>source object(s)</strong></p>
     
       <li class="post">
         <a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a>
       </li>
     
   </ul>
