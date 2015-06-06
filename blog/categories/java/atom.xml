@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-05T17:51:16+08:00</updated>
+  <updated>2015-06-06T10:10:10+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -195,15 +195,15 @@ public class App {
 
 <p>In the client application, we are passing id of <code>ProxyFactoryBean</code> (proxyFactoryBean) to get the object, because we need proxyed object to invoke our logic method.</p>
 
-<pre><code>The result of the execution is below:   
+<p>The result of the execution is below:</p>
 
-This will be executed before the add method
+<pre><code>This will be executed before the add method
 10 + 20 = 30
 This will be executed before the subtract method
 10 - 5 = 5
 </code></pre>
 
-<p>So, it is simple to use it. and we separate the logic and the services completely, only need to config the xml file when the services changed.</p>
+<p>So, it is simple to use it. and we separated the logic and the services completely, only need to config the xml file when the services changed.</p>
 ]]></content>
   </entry>
   
