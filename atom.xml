@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-08T14:39:00+08:00</updated>
+  <updated>2015-06-08T18:13:06+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,279 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Throws Advice]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice/"/>
+    <updated>2015-06-08T14:39:43+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice</id>
+    <content type="html"><![CDATA[<p>In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called <code>ThrowsAdvice</code>.</p>
+
+<p><code>ThrowsAdvice</code> is provided by <em>org.springframework.aop.*</em> package. But it has not any method we need to override.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<p>While creating a ThrowsAdvice class in spring AOP, we should implement our services in a method called <code>afterThrowing()</code> with 1 or 4 parameter(s). In fact, this method not given in <code>ThrowsAdvice</code> interface, but we should implement our services in afterThrowing() method only because when ever an Exception is occurred in the business logic then the IOC container internally calls afterThrowing() method to apply the services.</p>
+
+<p>Let&rsquo;s see the <code>afterThrowing()</code> method.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.aop.ThrowsAdvice</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyThrowsAdvice</span> <span class="kd">implements</span> <span class="n">ThrowsAdvice</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// just exception</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">// specific null pointer exception</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="n">NullPointerException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// with 4 parameters</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we write multiple afterThrowing methods in a class, then the <code>IOC</code> container will give the preference as below:</p>
+
+<p>Specific exception > 4 parameters > just exception.</p>
+
+<p>Let&rsquo;s take a practice.</p>
+
+<figure class='code'><figcaption><span>MyLogicInterface.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyLogicInterface</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>MyLogicClass.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span> <span class="kd">implements</span> <span class="n">MyLogicInterface</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s divide %s is %s\n&quot;</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">));</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In our logic class. We print the message about one param divided by another one.</p>
+
+<figure class='code'><figcaption><span>MyThrowsAdvice.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.aop.ThrowsAdvice</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyThrowsAdvice</span> <span class="kd">implements</span> <span class="n">ThrowsAdvice</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// just exception</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Exception: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">// specific exception</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="n">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Specific ArithmeticException: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// with 4 parameters</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;With 4 parameters exception: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There have three implementations of afterThrowing method. And also we can add our handle exception logic in them.</p>
+
+<figure class='code'><figcaption><span>springConfig.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;!DOCTYPE beans PUBLIC &quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
+</span><span class='line'><span class="cp">         &quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;beans&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myThrowsAdvice&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyThrowsAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;proxyInterfaces&quot;</span> <span class="na">value=</span><span class="s">&quot;spring.test.aop.MyLogicInterface&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interceptorNames&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>myThrowsAdvice<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;myLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>App.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="n">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;springConfig.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">MyLogicInterface</span> <span class="n">myLogicInterface</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyLogicInterface</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;proxyFactoryBean&quot;</span><span class="o">);</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">divide</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">divide</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In our client, we can see the divide method is called twice. The First one will not throw exception, but second will throw ArithmeticException.</p>
+
+<p>Let&rsquo;s see the result of execution:</p>
+
+<pre><code>10 divide 5 is 2
+
+Exception in thread "main" Specific ArithmeticException: / by zero
+</code></pre>
+
+<p>We can see the specific ArithmeticException is executed. Okay, let us remove the specific exception method and run it again.</p>
+
+<pre><code>10 divide 5 is 2
+
+With 4 parameters exception: / by zero
+</code></pre>
+
+<p>The afterThrowing method with 4 parameters has been executed. Keep remove this method and run it.</p>
+
+<pre><code>10 divide 5 is 2
+
+Exception: / by zero
+</code></pre>
+
+<p>So there is only one afterThrowing method is executed when there have multiple implementation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Around Advice]]></title>
@@ -2878,78 +3151,6 @@ From above example, we can get the conclusion is that immutable collections does
 
 
 <p><em>Note: The original artical you can see <a href="http://css-tricks.com/how-to-create-an-ie-only-stylesheet/">here</a></em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CSS Tricks for IE6,IE7,IE8,IE9]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/"/>
-    <updated>2015-01-28T16:35:34+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9</id>
-    <content type="html"><![CDATA[<p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for <code>IE6</code>, <code>IE7</code>, <code>IE8</code>, <code>IE9</code>. This is very helpful for you.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#ie-tricks</span><span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* All browsers */</span>
-</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* All browsers but IE6 */</span>
-</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span> <span class="cp">!important</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* Only works in IE6 */</span>
-</span><span class='line'>  <span class="n">_color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* IE6, IE7 */</span>
-</span><span class='line'>  <span class="o">*</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* Only works in IE7*/</span>
-</span><span class='line'>  <span class="o">+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* Only works in IE7 */</span>
-</span><span class='line'>  <span class="o">*+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* IE6, IE7, IE8, IE9 */</span>
-</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/* IE8, IE9 */</span>
-</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">/*Only works in IE9*/</span>
-</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

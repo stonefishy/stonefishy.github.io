@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Aop | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/aop/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-08T14:39:00+08:00</updated>
+  <updated>2015-06-08T18:13:06+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,171 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Throws Advice]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice/"/>
+    <updated>2015-06-08T14:39:43+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice</id>
+    <content type="html"><![CDATA[<p>In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called <code>ThrowsAdvice</code>.</p>
+
+<p><code>ThrowsAdvice</code> is provided by <em>org.springframework.aop.*</em> package. But it has not any method we need to override.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<p>While creating a ThrowsAdvice class in spring AOP, we should implement our services in a method called <code>afterThrowing()</code> with 1 or 4 parameter(s). In fact, this method not given in <code>ThrowsAdvice</code> interface, but we should implement our services in afterThrowing() method only because when ever an Exception is occurred in the business logic then the IOC container internally calls afterThrowing() method to apply the services.</p>
+
+<p>Let&rsquo;s see the <code>afterThrowing()</code> method.</p>
+
+<pre><code class="java ">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.ThrowsAdvice;
+
+public class MyThrowsAdvice implements ThrowsAdvice {
+
+    // just exception
+    public void afterThrowing(Exception e) {
+
+    }
+
+    // specific null pointer exception
+    public void afterThrowing(NullPointerException e) {
+
+    }
+
+    // with 4 parameters
+    public void afterThrowing(Method method, Object[] args, Object target, Exception e) {
+
+    }
+}
+</code></pre>
+
+<p>If we write multiple afterThrowing methods in a class, then the <code>IOC</code> container will give the preference as below:</p>
+
+<p>Specific exception > 4 parameters > just exception.</p>
+
+<p>Let&rsquo;s take a practice.</p>
+
+<pre><code class="java MyLogicInterface.java">package spring.test.aop;
+
+public interface MyLogicInterface {
+    void divide(int a, int b);
+}
+</code></pre>
+
+<pre><code class="java MyLogicClass.java">package spring.test.aop;
+
+public class MyLogicClass implements MyLogicInterface {
+
+    @Override
+    public void divide(int a, int b) {
+        System.out.println(String.format("%s divide %s is %s\n", a, b, a / b));
+    }
+
+}
+</code></pre>
+
+<p>In our logic class. We print the message about one param divided by another one.</p>
+
+<pre><code class="java MyThrowsAdvice.java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.ThrowsAdvice;
+
+public class MyThrowsAdvice implements ThrowsAdvice {
+
+    // just exception
+    public void afterThrowing(Exception e) {
+        System.out.println("Exception: " + e.getMessage());
+    }
+
+    // specific exception
+    public void afterThrowing(ArithmeticException e) {
+        System.out.println("Specific ArithmeticException: " + e.getMessage());
+    }
+
+    // with 4 parameters
+    public void afterThrowing(Method method, Object[] args, Object target, Exception e) {
+        System.out.println("With 4 parameters exception: " + e.getMessage());
+    }
+}
+</code></pre>
+
+<p>There have three implementations of afterThrowing method. And also we can add our handle exception logic in them.</p>
+
+<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myThrowsAdvice" class="spring.test.aop.MyThrowsAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myThrowsAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
+
+        myLogicInterface.divide(10, 5);
+
+        myLogicInterface.divide(10, 0);
+    }
+
+}
+</code></pre>
+
+<p>In our client, we can see the divide method is called twice. The First one will not throw exception, but second will throw ArithmeticException.</p>
+
+<p>Let&rsquo;s see the result of execution:</p>
+
+<pre><code>10 divide 5 is 2
+
+Exception in thread "main" Specific ArithmeticException: / by zero
+</code></pre>
+
+<p>We can see the specific ArithmeticException is executed. Okay, let us remove the specific exception method and run it again.</p>
+
+<pre><code>10 divide 5 is 2
+
+With 4 parameters exception: / by zero
+</code></pre>
+
+<p>The afterThrowing method with 4 parameters has been executed. Keep remove this method and run it.</p>
+
+<pre><code>10 divide 5 is 2
+
+Exception: / by zero
+</code></pre>
+
+<p>So there is only one afterThrowing method is executed when there have multiple implementation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Around Advice]]></title>

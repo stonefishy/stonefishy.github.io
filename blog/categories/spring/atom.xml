@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-08T14:39:00+08:00</updated>
+  <updated>2015-06-08T18:13:06+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,171 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Throws Advice]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice/"/>
+    <updated>2015-06-08T14:39:43+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice</id>
+    <content type="html"><![CDATA[<p>In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called <code>ThrowsAdvice</code>.</p>
+
+<p><code>ThrowsAdvice</code> is provided by <em>org.springframework.aop.*</em> package. But it has not any method we need to override.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<p>While creating a ThrowsAdvice class in spring AOP, we should implement our services in a method called <code>afterThrowing()</code> with 1 or 4 parameter(s). In fact, this method not given in <code>ThrowsAdvice</code> interface, but we should implement our services in afterThrowing() method only because when ever an Exception is occurred in the business logic then the IOC container internally calls afterThrowing() method to apply the services.</p>
+
+<p>Let&rsquo;s see the <code>afterThrowing()</code> method.</p>
+
+<pre><code class="java ">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.ThrowsAdvice;
+
+public class MyThrowsAdvice implements ThrowsAdvice {
+
+    // just exception
+    public void afterThrowing(Exception e) {
+
+    }
+
+    // specific null pointer exception
+    public void afterThrowing(NullPointerException e) {
+
+    }
+
+    // with 4 parameters
+    public void afterThrowing(Method method, Object[] args, Object target, Exception e) {
+
+    }
+}
+</code></pre>
+
+<p>If we write multiple afterThrowing methods in a class, then the <code>IOC</code> container will give the preference as below:</p>
+
+<p>Specific exception > 4 parameters > just exception.</p>
+
+<p>Let&rsquo;s take a practice.</p>
+
+<pre><code class="java MyLogicInterface.java">package spring.test.aop;
+
+public interface MyLogicInterface {
+    void divide(int a, int b);
+}
+</code></pre>
+
+<pre><code class="java MyLogicClass.java">package spring.test.aop;
+
+public class MyLogicClass implements MyLogicInterface {
+
+    @Override
+    public void divide(int a, int b) {
+        System.out.println(String.format("%s divide %s is %s\n", a, b, a / b));
+    }
+
+}
+</code></pre>
+
+<p>In our logic class. We print the message about one param divided by another one.</p>
+
+<pre><code class="java MyThrowsAdvice.java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.ThrowsAdvice;
+
+public class MyThrowsAdvice implements ThrowsAdvice {
+
+    // just exception
+    public void afterThrowing(Exception e) {
+        System.out.println("Exception: " + e.getMessage());
+    }
+
+    // specific exception
+    public void afterThrowing(ArithmeticException e) {
+        System.out.println("Specific ArithmeticException: " + e.getMessage());
+    }
+
+    // with 4 parameters
+    public void afterThrowing(Method method, Object[] args, Object target, Exception e) {
+        System.out.println("With 4 parameters exception: " + e.getMessage());
+    }
+}
+</code></pre>
+
+<p>There have three implementations of afterThrowing method. And also we can add our handle exception logic in them.</p>
+
+<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myThrowsAdvice" class="spring.test.aop.MyThrowsAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myThrowsAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
+
+        myLogicInterface.divide(10, 5);
+
+        myLogicInterface.divide(10, 0);
+    }
+
+}
+</code></pre>
+
+<p>In our client, we can see the divide method is called twice. The First one will not throw exception, but second will throw ArithmeticException.</p>
+
+<p>Let&rsquo;s see the result of execution:</p>
+
+<pre><code>10 divide 5 is 2
+
+Exception in thread "main" Specific ArithmeticException: / by zero
+</code></pre>
+
+<p>We can see the specific ArithmeticException is executed. Okay, let us remove the specific exception method and run it again.</p>
+
+<pre><code>10 divide 5 is 2
+
+With 4 parameters exception: / by zero
+</code></pre>
+
+<p>The afterThrowing method with 4 parameters has been executed. Keep remove this method and run it.</p>
+
+<pre><code>10 divide 5 is 2
+
+Exception: / by zero
+</code></pre>
+
+<p>So there is only one afterThrowing method is executed when there have multiple implementation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Around Advice]]></title>
@@ -258,730 +423,317 @@ public class MyLogicClass implements MyLogicInterface {
 </code></pre>
 
 <p>In <em>MyLogicClass</em>, we implemented the two methods <em>add</em> and <em>subtract</em>, and return the value.
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
-<span class='line-number'>184</span>
-<span class='line-number'>185</span>
-<span class='line-number'>186</span>
-<span class='line-number'>187</span>
-<span class='line-number'>188</span>
-<span class='line-number'>189</span>
-<span class='line-number'>190</span>
-<span class='line-number'>191</span>
-<span class='line-number'>192</span>
-<span class='line-number'>193</span>
-<span class='line-number'>194</span>
-<span class='line-number'>195</span>
-<span class='line-number'>196</span>
-<span class='line-number'>197</span>
-<span class='line-number'>198</span>
-<span class='line-number'>199</span>
-<span class='line-number'>200</span>
-<span class='line-number'>201</span>
-<span class='line-number'>202</span>
-<span class='line-number'>203</span>
-<span class='line-number'>204</span>
-<span class='line-number'>205</span>
-<span class='line-number'>206</span>
-<span class='line-number'>207</span>
-<span class='line-number'>208</span>
-<span class='line-number'>209</span>
-<span class='line-number'>210</span>
-<span class='line-number'>211</span>
-<span class='line-number'>212</span>
-<span class='line-number'>213</span>
-<span class='line-number'>214</span>
-<span class='line-number'>215</span>
-<span class='line-number'>216</span>
-<span class='line-number'>217</span>
-<span class='line-number'>218</span>
-<span class='line-number'>219</span>
-<span class='line-number'>220</span>
-<span class='line-number'>221</span>
-<span class='line-number'>222</span>
-<span class='line-number'>223</span>
-<span class='line-number'>224</span>
-<span class='line-number'>225</span>
-<span class='line-number'>226</span>
-<span class='line-number'>227</span>
-<span class='line-number'>228</span>
-<span class='line-number'>229</span>
-<span class='line-number'>230</span>
-<span class='line-number'>231</span>
-<span class='line-number'>232</span>
-<span class='line-number'>233</span>
-<span class='line-number'>234</span>
-<span class='line-number'>235</span>
-<span class='line-number'>236</span>
-<span class='line-number'>237</span>
-<span class='line-number'>238</span>
-<span class='line-number'>239</span>
-<span class='line-number'>240</span>
-<span class='line-number'>241</span>
-<span class='line-number'>242</span>
-<span class='line-number'>243</span>
-<span class='line-number'>244</span>
-<span class='line-number'>245</span>
-<span class='line-number'>246</span>
-<span class='line-number'>247</span>
-<span class='line-number'>248</span>
-<span class='line-number'>249</span>
-<span class='line-number'>250</span>
-<span class='line-number'>251</span>
-<span class='line-number'>252</span>
-<span class='line-number'>253</span>
-<span class='line-number'>254</span>
-<span class='line-number'>255</span>
-<span class='line-number'>256</span>
-<span class='line-number'>257</span>
-<span class='line-number'>258</span>
-<span class='line-number'>259</span>
-<span class='line-number'>260</span>
-<span class='line-number'>261</span>
-<span class='line-number'>262</span>
-<span class='line-number'>263</span>
-<span class='line-number'>264</span>
-<span class='line-number'>265</span>
-<span class='line-number'>266</span>
-<span class='line-number'>267</span>
-<span class='line-number'>268</span>
-<span class='line-number'>269</span>
-<span class='line-number'>270</span>
-<span class='line-number'>271</span>
-<span class='line-number'>272</span>
-<span class='line-number'>273</span>
-<span class='line-number'>274</span>
-<span class='line-number'>275</span>
-<span class='line-number'>276</span>
-<span class='line-number'>277</span>
-<span class='line-number'>278</span>
-<span class='line-number'>279</span>
-<span class='line-number'>280</span>
-<span class='line-number'>281</span>
-<span class='line-number'>282</span>
-<span class='line-number'>283</span>
-<span class='line-number'>284</span>
-<span class='line-number'>285</span>
-<span class='line-number'>286</span>
-<span class='line-number'>287</span>
-<span class='line-number'>288</span>
-<span class='line-number'>289</span>
-<span class='line-number'>290</span>
-<span class='line-number'>291</span>
-<span class='line-number'>292</span>
-<span class='line-number'>293</span>
-<span class='line-number'>294</span>
-<span class='line-number'>295</span>
-<span class='line-number'>296</span>
-<span class='line-number'>297</span>
-<span class='line-number'>298</span>
-<span class='line-number'>299</span>
-<span class='line-number'>300</span>
-<span class='line-number'>301</span>
-<span class='line-number'>302</span>
-<span class='line-number'>303</span>
-<span class='line-number'>304</span>
-<span class='line-number'>305</span>
-<span class='line-number'>306</span>
-<span class='line-number'>307</span>
-<span class='line-number'>308</span>
-<span class='line-number'>309</span>
-<span class='line-number'>310</span>
-<span class='line-number'>311</span>
-<span class='line-number'>312</span>
-<span class='line-number'>313</span>
-<span class='line-number'>314</span>
-<span class='line-number'>315</span>
-<span class='line-number'>316</span>
-<span class='line-number'>317</span>
-<span class='line-number'>318</span>
-<span class='line-number'>319</span>
-<span class='line-number'>320</span>
-<span class='line-number'>321</span>
-<span class='line-number'>322</span>
-<span class='line-number'>323</span>
-<span class='line-number'>324</span>
-<span class='line-number'>325</span>
-<span class='line-number'>326</span>
-<span class='line-number'>327</span>
-<span class='line-number'>328</span>
-<span class='line-number'>329</span>
-<span class='line-number'>330</span>
-<span class='line-number'>331</span>
-<span class='line-number'>332</span>
-<span class='line-number'>333</span>
-<span class='line-number'>334</span>
-<span class='line-number'>335</span>
-<span class='line-number'>336</span>
-<span class='line-number'>337</span>
-<span class='line-number'>338</span>
-<span class='line-number'>339</span>
-<span class='line-number'>340</span>
-<span class='line-number'>341</span>
-<span class='line-number'>342</span>
-<span class='line-number'>343</span>
-<span class='line-number'>344</span>
-<span class='line-number'>345</span>
-<span class='line-number'>346</span>
-<span class='line-number'>347</span>
-<span class='line-number'>348</span>
-<span class='line-number'>349</span>
-<span class='line-number'>350</span>
-<span class='line-number'>351</span>
-<span class='line-number'>352</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">org.springframework.aop.AfterReturningAdvice</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAfterAdvice</span> <span class="kd">implements</span> <span class="n">AfterReturningAdvice</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@Override</span>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterReturning</span><span class="o">(</span><span class="n">Object</span> <span class="n">returnValue</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span>
-</span><span class='line'>        <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-</span><span class='line'>            <span class="s">&quot;The result from method %s(%s, %s) is: %s&quot;</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">returnValue</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="err">``</span>
-</span><span class='line'><span class="n">We</span> <span class="n">print</span> <span class="n">all</span> <span class="n">the</span> <span class="n">messages</span> <span class="n">of</span> <span class="n">the</span> <span class="n">logic</span> <span class="n">method</span> <span class="n">in</span> <span class="n">our</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="n">After</span> <span class="n">Advice</span><span class="err">`</span><span class="o">,</span> <span class="n">include</span> <span class="n">method</span> <span class="n">name</span><span class="o">,</span> <span class="n">the</span> <span class="k">return</span> <span class="n">value</span> <span class="n">of</span> <span class="n">method</span><span class="o">,</span> <span class="n">the</span> <span class="n">arguments</span> <span class="n">etc</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Okay</span><span class="o">,</span> <span class="n">let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">see</span> <span class="n">our</span> <span class="n">spring</span> <span class="n">config</span> <span class="n">file</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="o">;!</span><span class="n">DOCTYPE</span> <span class="n">beans</span> <span class="n">PUBLIC</span> <span class="s">&quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
-</span><span class='line'>            <span class="s">&quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">beans</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;myAfterAdvice&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyAfterAdvice&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;proxyInterfaces&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyLogicInterface&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;interceptorNames&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">list</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>                <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">value</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">myAfterAdvice</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">value</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">list</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">property</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="n">ref</span><span class="o">=</span><span class="s">&quot;myLogicClass&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">bean</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">beans</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">It</span> <span class="n">is</span> <span class="n">same</span> <span class="n">with</span> <span class="n">last</span> <span class="n">spring</span> <span class="n">config</span> <span class="n">file</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">After</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.</span> <span class="n">We</span> <span class="n">just</span> <span class="n">use</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">MyAfterAdvice</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">instead</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">MyBeforeAdvice</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">To</span> <span class="n">make</span> <span class="k">this</span> <span class="n">application</span> <span class="n">run</span><span class="o">,</span> <span class="n">we</span> <span class="n">should</span> <span class="n">read</span> <span class="n">spring</span> <span class="n">config</span> <span class="n">file</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">MyLogicInterface</span> <span class="n">myLogicInterface</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyLogicInterface</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;proxyFactoryBean&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">subtract</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">result</span> <span class="n">of</span> <span class="n">the</span> <span class="n">application</span> <span class="n">executioin</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">result</span> <span class="n">from</span> <span class="n">method</span> <span class="nf">add</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">)</span> <span class="nl">is:</span> <span class="mi">30</span>
-</span><span class='line'><span class="n">The</span> <span class="n">result</span> <span class="n">from</span> <span class="n">method</span> <span class="nf">subtract</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span> <span class="nl">is:</span> <span class="mi">5</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">]]&gt;&lt;/</span><span class="n">content</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;/</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">&lt;</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">title</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[</span><span class="n">Spring</span> <span class="n">AOP</span> <span class="o">-</span> <span class="n">Before</span> <span class="n">Advice</span><span class="o">]]&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://stonefishy.github.io/blog/2015/06/05/spring-aop-before-advice/&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">updated</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">05</span><span class="nl">T15:</span><span class="mi">33</span><span class="o">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">08</span><span class="o">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">updated</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">http:</span><span class="c1">//stonefishy.github.io/blog/2015/06/05/spring-aop-before-advice&lt;/id&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">As</span> <span class="n">we</span> <span class="n">know</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Aspect</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">just</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionality</span><span class="o">,</span> <span class="n">not</span> <span class="n">the</span> <span class="n">implementation</span><span class="o">.</span> <span class="n">So</span> <span class="n">what</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">the</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionality</span><span class="o">?</span> <span class="n">It</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">called</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.</span> <span class="n">An</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">provides</span> <span class="n">the</span> <span class="n">code</span> <span class="k">for</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">service</span><span class="o">.</span> <span class="n">It</span> <span class="n">is</span> <span class="n">like</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Logging</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">service</span><span class="o">,</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Logging</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Aspect</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">and</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">denotes</span> <span class="n">the</span> <span class="n">implementation</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Log4j</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">There</span> <span class="n">are</span> <span class="n">four</span> <span class="n">types</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Adivce</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;:&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">After</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Around</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Throws</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">In</span> <span class="k">this</span> <span class="n">article</span><span class="o">,</span> <span class="n">we</span> <span class="n">only</span> <span class="n">explain</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.</span> <span class="n">The</span> <span class="n">other</span> <span class="n">advices</span> <span class="n">we</span> <span class="n">will</span> <span class="n">talk</span> <span class="n">about</span> <span class="n">it</span> <span class="n">in</span> <span class="n">later</span> <span class="n">blogs</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">the</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">service</span><span class="o">.</span> <span class="n">It</span> <span class="n">will</span> <span class="n">be</span> <span class="n">applied</span> <span class="n">before</span> <span class="n">the</span> <span class="n">business</span> <span class="n">logic</span> <span class="n">of</span> <span class="n">method</span> <span class="n">is</span> <span class="n">going</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span> <span class="n">So</span> <span class="k">this</span> <span class="n">means</span> <span class="k">this</span> <span class="n">advice</span> <span class="n">will</span> <span class="n">execute</span> <span class="n">before</span> <span class="n">the</span> <span class="n">business</span> <span class="n">logic</span><span class="o">.</span> <span class="n">we</span> <span class="n">can</span> <span class="n">use</span> <span class="n">it</span> <span class="n">to</span> <span class="k">do</span> <span class="n">something</span> <span class="n">like</span> <span class="n">authentication</span> <span class="n">before</span> <span class="n">the</span> <span class="n">business</span> <span class="n">logic</span> <span class="n">execution</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">It</span> <span class="n">will</span> <span class="n">be</span> <span class="n">applied</span> <span class="n">in</span> <span class="n">the</span> <span class="n">runtime</span> <span class="n">of</span> <span class="n">application</span><span class="o">,</span> <span class="n">not</span> <span class="n">the</span> <span class="n">compilation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">code</span><span class="o">.</span> <span class="n">And</span> <span class="n">also</span> <span class="n">it</span> <span class="n">will</span> <span class="n">generate</span> <span class="n">a</span> <span class="k">new</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">proxy</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="kd">class</span> <span class="nc">which</span> <span class="n">is</span> <span class="n">combined</span> <span class="n">by</span> <span class="k">this</span> <span class="n">advice</span> <span class="n">and</span> <span class="n">business</span> <span class="n">logic</span> <span class="kd">class</span> <span class="nc">in</span> <span class="n">the</span> <span class="n">runtime</span> <span class="n">automatically</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">When</span> <span class="n">we</span> <span class="n">create</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="n">we</span> <span class="n">should</span> <span class="n">implement</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">MethodBeforeAdvice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">interface</span><span class="o">,</span> <span class="k">this</span> <span class="kd">interface</span> <span class="nc">is</span> <span class="n">given</span> <span class="n">by</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">aop</span><span class="o">.*&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">package</span><span class="o">.</span> <span class="n">And</span> <span class="n">then</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="n">override</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">before</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span> <span class="n">of</span> <span class="n">it</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.aop.MethodBeforeAdvice</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBeforeAdvice</span> <span class="kd">implements</span> <span class="n">MethodBeforeAdvice</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">(</span><span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">)</span>
-</span><span class='line'>            <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">// TODO Auto-generated method stub</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">There</span> <span class="n">are</span> <span class="mi">3</span> <span class="n">parameters</span> <span class="n">in</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">before</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">first</span> <span class="n">parameter</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Method</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">access</span> <span class="n">the</span> <span class="n">method</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">business</span> <span class="n">logic</span> <span class="n">via</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">getName</span><span class="o">()&lt;/</span><span class="n">code</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">second</span> <span class="n">parameter</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">Object</span> <span class="n">array</span><span class="o">,</span> <span class="n">it</span> <span class="n">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">access</span> <span class="n">the</span> <span class="n">arguments</span> <span class="n">of</span> <span class="n">the</span> <span class="n">logic</span> <span class="n">method</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">last</span> <span class="n">parameter</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Object</span> <span class="n">target</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">an</span> <span class="n">object</span> <span class="n">to</span> <span class="n">whom</span> <span class="k">this</span> <span class="n">service</span> <span class="n">will</span> <span class="n">be</span> <span class="n">going</span> <span class="n">to</span> <span class="n">apply</span><span class="o">,</span> <span class="n">usually</span> <span class="k">this</span> <span class="n">will</span> <span class="n">taken</span> <span class="n">care</span> <span class="n">by</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">container</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;,</span> <span class="n">actually</span> <span class="n">we</span> <span class="n">no</span> <span class="n">need</span> <span class="n">to</span> <span class="n">care</span> <span class="n">it</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Okay</span><span class="o">,</span> <span class="n">let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">see</span> <span class="n">a</span> <span class="n">full</span> <span class="n">example</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;xml&quot;</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">dependencies</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">spring</span><span class="o">-</span><span class="n">context</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">spring</span><span class="o">-</span><span class="n">core</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">spring</span><span class="o">-</span><span class="n">beans</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">groupId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">spring</span><span class="o">-</span><span class="n">aop</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">artifactId</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="mf">4.1</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">version</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">dependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">dependencies</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">In</span> <span class="n">the</span> <span class="n">pom</span><span class="o">.</span><span class="na">xml</span> <span class="n">file</span><span class="o">,</span> <span class="n">we</span> <span class="n">add</span> <span class="n">above</span> <span class="n">dependencies</span> <span class="n">to</span> <span class="n">our</span> <span class="n">project</span><span class="o">.</span> <span class="o">(</span><span class="k">this</span> <span class="n">project</span> <span class="n">use</span> <span class="n">maven</span> <span class="n">to</span> <span class="n">manage</span><span class="o">)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Okay</span><span class="o">,</span> <span class="n">let</span> <span class="n">us</span> <span class="n">create</span> <span class="n">our</span> <span class="n">logic</span> <span class="n">class</span><span class="o">,</span> <span class="n">firstly</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="n">create</span> <span class="kd">interface</span> <span class="nc">for</span> <span class="n">it</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyLogicInterface</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kt">void</span> <span class="nf">subtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">We</span> <span class="n">created</span> <span class="n">two</span> <span class="n">method</span> <span class="n">in</span> <span class="k">this</span> <span class="n">interface</span><span class="o">,</span> <span class="k">this</span> <span class="kd">interface</span> <span class="nc">is</span> <span class="n">very</span> <span class="n">important</span> <span class="k">for</span> <span class="n">our</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">project</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span> <span class="kd">implements</span> <span class="n">MyLogicInterface</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s + %s = %s&quot;</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s - %s = %s&quot;</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Our</span> <span class="kd">class</span> <span class="nc">implements</span> <span class="n">the</span> <span class="n">interface</span><span class="o">,</span> <span class="n">just</span> <span class="n">print</span> <span class="n">the</span> <span class="n">result</span> <span class="n">of</span> <span class="n">the</span> <span class="n">add</span> <span class="n">or</span> <span class="n">subtract</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">For</span> <span class="n">now</span><span class="o">,</span> <span class="n">we</span> <span class="n">have</span> <span class="n">our</span> <span class="n">logic</span> <span class="n">class</span><span class="o">.</span> <span class="n">but</span> <span class="n">now</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="k">do</span> <span class="n">something</span> <span class="n">before</span> <span class="n">the</span> <span class="n">method</span> <span class="n">logic</span> <span class="n">is</span> <span class="n">going</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span> <span class="n">So</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">comming</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.aop.MethodBeforeAdvice</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBeforeAdvice</span> <span class="kd">implements</span> <span class="n">MethodBeforeAdvice</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">(</span><span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;This will be executed before the %s method&quot;</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getName</span><span class="o">()));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">We</span> <span class="n">print</span> <span class="n">some</span> <span class="n">messages</span> <span class="n">in</span> <span class="n">our</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="k">this</span> <span class="n">will</span> <span class="n">be</span> <span class="n">printed</span> <span class="n">before</span> <span class="n">the</span> <span class="n">logic</span> <span class="n">method</span> <span class="n">result</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Finally</span><span class="o">,</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="n">make</span> <span class="n">the</span> <span class="n">logic</span> <span class="kd">class</span> <span class="nc">and</span> <span class="n">our</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Before</span> <span class="n">Advice</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">are</span> <span class="n">combined</span> <span class="n">together</span><span class="o">.</span> <span class="n">so</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="n">config</span> <span class="n">them</span> <span class="n">in</span> <span class="n">the</span> <span class="n">xml</span> <span class="n">file</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;xml&quot;</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="o">;!</span><span class="n">DOCTYPE</span> <span class="n">beans</span> <span class="n">PUBLIC</span> <span class="s">&quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
-</span><span class='line'>            <span class="s">&quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">beans</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;myBeforeAdvice&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyBeforeAdvice&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;proxyInterfaces&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyLogicInterface&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;interceptorNames&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">list</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>                <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">value</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span><span class="n">myBeforeAdvice</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">value</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">list</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">property</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="n">ref</span><span class="o">=</span><span class="s">&quot;myLogicClass&quot;</span><span class="o">/&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">bean</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="n">beans</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">In</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">always</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">spring</span> <span class="n">bean</span> <span class="n">in</span> <span class="n">the</span> <span class="n">form</span> <span class="n">of</span> <span class="kd">interface</span> <span class="nc">and</span> <span class="n">implementation</span> <span class="kd">class</span> <span class="nc">only</span><span class="o">,</span> <span class="n">because</span> <span class="n">the</span> <span class="n">IOC</span> <span class="n">container</span> <span class="n">internally</span> <span class="n">creates</span> <span class="n">proxy</span> <span class="kd">class</span> <span class="nc">by</span> <span class="n">implementing</span> <span class="n">that</span> <span class="kd">interface</span> <span class="nc">with</span> <span class="n">the</span> <span class="n">help</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ProxyFactoryBean</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.</span>
-</span><span class='line'><span class="n">To</span> <span class="n">run</span> <span class="k">this</span> <span class="n">application</span><span class="o">,</span> <span class="n">we</span> <span class="n">need</span> <span class="n">a</span> <span class="kd">class</span> <span class="nc">which</span> <span class="n">with</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">main</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">.</span> <span class="n">See</span> <span class="n">below</span> <span class="n">codes</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">MyLogicInterface</span> <span class="n">myLogicInterface</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyLogicInterface</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;proxyFactoryBean&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">subtract</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">In</span> <span class="n">the</span> <span class="n">client</span> <span class="n">application</span><span class="o">,</span> <span class="n">we</span> <span class="n">are</span> <span class="n">passing</span> <span class="n">id</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ProxyFactoryBean</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="o">(</span><span class="n">proxyFactoryBean</span><span class="o">)</span> <span class="n">to</span> <span class="n">get</span> <span class="n">the</span> <span class="n">object</span><span class="o">,</span> <span class="n">because</span> <span class="n">we</span> <span class="n">need</span> <span class="n">proxyed</span> <span class="n">object</span> <span class="n">to</span> <span class="n">invoke</span> <span class="n">our</span> <span class="n">logic</span> <span class="n">method</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">result</span> <span class="n">of</span> <span class="n">the</span> <span class="n">execution</span> <span class="n">is</span> <span class="nl">below:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">This</span> <span class="n">will</span> <span class="n">be</span> <span class="n">executed</span> <span class="n">before</span> <span class="n">the</span> <span class="n">add</span> <span class="n">method</span>
-</span><span class='line'><span class="mi">10</span> <span class="o">+</span> <span class="mi">20</span> <span class="o">=</span> <span class="mi">30</span>
-</span><span class='line'><span class="n">This</span> <span class="n">will</span> <span class="n">be</span> <span class="n">executed</span> <span class="n">before</span> <span class="n">the</span> <span class="n">subtract</span> <span class="n">method</span>
-</span><span class='line'><span class="mi">10</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">=</span> <span class="mi">5</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">So</span><span class="o">,</span> <span class="n">it</span> <span class="n">is</span> <span class="n">simple</span> <span class="n">to</span> <span class="n">use</span> <span class="n">it</span><span class="o">.</span> <span class="n">and</span> <span class="n">we</span> <span class="n">separated</span> <span class="n">the</span> <span class="n">logic</span> <span class="n">and</span> <span class="n">the</span> <span class="n">services</span> <span class="n">completely</span><span class="o">,</span> <span class="n">only</span> <span class="n">need</span> <span class="n">to</span> <span class="n">config</span> <span class="n">the</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">when</span> <span class="n">the</span> <span class="n">services</span> <span class="n">changed</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">]]&gt;&lt;/</span><span class="n">content</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;/</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">&lt;</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">title</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[</span><span class="n">Spring</span> <span class="n">AOP</span> <span class="o">-</span> <span class="n">Aspect</span><span class="o">]]&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://stonefishy.github.io/blog/2015/06/05/spring-aop-aspect/&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">updated</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">05</span><span class="nl">T09:</span><span class="mi">25</span><span class="o">:</span><span class="mi">53</span><span class="o">+</span><span class="mi">08</span><span class="o">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">updated</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">http:</span><span class="c1">//stonefishy.github.io/blog/2015/06/05/spring-aop-aspect&lt;/id&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">An</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Aspect</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">represent</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="n">of</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionality</span><span class="o">,</span> <span class="n">it</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">only</span> <span class="n">name</span> <span class="n">not</span> <span class="n">implementation</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Let</span> <span class="n">us</span> <span class="n">see</span> <span class="n">the</span> <span class="n">example</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">//This is my logic for one.</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//Call Authentication Service </span>
-</span><span class='line'>        <span class="c1">//Call Logging Service</span>
-</span><span class='line'>        <span class="c1">//Call Transcation Service</span>
-</span><span class='line'>        <span class="c1">//Call Email Service</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">//This is my logic for two.</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//Call Authentication Service </span>
-</span><span class='line'>        <span class="c1">//Call Logging Service</span>
-</span><span class='line'>        <span class="c1">//Call Transcation Service</span>
-</span><span class='line'>        <span class="c1">//Call Email Service</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">From</span> <span class="n">above</span> <span class="n">codes</span><span class="o">,</span> <span class="n">we</span> <span class="n">have</span> <span class="n">four</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionalities</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">logicOne</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">and</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">logicTwo</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">method</span><span class="o">,</span> <span class="n">So</span> <span class="k">this</span> <span class="n">means</span> <span class="n">we</span> <span class="n">have</span> <span class="n">four</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Aspect</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="n">s</span> <span class="n">which</span> <span class="n">are</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Authentication</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;,</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Logging</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;,</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Transaction</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;,</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Email</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="nl">Note:</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Aspect</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">only</span> <span class="n">denote</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionality</span><span class="o">,</span> <span class="n">not</span> <span class="n">the</span> <span class="n">implementation</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">]]&gt;&lt;/</span><span class="n">content</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;/</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">&lt;</span><span class="n">entry</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">title</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[</span><span class="n">Spring</span> <span class="n">AOP</span> <span class="o">-</span> <span class="n">What</span> <span class="n">Is</span> <span class="n">AOP</span><span class="o">?]]&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop/&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">updated</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">04</span><span class="nl">T20:</span><span class="mi">43</span><span class="o">:</span><span class="mi">03</span><span class="o">+</span><span class="mi">08</span><span class="o">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">updated</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">http:</span><span class="c1">//stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop&lt;/id&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">What</span> <span class="n">is</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;?,</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">stand</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Aspect</span> <span class="n">Oriented</span> <span class="n">Programming</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.</span> <span class="n">It</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">very</span> <span class="n">important</span> <span class="n">module</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Spring</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">framework</span><span class="o">.</span> <span class="n">In</span> <span class="n">the</span> <span class="n">enterprise</span> <span class="n">level</span> <span class="n">application</span> <span class="n">programming</span> <span class="n">we</span> <span class="n">used</span> <span class="n">to</span> <span class="n">add</span> <span class="n">different</span> <span class="n">types</span> <span class="n">of</span> <span class="n">services</span> <span class="n">to</span> <span class="n">our</span> <span class="n">application</span> <span class="n">at</span> <span class="n">runtime</span> <span class="n">automatically</span><span class="o">,</span> <span class="n">like</span> <span class="n">logging</span><span class="o">,</span> <span class="n">email</span><span class="o">,</span> <span class="n">transaction</span><span class="o">,</span> <span class="n">authentication</span> <span class="n">services</span><span class="o">.</span> <span class="n">These</span> <span class="n">actions</span> <span class="n">we</span> <span class="n">called</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionalities</span><span class="o">.</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="k">do</span> <span class="k">this</span> <span class="n">job</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">see</span> <span class="n">a</span> <span class="n">normal</span> <span class="nl">instance:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;java&quot;</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">//There is my logic for one.</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//Call Authentication Service </span>
-</span><span class='line'>        <span class="c1">//Call Logging Service</span>
-</span><span class='line'>        <span class="c1">//Call Transcation Service</span>
-</span><span class='line'>        <span class="c1">//Call Email Service</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">//There is my logic for two.</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//Call Authentication Service </span>
-</span><span class='line'>        <span class="c1">//Call Logging Service</span>
-</span><span class='line'>        <span class="c1">//Call Transcation Service</span>
-</span><span class='line'>        <span class="c1">//Call Email Service</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">In</span> <span class="n">above</span> <span class="n">codes</span><span class="o">,</span> <span class="n">we</span> <span class="n">have</span> <span class="n">a</span> <span class="kd">class</span> <span class="nc">called</span> <span class="n">MyLogicClass</span><span class="o">,</span> <span class="n">in</span> <span class="k">this</span> <span class="kd">class</span> <span class="nc">there</span> <span class="n">are</span> <span class="n">two</span> <span class="n">logic</span> <span class="n">methods</span><span class="o">,</span> <span class="n">and</span> <span class="n">both</span> <span class="n">them</span> <span class="n">call</span> <span class="n">authentication</span><span class="o">,</span> <span class="n">logging</span><span class="o">,</span> <span class="n">transaction</span><span class="o">,</span> <span class="n">email</span> <span class="n">services</span><span class="o">.</span> <span class="n">We</span> <span class="n">called</span> <span class="n">these</span> <span class="n">service</span> <span class="n">are</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionalities</span><span class="o">.</span> <span class="n">So</span> <span class="n">there</span> <span class="n">are</span> <span class="n">some</span> <span class="n">problems</span><span class="o">,</span> <span class="n">one</span> <span class="n">is</span> <span class="n">these</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionalities</span> <span class="n">increase</span> <span class="n">the</span> <span class="kd">class</span> <span class="nc">size</span><span class="o">.</span> <span class="n">Second</span> <span class="n">is</span> <span class="n">we</span> <span class="n">need</span> <span class="n">changed</span> <span class="k">this</span> <span class="kd">class</span> <span class="nc">and</span> <span class="n">recompile</span><span class="o">,</span> <span class="n">re</span><span class="o">-</span><span class="n">deploy</span> <span class="n">it</span> <span class="n">again</span> <span class="n">when</span> <span class="n">we</span> <span class="n">changed</span> <span class="n">the</span> <span class="n">services</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">So</span> <span class="n">how</span> <span class="n">to</span> <span class="n">overcome</span> <span class="n">these</span> <span class="n">problems</span><span class="o">,</span> <span class="n">can</span> <span class="n">we</span> <span class="n">separate</span> <span class="n">the</span> <span class="n">services</span> <span class="n">and</span> <span class="n">our</span> <span class="n">logic</span> <span class="n">client</span><span class="o">?</span> <span class="n">Yep</span><span class="o">,</span> <span class="n">we</span> <span class="n">can</span> <span class="k">do</span> <span class="k">this</span> <span class="n">in</span> <span class="n">Spring</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="n">adding</span> <span class="n">these</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">cross</span><span class="o">-</span><span class="n">cutting</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">functionalities</span> <span class="n">at</span> <span class="n">runtime</span> <span class="n">don</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">t</span> <span class="n">need</span> <span class="n">to</span> <span class="n">write</span> <span class="n">them</span> <span class="n">in</span> <span class="n">the</span> <span class="n">logic</span> <span class="n">codes</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">So</span> <span class="k">if</span> <span class="n">we</span> <span class="n">use</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">AOP</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;,</span> <span class="n">our</span> <span class="n">logic</span> <span class="kd">class</span> <span class="nc">will</span> <span class="n">be</span> <span class="n">like</span> <span class="k">this</span><span class="o">:</span>
-</span></code></pre></td></tr></table></div></figure> java
-public class MyLogicClass
-{
-    public void logicOne() {
-        //There is my logic for one.</p>
+&#8220;` java
+package spring.test.aop;</p>
 
-<pre><code>    //Services will be injected here automatically at runtime, but in the codebase there is nothing
-}
+<p>import java.lang.reflect.Method;</p>
 
-public void logicTwo() {
-    //There is my logic for two.
+<p>import org.springframework.aop.AfterReturningAdvice;</p>
 
-    //Services will be injected here automatically at runtime, but in the codebase there is nothing
+<p>public class MyAfterAdvice implements AfterReturningAdvice {</p>
+
+<pre><code>@Override
+public void afterReturning(Object returnValue, Method method,
+        Object[] args, Object target) throws Throwable {
+
+    String message = String.format(
+            "The result from method %s(%s, %s) is: %s", method.getName(),
+            args[0], args[1], returnValue);
+
+    System.out.println(message);
+
 }
 </code></pre>
 
 <p>}
-&#8220;`</p>
+<code>``
+We print all the messages of the logic method in our</code>After Advice`, include method name, the return value of method, the arguments etc.</p>
 
-<p>In above codes, we separate the business logic and the services, we call this process of separation as <code>AOP</code>. So Using <code>AOP</code> business logic and <code>cross-cutting</code> functionalities are implemented separately and executed at runtime as combine automatically.</p>
+<p>Okay, let&rsquo;s see our spring config file.</p>
+
+<pre><code class="java">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAfterAdvice" class="spring.test.aop.MyAfterAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myAfterAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>It is same with last spring config file of <code>Before After</code>. We just use <em>MyAfterAdvice</em> to instead of <em>MyBeforeAdvice</em>.</p>
+
+<p>To make this application run, we should read spring config file.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
+
+        myLogicInterface.add(10, 20);
+        myLogicInterface.subtract(10, 5);
+    }
+
+}
+</code></pre>
+
+<p>The result of the application executioin.</p>
+
+<pre><code>The result from method add(10, 20) is: 30
+The result from method subtract(10, 5) is: 5
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Before Advice]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/05/spring-aop-before-advice/"/>
+    <updated>2015-06-05T15:33:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/05/spring-aop-before-advice</id>
+    <content type="html"><![CDATA[<p>As we know the <code>Aspect</code> is just the name of the <code>cross-cutting</code> functionality, not the implementation. So what&rsquo;s the implementation of the <code>cross-cutting</code> functionality? It&rsquo;s called <code>Advice</code>. An <code>Advice</code> provides the code for implementation of the service. It is like <em>Logging</em> service, <em>Logging</em> is a <code>Aspect</code> and <code>Advice</code> denotes the implementation of <em>Log4j</em>.</p>
+
+<!-- more -->
+
+
+<p>There are four types of <code>Adivce</code>:</p>
+
+<ul>
+<li><strong>Before Advice</strong></li>
+<li>After Advice</li>
+<li>Around Advice</li>
+<li>Throws Advice</li>
+</ul>
+
+
+<p>In this article, we only explain <code>Before Advice</code>. The other advices we will talk about it in later blogs.</p>
+
+<p>The <code>Before Advice</code> is the implementation of the service. It will be applied before the business logic of method is going to execute. So this means this advice will execute before the business logic. we can use it to do something like authentication before the business logic execution.</p>
+
+<p>It will be applied in the runtime of application, not the compilation of the code. And also it will generate a new <em>proxy</em> class which is combined by this advice and business logic class in the runtime automatically.</p>
+
+<p>When we create a <code>Before Advice</code>, we should implement the <code>MethodBeforeAdvice</code> interface, this interface is given by <em>org.springframework.aop.*</em> package. And then we need to override the <code>before</code> method of it.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.MethodBeforeAdvice;
+
+public class MyBeforeAdvice implements MethodBeforeAdvice {
+
+    @Override
+    public void before(Method method, Object[] args, Object target)
+            throws Throwable {
+        // TODO Auto-generated method stub
+
+    }
+
+}
+</code></pre>
+
+<p>There are 3 parameters in the <em>before</em> method.</p>
+
+<p>The first parameter <em><code>Method</code> method</em> is used to access the method name of the business logic via <code>getName()</code>.</p>
+
+<p>The second parameter <em>Object[] args</em> is Object array, it is used to access the arguments of the logic method.</p>
+
+<p>The last parameter <em>Object target</em> is an object to whom this service will be going to apply, usually this will taken care by <em>container</em>, actually we no need to care it.</p>
+
+<p>Okay, let&rsquo;s see a full example.</p>
+
+<pre><code class="xml">&lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre>
+
+<p>In the pom.xml file, we add above dependencies to our project. (this project use maven to manage)</p>
+
+<p>Okay, let us create our logic class, firstly we need to create interface for it.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+public interface MyLogicInterface {
+    void add(int a, int b);
+
+    void subtract(int a, int b);
+}
+</code></pre>
+
+<p>We created two method in this interface, this interface is very important for our <code>AOP</code> project.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+public class MyLogicClass implements MyLogicInterface {
+
+    @Override
+    public void add(int a, int b) {
+        String result = String.format("%s + %s = %s", a, b, a + b);
+        System.out.println(result);
+    }
+
+    @Override
+    public void subtract(int a, int b) {
+        String result = String.format("%s - %s = %s", a, b, a - b);
+        System.out.println(result);
+    }
+
+}
+</code></pre>
+
+<p>Our class implements the interface, just print the result of the add or subtract.</p>
+
+<p>For now, we have our logic class. but now we want to do something before the method logic is going to execute. So the <code>Before Advice</code> is comming.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.MethodBeforeAdvice;
+
+public class MyBeforeAdvice implements MethodBeforeAdvice {
+
+    @Override
+    public void before(Method method, Object[] args, Object target) throws Throwable {
+        System.out.println(String.format("This will be executed before the %s method", method.getName()));
+    }
+}
+</code></pre>
+
+<p>We print some messages in our <code>Before Advice</code>, this will be printed before the logic method result.</p>
+
+<p>Finally, we need to make the logic class and our <code>Before Advice</code> are combined together. so we need to config them in the xml file.</p>
+
+<pre><code class="xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myBeforeAdvice" class="spring.test.aop.MyBeforeAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myBeforeAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>In <code>AOP</code> always we need to create a spring bean in the form of interface and implementation class only, because the IOC container internally creates proxy class by implementing that interface with the help of <code>ProxyFactoryBean</code>.
+To run this application, we need a class which with <em>main</em> method. See below codes.</p>
+
+<pre><code class="java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
+
+        myLogicInterface.add(10, 20);
+        myLogicInterface.subtract(10, 5);
+    }
+
+}
+</code></pre>
+
+<p>In the client application, we are passing id of <code>ProxyFactoryBean</code> (proxyFactoryBean) to get the object, because we need proxyed object to invoke our logic method.</p>
+
+<p>The result of the execution is below:</p>
+
+<pre><code>This will be executed before the add method
+10 + 20 = 30
+This will be executed before the subtract method
+10 - 5 = 5
+</code></pre>
+
+<p>So, it is simple to use it. and we separated the logic and the services completely, only need to config the xml file when the services changed.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Aspect]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/05/spring-aop-aspect/"/>
+    <updated>2015-06-05T09:25:53+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/05/spring-aop-aspect</id>
+    <content type="html"><![CDATA[<p>An <code>Aspect</code> represent the <strong>name</strong> of a <code>cross-cutting</code> functionality, it&rsquo;s only name not implementation.</p>
+
+<p>Let us see the example.</p>
+
+<pre><code class="java">public class MyLogicClass
+{
+    public void logicOne() {
+        //This is my logic for one.
+
+        //Call Authentication Service 
+        //Call Logging Service
+        //Call Transcation Service
+        //Call Email Service
+    }
+
+    public void logicTwo() {
+        //This is my logic for two.
+
+        //Call Authentication Service 
+        //Call Logging Service
+        //Call Transcation Service
+        //Call Email Service
+    }
+}
+</code></pre>
+
+<!-- more -->
+
+
+<p>From above codes, we have four <code>cross-cutting</code> functionalities for <em>logicOne</em> and <em>logicTwo</em> method, So this means we have four <code>Aspect</code>s which are <em>Authentication</em>, <em>Logging</em>, <em>Transaction</em>, <em>Email</em>.</p>
+
+<p><em>Note: <code>Aspect</code> is only denote the name of the <code>cross-cutting</code> functionality, not the implementation</em></p>
 ]]></content>
   </entry>
   
