@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-06T13:56:16+08:00</updated>
+  <updated>2015-06-08T14:39:00+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,184 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Around Advice]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/08/spring-aop-around-advice/"/>
+    <updated>2015-06-08T09:42:08+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/08/spring-aop-around-advice</id>
+    <content type="html"><![CDATA[<p>In this blog, let us talk about <code>Around Advice</code>. There are some few points about it.</p>
+
+<ul>
+<li><code>Around Advice</code> is combination of <code>Before Advice</code> and <code>After Advice</code>.</li>
+<li>In a single <code>Around Advice</code> we can implement both <em>before</em> and <em>after</em> services.</li>
+<li><strong>Note</strong>, <code>Around Advice</code> is not given by <em>spring framework</em>, it is from <em>Open Source</em> implementation called <code>AOP</code> alliance.</li>
+<li><code>Around Advice</code> can be used by any framework which supports <code>AOP</code>.</li>
+<li><code>Around Advice</code> can access the return value of business method and it can modify the value and it can return a different value back to the client, as return type is Object, but in the <code>After Advice</code> its not possible right, as its return type is void.</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>In order to create <code>Around Advice</code>, we should implement an interface called <code>MethodInterceptor</code> and override the method called <code>invoke</code> which has a prarameter <code>MethodInvocation</code> type. We can use this parameter to invoke our business logic method like <code>methodInvoation.proceed()</code>. And we can add our before services before this code execution and put after services after this code.</p>
+
+<p>Let&rsquo;s see an instance.</p>
+
+<pre><code class="java ">package spring.test.aop;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MyAroundAdvice implements MethodInterceptor{
+
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        // Adding before service in here.
+
+        invocation.proceed();
+
+        // Adding after service in here.
+        // we can change the return value we want via below return codes.
+
+        return null;
+    }
+
+}
+</code></pre>
+
+<p>In above codes, we can see that we put the before services before the <code>proceed()</code> method and put the after services after it. and we can change the return value of the logic method.</p>
+
+<p>So now let us to see a full expample.</p>
+
+<pre><code class="java MyLogicInterface.java">package spring.test.aop;
+
+public interface MyLogicInterface {
+    int add(int a, int b);
+}
+</code></pre>
+
+<pre><code class="java MyLogicClass.java">package spring.test.aop;
+
+public class MyLogicClass implements MyLogicInterface {
+
+    @Override
+    public int add(int a, int b) {
+        System.out.println(String.format("The internal result of %s + %s is: %s", a, b, a + b));
+        return a + b;
+    }
+
+}
+</code></pre>
+
+<p>In our logic class, we print the result value before the return of method.</p>
+
+<pre><code class="java MyAroundAdvice.java">package spring.test.aop;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MyAroundAdvice implements MethodInterceptor {
+
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        // Adding before service
+        methodDescription(invocation);
+
+        Object currentResult = invocation.proceed();
+
+        // Adding after service.
+        Object changedResult = changedReturnValue(invocation);
+
+        return changedResult == null ? currentResult : changedResult;
+    }
+
+    private void methodDescription(MethodInvocation invocation) {
+        String methodName = invocation.getMethod().getName();
+        Object[] args = invocation.getArguments();
+
+        String description = String.format("Before Services : %s(%s, %s)",
+                methodName, args[0], args[1]);
+        System.out.println(description);
+    }
+
+    private Object changedReturnValue(MethodInvocation invocation) {
+        Object[] args = invocation.getArguments();
+        int secondParam = (int) args[1];
+
+        // changed the return value to 0 when the second parameter is less than 0.
+        if (secondParam &lt; 0)
+            return 0;
+
+        return null;
+    }
+
+}
+</code></pre>
+
+<p>In this our around advice. we print the method description in our before service and changed the return value to 0 when the second parameter is less than 0 in after service.</p>
+
+<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAroundAdvice" class="spring.test.aop.MyAroundAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myAroundAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>The spring config xml is same with before except the interceptorNames.</p>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+        MyLogicInterface logicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
+
+        int result1 = logicInterface.add(1, 10);
+        System.out.println(String.format("After Advice - The result is: %s \n", result1));
+
+        int result2 = logicInterface.add(1, -10);
+        System.out.println(String.format("After Advice - The result is: %s", result2));
+    }
+
+}
+</code></pre>
+
+<p>You will notice that we pass -10 to second parameter in second times method called. Let&rsquo;s see the result:</p>
+
+<pre><code>Before Services : add(1, 10)
+The internal result of 1 + 10 is: 11
+After Advice - The result is: 11 
+
+Before Services : add(1, -10)
+The internal result of 1 + -10 is: -9
+After Advice - The result is: 0
+</code></pre>
+
+<p>You see, the internal result is -9, but after service, the result is changed to 0. So the return value is changed by our <code>Around Advice</code>.</p>
+
+<p><em><strong>Note again:</strong> The <code>Around Advice</code> can change the return value of business logic method, but <code>After Advice</code> cannot.</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - After Advice]]></title>
@@ -804,165 +982,6 @@ public void logicTwo() {
 &#8220;`</p>
 
 <p>In above codes, we separate the business logic and the services, we call this process of separation as <code>AOP</code>. So Using <code>AOP</code> business logic and <code>cross-cutting</code> functionalities are implemented separately and executed at runtime as combine automatically.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Use Jdbc in Spring]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/05/how-to-use-jdbc-in-spring/"/>
-    <updated>2015-05-05T16:31:53+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/05/how-to-use-jdbc-in-spring</id>
-    <content type="html"><![CDATA[<p>As we know, we can use <code>jdbc</code> to access database in java programming. And now let us use <code>jdbc</code> in spring. The <code>spring framework</code> reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are <code>org.springframework.jdbc.datasource.DriverManagerDataSource</code> and <code>org.springframework.jdbc.core.JdbcTemplate</code>.</p>
-
-<p>And here we use the <code>hsqldb</code> to act as our memory database. You can go to <a href="http://hsqldb.org/">here</a> to look at it. we use the <code>Maven</code> tools to management our project. the dependencies is:</p>
-
-<!-- more -->
-
-
-<pre><code class="">&lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
-            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
-            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
-            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.hsqldb&lt;/groupId&gt;
-            &lt;artifactId&gt;hsqldb&lt;/artifactId&gt;
-            &lt;version&gt;1.8.0.10&lt;/version&gt;
-        &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre>
-
-<p>The spring configure file:</p>
-
-<pre><code>&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
-            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
-
-&lt;beans&gt;
-
-    &lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
-        &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
-        &lt;property name="url" value="jdbc:hsqldb:mem:MyDB"/&gt;
-        &lt;property name="username" value="sa"/&gt;
-        &lt;property name="password" value=""/&gt;
-    &lt;/bean&gt;
-
-    &lt;bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"&gt;
-         &lt;constructor-arg&gt;
-            &lt;ref bean="dataSource"/&gt;
-         &lt;/constructor-arg&gt;    
-    &lt;/bean&gt;
-
-    &lt;bean id="createTable" class="java4s.SpringJdbcCreateTable"&gt;
-        &lt;property name="jt"&gt;
-            &lt;ref bean="jdbcTemplate"/&gt;
-        &lt;/property&gt;
-    &lt;/bean&gt;
-
-&lt;/beans&gt;  
-</code></pre>
-
-<p>we have a SpringJdbcCreateTable class to accesss database, this class has <code>JdbcTemplate</code> property,</p>
-
-<pre><code class="java">JdbcTemplate jt;
-
-public void setJt(JdbcTemplate jt) {
-    this.jt = jt;
-}
-</code></pre>
-
-<p>we use spring bean to inject value to this property. And you will see it in above spring configure file.</p>
-
-<p>create table, the <code>execute</code> method doesn&rsquo;t return value.</p>
-
-<pre><code class="java ">public void createTable() {
-    jt.execute("CREATE TABLE user(id int, name varchar(10), age int)");
-    // execute() returns void
-    System.out.println("table created");
-}
-</code></pre>
-
-<p>insert data, using the <code>update</code> method to insert data, this method will return how many rows have been inserted.</p>
-
-<pre><code class="java">public void insertData() {
-    int k = jt.update("INSERT INTO user VALUES (99, 'user_99', 49)");
-    showDatas();
-
-    System.out.println(String.format("%s row inserted", k));
-}
-</code></pre>
-
-<p>update data, using the <code>update</code> method to update data, it will return how many rows are affected.</p>
-
-<pre><code class="java">public void updateData() {
-    int k = jt.update("UPDATE user set name='user_new' where name='user_99'");
-    showDatas();
-
-    System.out.println(String.format("%s row updated", k));
-}
-</code></pre>
-
-<p>delete data, also using the <code>update</code> method.</p>
-
-<pre><code class="java">public void deleteData() {
-    int k = jt.update("DELETE from user where name='user_new'");
-
-    showDatas();
-    System.out.println(String.format("%s row deleted", k));
-}
-</code></pre>
-
-<p>query data, the jdbctemplate has many query interfaces. Here we use <code>queryForRowSet</code> method to get the data by condition.</p>
-
-<pre><code class="java">
-private void showDatas() {
-    System.out.println("|  ID |  NAME    |  AGE  |");
-    SqlRowSet rowSet = jt.queryForRowSet("SELECT * FROM user");
-
-    while (rowSet.next()) {
-        int id = rowSet.getInt(1);
-        String name = rowSet.getString(2);
-        int age = rowSet.getInt(3);
-
-        String msg = String
-                .format("|  %s  |  %s  |  %s   |", id, name, age);
-
-        System.out.println(msg);
-    }       
-}
-</code></pre>
-
-<p>okay, to so far, let us call them in main entrance.</p>
-
-<pre><code class="java">public static void main(String args[])
-{
-    ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spconfig.xml");
-    SpringJdbcCreateTable st =(SpringJdbcCreateTable)applicationContext.getBean("createTable");
-
-    st.createTable();
-    st.initSomeDatas();
-    st.insertData();
-    st.updateData();
-    st.deleteData();
-}
-</code></pre>
-
-<p>Look, it&rsquo;s very easy to access database with spring framework.</p>
 ]]></content>
   </entry>
   
