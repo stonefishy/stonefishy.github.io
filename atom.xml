@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-08T18:13:06+08:00</updated>
+  <updated>2015-06-09T18:01:34+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Join Point]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point/"/>
+    <updated>2015-06-09T17:19:23+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point</id>
+    <content type="html"><![CDATA[<p>In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as <code>JoinPoint</code>.</p>
+
+<p>At a join point place services will be injected at run time. And while executing business logic of method, the services can be injected in following 3 join points.</p>
+
+<ul>
+<li>Before business logic of method starts</li>
+<li>After business logic of method complete</li>
+<li>If business logic of method throws exception at run time.</li>
+</ul>
+
+
+<p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Throws Advice]]></title>
@@ -2951,206 +2971,6 @@ From above example, we can get the conclusion is that immutable collections does
 <li>Supports two-way data binding between View and ViewModel.</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Conditional Stylesheets for IE Version]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version/"/>
-    <updated>2015-01-28T17:35:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version</id>
-    <content type="html"><![CDATA[<p>The tool of choice for fighting IE problems is the <code>conditional stylesheet</code>. IE provides comment tags, supported all the way up to the current IE 8 to target specific versions, as well as greater-than/less-than stuff for targeting multiple versions at once.</p>
-
-<h3>Why use conditional stylesheets?</h3>
-
-<ul>
-<li>You got problems, they need fixin&#8217;</li>
-<li>Keeps your code hack-free and valid</li>
-<li>Keeps your main stylesheet clean</li>
-<li>Perfectly acceptable technique, sanctioned by Microsoft</li>
-</ul>
-
-
-<!-- more -->
-
-
-<p>And remember, these conditional tags don&rsquo;t have to be used only for CSS. You could load JavaScript, or even use them down in the content of your site to display special IE-specific messages.</p>
-
-<h3>The Code</h3>
-
-<p>This would go in your <head> with all the other regular CSS \<link>ed CSS files. The opening and closing tags should be familiar, that&rsquo;s just regular ol&#8217; HTML comments. Then between the brackets, &ldquo;IF&rdquo; and &ldquo;IE&rdquo; should be fairly obvious. The syntax to note is &ldquo;!&rdquo; stand for &ldquo;not&rdquo;, so !IE means &ldquo;not IE&rdquo;. gt means &ldquo;greater than&rdquo;, gte means &ldquo;greater than or equal&rdquo;, lt means &ldquo;less than&rdquo;, lte means &ldquo;less than or equal.&rdquo;</p>
-
-<blockquote><p><strong>Note that IE 10 and up DO NOT support conditional comments at all.</strong></p></blockquote>
-
-<p>Target ALL VERSIONS of IE</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;all-ie-only.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target everything EXCEPT IE</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if !IE]&gt;&lt;!--&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;not-ie.css&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'> <span class="c">&lt;!--&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 7 ONLY</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 7]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7.css&quot;&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 6 ONLY</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 6]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 5 ONLY</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 5]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie5.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 5.5 ONLY</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if IE 5.5000]&gt;</span>
-</span><span class='line'><span class="c">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie55.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 6 and LOWER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if lt IE 7]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-down.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span><span class='line'><span class="c">&lt;!--[if lte IE 6]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-down.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 7 and LOWER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if lt IE 8]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-down.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span><span class='line'><span class="c">&lt;!--[if lte IE 7]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-down.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 8 and LOWER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if lt IE 9]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-down.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span><span class='line'><span class="c">&lt;!--[if lte IE 8]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-down.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 6 and HIGHER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if gt IE 5.5]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-up.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span><span class='line'><span class="c">&lt;!--[if gte IE 6]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie6-and-up.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 7 and HIGHER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if gt IE 6]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-up.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span><span class='line'><span class="c">&lt;!--[if gte IE 7]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7-and-up.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Target IE 8 and HIGHER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--[if gt IE 7]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-up.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span><span class='line'><span class="c">&lt;!--[if gte IE 8]&gt;</span>
-</span><span class='line'><span class="c">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie8-and-up.css&quot; /&gt;</span>
-</span><span class='line'><span class="c">&lt;![endif]--&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>Note: The original artical you can see <a href="http://css-tricks.com/how-to-create-an-ie-only-stylesheet/">here</a></em></p>
 ]]></content>
   </entry>
   

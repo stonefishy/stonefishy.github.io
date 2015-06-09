@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-08T18:13:06+08:00</updated>
+  <updated>2015-06-09T18:01:34+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Join Point]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point/"/>
+    <updated>2015-06-09T17:19:23+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point</id>
+    <content type="html"><![CDATA[<p>In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as <code>JoinPoint</code>.</p>
+
+<p>At a join point place services will be injected at run time. And while executing business logic of method, the services can be injected in following 3 join points.</p>
+
+<ul>
+<li>Before business logic of method starts</li>
+<li>After business logic of method complete</li>
+<li>If business logic of method throws exception at run time.</li>
+</ul>
+
+
+<p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Throws Advice]]></title>
@@ -694,46 +714,6 @@ This will be executed before the subtract method
 </code></pre>
 
 <p>So, it is simple to use it. and we separated the logic and the services completely, only need to config the xml file when the services changed.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Aspect]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/05/spring-aop-aspect/"/>
-    <updated>2015-06-05T09:25:53+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/05/spring-aop-aspect</id>
-    <content type="html"><![CDATA[<p>An <code>Aspect</code> represent the <strong>name</strong> of a <code>cross-cutting</code> functionality, it&rsquo;s only name not implementation.</p>
-
-<p>Let us see the example.</p>
-
-<pre><code class="java">public class MyLogicClass
-{
-    public void logicOne() {
-        //This is my logic for one.
-
-        //Call Authentication Service 
-        //Call Logging Service
-        //Call Transcation Service
-        //Call Email Service
-    }
-
-    public void logicTwo() {
-        //This is my logic for two.
-
-        //Call Authentication Service 
-        //Call Logging Service
-        //Call Transcation Service
-        //Call Email Service
-    }
-}
-</code></pre>
-
-<!-- more -->
-
-
-<p>From above codes, we have four <code>cross-cutting</code> functionalities for <em>logicOne</em> and <em>logicTwo</em> method, So this means we have four <code>Aspect</code>s which are <em>Authentication</em>, <em>Logging</em>, <em>Transaction</em>, <em>Email</em>.</p>
-
-<p><em>Note: <code>Aspect</code> is only denote the name of the <code>cross-cutting</code> functionality, not the implementation</em></p>
 ]]></content>
   </entry>
   
