@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these &hellip;">
+  <meta name="description" content="What is Pointcut of Spring AOP? let&rsquo;s describe it. A Pointcut defines what Advices are required at what Join Points. In fact all business logic &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,40 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/10/spring-aop-pointcut/">Spring AOP - Pointcut</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-10T11:19:44+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:19 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/10/spring-aop-pointcut/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -446,48 +480,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/20/analyze-call-function-of-javascript/">Analyze Call Function of Javascript</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-20T19:24:35+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:24 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
-
-<h3>Syntax</h3>
-
-<p><code>call([thisObj[,arg1[, arg2[, [,.argN]]]]])</code> <br/>
- - <strong>thisObj</strong> (optional): it&rsquo;s object which can be act as currently <code>this</code> object. <br/>
- - <strong>arg1, arg2, argN</strong> (optional) : the parameters which can be passed to the method.</p>
-
-<p>The <em>call</em> method can be used to instead of another object to invoke a method. It can change the object context of a function to a new object which <em>thisObj</em> referenced.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/20/analyze-call-function-of-javascript/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -512,6 +504,10 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/10/spring-aop-pointcut/">Spring AOP - Pointcut</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/09/spring-aop-joint-point/">Spring AOP - Join Point</a>
       </li>
     
@@ -525,10 +521,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
     
       <li class="post">
         <a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/05/spring-aop-before-advice/">Spring AOP - Before Advice</a>
       </li>
     
   </ul>

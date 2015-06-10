@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-09T18:01:34+08:00</updated>
+  <updated>2015-06-10T18:01:34+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Pointcut]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut/"/>
+    <updated>2015-06-10T11:19:44+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut</id>
+    <content type="html"><![CDATA[<p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
+
+<!-- more -->
+
+
+<p>There are two types of AOP:</p>
+
+<ul>
+<li>StaticMethodMatcherPointcut</li>
+<li>DynamicMethodMatcherPointcut</li>
+</ul>
+
+
+<p>Pointcut verifys whether a particular method of particular class is eligible for getting the advice or not. Spring AOP has two static pointcut class.</p>
+
+<ul>
+<li>NameMatchMethodPointcut</li>
+<li>RegularExpressionMethodPointcut</li>
+</ul>
+
+
+<p>In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn&rsquo;t check whether the class names are matching or not. If you want to verify the class name, you can implement <code>StaticMethodMatcherPointcut</code> abstract class and override the <code>getClassFilter()</code>, <code>matches()</code> methods.</p>
+
+<p>The dynamic pointcut is almost same with static pointcut, the only difference is that the dynamic pointcut can verify the arguments of the method at runtime, but static pointcut couldn&rsquo;t.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Join Point]]></title>
@@ -2870,106 +2902,6 @@ From above example, we can get the conclusion is that immutable collections does
 </pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//get second item. print b</span>
 </span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">immutableList</span><span class="o">.</span><span class="na">asList</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Understading MVC, MVP and MVVM Design Patterns]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/"/>
-    <updated>2015-02-06T17:26:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns</id>
-    <content type="html"><![CDATA[<p><code>MVC</code>, <code>MVP</code> and <code>MVVM</code> design patterns are most popular technologies in our web application. Many people don&rsquo;t understand what&rsquo;s difference among them, so do I. But I found a blog which explains the difference of three design patterns, and its&#8217; really good.</p>
-
-<p>To read original article, see <a href="http://www.dotnet-tricks.com/Tutorial/designpatterns/2FMM060314-Understanding-MVC,-MVP-and-MVVM-Design-Patterns.html">here</a></p>
-
-<p>There are three most popular MV-* design patterns: <code>MVC</code>, <code>MVP</code> and <code>MVVM</code>. These are widely used by the various technologies.</p>
-
-<!-- more -->
-
-
-<h3>MVC Pattern</h3>
-
-<p><code>MVC</code> stands for <code>Model-View-Controller</code>. It is a software design pattern which was introduced in 1970s. Also, <code>MVC</code> pattern forces a separation of concerns, it means domain model and controller logic are decoupled from user interface (view). As a result maintenance and testing of the application become simpler and easier.</p>
-
-<p><code>MVC</code> design pattern splits an application into three main aspects: <code>Model</code>, <code>View</code> and <code>Controller</code></p>
-
-<p><img src="http://stonefishy.github.io/assets/images/mvc-pattern.png" alt="mvc-pattern" /></p>
-
-<h4>Model</h4>
-
-<p>The Model represents a set of classes that describe the business logic i.e. business model as well as data access operations i.e. data model. It also defines business rules for data means how the data can be changed and manipulated.</p>
-
-<h4>View</h4>
-
-<p>The View represents the UI components like CSS, jQuery, html etc. It is only responsible for displaying the data that is received from the controller as the result. This also transforms the model(s) into UI.</p>
-
-<h4>Controller</h4>
-
-<p>The Controller is responsible to process incoming requests. It receives input from users via the View, then process the user&rsquo;s data with the help of Model and passing the results back to the View. Typically, it acts as the coordinator between the View and the Model.</p>
-
-<p>Today, this pattern is used by many popular framework like as <code>Ruby on Rails</code>, <code>Spring Framework</code>, <code>Apple iOS</code> Development and <code>ASP.NET MVC</code>.</p>
-
-<h3>MVP Pattern</h3>
-
-<p>This pattern is similar to MVC pattern in which controller has been replaced by the presenter. This design pattern splits an application into three main aspects: <code>Model</code>, <code>View</code> and <code>Presenter</code>.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/mvp-pattern.png" alt="mvp-pattern" /></p>
-
-<h4>Model</h4>
-
-<p>The Model represents a set of classes that describes the business logic and data. It also defines business rules for data means how the data can be changed and manipulated.</p>
-
-<h4>View</h4>
-
-<p>The View represents the UI components like CSS, jQuery, html etc. It is only responsible for displaying the data that is received from the presenter as the result. This also transforms the model(s) into UI.</p>
-
-<h3>Presenter</h3>
-
-<p>The Presenter is responsible for handling all UI events on behalf of the view. This receive input from users via the View, then process the user&rsquo;s data with the help of Model and passing the results back to the View. Unlike view and controller, view and presenter are completely decoupled from each other’s and communicate to each other’s by an interface.</p>
-
-<p>Also, presenter does not manage the incoming request traffic as controller.</p>
-
-<p>This pattern is commonly used with <code>ASP.NET Web Forms</code> applications which require to create automated unit tests for their code-behind pages. This is also used with <code>windows forms</code>.</p>
-
-<h5>Key Points about MVP Pattern:</h5>
-
-<ul>
-<li>User interacts with the View.</li>
-<li>There is one-to-one relationship between View and Presenter means one View is mapped to only one Presenter.</li>
-<li>View has a reference to Presenter but View has not reference to Model.</li>
-<li>Provides two way communication between View and Presenter.</li>
-</ul>
-
-
-<h3>MVVM Pattern</h3>
-
-<p><code>MVVM</code> stands for <code>Model-View-View Model</code>. This pattern supports two-way data binding between view and View model. This enables automatic propagation of changes, within the state of view model to the View. Typically, the view model uses the observer pattern to notify changes in the view model to model.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/mvvm-pattern.png" alt="mvvm-pattern" /></p>
-
-<h4>Model</h4>
-
-<p>The Model represents a set of classes that describes the business logic and data. It also defines business rules for data means how the data can be changed and manipulated.</p>
-
-<h4>View</h4>
-
-<p>The View represents the UI components like CSS, jQuery, html etc. It is only responsible for displaying the data that is received from the controller as the result. This also transforms the model(s) into UI.</p>
-
-<h4>View Model</h4>
-
-<p>The View Model is responsible for exposing methods, commands, and other properties that helps to maintain the state of the view, manipulate the model as the result of actions on the view, and trigger events in the view itself.</p>
-
-<p>This pattern is commonly used by the <code>WPF</code>, <code>Silverlight</code>, <code>Caliburn</code>, <code>nRoute</code> etc.</p>
-
-<h5>Key Points about MVVM Pattern:</h5>
-
-<ul>
-<li>User interacts with the View.</li>
-<li>There is many-to-one relationship between View and ViewModel means many View can be mapped to one ViewModel.</li>
-<li>View has a reference to ViewModel but View Model has no information about the View.</li>
-<li>Supports two-way data binding between View and ViewModel.</li>
-</ul>
 
 ]]></content>
   </entry>
