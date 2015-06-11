@@ -16,7 +16,7 @@ There are two types of AOP:
 Pointcut verifys whether a particular method of particular class is eligible for getting the advice or not. Spring AOP has two static pointcut class.
 
 - NameMatchMethodPointcut
-- RegularExpressionMethodPointcut
+- RegexpMethodPointcutAdvisor
 
 In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn't check whether the class names are matching or not. If you want to verify the class name, you can implement `StaticMethodMatcherPointcut` abstract class and override the `getClassFilter()`, `matches()` methods.
 
