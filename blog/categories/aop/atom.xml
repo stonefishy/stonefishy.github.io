@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Aop | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/aop/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-10T18:01:34+08:00</updated>
+  <updated>2015-06-11T18:13:14+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,289 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Static Pointcut]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut/"/>
+    <updated>2015-06-11T16:08:48+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut</id>
+    <content type="html"><![CDATA[<p>Let&rsquo;s first to see the three very technical terms as below.</p>
+
+<ul>
+<li>Adivce - Indicate the action to take either before or after the method execution.</li>
+<li>Pointcut - Indicate which method should be intercept, by method name or regular expression pattern.</li>
+<li>Advisor - Group ‘Advice’ and ‘Pointcut’ into a single unit, and pass it to a proxy factory object</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>No pointcut example</h3>
+
+<pre><code class="java MyLogicClass">package spring.test.aop;
+
+public class MyLogicClass {
+
+    public void logicMethodOne() {
+        System.out.println("This is from logicMethodOne");
+    }
+
+    public void logicMethodTwo() {
+        System.out.println("This is from logicMethodTwo");
+    }
+
+    public void testLogic() {
+        System.out.println("This is from testLogic");
+    }
+}
+</code></pre>
+
+<pre><code class="java MyAroundAdvice.java">package spring.test.aop;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MyAroundAdvice implements MethodInterceptor {
+
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        System.out.println("Before method execuation");
+
+        Object result = invocation.proceed();
+
+        System.out.println("After method execuation");
+
+        return result;
+    }
+
+}
+</code></pre>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyLogicClass logicClass = (MyLogicClass)applicationContext.getBean("proxyFactoryBean");
+
+        System.out.println("\n--------------------\n");
+        logicClass.logicMethodOne();
+
+        System.out.println("\n--------------------\n");
+        logicClass.logicMethodTwo();
+
+        System.out.println("\n--------------------\n");
+        logicClass.testLogic();
+        System.out.println("\n--------------------\n");
+
+    }
+
+}
+</code></pre>
+
+<pre><code class="xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAroundAdvice" class="spring.test.aop.MyAroundAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myAroundAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="text output">--------------------
+
+Before method execuation
+This is from logicMethodOne
+After method execuation
+
+--------------------
+
+Before method execuation
+This is from logicMethodTwo
+After method execuation
+
+--------------------
+
+Before method execuation
+This is from testLogic
+After method execuation
+
+--------------------
+</code></pre>
+
+<p>In above example, all logic methods of the class has been intercepted due to the application doesn&rsquo;t use the pointcut to specific.</p>
+
+<h3>Name match example</h3>
+
+<p>And now, we just want to intercept the method <em>testLogic</em>, so we need to create <strong>NameMatchMethodPointcut</strong> bean in spring config xml. and put the method name you want to intercept to the <strong>mappedName</strong> property value.</p>
+
+<pre><code class="xml">&lt;bean id="nameMatchPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut"&gt;
+        &lt;property name="mappedName" value="testLogic"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>And also you can mapped multiple methods with <strong>mappedNames</strong>, like below.</p>
+
+<pre><code class="xml">&lt;bean id="nameMatchPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut"&gt;
+        &lt;property name="mappedNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;logicMethodOne&lt;/value&gt;
+                &lt;value&gt;logicMethodTwo&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>Then create <strong>DefaultPointcutAdvisor</strong> bean to group and associate the pointcut and advice.</p>
+
+<pre><code class="xml">&lt;bean id="myPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"&gt;
+        &lt;property name="pointcut" ref="nameMatchPointcut"/&gt;
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>Replace the <strong>interceptorNames</strong> of <strong>ProxyFactoryBean</strong> with the new Advisor.</p>
+
+<pre><code class="xml">&lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myPointcutAdvisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>It&rsquo;s done, let&rsquo;s see the full spring config file and output.</p>
+
+<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAroundAdvice" class="spring.test.aop.MyAroundAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="nameMatchPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut"&gt;
+        &lt;property name="mappedName" value="testLogic"/&gt;
+        &lt;!-- &lt;property name="mappedNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;logicMethodOne&lt;/value&gt;
+                &lt;value&gt;logicMethodTwo&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt; --&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="myPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"&gt;
+        &lt;property name="pointcut" ref="nameMatchPointcut"/&gt;
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myPointcutAdvisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="text output">--------------------
+
+This is from logicMethodOne
+
+--------------------
+
+This is from logicMethodTwo
+
+--------------------
+
+Before method execuation
+This is from testLogic
+After method execuation
+
+--------------------
+</code></pre>
+
+<h3>Regular expression example</h3>
+
+<p>Also we can use regular expression to match methods which should be intercepted. Create <strong>RegexpMethodPointcutAdvisor</strong> bean and set the <em>pattern</em> property value with regular expression and combine with advice.</p>
+
+<pre><code class="xml ">&lt;bean id="regexPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"&gt;
+        &lt;property name="pattern" value=".*Method.*"/&gt;
+
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>And you can specific multiple patterns with <em>patterns</em> property.</p>
+
+<pre><code class="xml ">&lt;bean id="regexPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"&gt;
+        &lt;property name="patterns"&gt;
+            &lt;list&gt;
+                &lt;value&gt;.*Method.*&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>Finally pass the advisor to the <strong>ProxyFactoryBean</strong>.</p>
+
+<pre><code class="xml">&lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;regexPointcutAdvisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<pre><code class="text output">--------------------
+
+Before method execuation
+This is from logicMethodOne
+After method execuation
+
+--------------------
+
+Before method execuation
+This is from logicMethodTwo
+After method execuation
+
+--------------------
+
+This is from testLogic
+
+--------------------
+</code></pre>
+
+<p>In practice, you can use it to manage DAO layer, where you can declare “.*DAO.*” to intercept all your DAO classes to support transaction.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Pointcut]]></title>
@@ -35,7 +318,7 @@
 
 <ul>
 <li>NameMatchMethodPointcut</li>
-<li>RegularExpressionMethodPointcut</li>
+<li>RegexpMethodPointcutAdvisor</li>
 </ul>
 
 
@@ -405,153 +688,6 @@ After Advice - The result is: 0
 <p>You see, the internal result is -9, but after service, the result is changed to 0. So the return value is changed by our <code>Around Advice</code>.</p>
 
 <p><em><strong>Note again:</strong> The <code>Around Advice</code> can change the return value of business logic method, but <code>After Advice</code> cannot.</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - After Advice]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/06/spring-aop-after-advice/"/>
-    <updated>2015-06-06T10:14:46+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/06/spring-aop-after-advice</id>
-    <content type="html"><![CDATA[<p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
-
-<p>There are four types of Advice:</p>
-
-<ul>
-<li>Before Advice</li>
-<li><strong>After Advice</strong></li>
-<li>Around Advice</li>
-<li>Throws Advice</li>
-</ul>
-
-
-<!-- more -->
-
-
-<p><code>After Advice</code> is same as <code>Before Advice</code>. But in order to create our after advice in spring, our class should implement an interface called <code>AfterReturningAdvice</code>, this interface is given in <em>org.springframework.aop.*</em> package. And we need to override a method given by this interface called <code>afterReturning()</code>.</p>
-
-<pre><code class="java">public class MyAfterAdvice implements AfterReturningAdvice {
-
-    @Override
-    public void afterReturning(Object returnValue, Method method,
-            Object[] args, Object target) throws Throwable {
-        // TODO Auto-generated method stub
-
-    }
-
-}
-</code></pre>
-
-<p>The <em>returnValuef</em> is the return value of the logic method, we can use it to access the return of the logic function. The <em>method</em> parameter is the logic method, we can use <em>getName()</em> to access the name of method. And the <em>args</em> parameter is arguments of logic method.</p>
-
-<p>Let&rsquo;s see full example.</p>
-
-<pre><code class="java ">package spring.test.aop;
-
-public interface MyLogicInterface {
-    int add(int a, int b);
-
-    int subtract(int a, int b);
-}
-</code></pre>
-
-<p>In this interface, we changed the method&rsquo;s signature, we have return value for both two method.</p>
-
-<pre><code class="java">package spring.test.aop;
-
-public class MyLogicClass implements MyLogicInterface {
-
-    @Override
-    public int add(int a, int b) {
-        return a + b;
-    }
-
-    @Override
-    public int subtract(int a, int b) {
-        return a - b;
-    }
-
-}
-</code></pre>
-
-<p>In <em>MyLogicClass</em>, we implemented the two methods <em>add</em> and <em>subtract</em>, and return the value.
-&#8220;` java
-package spring.test.aop;</p>
-
-<p>import java.lang.reflect.Method;</p>
-
-<p>import org.springframework.aop.AfterReturningAdvice;</p>
-
-<p>public class MyAfterAdvice implements AfterReturningAdvice {</p>
-
-<pre><code>@Override
-public void afterReturning(Object returnValue, Method method,
-        Object[] args, Object target) throws Throwable {
-
-    String message = String.format(
-            "The result from method %s(%s, %s) is: %s", method.getName(),
-            args[0], args[1], returnValue);
-
-    System.out.println(message);
-
-}
-</code></pre>
-
-<p>}
-<code>``
-We print all the messages of the logic method in our</code>After Advice`, include method name, the return value of method, the arguments etc.</p>
-
-<p>Okay, let&rsquo;s see our spring config file.</p>
-
-<pre><code class="java">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
-            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
-
-&lt;beans&gt;
-    &lt;bean id="myAfterAdvice" class="spring.test.aop.MyAfterAdvice"/&gt;
-
-    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
-
-    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
-        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
-        &lt;property name="interceptorNames"&gt;
-            &lt;list&gt;
-                &lt;value&gt;myAfterAdvice&lt;/value&gt;
-            &lt;/list&gt;
-        &lt;/property&gt;
-        &lt;property name="target" ref="myLogicClass"/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;
-</code></pre>
-
-<p>It is same with last spring config file of <code>Before After</code>. We just use <em>MyAfterAdvice</em> to instead of <em>MyBeforeAdvice</em>.</p>
-
-<p>To make this application run, we should read spring config file.</p>
-
-<pre><code class="java">package spring.test.aop;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-public class App {
-
-    private static ApplicationContext applicationContext;
-
-    public static void main(String[] args) {
-        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
-        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
-
-        myLogicInterface.add(10, 20);
-        myLogicInterface.subtract(10, 5);
-    }
-
-}
-</code></pre>
-
-<p>The result of the application executioin.</p>
-
-<pre><code>The result from method add(10, 20) is: 30
-The result from method subtract(10, 5) is: 5
-</code></pre>
 ]]></content>
   </entry>
   
