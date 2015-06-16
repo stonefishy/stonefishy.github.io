@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-12T18:35:08+08:00</updated>
+  <updated>2015-06-16T17:43:59+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,306 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - XML Schema]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema/"/>
+    <updated>2015-06-14T15:48:55+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema</id>
+    <content type="html"><![CDATA[<p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
+ - <em>aspectjrt.jar</em> <br/>
+ - <em>aspectjweaver.jar</em> <br/>
+ - <em>aopalliance.jar</em></p>
+
+<!-- more -->
+
+
+<p>Let&rsquo;s see our pom.xml
+<code>xml pom.xml
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;Spring-AOP-XML-Schema&lt;/groupId&gt;
+    &lt;artifactId&gt;Spring-AOP-XML-Schema&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;build&gt;
+        &lt;sourceDirectory&gt;src&lt;/sourceDirectory&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.1&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;source&gt;1.7&lt;/source&gt;
+                    &lt;target&gt;1.7&lt;/target&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+            &lt;version&gt;1.8.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;
+            &lt;version&gt;1.8.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;aopalliance&lt;/groupId&gt;
+            &lt;artifactId&gt;aopalliance&lt;/artifactId&gt;
+            &lt;version&gt;1.0&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></p>
+
+<p>Okay, so we start to config the AOP with xml schema.</p>
+
+<ol>
+<li>Declaring Aspect:</li>
+</ol>
+
+
+<pre><code class="xml">&lt;aop:config&gt;
+    &lt;aop:aspect id="logging" ref="myLogging"&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+</code></pre>
+
+<p>Create our service bean called <em>myLogging</em>. this service should be injected before or after in the logic method. And use <code>&lt;aop:aspect&gt;</code> to reference it.</p>
+
+<ol>
+<li>Declaring Pointcut:</li>
+</ol>
+
+
+<pre><code class="xml">&lt;aop:config&gt;
+    &lt;aop:aspect id="logging" ref="myLogging"&gt;
+        &lt;aop:pointcut id="saveDataPointcut" expression="execution(* spring.test.aop.*.saveData(..))" /&gt;
+            &lt;aop:pointcut id="getDataPointcut" expression="execution(* spring.test.aop.*.getData())"/&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+&lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+</code></pre>
+
+<p>Create logic class bean and pointcut with <code>&lt;aop:pointcut&gt;</code> , define the expression matcher to match the methods which will be executed with AOP. To see the expression of pointcut, go to <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html</a>.</p>
+
+<ol>
+<li>Declaring Advice:</li>
+</ol>
+
+
+<pre><code class="xml">&lt;aop:config&gt;
+    &lt;aop:aspect id="logging" ref="myLogging"&gt;
+
+        &lt;aop:pointcut id="saveDataPointcut" expression="execution(* spring.test.aop.*.saveData(..))" /&gt;
+
+        &lt;aop:pointcut id="getDataPointcut" expression="execution(* spring.test.aop.*.getData())"/&gt;
+
+        &lt;aop:before method="beforeSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+        &lt;aop:after method="afterSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+        &lt;aop:before method="beforeGetData" pointcut="execution(* spring.test.aop.MyData.getData())"/&gt;
+
+        &lt;aop:after method="afterGetData" pointcut="execution(* spring.test.aop.*.get*())"/&gt;
+
+        &lt;aop:after-returning method="afterReturningAdvice"
+                pointcut-ref="getDataPointcut" returning="returnValue" /&gt;
+
+        &lt;aop:after-throwing method="throwingAdvice"
+                pointcut="execution(* spring.test.aop.MyData.concatData(String))" throwing="ex" /&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+&lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+</code></pre>
+
+<p>Use <code>&lt;aop:before&gt;</code>, <code>&lt;aop:after&gt;</code>, <code>&lt;aop:after-returning&gt;</code> and <code>&lt;aop:after-throwing&gt;</code> to create each advices. Reference to pointcut bean and appoint which method of service can be injected. Note, for <em>after-returning</em> and <em>after-throwing</em>, we should add attributes <em>returning</em> and <em>throwing</em> to access their variables.</p>
+
+<p>The full configration file is:</p>
+
+<pre><code class="xml springConfig.xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+    &lt;aop:config&gt;
+        &lt;aop:aspect id="logging" ref="myLogging"&gt;
+
+            &lt;aop:pointcut id="saveDataPointcut" expression="execution(* spring.test.aop.*.saveData(..))" /&gt;
+
+            &lt;aop:pointcut id="getDataPointcut" expression="execution(* spring.test.aop.*.getData())"/&gt;
+
+            &lt;aop:before method="beforeSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+            &lt;aop:after method="afterSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+            &lt;aop:before method="beforeGetData" pointcut="execution(* spring.test.aop.MyData.getData())"/&gt;
+
+            &lt;aop:after method="afterGetData" pointcut="execution(* spring.test.aop.*.get*())"/&gt;
+
+            &lt;aop:after-returning method="afterReturningAdvice"
+                pointcut-ref="getDataPointcut" returning="returnValue" /&gt;
+
+            &lt;aop:after-throwing method="throwingAdvice"
+                pointcut="execution(* spring.test.aop.MyData.concatData(String))" throwing="ex" /&gt;
+
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+
+    &lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+    &lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>From now, the AOP configration completed. Let&rsquo;s see our Logging service and Logic class.</p>
+
+<pre><code class="java MyLogging.java">package spring.test.aop;
+
+public class MyLogging {
+
+    public void beforeSaveData() {
+        System.out.println("The Data is going to be saved");
+    }
+
+    public void afterSaveData() {
+        System.out.println("The Data has been saved");
+    }
+
+    public void beforeGetData() {
+        System.out.println("Ready to get the data");
+    }
+
+    public void afterGetData() {
+        System.out.println("The data has been got");
+    }
+
+    public void afterReturningAdvice(Object returnValue) {
+        System.out.println(String.format(
+                "The return value is: %s ", returnValue.toString()));
+    }
+
+    public void throwingAdvice(NullPointerException ex) {
+        System.out.println(String.format(
+                "Throw exception is: %s", ex.getMessage()));
+    }
+
+}
+</code></pre>
+
+<p>In our Logging service, the <em>afterReturningAdvice</em> and <em>throwingAdvice</em> methods should take <em>returnValue</em> which is Object type and Exception type <em>ex</em> paramters.</p>
+
+<pre><code class="java MyData.java">package spring.test.aop;
+
+public class MyData {
+    public String data;
+
+    public void saveData(String data) {
+        System.out.println("Saving the data: " + data);
+        this.data = data;
+    }
+
+    public String getData() {
+        System.out.println("Get the data: " + this.data);
+        return this.data;
+    }
+
+    public void concatData(String data) {
+        this.data.concat(data);
+    }
+}
+</code></pre>
+
+<p>We use the different pointcut to decide which service method can be injected which logic method.</p>
+
+<p>Finally, let&rsquo;s get our main class:</p>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext context;
+
+    public static void main(String[] args) {
+        context = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyData myData = (MyData) context.getBean("myData");
+
+        myData.saveData("This is my data");
+
+        System.out.println("-----------------");
+        myData.getData();
+    }
+
+}
+</code></pre>
+
+<p>See the output of application:</p>
+
+<pre><code>he Data is going to be saved
+Saving the data: This is my data
+The Data has been saved
+-----------------
+Ready to get the data
+Get the data: This is my data
+The return value is: This is my data 
+The data has been got
+-----------------
+Throw exception is: null
+Exception in thread "main" java.lang.NullPointerException
+at java.lang.String.concat(String.java:1970)
+at spring.test.aop.MyData.concatData(MyData.java:17)
+at spring.test.aop.MyData$$FastClassBySpringCGLIB$$731fbdfd.invoke(&lt;generated&gt;)
+at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:717)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:58)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:653)
+at spring.test.aop.MyData$$EnhancerBySpringCGLIB$$5a76fbda.concatData(&lt;generated&gt;)
+at spring.test.aop.App.main(App.java:21)
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Dynamic Pointcut]]></title>
@@ -505,171 +805,6 @@ This is from testLogic
 
 
 <p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Throws Advice]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice/"/>
-    <updated>2015-06-08T14:39:43+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/08/spring-aop-throws-advice</id>
-    <content type="html"><![CDATA[<p>In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called <code>ThrowsAdvice</code>.</p>
-
-<p><code>ThrowsAdvice</code> is provided by <em>org.springframework.aop.*</em> package. But it has not any method we need to override.</p>
-
-<!-- more -->
-
-
-<p></p>
-
-<p>While creating a ThrowsAdvice class in spring AOP, we should implement our services in a method called <code>afterThrowing()</code> with 1 or 4 parameter(s). In fact, this method not given in <code>ThrowsAdvice</code> interface, but we should implement our services in afterThrowing() method only because when ever an Exception is occurred in the business logic then the IOC container internally calls afterThrowing() method to apply the services.</p>
-
-<p>Let&rsquo;s see the <code>afterThrowing()</code> method.</p>
-
-<pre><code class="java ">package spring.test.aop;
-
-import java.lang.reflect.Method;
-
-import org.springframework.aop.ThrowsAdvice;
-
-public class MyThrowsAdvice implements ThrowsAdvice {
-
-    // just exception
-    public void afterThrowing(Exception e) {
-
-    }
-
-    // specific null pointer exception
-    public void afterThrowing(NullPointerException e) {
-
-    }
-
-    // with 4 parameters
-    public void afterThrowing(Method method, Object[] args, Object target, Exception e) {
-
-    }
-}
-</code></pre>
-
-<p>If we write multiple afterThrowing methods in a class, then the <code>IOC</code> container will give the preference as below:</p>
-
-<p>Specific exception > 4 parameters > just exception.</p>
-
-<p>Let&rsquo;s take a practice.</p>
-
-<pre><code class="java MyLogicInterface.java">package spring.test.aop;
-
-public interface MyLogicInterface {
-    void divide(int a, int b);
-}
-</code></pre>
-
-<pre><code class="java MyLogicClass.java">package spring.test.aop;
-
-public class MyLogicClass implements MyLogicInterface {
-
-    @Override
-    public void divide(int a, int b) {
-        System.out.println(String.format("%s divide %s is %s\n", a, b, a / b));
-    }
-
-}
-</code></pre>
-
-<p>In our logic class. We print the message about one param divided by another one.</p>
-
-<pre><code class="java MyThrowsAdvice.java">package spring.test.aop;
-
-import java.lang.reflect.Method;
-
-import org.springframework.aop.ThrowsAdvice;
-
-public class MyThrowsAdvice implements ThrowsAdvice {
-
-    // just exception
-    public void afterThrowing(Exception e) {
-        System.out.println("Exception: " + e.getMessage());
-    }
-
-    // specific exception
-    public void afterThrowing(ArithmeticException e) {
-        System.out.println("Specific ArithmeticException: " + e.getMessage());
-    }
-
-    // with 4 parameters
-    public void afterThrowing(Method method, Object[] args, Object target, Exception e) {
-        System.out.println("With 4 parameters exception: " + e.getMessage());
-    }
-}
-</code></pre>
-
-<p>There have three implementations of afterThrowing method. And also we can add our handle exception logic in them.</p>
-
-<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
-            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
-
-&lt;beans&gt;
-    &lt;bean id="myThrowsAdvice" class="spring.test.aop.MyThrowsAdvice"/&gt;
-
-    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
-
-    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
-        &lt;property name="proxyInterfaces" value="spring.test.aop.MyLogicInterface"/&gt;
-        &lt;property name="interceptorNames"&gt;
-            &lt;list&gt;
-                &lt;value&gt;myThrowsAdvice&lt;/value&gt;
-            &lt;/list&gt;
-        &lt;/property&gt;
-        &lt;property name="target" ref="myLogicClass"/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;
-</code></pre>
-
-<pre><code class="java App.java">package spring.test.aop;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-public class App {
-
-    private static ApplicationContext applicationContext;
-
-    public static void main(String[] args) {
-        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
-        MyLogicInterface myLogicInterface = (MyLogicInterface)applicationContext.getBean("proxyFactoryBean");
-
-        myLogicInterface.divide(10, 5);
-
-        myLogicInterface.divide(10, 0);
-    }
-
-}
-</code></pre>
-
-<p>In our client, we can see the divide method is called twice. The First one will not throw exception, but second will throw ArithmeticException.</p>
-
-<p>Let&rsquo;s see the result of execution:</p>
-
-<pre><code>10 divide 5 is 2
-
-Exception in thread "main" Specific ArithmeticException: / by zero
-</code></pre>
-
-<p>We can see the specific ArithmeticException is executed. Okay, let us remove the specific exception method and run it again.</p>
-
-<pre><code>10 divide 5 is 2
-
-With 4 parameters exception: / by zero
-</code></pre>
-
-<p>The afterThrowing method with 4 parameters has been executed. Keep remove this method and run it.</p>
-
-<pre><code>10 divide 5 is 2
-
-Exception: / by zero
-</code></pre>
-
-<p>So there is only one afterThrowing method is executed when there have multiple implementation.</p>
 ]]></content>
   </entry>
   
