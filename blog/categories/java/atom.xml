@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-16T17:43:59+08:00</updated>
+  <updated>2015-06-26T17:17:03+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,263 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - @AspectJ Annotation]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation/"/>
+    <updated>2015-06-16T17:46:08+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation</id>
+    <content type="html"><![CDATA[<p>In this article, we introduce how to use <code>AOP</code> with the <code>@AspectJ</code> Annotation. If we want to use this Annotation. we should include below code in the XML schema-based configuration file.</p>
+
+<pre><code class="xml"> &lt;aop:aspectj-autoproxy/&gt; 
+</code></pre>
+
+<p>And also you need to add these libraries to your project, <em>aspectjrt.jar</em>, <em>aspectjweaver.jar</em>, <em>aspectj.jar</em> and <em>aopalliance.jar</em>.</p>
+
+<!-- more -->
+
+
+<h4>Declare Aspect</h4>
+
+<p>Using <code>@Aspect</code> annotation to the class which you want to appoint it as an <code>Aspect</code>.</p>
+
+<pre><code class="java">@Aspect
+public class MyLogging {
+    // some codes in here
+}
+</code></pre>
+
+<h4>Declare Pointcut</h4>
+
+<p>Declaring pointcut in your aspect module with <code>@Pointcut</code> annotation.
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Aspect</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogging</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@Pointcut</span><span class="o">(</span><span class="s">&quot;execution(* spring.test.aop.MyData.saveData(..))&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">saveDataPointcut</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure>
+In above codes, the pointcut is only work for <em>saveData</em> method of <em>MyData</em> class in the <em>spring.test.aop</em> package. To see the regular expression, go to <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html#aop-pointcuts-examples">here</a></p>
+
+<h4>Delcare Advice</h4>
+
+<p>We can declare more types of advice using specific annotation in the aspect module, like <code>@Before</code>, <code>@After</code>, <code>@AfterReturning</code>, <code>@AfterThrowing</code>, <code>@Around</code>. Let&rsquo;s see the codes directly.</p>
+
+<pre><code class="java ">@Aspect
+public class MyLogging {
+
+    @Pointcut("execution(* spring.test.aop.MyData.saveData(..))")
+    private void saveDataPointcut() {
+
+    }
+
+    @Before("saveDataPointcut()")
+    public void beforeSaveData() {
+        System.out.println("The Data is going to be saved");
+    }
+
+    @After("saveDataPointcut()")
+    public void afterSaveData() {
+        System.out.println("The Data has been saved");
+    }
+
+    @Before("execution(* spring.test.aop.MyData.getData())")
+    public void beforeGetData() {
+        System.out.println("Ready to get the data");
+    }
+
+    @After("execution(* spring.test.aop.*.getData())")
+    public void afterGetData() {
+        System.out.println("The data has been got");
+    }
+
+    @AfterReturning(pointcut = "execution(* spring.test.aop.MyData.getData())", returning = "returnValue")
+    public void afterReturningAdvice(Object returnValue) {
+        System.out.println(String.format("The return value is: %s ",
+                returnValue.toString()));
+    }
+
+    @AfterThrowing(pointcut = "execution(* spring.test.aop.*.concatData(..))", throwing = "ex")
+    public void throwingAdvice(NullPointerException ex) {
+        System.out.println(String.format("Throw exception is: %s",
+                ex.getMessage()));
+    }
+
+    @Around("saveDataPointcut()")
+    public void aroundAdvice(ProceedingJoinPoint point) throws Throwable {
+        System.out.println("Saving Data....");
+
+        point.proceed();
+
+        System.out.println("Saved Data!");
+    }
+
+}
+</code></pre>
+
+<p>You can specify the pointcut name or pointcut expression to advice. whatever you want. One important thing is you must let the advice know which pointcut works for.</p>
+
+<h4>Simple Instance</h4>
+
+<pre><code class="java MyData.java">package spring.test.aop;
+
+public class MyData {
+    public String data;
+
+    public void saveData(String data) {
+        System.out.println("Saving the data: " + data);
+        this.data = data;
+    }
+
+    public String getData() {
+        System.out.println("Get the data: " + this.data);
+        return this.data;
+    }
+
+    public void concatData(String data) {
+        this.data.concat(data);
+    }
+}
+</code></pre>
+
+<pre><code class="java MyLogging.java">package spring.test.aop;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+
+@Aspect
+public class MyLogging {
+
+    @Pointcut("execution(* spring.test.aop.MyData.saveData(..))")
+    private void saveDataPointcut() {
+
+    }
+
+    @Before("saveDataPointcut()")
+    public void beforeSaveData() {
+        System.out.println("The Data is going to be saved");
+    }
+
+    @After("saveDataPointcut()")
+    public void afterSaveData() {
+        System.out.println("The Data has been saved");
+    }
+
+    @Before("execution(* spring.test.aop.MyData.getData())")
+    public void beforeGetData() {
+        System.out.println("Ready to get the data");
+    }
+
+    @After("execution(* spring.test.aop.*.getData())")
+    public void afterGetData() {
+        System.out.println("The data has been got");
+    }
+
+    @AfterReturning(pointcut = "execution(* spring.test.aop.MyData.getData())", returning = "returnValue")
+    public void afterReturningAdvice(Object returnValue) {
+        System.out.println(String.format("The return value is: %s ",
+                returnValue.toString()));
+    }
+
+    @AfterThrowing(pointcut = "execution(* spring.test.aop.*.concatData(..))", throwing = "ex")
+    public void throwingAdvice(NullPointerException ex) {
+        System.out.println(String.format("Throw exception is: %s",
+                ex.getMessage()));
+    }
+
+    @Around("saveDataPointcut()")
+    public void aroundAdvice(ProceedingJoinPoint point) throws Throwable {
+        System.out.println("Saving Data....");
+
+        point.proceed();
+
+        System.out.println("Saved Data!");
+    }
+
+}
+</code></pre>
+
+<pre><code class="xml springConfig.xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+    &lt;aop:aspectj-autoproxy/&gt;
+
+    &lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+    &lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext context;
+
+    public static void main(String[] args) {
+        context = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyData myData = (MyData) context.getBean("myData");
+
+        myData.saveData("35");
+
+        System.out.println("-----------------");
+        myData.getData();
+
+        System.out.println("-----------------");
+        myData.concatData(null);
+    }
+
+}
+</code></pre>
+
+<p>Okay, run above simple instance. the output is below:</p>
+
+<pre><code>Saving Data....
+The Data is going to be saved
+Saving the data: 35
+Saved Data!
+The Data has been saved
+-----------------
+Ready to get the data
+Get the data: 35
+The data has been got
+The return value is: 35 
+-----------------
+Throw exception is: null
+Exception in thread "main" java.lang.NullPointerException
+...
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - XML Schema]]></title>
@@ -785,26 +1042,6 @@ This is from testLogic
 <p>In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn&rsquo;t check whether the class names are matching or not. If you want to verify the class name, you can implement <code>StaticMethodMatcherPointcut</code> abstract class and override the <code>getClassFilter()</code>, <code>matches()</code> methods.</p>
 
 <p>The dynamic pointcut is almost same with static pointcut, the only difference is that the dynamic pointcut can verify the arguments of the method at runtime, but static pointcut couldn&rsquo;t.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Join Point]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point/"/>
-    <updated>2015-06-09T17:19:23+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point</id>
-    <content type="html"><![CDATA[<p>In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as <code>JoinPoint</code>.</p>
-
-<p>At a join point place services will be injected at run time. And while executing business logic of method, the services can be injected in following 3 join points.</p>
-
-<ul>
-<li>Before business logic of method starts</li>
-<li>After business logic of method complete</li>
-<li>If business logic of method throws exception at run time.</li>
-</ul>
-
-
-<p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
 ]]></content>
   </entry>
   
