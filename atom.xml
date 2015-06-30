@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-06-26T17:17:03+08:00</updated>
+  <updated>2015-06-30T17:29:00+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,122 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Implicit Submission of Form When Pressing Enter Key]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
+    <updated>2015-06-30T15:08:03+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
+    <content type="html"><![CDATA[<p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
+
+<p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
+
+<!-- more -->
+
+
+<h4>Implicit submission situation 1</h4>
+
+<p>The form will be submitted automatically when there is only one input element in the form and pressing the enter key in the input element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/abc.txt&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The form will be submitted and get the data from <em>abc.txt</em> file when we press the enter key in the input element.</p>
+
+<p>But if the form has multiple input elements, the form can not be submitted automatically. like below codes.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/abc.txt&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>Age:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;age&quot;</span> <span class="na">name=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Implicit submission situation 2</h4>
+
+<p>For multiple input elements in the form situation, the form can not be submitted automatically. So how to make it implicit submission. This is second situation we are introducing.</p>
+
+<p>If the form has <em>submit</em> type element(input, button), the form will be submitted when pressing the enter key in the input element regardless of how many input elements in this form.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/abc.txt&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>Age:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;age&quot;</span> <span class="na">name=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you need to run some JavaScript before the form is submitted (validation, data manipulation, etc), do it in a <code>submit</code> event handler on the form, not a <code>click</code> handler on a button.</p>
+
+<h4>How to suppress it</h4>
+
+<p>The solution is very simple, just prevent the event trigger when pressing the enter key. So we can deal with it in the <code>keypress</code> event handler.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/abc.txt&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>Age:<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;age&quot;</span> <span class="na">name=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'>  <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">age</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keypress&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">13</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>  <span class="p">}());</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note, the code of enter key is 13. Using <code>event.preventDefault()</code> to stop the form submission when the keycode is 13. And for above codes, we only suppress the age input element, so when pressing enter key in the name input element, the form still is submitted.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - @AspectJ Annotation]]></title>
@@ -4148,103 +4264,6 @@ src:        <strong>source object(s)</strong></p>
 
 
 <p>Look, it&rsquo;s very easy to access database with spring framework.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Give Me a Cup of Coffeescript]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/03/19/give-me-a-cup-of-coffeescript/"/>
-    <updated>2015-03-19T15:47:18+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/03/19/give-me-a-cup-of-coffeescript</id>
-    <content type="html"><![CDATA[<p><img src="http://stonefishy.github.io/assets/images/coffee-script-logo.png" width="200" height="100"> is programming language, which is built on top of <code>JavaScript</code>. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes <code>Python</code> or <code>Ruby</code>.</p>
-
-<p>Actually, The <code>CoffeeScript</code> is just a JavaScript. So you can use any exsiting JavaScript library seamlessly from CoffeeScript. And both <code>client-side</code> and <code>server-side</code> can be written by <code>CoffeeScript</code>. So CoffeeScript can write entire web application completely, not like JavaScript only write client-side.</p>
-
-<!-- more -->
-
-
-<p></p>
-
-<p>The CoffeeScript is a <code>Node.js</code> package, so you need to install it with <code>Node Package Manager</code>. There assume you have installed node.js. You can watch <a href="https://nodejs.org/">here</a> to see how to install node.js if you dont&#8217; know it. Putting below commands to install CoffeeScript:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">coffee</span><span class="o">-</span><span class="nx">script</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>CoffeeScript supports many commands to let you build your application. You just need to input below command line:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">coffee</span> <span class="o">-</span><span class="nx">help</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>It will print awesome useful content:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Usage</span><span class="o">:</span> <span class="nx">coffee</span> <span class="p">[</span><span class="nx">options</span><span class="p">]</span> <span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">script</span><span class="p">.</span><span class="nx">coffee</span> <span class="o">--</span> <span class="p">[</span><span class="nx">args</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">If</span> <span class="nx">called</span> <span class="nx">without</span> <span class="nx">options</span><span class="p">,</span> <span class="err">`</span><span class="nx">coffee</span><span class="err">`</span> <span class="nx">will</span> <span class="nx">run</span> <span class="nx">your</span> <span class="nx">script</span><span class="p">.</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">-</span><span class="nx">b</span><span class="p">,</span> <span class="o">--</span><span class="nx">bare</span>         <span class="nx">compile</span> <span class="nx">without</span> <span class="nx">a</span> <span class="nx">top</span><span class="o">-</span><span class="nx">level</span> <span class="kd">function</span> <span class="nx">wrapper</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">c</span><span class="p">,</span> <span class="o">--</span><span class="nx">compile</span>      <span class="nx">compile</span> <span class="nx">to</span> <span class="nx">JavaScript</span> <span class="nx">and</span> <span class="nx">save</span> <span class="nx">as</span> <span class="p">.</span><span class="nx">js</span> <span class="nx">files</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">e</span><span class="p">,</span> <span class="o">--</span><span class="nb">eval</span>         <span class="nx">pass</span> <span class="nx">a</span> <span class="nx">string</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">command</span> <span class="nx">line</span> <span class="nx">as</span> <span class="nx">input</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">h</span><span class="p">,</span> <span class="o">--</span><span class="nx">help</span>         <span class="nx">display</span> <span class="k">this</span> <span class="nx">help</span> <span class="nx">message</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">i</span><span class="p">,</span> <span class="o">--</span><span class="nx">interactive</span>  <span class="nx">run</span> <span class="nx">an</span> <span class="nx">interactive</span> <span class="nx">CoffeeScript</span> <span class="nx">REPL</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">j</span><span class="p">,</span> <span class="o">--</span><span class="nx">join</span>         <span class="nx">concatenate</span> <span class="nx">the</span> <span class="nx">source</span> <span class="nx">CoffeeScript</span> <span class="nx">before</span> <span class="nx">compiling</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">m</span><span class="p">,</span> <span class="o">--</span><span class="nx">map</span>          <span class="nx">generate</span> <span class="nx">source</span> <span class="nx">map</span> <span class="nx">and</span> <span class="nx">save</span> <span class="nx">as</span> <span class="p">.</span><span class="nx">js</span><span class="p">.</span><span class="nx">map</span> <span class="nx">files</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">n</span><span class="p">,</span> <span class="o">--</span><span class="nx">nodes</span>        <span class="nx">print</span> <span class="nx">out</span> <span class="nx">the</span> <span class="nx">parse</span> <span class="nx">tree</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nx">parser</span> <span class="nx">produces</span>
-</span><span class='line'>      <span class="o">--</span><span class="nx">nodejs</span>       <span class="nx">pass</span> <span class="nx">options</span> <span class="nx">directly</span> <span class="nx">to</span> <span class="nx">the</span> <span class="s2">&quot;node&quot;</span> <span class="nx">binary</span>
-</span><span class='line'>      <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">header</span>    <span class="nx">suppress</span> <span class="nx">the</span> <span class="s2">&quot;Generated by&quot;</span> <span class="nx">header</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">o</span><span class="p">,</span> <span class="o">--</span><span class="nx">output</span>       <span class="nx">set</span> <span class="nx">the</span> <span class="nx">output</span> <span class="nx">directory</span> <span class="k">for</span> <span class="nx">compiled</span> <span class="nx">JavaScript</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">p</span><span class="p">,</span> <span class="o">--</span><span class="nx">print</span>        <span class="nx">print</span> <span class="nx">out</span> <span class="nx">the</span> <span class="nx">compiled</span> <span class="nx">JavaScript</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">s</span><span class="p">,</span> <span class="o">--</span><span class="nx">stdio</span>        <span class="nx">listen</span> <span class="k">for</span> <span class="nx">and</span> <span class="nx">compile</span> <span class="nx">scripts</span> <span class="nx">over</span> <span class="nx">stdio</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">l</span><span class="p">,</span> <span class="o">--</span><span class="nx">literate</span>     <span class="nx">treat</span> <span class="nx">stdio</span> <span class="nx">as</span> <span class="nx">literate</span> <span class="nx">style</span> <span class="nx">coffee</span><span class="o">-</span><span class="nx">script</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">t</span><span class="p">,</span> <span class="o">--</span><span class="nx">tokens</span>       <span class="nx">print</span> <span class="nx">out</span> <span class="nx">the</span> <span class="nx">tokens</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nx">lexer</span><span class="o">/</span><span class="nx">rewriter</span> <span class="nx">produce</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">v</span><span class="p">,</span> <span class="o">--</span><span class="nx">version</span>      <span class="nx">display</span> <span class="nx">the</span> <span class="nx">version</span> <span class="nx">number</span>
-</span><span class='line'>  <span class="o">-</span><span class="nx">w</span><span class="p">,</span> <span class="o">--</span><span class="nx">watch</span>        <span class="nx">watch</span> <span class="nx">scripts</span> <span class="k">for</span> <span class="nx">changes</span> <span class="nx">and</span> <span class="nx">rerun</span> <span class="nx">commands</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>Let&rsquo;s give a example, how to use CoffeeScript to solve a mathematics problem. Here we will solve the first mathematical problem of <code>Project Eluar</code>. The problem is below:</p>
-
-<blockquote><p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
-Find the sum of all the multiples of 3 or 5 below 1000.</p></blockquote>
-
-<p>And now we solve this problem with CoffeeScript elegantly:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="p">([</span><span class="mi">1</span><span class="p">..</span><span class="mi">999</span><span class="p">].</span><span class="nx">filter</span> <span class="nf">(x) -&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">is</span> <span class="mi">0</span> <span class="o">or</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">is</span> <span class="mi">0</span><span class="p">).</span><span class="nx">reduce</span> <span class="nf">(x, y) -&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You see, just one code line. It&rsquo;s very concise and elegant. Not like JavaScript need to defined many variables and functions to solve it.</p>
-
-<p>Cheers,  I think you will love it.</p>
 ]]></content>
   </entry>
   
