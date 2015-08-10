@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-07-31T23:58:55+08:00</updated>
+  <updated>2015-08-10T11:01:27+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,319 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Get or Post Data via HttpClient With Proxy]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/"/>
+    <updated>2015-08-06T22:22:33+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy</id>
+    <content type="html"><![CDATA[<p>The <strong>HttpClient</strong> is library which is support by apache. It can post or get data from specific  webservice and represents only the most basic contract for HTTP request execution.</p>
+
+<p>We explain how to use this library with a example. In this example, we are going to use it to access the google tranlated API. Translating some text from specific language to other language. And this example using the Spring framework and Maven tool to build.</p>
+
+<!-- more -->
+
+
+<p>First, let us create our properties file which configures the google api url and some httpclient related stuff. Put it in our resource directory.</p>
+
+<pre><code class="java">google.translation.api=https://www.googleapis.com/language/translate/v2
+proxy.host=
+proxy.port=
+proxy.user=
+proxy.password=
+</code></pre>
+
+<p>And then we create the util class which access the properties file.</p>
+
+<pre><code class="java ">package org.httpclient.tutorial.utils;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.Properties;
+
+/**
+ * Created by yushi on 8/7/15.
+ */
+@Component
+public final class ConstantUtil {
+
+    private static final String PROXY_HOST = "proxy.host";
+    private static final String PROXY_PORT = "proxy.port";
+    private static final String PROXY_USER = "proxy.user";
+    private static final String PROXY_PASSWORD = "proxy.password";
+    private static final String GOOGLE_TRANSLATION_API ="google.translation.api";
+
+    private Properties configurationProperties;
+
+
+    @Autowired
+    public ConstantUtil(Properties configurationProperties) {
+        this.configurationProperties = configurationProperties;
+    }
+
+    public String getProxyHost() {
+        return this.configurationProperties.getProperty(PROXY_HOST);
+    }
+
+    public int getProxyPort() {
+        return Integer.parseInt(this.configurationProperties.getProperty(PROXY_PORT));
+    }
+
+    public String getProxyUser() {
+        return this.configurationProperties.getProperty(PROXY_USER);
+    }
+
+    public String getProxyPassword() {
+        return this.configurationProperties.getProperty(PROXY_PASSWORD);
+    }
+
+    public String getGoogleTranslationApi() {
+        return  this.configurationProperties.getProperty(GOOGLE_TRANSLATION_API);
+    }
+}
+</code></pre>
+
+<p>So our configuration is completed. We also will create the HttpClient which can be used to access the webservice.</p>
+
+<pre><code class="java">package org.httpclient.tutorial;
+
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.Credentials;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.httpclient.tutorial.utils.ConstantUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ * Created by yushi on 8/7/15.
+ */
+@Component
+public final class HttpClientFactory {
+
+    private ConstantUtil constantUtil;
+
+    @Autowired
+    public HttpClientFactory(ConstantUtil constantUtil) {
+
+        this.constantUtil = constantUtil;
+    }
+
+    public CloseableHttpClient createHttpClient() {
+        return HttpClients.createDefault();
+    }
+
+    public HttpClientBuilder createHttpClientWithProxy() {
+
+        HttpHost proxy = new HttpHost(constantUtil.getProxyHost(), constantUtil.getProxyPort());
+        Credentials credentials = new UsernamePasswordCredentials(constantUtil.getProxyUser(), constantUtil.getProxyPassword());
+        AuthScope authScope = new AuthScope(constantUtil.getProxyHost(), constantUtil.getProxyPort());
+        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(authScope, credentials);
+
+        return HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider).setProxy(proxy);
+    }
+}
+</code></pre>
+
+<p>In above codes, there are two methods, one is for default httpclient which is not need the proxy, another is httpclient with proxy.</p>
+
+<p>So far, we have our own httpclient. let&rsquo;s create our own translation component with httpclient.</p>
+
+<pre><code class="java">package org.httpclient.tutorial;
+
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.httpclient.tutorial.utils.ConstantUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ * Created by yushi on 8/7/15.
+ */
+@Component
+public final class TranslateCore {
+    private static final String KEY = "AIzaSyAFaWbO3r-9FNeHU6Obj5tm6wWSnIAlBkg";
+
+    private HttpClientFactory httpClientFactory;
+    private ConstantUtil constantUtil;
+
+    @Autowired
+    public TranslateCore(HttpClientFactory httpClientFactory, ConstantUtil constantUtil) {
+        this.httpClientFactory = httpClientFactory;
+        this.constantUtil = constantUtil;
+    }
+
+    public String translateContext(String sourceLanguage, String targetLanguage, String context) {
+        String url = String.format("%s?key=%s&amp;source=%s&amp;target=%s&amp;q=%s&amp;", constantUtil.getGoogleTranslationApi(),
+                KEY, sourceLanguage, targetLanguage, context);
+
+        HttpGet httpGet = new HttpGet(url);
+        CloseableHttpClient httpClient = httpClientFactory.createHttpClient();
+
+        try {
+            CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+            String result = EntityUtils.toString(httpResponse.getEntity());
+
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+}
+</code></pre>
+
+<p>You will notice that KEY constant variable, which is support by google developer, you need to register google developer and then get you developer key.</p>
+
+<p>Take your feet to <a href="https://cloud.google.com/translate/v2/using_rest?hl=en">here</a>to see the google translate API usage.</p>
+
+<p>Okay, then creating translation interface:</p>
+
+<pre><code class="java">package org.httpclient.tutorial;
+
+/**
+ * Created by yushi on 8/7/15.
+ */
+public interface ITranslation {
+    String translateToJapanese(String context);
+
+    String translateToChinese(String context);
+
+    String translate(String language, String context);
+}
+</code></pre>
+
+<p>Let&rsquo;s implement our translation interfer, in this class, we just translat english to other language.</p>
+
+<pre><code class="java ">package org.httpclient.tutorial;
+
+/**
+ * Created by yushi on 8/7/15.
+ */
+
+public class Translation implements ITranslation {
+    public static final String ZH = "zh-CN";
+    public static final String EN = "en";
+    public static final String JA = "ja";
+
+    private TranslateCore translateCore;
+
+    public Translation(TranslateCore translateCore) {
+        this.translateCore = translateCore;
+    }
+
+    @Override
+    public String translateToJapanese(String context) {
+        return translateCore.translateContext(EN, JA, context);
+    }
+
+    @Override
+    public String translateToChinese(String context) {
+        return translateCore.translateContext(EN, ZH, context);
+    }
+
+    @Override
+    public String translate(String language, String context) {
+        return translateCore.translateContext(EN, language, context);
+    }
+}
+</code></pre>
+
+<p>To run our application.
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">httpclient</span><span class="o">.</span><span class="na">tutorial</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;*</span>
+</span><span class='line'> <span class="o">*</span> <span class="n">Created</span> <span class="n">by</span> <span class="n">yushi</span> <span class="n">on</span> <span class="mi">8</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">15</span><span class="o">.</span>
+</span><span class='line'> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;application-context.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">ITranslation</span> <span class="n">translation</span> <span class="o">=</span> <span class="o">(</span><span class="n">ITranslation</span><span class="o">)</span><span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;translation&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">translation</span><span class="o">.</span><span class="na">translateToChinese</span><span class="o">(</span><span class="s">&quot;Hello&quot;</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">translation</span><span class="o">.</span><span class="na">translateToJapanese</span><span class="o">(</span><span class="s">&quot;Hello&quot;</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure>
+We using the spring framework to create bean and run it. The spring configuration xml file is below.</p>
+
+<pre><code class="java ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+
+    &lt;util:properties id="configurationProperties" location="classpath:configuration.properties"/&gt;
+    &lt;context:component-scan base-package="org.httpclient.tutorial"/&gt;
+
+    &lt;bean id="translation" class="org.httpclient.tutorial.Translation"&gt;
+        &lt;constructor-arg ref="translateCore"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>The output is below:</p>
+
+<pre><code>{
+    "error": {
+    "errors": [
+    {
+        "domain": "usageLimits",
+        "reason": "dailyLimitExceeded",
+        "message": "Daily Limit Exceeded"
+    }
+    ],
+    "code": 403,
+    "message": "Daily Limit Exceeded"
+    }
+    }
+</code></pre>
+
+<p>This indicate our access the google translate API with httpclient is successful. But why response these text. Because you need to price to google and then are able to use this api.
+To see the pricing of google translate API, visit <a href="https://cloud.google.com/translate/v2/pricing">here</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - @AspectJ Annotation]]></title>
@@ -1010,38 +1323,6 @@ This is from testLogic
 </code></pre>
 
 <p>In practice, you can use it to manage DAO layer, where you can declare “.*DAO.*” to intercept all your DAO classes to support transaction.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Pointcut]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut/"/>
-    <updated>2015-06-10T11:19:44+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut</id>
-    <content type="html"><![CDATA[<p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
-
-<!-- more -->
-
-
-<p>There are two types of AOP:</p>
-
-<ul>
-<li>StaticMethodMatcherPointcut</li>
-<li>DynamicMethodMatcherPointcut</li>
-</ul>
-
-
-<p>Pointcut verifys whether a particular method of particular class is eligible for getting the advice or not. Spring AOP has two static pointcut class.</p>
-
-<ul>
-<li>NameMatchMethodPointcut</li>
-<li>RegexpMethodPointcutAdvisor</li>
-</ul>
-
-
-<p>In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn&rsquo;t check whether the class names are matching or not. If you want to verify the class name, you can implement <code>StaticMethodMatcherPointcut</code> abstract class and override the <code>getClassFilter()</code>, <code>matches()</code> methods.</p>
-
-<p>The dynamic pointcut is almost same with static pointcut, the only difference is that the dynamic pointcut can verify the arguments of the method at runtime, but static pointcut couldn&rsquo;t.</p>
 ]]></content>
   </entry>
   
