@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby修炼之道(1) - Stonefishy Blog</title>
+  <meta name="author" content="Yu">
+
+  
+  <meta name="description" content="Ruby是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是红宝石. 特点 脚本语言 即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby修炼之道(1)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-12T16:08:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/assets/images/ruby-logo.png" width="50" height="50"><strong>Ruby</strong>是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是<strong>红宝石</strong>.</p>
+
+<h3>特点</h3>
+
+<p><em>脚本语言</em> <br/>
+即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
+
+<!-- more -->
+
+
+<p><em>完全的面向对象</em><br/>
+对Ruby来说，纯数字都属于对象，可以直接调用其方法。比如下面代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-1.abs   #return 1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是其他面向对象编程语言如C#、Java不具备的。同时Ruby也具备有其他面向对象编程语言的特性，如：继承、Mixin等。</p>
+
+<p><em>跨平台</em> <br/>
+能在类Unix操作系统如：Mac OS X、Linux和windows操作系统上运行。</p>
+
+<h3>安装</h3>
+
+<p>Ruby的安装很简单，以在Mac OS X电脑的安装为例。使用Homebrew包管理器可以得到ruby的最新版本:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install ruby</span></code></pre></td></tr></table></div></figure>
+
+
+<p>安装完后，在输入如下命令查看ruby版本:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -v</span></code></pre></td></tr></table></div></figure>
+
+
+<p>进入<a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby Installation</a>链接可以查看Ruby在其他操作系统上的安装</p>
+
+<h3>HelloWorld</h3>
+
+<p>用ruby编写第一个Hello world程序，只需一行代码，比其他的面向对象语言简单多了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>直接将这行代码写入helloworld.rb文件，然后输入如下指令运行即可看到内容输出在终端控制器上。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ruby</span> <span class="n">helloworld</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>当然如果你想直接和ruby交互的话，也有办法，Ruby提供了和Python类似的交互式操作。在命令行输入<strong>irb</strong>进入交互模式。</p>
+
+<p>ruby也提供了字符的转义功能，比如换行(\n), 制表符(\t)等等。如上面的打印Hello world。</p>
+
+<p><em>注:上面代码中调用print方法的括号可以省略。ruby尽量的简化了开发人员的工作量</em></p>
+
+<h3>puts、print和p的区别</h3>
+
+<p><strong>puts</strong>方法会在每次输出后输出换行符，而<strong>print</strong>则不会。例如以下的输出内容是一致的:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Helle world&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用<strong>p</strong>方法可以将数据按照原始类型输出来，这是<strong>puts</strong>和<strong>print</strong>所不具备的，直接用代码来解释:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;1&quot;</span>   <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">puts</span> <span class="mi">1</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">print</span> <span class="mi">1</span>    <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;1&quot;</span>  <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;1&quot;</span>      <span class="c1">#=&gt; &quot;1&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span>        <span class="c1">#=&gt; 1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所以基于<strong>p</strong>方法的特性，转义字符在其内是不工作的，将会被直接打印出来,如以下代码将会输出&#8221;Hello world\n&#8221;。还有<strong>p</strong>方法也会输出换行符，并且还会将打印的内容按数据类型返回，而其他两种方法只返回<strong>nil</strong>空值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注:在Ruby中，任何函数均有返回值。<strong>nil</strong>空值就是其中一种常见的返回。</em></p>
+
+<p><strong>print</strong>, <strong>puts</strong>和<strong>p</strong>方法均可传入多个参数，调用方式和返回结果如下，可以体会下用法:<br/>
+<em>print方法</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">print</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot; Ruby“</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>Hello Ruby
+</code></pre>
+
+<p><em>puts方法</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot; Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>Hello
+Ruby
+</code></pre>
+
+<p><em>p方法</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot; Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>”Hello"
+"Ruby"
+</code></pre>
+
+<h3>变量</h3>
+
+<p>在ruby中声明变量也很简单，不需要任何如javascript的<em>var</em>等关键字，直接定义赋值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">greet</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>访问变量也简单:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">greet</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">greet</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  <br/>
+以上两种写法均会直接输出Hello world.</p>
+
+<h3>控制语句</h3>
+
+<p><em>if 语句</em></p>
+
+<pre><code>if 条件 then
+    逻辑处理
+end
+</code></pre>
+
+<p><em>if else 语句</em></p>
+
+<pre><code>if 条件 then
+    逻辑处理
+else
+    逻辑处理
+end
+</code></pre>
+
+<p><em>if elsif 语句</em></p>
+
+<pre><code>if 条件 then
+    逻辑处理
+elsif 条件 then
+    逻辑处理
+else
+    逻辑处理
+end
+</code></pre>
+
+<p><em>注:在上面的if各种控制语句中，<strong>then</strong>关键字是可以省略的.</em></p>
+
+<h3>循环语句</h3>
+
+<p><em>while 语句</em></p>
+
+<pre><code>while 条件 do
+    逻辑处理
+end
+</code></pre>
+
+<p><em>times迭代器</em></p>
+
+<p>当循环的次数已经确定时，可直接使用times方法来循环处理我们需要的逻辑
+    I
+    循环次数.times do
+        逻辑处理
+    end</p>
+
+<p><em>注:<strong>times</strong>方法被成为迭代器，除了times方法迭代器，ruby还提供了其他的迭代器，比如<strong>each</strong>方法.</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-12T16:08:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/" title="Previous Post: How to get or post data via HttpClient with proxy">&laquo; How to get or post data via HttpClient with proxy</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Using TSD to Improve Javascript Intellisense of IDE</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Implicit Submission of Form When Pressing Enter Key</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/16/spring-aop-at-aspectj-annotation/">Spring AOP - @AspectJ Annotation</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Yu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

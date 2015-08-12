@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-08-12T20:07:48+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(1)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1/"/>
+    <updated>2015-08-12T16:08:21+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1</id>
+    <content type="html"><![CDATA[<p><img src="/assets/images/ruby-logo.png" width="50" height="50"><strong>Ruby</strong>是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是<strong>红宝石</strong>.</p>
+
+<h3>特点</h3>
+
+<p><em>脚本语言</em> <br/>
+即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
+
+<!-- more -->
+
+
+<p><em>完全的面向对象</em><br/>
+对Ruby来说，纯数字都属于对象，可以直接调用其方法。比如下面代码： <br/>
+<code>
+-1.abs   #return 1
+</code></p>
+
+<p>这是其他面向对象编程语言如C#、Java不具备的。同时Ruby也具备有其他面向对象编程语言的特性，如：继承、Mixin等。</p>
+
+<p><em>跨平台</em> <br/>
+能在类Unix操作系统如：Mac OS X、Linux和windows操作系统上运行。</p>
+
+<h3>安装</h3>
+
+<p>Ruby的安装很简单，以在Mac OS X电脑的安装为例。使用Homebrew包管理器可以得到ruby的最新版本: <br/>
+<code>
+brew install ruby
+</code></p>
+
+<p>安装完后，在输入如下命令查看ruby版本: <br/>
+<code>
+ruby -v
+</code></p>
+
+<p>进入<a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby Installation</a>链接可以查看Ruby在其他操作系统上的安装</p>
+
+<h3>HelloWorld</h3>
+
+<p>用ruby编写第一个Hello world程序，只需一行代码，比其他的面向对象语言简单多了。 <br/>
+<code>ruby
+print("Hello world\n");
+</code></p>
+
+<p>直接将这行代码写入helloworld.rb文件，然后输入如下指令运行即可看到内容输出在终端控制器上。 <br/>
+<code>
+ruby helloworld.rb
+</code></p>
+
+<p>当然如果你想直接和ruby交互的话，也有办法，Ruby提供了和Python类似的交互式操作。在命令行输入<strong>irb</strong>进入交互模式。</p>
+
+<p>ruby也提供了字符的转义功能，比如换行(\n), 制表符(\t)等等。如上面的打印Hello world。</p>
+
+<p><em>注:上面代码中调用print方法的括号可以省略。ruby尽量的简化了开发人员的工作量</em></p>
+
+<h3>puts、print和p的区别</h3>
+
+<p><strong>puts</strong>方法会在每次输出后输出换行符，而<strong>print</strong>则不会。例如以下的输出内容是一致的:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Helle</span> <span class="n">world</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;print &amp;ldquo;Hello world\n&amp;rdquo;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>使用<strong>p</strong>方法可以将数据按照原始类型输出来，这是<strong>puts</strong>和<strong>print</strong>所不具备的，直接用代码来解释:
+<code>ruby
+puts "1"   #=&gt; 1
+puts 1     #=&gt; 1
+print 1    #=&gt; 1
+print "1"  #=&gt; 1
+p "1"      #=&gt; "1"
+p 1        #=&gt; 1
+</code></p>
+
+<p>所以基于<strong>p</strong>方法的特性，转义字符在其内是不工作的，将会被直接打印出来,如以下代码将会输出&#8221;Hello world\n&#8221;。还有<strong>p</strong>方法也会输出换行符，并且还会将打印的内容按数据类型返回，而其他两种方法只返回<strong>nil</strong>空值。
+<code>ruby
+p "Hello world\n"  
+</code></p>
+
+<p><em>注:在Ruby中，任何函数均有返回值。<strong>nil</strong>空值就是其中一种常见的返回。</em></p>
+
+<p><strong>print</strong>, <strong>puts</strong>和<strong>p</strong>方法均可传入多个参数，调用方式和返回结果如下，可以体会下用法:<br/>
+<em>print方法</em>  <br/>
+<code>ruby
+print "Hello", " Ruby“
+</code></p>
+
+<pre><code>Hello Ruby
+</code></pre>
+
+<p><em>puts方法</em> <br/>
+<code>ruby
+puts "Hello", " Ruby"
+</code></p>
+
+<pre><code>Hello
+Ruby
+</code></pre>
+
+<p><em>p方法</em>    <br/>
+<code>ruby
+p "Hello", " Ruby"
+</code></p>
+
+<pre><code>”Hello"
+"Ruby"
+</code></pre>
+
+<h3>变量</h3>
+
+<p>在ruby中声明变量也很简单，不需要任何如javascript的<em>var</em>等关键字，直接定义赋值。</p>
+
+<pre><code class="ruby">greet = "Hello world"
+</code></pre>
+
+<p>访问变量也简单:</p>
+
+<pre><code class="ruby">puts greet
+puts "#{greet}"
+</code></pre>
+
+<p>以上两种写法均会直接输出Hello world.</p>
+
+<h3>控制语句</h3>
+
+<p><em>if 语句</em></p>
+
+<pre><code>if 条件 then
+    逻辑处理
+end
+</code></pre>
+
+<p><em>if else 语句</em></p>
+
+<pre><code>if 条件 then
+    逻辑处理
+else
+    逻辑处理
+end
+</code></pre>
+
+<p><em>if elsif 语句</em></p>
+
+<pre><code>if 条件 then
+    逻辑处理
+elsif 条件 then
+    逻辑处理
+else
+    逻辑处理
+end
+</code></pre>
+
+<p><em>注:在上面的if各种控制语句中，<strong>then</strong>关键字是可以省略的.</em></p>
+
+<h3>循环语句</h3>
+
+<p><em>while 语句</em></p>
+
+<pre><code>while 条件 do
+    逻辑处理
+end
+</code></pre>
+
+<p><em>times迭代器</em></p>
+
+<p>当循环的次数已经确定时，可直接使用times方法来循环处理我们需要的逻辑
+    I
+    循环次数.times do
+        逻辑处理
+    end</p>
+
+<p><em>注:<strong>times</strong>方法被成为迭代器，除了times方法迭代器，ruby还提供了其他的迭代器，比如<strong>each</strong>方法.</em></p>
+]]></content>
+  </entry>
+  
+</feed>

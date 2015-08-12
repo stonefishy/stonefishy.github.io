@@ -9,8 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="In this blog, let us talk about Around Advice. There are some few points about it. Around Advice is combination of Before Advice and After Advice.
-In &hellip;">
+  <meta name="description" content="In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,42 @@ In &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/08/spring-aop-throws-advice/">Spring AOP - Throws Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-08T14:39:43+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:39 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called <code>ThrowsAdvice</code>.</p>
+
+<p><code>ThrowsAdvice</code> is provided by <em>org.springframework.aop.*</em> package. But it has not any method we need to override.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/08/spring-aop-throws-advice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -450,172 +485,6 @@ Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Spa
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/">Sublime Text - Keyboard Shortcuts for Mac</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-16T12:21:06+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:21 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Editor</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress     </th>
-<th> Command                                                                  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + X        </td>
-<td> Cut line                                                                 </td>
-</tr>
-<tr>
-<td> ⌘ + ↩        </td>
-<td> Insert line after                                                        </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + ↩    </td>
-<td> Insert line before                                                       </td>
-</tr>
-<tr>
-<td> ⌘ + ⌃ + ↑    </td>
-<td> Move line/selection up                                                   </td>
-</tr>
-<tr>
-<td> ⌘ + ⌃ + ↓    </td>
-<td> Move line/selection down                                                 </td>
-</tr>
-<tr>
-<td> ⌘ + L        </td>
-<td> Select line - Repeat to select next lines                                </td>
-</tr>
-<tr>
-<td> ⌘ + D        </td>
-<td> Select word - Repeat to select next occurrence                           </td>
-</tr>
-<tr>
-<td> ⌃ + ⌘ + G    </td>
-<td> Select all occurrences of current selection                              </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + ↑    </td>
-<td> Extra cursor on the line above                                           </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + ↓    </td>
-<td> Extra cursor on the line below                                           </td>
-</tr>
-<tr>
-<td> ⌃ + M        </td>
-<td> Jump to closing parentheses Repeat to jump to opening parentheses        </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + M    </td>
-<td> Select all contents of the current parentheses                           </td>
-</tr>
-<tr>
-<td> ⌃ + A        </td>
-<td> Move to beginning of line                                                </td>
-</tr>
-<tr>
-<td> ⌃ + E        </td>
-<td> Move to end of line                                                      </td>
-</tr>
-<tr>
-<td> ⌘ + K, ⌘ + K </td>
-<td> Delete from cursor to end of line                                        </td>
-</tr>
-<tr>
-<td> ⌘ + K + ⌫    </td>
-<td> Delete from cursor to start of line                                      </td>
-</tr>
-<tr>
-<td> ⌘ + ]        </td>
-<td> Indent current line(s)                                                   </td>
-</tr>
-<tr>
-<td> ⌘ + [        </td>
-<td> Un-indent current line(s)                                                </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + D    </td>
-<td> Duplicate line(s)                                                        </td>
-</tr>
-<tr>
-<td> ⌘ + J        </td>
-<td> Join line below to the end of the current line                           </td>
-</tr>
-<tr>
-<td> ⌘ + /        </td>
-<td> Comment/un-comment current line                                          </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + /    </td>
-<td> Block comment current selection                                          </td>
-</tr>
-<tr>
-<td> ⌘ + Y        </td>
-<td> Redo, or repeat last keyboard shortcut command                           </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + V    </td>
-<td> Paste and indent correctly                                               </td>
-</tr>
-<tr>
-<td> ⌃ + Space    </td>
-<td> Select next auto-complete suggestion                                     </td>
-</tr>
-<tr>
-<td> ⌃ + U        </td>
-<td> Soft undo; jumps to your last change before undoing change when repeated </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + Up   </td>
-<td> Column selection up                                                      </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + Down </td>
-<td> Column selection down                                                    </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + W    </td>
-<td> Wrap Selection in html tag                                               </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + K    </td>
-<td> Delete current line of cursor                                            </td>
-</tr>
-</tbody>
-</table>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -642,6 +511,10 @@ Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Spa
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a>
       </li>
     
@@ -655,10 +528,6 @@ Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Spa
     
       <li class="post">
         <a href="/blog/2015/06/16/spring-aop-at-aspectj-annotation/">Spring AOP - @AspectJ Annotation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/14/spring-aop-xml-schema/">Spring AOP - XML Schema</a>
       </li>
     
   </ul>
