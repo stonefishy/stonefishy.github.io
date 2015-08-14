@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-08-12T20:07:48+08:00</updated>
+  <updated>2015-08-14T17:45:23+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,374 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(2)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/13/ru-practice-2/"/>
+    <updated>2015-08-13T13:35:15+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/13/ru-practice-2</id>
+    <content type="html"><![CDATA[<h3>数组</h3>
+
+<p>Ruby中数组的大小是按实际情况自动调整的，即所谓的<strong>动态数组</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;data1&quot;</span><span class="p">,</span> <span class="s2">&quot;data2&quot;</span><span class="o">]</span>   <span class="c1">##定义两个数据的数组</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;data3&quot;</span>           <span class="c1">##新增第三个数据</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="n">rubyArray</span>                  <span class="c1">##打印[&quot;data1&quot;, &quot;data2&quot;, &quot;data3&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby数组还支持多种不同对象的混合保存, 通过<strong>数组.size</strong>可获取数组的大小</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span><span class="o">.</span><span class="n">size</span>     <span class="c1">#=&gt; 5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>遍历数组也很方便，利用each方法，ruby提供了两种书写方式。<em>each方法会返回原数组的值</em></p>
+
+<figure class='code'><figcaption><span>do/end代码块方式</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">##将会打印出:1 data 2 time 3,并且返回mixedArray。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>{}代码块方式</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面两种方式的输出结果和返回值都一样。建议采用第一种，更加符合Ruby的风格。</p>
+
+<p><em>注:通过在终端输入<strong>irb &ndash;simple-promot</strong>，可以简化ruby交互式的提示输入，如上面的Ruby的提示输入符&#8217;>>&lsquo;</em></p>
+
+<h3>散列</h3>
+
+<p>Ruby中的键值(key-value pair)数据结构是用散列(hash)来表示，一般以字符串或者符号(Symbol)来作为键，值来保存对应的对象。</p>
+
+<p><em>符号(symbol)</em>与字符串对象很相似，符号也是对象，一般都作为名称标签来使用。我们可以将符号简单理解为轻量级的字符串。</p>
+
+<p>符号的定义只需在标识符的开头加上&#8217;:&lsquo;即可</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">sym1</span> <span class="o">=</span> <span class="ss">:text</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">sym2</span> <span class="o">=</span> <span class="ss">:&quot;text&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上两行代码都是表示符号&#8221;:foo&#8221;.</p>
+
+<p>使用符号比使用字符串更有效率，而且符号与字符串可以互相任意转换, 用<strong>to_s</strong>和<strong>to_sym</strong>方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">sym</span> <span class="o">=</span> <span class="ss">:text</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="ss">:text</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">sym</span><span class="o">.</span><span class="n">to_s</span>         <span class="c1">##将符号转为话字符串</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;text&quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="s2">&quot;text&quot;</span><span class="o">.</span><span class="n">to_sym</span>    <span class="c1">##将字符串转为符号</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="ss">:text</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如何定义一个散列，定义一个散列有下列两种写法:</p>
+
+<figure class='code'><figcaption><span>散列定义方式一</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">:gender</span> <span class="o">=&gt;</span> <span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="ss">:alias</span> <span class="o">=&gt;</span> <span class="s2">&quot;stonefishy&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">:gender</span><span class="o">=&gt;</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="ss">:alias</span><span class="o">=&gt;</span><span class="s2">&quot;stonefishy&quot;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>散列定义方式二</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span> <span class="o">=</span> <span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">gender</span><span class="p">:</span> <span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="k">alias</span><span class="p">:</span> <span class="s2">&quot;stonefishy&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">:gender</span><span class="o">=&gt;</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="ss">:alias</span><span class="o">=&gt;</span><span class="s2">&quot;stonefishy&quot;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第二种方式和<em>json</em>数据的格式相似。</p>
+
+<p>操作散列也很简单，直接看下面执行示例</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span><span class="o">[</span><span class="ss">:age</span><span class="o">]</span> <span class="o">=</span> <span class="mi">18</span>               <span class="c1">##新增一个age值</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">18</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">:gender</span><span class="o">=&gt;</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="ss">:alias</span><span class="o">=&gt;</span><span class="s2">&quot;stonefishy&quot;</span><span class="p">,</span> <span class="ss">:age</span><span class="o">=&gt;</span><span class="mi">18</span><span class="p">}</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>                   <span class="c1">##获取指定键的值</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;yu&quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span><span class="o">[</span><span class="ss">:age</span><span class="o">]</span> <span class="o">=</span> <span class="mi">20</span>                <span class="c1">##修改指定键的值</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">20</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">:gender</span><span class="o">=&gt;</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="ss">:alias</span><span class="o">=&gt;</span><span class="s2">&quot;stonefishy&quot;</span><span class="p">,</span> <span class="ss">:age</span><span class="o">=&gt;</span><span class="mi">20</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注: =>符号表示ruby交互式模式的输出命令</em></p>
+
+<p>使用each方法遍历散列：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">details</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+</span><span class='line'><span class="sc">?&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="nb">name</span> <span class="o">-</span> <span class="n">yu</span>
+</span><span class='line'><span class="n">gender</span> <span class="o">-</span> <span class="n">male</span>
+</span><span class='line'><span class="k">alias</span> <span class="o">-</span> <span class="n">stonefishy</span>
+</span><span class='line'><span class="n">age</span> <span class="o">-</span> <span class="mi">20</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">:gender</span><span class="o">=&gt;</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="ss">:alias</span><span class="o">=&gt;</span><span class="s2">&quot;stonefishy&quot;</span><span class="p">,</span> <span class="ss">:age</span><span class="o">=&gt;</span><span class="mi">20</span><span class="p">}</span>   <span class="c1">##each方法同样会返回散列</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>正则表达式</h3>
+
+<p>正则表达式(Regular Expression)的语法如下，</p>
+
+<pre><code>/模式/
+</code></pre>
+
+<p>使用运算符=~来匹配正则表达式和字符串, 若匹配成功返回匹配部分的位置，匹配失败返回nil值。</p>
+
+<pre><code>/模式/ =~ 希望匹配的字符串
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="sr">/ruby/</span> <span class="o">=~</span> <span class="s2">&quot;hello, ruby&quot;</span>         <span class="c1">##包含‘ruby’字符串</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">7</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="sr">/^ruby$/</span> <span class="o">=~</span> <span class="s2">&quot;hello, ruby&quot;</span>        <span class="c1">##完全匹配‘ruby’字符串</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="sr">/ruby$/</span> <span class="o">=~</span> <span class="s2">&quot;hello, ruby&quot;</span>     <span class="c1">##以‘ruby’字符串结尾</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">7</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>正则表达式右边的/后面添加i表示不区分大小写匹配:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="sr">/RUby/i</span> <span class="o">=~</span> <span class="s2">&quot;hello, ruby&quot;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">7</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>定义正则表达式还有另外一种方式，直接用<strong>Regexp</strong>类来创建:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pattern</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;ruby&quot;</span><span class="p">)</span>     <span class="c1">##定义一个正则表达式</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="sr">/ruby/</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">pattern</span> <span class="o">=~</span> <span class="s2">&quot;hello, ruby&quot;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">7</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注: 如果想更加详细的了解正则表达式的语法，可以查看使用<a href="http://rubular.com/">Rubular</a></em></p>
+
+<h3>命令行参数</h3>
+
+<p>Ruby中使用<strong>ARGV</strong>这个Ruby预定义好的数组来获取从命令行传递过来的数据。在命令行指定多个脚本参数时，各个参数之间用空格隔开。</p>
+
+<p>使用<strong>each_with_index</strong>方法可以获取遍历的index，</p>
+
+<figure class='code'><figcaption><span>argv.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ARGV</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">arg</span><span class="p">,</span> <span class="n">index</span><span class="o">|</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;第</span><span class="si">#{</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">个参数: </span><span class="si">#{</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行和输出结果如下:</p>
+
+<pre><code>&gt; ruby argv.rb hello world and ruby ##命令行输入参数
+=&gt; 第1个参数: hello
+=&gt; 第2个参数: world
+=&gt; 第3个参数: and
+=&gt; 第4个参数: ruby
+</code></pre>
+
+<h3>文件读取</h3>
+
+<p>Ruby中通过File类来读取文件，两种读取方式，一次性读取和逐行读取，示例如下,</p>
+
+<figure class='code'><figcaption><span>read_all_text.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>        <span class="c1">##打开文件</span>
+</span><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span>                   <span class="c1">##读取文件中得所有文本数据</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">text</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>                       <span class="c1">##关闭文件句柄</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>read_each_line_text.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>      <span class="c1">##逐行读取文件</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="n">line</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法的定义</h3>
+
+<p>Ruby方法的定义和Python一样简答，</p>
+
+<pre><code>def 方法名
+    希望处理的逻辑
+end
+</code></pre>
+
+<p>我们现在将上面读取文件的代码定义在一个方法中，</p>
+
+<figure class='code'><figcaption><span>read_file.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在我们想在其他文件里面使用上面定义的文件读取方法，那么该如何引用了，且看下，</p>
+
+<h3>引用文件</h3>
+
+<p>Ruby使用<strong>require</strong>方法来引用库或文件</p>
+
+<pre><code>require 希望使用的库名
+</code></pre>
+
+<p><em>库名可以省略后缀.rb</em></p>
+
+<figure class='code'><figcaption><span>invoke_read_file.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;./read_file&quot;</span>          <span class="c1">##引入读取文件的库</span>
+</span><span class='line'><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;argv.rb&quot;</span><span class="p">);</span>          <span class="c1">##直接调用库中的方法</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行示例：</p>
+
+<pre><code>&gt; ruby invoke_read_file.rb
+=&gt; ARGV.each_with_index do |arg, index|
+=&gt; puts "第#{index + 1}个参数: #{arg}"
+=&gt; end
+</code></pre>
+
+<h3>p与pp方法</h3>
+
+<p>如前我们所介绍的打印数据到终端的有<strong>p</strong>, <strong>puts</strong>, <strong>print</strong>等方法，现在再介绍一种按数据排版打印的方法<strong>pp</strong>, 其全名为 pretty print。但是如果想使用该方法，需要使用require方法引入<strong>pp</strong>库。直接看示例</p>
+
+<figure class='code'><figcaption><span>p_and_pp.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;pp&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">details</span> <span class="o">=</span> <span class="o">[</span><span class="p">{</span><span class="ss">content1</span><span class="p">:</span> <span class="s2">&quot;This is content1&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">content2</span><span class="p">:</span> <span class="s2">&quot;This is content2&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">content3</span><span class="p">:</span> <span class="s2">&quot;This is content3&quot;</span><span class="p">}</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;p的输出格式如下:&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">details</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;pp的输出格式如下:&quot;</span>
+</span><span class='line'><span class="n">pp</span> <span class="n">details</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行示例:</p>
+
+<pre><code>p的输出格式如下:
+[{:content1=&gt;"This is content1", :content2=&gt;"This is content2", :content3=&gt;"This is content3"}]
+pp的输出格式如下:
+[{:content1=&gt;"This is content1",
+  :content2=&gt;"This is content2",
+  :content3=&gt;"This is content3"}]
+</code></pre>
+
+<p>与<strong>p</strong>方法的不同之处在于，<strong>pp</strong>方法在输出对象的结果时，为了更容易看懂，会适当的换行以调整输出结果。如上所示。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(1)]]></title>
@@ -4295,47 +4663,6 @@ In this example, the <em>classTwo</em> object doesn&rsquo;t have <em>showMesage<
 
 <p>
 So the <em>MyClass</em> inherites the <em>BaseClass</em>. The <code>BaseClass.call(this)</code> that means using the object of <em>BaseClass</em> to instead of <em>this</em> object. So the <em>MyClass</em> can access the property and function of <em>BaseClass</em>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Destroy Your Website]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/19/destroy-your-website/"/>
-    <updated>2015-05-19T12:16:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/19/destroy-your-website</id>
-    <content type="html"><![CDATA[<p>Ha, Confusion? Don&rsquo;t, it&rsquo;s true. Let me introduce to you how to destroy the website you want. <br/>
-Click the below button:<br/>
-<button type="button" onclick="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</button>  <br/>
-Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Space</strong> key to fire. And also Press and hold <strong>B</strong> to find targets which can be destroy.</p>
-
-<!-- more -->
-
-
-<p>Visit <a href="http://erkie.github.com/">http://erkie.github.com/</a> and drag the graphic onto your bookmarks bar to use this on whatever webpage you want to destory.</p>
-
-<p>Actually, it&rsquo;s very easy to do this with javascript. <br/>
-1. Download this javascript library from <a href="">here</a>, and put it in your project directory. <br/>
-2. Adding below code snippet to your element target you want to triggle</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="kd">var</span> <span class="nx">jst</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="nx">jst</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">jst</span><span class="p">);</span>
-</span><span class='line'><span class="nx">jst</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;/javascripts/libs/asteroids.min.js&#39;</span><span class="p">;</span><span class="k">void</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note: you need to change the src of the variable <strong>jst</strong> to your javascript library&rsquo;s location, like below:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jst</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;YOUR LIBRARY LOCATION&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So, it&rsquo;s quite simple.</p>
 ]]></content>
   </entry>
   
