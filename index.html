@@ -9,11 +9,8 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="数组 Ruby中数组的大小是按实际情况自动调整的，即所谓的动态数组 1
-2
-3
-&gt;&gt; rubyArray = [&quot;data1&quot;, &quot;data2&quot;] ##定义两个数据的数组
-&gt;&gt; rubyArray[2] = &quot;data3& &hellip;">
+  <meta name="description" content="在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。 变量 和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。 局部变量(local variable)
+以英文字母或者_开头 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +66,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/14/ruby-practice-3/">Ruby修炼之道(3)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-14T17:47:01+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。</p>
+
+<h3>变量</h3>
+
+<p>和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。</p>
+
+<p><em>局部变量(local variable)</em>
+以英文字母或者_开头</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
+</span><span class='line'><span class="n">_words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/14/ruby-practice-3/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -428,40 +473,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/10/spring-aop-pointcut/">Spring AOP - Pointcut</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-10T11:19:44+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:19 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/10/spring-aop-pointcut/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -486,6 +497,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/14/ruby-practice-3/">Ruby修炼之道(3)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/13/ru-practice-2/">Ruby修炼之道(2)</a>
       </li>
     
@@ -499,10 +514,6 @@
     
       <li class="post">
         <a href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Using TSD to Improve Javascript Intellisense of IDE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Implicit Submission of Form When Pressing Enter Key</a>
       </li>
     
   </ul>

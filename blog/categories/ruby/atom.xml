@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-08-14T17:45:23+08:00</updated>
+  <updated>2015-08-17T16:37:29+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,200 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(3)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/14/ruby-practice-3/"/>
+    <updated>2015-08-14T17:47:01+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/14/ruby-practice-3</id>
+    <content type="html"><![CDATA[<p>在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。</p>
+
+<h3>变量</h3>
+
+<p>和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。</p>
+
+<p><em>局部变量(local variable)</em>
+以英文字母或者_开头</p>
+
+<pre><code class="ruby">words = "Hello Ruby"
+_words = "Hello Ruby"
+</code></pre>
+
+<!--more-->
+
+
+<p><em>全局变量(global variable)</em>
+以$开头</p>
+
+<pre><code class="ruby">$words="Hello Ruby"
+</code></pre>
+
+<p><em>实例变量(instance variable)</em>
+以@开头</p>
+
+<pre><code class="ruby">@words="Hello Ruby"
+</code></pre>
+
+<p><em>类变量(class variable)</em></p>
+
+<p>以@@开头
+<code>ruby
+@@words = "Hello Ruby"
+</code></p>
+
+<p><em>伪变量(pseudo variable)</em>
+伪变量是Ruby预先定义好的代表某个特定值的特殊变量，因此这个值是无法改变的。如，nil、true、false、self等。</p>
+
+<p><em>注：Ruby不需要在意变量名的长度，对于多个单词组合的变量名，使用_隔开各个单词，或者单词以大写字母开头，如：my_words,或者myWords。但是在Ruby中的变量名和方法名一般使用前者，而后者主要用于类名和模块名。</em></p>
+
+<h3>常量</h3>
+
+<p>顾名思义，即不可修改，对已经赋值的常量再进行赋值时，Ruby会做出警告。常量均以大写字母来命名。如Ruby中预先定义好的RUBY_VERSION(运行版本)、RUBTY_PLATFORM(运行平台)、ARGV(命令行参数数组).</p>
+
+<h3>多重赋值</h3>
+
+<p>多重赋值是Ruby中的简化代码的一种方式，通过多重赋值可以将多个变量同时赋值。</p>
+
+<pre><code class="ruby">&gt;&gt; a, b, c = 1, 2, 3    ##同时赋值a, b, c
+&gt;&gt; p [a, b, c]          ##=&gt; [1, 2, 3]
+</code></pre>
+
+<p>这样a, b, c均被赋值了1, 2, 3。
+<em>注：在使用多重赋值时，建议对彼此相关变量进行多重赋值，避免程序难读懂。</em></p>
+
+<p>即使等号(=)左右两边列表的数量不相等，Ruby也不会报错。
+<em>左边变量部分数量多时</em></p>
+
+<pre><code class="ruby">&gt;&gt; a, b, c, d = 1, 2
+&gt;&gt; p [a, b, c, d]           ##=&gt; [1, 2, nil, nil]
+</code></pre>
+
+<p>当左边变量部分数量多时，Ruby会自动将<strong>nil</strong>赋值给未被分配值的变量。如上的c, d变量。</p>
+
+<p><em>左边变量部分数量少时</em></p>
+
+<pre><code class="ruby">&gt;&gt; a, b, c = 1, 2, 3, 4
+&gt;&gt; p [a, b, c]              ##=&gt; [1, 2, 3]
+</code></pre>
+
+<p>当变量部分比较少时，Ruby会忽略掉该值，不会分配多余的值，如上的值4。</p>
+
+<p><em>将未被分配的值赋给指定的变量</em>
+当给一个变量前加上*，表示Ruby会将未分配的值封装为数组赋值给该变量。通过这种方式，Ruby会将变量与右边的值一一匹配。</p>
+
+<pre><code class="ruby">&gt;&gt; a, b, *c = 1, 2, 3, 4
+&gt;&gt; p [a, b, c]                  ##=&gt; [1, 2, [3, 4]]
+
+&gt;&gt; a, *b, c = 1, 2, 3, 4, 5
+&gt;&gt; p [a, b, c]                  ##=&gt; [1, [2, 3, 4], 5]
+</code></pre>
+
+<p>使用多重赋值简化变量值交换：</p>
+
+<pre><code class="ruby">&gt;&gt; a, b = 0, 1
+&gt;&gt; a, b = b, a                  ##置换变量a、b的值
+&gt;&gt; p [a, b]                     ##=&gt; [1, 0]
+</code></pre>
+
+<p>使用多重赋值获取数组的元素:</p>
+
+<pre><code class="ruby">&gt;&gt; arr = [1, 2]
+&gt;&gt; a, b = arr
+&gt;&gt; p a                              ##=&gt; 1
+&gt;&gt; p b                              ##=&gt; 2
+
+
+&gt;&gt; arr = [1, [2, 3], 4]
+&gt;&gt; a, b, c = arr
+&gt;&gt; p a                              ##=&gt; 1
+&gt;&gt; p b                              ##=&gt; [2, 3]
+&gt;&gt; p c                              ##=&gt; 4
+
+
+&gt;&gt; arr = [1, [2, 3], 4]
+&gt;&gt; a, (b, c), d = arr
+&gt;&gt; p a                              ##=&gt; 1
+&gt;&gt; p b                              ##=&gt; 2
+&gt;&gt; p c                              ##=&gt; 3
+&gt;&gt; p d                              ##=&gt; 4
+</code></pre>
+
+<p>只要等号左边的变量结构与数组的结构一致，即使再复杂的结构，多重赋值以可以轻松对应。</p>
+
+<h3>条件判断</h3>
+
+<p>Ruby中条件判断有三种，if语句，unless语句，case语句。If语句我们之前讲过，这里主要涉及剩余两种。</p>
+
+<p><em>unless语句</em>
+这个判断语句刚好与if语句相反，当条件为假时才执行</p>
+
+<pre><code>unless 条件为假 then
+    逻辑处理
+end
+
+unless 条件为假
+    逻辑处理1
+else
+    逻辑处理2
+end
+</code></pre>
+
+<p><em>then</em>关键字可以省略。</p>
+
+<p><em>case语句</em>
+如果需要比较的对象只有一个，根据这个对象值的不同，执行不同的逻辑处理。</p>
+
+<pre><code>case 比较对象
+when 值1 then
+    逻辑处理1
+when 值2 then
+    逻辑处理2
+when 值3 then
+    逻辑处理3
+else
+    逻辑处理4
+end
+</code></pre>
+
+<p>当然，<em>then</em>关键字也可以省略。
+<em>when</em>关键字也可以一次指定多个值。</p>
+
+<pre><code>case 比较对象
+when 值1，值2，值3 then
+    逻辑处理1
+else
+    逻辑处理2
+end
+</code></pre>
+
+<p>在<em>case</em>语句中，<em>when</em>判断值是否相等时，实际是使用<strong>===</strong>运算符来判断的。当左边是数值或者字符串时，<strong>===</strong>与<strong>==</strong>的意义是一样的。</p>
+
+<p><em>注:Ruby中只有<strong>nil</strong>和<strong>false</strong>为假，除此之外的值全为真.</em></p>
+
+<p>在Ruby中，所有的对象都是唯一的，可以通过<strong>object_id</strong>（或者<strong><strong>id</strong></strong>)方法获取对象的标识。</p>
+
+<pre><code class="ruby">&gt;&gt; arr1 = []
+&gt;&gt; arr2 = []
+&gt;&gt; p arr1.object_id         ##=&gt; 70115564029000
+&gt;&gt; p arr2.__id__                ##=&gt; 70115559585120
+</code></pre>
+
+<p>如果判断两个对象是否是同一个对象，即是否引用的是同一个ID的对象。Ruby提供了<strong>equal?</strong>方法来判断。</p>
+
+<pre><code class="ruby">&gt;&gt; arr1 = []
+&gt;&gt; arr2 = []
+&gt;&gt; arr1.equal? arr2         ##=&gt; false
+&gt;&gt; arr3 = arr1
+&gt;&gt; arr1.equal? arr3         ##=&gt; true
+</code></pre>
+
+<p>除了<strong>==</strong>以外，Ruby还提供了<strong>eql?</strong>方法用来判断对象的值是否相等。大部分情况下 <strong>==</strong>与<strong>eql?</strong>执行结果都是一样的。但针对数值类，<strong>eql?</strong>方法会被重定义。</p>
+
+<pre><code class="ruby">p 1.0 == 1                  ##=&gt; true
+p 1.0.eql? 1                    ##=&gt; false
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(2)]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-08-14T17:45:23+08:00</updated>
+  <updated>2015-08-17T16:37:29+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,262 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(3)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/14/ruby-practice-3/"/>
+    <updated>2015-08-14T17:47:01+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/14/ruby-practice-3</id>
+    <content type="html"><![CDATA[<p>在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。</p>
+
+<h3>变量</h3>
+
+<p>和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。</p>
+
+<p><em>局部变量(local variable)</em>
+以英文字母或者_开头</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
+</span><span class='line'><span class="n">_words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<p><em>全局变量(global variable)</em>
+以$开头</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$words</span><span class="o">=</span><span class="s2">&quot;Hello Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>实例变量(instance variable)</em>
+以@开头</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@words</span><span class="o">=</span><span class="s2">&quot;Hello Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>类变量(class variable)</em></p>
+
+<p>以@@开头</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vc">@@words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>伪变量(pseudo variable)</em>
+伪变量是Ruby预先定义好的代表某个特定值的特殊变量，因此这个值是无法改变的。如，nil、true、false、self等。</p>
+
+<p><em>注：Ruby不需要在意变量名的长度，对于多个单词组合的变量名，使用_隔开各个单词，或者单词以大写字母开头，如：my_words,或者myWords。但是在Ruby中的变量名和方法名一般使用前者，而后者主要用于类名和模块名。</em></p>
+
+<h3>常量</h3>
+
+<p>顾名思义，即不可修改，对已经赋值的常量再进行赋值时，Ruby会做出警告。常量均以大写字母来命名。如Ruby中预先定义好的RUBY_VERSION(运行版本)、RUBTY_PLATFORM(运行平台)、ARGV(命令行参数数组).</p>
+
+<h3>多重赋值</h3>
+
+<p>多重赋值是Ruby中的简化代码的一种方式，通过多重赋值可以将多个变量同时赋值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>    <span class="c1">##同时赋值a, b, c</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">]</span>          <span class="c1">##=&gt; [1, 2, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样a, b, c均被赋值了1, 2, 3。
+<em>注：在使用多重赋值时，建议对彼此相关变量进行多重赋值，避免程序难读懂。</em></p>
+
+<p>即使等号(=)左右两边列表的数量不相等，Ruby也不会报错。
+<em>左边变量部分数量多时</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="o">]</span>         <span class="c1">##=&gt; [1, 2, nil, nil]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当左边变量部分数量多时，Ruby会自动将<strong>nil</strong>赋值给未被分配值的变量。如上的c, d变量。</p>
+
+<p><em>左边变量部分数量少时</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">]</span>              <span class="c1">##=&gt; [1, 2, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当变量部分比较少时，Ruby会忽略掉该值，不会分配多余的值，如上的值4。</p>
+
+<p><em>将未被分配的值赋给指定的变量</em>
+当给一个变量前加上*，表示Ruby会将未分配的值封装为数组赋值给该变量。通过这种方式，Ruby会将变量与右边的值一一匹配。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">]</span>                  <span class="c1">##=&gt; [1, 2, [3, 4]]</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">]</span>                  <span class="c1">##=&gt; [1, [2, 3, 4], 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用多重赋值简化变量值交换：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>                  <span class="c1">##置换变量a、b的值</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">]</span>                       <span class="c1">##=&gt; [1, 0]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用多重赋值获取数组的元素:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">arr</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">a</span>                                <span class="c1">##=&gt; 1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">b</span>                                <span class="c1">##=&gt; 2</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="p">,</span> <span class="mi">4</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">arr</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">a</span>                                <span class="c1">##=&gt; 1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">b</span>                                <span class="c1">##=&gt; [2, 3]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">c</span>                                <span class="c1">##=&gt; 4</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="p">,</span> <span class="mi">4</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">d</span> <span class="o">=</span> <span class="n">arr</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">a</span>                                <span class="c1">##=&gt; 1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">b</span>                                <span class="c1">##=&gt; 2</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">c</span>                                <span class="c1">##=&gt; 3</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">d</span>                                <span class="c1">##=&gt; 4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>只要等号左边的变量结构与数组的结构一致，即使再复杂的结构，多重赋值以可以轻松对应。</p>
+
+<h3>条件判断</h3>
+
+<p>Ruby中条件判断有三种，if语句，unless语句，case语句。If语句我们之前讲过，这里主要涉及剩余两种。</p>
+
+<p><em>unless语句</em>
+这个判断语句刚好与if语句相反，当条件为假时才执行</p>
+
+<pre><code>unless 条件为假 then
+    逻辑处理
+end
+
+unless 条件为假
+    逻辑处理1
+else
+    逻辑处理2
+end
+</code></pre>
+
+<p><em>then</em>关键字可以省略。</p>
+
+<p><em>case语句</em>
+如果需要比较的对象只有一个，根据这个对象值的不同，执行不同的逻辑处理。</p>
+
+<pre><code>case 比较对象
+when 值1 then
+    逻辑处理1
+when 值2 then
+    逻辑处理2
+when 值3 then
+    逻辑处理3
+else
+    逻辑处理4
+end
+</code></pre>
+
+<p>当然，<em>then</em>关键字也可以省略。
+<em>when</em>关键字也可以一次指定多个值。</p>
+
+<pre><code>case 比较对象
+when 值1，值2，值3 then
+    逻辑处理1
+else
+    逻辑处理2
+end
+</code></pre>
+
+<p>在<em>case</em>语句中，<em>when</em>判断值是否相等时，实际是使用<strong>===</strong>运算符来判断的。当左边是数值或者字符串时，<strong>===</strong>与<strong>==</strong>的意义是一样的。</p>
+
+<p><em>注:Ruby中只有<strong>nil</strong>和<strong>false</strong>为假，除此之外的值全为真.</em></p>
+
+<p>在Ruby中，所有的对象都是唯一的，可以通过<strong>object_id</strong>（或者<strong><strong>id</strong></strong>)方法获取对象的标识。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr1</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr2</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">arr1</span><span class="o">.</span><span class="n">object_id</span>         <span class="c1">##=&gt; 70115564029000</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">p</span> <span class="n">arr2</span><span class="o">.</span><span class="n">__id__</span>                <span class="c1">##=&gt; 70115559585120</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果判断两个对象是否是同一个对象，即是否引用的是同一个ID的对象。Ruby提供了<strong>equal?</strong>方法来判断。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr1</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr2</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr1</span><span class="o">.</span><span class="n">equal?</span> <span class="n">arr2</span>          <span class="c1">##=&gt; false</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr3</span> <span class="o">=</span> <span class="n">arr1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">arr1</span><span class="o">.</span><span class="n">equal?</span> <span class="n">arr3</span>          <span class="c1">##=&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>除了<strong>==</strong>以外，Ruby还提供了<strong>eql?</strong>方法用来判断对象的值是否相等。大部分情况下 <strong>==</strong>与<strong>eql?</strong>执行结果都是一样的。但针对数值类，<strong>eql?</strong>方法会被重定义。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="o">==</span> <span class="mi">1</span>                 <span class="c1">##=&gt; true</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="n">eql?</span> <span class="mi">1</span>                 <span class="c1">##=&gt; false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(2)]]></title>
@@ -4531,138 +4787,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
 <p><img src="http://stonefishy.github.io/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
 
 <p>So, it&rsquo;s really cool. Hope you like it.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Analyze Call Function of Javascript]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript/"/>
-    <updated>2015-05-20T19:24:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript</id>
-    <content type="html"><![CDATA[<p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
-
-<h3>Syntax</h3>
-
-<p><code>call([thisObj[,arg1[, arg2[, [,.argN]]]]])</code> <br/>
- - <strong>thisObj</strong> (optional): it&rsquo;s object which can be act as currently <code>this</code> object. <br/>
- - <strong>arg1, arg2, argN</strong> (optional) : the parameters which can be passed to the method.</p>
-
-<p>The <em>call</em> method can be used to instead of another object to invoke a method. It can change the object context of a function to a new object which <em>thisObj</em> referenced.</p>
-
-<!-- more -->
-
-
-<p></p>
-
-<p><strong>Note</strong>: <em>The thisObj is a optional parameter, it will reference to Global object if it is not provided. And the <code>call</code> method is only used by <code>Function</code> object.</em></p>
-
-<h3>Example</h3>
-
-<p>Let&rsquo;s use fake code to explain it firstly. see below code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">obj1</span><span class="p">.</span><span class="nx">method1</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj2</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The functionality of <em>call</em> method is that <em>obj2</em> is able to invoke the <em>method1</em> of <em>obj1</em> with <em>arg1</em>, <em>arg2</em> parameters.</p>
-
-<p>Let&rsquo;s see a simple example:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">add</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">sub</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The value of <em>result</em> variable is 3, not -1. Because the <em>sub</em> function object has been insteaded by <em>add</em> function object. So the <code>add.call(sub, 1, 2)</code> actually is <code>add(1, 2)</code>.</p>
-
-<p><strong>Note</strong>: <em>The </em>function<em> actually is a </em>object* in javascript, and the function name is a reference of <code>Fuction</code> object.</p>
-
-<p>Okay, so let&rsquo;s see a little complex example:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">ClassOne</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;class one&quot;</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">showMessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">ClassTwo</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;class two&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">classOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClassOne</span><span class="p">();</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">classTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClassTwo</span><span class="p">();</span>
-</span><span class='line'><span class="nx">classOne</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">classTwo</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will print the &lsquo;class two&rsquo; message in the console window of browser. You can execute above code fragment to check it.  <br/>
-In this example, the <em>classTwo</em> object doesn&rsquo;t have <em>showMesage</em> function, but he want to display his message, so he can invoke <em>classOne</em>&rsquo;s with <code>call</code> method.</p>
-
-<p>So far, maybe you will think we can use the <code>call</code> function to simulate the <code>Inheritance</code> of <code>OOP</code>. You are right, let&rsquo;s get the example.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">BaseClass</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;base class&quot;</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">showMessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">MyClass</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">BaseClass</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">myClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
-</span><span class='line'><span class="nx">myClass</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-So the <em>MyClass</em> inherites the <em>BaseClass</em>. The <code>BaseClass.call(this)</code> that means using the object of <em>BaseClass</em> to instead of <em>this</em> object. So the <em>MyClass</em> can access the property and function of <em>BaseClass</em>.</p>
 ]]></content>
   </entry>
   
