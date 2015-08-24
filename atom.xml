@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-08-17T16:37:29+08:00</updated>
+  <updated>2015-08-21T17:49:30+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,233 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(4)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/17/ruby-practice-4/"/>
+    <updated>2015-08-17T17:01:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/17/ruby-practice-4</id>
+    <content type="html"><![CDATA[<h3>循环</h3>
+
+<p>对于任何一种程序设计语言，都有循环处理的方法，Ruby也一样，但是在Ruby中有两种实现循环的方法。</p>
+
+<ul>
+<li>使用循环语句，即利用Ruby提供的现有循环语句</li>
+<li>使用方法实现循环，其具体做法为，将块传给方法，然后在块里面写上需要循环的处理。</li>
+</ul>
+
+
+<p>在Ruby中，有6种循环语句或方法：</p>
+
+<!-- more -->
+
+
+<ul>
+<li>times方法</li>
+<li>while语句</li>
+<li>each方法</li>
+<li>for语句</li>
+<li>until语句</li>
+<li>loop方法</li>
+</ul>
+
+
+<p><em>times方法</em>
+用于已知道执行的次数，具体用法如下:</p>
+
+<pre><code>循环次数.times do
+    逻辑处理
+end
+
+#do ~ end部分可以用 { ~ }代替.
+
+循环次数.times {
+    逻辑处理
+}
+</code></pre>
+
+<figure class='code'><figcaption><span>times方法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="nb">print</span> <span class="s2">&quot;hello &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="n">hello</span> <span class="n">hello</span> <span class="n">hello</span> <span class="o">=&gt;</span> <span class="mi">3</span>             <span class="c1">#=&gt; 打印3个hello，并返回循环次数</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果想知道当前的循环次数，则需要添加一个当前的循环次数变量:</p>
+
+<pre><code>循环次数.times do |i|
+    逻辑处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span>带循环次数的times方法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="nb">print</span> <span class="s2">&quot;hello</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="n">hello0</span> <span class="n">hello1</span> <span class="n">hello2</span> <span class="o">=&gt;</span> <span class="mi">3</span>          <span class="c1">#=&gt; 打印3个带有当前第几次循环的hello,并返回循环次数</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注：<strong>times</strong>方法会返回循环次数</em></p>
+
+<p><em>for语句</em>
+与<strong>times</strong>方法不同，<strong>for</strong>并不是方法，而是循环控制语句。</p>
+
+<pre><code>for 变量 in 开始时的数值..结束时的数值 do
+    循环处理
+end
+
+#遍历对象的for语句
+for 变量 in 对象 do
+    循环处理
+end
+</code></pre>
+
+<p><strong>for</strong>语句的循环开始值和结束值可以任意指定。</p>
+
+<figure class='code'><figcaption><span>for语句</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="nb">print</span> <span class="s2">&quot;hello &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="n">hello</span> <span class="n">hello</span> <span class="n">hello</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span>            <span class="c1">#=&gt; 打印3个hello，返回1..3的range</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">language</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;Ruby&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">for</span> <span class="n">lan</span> <span class="k">in</span> <span class="n">language</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">lan</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="no">Python</span> <span class="no">Javascript</span> <span class="no">Ruby</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;Ruby&quot;</span><span class="o">]</span>            <span class="c1">#=&gt; 一次打印数组中的元素，并返回数组</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注：..或者&hellip;都是创建范围对象时所需的符号</em></p>
+
+<p><em>while语句</em>
+之前了解到，语法如下，十分简单</p>
+
+<pre><code>while 条件 do
+    循环处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span>while语句</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">while</span> <span class="n">sum</span> <span class="o">&lt;</span> <span class="mi">50</span> <span class="k">do</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">puts</span> <span class="n">sum</span>                   <span class="c1">#=&gt; 55</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>until语句</em>
+和<strong>while</strong>语句刚刚相反，<strong>until</strong>语句不满足条件时才执行循环处理，知道条件满足终止。</p>
+
+<pre><code>until 条件 do
+    循环处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span>until语句</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">until</span> <span class="n">sum</span> <span class="o">&gt;=</span><span class="mi">50</span> <span class="k">do</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>  <span class="nb">puts</span> <span class="n">sum</span>                  <span class="c1">#=&gt; 55</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>each方法</em>
+<strong>each</strong>方法将对象集合里的对象逐个取出，这与<strong>for</strong>语句循环取出数组元素非常相似。</p>
+
+<pre><code>对象.each do |变量|
+    循环处理
+end
+
+#与下面的for语句处理一样
+for 变量 in 对象
+    循环处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span>each方法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">language</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;Ruby&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">language</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">lan</span><span class="o">|</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">lan</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="no">Python</span> <span class="no">Javascript</span> <span class="no">Ruby</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;Ruby&quot;</span><span class="o">]</span>            <span class="c1">#=&gt; 返回对象</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注：在Ruby内部，<strong>for</strong>语句是用<strong>each</strong>方法来实现的。可以使用<strong>each</strong>方法的对象，也可以用<strong>for</strong>语句</em></p>
+
+<p><em>loop方法</em>
+此循环方法没用终止循环条件，需要用得循环控制语句来控制此循环</p>
+
+<pre><code>loop do
+    循环处理
+end
+</code></pre>
+
+<h3>循环控制命令</h3>
+
+<ul>
+<li>break 终止程序，跳出循环</li>
+<li>next 跳到下一次循环，和其他类似Java，C#的continue一样</li>
+<li>redo 在相同的条件下重复刚才的处理</li>
+</ul>
+
+
+<p><strong>redo</strong>与<strong>next</strong>非常像，与<strong>next</strong>的不同之处是，<strong>redo</strong>会再执行一次相同的循环。所以要注意<strong>redo</strong>的使用方法，很容易陷入死循环中。</p>
+
+<p>*注： <strong>do ~ end</strong> 和 <strong>{ ~ }</strong> 是等价的语句块。 只不过从编码规范上来说，如果程序是跨行写的时候使用<strong>do ~ end</strong>，程序写在1行的时候用<strong>{ ~ }</strong>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'><span class="o">&gt;&gt;</span>       <span class="nb">puts</span> <span class="n">i</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">i</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(3)]]></title>
@@ -4748,45 +4975,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
 <p>For <code>ZSH</code>, it&rsquo;s open source and very cool thing to decorate your terminal. If you don&rsquo;t have yet. I strongly recommand you install it for your terminal. Go to <a href="http://ohmyz.sh/">Oh My Zsh</a> offical website to see how to install.</p>
 
 <p>Okay, after you already prepare these tools, go to <a href="https://github.com/wesbos/Cobalt2-iterm">Cobalt2-item</a> and follow step to install it.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
-    <updated>2015-06-04T16:01:24+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
-    <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
-
-<!-- more -->
-
-
-<h4>Installation</h4>
-
-<ol>
-<li>Open package control via pressing <code>Command + Shift + P</code> (mac os) or <code>Ctrl + Shift + P</code> (windows) to open the command window, and then type <code>Install Package</code>.</li>
-<li>Search for <code>Cobalt2</code> and hit <code>enter</code> key.</li>
-<li>Once you installed finish, open <code>Preference</code> -> <code>Settings - User</code> and add the below lines:</li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-</span><span class='line'>"theme": "Cobalt2.sublime-theme",</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>color_scheme</code> defines how the code looks and <code>theme</code> defines how the sidebar, tabs, search, command palette work.</p>
-
-<p><em>Note: the sidebar icons only supports  the latest version of sublime text3.</em></p>
-
-<h4>Screenshots</h4>
-
-<p>There have some screenshots of Cobalt2 theme from <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
-
-<p><img src="http://stonefishy.github.io/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
-
-<p>So, it&rsquo;s really cool. Hope you like it.</p>
 ]]></content>
   </entry>
   
