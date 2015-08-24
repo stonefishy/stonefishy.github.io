@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Let&rsquo;s first to see the three very technical terms as below. Adivce - Indicate the action to take either before or after the method execution. &hellip;">
+  <meta name="description" content="If we want to intercept methods with dynamic pointcut, we need to override matches and getClassFilter methods of DynamicMethodMatcher abstract class &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,40 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Spring AOP - Dynamic Pointcut</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-12T16:23:30+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -451,42 +485,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T16:40:06+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:40 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
-The answer is yes, we can. Let me show you screenshots firstly. <br/>
-<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -513,6 +511,10 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/24/ruby-practice-5/">Ruby修炼之道(5)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/17/ruby-practice-4/">Ruby修炼之道(4)</a>
       </li>
     
@@ -526,10 +528,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
     
       <li class="post">
         <a href="/blog/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a>
       </li>
     
   </ul>

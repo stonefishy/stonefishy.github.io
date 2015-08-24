@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-08-21T17:49:30+08:00</updated>
+  <updated>2015-08-24T17:50:43+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,249 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(5)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/08/24/ruby-practice-5/"/>
+    <updated>2015-08-24T15:22:56+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/08/24/ruby-practice-5</id>
+    <content type="html"><![CDATA[<h3>方法</h3>
+
+<p>在Ruby中，调用方法时是可以省略()的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>             <span class="c1">#=&gt;Hello world</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;Hello world&quot;</span>             <span class="c1">#=&gt;Hello world</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>带块的方法</em>
+带块的方法如time,each方法，其语法如下：</p>
+
+<pre><code>对象.方法名(参数，...) do |变量1，...|
+    块内容
+end
+</code></pre>
+
+<p>Ruby中方法可归为3类：</p>
+
+<!-- more -->
+
+
+<p><em>实例方法</em>
+即由对象来调用，以下数组的size方法为实例方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">].</span><span class="n">size</span>                      <span class="c1">#=&gt;size方法即为实例方法</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>类方法</em>
+由类本身来调用，和C#、Java中得静态方法类似，类方法不属于任何一个对象</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;some_file&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>调用类方法时，可以使用<strong>::</strong>代替<strong>.</strong></p>
+
+<p><em>函数式方法</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;hello&quot;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在Ruby的帮助文档中，一般使用<strong>类名#方法名</strong>来标记实例方法，用<strong>类名.方法名</strong>或者<strong>类名::方法名</strong>来标记类方法</p>
+
+<h4>方法的定义</h4>
+
+<p>定义方法的语句如下:</p>
+
+<pre><code>def 方法名(参数1，参数2,...)
+    希望执行的处理
+end
+</code></pre>
+
+<p>可以指定默认参数给方法，当方法有多个参数时，从参数列表的右边开始依次指定默认值</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">#some codes</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注，只省略左边的参数或中间的某个参数是不行的</em></p>
+
+<p>方法的返回值使用<strong>return</strong>关键字，当这个关键字省略时，方法的最后一个表达式的结果就会成为方法的返回值。</p>
+
+<p><em>定义带块的方法</em>
+在定义带块的方法时，需要使用<strong>yield</strong>关键字来定义块所在的位置。如下代码所示</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#定义</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">func</span>
+</span><span class='line'>  <span class="k">yield</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#调用</span>
+</span><span class='line'><span class="n">func</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot;hello world&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果<strong>yield</strong>部分有参数，程序就会将其当作块变量传到块里。快里面最后的表达式的值即为快得执行结果，同时也可以作为<strong>yield</strong>的返回值在块的外部使用。</p>
+
+<p><em>参数个数不确定的方法</em>
+通过使用<strong>*变量名</strong>的形式来定义参数个数不确定的方法。Ruby会把所有的参数封装为数组，提供方法内部使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">args</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>                <span class="c1">#=&gt; [1, 2, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当方法需要指定特定的参数，而其他参数又不确定的情况下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
+</span><span class='line'>  <span class="n">args</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span> <span class="n">arg</span> <span class="o">|</span>
+</span><span class='line'>      <span class="n">result</span> <span class="o">+=</span> <span class="n">arg</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">result</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>           <span class="c1">#=&gt; 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所有不确定的参数都被作为数组赋值给变量args, <strong>*变量名</strong>这种形式的参数，只能在方法定义的参数列表中出现一次。</p>
+
+<p><em>关键字参数</em>
+使用关键字参数，可以将参数名与参数值成对地传给方法内部使用，这时，调用方法的参数个数以及调用顺序就可以打乱。</p>
+
+<pre><code>def 方法名(参数1：值1, 参数2：值2, ...)
+    逻辑处理
+end
+</code></pre>
+
+<p>而且还可以在方法定义时指定参数默认值</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="n">sum</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>         <span class="c1">#=&gt; 30</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">sum</span><span class="p">(</span><span class="ss">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="ss">a</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>         <span class="c1">#=&gt; 30  改变参数的调用顺序</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">sum</span><span class="p">(</span><span class="ss">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>                  <span class="c1">#=&gt; 20 省略了参数a，a默认值为0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用关键字参数定义方法，如果我们传入了未定义的参数，那么程序将会报错。如何避免呢，在Ruby中可以使用<strong>**变量名</strong>的形式来接收未定义的参数。此时，Ruby会把参数列表以外的其他关键字参数以散列对象的形式保存。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span>   <span class="nf">sum</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span><span class='line'>  <span class="n">args</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>            <span class="c1">#=&gt; 遍历散列</span>
+</span><span class='line'>      <span class="n">result</span> <span class="o">+=</span> <span class="n">value</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">result</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sum</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">d</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>         <span class="c1">#=&gt; 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然，关键字参数也可以与普通参数一起搭配使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">c</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sum</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="ss">c</span><span class="p">:</span> <span class="mi">30</span><span class="p">)</span>            <span class="c1">#=&gt; 60</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以关键字参数定义的方法，Ruby会自动将其封装为散列然后传递给方法内部，所以基于此，我们当然也可以利用散列的键值来将散列传递给方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="ss">c</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sum</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>          <span class="c1">#=&gt; 定义散列args</span>
+</span><span class='line'><span class="n">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>                             <span class="c1">#=&gt; 6 将散列args传递给sum方法</span>
+</span><span class='line'><span class="n">sum</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="o">=&gt;</span><span class="mi">3</span><span class="p">}</span><span class="err">）</span>       <span class="c1">#=&gt; 6 将散列直接传给方法</span>
+</span><span class='line'><span class="n">sum</span><span class="p">(</span><span class="ss">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>             <span class="c1">#=&gt; 6 可省略{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>使用关键字参数定义方法，既可以对键进行限制，又可以定义参数的默认值，建议在实际编程中多尝试使用关键字参数</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(4)]]></title>
@@ -4955,26 +5198,6 @@ This will be executed before the subtract method
 
 
 <p>In above codes, we separate the business logic and the services, we call this process of separation as <code>AOP</code>. So Using <code>AOP</code> business logic and <code>cross-cutting</code> functionalities are implemented separately and executed at runtime as combine automatically.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Cobalt2 Theme for iTerm2 and ZSH]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/"/>
-    <updated>2015-06-04T16:40:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh</id>
-    <content type="html"><![CDATA[<p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
-The answer is yes, we can. Let me show you screenshots firstly. <br/>
-<img src="http://stonefishy.github.io/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
-
-<!--more -->
-
-
-<p>But for Mac OS X, we should use <code>iTerm2</code> instead of system default terminal. The <code>iTerm2</code> is power than the system default. It is a terminal  emulator for Mac OS X that does amazing things. And it has many feature you never knew you always wanted. just like me. So don&rsquo;t hesitate to go to offical website <a href="https://www.iterm2.com/f">iTerm2</a> and download it.</p>
-
-<p>For <code>ZSH</code>, it&rsquo;s open source and very cool thing to decorate your terminal. If you don&rsquo;t have yet. I strongly recommand you install it for your terminal. Go to <a href="http://ohmyz.sh/">Oh My Zsh</a> offical website to see how to install.</p>
-
-<p>Okay, after you already prepare these tools, go to <a href="https://github.com/wesbos/Cobalt2-iterm">Cobalt2-item</a> and follow step to install it.</p>
 ]]></content>
   </entry>
   

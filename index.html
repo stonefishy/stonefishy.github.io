@@ -9,8 +9,10 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="循环 对于任何一种程序设计语言，都有循环处理的方法，Ruby也一样，但是在Ruby中有两种实现循环的方法。 使用循环语句，即利用Ruby提供的现有循环语句
-使用方法实现循环，其具体做法为，将块传给方法，然后在块里面写上需要循环的处理。 在Ruby中，有6种循环语句或方法： ">
+  <meta name="description" content="方法 在Ruby中，调用方法时是可以省略()的 1
+2
+&gt;&gt; print(&quot;Hello world&quot;) #=&gt;Hello world
+&gt;&gt; print &quot;Hello world&quot; #=&gt;Hello world 带块的方法 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +68,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/24/ruby-practice-5/">Ruby修炼之道(5)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-24T15:22:56+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>方法</h3>
+
+<p>在Ruby中，调用方法时是可以省略()的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>             <span class="c1">#=&gt;Hello world</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;Hello world&quot;</span>             <span class="c1">#=&gt;Hello world</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>带块的方法</em>
+带块的方法如time,each方法，其语法如下：</p>
+
+<pre><code>对象.方法名(参数，...) do |变量1，...|
+    块内容
+end
+</code></pre>
+
+<p>Ruby中方法可归为3类：</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/24/ruby-practice-5/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -442,40 +497,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Spring AOP - Dynamic Pointcut</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-12T16:23:30+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -500,6 +521,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/24/ruby-practice-5/">Ruby修炼之道(5)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/17/ruby-practice-4/">Ruby修炼之道(4)</a>
       </li>
     
@@ -513,10 +538,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a>
       </li>
     
   </ul>
