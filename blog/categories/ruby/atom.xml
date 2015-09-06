@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-08-31T16:24:33+08:00</updated>
+  <updated>2015-09-06T20:16:23+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,193 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(7)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/01/ruby-practice-7/"/>
+    <updated>2015-09-01T09:06:53+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/01/ruby-practice-7</id>
+    <content type="html"><![CDATA[<h3>模块</h3>
+
+<p>Ruby中的类是表现事物的属性和行为，那么模块呢？，在Ruby中<em>模块</em>表现的只是事物的行为。</p>
+
+<p>模块与类的区别于下：</p>
+
+<ul>
+<li>模块不能拥有实例</li>
+<li>模块不能被继承</li>
+</ul>
+
+
+<p>如何访问模块内的方法？有两种方式可以访问</p>
+
+<p>1.使用<strong>模块名.方法名</strong>的形式来直接调用模块中定义的方法。</p>
+
+<pre><code class="ruby">Math.sqrt(4)            #=&gt; 2.0
+</code></pre>
+
+<!-- more -->
+
+
+<p>2.通过<strong>include 模块名</strong>的形式预先将模块引入到当前的命名空间，然后就可直接访问模块内的方法和常量。</p>
+
+<pre><code class="ruby">include Math
+sqrt(4)             #=&gt; 2.0
+</code></pre>
+
+<p>第二种方式也就是<strong>Mix-in</strong>扩展类的功能，将模块混合到类中。在定义类时使用<strong>include</strong>引入指定的模块后，此时该类就可以使用模块里的所有方法和常量，从而增加了该类的功能。</p>
+
+<p><strong>Mix-in</strong>可以灵活地解决以下问题：</p>
+
+<ul>
+<li>虽然两个类拥有相似的功能，但是不希望把他们作为相同的种类（Class）来考虑的时候，此时可将相似功能封装为模块供这两个类使用</li>
+<li>Ruby不支持父类的多重继承，因此无法对已经继承的类添加共同的功能的时候</li>
+</ul>
+
+
+<pre><code class="ruby">class Calculator
+    include Math
+    def my_sqrt(a, b)
+        sqrt(a) + sqrt(b)           #=&gt; 调用Math模块中得sqrt方法
+    end
+
+    @@PI = PI
+end
+
+cal = Calculator.new
+cal.my_sqrt(1, 4)                   #=&gt; 3.0
+Calculator::PI                      #=&gt; 3.141592653589793
+</code></pre>
+
+<h4>创建模块</h4>
+
+<p>使用<strong>module</strong>关键来创建模块，模块名的首字母必须大写</p>
+
+<pre><code>module 模块名
+    模块定义
+end
+</code></pre>
+
+<pre><code class="ruby">module HelloModule
+    Version = "1.0"
+
+    def say_hello(name)
+        puts "Hello #{name}"
+    end
+
+    module_function :say_hello
+end
+
+p HelloModule::Version                  #=&gt; "1.0"
+HelloModule.say_hello("Ruby")           #=&gt; Hello Ruby
+
+include HelloModule                     #=&gt; 包含模块
+Version                                 #=&gt; "1.0"
+say_hello("Ruby")                       #=&gt; Hello Ruby
+</code></pre>
+
+<p>在上面代码中，我们可以看到<strong>module_function</strong>方法，此方法主要用于将需要把模块函数公开给外部使用，其参数是表示方法方法名的符号，可以跟多个参数。</p>
+
+<p><em>注：不建议在定义为模块函数的方法中使用self</em></p>
+
+<h4>Mix-in</h4>
+
+<p>前面提到的，在类中使用<em>include</em>引入模块，此时类的功能将得到增强。</p>
+
+<p>如果想知道类是否包含某个模块，可以使用<strong>include？</strong>方法，如之前的Calculator类中。</p>
+
+<pre><code class="ruby">Calculator.include?(Math)               #=&gt; true
+</code></pre>
+
+<p>Ruby中类的实例在调用方法时的顺序为，该类>包含的模块>该类的父类等这个顺序查找该方法。</p>
+
+<pre><code class="ruby">module HelloModule
+    Version = "1.0"
+
+    def say_hello(name)
+        puts "Hello #{name}"
+    end
+end
+
+class HelloClass
+    include HelloModule
+end
+
+hello = HelloClass.new
+hello.say_hello("Ruby")                 #=&gt; Hello Ruby
+</code></pre>
+
+<p>以上代码中调用的是module中的方法。</p>
+
+<p>用<em>ancestors</em>方法和<em>superclass</em>方法调查类的继承关系。<em>superclass</em>方法可直接返回类的父类</p>
+
+<pre><code class="ruby">p HelloClass.ancestors                  #=&gt; [HelloClass, HelloModule, Object, Kernel, BasicObject]
+p HelloClass.superclass                 #=&gt; Object
+</code></pre>
+
+<p><em>Kenerl</em>是Ruby内部的一个核心模块，Ruby程序运行时所需的共通函数都封装在此模块中。</p>
+
+<p>单一继承的优点就是简单，不会因为过多的继承而导致类之间的关系变得复杂。所以我们需要灵活使用单一继承和Mix-in。</p>
+
+<h4>Mix-in查找方法的规则</h4>
+
+<ul>
+<li>优先使用原来中定义的同名方法。</li>
+<li>在同一个类中包含多个模块时，优先使用最后一个包含的模块。</li>
+<li>嵌套include时，查找顺序也是线性的。</li>
+<li>相同的模块被包含两次也上的，第2次以后的会被省略。</li>
+</ul>
+
+
+<h4>Object#extend方法</h4>
+
+<p>利用Object#extend方法可以使单例类包含模块，并把模块的功能扩展到对象中。</p>
+
+<pre><code class="ruby">module Welcome
+    def welcome(name)
+        "#{self} Welcome #{name}"
+    end
+end
+
+str = "World"
+str.extend(Welcome)                     #=&gt; 将Welcome模块扩展到str对象上
+puts str.welcome("Ruby")                #=&gt; World Welcome Ruby
+</code></pre>
+
+<p><strong>include</strong>可以帮助我们突破继承的限制，通过模块扩展类的功能；而<strong>extend</strong>则可以帮助我们跨过类，直接通过模块扩展对象的功能.</p>
+
+<p>所有类本身都是Class类的对象，类方法就是类对象的实例方法。可以把类方法理解为下:</p>
+
+<ul>
+<li><strong>Class</strong>类的实例方法</li>
+<li>类对象的单例方法</li>
+</ul>
+
+
+<p>使用<strong>extend</strong>方法为类对象追加类方法，使用<strong>include</strong>方法追加实例方法。</p>
+
+<pre><code class="ruby">module ClassMethod
+    def class_method
+        "class method"
+    end
+end
+
+module InstanceMethod
+    def instance_method
+        "instance method"
+    end
+end
+
+class MyClass
+    extend ClassMethod                  #使用extend方法定义类方法
+    include InstanceMethod              #使用include定义实例方法
+end
+
+p MyClass.class_method                  #=&gt; "class method"
+p MyClass.new.instance_method           #=&gt; "instance method"
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(5)]]></title>
@@ -805,186 +992,6 @@ pp的输出格式如下:
 </code></pre>
 
 <p>与<strong>p</strong>方法的不同之处在于，<strong>pp</strong>方法在输出对象的结果时，为了更容易看懂，会适当的换行以调整输出结果。如上所示。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(1)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1/"/>
-    <updated>2015-08-12T16:08:21+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1</id>
-    <content type="html"><![CDATA[<p><img src="/assets/images/ruby-logo.png" width="50" height="50"><strong>Ruby</strong>是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是<strong>红宝石</strong>.</p>
-
-<h3>特点</h3>
-
-<p><em>脚本语言</em> <br/>
-即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
-
-<!-- more -->
-
-
-<p><em>完全的面向对象</em><br/>
-对Ruby来说，纯数字都属于对象，可以直接调用其方法。比如下面代码： <br/>
-<code>
--1.abs   #return 1
-</code></p>
-
-<p>这是其他面向对象编程语言如C#、Java不具备的。同时Ruby也具备有其他面向对象编程语言的特性，如：继承、Mixin等。</p>
-
-<p><em>跨平台</em> <br/>
-能在类Unix操作系统如：Mac OS X、Linux和windows操作系统上运行。</p>
-
-<h3>安装</h3>
-
-<p>Ruby的安装很简单，以在Mac OS X电脑的安装为例。使用Homebrew包管理器可以得到ruby的最新版本: <br/>
-<code>
-brew install ruby
-</code></p>
-
-<p>安装完后，在输入如下命令查看ruby版本: <br/>
-<code>
-ruby -v
-</code></p>
-
-<p>进入<a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby Installation</a>链接可以查看Ruby在其他操作系统上的安装</p>
-
-<h3>HelloWorld</h3>
-
-<p>用ruby编写第一个Hello world程序，只需一行代码，比其他的面向对象语言简单多了。 <br/>
-<code>ruby
-print("Hello world\n");
-</code></p>
-
-<p>直接将这行代码写入helloworld.rb文件，然后输入如下指令运行即可看到内容输出在终端控制器上。 <br/>
-<code>
-ruby helloworld.rb
-</code></p>
-
-<p>当然如果你想直接和ruby交互的话，也有办法，Ruby提供了和Python类似的交互式操作。在命令行输入<strong>irb</strong>进入交互模式。</p>
-
-<p>ruby也提供了字符的转义功能，比如换行(\n), 制表符(\t)等等。如上面的打印Hello world。</p>
-
-<p><em>注:上面代码中调用print方法的括号可以省略。ruby尽量的简化了开发人员的工作量</em></p>
-
-<h3>puts、print和p的区别</h3>
-
-<p><strong>puts</strong>方法会在每次输出后输出换行符，而<strong>print</strong>则不会。例如以下的输出内容是一致的:
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Helle</span> <span class="n">world</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;print &amp;ldquo;Hello world\n&amp;rdquo;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>使用<strong>p</strong>方法可以将数据按照原始类型输出来，这是<strong>puts</strong>和<strong>print</strong>所不具备的，直接用代码来解释:
-<code>ruby
-puts "1"   #=&gt; 1
-puts 1     #=&gt; 1
-print 1    #=&gt; 1
-print "1"  #=&gt; 1
-p "1"      #=&gt; "1"
-p 1        #=&gt; 1
-</code></p>
-
-<p>所以基于<strong>p</strong>方法的特性，转义字符在其内是不工作的，将会被直接打印出来,如以下代码将会输出&#8221;Hello world\n&#8221;。还有<strong>p</strong>方法也会输出换行符，并且还会将打印的内容按数据类型返回，而其他两种方法只返回<strong>nil</strong>空值。
-<code>ruby
-p "Hello world\n"  
-</code></p>
-
-<p><em>注:在Ruby中，任何函数均有返回值。<strong>nil</strong>空值就是其中一种常见的返回。</em></p>
-
-<p><strong>print</strong>, <strong>puts</strong>和<strong>p</strong>方法均可传入多个参数，调用方式和返回结果如下，可以体会下用法:<br/>
-<em>print方法</em>  <br/>
-<code>ruby
-print "Hello", " Ruby“
-</code></p>
-
-<pre><code>Hello Ruby
-</code></pre>
-
-<p><em>puts方法</em> <br/>
-<code>ruby
-puts "Hello", " Ruby"
-</code></p>
-
-<pre><code>Hello
-Ruby
-</code></pre>
-
-<p><em>p方法</em>    <br/>
-<code>ruby
-p "Hello", " Ruby"
-</code></p>
-
-<pre><code>”Hello"
-"Ruby"
-</code></pre>
-
-<h3>变量</h3>
-
-<p>在ruby中声明变量也很简单，不需要任何如javascript的<em>var</em>等关键字，直接定义赋值。</p>
-
-<pre><code class="ruby">greet = "Hello world"
-</code></pre>
-
-<p>访问变量也简单:</p>
-
-<pre><code class="ruby">puts greet
-puts "#{greet}"
-</code></pre>
-
-<p>以上两种写法均会直接输出Hello world.</p>
-
-<h3>控制语句</h3>
-
-<p><em>if 语句</em></p>
-
-<pre><code>if 条件 then
-    逻辑处理
-end
-</code></pre>
-
-<p><em>if else 语句</em></p>
-
-<pre><code>if 条件 then
-    逻辑处理
-else
-    逻辑处理
-end
-</code></pre>
-
-<p><em>if elsif 语句</em></p>
-
-<pre><code>if 条件 then
-    逻辑处理
-elsif 条件 then
-    逻辑处理
-else
-    逻辑处理
-end
-</code></pre>
-
-<p><em>注:在上面的if各种控制语句中，<strong>then</strong>关键字是可以省略的.</em></p>
-
-<h3>循环语句</h3>
-
-<p><em>while 语句</em></p>
-
-<pre><code>while 条件 do
-    逻辑处理
-end
-</code></pre>
-
-<p><em>times迭代器</em></p>
-
-<p>当循环的次数已经确定时，可直接使用times方法来循环处理我们需要的逻辑
-    I
-    循环次数.times do
-        逻辑处理
-    end</p>
-
-<p><em>注:<strong>times</strong>方法被成为迭代器，除了times方法迭代器，ruby还提供了其他的迭代器，比如<strong>each</strong>方法.</em></p>
 ]]></content>
   </entry>
   
