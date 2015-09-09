@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-09-06T20:16:23+08:00</updated>
+  <updated>2015-09-09T23:19:15+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,187 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8/"/>
+    <updated>2015-09-06T20:36:07+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8</id>
+    <content type="html"><![CDATA[<h3>运算符</h3>
+
+<p>以下两种运算符是等价的, op即代表操作运算符</p>
+
+<pre><code>value1 op= value2
+value1 = value1 op value2
+</code></pre>
+
+<p>利用运算符<strong>||</strong>的特性，可以简化相关的赋值代码，如下是等价的
+<code>ruby 赋值方式1
+name = "Ruby"
+if var              #当var不是nil或false时
+    name = var
+end
+</code></p>
+
+<pre><code class="ruby 赋值方式2">name = var || "Ruby"
+</code></pre>
+
+<!-- more -->
+
+
+<p>而利用<strong>&amp;&amp;</strong>运算符，可以避免不必要要得程序错误</p>
+
+<pre><code class="ruby 隐藏的错误">name = ary[0]          #如果ary为nil，则此时将引发程序错误
+</code></pre>
+
+<pre><code class="ruby 使用&&避免错误">name = ary &amp;&amp; ary[0]    #避免当ary为nil时，读取ary[0]时的错误
+</code></pre>
+
+<p>使用<strong>&amp;&amp;</strong>可以在确定对象存在后再调用方法。而且代码更加简洁。</p>
+
+<h4>范围运算符</h4>
+
+<p>相比其他的语言如Java等，范围运算符算是一个比较特殊的运算符，范围运算符有<strong>..</strong>和<strong>&hellip;</strong>两种，其区别在于如下</p>
+
+<ul>
+<li><strong>x..y</strong>的范围是从x到y</li>
+<li><strong>x&hellip;y</strong>的范围是从x到y得前一个元素</li>
+</ul>
+
+
+<pre><code class="ruby">(1..5).to_a             #=&gt; [1, 2, 3, 4, 5]
+("a".."d").to_a         #=&gt; ["a", "b", "c", "d"]
+
+(1...5).to_a                #=&gt; [1, 2, 3, 4]
+("a"..."d").to_a            #=&gt; ["a", "b", "c"]
+</code></pre>
+
+<p>Ruby中有范围对象(Range)来表示范围对象，以下两个写法是等价的</p>
+
+<pre><code class="ruby">ary = Range.new(1, 5)   #=&gt; 1..5
+ary.class                   #=&gt; Range
+
+
+ary = 1..5              #=&gt; 1..5
+ary.class                   #=&gt; Range
+</code></pre>
+
+<p>在Range对象内部，可以使用<strong>succ</strong>方法根据起点值逐个生成下一值</p>
+
+<pre><code class="ruby">a = 1
+a = a.succ                  #=&gt; 2
+a = a.succ                  #=&gt; 3
+a.succ.succ                 #=&gt; 5
+</code></pre>
+
+<h4>运算符重定义</h4>
+
+<p>在Ruby中有以下运算符不能重定义
+::, &amp;&amp;, ||, .., &hellip;, ?:, not, =, and</p>
+
+<p><em>二元运算符重定义</em>,如加号+、减号-</p>
+
+<pre><code class="ruby">class Point
+    attr_reader :x, :y
+
+    def initialize(x, y)
+        @x, @y = x, y
+    end
+
+    def +(other)
+        self.class.new(x + other.x, y + other.y)
+    end
+
+    def -(other)
+        self.class.new(x - other.x, y - other.y)
+    end
+
+    def display
+        "(#{x}, #{y})"
+    end
+end
+
+p1 = Point.new(1, 2)
+p2 = Point.new(3, 4)
+p = p1 + p2
+puts p.display                  #=&gt; (4, 6)
+
+p = p2 - p1
+puts p.display                  #=&gt; (2, 2)
+</code></pre>
+
+<p><em>一元运算符</em>，如正号+，负号-等，其重定义与二元运算符不同。可定义的一元运算符有<strong>+</strong>, <strong>-</strong>, <strong>~</strong>, <strong>!</strong>4个。分别以+@， -@， ~@， !@为方法名进行方法定义。而且一元运算符都是没有参数的。</p>
+
+<pre><code class="ruby">class Point
+    attr_reader :x, :y
+
+    def initialize(x, y)
+        @x, @y = x, y
+    end
+
+    def +@
+        dup
+    end
+
+    def -@
+        self.class.new(-x ,-y)
+    end
+
+    def ~@
+        self.class.new(-y, x)
+    end
+
+    def display
+        "(#{x}, #{y})"
+    end
+end
+
+p1 = Point.new(1, 2)
+puts (-p1).display              #=&gt; (-1, -2)
+puts (+p1).display              #=&gt; (1, 2)
+</code></pre>
+
+<h4>下标方法</h4>
+
+<p>数组、散列中的<em>obj[i]</em>以及<em>obj[i]=x</em>这样的方法，称为下标方法。定义下标方法时的方法名分别为<strong>[]</strong>和<strong>[]=</strong>.</p>
+
+<pre><code class="ruby">class Point
+    attr_reader :x, :y
+
+    def initialize(x, y)
+        @x, @y = x, y
+    end
+
+    def [](index)
+        case index
+        when 0
+            x
+        when 1
+            y
+        else
+            raise ArgumentError, "out of range (#{index})"
+        end
+    end
+
+    def []=(index, val)
+        case index
+        when 0
+            self.x = val
+        when 1
+            self.y = val
+        else
+            raise ArgumentError, "out of range (#{index})"
+        end
+    end
+
+
+    def display
+        "(#{x}, #{y})"
+    end
+end
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(7)]]></title>
@@ -738,260 +919,6 @@ end
 <pre><code class="ruby">p 1.0 == 1                  ##=&gt; true
 p 1.0.eql? 1                    ##=&gt; false
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(2)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/08/13/ru-practice-2/"/>
-    <updated>2015-08-13T13:35:15+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/08/13/ru-practice-2</id>
-    <content type="html"><![CDATA[<h3>数组</h3>
-
-<p>Ruby中数组的大小是按实际情况自动调整的，即所谓的<strong>动态数组</strong></p>
-
-<pre><code class="ruby">&gt;&gt; rubyArray = ["data1", "data2"]   ##定义两个数据的数组
-&gt;&gt; rubyArray[2] = "data3"           ##新增第三个数据
-&gt;&gt; print rubyArray                  ##打印["data1", "data2", "data3"]
-</code></pre>
-
-<p>Ruby数组还支持多种不同对象的混合保存, 通过<strong>数组.size</strong>可获取数组的大小</p>
-
-<pre><code class="ruby">&gt;&gt; mixedArray = [1, "data", 2, "time", 3]
-&gt;&gt; mixedArray.size     #=&gt; 5
-</code></pre>
-
-<!-- more -->
-
-
-<p>遍历数组也很方便，利用each方法，ruby提供了两种书写方式。<em>each方法会返回原数组的值</em></p>
-
-<pre><code class="ruby do/end代码块方式">&gt;&gt; mixedArray = [1, "data", 2, "time",3]
-&gt;&gt; mixedArray.each do |value|
-&gt;&gt; print "#{value} "
-&gt;&gt; end
-
-##将会打印出:1 data 2 time 3,并且返回mixedArray。
-</code></pre>
-
-<pre><code class="ruby {}代码块方式">&gt;&gt; mixedArray.each {
-&gt;&gt; |value|
-&gt;&gt; print "#{value} "
-&gt;&gt; }
-</code></pre>
-
-<p>上面两种方式的输出结果和返回值都一样。建议采用第一种，更加符合Ruby的风格。</p>
-
-<p><em>注:通过在终端输入<strong>irb &ndash;simple-promot</strong>，可以简化ruby交互式的提示输入，如上面的Ruby的提示输入符&#8217;>>&lsquo;</em></p>
-
-<h3>散列</h3>
-
-<p>Ruby中的键值(key-value pair)数据结构是用散列(hash)来表示，一般以字符串或者符号(Symbol)来作为键，值来保存对应的对象。</p>
-
-<p><em>符号(symbol)</em>与字符串对象很相似，符号也是对象，一般都作为名称标签来使用。我们可以将符号简单理解为轻量级的字符串。</p>
-
-<p>符号的定义只需在标识符的开头加上&#8217;:&lsquo;即可</p>
-
-<pre><code class="ruby">&gt;&gt; sym1 = :text
-&gt;&gt; sym2 = :"text"
-</code></pre>
-
-<p>以上两行代码都是表示符号&#8221;:foo&#8221;.</p>
-
-<p>使用符号比使用字符串更有效率，而且符号与字符串可以互相任意转换, 用<strong>to_s</strong>和<strong>to_sym</strong>方法</p>
-
-<pre><code class="ruby">&gt;&gt; sym = :text
-=&gt; :text
-&gt;&gt; sym.to_s         ##将符号转为话字符串
-=&gt; "text"
-&gt;&gt; "text".to_sym    ##将字符串转为符号
-=&gt; :text
-&gt;&gt;
-</code></pre>
-
-<p>如何定义一个散列，定义一个散列有下列两种写法:</p>
-
-<pre><code class="ruby 散列定义方式一">&gt;&gt; details = {:name =&gt; "yu", :gender =&gt; "male", :alias =&gt; "stonefishy"}
-=&gt; {:name=&gt;"yu", :gender=&gt;"male", :alias=&gt;"stonefishy"}
-</code></pre>
-
-<pre><code class="ruby 散列定义方式二">&gt;&gt; details = {name: "yu", gender: "male", alias: "stonefishy"}
-=&gt; {:name=&gt;"yu", :gender=&gt;"male", :alias=&gt;"stonefishy"}
-</code></pre>
-
-<p>第二种方式和<em>json</em>数据的格式相似。</p>
-
-<p>操作散列也很简单，直接看下面执行示例</p>
-
-<pre><code class="ruby">&gt;&gt; details[:age] = 18               ##新增一个age值
-=&gt; 18
-&gt;&gt; details
-=&gt; {:name=&gt;"yu", :gender=&gt;"male", :alias=&gt;"stonefishy", :age=&gt;18}
-&gt;&gt; details[:name]                   ##获取指定键的值
-=&gt; "yu"
-&gt;&gt; details[:age] = 20               ##修改指定键的值
-=&gt; 20
-&gt;&gt; details
-=&gt; {:name=&gt;"yu", :gender=&gt;"male", :alias=&gt;"stonefishy", :age=&gt;20}
-</code></pre>
-
-<p><em>注: =>符号表示ruby交互式模式的输出命令</em></p>
-
-<p>使用each方法遍历散列：</p>
-
-<pre><code class="ruby">&gt;&gt; details.each do |key, value|
-?&gt; puts "#{key} - #{value}"
-&gt;&gt; end
-name - yu
-gender - male
-alias - stonefishy
-age - 20
-=&gt; {:name=&gt;"yu", :gender=&gt;"male", :alias=&gt;"stonefishy", :age=&gt;20}   ##each方法同样会返回散列
-</code></pre>
-
-<h3>正则表达式</h3>
-
-<p>正则表达式(Regular Expression)的语法如下，</p>
-
-<pre><code>/模式/
-</code></pre>
-
-<p>使用运算符=~来匹配正则表达式和字符串, 若匹配成功返回匹配部分的位置，匹配失败返回nil值。</p>
-
-<pre><code>/模式/ =~ 希望匹配的字符串
-</code></pre>
-
-<pre><code class="ruby">&gt;&gt; /ruby/ =~ "hello, ruby"          ##包含‘ruby’字符串
-=&gt; 7
-&gt;&gt; /^ruby$/ =~ "hello, ruby"        ##完全匹配‘ruby’字符串
-=&gt; nil
-&gt;&gt; /ruby$/ =~ "hello, ruby"     ##以‘ruby’字符串结尾
-=&gt; 7
-</code></pre>
-
-<p>正则表达式右边的/后面添加i表示不区分大小写匹配:</p>
-
-<pre><code class="ruby">&gt;&gt; /RUby/i =~ "hello, ruby"
-=&gt; 7
-</code></pre>
-
-<p>定义正则表达式还有另外一种方式，直接用<strong>Regexp</strong>类来创建:</p>
-
-<pre><code class="ruby">pattern = Regexp.new("ruby")        ##定义一个正则表达式
-=&gt; /ruby/
-&gt;&gt; pattern =~ "hello, ruby"
-=&gt; 7
-</code></pre>
-
-<p><em>注: 如果想更加详细的了解正则表达式的语法，可以查看使用<a href="http://rubular.com/">Rubular</a></em></p>
-
-<h3>命令行参数</h3>
-
-<p>Ruby中使用<strong>ARGV</strong>这个Ruby预定义好的数组来获取从命令行传递过来的数据。在命令行指定多个脚本参数时，各个参数之间用空格隔开。</p>
-
-<p>使用<strong>each_with_index</strong>方法可以获取遍历的index，</p>
-
-<pre><code class="ruby argv.rb">ARGV.each_with_index do |arg, index|
-puts "第#{index + 1}个参数: #{arg}"
-end
-</code></pre>
-
-<p>执行和输出结果如下:</p>
-
-<pre><code>&gt; ruby argv.rb hello world and ruby ##命令行输入参数
-=&gt; 第1个参数: hello
-=&gt; 第2个参数: world
-=&gt; 第3个参数: and
-=&gt; 第4个参数: ruby
-</code></pre>
-
-<h3>文件读取</h3>
-
-<p>Ruby中通过File类来读取文件，两种读取方式，一次性读取和逐行读取，示例如下,</p>
-
-<pre><code class="ruby read_all_text.rb">file = File.open(ARGV[0])       ##打开文件
-text = file.read                    ##读取文件中得所有文本数据
-print text
-file.close                      ##关闭文件句柄
-</code></pre>
-
-<pre><code class="ruby read_each_line_text.rb">file = File.open(ARGV[0])
-file.each_line do |line|         ##逐行读取文件
-    print line
-end
-file.close
-</code></pre>
-
-<h3>方法的定义</h3>
-
-<p>Ruby方法的定义和Python一样简答，</p>
-
-<pre><code>def 方法名
-    希望处理的逻辑
-end
-</code></pre>
-
-<p>我们现在将上面读取文件的代码定义在一个方法中，</p>
-
-<pre><code class="ruby read_file.rb">def read_file(file_name)
-    file = File.open(file_name)
-    file.each_line do |line|
-        print line
-    end
-end
-</code></pre>
-
-<p>现在我们想在其他文件里面使用上面定义的文件读取方法，那么该如何引用了，且看下，</p>
-
-<h3>引用文件</h3>
-
-<p>Ruby使用<strong>require</strong>方法来引用库或文件</p>
-
-<pre><code>require 希望使用的库名
-</code></pre>
-
-<p><em>库名可以省略后缀.rb</em></p>
-
-<pre><code class="ruby invoke_read_file.rb">require "./read_file"           ##引入读取文件的库
-read_file("argv.rb");           ##直接调用库中的方法
-</code></pre>
-
-<p>执行示例：</p>
-
-<pre><code>&gt; ruby invoke_read_file.rb
-=&gt; ARGV.each_with_index do |arg, index|
-=&gt; puts "第#{index + 1}个参数: #{arg}"
-=&gt; end
-</code></pre>
-
-<h3>p与pp方法</h3>
-
-<p>如前我们所介绍的打印数据到终端的有<strong>p</strong>, <strong>puts</strong>, <strong>print</strong>等方法，现在再介绍一种按数据排版打印的方法<strong>pp</strong>, 其全名为 pretty print。但是如果想使用该方法，需要使用require方法引入<strong>pp</strong>库。直接看示例</p>
-
-<pre><code class="ruby p_and_pp.rb">require "pp"
-
-details = [{content1: "This is content1", 
-            content2: "This is content2", 
-            content3: "This is content3"}]
-
-puts "p的输出格式如下:"
-p details
-
-puts "pp的输出格式如下:"
-pp details
-</code></pre>
-
-<p>执行示例:</p>
-
-<pre><code>p的输出格式如下:
-[{:content1=&gt;"This is content1", :content2=&gt;"This is content2", :content3=&gt;"This is content3"}]
-pp的输出格式如下:
-[{:content1=&gt;"This is content1",
-  :content2=&gt;"This is content2",
-  :content3=&gt;"This is content3"}]
-</code></pre>
-
-<p>与<strong>p</strong>方法的不同之处在于，<strong>pp</strong>方法在输出对象的结果时，为了更容易看懂，会适当的换行以调整输出结果。如上所示。</p>
 ]]></content>
   </entry>
   

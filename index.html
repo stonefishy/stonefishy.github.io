@@ -9,9 +9,13 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="模块 Ruby中的类是表现事物的属性和行为，那么模块呢？，在Ruby中模块表现的只是事物的行为。 模块与类的区别于下： 模块不能拥有实例
-模块不能被继承 如何访问模块内的方法？有两种方式可以访问 1.使用模块名.方法名的形式来直接调用模块中定义的方法。 1
-Math.sqrt(4) #=&gt; &hellip;">
+  <meta name="description" content="运算符 以下两种运算符是等价的, op即代表操作运算符 value1 op= value2
+value1 = value1 op value2 利用运算符||的特性，可以简化相关的赋值代码，如下是等价的 赋值方式11
+2
+3
+4
+name = &quot;Ruby&quot;
+if var # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +71,66 @@ Math.sqrt(4) #=&gt; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/06/ruby-practice-8/">Ruby修炼之道(8)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-06T20:36:07+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:36 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>运算符</h3>
+
+<p>以下两种运算符是等价的, op即代表操作运算符</p>
+
+<pre><code>value1 op= value2
+value1 = value1 op value2
+</code></pre>
+
+<p>利用运算符<strong>||</strong>的特性，可以简化相关的赋值代码，如下是等价的</p>
+
+<figure class='code'><figcaption><span>赋值方式1</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span>
+</span><span class='line'><span class="k">if</span> <span class="n">var</span>              <span class="c1">#当var不是nil或false时</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="n">var</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>赋值方式2</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="n">var</span> <span class="o">||</span> <span class="s2">&quot;Ruby&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/06/ruby-practice-8/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -485,42 +549,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Implicit Submission of Form When Pressing Enter Key</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-30T15:08:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:08 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
-
-<p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -545,6 +573,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/06/ruby-practice-8/">Ruby修炼之道(8)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/01/ruby-practice-7/">Ruby修炼之道(7)</a>
       </li>
     
@@ -558,10 +590,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/08/17/ruby-practice-4/">Ruby修炼之道(4)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/14/ruby-practice-3/">Ruby修炼之道(3)</a>
       </li>
     
   </ul>
