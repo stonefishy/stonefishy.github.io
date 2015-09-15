@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-09-09T23:19:15+08:00</updated>
+  <updated>2015-09-15T15:16:49+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,440 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(9)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9/"/>
+    <updated>2015-09-09T23:22:26+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9</id>
+    <content type="html"><![CDATA[<h3>异常处理</h3>
+
+<p>在Ruby中，抛出异常的信息格式如下：</p>
+
+<pre><code>文件名：行号：in 方法名：错误信息 (异常类名)
+        from 文件名：行号：in 方法名
+</code></pre>
+
+<p>以from开头的行表示发生错位的位置。
+在Ruby中,使用<strong>begin ~ rescue ~ end</strong>语句来做异常处理，其语法如下：</p>
+
+<pre><code>begin
+    可能会发生异常的处理
+rescue
+    发生异常时的处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;has a exception&quot;</span>                <span class="c1">#=&gt; has a exception</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>通过在<strong>rescue</strong>后指定变量名，可以获得异常对象。异常对象有两个方法，方法名为<strong>class</strong>、<strong>message</strong>、<strong>backtrace</strong>。</p>
+
+<ul>
+<li><strong>class</strong>方法可以获取到异常的种类</li>
+<li><strong>message</strong>方法获取异常信息。</li>
+<li><p><strong>backtrace</strong>方法获取异常发生的位置信息</p>
+
+<p>  begin
+      可能会发生的异常的处理
+  rescue =>   引用异常对象的变量
+      发生异常时的处理
+  end</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>                              <span class="c1">#=&gt; 将异常对象引用到ex对象</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">ex</span><span class="o">.</span><span class="n">class</span>                          <span class="c1">#=&gt; ZeroDivisionError</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>                        <span class="c1">#=&gt; divided by 0</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">ex</span><span class="o">.</span><span class="n">backtrace</span>                  <span class="c1">#=&gt; exception.rb:2:in `/&#39;exception.rb:2:in `&lt;main&gt;&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Note：此处是将代码直接写在ruby文件里，然后直接运行的，没有写在方法里面。所以看到的信息是文件名和发生错误的行号</em></p>
+
+<p>如果不指定变量名，Ruby将会把异常对象赋值给<strong>$!</strong>、<strong>$2</strong>变量</p>
+
+<ul>
+<li><strong>$!</strong> 引用到最后发生的异常对象</li>
+<li><strong>$@</strong> 引用到发生的异常的位置信息</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="vg">$!</span><span class="o">.</span><span class="n">class</span>                         <span class="c1">#=&gt; ZeroDivisionError</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="vg">$!</span><span class="o">.</span><span class="n">message</span>                       <span class="c1">#=&gt; divided by 0</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="vg">$!</span><span class="o">.</span><span class="n">backtrace</span>                 <span class="c1">#=&gt; exception.rb:2:in `/&#39;exception.rb:2:in `&lt;main&gt;&#39;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="vg">$@</span>                             <span class="c1">#=&gt; exception.rb:2:in `/&#39;exception.rb:2:in `&lt;main&gt;&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从上面的运行示例可以看出，其实<strong>$!.backtrace</strong>与<strong>$@</strong>是等价的，都表示异常发生的位置。</p>
+
+<p>在Ruby中可以通过<strong>ensure</strong>来确保无论是否引发异常都将执行处理，类似于Java和C#中得finally。</p>
+
+<pre><code>begin
+    可能发生的异常
+rescue =&gt; 变量
+    发生异常时的处理
+ensure
+    无论是否有异常，都会处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="n">from</span> <span class="n">to</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">src</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">from</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>      <span class="n">dst</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span>
+</span><span class='line'>      <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">dst</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>
+</span><span class='line'>  <span class="k">ensure</span>
+</span><span class='line'>      <span class="n">src</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<strong>rescue</strong>中使用<strong>retry</strong>后，<strong>begin</strong>以下的处理会再重做一遍。所以需要注意陷入死循环的情况。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="o">/</span> <span class="n">num</span>                       <span class="c1">#=&gt; 如果发生异常，则执行rescue中的语句</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+</span><span class='line'>      <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">retry</span>                            <span class="c1">#=&gt; 重复执行begin后的语句</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">count</span>                     <span class="c1">#=&gt; 6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>使用rescue做为修饰符</h4>
+
+<p>使用rescue作为修饰符可以简化很多代码</p>
+
+<pre><code>表达式1 rescue 表达式2
+</code></pre>
+
+<p>与下面的写法等价</p>
+
+<pre><code>begin
+    表达式1
+rescue
+    表达式2
+end
+</code></pre>
+
+<p>其意义为如果表达式1中发生异常，表达式2的值就会成为整体表达式的值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">parseInt</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">Integer</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="k">rescue</span> <span class="mi">0</span>     <span class="c1">#=&gt; 如果Integer(param)语句无异常，直接返回该值，否者返回0</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">parseInt</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>           <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">parseInt</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>           <span class="c1">#=&gt; 0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在判断字符串是否为数值形式时，可以使用这种方法。</p>
+
+<h4>异常处理的其他语法</h4>
+
+<p><em>方法内</em>
+如果异常处理的范围是整个方法体，这时可以省略begin以及end关键字，直接使用rescue和ensure。</p>
+
+<pre><code>def 方法名
+    方法体
+rescue =&gt; 异常对象
+    异常处理
+ensure
+    后处理
+end
+</code></pre>
+
+<p><em>类定义中</em>
+在类定义中也可以使用rescue以及ensure。但是，如果类定义途中发生异常，那么异常发生部分后的方法定义就不会再执行了。所以一般很少在类定义中使用。</p>
+
+<pre><code>class 类名
+    类定义
+rescue =&gt; 异常对象
+    异常处理
+ensure
+    后处理
+end
+</code></pre>
+
+<h4>指定需要捕捉的异常</h4>
+
+<p>当然，Ruby也提供了针对特定异常的捕捉处理，可以使用多个rescue来分开处理</p>
+
+<pre><code>begin
+    可能发生异常的地方
+rescue Exception1, Exception2 =&gt;变量
+    对Exception1或Exception2的处理
+rescue Exception3 =&gt; 变量
+    对Exception3的处理
+rescue
+    对上述异常以外的异常的处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">multi_rescue</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>      <span class="k">yield</span>                    <span class="c1">#块参数在此处，如有异常，将执行后续指定的异常处理</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">NameError</span><span class="p">,</span> <span class="no">NoMethodError</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="n">ex</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">ZeroDivisionError</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="vg">$!</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'>  <span class="k">rescue</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="vg">$!</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">multi_rescue</span> <span class="k">do</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>                            <span class="c1">#触发ZeroDivisionError异常</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">multi_rescue</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">val</span><span class="o">.</span><span class="n">size</span>                       <span class="c1">#触发NameError异常</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">multi_rescue</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">val</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>  <span class="n">sqrt</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>                       <span class="c1">#触发NoMethodError异常 </span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上代码定义了一个带块的方法，通过此方法可以插入任何你想要得代码执行块。</p>
+
+<h4>异常类</h4>
+
+<p><em>注意：ruby中所有异常都是</em>Exception<em>类的子类。</em>
+当rescue中不指定异常类时，程序会默认捕捉<em>StandardError</em>类及其子类的异常. 所以在定义自己的异常时，可以先定义继承StandardError类的新类，然后再继承这个新类。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">MyError</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">StandardError</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">MyError</span> <span class="o">&lt;</span> <span class="no">StandardError</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面两种写法是等效的，都是表示定义一个继承StandardError类的新类。第一种方式是一种简洁的写法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">MyError</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">StandardError</span><span class="p">)</span>        <span class="c1">#自定义MyError异常</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#自定义MyError1异常继承自MyError，并重写message方法</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MyError1</span> <span class="o">&lt;</span> <span class="no">MyError</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">message</span>
+</span><span class='line'>      <span class="s2">&quot;the exception message is from MyError1&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#自定义MyError2异常继承自MyError，并重写message方法</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MyError2</span> <span class="o">&lt;</span> <span class="no">MyError</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">message</span>
+</span><span class='line'>      <span class="s2">&quot;the exception message is from MyError2&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#定义带块的处理异常的方法</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">raiseException</span>
+</span><span class='line'>  <span class="k">yield</span>
+</span><span class='line'><span class="k">rescue</span> <span class="no">MyError1</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>
+</span><span class='line'><span class="k">rescue</span> <span class="no">MyError2</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="vg">$!</span><span class="o">.</span><span class="n">message</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#抛出异常MyError1</span>
+</span><span class='line'><span class="n">raiseException</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">raise</span> <span class="no">MyError1</span>       <span class="c1">#=&gt; the exception message is from MyError1      </span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#抛出异常MyError2    </span>
+</span><span class='line'><span class="n">raiseException</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">raise</span> <span class="no">MyError2</span>       <span class="c1">#=&gt; the exception message is from MyError2</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>抛出异常</h4>
+
+<p>使用<strong>raise</strong>方法，可以使程序主动抛出异常。</p>
+
+<p>raise方法有一下4中调用方式：</p>
+
+<ul>
+<li><p>raise message
+抛出<em>RuntimeError</em>异常，并把字符串作为message设置给新生成的异常对象</p></li>
+<li><p>raise 异常类
+抛出指定的异常</p></li>
+<li><p>raise 异常类，message
+抛出指定的异常，并把message信息设置给新生成的异常对象</p></li>
+<li><p>raise
+在rescue外抛出RuntimeError。 在rescue中调用时，会再次抛出最后一次发生的异常。</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#自定义MyError3异常</span>
+</span><span class='line'><span class="no">MyError3</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">MyError</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">raiseException</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">raise</span> <span class="no">MyError3</span><span class="p">,</span> <span class="s2">&quot;customized message for MyError3&quot;</span>   <span class="c1">#=&gt;抛出指定message</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
@@ -5675,249 +6109,6 @@ After Advice - The result is: 0
 <p>You see, the internal result is -9, but after service, the result is changed to 0. So the return value is changed by our <code>Around Advice</code>.</p>
 
 <p><em><strong>Note again:</strong> The <code>Around Advice</code> can change the return value of business logic method, but <code>After Advice</code> cannot.</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - After Advice]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/06/spring-aop-after-advice/"/>
-    <updated>2015-06-06T10:14:46+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/06/spring-aop-after-advice</id>
-    <content type="html"><![CDATA[<p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
-
-<p>There are four types of Advice:</p>
-
-<ul>
-<li>Before Advice</li>
-<li><strong>After Advice</strong></li>
-<li>Around Advice</li>
-<li>Throws Advice</li>
-</ul>
-
-
-<!-- more -->
-
-
-<p><code>After Advice</code> is same as <code>Before Advice</code>. But in order to create our after advice in spring, our class should implement an interface called <code>AfterReturningAdvice</code>, this interface is given in <em>org.springframework.aop.*</em> package. And we need to override a method given by this interface called <code>afterReturning()</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAfterAdvice</span> <span class="kd">implements</span> <span class="n">AfterReturningAdvice</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterReturning</span><span class="o">(</span><span class="n">Object</span> <span class="n">returnValue</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span>
-</span><span class='line'>          <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// TODO Auto-generated method stub</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-The <em>returnValuef</em> is the return value of the logic method, we can use it to access the return of the logic function. The <em>method</em> parameter is the logic method, we can use <em>getName()</em> to access the name of method. And the <em>args</em> parameter is arguments of logic method.</p>
-
-<p>Let&rsquo;s see full example.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyLogicInterface</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kt">int</span> <span class="nf">subtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In this interface, we changed the method&rsquo;s signature, we have return value for both two method.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span> <span class="kd">implements</span> <span class="n">MyLogicInterface</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">subtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In <em>MyLogicClass</em>, we implemented the two methods <em>add</em> and <em>subtract</em>, and return the value.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.aop.AfterReturningAdvice</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAfterAdvice</span> <span class="kd">implements</span> <span class="n">AfterReturningAdvice</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterReturning</span><span class="o">(</span><span class="n">Object</span> <span class="n">returnValue</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span>
-</span><span class='line'>          <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-</span><span class='line'>              <span class="s">&quot;The result from method %s(%s, %s) is: %s&quot;</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span>
-</span><span class='line'>              <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">returnValue</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We print all the messages of the logic method in our <code>After Advice</code>, include method name, the return value of method, the arguments etc.</p>
-
-<p>Okay, let&rsquo;s see our spring config file.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">beans</span> <span class="n">PUBLIC</span> <span class="s">&quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
-</span><span class='line'>          <span class="s">&quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">beans</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;myAfterAdvice&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyAfterAdvice&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;proxyInterfaces&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;spring.test.aop.MyLogicInterface&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;interceptorNames&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">list</span><span class="o">&gt;</span>
-</span><span class='line'>              <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="n">myAfterAdvice</span><span class="o">&lt;/</span><span class="n">value</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;/</span><span class="n">list</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="n">ref</span><span class="o">=</span><span class="s">&quot;myLogicClass&quot;</span><span class="o">/&gt;</span>
-</span><span class='line'>  <span class="o">&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">beans</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It is same with last spring config file of <code>Before After</code>. We just use <em>MyAfterAdvice</em> to instead of <em>MyBeforeAdvice</em>.</p>
-
-<p>To make this application run, we should read spring config file.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="n">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">MyLogicInterface</span> <span class="n">myLogicInterface</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyLogicInterface</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;proxyFactoryBean&quot;</span><span class="o">);</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">myLogicInterface</span><span class="o">.</span><span class="na">subtract</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The result of the application executioin.</p>
-
-<pre><code>The result from method add(10, 20) is: 30
-The result from method subtract(10, 5) is: 5
-</code></pre>
 ]]></content>
   </entry>
   

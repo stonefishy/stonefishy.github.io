@@ -9,13 +9,8 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="运算符 以下两种运算符是等价的, op即代表操作运算符 value1 op= value2
-value1 = value1 op value2 利用运算符||的特性，可以简化相关的赋值代码，如下是等价的 赋值方式11
-2
-3
-4
-name = &quot;Ruby&quot;
-if var # &hellip;">
+  <meta name="description" content="异常处理 在Ruby中，抛出异常的信息格式如下： 文件名：行号：in 方法名：错误信息 (异常类名) from 文件名：行号：in 方法名 以from开头的行表示发生错位的位置。
+在Ruby中,使用begin ~ rescue ~ end语句来做异常处理，其语法如下： begin &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +66,69 @@ if var # &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-09T23:22:26+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>异常处理</h3>
+
+<p>在Ruby中，抛出异常的信息格式如下：</p>
+
+<pre><code>文件名：行号：in 方法名：错误信息 (异常类名)
+        from 文件名：行号：in 方法名
+</code></pre>
+
+<p>以from开头的行表示发生错位的位置。
+在Ruby中,使用<strong>begin ~ rescue ~ end</strong>语句来做异常处理，其语法如下：</p>
+
+<pre><code>begin
+    可能会发生异常的处理
+rescue
+    发生异常时的处理
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;has a exception&quot;</span>                <span class="c1">#=&gt; has a exception</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/09/ruby-practice-9/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -511,44 +569,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Using TSD to Improve Javascript Intellisense of IDE</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-07-30T23:27:10+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:27 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
-
-<p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
-
-<p><code>TypeScipt</code> is also like <code>CoffeeScript</code>, it can be compiled to <code>JavaScript</code>. It is developed by Microsoft company. To See the TypeScript, go to this official <a href="http://www.typescriptlang.org/">website</a>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -573,6 +593,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/06/ruby-practice-8/">Ruby修炼之道(8)</a>
       </li>
     
@@ -586,10 +610,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/08/24/ruby-practice-5/">Ruby修炼之道(5)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/17/ruby-practice-4/">Ruby修炼之道(4)</a>
       </li>
     
   </ul>

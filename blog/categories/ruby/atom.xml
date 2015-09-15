@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-09-09T23:19:15+08:00</updated>
+  <updated>2015-09-15T15:16:49+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,306 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(9)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9/"/>
+    <updated>2015-09-09T23:22:26+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9</id>
+    <content type="html"><![CDATA[<h3>异常处理</h3>
+
+<p>在Ruby中，抛出异常的信息格式如下：</p>
+
+<pre><code>文件名：行号：in 方法名：错误信息 (异常类名)
+        from 文件名：行号：in 方法名
+</code></pre>
+
+<p>以from开头的行表示发生错位的位置。
+在Ruby中,使用<strong>begin ~ rescue ~ end</strong>语句来做异常处理，其语法如下：</p>
+
+<pre><code>begin
+    可能会发生异常的处理
+rescue
+    发生异常时的处理
+end
+</code></pre>
+
+<pre><code class="ruby">begin
+    1 / 0
+rescue
+    puts "has a exception"              #=&gt; has a exception
+end
+</code></pre>
+
+<!-- more -->
+
+
+<p>通过在<strong>rescue</strong>后指定变量名，可以获得异常对象。异常对象有两个方法，方法名为<strong>class</strong>、<strong>message</strong>、<strong>backtrace</strong>。</p>
+
+<ul>
+<li><strong>class</strong>方法可以获取到异常的种类</li>
+<li><strong>message</strong>方法获取异常信息。</li>
+<li><p><strong>backtrace</strong>方法获取异常发生的位置信息</p>
+
+<p>  begin
+      可能会发生的异常的处理
+  rescue =>   引用异常对象的变量
+      发生异常时的处理
+  end</p></li>
+</ul>
+
+
+<pre><code class="ruby">begin
+    1 / 0
+rescue =&gt; ex                                #=&gt; 将异常对象引用到ex对象
+    puts ex.class                           #=&gt; ZeroDivisionError
+    puts ex.message                     #=&gt; divided by 0
+    puts ex.backtrace                   #=&gt; exception.rb:2:in `/'exception.rb:2:in `&lt;main&gt;'
+end
+</code></pre>
+
+<p><em>Note：此处是将代码直接写在ruby文件里，然后直接运行的，没有写在方法里面。所以看到的信息是文件名和发生错误的行号</em></p>
+
+<p>如果不指定变量名，Ruby将会把异常对象赋值给<strong>$!</strong>、<strong>$2</strong>变量</p>
+
+<ul>
+<li><strong>$!</strong> 引用到最后发生的异常对象</li>
+<li><strong>$@</strong> 引用到发生的异常的位置信息</li>
+</ul>
+
+
+<pre><code class="ruby">begin
+    1 / 0
+rescue
+    puts $!.class                           #=&gt; ZeroDivisionError
+    puts $!.message                     #=&gt; divided by 0
+    puts $!.backtrace                   #=&gt; exception.rb:2:in `/'exception.rb:2:in `&lt;main&gt;'
+    puts $@                             #=&gt; exception.rb:2:in `/'exception.rb:2:in `&lt;main&gt;'
+end
+</code></pre>
+
+<p>从上面的运行示例可以看出，其实<strong>$!.backtrace</strong>与<strong>$@</strong>是等价的，都表示异常发生的位置。</p>
+
+<p>在Ruby中可以通过<strong>ensure</strong>来确保无论是否引发异常都将执行处理，类似于Java和C#中得finally。</p>
+
+<pre><code>begin
+    可能发生的异常
+rescue =&gt; 变量
+    发生异常时的处理
+ensure
+    无论是否有异常，都会处理
+end
+</code></pre>
+
+<pre><code class="ruby">def copy(from to)
+    src = File.open(from)
+    begin
+        dst = File.open(to, 'w')
+        data = src.read
+        dst.write(data)
+        dst.close
+    rescue =&gt; ex
+        print ex.message
+    ensure
+        src.close
+    end
+end
+</code></pre>
+
+<p>在<strong>rescue</strong>中使用<strong>retry</strong>后，<strong>begin</strong>以下的处理会再重做一遍。所以需要注意陷入死循环的情况。</p>
+
+<pre><code class="ruby">count = 0
+num = 0
+begin
+    1 / num                     #=&gt; 如果发生异常，则执行rescue中的语句
+rescue
+    if count &gt;= 5
+        num += 1
+    end
+
+    count += 1
+
+    retry                           #=&gt; 重复执行begin后的语句
+end
+
+puts count                      #=&gt; 6
+</code></pre>
+
+<h4>使用rescue做为修饰符</h4>
+
+<p>使用rescue作为修饰符可以简化很多代码</p>
+
+<pre><code>表达式1 rescue 表达式2
+</code></pre>
+
+<p>与下面的写法等价</p>
+
+<pre><code>begin
+    表达式1
+rescue
+    表达式2
+end
+</code></pre>
+
+<p>其意义为如果表达式1中发生异常，表达式2的值就会成为整体表达式的值。</p>
+
+<pre><code class="ruby">def parseInt(param)
+    Integer(param) rescue 0     #=&gt; 如果Integer(param)语句无异常，直接返回该值，否者返回0
+end
+
+puts parseInt("123")            #=&gt; 123
+puts parseInt("abc")            #=&gt; 0
+</code></pre>
+
+<p>在判断字符串是否为数值形式时，可以使用这种方法。</p>
+
+<h4>异常处理的其他语法</h4>
+
+<p><em>方法内</em>
+如果异常处理的范围是整个方法体，这时可以省略begin以及end关键字，直接使用rescue和ensure。</p>
+
+<pre><code>def 方法名
+    方法体
+rescue =&gt; 异常对象
+    异常处理
+ensure
+    后处理
+end
+</code></pre>
+
+<p><em>类定义中</em>
+在类定义中也可以使用rescue以及ensure。但是，如果类定义途中发生异常，那么异常发生部分后的方法定义就不会再执行了。所以一般很少在类定义中使用。</p>
+
+<pre><code>class 类名
+    类定义
+rescue =&gt; 异常对象
+    异常处理
+ensure
+    后处理
+end
+</code></pre>
+
+<h4>指定需要捕捉的异常</h4>
+
+<p>当然，Ruby也提供了针对特定异常的捕捉处理，可以使用多个rescue来分开处理</p>
+
+<pre><code>begin
+    可能发生异常的地方
+rescue Exception1, Exception2 =&gt;变量
+    对Exception1或Exception2的处理
+rescue Exception3 =&gt; 变量
+    对Exception3的处理
+rescue
+    对上述异常以外的异常的处理
+end
+</code></pre>
+
+<pre><code class="ruby">def multi_rescue 
+    begin
+        yield                   #块参数在此处，如有异常，将执行后续指定的异常处理
+    rescue NameError, NoMethodError =&gt; ex
+        puts ex.class
+    rescue ZeroDivisionError
+        puts $!.class
+    rescue 
+        puts $!.class
+    end
+end
+
+multi_rescue do 
+    1 / 0                           #触发ZeroDivisionError异常
+end
+
+multi_rescue do
+    val.size                        #触发NameError异常
+end
+
+multi_rescue do 
+    val = 4
+    sqrt(val)                       #触发NoMethodError异常  
+end
+</code></pre>
+
+<p>以上代码定义了一个带块的方法，通过此方法可以插入任何你想要得代码执行块。</p>
+
+<h4>异常类</h4>
+
+<p><em>注意：ruby中所有异常都是</em>Exception<em>类的子类。</em>
+当rescue中不指定异常类时，程序会默认捕捉<em>StandardError</em>类及其子类的异常. 所以在定义自己的异常时，可以先定义继承StandardError类的新类，然后再继承这个新类。</p>
+
+<pre><code class="ruby">MyError = Class.new(StandardError)
+
+class MyError &lt; StandardError
+end
+</code></pre>
+
+<p>上面两种写法是等效的，都是表示定义一个继承StandardError类的新类。第一种方式是一种简洁的写法。</p>
+
+<pre><code class="ruby">MyError = Class.new(StandardError)      #自定义MyError异常
+
+#自定义MyError1异常继承自MyError，并重写message方法
+class MyError1 &lt; MyError
+    def message
+        "the exception message is from MyError1"
+    end
+end
+
+#自定义MyError2异常继承自MyError，并重写message方法
+class MyError2 &lt; MyError
+    def message
+        "the exception message is from MyError2"
+    end
+end
+
+#定义带块的处理异常的方法
+def raiseException
+    yield
+rescue MyError1 =&gt; ex
+    puts ex.message
+rescue MyError2 =&gt; ex
+    puts ex.message
+rescue
+    puts $!.message
+end
+
+#抛出异常MyError1
+raiseException do
+    raise MyError1      #=&gt; the exception message is from MyError1      
+end
+
+#抛出异常MyError2   
+raiseException do
+    raise MyError2      #=&gt; the exception message is from MyError2
+end
+</code></pre>
+
+<h4>抛出异常</h4>
+
+<p>使用<strong>raise</strong>方法，可以使程序主动抛出异常。</p>
+
+<p>raise方法有一下4中调用方式：</p>
+
+<ul>
+<li><p>raise message
+抛出<em>RuntimeError</em>异常，并把字符串作为message设置给新生成的异常对象</p></li>
+<li><p>raise 异常类
+抛出指定的异常</p></li>
+<li><p>raise 异常类，message
+抛出指定的异常，并把message信息设置给新生成的异常对象</p></li>
+<li><p>raise
+在rescue外抛出RuntimeError。 在rescue中调用时，会再次抛出最后一次发生的异常。</p></li>
+</ul>
+
+
+<pre><code class="ruby">#自定义MyError3异常
+MyError3 = Class.new(MyError
+
+raiseException do
+    raise MyError3, "customized message for MyError3"   #=&gt;抛出指定message
+end
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
@@ -724,200 +1024,6 @@ end
 &gt;&gt; end
 
 &gt;&gt; 3.times { |i| puts i }
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(3)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/08/14/ruby-practice-3/"/>
-    <updated>2015-08-14T17:47:01+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/08/14/ruby-practice-3</id>
-    <content type="html"><![CDATA[<p>在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。</p>
-
-<h3>变量</h3>
-
-<p>和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。</p>
-
-<p><em>局部变量(local variable)</em>
-以英文字母或者_开头</p>
-
-<pre><code class="ruby">words = "Hello Ruby"
-_words = "Hello Ruby"
-</code></pre>
-
-<!--more-->
-
-
-<p><em>全局变量(global variable)</em>
-以$开头</p>
-
-<pre><code class="ruby">$words="Hello Ruby"
-</code></pre>
-
-<p><em>实例变量(instance variable)</em>
-以@开头</p>
-
-<pre><code class="ruby">@words="Hello Ruby"
-</code></pre>
-
-<p><em>类变量(class variable)</em></p>
-
-<p>以@@开头
-<code>ruby
-@@words = "Hello Ruby"
-</code></p>
-
-<p><em>伪变量(pseudo variable)</em>
-伪变量是Ruby预先定义好的代表某个特定值的特殊变量，因此这个值是无法改变的。如，nil、true、false、self等。</p>
-
-<p><em>注：Ruby不需要在意变量名的长度，对于多个单词组合的变量名，使用_隔开各个单词，或者单词以大写字母开头，如：my_words,或者myWords。但是在Ruby中的变量名和方法名一般使用前者，而后者主要用于类名和模块名。</em></p>
-
-<h3>常量</h3>
-
-<p>顾名思义，即不可修改，对已经赋值的常量再进行赋值时，Ruby会做出警告。常量均以大写字母来命名。如Ruby中预先定义好的RUBY_VERSION(运行版本)、RUBTY_PLATFORM(运行平台)、ARGV(命令行参数数组).</p>
-
-<h3>多重赋值</h3>
-
-<p>多重赋值是Ruby中的简化代码的一种方式，通过多重赋值可以将多个变量同时赋值。</p>
-
-<pre><code class="ruby">&gt;&gt; a, b, c = 1, 2, 3    ##同时赋值a, b, c
-&gt;&gt; p [a, b, c]          ##=&gt; [1, 2, 3]
-</code></pre>
-
-<p>这样a, b, c均被赋值了1, 2, 3。
-<em>注：在使用多重赋值时，建议对彼此相关变量进行多重赋值，避免程序难读懂。</em></p>
-
-<p>即使等号(=)左右两边列表的数量不相等，Ruby也不会报错。
-<em>左边变量部分数量多时</em></p>
-
-<pre><code class="ruby">&gt;&gt; a, b, c, d = 1, 2
-&gt;&gt; p [a, b, c, d]           ##=&gt; [1, 2, nil, nil]
-</code></pre>
-
-<p>当左边变量部分数量多时，Ruby会自动将<strong>nil</strong>赋值给未被分配值的变量。如上的c, d变量。</p>
-
-<p><em>左边变量部分数量少时</em></p>
-
-<pre><code class="ruby">&gt;&gt; a, b, c = 1, 2, 3, 4
-&gt;&gt; p [a, b, c]              ##=&gt; [1, 2, 3]
-</code></pre>
-
-<p>当变量部分比较少时，Ruby会忽略掉该值，不会分配多余的值，如上的值4。</p>
-
-<p><em>将未被分配的值赋给指定的变量</em>
-当给一个变量前加上*，表示Ruby会将未分配的值封装为数组赋值给该变量。通过这种方式，Ruby会将变量与右边的值一一匹配。</p>
-
-<pre><code class="ruby">&gt;&gt; a, b, *c = 1, 2, 3, 4
-&gt;&gt; p [a, b, c]                  ##=&gt; [1, 2, [3, 4]]
-
-&gt;&gt; a, *b, c = 1, 2, 3, 4, 5
-&gt;&gt; p [a, b, c]                  ##=&gt; [1, [2, 3, 4], 5]
-</code></pre>
-
-<p>使用多重赋值简化变量值交换：</p>
-
-<pre><code class="ruby">&gt;&gt; a, b = 0, 1
-&gt;&gt; a, b = b, a                  ##置换变量a、b的值
-&gt;&gt; p [a, b]                     ##=&gt; [1, 0]
-</code></pre>
-
-<p>使用多重赋值获取数组的元素:</p>
-
-<pre><code class="ruby">&gt;&gt; arr = [1, 2]
-&gt;&gt; a, b = arr
-&gt;&gt; p a                              ##=&gt; 1
-&gt;&gt; p b                              ##=&gt; 2
-
-
-&gt;&gt; arr = [1, [2, 3], 4]
-&gt;&gt; a, b, c = arr
-&gt;&gt; p a                              ##=&gt; 1
-&gt;&gt; p b                              ##=&gt; [2, 3]
-&gt;&gt; p c                              ##=&gt; 4
-
-
-&gt;&gt; arr = [1, [2, 3], 4]
-&gt;&gt; a, (b, c), d = arr
-&gt;&gt; p a                              ##=&gt; 1
-&gt;&gt; p b                              ##=&gt; 2
-&gt;&gt; p c                              ##=&gt; 3
-&gt;&gt; p d                              ##=&gt; 4
-</code></pre>
-
-<p>只要等号左边的变量结构与数组的结构一致，即使再复杂的结构，多重赋值以可以轻松对应。</p>
-
-<h3>条件判断</h3>
-
-<p>Ruby中条件判断有三种，if语句，unless语句，case语句。If语句我们之前讲过，这里主要涉及剩余两种。</p>
-
-<p><em>unless语句</em>
-这个判断语句刚好与if语句相反，当条件为假时才执行</p>
-
-<pre><code>unless 条件为假 then
-    逻辑处理
-end
-
-unless 条件为假
-    逻辑处理1
-else
-    逻辑处理2
-end
-</code></pre>
-
-<p><em>then</em>关键字可以省略。</p>
-
-<p><em>case语句</em>
-如果需要比较的对象只有一个，根据这个对象值的不同，执行不同的逻辑处理。</p>
-
-<pre><code>case 比较对象
-when 值1 then
-    逻辑处理1
-when 值2 then
-    逻辑处理2
-when 值3 then
-    逻辑处理3
-else
-    逻辑处理4
-end
-</code></pre>
-
-<p>当然，<em>then</em>关键字也可以省略。
-<em>when</em>关键字也可以一次指定多个值。</p>
-
-<pre><code>case 比较对象
-when 值1，值2，值3 then
-    逻辑处理1
-else
-    逻辑处理2
-end
-</code></pre>
-
-<p>在<em>case</em>语句中，<em>when</em>判断值是否相等时，实际是使用<strong>===</strong>运算符来判断的。当左边是数值或者字符串时，<strong>===</strong>与<strong>==</strong>的意义是一样的。</p>
-
-<p><em>注:Ruby中只有<strong>nil</strong>和<strong>false</strong>为假，除此之外的值全为真.</em></p>
-
-<p>在Ruby中，所有的对象都是唯一的，可以通过<strong>object_id</strong>（或者<strong><strong>id</strong></strong>)方法获取对象的标识。</p>
-
-<pre><code class="ruby">&gt;&gt; arr1 = []
-&gt;&gt; arr2 = []
-&gt;&gt; p arr1.object_id         ##=&gt; 70115564029000
-&gt;&gt; p arr2.__id__                ##=&gt; 70115559585120
-</code></pre>
-
-<p>如果判断两个对象是否是同一个对象，即是否引用的是同一个ID的对象。Ruby提供了<strong>equal?</strong>方法来判断。</p>
-
-<pre><code class="ruby">&gt;&gt; arr1 = []
-&gt;&gt; arr2 = []
-&gt;&gt; arr1.equal? arr2         ##=&gt; false
-&gt;&gt; arr3 = arr1
-&gt;&gt; arr1.equal? arr3         ##=&gt; true
-</code></pre>
-
-<p>除了<strong>==</strong>以外，Ruby还提供了<strong>eql?</strong>方法用来判断对象的值是否相等。大部分情况下 <strong>==</strong>与<strong>eql?</strong>执行结果都是一样的。但针对数值类，<strong>eql?</strong>方法会被重定义。</p>
-
-<pre><code class="ruby">p 1.0 == 1                  ##=&gt; true
-p 1.0.eql? 1                    ##=&gt; false
 </code></pre>
 ]]></content>
   </entry>
