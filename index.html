@@ -9,8 +9,11 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="异常处理 在Ruby中，抛出异常的信息格式如下： 文件名：行号：in 方法名：错误信息 (异常类名) from 文件名：行号：in 方法名 以from开头的行表示发生错位的位置。
-在Ruby中,使用begin ~ rescue ~ end语句来做异常处理，其语法如下： begin &hellip;">
+  <meta name="description" content="块 块(block)，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的each，time就是带块的方法。 1
+2
+3
+(1..5).each do |i| puts i
+end 上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下： 对象 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +69,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-15T15:18:16+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:18 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>块</h3>
+
+<p><strong>块(block)</strong>，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的<em>each</em>，<em>time</em>就是带块的方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下：</p>
+
+<pre><code>对象.方法名(参数列表) do |变量|
+    希望的处理
+end
+
+或者
+
+对象.方法名(参数列表) { |变量|
+    希望的处理
+}
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/15/ruby-practice-10/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -533,42 +594,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-06T22:22:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:22 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <strong>HttpClient</strong> is library which is support by apache. It can post or get data from specific  webservice and represents only the most basic contract for HTTP request execution.</p>
-
-<p>We explain how to use this library with a example. In this example, we are going to use it to access the google tranlated API. Translating some text from specific language to other language. And this example using the Spring framework and Maven tool to build.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -593,6 +618,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
@@ -606,10 +635,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/08/25/ruby-practice-6/">Ruby修炼之道(6)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/24/ruby-practice-5/">Ruby修炼之道(5)</a>
       </li>
     
   </ul>

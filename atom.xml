@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-09-15T15:16:49+08:00</updated>
+  <updated>2015-09-18T17:36:48+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,297 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(10)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/15/ruby-practice-10/"/>
+    <updated>2015-09-15T15:18:16+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/15/ruby-practice-10</id>
+    <content type="html"><![CDATA[<h3>块</h3>
+
+<p><strong>块(block)</strong>，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的<em>each</em>，<em>time</em>就是带块的方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下：</p>
+
+<pre><code>对象.方法名(参数列表) do |变量|
+    希望的处理
+end
+
+或者
+
+对象.方法名(参数列表) { |变量|
+    希望的处理
+}
+</code></pre>
+
+<!-- more -->
+
+
+<p>each方法可以将数组的元素一个一个取出来然后处理，散列也可以，但与数组不同的是，散列会将*[key,value]的组合作为数组来提取元素。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">outcome</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;breakfast&quot;</span><span class="o">=&gt;</span><span class="mi">10</span><span class="o">.</span><span class="mo">00</span><span class="p">,</span> <span class="s2">&quot;lunch&quot;</span><span class="o">=&gt;</span><span class="mi">20</span><span class="o">.</span><span class="mo">00</span><span class="p">,</span> <span class="s2">&quot;dinner&quot;</span><span class="o">=&gt;</span><span class="mi">15</span><span class="o">.</span><span class="mo">00</span> <span class="p">}</span>
+</span><span class='line'><span class="n">sum_outcome</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">outcome</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">pair</span><span class="o">|</span>           <span class="c1">#pair是key，value组成的数组，pair[0]为key，pair[1]为value</span>
+</span><span class='line'>  <span class="n">sum_outcome</span> <span class="o">+=</span> <span class="n">pair</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">sum_outcome</span>                   <span class="c1">#=&gt; 45.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在接收块变量时，多重赋值规则也同样适用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">outcome</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2"> : </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>    <span class="c1">#=&gt; 打印对应的outcome信息</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>块除了应用于迭代器以外，还被广泛用于其他地方，其中一个就是确保后处理被执行。看代码</p>
+
+<ul>
+<li>(1)未使用块做后处理</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>file_open.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;each_hash_data.rb&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">line</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>(2)使用块做后处理</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>block_file_open.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;each_hash_data.rb&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>仔细观察代码，你会发现在第种方式中，File#open方法接收了块，然后将file对象作为块变量，并且执行完毕后，并没有调用close方法去关闭文件。用这种方式会使程序出问题吗？答案是不会，因为块内部其实执行了如下代码的处理。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;each_hash_data.rb&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">ensure</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>块还有一种常见的用法，用于替换部分算法，以Array类的sort方法为例</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;ruby&quot;</span><span class="p">,</span> <span class="s2">&quot;pathon&quot;</span><span class="p">,</span> <span class="s2">&quot;c#&quot;</span><span class="p">,</span> <span class="s2">&quot;javascript&quot;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sorted_ary</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">sorted_ary</span>           <span class="c1">#=&gt; [&quot;c#&quot;, &quot;javascript&quot;, &quot;pathon&quot;, &quot;ruby&quot;]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sorted_ary</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">|</span> <span class="n">a</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">length</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">sorted_ary</span>           <span class="c1">#=&gt; [&quot;c#&quot;, &quot;ruby&quot;, &quot;pathon&quot;, &quot;javascript&quot;]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sorted_ary</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">|</span> <span class="n">a</span><span class="o">.</span><span class="n">reverse</span> <span class="o">&lt;=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">reverse</span><span class="p">}</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">sorted_ary</span>           <span class="c1">#=&gt; [&quot;c#&quot;, &quot;pathon&quot;, &quot;javascript&quot;, &quot;ruby&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>将排序算法作为块传递给sort方法，然后返回按指定排序方式排序后的数组。</p>
+
+<p><em>注意：块中最后一个表达式的值就是块的执行结果</em></p>
+
+<h4>定义带块的方法</h4>
+
+<p>使用<strong>yield</strong>关键字代替块，如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">my_block</span>
+</span><span class='line'>  <span class="k">yield</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">my_block</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;this is execution in my block&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>传递块参数，获取块的值</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="n">from</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nb">block_given?</span>                  <span class="c1"># 如果有快的话</span>
+</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="k">yield</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>      <span class="c1"># 将经过块处理后的值累加</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="n">num</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">result</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>                            <span class="c1">#=&gt; 55</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>      <span class="c1">#=&gt; 110</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>block_given?</strong>方法被用于判断当调用方法时是否有块被传递，有则返回true，否则false</p>
+
+<p><em>yield</em>参数的个数可以与块变量的个数不一样，当块变量的个数多时，多出的参数会被赋值为nil，当块变量不足时，则不能接受多余的参数值。</p>
+
+<p>*注：<strong>break</strong>和<strong>next</strong>方法可指定参数，如果没有指定任何参数，则返回nil，如果指定了参数则返回参数，如：break 0 和next 0 都会返回0。</p>
+
+<h5>将块封装为对象</h5>
+
+<p>Ruby还可以将块当作对象处理。把块当作对象处理后，就可以在接收块的方法之外的其他地方执行块，或者把块交给其他方法执行。如果要实现这样的功能，就需要<strong>Proc</strong>对象，<strong>Proc</strong>对象是能让块作为对象在程序中使用的类。</p>
+
+<p>通过调用<strong>Proc.new</strong>这个带块的方法，可以定义Proc对象，然后再调用Proc对象的<strong>call</strong>方法执行块。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">hello</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>          <span class="c1"># 使用Proc.new方法定义块对象hello</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">hello</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>                  <span class="c1"># 使用Proc.call方法调用块对象</span>
+</span><span class='line'><span class="n">hello</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;ruby&quot;</span><span class="p">)</span>               
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在方法定义时，如果末尾的参数使用<strong>&amp;参数名</strong>的形式，Ruby就会自动把调用方法时传进来的块封装为Proc对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="n">from</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">block</span>                              <span class="c1">#如果有块对象</span>
+</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="n">block</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>       <span class="c1">#执行快对象</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="n">num</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">result</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>                         <span class="c1">#=&gt; 55</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>       <span class="c1">#=&gt; 110</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在变量名前添加<strong>&amp;</strong>的参数被成为<strong>Proc参数</strong>. 而且Proc参数一定要在所有参数之后，也就是方法的最后一个参数。</p>
+
+<p>将Proc对象作为块传递给其他方法处理，在调用方法时，用<strong>&amp;Proc对象</strong>的形式定义参数就可以了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">my_each</span><span class="p">(</span><span class="n">ary</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>    
+</span><span class='line'>  <span class="n">ary</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>           <span class="c1">#将proc对象以块的形式传递给数组的each方法</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">my_each</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(9)]]></title>
@@ -5807,308 +6098,6 @@ Exception: / by zero
 </code></pre>
 
 <p>So there is only one afterThrowing method is executed when there have multiple implementation.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Around Advice]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/08/spring-aop-around-advice/"/>
-    <updated>2015-06-08T09:42:08+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/08/spring-aop-around-advice</id>
-    <content type="html"><![CDATA[<p>In this blog, let us talk about <code>Around Advice</code>. There are some few points about it.</p>
-
-<ul>
-<li><code>Around Advice</code> is combination of <code>Before Advice</code> and <code>After Advice</code>.</li>
-<li>In a single <code>Around Advice</code> we can implement both <em>before</em> and <em>after</em> services.</li>
-<li><strong>Note</strong>, <code>Around Advice</code> is not given by <em>spring framework</em>, it is from <em>Open Source</em> implementation called <code>AOP</code> alliance.</li>
-<li><code>Around Advice</code> can be used by any framework which supports <code>AOP</code>.</li>
-<li><code>Around Advice</code> can access the return value of business method and it can modify the value and it can return a different value back to the client, as return type is Object, but in the <code>After Advice</code> its not possible right, as its return type is void.</li>
-</ul>
-
-
-<!-- more -->
-
-
-<p>In order to create <code>Around Advice</code>, we should implement an interface called <code>MethodInterceptor</code> and override the method called <code>invoke</code> which has a prarameter <code>MethodInvocation</code> type. We can use this parameter to invoke our business logic method like <code>methodInvoation.proceed()</code>. And we can add our before services before this code execution and put after services after this code.</p>
-
-<p>Let&rsquo;s see an instance.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.aopalliance.intercept.MethodInterceptor</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.aopalliance.intercept.MethodInvocation</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAroundAdvice</span> <span class="kd">implements</span> <span class="n">MethodInterceptor</span><span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">MethodInvocation</span> <span class="n">invocation</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Adding before service in here.</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="n">invocation</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="c1">// Adding after service in here.</span>
-</span><span class='line'>      <span class="c1">// we can change the return value we want via below return codes.</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In above codes, we can see that we put the before services before the <code>proceed()</code> method and put the after services after it. and we can change the return value of the logic method.</p>
-
-<p>So now let us to see a full expample.</p>
-
-<figure class='code'><figcaption><span>MyLogicInterface.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyLogicInterface</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>MyLogicClass.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span> <span class="kd">implements</span> <span class="n">MyLogicInterface</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;The internal result of %s + %s is: %s&quot;</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In our logic class, we print the result value before the return of method.</p>
-
-<figure class='code'><figcaption><span>MyAroundAdvice.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.aopalliance.intercept.MethodInterceptor</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.aopalliance.intercept.MethodInvocation</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAroundAdvice</span> <span class="kd">implements</span> <span class="n">MethodInterceptor</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">MethodInvocation</span> <span class="n">invocation</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Adding before service</span>
-</span><span class='line'>      <span class="n">methodDescription</span><span class="o">(</span><span class="n">invocation</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">Object</span> <span class="n">currentResult</span> <span class="o">=</span> <span class="n">invocation</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// Adding after service.</span>
-</span><span class='line'>      <span class="n">Object</span> <span class="n">changedResult</span> <span class="o">=</span> <span class="n">changedReturnValue</span><span class="o">(</span><span class="n">invocation</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">return</span> <span class="n">changedResult</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">currentResult</span> <span class="o">:</span> <span class="n">changedResult</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">methodDescription</span><span class="o">(</span><span class="n">MethodInvocation</span> <span class="n">invocation</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="n">invocation</span><span class="o">.</span><span class="na">getMethod</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
-</span><span class='line'>      <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span> <span class="o">=</span> <span class="n">invocation</span><span class="o">.</span><span class="na">getArguments</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">String</span> <span class="n">description</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Before Services : %s(%s, %s)&quot;</span><span class="o">,</span>
-</span><span class='line'>              <span class="n">methodName</span><span class="o">,</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">description</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="n">Object</span> <span class="nf">changedReturnValue</span><span class="o">(</span><span class="n">MethodInvocation</span> <span class="n">invocation</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span> <span class="o">=</span> <span class="n">invocation</span><span class="o">.</span><span class="na">getArguments</span><span class="o">();</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">secondParam</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// changed the return value to 0 when the second parameter is less than 0.</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">secondParam</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
-</span><span class='line'>          <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In this our around advice. we print the method description in our before service and changed the return value to 0 when the second parameter is less than 0 in after service.</p>
-
-<figure class='code'><figcaption><span>springConfig.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;!DOCTYPE beans PUBLIC &quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
-</span><span class='line'><span class="cp">         &quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;beans&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myAroundAdvice&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyAroundAdvice&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;proxyInterfaces&quot;</span> <span class="na">value=</span><span class="s">&quot;spring.test.aop.MyLogicInterface&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interceptorNames&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;value&gt;</span>myAroundAdvice<span class="nt">&lt;/value&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;myLogicClass&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
-</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The spring config xml is same with before except the interceptorNames.</p>
-
-<figure class='code'><figcaption><span>App.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="n">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">MyLogicInterface</span> <span class="n">logicInterface</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyLogicInterface</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;proxyFactoryBean&quot;</span><span class="o">);</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="kt">int</span> <span class="n">result1</span> <span class="o">=</span> <span class="n">logicInterface</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;After Advice - The result is: %s \n&quot;</span><span class="o">,</span> <span class="n">result1</span><span class="o">));</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="kt">int</span> <span class="n">result2</span> <span class="o">=</span> <span class="n">logicInterface</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;After Advice - The result is: %s&quot;</span><span class="o">,</span> <span class="n">result2</span><span class="o">));</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You will notice that we pass -10 to second parameter in second times method called. Let&rsquo;s see the result:</p>
-
-<pre><code>Before Services : add(1, 10)
-The internal result of 1 + 10 is: 11
-After Advice - The result is: 11 
-
-Before Services : add(1, -10)
-The internal result of 1 + -10 is: -9
-After Advice - The result is: 0
-</code></pre>
-
-<p>You see, the internal result is -9, but after service, the result is changed to 0. So the return value is changed by our <code>Around Advice</code>.</p>
-
-<p><em><strong>Note again:</strong> The <code>Around Advice</code> can change the return value of business logic method, but <code>After Advice</code> cannot.</em></p>
 ]]></content>
   </entry>
   
