@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="When we develop web application, if we write or modify the HTML structure, CSS style and javascript, we need to compile the code and deploy it, and &hellip;">
+  <meta name="description" content="As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for IE6, IE7, IE8, IE9. This is very helpful &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/">CSS Tricks for IE6,IE7,IE8,IE9</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-28T16:35:34+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for <code>IE6</code>, <code>IE7</code>, <code>IE8</code>, <code>IE9</code>. This is very helpful for you.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#ie-tricks</span><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* All browsers */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* All browsers but IE6 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span> <span class="cp">!important</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE6 */</span>
+</span><span class='line'>  <span class="n">_color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE6, IE7 */</span>
+</span><span class='line'>  <span class="o">*</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE7*/</span>
+</span><span class='line'>  <span class="o">+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* Only works in IE7 */</span>
+</span><span class='line'>  <span class="o">*+</span><span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE6, IE7, IE8, IE9 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/* IE8, IE9 */</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">/*Only works in IE9*/</span>
+</span><span class='line'>  <span class="k">color</span><span class="o">:</span><span class="nb">red</span><span class="err">\</span><span class="m">9</span><span class="err">\</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -489,48 +581,6 @@ Invoking this method then it will avoid the risking of NullPointerException when
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/26/guava-preconditions/">Guava &#8211; Preconditions</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-26T22:36:07+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:36 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Guava provides a number of precondition checking utilities. It&rsquo;s <code>Preconditions</code> class. You can use it into your project.</p>
-
-<h3>Usage</h3>
-
-<p><code>checkArgument(boolean)</code> <br/>
-Checks that the boolean is true. Use for validating arguments to methods.</p>
-
-<p><code>checkNotNull(T)</code> <br/>
-Checks that the value is not null. Returns the value directly, so you can use checkNotNull(value) inline.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/26/guava-preconditions/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -557,6 +607,10 @@ Checks that the value is not null. Returns the value directly, so you can use ch
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
       </li>
     
@@ -570,10 +624,6 @@ Checks that the value is not null. Returns the value directly, so you can use ch
     
       <li class="post">
         <a href="/blog/2015/09/01/ruby-practice-7/">Ruby修炼之道(7)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/25/ruby-practice-6/">Ruby修炼之道(6)</a>
       </li>
     
   </ul>
