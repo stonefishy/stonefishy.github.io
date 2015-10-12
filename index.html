@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code 1 &hellip;">
+  <meta name="description" content="Ruby中所有表现数据的类型都称为数值类，他们都是Numeric的子类。起详尽的类继承结构如下： ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,42 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-28T10:33:41+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:33 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
+
+<p><img src="assets/images/numeric-inheritance.png" alt="assets/images/numberic-inheritance.png" /></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/28/ruby-practice-11/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -588,60 +624,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/13/ru-practice-2/">Ruby修炼之道(2)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-13T13:35:15+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:35 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>数组</h3>
-
-<p>Ruby中数组的大小是按实际情况自动调整的，即所谓的<strong>动态数组</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;data1&quot;</span><span class="p">,</span> <span class="s2">&quot;data2&quot;</span><span class="o">]</span>   <span class="c1">##定义两个数据的数组</span>
-</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;data3&quot;</span>           <span class="c1">##新增第三个数据</span>
-</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="n">rubyArray</span>                  <span class="c1">##打印[&quot;data1&quot;, &quot;data2&quot;, &quot;data3&quot;]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby数组还支持多种不同对象的混合保存, 通过<strong>数组.size</strong>可获取数组的大小</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span><span class="o">.</span><span class="n">size</span>     <span class="c1">#=&gt; 5</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/13/ru-practice-2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -666,6 +648,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
@@ -679,10 +665,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/09/06/ruby-practice-8/">Ruby修炼之道(8)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/09/01/ruby-practice-7/">Ruby修炼之道(7)</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-09-23T22:09:20+08:00</updated>
+  <updated>2015-10-12T18:02:27+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,244 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(11)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11/"/>
+    <updated>2015-09-28T10:33:41+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11</id>
+    <content type="html"><![CDATA[<p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
+
+<p><img src="assets/images/numeric-inheritance.png" alt="assets/images/numberic-inheritance.png" /></p>
+
+<!-- more -->
+
+
+<p>Ruby中一般用到得整数都是在<strong>Fixnum</strong>类范围内的，如果超过了Fixnum的范围，Ruby会自动将其转换为<strong>Bignum</strong>类。</p>
+
+<p>正如上图所示，Ruby可以处理有理数和复数，有理数用<strong>Rational</strong>类表示，复数用<strong>Complex</strong>类表示。其定义形式如下：</p>
+
+<p>1.Rational对象</p>
+
+<pre><code>Rational(分子，分母)
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="no">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1">#=&gt; (1/3)</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">to_f</span>                       <span class="c1">#=&gt; 0.3333333</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过<em>Rational#to_f</em>方法可将有理数转为Float对象</p>
+
+<p>2.Complex对象</p>
+
+<pre><code>Complex(实数，虚数)
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="no">Complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; (1+2i)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>单纯的数字罗列表示10进制整数。以0b开头的数值表示2进制数，以0或者0o开头的数值表示8进制数，以0d开头的数值表示10进制数，以0x开头的数值表示16进制数。字面量中的_会被自动忽略。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">123</span>            <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1_23</span>            <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">p</span> <span class="mo">0123</span>        <span class="c1">#=&gt; 83</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">0</span><span class="n">o123</span>        <span class="c1">#=&gt; 83</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">0</span><span class="n">d123</span>        <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">p</span> <span class="mh">0x123</span>       <span class="c1">#=&gt; 291</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Integer对象与Float对象的计算结果为Float对象。</p>
+
+<p>x.<strong>div</strong>(y)
+返回x除以y后的商的整数</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; 2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>quo</strong>(y)
+返回x除以y后的商，如果x、y都是整数则返回Rational对象</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">quo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; (5/2)</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">quo</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; 2.27272727</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>modulo</strong>(y)
+返回x除以y后的余数，与<em>x % y</em>等价</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">modulo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span>                <span class="c1">#=&gt; 1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>divmod</strong>(y)
+将x除以y后的商和余数作为数组返回,余数的符号与y的符号一致。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1">#=&gt; [2, 1]</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; [-3, 1]</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; [-3, -1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>remainder</strong>(y)
+返回x除以y的余数，结果的符号与x的符号一致</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#=&gt; -1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注：当除数为0时，Integer类会返回错误，而Float类则会返回Infinity（无限大）或者NaN（Not a Number）。</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>           <span class="c1">#=&gt; ZeroDivisionError</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span>       <span class="c1">#=&gt; Infinity</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span>           <span class="c1">#=&gt; NaN</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>针对数值类型，Ruby提供<strong>Math</strong>模块增强数据的处理功能，包括三角函数，对数函数等常用的函数运算方法。通过调用如下方法可得到<strong>Math</strong>模块提供的方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">methods</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>to_f</strong>方法可将Integer对象转换为Float对象，<strong>to_i</strong>方法可将Float对象转换为Integer对象，to_i方法会将小数点以后的值去掉。通过使用<strong>round</strong>方法可对小数进行四舍五入的处理.<strong>ceil</strong>方法返回比比原数值大得最小整数，<strong>floor</strong>方法返回比原数值小的最大整数。通过<strong>to_r</strong>和<strong>to_c</strong>方法可将数值转换为Rational对象和Complex对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="n">to_f</span>           <span class="c1">#=&gt; 1.0</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">to_i</span>      <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">round</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">50</span><span class="o">.</span><span class="n">round</span>     <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">ceil</span>      <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">floor</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">5</span><span class="o">.</span><span class="n">to_r</span>       <span class="c1">#=&gt; (3/2)</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">5</span><span class="o">.</span><span class="n">to_c</span>       <span class="c1">#=&gt; (1.5+0i)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Integer类按照指定次数循环处理逻辑</p>
+
+<p>执行指定的n次逻辑</p>
+
+<pre><code>n.times do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [0, 1, 2, 3, 4]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从<em>from</em>开始循环加对<em>i</em>进行加1处理，直到<em>i</em>等于<em>to</em></p>
+
+<pre><code>from.upto(to) do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [1, 2, 3, 4, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从<em>from</em>开始循环对<em>i</em>进行减1处理，直到<em>i</em>等于<em>to</em></p>
+
+<pre><code>from.downto(to) do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">5</span><span class="o">.</span><span class="n">downto</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [5, 4, 3, 2, 1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从<em>from</em>开始循环对<em>i</em>进行加<em>step</em>处理，直到<em>i</em>等于<em>to</em></p>
+
+<pre><code>from.step(to, step) do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [1, 3, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
@@ -6002,26 +6240,6 @@ MethodTwo is running with argument 11
 <p>In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn&rsquo;t check whether the class names are matching or not. If you want to verify the class name, you can implement <code>StaticMethodMatcherPointcut</code> abstract class and override the <code>getClassFilter()</code>, <code>matches()</code> methods.</p>
 
 <p>The dynamic pointcut is almost same with static pointcut, the only difference is that the dynamic pointcut can verify the arguments of the method at runtime, but static pointcut couldn&rsquo;t.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Join Point]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point/"/>
-    <updated>2015-06-09T17:19:23+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/09/spring-aop-joint-point</id>
-    <content type="html"><![CDATA[<p>In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as <code>JoinPoint</code>.</p>
-
-<p>At a join point place services will be injected at run time. And while executing business logic of method, the services can be injected in following 3 join points.</p>
-
-<ul>
-<li>Before business logic of method starts</li>
-<li>After business logic of method complete</li>
-<li>If business logic of method throws exception at run time.</li>
-</ul>
-
-
-<p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
 ]]></content>
   </entry>
   

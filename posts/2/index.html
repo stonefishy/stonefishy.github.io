@@ -9,7 +9,11 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Ruby是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是红宝石. 特点 脚本语言 即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++ &hellip;">
+  <meta name="description" content="数组 Ruby中数组的大小是按实际情况自动调整的，即所谓的动态数组 1
+2
+3
+&gt;&gt; rubyArray = [&quot;data1&quot;, &quot;data2&quot;] ##定义两个数据的数组
+&gt;&gt; rubyArray[2] = &quot;data3& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +69,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/13/ru-practice-2/">Ruby修炼之道(2)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-13T13:35:15+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>数组</h3>
+
+<p>Ruby中数组的大小是按实际情况自动调整的，即所谓的<strong>动态数组</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;data1&quot;</span><span class="p">,</span> <span class="s2">&quot;data2&quot;</span><span class="o">]</span>   <span class="c1">##定义两个数据的数组</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;data3&quot;</span>           <span class="c1">##新增第三个数据</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="n">rubyArray</span>                  <span class="c1">##打印[&quot;data1&quot;, &quot;data2&quot;, &quot;data3&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby数组还支持多种不同对象的混合保存, 通过<strong>数组.size</strong>可获取数组的大小</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span><span class="o">.</span><span class="n">size</span>     <span class="c1">#=&gt; 5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/13/ru-practice-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -404,46 +462,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/09/spring-aop-joint-point/">Spring AOP - Join Point</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-09T17:19:23+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:19 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as <code>JoinPoint</code>.</p>
-
-<p>At a join point place services will be injected at run time. And while executing business logic of method, the services can be injected in following 3 join points.</p>
-
-<ul>
-<li>Before business logic of method starts</li>
-<li>After business logic of method complete</li>
-<li>If business logic of method throws exception at run time.</li>
-</ul>
-
-
-<p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -470,6 +488,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
@@ -483,10 +505,6 @@
     
       <li class="post">
         <a href="/blog/2015/09/06/ruby-practice-8/">Ruby修炼之道(8)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/09/01/ruby-practice-7/">Ruby修炼之道(7)</a>
       </li>
     
   </ul>
