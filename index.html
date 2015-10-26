@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Ruby中所有表现数据的类型都称为数值类，他们都是Numeric的子类。起详尽的类继承结构如下： ">
+  <meta name="description" content="数组(Array)也是Ruby中表现一组数据的对象 数组的创建 创建方式有一下几种： 1.使用Array.new Array#new方法可带两个可选参数，第1个参数表示数组中得个数，第2个参数表示每个元素初始值。如果没有指定第2个参数，其元素的初始值为nil。如果不带参数则会创建一个空数组。 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-13T10:25:41+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:25 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>数组(<strong>Array</strong>)也是Ruby中表现一组数据的对象</p>
+
+<h4>数组的创建</h4>
+
+<p>创建方式有一下几种： <br/>
+1.使用<strong>Array.new</strong> <br/>
+Array#new方法可带两个可选参数，第1个参数表示数组中得个数，第2个参数表示每个元素初始值。如果没有指定第2个参数，其元素的初始值为<strong>nil</strong>。如果不带参数则会创建一个空数组。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#不带参数c</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                  <span class="c1">#=&gt; []</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#带1个参数</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                  <span class="c1">#=&gt; [nil, nil, nil]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#带2个参数</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                  <span class="c1">#=&gt; [5, 5, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/10/13/ruby-practice-12/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -576,54 +641,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/14/ruby-practice-3/">Ruby修炼之道(3)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-14T17:47:01+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:47 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。</p>
-
-<h3>变量</h3>
-
-<p>和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。</p>
-
-<p><em>局部变量(local variable)</em>
-以英文字母或者_开头</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
-</span><span class='line'><span class="n">_words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/14/ruby-practice-3/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -648,6 +665,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
       </li>
     
@@ -661,10 +682,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/09/06/ruby-practice-8/">Ruby修炼之道(8)</a>
       </li>
     
   </ul>

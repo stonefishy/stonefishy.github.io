@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-10-12T18:02:27+08:00</updated>
+  <updated>2015-10-26T22:12:16+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,427 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(12)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12/"/>
+    <updated>2015-10-13T10:25:41+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12</id>
+    <content type="html"><![CDATA[<p>数组(<strong>Array</strong>)也是Ruby中表现一组数据的对象</p>
+
+<h4>数组的创建</h4>
+
+<p>创建方式有一下几种： <br/>
+1.使用<strong>Array.new</strong> <br/>
+Array#new方法可带两个可选参数，第1个参数表示数组中得个数，第2个参数表示每个元素初始值。如果没有指定第2个参数，其元素的初始值为<strong>nil</strong>。如果不带参数则会创建一个空数组。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#不带参数c</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                  <span class="c1">#=&gt; []</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#带1个参数</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                  <span class="c1">#=&gt; [nil, nil, nil]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#带2个参数</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                  <span class="c1">#=&gt; [5, 5, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>2.使用<strong>%w</strong>与<strong>%i</strong> <br/>
+<strong>%w</strong>用于创建不包含空白的字符串数组, 使用此方法创建字符串数组更加简洁。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sx">%w(This is ruby)</span>     <span class="c1">#=&gt; [&quot;This&quot;, &quot;is&quot;, &quot;ruby&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>%i</strong>用于创建符号(Symbol)数组。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">%</span><span class="n">i</span><span class="p">(</span><span class="no">This</span> <span class="n">is</span> <span class="n">ruby</span><span class="p">)</span>   <span class="c1">#=&gt; [:This, :is, :ruby]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用<strong>%w</strong>和<strong>%i</strong>创建数组时用到了(). 其实还可以用很多字符来替代，不过建议使用<strong>()</strong>,<strong>&lt;></strong>,<strong>||</strong>.</p>
+
+<p>3.使用<strong>to_a</strong>方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">hash</span><span class="o">=</span><span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="ss">gender</span><span class="p">:</span> <span class="s2">&quot;male&quot;</span><span class="p">}</span>          <span class="c1">#=&gt; {:name=&gt;&quot;yu&quot;, :gender=&gt;&quot;male&quot;}</span>
+</span><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">to_a</span>                                       <span class="c1">#=&gt; [[:name, &quot;yu&quot;], [:gender, &quot;male&quot;]]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4.使用<strong>split</strong>方法 <br/>
+对逗号或空白字符间隔的字符串可以使用split方法来创建数组</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;this is ruby&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>                <span class="c1">#=&gt; [&quot;this&quot;, &quot;is&quot;, &quot;ruby&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>获取元素</h4>
+
+<p>获取元素的方法有以下几种：</p>
+
+<p>1.使用<strong>[]</strong> <br/>
+(a) <strong>ary[n]</strong>, 获取索引值为n的元素，当索引值为负数时，从数组的末尾开始获取元素。如果指定的索引值大于元素个数则返回nil。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>                
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>               <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span>          <span class="c1">#=&gt; 5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>(b) <strong>ary[n..m]</strong>, 获取从a[n]到a[m]的元素，并返回新的数组。如果m大于数组的长度，返回的结果与指定数组最后一个元素是一样的。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="o">]</span>          <span class="c1">#=&gt; [2, 3, 4]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">]</span>          <span class="c1">#=&gt;  [2, 3, 4, 5]   </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&copy; <strong>ary[n&hellip;m]</strong>, 获取从a[n]到a[m-1]的元素，并返回新数组</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">3</span><span class="o">]</span>          <span class="c1">#=&gt; [2, 3]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">7</span><span class="o">]</span>          <span class="c1">#=&gt;  [2, 3, 4, 5]   </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(d) <strong>ary[n, len]</strong>, 获取从a[n]开始之后的len个元素，并返回新数组. 如果len的长度大于从n开始后数组的剩余长度，则返回的结果与指定数组最后一个元素是一样的。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>             <span class="c1">#=&gt; [2, 3, 4]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span>             <span class="c1">#=&gt; [3, 4, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.使用<strong>at</strong>方法  <br/>
+ary.at(n)与ary[n]等价</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>              <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>                   <span class="c1">#=&gt; 2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.使用<strong>slice</strong>方法 <br/>
+ary.slice(n..m)与ary[n..m]等价，ary.slice(n&hellip;m)与ary[n&hellip;m]等价，ary.slice(n, len)与ary[n, len]等价</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span>      <span class="c1">#=&gt; [2, 3, 4]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span>      <span class="c1">#=&gt; [2, 3]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>     <span class="c1">#=&gt; [2, 3, 4]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4.使用<strong>values_at</strong>方法
+可以通过此方法来获取多个索引的元素, 其用法如下</p>
+
+<pre><code>ary.values_at(n1, n2, ...)
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">values_at</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>               <span class="c1">#=&gt; [1, 3, 5]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">values_at</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>               <span class="c1">#=&gt; [2, 4, nil]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>元素赋值</h4>
+
+<p>使用[],at,slice方法还可以给元素赋值</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>                        <span class="c1">#=&gt; [&quot;a&quot;, 2, 3, 4, 5]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="o">]</span>          <span class="c1">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 4, 5]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">3</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span>                   <span class="c1">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, 5]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span>                  <span class="c1">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>元素插入</h4>
+
+<p>插入元素其实就是对0个元素进行赋值，因此指定[n, 0]后，就会在索引值为n的元素前插入新元素。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">10</span>                 <span class="c1">#=&gt; [1, 2, 10, 3, 4, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>数组作为集合使用</h4>
+
+<p>交集：取出同时属于两个集合的元素，并创建新的集合</p>
+
+<pre><code>ary = ary1 &amp; ary2
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="n">ary1</span> <span class="o">&amp;</span> <span class="n">ary2</span>          <span class="c1">#=&gt; [1, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>并集：取出两个集合中的所有元素，并创建新的集合</p>
+
+<pre><code>ary = ary1 | ary2
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="n">ary1</span> <span class="o">|</span> <span class="n">ary2</span>          <span class="c1">#=&gt; [1, 2, 3, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>集合的差：把某个集合中属于另外一个集合的元素删除，并创建新的集合</p>
+
+<pre><code>ary = ary1 - ary2
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="n">ary1</span> <span class="o">-</span> <span class="n">ary2</span>          <span class="c1">#=&gt; [2]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注意：连接数组除了可以使用<strong>|</strong>外还可以使用<strong>+</strong>。但是这两种方法返回的结果是不一样的。即使用|相同的元素只有一个，使用+相同的元素会重复存在</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="n">ary1</span> <span class="o">|</span> <span class="n">ary2</span>          <span class="c1">#=&gt; [1, 2, 3, 5]</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="n">ary1</span> <span class="o">+</span> <span class="n">ary2</span>          <span class="c1">#=&gt; [1, 2, 3, 1, 3, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>数组作为队列和栈</h4>
+
+<table>
+<thead>
+<tr>
+<th>          </th>
+<th style="text-align:right;"> 对数组开始元素的操作 </th>
+<th> 对数组末尾元素的操作 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 追加元素 </td>
+<td style="text-align:right;"> unshift              </td>
+<td>     push               </td>
+</tr>
+<tr>
+<td> 删除元素 </td>
+<td style="text-align:right;"> shift                </td>
+<td>     pop                </td>
+</tr>
+<tr>
+<td> 引用元素 </td>
+<td style="text-align:right;"> first                </td>
+<td>     last               </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>使用<strong>push</strong>方法和<strong>shift</strong>方法可以实现队列。使用<strong>push</strong>方法和<strong>pop</strong>方法可以实现栈。</p>
+
+<p><strong>shift</strong>方法和<strong>pop</strong>方法不只是获取数组元素，还会把该元素从数组中删除。如果只是想单纯地引用元素，应该是用
+<strong>first</strong>和<strong>last</strong>方法。</p>
+
+<p>1.ary.<strong>unshift</strong>(item) <br/>
+将item元素添加到数组的开头</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>         <span class="c1">#=&gt; [0, 1, 2, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.ary.<strong>push</strong>(item), ary <strong>&lt;&lt;</strong> item  <br/>
+<strong>&lt;&lt;</strong>与<strong>push</strong>是等价的方法，在数组的末尾添加新元素item</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>                <span class="c1">#=&gt; [1, 2, 3, 4]</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span>                  <span class="c1">#=&gt; [1, 2, 3, 4, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.ary1.<strong>concat</strong>(ary2) <br/>
+连接数组ary1和数组ary2. concat是具有破坏性的方法。会将ary2的元素直接插入到ary1数组的后面。<strong>+</strong>也是连接两个数组的方法，但是不具破坏性，会生成新的数组。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary1</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ary2</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary1</span>                     <span class="c1">#=&gt; [1, 2, 3, 2, 3, 4]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注：能够改变对象值的方法称为具有破坏性的方法，比如pop方法、shift方法等。有些方法后面加上<strong>!</strong>的也是破坏性方法</em></p>
+
+<p>4.ary.<strong>compact</strong> 与ary.<strong>compact!</strong> <br/>
+从数组ary中删除所有nil元素</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="kp">nil</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">compact</span>              <span class="c1">#=&gt; [1, 2]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5.ary.<strong>delete</strong>(item)和ary.<strong>delete_at</strong>(n)
+从数组a中删除item元素。 第2个方法删除ary[n]元素。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>              
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                      <span class="c1">#=&gt; [1, 3]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">delete_at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                      <span class="c1">#=&gt; [3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>6.ary.<strong>delete_if</strong>{ |item| &hellip;}  <br/>
+ary.<strong>reject</strong>{ |item| &hellip;} <br/>
+ary.<strong>reject!</strong>{ |item| ..}</p>
+
+<p>判断数组ary中的各元素item，如果块的执行结果为真，则从数组ary中删除item。<strong>delete_if</strong>和<strong>reject!</strong>方法都是具有破坏性的方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">delete_if</span> <span class="p">{</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">}</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [1, 2]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">reject!</span> <span class="p">{</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">}</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [2]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.ary.<strong>slice</strong>(n)  <br/>
+ary.<strong>slice</strong>(n..m)  <br/>
+ary.<strong>slice!</strong>(n, len)  <br/>
+删除数组ary中指定的部分，并返回删除部分的值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>            <span class="c1">#=&gt; 5</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span>       <span class="c1">#=&gt; [3, 4]</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>       <span class="c1">#=&gt; [2]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>8.ary.<strong>uniq</strong>, ary.<strong>uniq!</strong>删除数组ary中重复的元素。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">uniq</span>         <span class="c1">#=&gt; [1, 2,3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>9.ary.<strong>shift</strong>. 删除数组ary开头的元素，并返回删除的值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="n">j</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">shift</span>        <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>          <span class="c1">#=&gt; [2, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>10.ary.<strong>pop</strong>. 删除数组ary末尾的元素，并返回删除的值。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">pop</span>      <span class="c1">#=&gt; 3</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>          <span class="c1">#=&gt; [1, 2]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(11)]]></title>
@@ -6208,38 +6629,6 @@ MethodTwo is running with argument 11
 
 
 <p>In practice, you can use it to manage DAO layer, where you can declare “.*DAO.*” to intercept all your DAO classes to support transaction.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring AOP - Pointcut]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut/"/>
-    <updated>2015-06-10T11:19:44+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut</id>
-    <content type="html"><![CDATA[<p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
-
-<!-- more -->
-
-
-<p>There are two types of AOP:</p>
-
-<ul>
-<li>StaticMethodMatcherPointcut</li>
-<li>DynamicMethodMatcherPointcut</li>
-</ul>
-
-
-<p>Pointcut verifys whether a particular method of particular class is eligible for getting the advice or not. Spring AOP has two static pointcut class.</p>
-
-<ul>
-<li>NameMatchMethodPointcut</li>
-<li>RegexpMethodPointcutAdvisor</li>
-</ul>
-
-
-<p>In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn&rsquo;t check whether the class names are matching or not. If you want to verify the class name, you can implement <code>StaticMethodMatcherPointcut</code> abstract class and override the <code>getClassFilter()</code>, <code>matches()</code> methods.</p>
-
-<p>The dynamic pointcut is almost same with static pointcut, the only difference is that the dynamic pointcut can verify the arguments of the method at runtime, but static pointcut couldn&rsquo;t.</p>
 ]]></content>
   </entry>
   
