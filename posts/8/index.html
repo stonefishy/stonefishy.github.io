@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Andriod is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware &hellip;">
+  <meta name="description" content="Note: the original website address in here Checkout The checkout command is used to copy files from the history (or stage) to the working directory, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,296 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-checkout-command/">Visual Git Guide (Checkout Command)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Checkout</h3>
+
+<p>The checkout command is used to copy files from the history (or stage) to the working directory, and to optionally switch branches.</p>
+
+<p>When a filename (and/or -p) is given, git copies those files from the given commit to the stage and the working directory. For example, git checkout HEAD~ foo.c copies the file foo.c from the commit called HEAD~ (the parent of the current commit) to the working directory, and also stages it. (<em>If no commit name is given, files are copied from the stage.</em>) <strong>Note that the current branch is not changed.</strong></p>
+
+<p><img src="/assets/images/checkout-files.png" alt="checkout-files" /></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-checkout-command/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/06/visual-git-guide-conventions/">Visual Git Guide (Conventions)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Conventions</h3>
+
+<p><img src="/assets/images/conventions.png" alt="conventions" /></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/06/visual-git-guide-conventions/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/06/visual-git-guide-basic-usage/">Visual Git Guide (Basic Usage)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Basic Usage</h3>
+
+<p><img src="/assets/images/basic-usage.png" alt="basic-usage" /></p>
+
+<p>The four commands above copy files between the working directory, the stage (also called the index), and the history (in the form of commits).</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/06/visual-git-guide-basic-usage/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-3/">Git Commands (3)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Redo Commits</h3>
+
+<ul>
+<li><p>Undo all commits after [commit], and preserve changes locally: <br/>
+<code>$ git reset [commit]</code></p></li>
+<li><p>Discard all history and changes back to the specified commit: <br/>
+<code>$ git reset --hard [commit]</code></p></li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/06/git-commands-3/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-2/">Git Commands (2)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Group Changes</h3>
+
+<ul>
+<li><p>List all local branches in the current repository: <br/>
+<code>$ git branch</code></p></li>
+<li><p>Create a new branch with specified name: <br/>
+<code>$ git branch [branch-new]</code></p></li>
+<li><p>Switch to the specified branch and updates the working directory: <br/>
+<code>$ git checkout [branch-name]</code></p></li>
+<li><p>Combine the specified branch to the current branch: <br/>
+<code>$ git merge [branch-name]</code></p></li>
+<li><p>Delete the specified branch: <br/>
+<code>$ git branch -d [branch-name]</code></p></li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/06/git-commands-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/05/git-commands-1/">Git Commands (1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-05T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Configure</h3>
+
+<ul>
+<li><p>Sets the name you want attached to your commit transactions: <br/>
+<code>$ git config --global user.name "[name]"</code></p></li>
+<li><p>Sets the email you want attached to your commit transactions: <br/>
+<code>$ git config --global user.email "[email]"</code></p></li>
+<li><p>Enable git color for command line output: <br/>
+<code>$ git config --global color.ui true</code></p></li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/05/git-commands-1/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/04/what-is-git/">What Is Git</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-04T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Introduction</h3>
+
+<p><img src="/assets/images/git-logo.png" alt="Git" /> is <code>open source distributed version control system</code> that allows a team of people to work together, all using the same files. And it helps the team cope with the confusion that tends to happen when multiple people are editing the same files.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/04/what-is-git/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -196,120 +486,9 @@ special meaning in <code>Markdown</code> syntax.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/23/what-editor-tools-used-for-markdown/">What Editor Tools Used for Markdown</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-23T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There have many editor tools for Markdown now, but we just recommend a few of popular tools for you. You can choose it which you like. Hope it will be helpful for you.</p>
-
-<h3>Online tools</h3>
-
-<ul>
-<li><p><a href="https://stackedit.io/">StackEdit</a></p>
-
-<p>   In browser Markdown editor, it supplies many commands to create Markdown syntax instead of type it manually. And also it have supported many other functions, for example import, export and manage Markdown files.</p></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/23/what-editor-tools-used-for-markdown/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/23/markdonw-syntax-for-block-elements/">Markdonw Syntax for Block Elements</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-23T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Line breaks</h3>
-
-<p>Markdown can&rsquo;t break line automatically in paragraph. The break line is a break tag <code>&lt; br /&gt;</code> in HTML. If you want to break line in paragraph, you need to <code>end a line with two or more spaces</code>, then type return.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/23/markdonw-syntax-for-block-elements/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/22/what-is-markdown/">What Is Markdown</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-22T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Markdown is a <strong>text-to-HTML</strong> conversion tool for web writer. It can convert plain text format to  valid <code>XHTML</code>(or <code>HTML</code>) structure that can be represented by browser.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/22/what-is-markdown/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/9">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -333,23 +512,23 @@ special meaning in <code>Markdown</code> syntax.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+        <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
       </li>
     
   </ul>

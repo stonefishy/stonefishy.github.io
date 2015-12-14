@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-10-26T22:12:16+08:00</updated>
+  <updated>2015-12-14T22:01:06+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,198 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Nginx in Mac OS X]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
+    <updated>2015-12-05T11:51:04+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
+    <content type="html"><![CDATA[<h4>Introduction</h4>
+
+<p><strong>Nginx</strong> is a open source quite lightweight HTTP server which is written by Russian <em>Igor Sysoev</em>, the pronunciation is &ldquo;engine X&rdquo;. It&rsquo;s a high performance HTTP and reverse proxy server, and also it is a IMAP/POP3/SMTP proxy server。</p>
+
+<p>There are lots of website using Nginx in China, like Sina, Tencent, 163, Discuz and so on. The Nginx has a very high performance due to event driven way, and also it is a high performance reverse proxy, load balancing.</p>
+
+<!-- more -->
+
+
+<p>The features of Nginx Http server are below:</p>
+
+<p>1.dealing with static file, indexing file and also automatically indexing.</p>
+
+<p>2.accelerating reverse proxy server,load balancing</p>
+
+<p>3.FastCGI, Caching, Security</p>
+
+<p>4.Support SSL and TLS</p>
+
+<p>From investigation, the Nginx can support about 50,000 concurrence request connection, and also support hot deploy, even running 7*24 hours uninterrupted.</p>
+
+<h4>Installing</h4>
+
+<p>So, how to install it on Mac OS X. Let&rsquo;s assume you have installed the <em>Home brew</em>, using brew to install the nginx with command:</p>
+
+<pre><code>brew install nginx
+</code></pre>
+
+<h4>Starting And Runing</h4>
+
+<p>After install, we can use below command to run it:</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>If you get the failed message which is &ldquo;[emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)&rdquo;. You have to kill the progress which is running with that address, it usually is Apache. And also there is another way, changing the port number, we will introduce later.</p>
+
+<p>The nginx running success, you will get the below page when you access the <a href="http://localhost:8080">http://localhost:8080</a></p>
+
+<p><img src="/assets/images/nginx-welcome.png" alt="nginx, devops" /></p>
+
+<p>There are several commands to start, stop nginx and reload configuration.</p>
+
+<pre><code class="">nginx -s stop           #=&gt; fast shutdown
+
+nginx -s quit               #=&gt; graceful shutdown
+
+nginx -s reload         #=&gt; reloading the configuration file
+
+nginx -s reopen         #=&gt; reopening the log files
+</code></pre>
+
+<h4>Simple Configuration</h4>
+
+<p>The default place of nginx.conf on Mac after installing with brew is:</p>
+
+<pre><code class="">/usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>Let&rsquo;s change the port number in this file. First, we need to stop the nginx.</p>
+
+<pre><code>sudo nginx -s stop
+</code></pre>
+
+<p>And then open that file, you will see the below server configuration section. It includes the listen, server_name, location/root, location/index. location/root is your website root folder, and index is your website first page file.</p>
+
+<pre><code>server {
+listen       8080;          
+server_name  localhost;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    root   html;
+    index  index.html index.htm;
+}
+</code></pre>
+
+<p>okay, let&rsquo;s change the port number from 8080 to 80, and then run it again</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>Access it with <a href="http://localhost">http://localhost</a>, the 80 port number is http default port number, so we don&rsquo;t need to append it into url.</p>
+
+<p>Now, let&rsquo;s put our blog website in the nginx, to do so, we need to reference the location/root to our blog website folder.</p>
+
+<pre><code class="">server {
+listen       80;            
+server_name  localhost;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    root   /Users/yushi/Codes/Blog/stonefishy.github.io/public;;
+    index  index.html index.htm;
+}
+</code></pre>
+
+<p>let&rsquo;s running it again with clicking <a href="http://localhost">http://localhost</a>. Woow, cool, very nice, we can access our blog with nignx.</p>
+
+<p>This is a just simple usage of nginx, we will talk about more later.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
+    <updated>2015-11-11T22:46:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
+    <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
+
+<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
+
+<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+Errno::ENOENT: No such file or directory - compass
+/Users/user/git/octopress/Rakefile:85:in spawn
+/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
+Tasks: TOP =&gt; preview
+(See full trace by running task with --trace)
+</code></pre>
+
+<!-- more -->
+
+
+<p>Why we get this error, this error caused by rake command, so that means maybe it is ruby version problem. let&rsquo;s take a look it.</p>
+
+<pre><code>~-&gt; $ ruby -v
+~-&gt; ruby 2.0.0p645 (2015-04-13 revision 50299) [universal.x86_64-darwin15]
+</code></pre>
+
+<p>The ruby newest version is 2.2.3. Ok, let&rsquo;s upgrade it. There are two ways to do it.</p>
+
+<h4>Using rbenv</h4>
+
+<p>If you don&rsquo;t have rbenv in your local machine. You need to install it firstly.  <br/>
+1.Go to <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a> to get it. <br/>
+2.install ruby-2.2.3</p>
+
+<pre><code>rbenv install 2.2.3
+</code></pre>
+
+<p>3.In the root of your octopress blog, put below commands</p>
+
+<pre><code>rbenv local 2.2.3
+
+gem install bundler
+
+bundle install
+</code></pre>
+
+<h4>Using RVM</h4>
+
+<p>1.Clear git cache</p>
+
+<pre><code>rm -rf /usr/local/.git
+</code></pre>
+
+<p>2.Install RVM</p>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
+
+<p>3.Install Ruby 2.2.3</p>
+
+<pre><code>rvm install ruby-2.2.3
+
+rvm use 2.2.3
+
+rvm rubygems latest
+</code></pre>
+
+<p>After these steps, make sure you&rsquo;re using Ruby 2.2.3
+4.Go to the root of the your octopress blog</p>
+
+<pre><code>gem install bundler
+
+bundle install
+</code></pre>
+
+<p>Both ways can bring octopress back.</p>
+
+<p><em>Reference: <a href="https://github.com/imathis/octopress/issues/1749">https://github.com/imathis/octopress/issues/1749</a></em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using TSD to Improve Javascript Intellisense of IDE]]></title>
@@ -176,459 +368,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
 <p><img src="/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
 
 <p>So, it&rsquo;s really cool. Hope you like it.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sublime Text - Keyboard Shortcuts for Mac]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/"/>
-    <updated>2015-05-16T12:21:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac</id>
-    <content type="html"><![CDATA[<h3>Editor</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress     </th>
-<th> Command                                                                  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + X        </td>
-<td> Cut line                                                                 </td>
-</tr>
-<tr>
-<td> ⌘ + ↩        </td>
-<td> Insert line after                                                        </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + ↩    </td>
-<td> Insert line before                                                       </td>
-</tr>
-<tr>
-<td> ⌘ + ⌃ + ↑    </td>
-<td> Move line/selection up                                                   </td>
-</tr>
-<tr>
-<td> ⌘ + ⌃ + ↓    </td>
-<td> Move line/selection down                                                 </td>
-</tr>
-<tr>
-<td> ⌘ + L        </td>
-<td> Select line - Repeat to select next lines                                </td>
-</tr>
-<tr>
-<td> ⌘ + D        </td>
-<td> Select word - Repeat to select next occurrence                           </td>
-</tr>
-<tr>
-<td> ⌃ + ⌘ + G    </td>
-<td> Select all occurrences of current selection                              </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + ↑    </td>
-<td> Extra cursor on the line above                                           </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + ↓    </td>
-<td> Extra cursor on the line below                                           </td>
-</tr>
-<tr>
-<td> ⌃ + M        </td>
-<td> Jump to closing parentheses Repeat to jump to opening parentheses        </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + M    </td>
-<td> Select all contents of the current parentheses                           </td>
-</tr>
-<tr>
-<td> ⌃ + A        </td>
-<td> Move to beginning of line                                                </td>
-</tr>
-<tr>
-<td> ⌃ + E        </td>
-<td> Move to end of line                                                      </td>
-</tr>
-<tr>
-<td> ⌘ + K, ⌘ + K </td>
-<td> Delete from cursor to end of line                                        </td>
-</tr>
-<tr>
-<td> ⌘ + K + ⌫    </td>
-<td> Delete from cursor to start of line                                      </td>
-</tr>
-<tr>
-<td> ⌘ + ]        </td>
-<td> Indent current line(s)                                                   </td>
-</tr>
-<tr>
-<td> ⌘ + [        </td>
-<td> Un-indent current line(s)                                                </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + D    </td>
-<td> Duplicate line(s)                                                        </td>
-</tr>
-<tr>
-<td> ⌘ + J        </td>
-<td> Join line below to the end of the current line                           </td>
-</tr>
-<tr>
-<td> ⌘ + /        </td>
-<td> Comment/un-comment current line                                          </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + /    </td>
-<td> Block comment current selection                                          </td>
-</tr>
-<tr>
-<td> ⌘ + Y        </td>
-<td> Redo, or repeat last keyboard shortcut command                           </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + V    </td>
-<td> Paste and indent correctly                                               </td>
-</tr>
-<tr>
-<td> ⌃ + Space    </td>
-<td> Select next auto-complete suggestion                                     </td>
-</tr>
-<tr>
-<td> ⌃ + U        </td>
-<td> Soft undo; jumps to your last change before undoing change when repeated </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + Up   </td>
-<td> Column selection up                                                      </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + Down </td>
-<td> Column selection down                                                    </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + W    </td>
-<td> Wrap Selection in html tag                                               </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + K    </td>
-<td> Delete current line of cursor                                            </td>
-</tr>
-</tbody>
-</table>
-
-
-<!-- more -->
-
-
-<hr />
-
-<h3>Navigation</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress       </th>
-<th> Command                   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + P or ⌘ + T </td>
-<td> Quick-open files by name  </td>
-</tr>
-<tr>
-<td> ⌘ + R          </td>
-<td> Goto symbol               </td>
-</tr>
-<tr>
-<td> ⌃ + G          </td>
-<td> Goto line in current file </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>General</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress      </th>
-<th> Command                      </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + ⇧ + P     </td>
-<td> Command Palette              </td>
-</tr>
-<tr>
-<td> ⌃ + `         </td>
-<td> Python Console               </td>
-</tr>
-<tr>
-<td> ⌃ + ⌘ + F     </td>
-<td> Toggle fullscreen mode       </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + ⌘ + F </td>
-<td> Toggle distraction-free mode </td>
-</tr>
-<tr>
-<td> ⌘ + K, ⌘ + B  </td>
-<td> Toggle side bar              </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + P     </td>
-<td> Show scope in status bar     </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>Find/Replace</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress  </th>
-<th> Command       </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + F     </td>
-<td> Find          </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + F </td>
-<td> Replace       </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + F </td>
-<td> Find in files </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>Scrolling</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress </th>
-<th> Command                                </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌃ + V    </td>
-<td> Scroll down one page                   </td>
-</tr>
-<tr>
-<td> ⌃ + L    </td>
-<td> Center current line vertically in page </td>
-</tr>
-<tr>
-<td> ⌘ + Down </td>
-<td> Scroll to end of file                  </td>
-</tr>
-<tr>
-<td> ⌘ + Up   </td>
-<td> Scroll to start of file                </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>Tabs</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress    </th>
-<th> Command                                       </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + ⇧ + t   </td>
-<td> Open last closed tab                          </td>
-</tr>
-<tr>
-<td> ⌘ + [NUM]   </td>
-<td> Jump to tab in current group where num is 1-9 </td>
-</tr>
-<tr>
-<td> ⌘ + 0       </td>
-<td> Jump to 10th tab in current group             </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + [   </td>
-<td> Cycle left through tabs                       </td>
-</tr>
-<tr>
-<td> ⌘ + ⇧ + ]   </td>
-<td> Cycle right through tabs                      </td>
-</tr>
-<tr>
-<td> ^ + Tab     </td>
-<td> Cycle up through recent tabs                  </td>
-</tr>
-<tr>
-<td> ⇧ + ^ + Tab </td>
-<td> Cycle down through recent tabs                </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>Split window</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress      </th>
-<th> Command                                       </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + ⌥ + 1     </td>
-<td> Revert view to single column                  </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + 2     </td>
-<td> Split view into two columns                   </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + 3     </td>
-<td> Split view into three columns                 </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + 4     </td>
-<td> Split view into four columns                  </td>
-</tr>
-<tr>
-<td> ⌘ + ⌥ + 5     </td>
-<td> Set view to grid (4 groups)                   </td>
-</tr>
-<tr>
-<td> ⌃ + [NUM]     </td>
-<td> Jump to group where num is 1-4                </td>
-</tr>
-<tr>
-<td> ⌃ + ⇧ + [NUM] </td>
-<td> Move file to specified group where num is 1-4 </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>BookMark</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress   </th>
-<th> Command           </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + F2     </td>
-<td> Toggle bookmark   </td>
-</tr>
-<tr>
-<td> F2         </td>
-<td> Next bookmark     </td>
-</tr>
-<tr>
-<td> ⇧ + F2     </td>
-<td> Previous bookmark </td>
-</tr>
-<tr>
-<td> ⇧ + ⌘ + F2 </td>
-<td> Clear bookmarks   </td>
-</tr>
-</tbody>
-</table>
-
-
-<hr />
-
-<h3>Text manipulation</h3>
-
-<table>
-<thead>
-<tr>
-<th> Keypress                 </th>
-<th> Command                       </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ⌘ + K, ⌘ + U             </td>
-<td> Transform to Uppercase        </td>
-</tr>
-<tr>
-<td> ⌘ + K, ⌘ + L             </td>
-<td> Transform to Lowercase        </td>
-</tr>
-<tr>
-<td> ⌘ + ⌃ + up, ⌘ + ⌃ + down </td>
-<td> Clip text upwards / downwards </td>
-</tr>
-</tbody>
-</table>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Nice Web Design Tool - Bracket]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket/"/>
-    <updated>2015-03-02T17:19:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket</id>
-    <content type="html"><![CDATA[<p><code>Bracket</code> is open source web design text editor, it focus with visual tools and preprocesssor support. It is easy to design web page in the browser, we can get the page layout in time when we change the html, css, javascript. We don&rsquo;t need to save the file and refresh the browser. That&rsquo;s so convenience.</p>
-
-<!-- more -->
-
-
-<p><code>Bracket</code> supports the element highlight on the page in time when you put your mouse cursor on the specific html tag.</p>
-
-<p>Absolutly, I recommend you to design you website with it. You can download it from <a href="https://github.com/adobe/brackets/releases/download/release-1.1%2Beb4/Brackets.1.1.Extract.dmg">here</a> for Mac OS. Also you can download it for other platform from <a href="https://github.com/adobe/brackets/releases">this</a>.</p>
-
-<p>The Extract for <code>Brackets</code> (Preview) extension lets you pull out design information from a PSD including colors, fonts, gradients, and measurement information as clean, minimal CSS via contextual code hints. You can also extract layers as images, use information from the PSD to define preprocessor variables, and easily get dimensions between objects. This is very benefit for web designer which want to design web page with PSD source file.</p>
-
-<p>The <code>Bracket</code> has three big features, they are below:</p>
-
-<ul>
-<li><p><strong>Inline Editor</strong> <br/>
-We don&rsquo;t need to jump between file tabs when we want to change the style of the specific ID.
-Just put the mouse cursor on that ID and press <code>Command</code>/<code>Ctrl + E</code>, <code>Bracket</code> will show you all the CSS selectors with that ID in an inline window so you can work on your code side-by-side without any popups.</p></li>
-<li><p><strong>Live Preview</strong> <br/>
-Get a real-time connection to your browser. Make changes to CSS and HTML and you&rsquo;ll instantly see those changes on the page.</p></li>
-<li><p><strong>Preprocessor Support</strong> <br/>
-  With Brackets you can use <code>Quick Edit</code> and <code>Live Highlight</code> with your <code>LESS</code> and <code>SCSS</code> files which will make working with them easier than ever.</p></li>
-</ul>
-
-
-<p>With <code>Bracket</code>, you can improve your working efficiency and save your time. This web design tool is so power, and the offical website is <a href="http://brackets.io/">here</a>.</p>
 ]]></content>
   </entry>
   

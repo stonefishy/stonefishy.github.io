@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Note: the original website address is here Diff Command There are various ways to look at differences between commits. Below are some common examples &hellip;">
+  <meta name="description" content="Optional&lt;T&gt; is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,269 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/21/guava-optional/">Guava &#8211; Optional</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-21T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/21/guava-optional/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/17/the-lifecycle-of-android-activity/">The Lifecycle of Android Activity</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-17T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/assets/images/android-lifecycle.png" alt="lifecycle of activity" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/13/building-blocks-of-android-application/">Building Blocks of Android Application</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-13T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are four builidng blocks for Android Application:</p>
+
+<ul>
+<li><strong><code>Activity</code></strong></li>
+<li><strong><code>Intent Receiver</code></strong></li>
+<li><strong><code>Service</code></strong></li>
+<li><strong><code>Content Provider</code></strong></li>
+</ul>
+
+
+<p>But Not every application needs have all them.</p>
+
+<p><code>AndroidManifest.xml</code> is XML file, it contains some information that where you declare the components of your application and what their capabilities and requirements are.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/13/building-blocks-of-android-application/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-technical-notes/">Visual Git Guide (Technical Notes)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Technical notes</h3>
+
+<p>The contents of files are not actually stored in the index (.git/index) or in commit objects. Rather, each file is stored in the object database (.git/objects) as a blob, identified by its SHA-1 hash. The index file lists the filenames along with the identifier of the associated blob, as well as some other data. For commits, there is an additional data type, a tree, also identified by its hash. Trees correspond to directories in the working directory, and contain a list of trees and blobs corresponding to each filename within that directory. Each commit stores the identifier of its top-level tree, which in turn contains all of the blobs and other trees associated with that commit.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-technical-notes/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-reset-command/">Visual Git Guide (Reset Command)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Reset command</h3>
+
+<p><strong>The reset command moves the current branch to another position</strong>, and optionally updates the stage and the working directory. It also is used to copy files from the history to the stage without touching the working directory.</p>
+
+<p>If a commit is given with no filenames, the current branch is moved to that commit, and then the stage is updated to match this commit. If &ndash;hard is given, the working directory is also updated. If &ndash;soft is given, neither is updated.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-reset-command/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-rebase-command/">Visual Git Guide (Rebase Command)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Rebase command</h3>
+
+<p>A rebase is an alternative to a merge for combining multiple branches. Whereas a merge creates a single commit with two parents, leaving a non-linear history, a rebase replays the commits from the current branch onto another, leaving a linear history. <em>In essence, this is an automated way of performing several cherry-picks in a row</em>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-rebase-command/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-merge-command/">Visual Git Guide (Merge Command)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+
+<h3>Merge command</h3>
+
+<p>A merge creates a new commit that incorporates changes from other commits. Before merging, the stage must match the current commit. The trivial case is if the other commit is an ancestor of the current commit, in which case nothing is done. The next most simple is if the current commit is an ancestor of the other commit. This results in a fast-forward merge. The reference is simply moved, and then the new commit is checked out.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-merge-command/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -177,296 +440,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-checkout-command/">Visual Git Guide (Checkout Command)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Checkout</h3>
-
-<p>The checkout command is used to copy files from the history (or stage) to the working directory, and to optionally switch branches.</p>
-
-<p>When a filename (and/or -p) is given, git copies those files from the given commit to the stage and the working directory. For example, git checkout HEAD~ foo.c copies the file foo.c from the commit called HEAD~ (the parent of the current commit) to the working directory, and also stages it. (<em>If no commit name is given, files are copied from the stage.</em>) <strong>Note that the current branch is not changed.</strong></p>
-
-<p><img src="/assets/images/checkout-files.png" alt="checkout-files" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-checkout-command/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/06/visual-git-guide-conventions/">Visual Git Guide (Conventions)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Conventions</h3>
-
-<p><img src="/assets/images/conventions.png" alt="conventions" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/06/visual-git-guide-conventions/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/06/visual-git-guide-basic-usage/">Visual Git Guide (Basic Usage)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Basic Usage</h3>
-
-<p><img src="/assets/images/basic-usage.png" alt="basic-usage" /></p>
-
-<p>The four commands above copy files between the working directory, the stage (also called the index), and the history (in the form of commits).</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/06/visual-git-guide-basic-usage/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-3/">Git Commands (3)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Redo Commits</h3>
-
-<ul>
-<li><p>Undo all commits after [commit], and preserve changes locally: <br/>
-<code>$ git reset [commit]</code></p></li>
-<li><p>Discard all history and changes back to the specified commit: <br/>
-<code>$ git reset --hard [commit]</code></p></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/06/git-commands-3/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-2/">Git Commands (2)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Group Changes</h3>
-
-<ul>
-<li><p>List all local branches in the current repository: <br/>
-<code>$ git branch</code></p></li>
-<li><p>Create a new branch with specified name: <br/>
-<code>$ git branch [branch-new]</code></p></li>
-<li><p>Switch to the specified branch and updates the working directory: <br/>
-<code>$ git checkout [branch-name]</code></p></li>
-<li><p>Combine the specified branch to the current branch: <br/>
-<code>$ git merge [branch-name]</code></p></li>
-<li><p>Delete the specified branch: <br/>
-<code>$ git branch -d [branch-name]</code></p></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/06/git-commands-2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/05/git-commands-1/">Git Commands (1)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-05T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Configure</h3>
-
-<ul>
-<li><p>Sets the name you want attached to your commit transactions: <br/>
-<code>$ git config --global user.name "[name]"</code></p></li>
-<li><p>Sets the email you want attached to your commit transactions: <br/>
-<code>$ git config --global user.email "[email]"</code></p></li>
-<li><p>Enable git color for command line output: <br/>
-<code>$ git config --global color.ui true</code></p></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/05/git-commands-1/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/04/what-is-git/">What Is Git</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-04T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Introduction</h3>
-
-<p><img src="/assets/images/git-logo.png" alt="Git" /> is <code>open source distributed version control system</code> that allows a team of people to work together, all using the same files. And it helps the team cope with the confusion that tends to happen when multiple people are editing the same files.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/04/what-is-git/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/8">&larr; Older</a>
@@ -493,23 +466,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+        <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
       </li>
     
   </ul>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Other | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/other/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[代码审查之Pull Request]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request/"/>
+    <updated>2015-11-22T13:54:34+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request</id>
+    <content type="html"><![CDATA[<p>代码审查(Code Review)一直是一个高效团队里面必备的流程，团队成员可以通过它达到技术交流，相互学习以及提升自身编码水平的目的。当然它的目的并不止于此，我们在做某一件事的过程中，所用的技能和工具不外乎都是为了能使结果更符合我们的期望，就拿建筑工程来说，质量控制就是其把控最严的一关，有专门的质量管理领导小组、质量组织管理体系制度来贯穿这个过程，其最终目的就是为了使这栋建筑坚固牢稳，避免随时有可能崩塌的危险。</p>
+
+<!-- more -->
+
+
+<p>软件开发也一样，代码审查的另外一个目的就是为了保证软件的质量，避免系统中存在较多的Bug（软件中Bug是无法避免的，此处意思是尽量减少Bug出现的几率）。在我们以往的代码审查过程中，采用的主要形式是开发人员围在一起查看今天是否有哪些代码提交，然后针对提交的代码过一遍，发现有好的实践就相互学习，针对待提升的代码讨论后由Owner自己下去修改。这个过程看似很正常，其实里面存在较多的问题：</p>
+
+<ul>
+<li>其一，好的实践并没有在代码中标明，以及为什么是个好的实践，而且当想回顾查找的时候很困难；</li>
+<li>其二，每个开发人员对同一个提交的想法和见解可能不一样，但是这些想法和见解却并没有被记录下来；</li>
+<li>其三，也是最重要的一个，没有载体去记录哪些代码须改进，那么在下次Review的过程中，并不是所有人都记得上次有哪些代码是否已经改进了，这就会导致代码的质量没有受到监管。</li>
+</ul>
+
+
+<p>任何一种工作方法，如果有工具的辅助，就可以大大提高其效率。Pull Request就是代码审查的一种工作流工具，它并不是DVCS(Distributed Version Control System)比如git的一个特性，通过它可以使代码审查更有效率。而我们大多项目现在都是用Stash（现在已更名为Bitbucket）或Github作为代码仓库，两者均提供了这种方式来确保代码质量。</p>
+
+<p>那么如何通过Pull Request来体现我们的代码质量管理过程呢？首先代码质量管理小组需要由项目中比较资深的研发人员构成，他们是Pull Request的Reviewer不可缺少的成员，用于把控提交的代码是否可以通过，当然，最好是全体研发人员一起加入。而代码质量管理体系制度其实也就是我们常说的一些规范和实践，包括项目统一的编码风格、代码的可读性、可维护性、合理的单元测试以及提倡的一些最佳实践等等。Reviewer可以通过此类体系来鉴别所提交的代码质量是否可以过关。</p>
+
+<p>在此处我们并不阐述如何创建一个Pull Request，我们的焦点在于用它来解决之前遇到的问题。以我们现在项目中用的Stash为例，当Pull Request已创建并通知Reviewer后，Reviewer可以查看其提交代码，做出以下Action:</p>
+
+<ul>
+<li>针对好的实践代码或设计可以在其位置标注上注释，以备后续回顾查找时容易找到。</li>
+<li>建议被添加为Reviewer的开发人员均要在此次的Pull Request中留下自己的意见，这样在后续的集体Code Review中可以查看到相互的见解。</li>
+<li>如果发现代码存在问题的，可以及时在代码中留下注释。如果代码提交者对这个注释也赞同，可当即修改并更新Pull Request，这样可以保证代码是已经修正过的。</li>
+</ul>
+
+
+<p><img src="/assets/images/stash-pull-request.png" alt="stash-pull-request.png" /></p>
+
+<p>当一个Pull Request相关问题都已修改后或不存在任何问题时，就可以直接Approve并Merge到CodeBase中去，这样能够很好的确保CodeBase中的代码是经过监管控制过的。而且在Stash的Pull Request中，还可以设置当须不少于指定个数的Reviewer同意代码提交通过后，提交者才有权限Merge到CodeBase中。这样也能极大的确保项目的代码质量规范是整体开发人员认同的。</p>
+
+<p>总之，Pull Request工作流程的方式可以很大的提高代码审查的质量以及效率，有工具，为何不加以合理使用呢？</p>
+]]></content>
+  </entry>
+  
+</feed>

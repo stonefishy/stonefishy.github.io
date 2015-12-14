@@ -9,7 +9,8 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="The call() function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear. Syntax &hellip;">
+  <meta name="description" content="In this blog, let us talk about Around Advice. There are some few points about it. Around Advice is combination of Before Advice and After Advice.
+In &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,310 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/08/spring-aop-around-advice/">Spring AOP - Around Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-08T09:42:08+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:42 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this blog, let us talk about <code>Around Advice</code>. There are some few points about it.</p>
+
+<ul>
+<li><code>Around Advice</code> is combination of <code>Before Advice</code> and <code>After Advice</code>.</li>
+<li>In a single <code>Around Advice</code> we can implement both <em>before</em> and <em>after</em> services.</li>
+<li><strong>Note</strong>, <code>Around Advice</code> is not given by <em>spring framework</em>, it is from <em>Open Source</em> implementation called <code>AOP</code> alliance.</li>
+<li><code>Around Advice</code> can be used by any framework which supports <code>AOP</code>.</li>
+<li><code>Around Advice</code> can access the return value of business method and it can modify the value and it can return a different value back to the client, as return type is Object, but in the <code>After Advice</code> its not possible right, as its return type is void.</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/08/spring-aop-around-advice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-06T10:14:46+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:14 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
+
+<p>There are four types of Advice:</p>
+
+<ul>
+<li>Before Advice</li>
+<li><strong>After Advice</strong></li>
+<li>Around Advice</li>
+<li>Throws Advice</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/06/spring-aop-after-advice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/05/spring-aop-before-advice/">Spring AOP - Before Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-05T15:33:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:33 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As we know the <code>Aspect</code> is just the name of the <code>cross-cutting</code> functionality, not the implementation. So what&rsquo;s the implementation of the <code>cross-cutting</code> functionality? It&rsquo;s called <code>Advice</code>. An <code>Advice</code> provides the code for implementation of the service. It is like <em>Logging</em> service, <em>Logging</em> is a <code>Aspect</code> and <code>Advice</code> denotes the implementation of <em>Log4j</em>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/05/spring-aop-before-advice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/05/spring-aop-aspect/">Spring AOP - Aspect</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-05T09:25:53+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:25 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>An <code>Aspect</code> represent the <strong>name</strong> of a <code>cross-cutting</code> functionality, it&rsquo;s only name not implementation.</p>
+
+<p>Let us see the example.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//This is my logic for one.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
+</span><span class='line'>      <span class="c1">//Call Logging Service</span>
+</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
+</span><span class='line'>      <span class="c1">//Call Email Service</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//This is my logic for two.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
+</span><span class='line'>      <span class="c1">//Call Logging Service</span>
+</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
+</span><span class='line'>      <span class="c1">//Call Email Service</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/05/spring-aop-aspect/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/04/spring-aop-what-is-aop/">Spring AOP - What Is AOP?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-04T20:43:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:43 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>What is <code>AOP</code>?, <code>AOP</code> stand for <code>Aspect Oriented Programming</code>. It&rsquo;s very important module for <code>Spring</code> framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called <code>cross-cutting</code> functionalities. <code>AOP</code> do this job.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/04/spring-aop-what-is-aop/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-04T16:40:06+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
+The answer is yes, we can. Let me show you screenshots firstly. <br/>
+<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-04T16:01:24+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -311,286 +616,6 @@ Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Spa
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/16/angularjs-angular-dot-extend/">AngularJs - angular.extend()</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-16T11:08:31+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:08 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
-
-<h3>Usage</h3>
-
-<blockquote><p><code>angular.extend(dst, src);</code></p>
-
-<p>dst:        <strong>destination object</strong><br/>
-src:        <strong>source object(s)</strong></p>
-
-<p>return:     <strong>refercen to dst object</strong></p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/16/angularjs-angular-dot-extend/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">How to Use Jdbc in Spring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-05T16:31:53+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:31 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As we know, we can use <code>jdbc</code> to access database in java programming. And now let us use <code>jdbc</code> in spring. The <code>spring framework</code> reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are <code>org.springframework.jdbc.datasource.DriverManagerDataSource</code> and <code>org.springframework.jdbc.core.JdbcTemplate</code>.</p>
-
-<p>And here we use the <code>hsqldb</code> to act as our memory database. You can go to <a href="http://hsqldb.org/">here</a> to look at it. we use the <code>Maven</code> tools to management our project. the dependencies is:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Give Me a Cup of Coffeescript</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-03-19T15:47:18+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:47 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/assets/images/coffee-script-logo.png" width="200" height="100"> is programming language, which is built on top of <code>JavaScript</code>. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes <code>Python</code> or <code>Ruby</code>.</p>
-
-<p>Actually, The <code>CoffeeScript</code> is just a JavaScript. So you can use any exsiting JavaScript library seamlessly from CoffeeScript. And both <code>client-side</code> and <code>server-side</code> can be written by <code>CoffeeScript</code>. So CoffeeScript can write entire web application completely, not like JavaScript only write client-side.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-03-03T17:13:53+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>5:13 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In <code>HTML5</code>, It adds a mount of elements, these elements are more easier to present the document in browser.</p>
-
-<h3>Structure element</h3>
-
-<p>Before <code>HTML5</code>, we just use <code>div</code> tag to act as the <code>Document Structure Element</code>, but now the <code>HTML5</code> supports more elements like <code>section</code>, <code>article</code>, <code>nav</code>, <code>aside</code>, <code>header</code>, <code>footer</code> and so on.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/03/03/html5-new-common-elements/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-03-02T20:33:14+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:33 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>HTML5</code> adds new common attributes for original <code>HTML</code> Tag, and these attributes enhances the <code>HTML</code> elements&rsquo;s function.</p>
-
-<h3>contentEditable</h3>
-
-<p>The <code>contentEditable</code> attribute supports most tags. The browser allows user edits the content of element if this attribute is set to true. These elements is not like input or textarea tags. They are not support editable content like table, div, span and so on these tags.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/03/02/html5-new-common-attributes/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-03-02T17:19:17+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>5:19 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Bracket</code> is open source web design text editor, it focus with visual tools and preprocesssor support. It is easy to design web page in the browser, we can get the page layout in time when we change the html, css, javascript. We don&rsquo;t need to save the file and refresh the browser. That&rsquo;s so convenience.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-02-13T14:58:17+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:58 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Immutable</code> that means it can not be changed. Let&rsquo;s get example to see what&rsquo;s different with <code>mutable</code> objects.</p>
-
-<p>Normal mutable collections:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//define a mutable list</span>
-</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mutableList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//modify the first item in the mutable list</span>
-</span><span class='line'><span class="c1">//will print [aa, b, c]</span>
-</span><span class='line'><span class="n">mutableList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;aa&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mutableList</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/02/13/guave-immutable-collection/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -617,23 +642,23 @@ src:        <strong>source object(s)</strong></p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+        <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
       </li>
     
   </ul>

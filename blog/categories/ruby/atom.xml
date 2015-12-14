@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-10-26T22:12:16+08:00</updated>
+  <updated>2015-12-14T22:01:06+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -14,1131 +14,835 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(12)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12/"/>
-    <updated>2015-10-13T10:25:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12</id>
-    <content type="html"><![CDATA[<p>数组(<strong>Array</strong>)也是Ruby中表现一组数据的对象</p>
+    <title type="html"><![CDATA[Ruby修炼之道(16)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/"/>
+    <updated>2015-11-18T10:49:41+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16</id>
+    <content type="html"><![CDATA[<h4>散列类</h4>
 
-<h4>数组的创建</h4>
+<p>散列(<strong>Hash</strong>)和数组一样，都是表示对象集合的对象，不同之处在于，数组使用索引来取得元素，而散列则是用键key，key可以是任何对象，而索引则不能，只能是整数。</p>
 
-<p>创建方式有一下几种： <br/>
-1.使用<strong>Array.new</strong> <br/>
-Array#new方法可带两个可选参数，第1个参数表示数组中得个数，第2个参数表示每个元素初始值。如果没有指定第2个参数，其元素的初始值为<strong>nil</strong>。如果不带参数则会创建一个空数组。</p>
+<h5>散列的创建</h5>
 
-<pre><code class="ruby">#不带参数c
-ary = Array.new
-p ary                   #=&gt; []
+<p>1.使用 <strong>{}</strong></p>
 
-#带1个参数
-ary = Array.new(3)
-p ary                   #=&gt; [nil, nil, nil]
-
-#带2个参数
-ary = Array.new(3, 5)
-p ary                   #=&gt; [5, 5, 5]
+<pre><code>    {key=&gt;value}
+    或
+    {key:value}
 </code></pre>
 
 <!-- more -->
 
 
-<p>2.使用<strong>%w</strong>与<strong>%i</strong> <br/>
-<strong>%w</strong>用于创建不包含空白的字符串数组, 使用此方法创建字符串数组更加简洁。</p>
+<pre><code class="ruby">hash1 = {"key1"=&gt;"value1", "key2"=&gt;"value2"}
+p hash1["key1"]         #=&gt; "value1"
 
-<pre><code class="ruby">%w(This is ruby)        #=&gt; ["This", "is", "ruby"]
+hash2 = {key1:"value1", key2:"value2"}
+p hash2[:key1]          #=&gt; "value1"
 </code></pre>
 
-<p><strong>%i</strong>用于创建符号(Symbol)数组。</p>
+<p>2.使用<strong>Hash.new</strong></p>
 
-<pre><code class="ruby">%i(This is ruby)    #=&gt; [:This, :is, :ruby]
+<p>Hash.new()可带参数，当带参数的时候表示该参数为默认值，即当键不存在时，所得的值为该默认值；不带参数情况下，其默认值为nil</p>
+
+<pre><code class="ruby">hash1 = Hash.new
+hash2 = Hash.new("ruby")
+
+p hash1["key"]          #=&gt; nil
+p hash2["key"]          #=&gt; "ruby"
 </code></pre>
 
-<p>使用<strong>%w</strong>和<strong>%i</strong>创建数组时用到了(). 其实还可以用很多字符来替代，不过建议使用<strong>()</strong>,<strong>&lt;></strong>,<strong>||</strong>.</p>
+<p>散列的键可以是任意对象，一般推荐使用下列类型的对象来作为键：字符串(String), 数值(Numberic), 符号(Symbol), 日期(Date).</p>
 
-<p>3.使用<strong>to_a</strong>方法</p>
+<h5>散列值的设置和获取</h5>
 
-<pre><code class="ruby">hash={name: "yu", gender: "male"}           #=&gt; {:name=&gt;"yu", :gender=&gt;"male"}
-hash.to_a                                       #=&gt; [[:name, "yu"], [:gender, "male"]]
+<p>一般情况下，我们大多使用最普通的方法来给散列赋值或取值, 如果键不存在，则返回nil</p>
+
+<pre><code class="ruby">#common set and get
+hash = Hash.new
+hash["a"] = "first"
+
+p hash["a"]         #=&gt; "first"
+p hash["abc"]       #=&gt; nil
 </code></pre>
 
-<p>4.使用<strong>split</strong>方法 <br/>
-对逗号或空白字符间隔的字符串可以使用split方法来创建数组</p>
+<p>Ruby还提供了<strong>store</strong>方法来存储值，使用<strong>fetch</strong>方法来获取值</p>
 
-<pre><code class="ruby">"this is ruby".split()              #=&gt; ["this", "is", "ruby"]
+<pre><code class="ruby">#store and fetch
+hash = Hash.new
+
+hash.store("key", "ruby")
+
+p hash.fetch("key")     #=&gt; "ruby"
 </code></pre>
 
-<h4>获取元素</h4>
+<p>但<strong>fetch</strong>方法与[]不同之处在于，如果hash对象中不存在键时，使用此方法将会出错</p>
 
-<p>获取元素的方法有以下几种：</p>
+<pre><code class="ruby">hash = Hash.new
 
-<p>1.使用<strong>[]</strong> <br/>
-(a) <strong>ary[n]</strong>, 获取索引值为n的元素，当索引值为负数时，从数组的末尾开始获取元素。如果指定的索引值大于元素个数则返回nil。</p>
+hash.store("key", "ruby")
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]               
-ary[1]              #=&gt; 2
-ary[-1]         #=&gt; 5
+hash.fetch("abc")       #=&gt; KeyError
 </code></pre>
 
-<p>(b) <strong>ary[n..m]</strong>, 获取从a[n]到a[m]的元素，并返回新的数组。如果m大于数组的长度，返回的结果与指定数组最后一个元素是一样的。</p>
+<p><strong>fetch</strong>方法同样可以返回一个默认值，当它指定第2个参数时或者带块时</p>
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary[1..3]           #=&gt; [2, 3, 4]
-ary[1..7]           #=&gt;  [2, 3, 4, 5]   
+<pre><code class="ruby">hash = Hash.new
+
+p hash.fetch("abc", "default value")    #=&gt; "default value"
+
+p hash.fetch("abc") {"a_"+ String.new("bc")}    #=&gt;"a_bc"
 </code></pre>
 
-<p>&copy; <strong>ary[n&hellip;m]</strong>, 获取从a[n]到a[m-1]的元素，并返回新数组</p>
+<p>通过<strong>keys</strong>和<strong>values</strong>方法可以得到所有的键和值，而且<strong>to_a</strong>方法可以键值组合的数组。</p>
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary[1...3]          #=&gt; [2, 3]
-ary[1...7]          #=&gt;  [2, 3, 4, 5]   
+<pre><code class="ruby">get all keys and values
+hash = {"a"=&gt;"b", "c"=&gt;"d"}
+
+p hash.keys     #=&gt; ["a", "c"]
+p hash.values       #=&gt; ["b", "d"]
+p hash.to_a     #=&gt; [["a", "b"], ["c", "d"]]
 </code></pre>
 
-<p>(d) <strong>ary[n, len]</strong>, 获取从a[n]开始之后的len个元素，并返回新数组. 如果len的长度大于从n开始后数组的剩余长度，则返回的结果与指定数组最后一个元素是一样的。</p>
+<p>Ruby也支持了Hash对象的迭代遍历</p>
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary[1, 3]               #=&gt; [2, 3, 4]
-ary[2, 7]               #=&gt; [3, 4, 5]
+<pre><code class="ruby">hash = {"a"=&gt;"b", "c"=&gt;"d"}
+
+hash.each_key do |key|
+    puts key
+end
+
+hash.each_value do |value|
+    puts value
+end
+
+hash.each do |key, value|
+    puts "#{key}=&gt;#{value}"
+end
 </code></pre>
 
-<p>2.使用<strong>at</strong>方法  <br/>
-ary.at(n)与ary[n]等价</p>
+<h5>散列的默认值</h5>
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary.at(1)               #=&gt; 2
-ary[1]                  #=&gt; 2
+<p>散列的默认值设置有三种方式
+1.使用Hash.new带参数作为默认值</p>
+
+<pre><code class="ruby">hash = Hash.new("ruby")
+p hash["a"]         #=&gt; "ruby"
 </code></pre>
 
-<p>3.使用<strong>slice</strong>方法 <br/>
-ary.slice(n..m)与ary[n..m]等价，ary.slice(n&hellip;m)与ary[n&hellip;m]等价，ary.slice(n, len)与ary[n, len]等价</p>
+<p>2.使用块指定默认值</p>
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary.slice(1..3)     #=&gt; [2, 3, 4]
-ary.slice(1...3)        #=&gt; [2, 3]
-ary.slice(1, 3)     #=&gt; [2, 3, 4]
+<pre><code class="ruby">hash = Hash.new do |hash, key|
+    hash[key] = key.upcase
+end
+
+p hash["a"]         #=&gt; "A"
+p hash["B"]         #=&gt; "B"
 </code></pre>
 
-<p>4.使用<strong>values_at</strong>方法
-可以通过此方法来获取多个索引的元素, 其用法如下</p>
+<p>3.使用fetch方法指定默认值</p>
 
-<pre><code>ary.values_at(n1, n2, ...)
+<pre><code class="ruby">hash = Hash.new do |hash, key|
+    hash[key] = key.upcase
+end
+
+p hash.fetch("a", "abc")            #=&gt; "abc"
 </code></pre>
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary.values_at(0, 2, 4)              #=&gt; [1, 3, 5]
-ary.values_at(1, 3, 5)              #=&gt; [2, 4, nil]
+<p><em>注：当Hash.new方法指定了默认值或块时，fetch方法的第二个参数指定的默认值的优先级是最高的，且看上例</em></p>
+
+<h5>散列其他方法</h5>
+
+<p>1.查看指定对象是否为散列的键  <br/>
+h.<strong>key?</strong>(key)  <br/>
+h.<strong>has_key?</strong>(key)  <br/>
+h.<strong>include?</strong>(key)  <br/>
+h.<strong>member?</strong>(key)</p>
+
+<pre><code class="ruby">hash = {"a" =&gt; "b", "c"=&gt; "d"}
+
+p hash.key?("a")    #=&gt; true
+p hash.key?("x")    #=&gt; false
+p hash.has_key?("c")  #=&gt; true
+p hash.include?("a")  #=&gt; true
+p hash.member?("x")   #=&gt; false
 </code></pre>
 
-<h4>元素赋值</h4>
+<p>2.查看指定对象是否为散列的值  <br/>
+h.<strong>value?</strong>(val)  <br/>
+h.<strong>has_value?</strong>(val)</p>
 
-<p>使用[],at,slice方法还可以给元素赋值</p>
+<pre><code class="ruby">hash = {"a"=&gt;"b", "c"=&gt;"d"}
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary[0] = "a"                        #=&gt; ["a", 2, 3, 4, 5]
-ary[1...3] = ["b","c"]          #=&gt; ["a", "b", "c", 4, 5]
-ary[3..3] = "d"                 #=&gt; ["a", "b", "c", "d", 5]
-ary[4, 1] = "e"                 #=&gt; ["a", "b", "c", "d", "e"]
+p hash.value?("a")        #=&gt; true
+p hash.has_value?("x")    #=&gt; false
 </code></pre>
 
-<h4>元素插入</h4>
+<p>3.获取散列的大小  <br/>
+hash.<strong>length</strong>  <br/>
+hash.<strong>size</strong></p>
 
-<p>插入元素其实就是对0个元素进行赋值，因此指定[n, 0]后，就会在索引值为n的元素前插入新元素。</p>
+<pre><code class="ruby">hash = {:a =&gt; "b", :c =&gt; "d"}
 
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-ary[2, 0] = 10                  #=&gt; [1, 2, 10, 3, 4, 5]
+p hash.length   #=&gt; 2
+p hash.size   #=&gt; 2
 </code></pre>
 
-<h4>数组作为集合使用</h4>
+<p>4.判断散列是否为空    <br/>
+hash.<strong>empty?</strong></p>
 
-<p>交集：取出同时属于两个集合的元素，并创建新的集合</p>
+<pre><code class="ruby">hash = {:a=&gt;"b"}
+p hash.empty?     #=&gt; false
 
-<pre><code>ary = ary1 &amp; ary2
+hash = Hash.new
+p hash.empty?     #=&gt; true
 </code></pre>
 
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [1, 3, 5]
-ary = ary1 &amp; ary2           #=&gt; [1, 3]
+<p>6.删除键值  <br/>
+h.<strong>delete</strong>(key) <br/>
+h.<strong>delete_if</strong>{|key,val| &hellip;}  <br/>
+h.<strong>reject!</strong>{|key, val| &hellip;}</p>
+
+<pre><code class="ruby">hash = {:a =&gt; "b"}
+p hash[:a]    #=&gt; "b"
+
+hash.delete(:a)
+p hash[:a]    #=&gt; nil
+
+hash = {:a =&gt; "b"}
+p hash.delete(:x) { |key| "no #{key} in this hash object"}   #=&gt;"no x in this hash object"
+
+hash = {:a =&gt; "b", :c =&gt; "d"}
+p hash.delete_if {|key, val| key == :a }     #=&gt; {:c=&gt;"d"}
+p hash.delete_if {|key, val| key == :b }     #=&gt; {:c=&gt;"d"}
+
+hash = {:a =&gt; "b", :c =&gt; "d"}
+p hash.reject! {|key, val| key == :a}       #=&gt; {:c=&gt;"d"}
+p hash.reject! {|key, val| key == :b}       #=&gt; nil
 </code></pre>
 
-<p>并集：取出两个集合中的所有元素，并创建新的集合</p>
+<p>delete方法带块时，如果不存在指定的键, 则返回块中的结果。<strong>delete_if</strong>方法和<strong>reject!</strong>功能一样，区别在于如果不满足条件是，delete_if返回的是散列对象本身，而reject！则返回nil。</p>
 
-<pre><code>ary = ary1 | ary2
+<p>7.初始化散列  <br/>
+h.<strong>clear</strong>  <br/>
+用<strong>clear</strong>方法清空使用过的散列</p>
+
+<pre><code class="ruby">hash = {a:"b", c:"d"}
+p hash.size     #=&gt; 2
+
+hash.clear
+p hash.size     #=&gt; 0
 </code></pre>
 
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [1, 3, 5]
-ary = ary1 | ary2           #=&gt; [1, 2, 3, 5]
+<h5>关于散列的键</h5>
+
+<pre><code class="ruby">hash = Hash.new
+key1 = 1
+key2 = 1.0
+
+p key1 == key2      #=&gt; true
+
+hash[key1] = "ruby"
+p hash.key?(key1)     #=&gt; true
+p hash.has_key?(key2)   #=&gt; false
 </code></pre>
 
-<p>集合的差：把某个集合中属于另外一个集合的元素删除，并创建新的集合</p>
-
-<pre><code>ary = ary1 - ary2
-</code></pre>
-
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [1, 3, 5]
-ary = ary1 - ary2           #=&gt; [2]
-</code></pre>
-
-<p><em>注意：连接数组除了可以使用<strong>|</strong>外还可以使用<strong>+</strong>。但是这两种方法返回的结果是不一样的。即使用|相同的元素只有一个，使用+相同的元素会重复存在</em></p>
-
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [1, 3, 5]
-ary = ary1 | ary2           #=&gt; [1, 2, 3, 5]
-ary = ary1 + ary2           #=&gt; [1, 2, 3, 1, 3, 5]
-</code></pre>
-
-<h4>数组作为队列和栈</h4>
-
-<table>
-<thead>
-<tr>
-<th>          </th>
-<th style="text-align:right;"> 对数组开始元素的操作 </th>
-<th> 对数组末尾元素的操作 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> 追加元素 </td>
-<td style="text-align:right;"> unshift              </td>
-<td>     push               </td>
-</tr>
-<tr>
-<td> 删除元素 </td>
-<td style="text-align:right;"> shift                </td>
-<td>     pop                </td>
-</tr>
-<tr>
-<td> 引用元素 </td>
-<td style="text-align:right;"> first                </td>
-<td>     last               </td>
-</tr>
-</tbody>
-</table>
-
-
-<p>使用<strong>push</strong>方法和<strong>shift</strong>方法可以实现队列。使用<strong>push</strong>方法和<strong>pop</strong>方法可以实现栈。</p>
-
-<p><strong>shift</strong>方法和<strong>pop</strong>方法不只是获取数组元素，还会把该元素从数组中删除。如果只是想单纯地引用元素，应该是用
-<strong>first</strong>和<strong>last</strong>方法。</p>
-
-<p>1.ary.<strong>unshift</strong>(item) <br/>
-将item元素添加到数组的开头</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary.unshift(0)          #=&gt; [0, 1, 2, 3]
-</code></pre>
-
-<p>2.ary.<strong>push</strong>(item), ary <strong>&lt;&lt;</strong> item  <br/>
-<strong>&lt;&lt;</strong>与<strong>push</strong>是等价的方法，在数组的末尾添加新元素item</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary.push(4)             #=&gt; [1, 2, 3, 4]
-ary &lt;&lt; 5                    #=&gt; [1, 2, 3, 4, 5]
-</code></pre>
-
-<p>3.ary1.<strong>concat</strong>(ary2) <br/>
-连接数组ary1和数组ary2. concat是具有破坏性的方法。会将ary2的元素直接插入到ary1数组的后面。<strong>+</strong>也是连接两个数组的方法，但是不具破坏性，会生成新的数组。</p>
-
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [2, 3, 4]
-ary1.concat(ary2)
-p ary1                      #=&gt; [1, 2, 3, 2, 3, 4]
-</code></pre>
-
-<p><em>注：能够改变对象值的方法称为具有破坏性的方法，比如pop方法、shift方法等。有些方法后面加上<strong>!</strong>的也是破坏性方法</em></p>
-
-<p>4.ary.<strong>compact</strong> 与ary.<strong>compact!</strong> <br/>
-从数组ary中删除所有nil元素</p>
-
-<pre><code class="ruby">ary = [nil, 1, nil, 2]
-ary.compact             #=&gt; [1, 2]
-</code></pre>
-
-<p>5.ary.<strong>delete</strong>(item)和ary.<strong>delete_at</strong>(n)
-从数组a中删除item元素。 第2个方法删除ary[n]元素。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary.delete(2)               
-p ary                       #=&gt; [1, 3]
-ary.delete_at(0)
-p ary                       #=&gt; [3]
-</code></pre>
-
-<p>6.ary.<strong>delete_if</strong>{ |item| &hellip;}  <br/>
-ary.<strong>reject</strong>{ |item| &hellip;} <br/>
-ary.<strong>reject!</strong>{ |item| ..}</p>
-
-<p>判断数组ary中的各元素item，如果块的执行结果为真，则从数组ary中删除item。<strong>delete_if</strong>和<strong>reject!</strong>方法都是具有破坏性的方法。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary.delete_if { |item| item &gt; 2}
-p ary               #=&gt; [1, 2]
-ary.reject! { |item| item &lt; 2}
-p ary               #=&gt; [2]
-</code></pre>
-
-<p>7.ary.<strong>slice</strong>(n)  <br/>
-ary.<strong>slice</strong>(n..m)  <br/>
-ary.<strong>slice!</strong>(n, len)  <br/>
-删除数组ary中指定的部分，并返回删除部分的值。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3, 4, 5]
-p ary.slice!(4)         #=&gt; 5
-p ary.slice!(2..3)      #=&gt; [3, 4]
-p ary.slice(1, 1)       #=&gt; [2]
-</code></pre>
-
-<p>8.ary.<strong>uniq</strong>, ary.<strong>uniq!</strong>删除数组ary中重复的元素。</p>
-
-<pre><code class="ruby">ary = [1, 2, 2, 3, 1]
-ary.uniq            #=&gt; [1, 2,3]
-</code></pre>
-
-<p>9.ary.<strong>shift</strong>. 删除数组ary开头的元素，并返回删除的值。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]j
-ary.shift       #=&gt; 1
-p ary           #=&gt; [2, 3]
-</code></pre>
-
-<p>10.ary.<strong>pop</strong>. 删除数组ary末尾的元素，并返回删除的值。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary.pop     #=&gt; 3
-p ary           #=&gt; [1, 2]
-</code></pre>
+<p>注：在散列内部，程序会将散列获取值时指定的键，与将值保存到散列时指定的键做比较，判断两者是否一致。具体来说就是，如果两个键key1，key2，当key1.hash与key2.hash得到的整数值相同，并且key1.eql?(key2)为true时，就会认为这两个键是一致的。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(11)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11/"/>
-    <updated>2015-09-28T10:33:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11</id>
-    <content type="html"><![CDATA[<p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
+    <title type="html"><![CDATA[Ruby修炼之道(15)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/"/>
+    <updated>2015-11-17T16:15:17+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15</id>
+    <content type="html"><![CDATA[<h5>字符串比较</h5>
 
-<p><img src="assets/images/numeric-inheritance.png" alt="assets/images/numberic-inheritance.png" /></p>
+<p>Ruby中比较字符串是否相同也是用<strong>==</strong>和<strong>!=</strong>等运算符</p>
 
-<!-- more -->
-
-
-<p>Ruby中一般用到得整数都是在<strong>Fixnum</strong>类范围内的，如果超过了Fixnum的范围，Ruby会自动将其转换为<strong>Bignum</strong>类。</p>
-
-<p>正如上图所示，Ruby可以处理有理数和复数，有理数用<strong>Rational</strong>类表示，复数用<strong>Complex</strong>类表示。其定义形式如下：</p>
-
-<p>1.Rational对象</p>
-
-<pre><code>Rational(分子，分母)
+<pre><code class="ruby">#whether two strings are equal
+puts "aaa" == "aab"         #=&gt; false
+puts "aaa" != "aab"         #=&gt; true
 </code></pre>
 
-<pre><code class="ruby">a = Rational(1, 3)      #=&gt; (1/3)
-a.to_f                      #=&gt; 0.3333333
-</code></pre>
+<p>如果是判断两字符串是否相似，采用正则表达式匹配更加简单。</p>
 
-<p>通过<em>Rational#to_f</em>方法可将有理数转为Float对象</p>
-
-<p>2.Complex对象</p>
-
-<pre><code>Complex(实数，虚数)
-</code></pre>
-
-<pre><code class="ruby">a = Complex(1, 2)       #=&gt; (1+2i)
-</code></pre>
-
-<p>单纯的数字罗列表示10进制整数。以0b开头的数值表示2进制数，以0或者0o开头的数值表示8进制数，以0d开头的数值表示10进制数，以0x开头的数值表示16进制数。字面量中的_会被自动忽略。</p>
-
-<pre><code class="ruby">p 123           #=&gt; 123
-p 1_23          #=&gt; 123
-p 0123      #=&gt; 83
-p 0o123     #=&gt; 83
-p 0d123     #=&gt; 123
-p 0x123     #=&gt; 291
-</code></pre>
-
-<p>Integer对象与Float对象的计算结果为Float对象。</p>
-
-<p>x.<strong>div</strong>(y)
-返回x除以y后的商的整数</p>
-
-<pre><code class="ruby">p 5.div(2)  #=&gt; 2
-p 5.div(2.2)    #=&gt; 2
-</code></pre>
-
-<p>x.<strong>quo</strong>(y)
-返回x除以y后的商，如果x、y都是整数则返回Rational对象</p>
-
-<pre><code class="ruby">p 5.quo(2)  #=&gt; (5/2)
-p 5.quo(2.2)    #=&gt; 2.27272727
-</code></pre>
-
-<p>x.<strong>modulo</strong>(y)
-返回x除以y后的余数，与<em>x % y</em>等价</p>
-
-<pre><code class="ruby">p 5.modulo(2)           #=&gt; 1
-p 5 % 2             #=&gt; 1
-</code></pre>
-
-<p>x.<strong>divmod</strong>(y)
-将x除以y后的商和余数作为数组返回,余数的符号与y的符号一致。</p>
-
-<pre><code class="ruby">p 5.divmod(2)           #=&gt; [2, 1]
-p -5.divmod(2)      #=&gt; [-3, 1]
-p 5.divmod(-2)      #=&gt; [-3, -1]
-</code></pre>
-
-<p>x.<strong>remainder</strong>(y)
-返回x除以y的余数，结果的符号与x的符号一致</p>
-
-<pre><code class="ruby">p 5.remainder(2)        #=&gt; 1
-p 5.remainder(-2)   #=&gt; 1
-p -5.remainder(2)   #=&gt; -1
-</code></pre>
-
-<p><em>注：当除数为0时，Integer类会返回错误，而Float类则会返回Infinity（无限大）或者NaN（Not a Number）。</em></p>
-
-<pre><code class="ruby">p 1 / 0         #=&gt; ZeroDivisionError
-p 1.0 / 0       #=&gt; Infinity
-p 0 / 0.0           #=&gt; NaN
-</code></pre>
-
-<p>针对数值类型，Ruby提供<strong>Math</strong>模块增强数据的处理功能，包括三角函数，对数函数等常用的函数运算方法。通过调用如下方法可得到<strong>Math</strong>模块提供的方法</p>
-
-<pre><code class="ruby">Math.methods
-</code></pre>
-
-<p><strong>to_f</strong>方法可将Integer对象转换为Float对象，<strong>to_i</strong>方法可将Float对象转换为Integer对象，to_i方法会将小数点以后的值去掉。通过使用<strong>round</strong>方法可对小数进行四舍五入的处理.<strong>ceil</strong>方法返回比比原数值大得最小整数，<strong>floor</strong>方法返回比原数值小的最大整数。通过<strong>to_r</strong>和<strong>to_c</strong>方法可将数值转换为Rational对象和Complex对象。</p>
-
-<pre><code class="ruby">p 1.to_f            #=&gt; 1.0
-p 1.23.to_i     #=&gt; 1
-p 1.23.round        #=&gt; 1
-p 1.50.round        #=&gt; 2
-p 1.23.ceil     #=&gt; 2
-p 1.23.floor        #=&gt; 1
-p 1.5.to_r      #=&gt; (3/2)
-p 1.5.to_c      #=&gt; (1.5+0i)
-</code></pre>
-
-<p>Integer类按照指定次数循环处理逻辑</p>
-
-<p>执行指定的n次逻辑</p>
-
-<pre><code>n.times do |i|
-    逻辑
-end
-</code></pre>
-
-<pre><code class="ruby">ary = []
-5.times do |i|
-    ary &lt;&lt; i
-end
-p ary               #=&gt; [0, 1, 2, 3, 4]
-</code></pre>
-
-<p>从<em>from</em>开始循环加对<em>i</em>进行加1处理，直到<em>i</em>等于<em>to</em></p>
-
-<pre><code>from.upto(to) do |i|
-    逻辑
-end
-</code></pre>
-
-<pre><code class="ruby">ary = []
-1.upto(5) do |i|
-    ary &lt;&lt; i
-end
-p ary               #=&gt; [1, 2, 3, 4, 5]
-</code></pre>
-
-<p>从<em>from</em>开始循环对<em>i</em>进行减1处理，直到<em>i</em>等于<em>to</em></p>
-
-<pre><code>from.downto(to) do |i|
-    逻辑
-end
-</code></pre>
-
-<pre><code class="ruby">ary = []
-5.downto(1) do |i|
-    ary &lt;&lt; i
-end
-p ary               #=&gt; [5, 4, 3, 2, 1]
-</code></pre>
-
-<p>从<em>from</em>开始循环对<em>i</em>进行加<em>step</em>处理，直到<em>i</em>等于<em>to</em></p>
-
-<pre><code>from.step(to, step) do |i|
-    逻辑
-end
-</code></pre>
-
-<pre><code class="ruby">ary = []
-1.step(5, 2) do |i|
-    ary &lt;&lt; i
-end
-p ary               #=&gt; [1, 3, 5]
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(10)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/15/ruby-practice-10/"/>
-    <updated>2015-09-15T15:18:16+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/15/ruby-practice-10</id>
-    <content type="html"><![CDATA[<h3>块</h3>
-
-<p><strong>块(block)</strong>，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的<em>each</em>，<em>time</em>就是带块的方法。</p>
-
-<pre><code class="ruby">(1..5).each do |i|
-    puts i
-end
-</code></pre>
-
-<p>上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下：</p>
-
-<pre><code>对象.方法名(参数列表) do |变量|
-    希望的处理
-end
-
-或者
-
-对象.方法名(参数列表) { |变量|
-    希望的处理
-}
+<pre><code class="ruby">#whether two strings are similar
+reg = Regexp.new("^a+b$")
+p "aaa" =~ reg          #=&gt; nil (not similar)
+p "ab" =~ reg           #=&gt; 0 (similar)
+p "aab" =~ reg          #=&gt; 0 (similar)
+p "acb" =~ reg          #=&gt; nil (not similar)
 </code></pre>
 
 <!-- more -->
 
 
-<p>each方法可以将数组的元素一个一个取出来然后处理，散列也可以，但与数组不同的是，散列会将*[key,value]的组合作为数组来提取元素。</p>
+<p>字符串大小由字符编码的顺序决定，可以通过调用<strong>String#ord</strong>方法获取字符编码的码位。</p>
 
-<pre><code class="ruby">outcome = {"breakfast"=&gt;10.00, "lunch"=&gt;20.00, "dinner"=&gt;15.00 }
-sum_outcome = 0
-outcome.each do |pair|          #pair是key，value组成的数组，pair[0]为key，pair[1]为value
-    sum_outcome += pair[1]
-end
-
-puts sum_outcome                    #=&gt; 45.0
+<pre><code class="ruby ">#compare two strings, which is bigger
+puts "aaa" &gt; "aab"      #=&gt; false
+puts "aaa" &lt;= "aab"     #=&gt; true
 </code></pre>
 
-<p>在接收块变量时，多重赋值规则也同样适用。</p>
+<p><em>注：Windows平台下的中文字符使用GBK编码，但非Windows平台下的中文字符使用UTF-8编码</em></p>
 
-<pre><code class="ruby">outcome.each { |key, value|
-    puts "#{key} : #{value}"    #=&gt; 打印对应的outcome信息
-}
+<h5>字符串的分割</h5>
+
+<p>用特定字符分割字符串时可以使用<strong>split</strong>方法。</p>
+
+<pre><code class="ruby">#split string with a special character
+str = "This is a string"
+p str.split(" ")        #=&gt; ["This", "is", "a", "string"]
 </code></pre>
 
-<p>块除了应用于迭代器以外，还被广泛用于其他地方，其中一个就是确保后处理被执行。看代码</p>
+<h5>字符串的换行符</h5>
 
-<ul>
-<li>(1)未使用块做后处理
-<code>ruby file_open.rb
-file = File.open("each_hash_data.rb")
-file.each_line do |line|
-  puts line
-end
-file.close
-</code></li>
-<li>(2)使用块做后处理
-<code>ruby block_file_open.rb
-File.open("each_hash_data.rb") do |file|
-  file.each_line do |line|
-      puts line
-  end
-end
-</code>
-仔细观察代码，你会发现在第种方式中，File#open方法接收了块，然后将file对象作为块变量，并且执行完毕后，并没有调用close方法去关闭文件。用这种方式会使程序出问题吗？答案是不会，因为块内部其实执行了如下代码的处理。</li>
-</ul>
+<p>用<strong>each_line</strong>方法从标准输入读取字符串时，字符串后面肯定有换行符。在操作字符串时，我们可能不需要换行符。此时可以使用<strong>chomp</strong>和<strong>chomp!</strong>方法来删除字符串行末的换行符。</p>
 
-
-<pre><code class="ruby">file = File.open("each_hash_data.rb")
-begin
-    file.each_line do |line|
-        puts line
-    end
-ensure
-    file.close
-end
+<pre><code class="ruby">#delete the line break character from a string
+str = "hello ruby\n"
+p str                   #=&gt; "hello ruby\n"
+p str.chomp             #=&gt; "hello ruby"
+p str.chomp!            #=&gt; "hello ruby"
+p str                   #=&gt; "hello ruby"
 </code></pre>
 
-<p>块还有一种常见的用法，用于替换部分算法，以Array类的sort方法为例</p>
+<p>如果说只想移除字符串行末的最后一个任意字符，可以通过是用<strong>chop</strong>和<strong>chop!</strong>方法来实现</p>
 
-<pre><code class="ruby">ary = ["ruby", "pathon", "c#", "javascript"]
-
-sorted_ary = ary.sort
-print sorted_ary            #=&gt; ["c#", "javascript", "pathon", "ruby"]
-
-sorted_ary = ary.sort { |a, b| a.length &lt;=&gt; b.length }
-print sorted_ary            #=&gt; ["c#", "ruby", "pathon", "javascript"]
-
-sorted_ary = ary.sort { |a, b| a.reverse &lt;=&gt; b.reverse}
-print sorted_ary            #=&gt; ["c#", "pathon", "javascript", "ruby"]
+<pre><code class="ruby">#delete the last character from a string
+str = "hello ruby"
+puts str.chop           #=&gt; hello rub
+puts str                #=&gt; hello ruby
+puts str.chop!          #=&gt; hello rub
+puts str                #=&gt; hello rub
 </code></pre>
 
-<p>将排序算法作为块传递给sort方法，然后返回按指定排序方式排序后的数组。</p>
+<h5>字符串的索引</h5>
 
-<p><em>注意：块中最后一个表达式的值就是块的执行结果</em></p>
+<p>使用<strong>index</strong>和<strong>rindex</strong>方法可以获取某个字符串在另一个字符串中得索引位置，如果不在，则返回nil。<strong>index</strong>方法从左向右检索，<strong>rindex</strong>从右向左检索。</p>
 
-<h4>定义带块的方法</h4>
+<pre><code class="ruby">#get the index which a string in another string
+str1 = "aaabbbbbb"
+str2 = "bb"
 
-<p>使用<strong>yield</strong>关键字代替块，如下</p>
-
-<pre><code class="ruby">def my_block
-    yield
-end
-
-my_block do 
-    puts "this is execution in my block"
-end
+puts str1.index(str2)   #=&gt; 3
+puts str1.rindex(str2)  #=&gt; 7
 </code></pre>
 
-<h5>传递块参数，获取块的值</h5>
+<p>如果只想判断某个字符串中是否包含另一个字符串时，使用<strong>include?</strong>方法更佳。</p>
 
-<pre><code class="ruby">def total(from, to)
-    result = 0
-    from.upto(to) do |num|
-        if block_given?                 # 如果有快的话
-            result += yield(num)        # 将经过块处理后的值累加
-        else
-            result += num
-        end
-    end
-    result
-end
-
-print total(1, 10)                          #=&gt; 55
-print total(1, 10) { |num| num * 2}     #=&gt; 110
+<pre><code class="ruby">#a string whether contains another string
+str1 = "abc"
+str2 = "ab"
+puts str1.include?(str2) #=&gt; true
 </code></pre>
 
-<p><strong>block_given?</strong>方法被用于判断当调用方法时是否有块被传递，有则返回true，否则false</p>
+<h5>字符串的置换</h5>
 
-<p><em>yield</em>参数的个数可以与块变量的个数不一样，当块变量的个数多时，多出的参数会被赋值为nil，当块变量不足时，则不能接受多余的参数值。</p>
+<p>字符串的置换可以通过调用<strong>sub</strong>和<strong>gsub</strong>来实现。<strong>sub</strong>方法仅替换第一个出现的匹配字符，而<strong>gsub</strong>则会替换所有的匹配字符。</p>
 
-<p>*注：<strong>break</strong>和<strong>next</strong>方法可指定参数，如果没有指定任何参数，则返回nil，如果指定了参数则返回参数，如：break 0 和next 0 都会返回0。</p>
-
-<h5>将块封装为对象</h5>
-
-<p>Ruby还可以将块当作对象处理。把块当作对象处理后，就可以在接收块的方法之外的其他地方执行块，或者把块交给其他方法执行。如果要实现这样的功能，就需要<strong>Proc</strong>对象，<strong>Proc</strong>对象是能让块作为对象在程序中使用的类。</p>
-
-<p>通过调用<strong>Proc.new</strong>这个带块的方法，可以定义Proc对象，然后再调用Proc对象的<strong>call</strong>方法执行块。</p>
-
-<pre><code class="ruby">hello = Proc.new do |name|          # 使用Proc.new方法定义块对象hello
-    puts "Hello #{name}"
-end
-
-hello.call("world")                 # 使用Proc.call方法调用块对象
-hello.call("ruby")              
+<pre><code class="ruby">#the replacing of string
+puts "hello".sub('l', '*')      #=&gt; he*lo
+puts "hello".gsub('l', '*')     #=&gt; he**o
 </code></pre>
 
-<p>在方法定义时，如果末尾的参数使用<strong>&amp;参数名</strong>的形式，Ruby就会自动把调用方法时传进来的块封装为Proc对象。</p>
+<p>字符串的置换还可以通过像替换数组中元素的方式来实现，即索引</p>
 
-<pre><code class="ruby">def total(from, to, &amp;block)
-    result = 0
-    from.upto(to) do |num|
-        if block                                #如果有块对象
-            result += block.call(num)       #执行快对象
-        else
-            result += num
-        end
-    end
-    result
-end
+<pre><code class="ruby">str = "hello"
 
-puts total(1, 10)                           #=&gt; 55
-puts total(1, 10) { |num| num * 2}      #=&gt; 110
+str[2] = '*'
+puts str                        #=&gt; he*lo
+
+str[2..3] = '**'       
+puts str                        #=&gt; he**o
+
+str[1, 3]= '***'        
+puts str                        #=&gt; h***o
 </code></pre>
 
-<p>在变量名前添加<strong>&amp;</strong>的参数被成为<strong>Proc参数</strong>. 而且Proc参数一定要在所有参数之后，也就是方法的最后一个参数。</p>
+<h5>字符串与数组相同的方法</h5>
 
-<p>将Proc对象作为块传递给其他方法处理，在调用方法时，用<strong>&amp;Proc对象</strong>的形式定义参数就可以了。</p>
+<p>字符串的很多方法都与数组相同，主要分为以下三大类：  <br/>
+- 与索引操作相关的方法 <br/>
+- 与<strong>Enumerable</strong>模块相关的方法  <br/>
+- 与连接、反转相关的方法</p>
 
-<pre><code class="ruby">def my_each(ary, &amp;block)    
-    ary.each(&amp;block)            #将proc对象以块的形式传递给数组的each方法
-end
+<p>删除字符串中的一部分字符并返回，可使用<strong>slice</strong>方法</p>
 
-my_each([1, 2, 3]) do |i|
-    print "#{i} "
-end
+<p><strong>slice(n)</strong>  <br/>
+<strong>slice(n..m)</strong>  <br/>
+<strong>slice(n, m)</strong>  <br/>
+<strong>slice!(n)</strong>  <br/>
+<strong>slice!(n..m)</strong>
+<strong>slice!(n, m)</strong></p>
+
+<pre><code class="ruby">#the slice of string
+str = "hello ruby"
+puts str.slice(1)               #=&gt; e
+puts str.slice(1..3)            #=&gt; ell
+puts str.slice(2, 3)            #=&gt; llo
+</code></pre>
+
+<p>不带块的情况下，大部分原生的迭代器在调用时都会返回<strong>Enumberable</strong>对象。因此我们可以对<strong>each_line</strong>, <strong>each_byte</strong>， <strong>each_char</strong>等方法的返回值继续使用像<strong>map</strong>， <strong>collect</strong>等方法。</p>
+
+<pre><code class="ruby">#the enumerable of string
+str = &lt;&lt;EOB
+hello
+ruby
+EOB
+
+p str               #=&gt; "hello\nruby\n"
+#return enumerable
+p str.each_line                 #=&gt; #&lt;Enumerator: "hello\nruby\n":each_line&gt;
+
+p str.each_line.map { |e| e.chomp  }   #=&gt; ["hello", "ruby"]
+
+p str.each_line.collect { |e| e.chomp.upcase} #=&gt; ["HELLO", "RUBY"]
+</code></pre>
+
+<p><strong>delete(str)</strong>  <br/>
+<strong>delete!(str)</strong> <br/>
+删除字符串中指定的字符串，并返回删除后的字符</p>
+
+<pre><code class="ruby">#delete the specific string from another string
+str = "hello\n ruby\n"
+p str.delete("\n")      #=&gt; "hello ruby"
+p str                   #=&gt; "hello\n ruby\n"
+
+p str.delete!("\n")     #=&gt; "hello ruby"
+p str                   #=&gt; "hello ruby"
+</code></pre>
+
+<p><strong>reverse(str)</strong>  <br/>
+<strong>reverse!(str)</strong>  <br/>
+反转字符串，包括破坏方法与非破坏方法</p>
+
+<pre><code class="ruby">#reverse a string
+str = "hello ruby"
+p str.reverse           #=&gt; "ybur olleh"
+</code></pre>
+
+<p><strong>str.strip</strong>  <br/>
+<strong>str.strip!</strong>  <br/>
+删除字符串str中行首和行尾的空白字符</p>
+
+<pre><code class="ruby">#remove the white space at the begin and end of string
+str = " hello ruby "
+p str                   #=&gt; " hello ruby"
+p str.strip             #=&gt; "hello ruby"
+</code></pre>
+
+<p><strong>str.upcase/str.upcase!</strong>  <br/>
+<strong>str.downcase/str.downcase!</strong>  <br/>
+<strong>str.swapcase/str.swapcase!</strong>  <br/>
+<strong>str.capitalize/str.capitalize!</strong> <br/>
+字符串大小写的转换系列方法, <strong>swapcase</strong>方法是将字符串中的大小写相互转换。而<strong>capitalize</strong>方法则是将字符串的首个字符大写，其余的均改为小写</p>
+
+<pre><code class="ruby">#text transform
+str = "Hello RUBY"
+p str.upcase            #=&gt; "HELLO RUBY"
+p str.downcase          #=&gt; "hello ruby"
+p str.swapcase          #=&gt; "hELLO ruby"
+p str.capitalize        #=&gt; "Hello ruby"
 </code></pre>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(9)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9/"/>
-    <updated>2015-09-09T23:22:26+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9</id>
-    <content type="html"><![CDATA[<h3>异常处理</h3>
+    <title type="html"><![CDATA[Ruby修炼之道(14)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14/"/>
+    <updated>2015-11-12T17:09:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14</id>
+    <content type="html"><![CDATA[<h4>字符串的创建</h4>
 
-<p>在Ruby中，抛出异常的信息格式如下：</p>
+<h5>普通创建</h5>
 
-<pre><code>文件名：行号：in 方法名：错误信息 (异常类名)
-        from 文件名：行号：in 方法名
-</code></pre>
+<p>Ruby中使用<strong>&ldquo; &rdquo;</strong>或<strong>&lsquo; &rsquo;</strong>符号来创建字符串，在字符串中也可以包含表达式<strong>#{}</strong>，这个表达式被称之为内嵌表达式。如果字符串中需要包含&#8221;&ldquo;或者&#8217;&lsquo;等字符时，则可以通过转义字符\来实现。</p>
 
-<p>以from开头的行表示发生错位的位置。
-在Ruby中,使用<strong>begin ~ rescue ~ end</strong>语句来做异常处理，其语法如下：</p>
+<pre><code class="ruby ">str = "this is a string"
+puts str
 
-<pre><code>begin
-    可能会发生异常的处理
-rescue
-    发生异常时的处理
-end
-</code></pre>
+str = 'this is also a string'
+puts str
 
-<pre><code class="ruby">begin
-    1 / 0
-rescue
-    puts "has a exception"              #=&gt; has a exception
-end
+args = "string with argument"
+puts "this is a #{args}"
+
+str = "Hello 'string'"
+puts str
+
+str = "Hello \"string\""
+puts str
 </code></pre>
 
 <!-- more -->
 
 
-<p>通过在<strong>rescue</strong>后指定变量名，可以获得异常对象。异常对象有两个方法，方法名为<strong>class</strong>、<strong>message</strong>、<strong>backtrace</strong>。</p>
+<h5>%Q或%q创建</h5>
 
-<ul>
-<li><strong>class</strong>方法可以获取到异常的种类</li>
-<li><strong>message</strong>方法获取异常信息。</li>
-<li><p><strong>backtrace</strong>方法获取异常发生的位置信息</p>
+<p>针对字符串中包含&#8221;&ldquo;或&#8217;&lsquo;等字符的，建议采用<strong>%Q</strong>或者<strong>%q</strong>来创建字符串，这样更加清晰明了。使用<strong>%Q</strong>相当于<strong>&rdquo; &ldquo;</strong>创建字符串，<strong>%q</strong>相当于<strong>&rsquo; &lsquo;</strong>创建字符.</p>
 
-<p>  begin
-      可能会发生的异常的处理
-  rescue =>   引用异常对象的变量
-      发生异常时的处理
-  end</p></li>
-</ul>
+<pre><code class="ruby ">puts %Q(this string created by %Q)
 
+puts %q(this string created by %q)
 
-<pre><code class="ruby">begin
-    1 / 0
-rescue =&gt; ex                                #=&gt; 将异常对象引用到ex对象
-    puts ex.class                           #=&gt; ZeroDivisionError
-    puts ex.message                     #=&gt; divided by 0
-    puts ex.backtrace                   #=&gt; exception.rb:2:in `/'exception.rb:2:in `&lt;main&gt;'
-end
+puts %Q(contains 'special' "character" directly)
+
+puts %q(contains 'special' "character" directly)
 </code></pre>
 
-<p><em>Note：此处是将代码直接写在ruby文件里，然后直接运行的，没有写在方法里面。所以看到的信息是文件名和发生错误的行号</em></p>
+<h5>Here Document创建，</h5>
 
-<p>如果不指定变量名，Ruby将会把异常对象赋值给<strong>$!</strong>、<strong>$2</strong>变量</p>
+<p>对于字符串中包含换行符的字符串，使用Here Document语法来创建极为方便。Here Document是Unix中使用Shell的一种语法，通常用<strong>&lt;&lt;</strong>来创建字符串。其语法结构如下：</p>
 
-<ul>
-<li><strong>$!</strong> 引用到最后发生的异常对象</li>
-<li><strong>$@</strong> 引用到发生的异常的位置信息</li>
-</ul>
-
-
-<pre><code class="ruby">begin
-    1 / 0
-rescue
-    puts $!.class                           #=&gt; ZeroDivisionError
-    puts $!.message                     #=&gt; divided by 0
-    puts $!.backtrace                   #=&gt; exception.rb:2:in `/'exception.rb:2:in `&lt;main&gt;'
-    puts $@                             #=&gt; exception.rb:2:in `/'exception.rb:2:in `&lt;main&gt;'
-end
+<pre><code>&lt;&lt;"结束标识符"
+字符串内容
+结束标识符
 </code></pre>
 
-<p>从上面的运行示例可以看出，其实<strong>$!.backtrace</strong>与<strong>$@</strong>是等价的，都表示异常发生的位置。</p>
+<p><em>注意：结束标识符可以使用&#8221; &ldquo;或&#8217; &lsquo;来定义，使用&rdquo; &ldquo;时，字符串内可以使用转义字符和内嵌表达式，而&rsquo; &lsquo;则不会，只会原封不动的显示所有字符。</em></p>
 
-<p>在Ruby中可以通过<strong>ensure</strong>来确保无论是否引发异常都将执行处理，类似于Java和C#中得finally。</p>
+<p>一般使用<em>EOF(End of File)</em>或<em>EOB(End of Block)</em>等作为结束标识符。</p>
 
-<pre><code>begin
-    可能发生的异常
-rescue =&gt; 变量
-    发生异常时的处理
-ensure
-    无论是否有异常，都会处理
-end
+<pre><code class="ruby">str = &lt;&lt;EOB
+the first string
+the second string in a new line
+ok, I also get the third string
+EOB
+
+print str       #=&gt;the string has three lines, just like defined.
 </code></pre>
 
-<pre><code class="ruby">def copy(from to)
-    src = File.open(from)
-    begin
-        dst = File.open(to, 'w')
-        data = src.read
-        dst.write(data)
-        dst.close
-    rescue =&gt; ex
-        print ex.message
-    ensure
-        src.close
-    end
-end
+<p>如果字符串中存在缩进，可以使用<strong>&lt;&lt;-</strong>来替代<strong>&lt;&lt;</strong>，这样将会保持字符串定义中的缩进。</p>
+
+<h5>使用<code></code></h5>
+
+<p>通过使用<strong>`命令`</strong>, 可以创建命令的标准输出并将其转换为字符串对象。</p>
+
+<pre><code class="ruby">str = `ls -l`
+
+puts str        
+#=&gt; 
+total 8
+-rw-r--r--  1 yushi  staff  634 Nov 16 17:12 string_create.rb
 </code></pre>
 
-<p>在<strong>rescue</strong>中使用<strong>retry</strong>后，<strong>begin</strong>以下的处理会再重做一遍。所以需要注意陷入死循环的情况。</p>
+<h5>使用printf和sprintf</h5>
 
-<pre><code class="ruby">count = 0
-num = 0
-begin
-    1 / num                     #=&gt; 如果发生异常，则执行rescue中的语句
-rescue
-    if count &gt;= 5
-        num += 1
-    end
+<p><strong>printf</strong>与<strong>sprintf</strong>均是可以输出指定格式的字符串，不同之处在于printf会将字符串直接输出在控制台上，而sprintf则会将字符串转为为字符串对象。</p>
 
-    count += 1
+<pre><code class="ruby">number = 123
+printf("%d\n", number)      #=&gt; 123
+printf("%4d\n", number)     #=&gt;  123
+printf("%04d\n", number)    #=&gt; 0123
+printf("%+d\n", number)     #=&gt; +123
 
-    retry                           #=&gt; 重复执行begin后的语句
-end
-
-puts count                      #=&gt; 6
-</code></pre>
-
-<h4>使用rescue做为修饰符</h4>
-
-<p>使用rescue作为修饰符可以简化很多代码</p>
-
-<pre><code>表达式1 rescue 表达式2
-</code></pre>
-
-<p>与下面的写法等价</p>
-
-<pre><code>begin
-    表达式1
-rescue
-    表达式2
-end
-</code></pre>
-
-<p>其意义为如果表达式1中发生异常，表达式2的值就会成为整体表达式的值。</p>
-
-<pre><code class="ruby">def parseInt(param)
-    Integer(param) rescue 0     #=&gt; 如果Integer(param)语句无异常，直接返回该值，否者返回0
-end
-
-puts parseInt("123")            #=&gt; 123
-puts parseInt("abc")            #=&gt; 0
-</code></pre>
-
-<p>在判断字符串是否为数值形式时，可以使用这种方法。</p>
-
-<h4>异常处理的其他语法</h4>
-
-<p><em>方法内</em>
-如果异常处理的范围是整个方法体，这时可以省略begin以及end关键字，直接使用rescue和ensure。</p>
-
-<pre><code>def 方法名
-    方法体
-rescue =&gt; 异常对象
-    异常处理
-ensure
-    后处理
-end
-</code></pre>
-
-<p><em>类定义中</em>
-在类定义中也可以使用rescue以及ensure。但是，如果类定义途中发生异常，那么异常发生部分后的方法定义就不会再执行了。所以一般很少在类定义中使用。</p>
-
-<pre><code>class 类名
-    类定义
-rescue =&gt; 异常对象
-    异常处理
-ensure
-    后处理
-end
-</code></pre>
-
-<h4>指定需要捕捉的异常</h4>
-
-<p>当然，Ruby也提供了针对特定异常的捕捉处理，可以使用多个rescue来分开处理</p>
-
-<pre><code>begin
-    可能发生异常的地方
-rescue Exception1, Exception2 =&gt;变量
-    对Exception1或Exception2的处理
-rescue Exception3 =&gt; 变量
-    对Exception3的处理
-rescue
-    对上述异常以外的异常的处理
-end
-</code></pre>
-
-<pre><code class="ruby">def multi_rescue 
-    begin
-        yield                   #块参数在此处，如有异常，将执行后续指定的异常处理
-    rescue NameError, NoMethodError =&gt; ex
-        puts ex.class
-    rescue ZeroDivisionError
-        puts $!.class
-    rescue 
-        puts $!.class
-    end
-end
-
-multi_rescue do 
-    1 / 0                           #触发ZeroDivisionError异常
-end
-
-multi_rescue do
-    val.size                        #触发NameError异常
-end
-
-multi_rescue do 
-    val = 4
-    sqrt(val)                       #触发NoMethodError异常  
-end
-</code></pre>
-
-<p>以上代码定义了一个带块的方法，通过此方法可以插入任何你想要得代码执行块。</p>
-
-<h4>异常类</h4>
-
-<p><em>注意：ruby中所有异常都是</em>Exception<em>类的子类。</em>
-当rescue中不指定异常类时，程序会默认捕捉<em>StandardError</em>类及其子类的异常. 所以在定义自己的异常时，可以先定义继承StandardError类的新类，然后再继承这个新类。</p>
-
-<pre><code class="ruby">MyError = Class.new(StandardError)
-
-class MyError &lt; StandardError
-end
-</code></pre>
-
-<p>上面两种写法是等效的，都是表示定义一个继承StandardError类的新类。第一种方式是一种简洁的写法。</p>
-
-<pre><code class="ruby">MyError = Class.new(StandardError)      #自定义MyError异常
-
-#自定义MyError1异常继承自MyError，并重写message方法
-class MyError1 &lt; MyError
-    def message
-        "the exception message is from MyError1"
-    end
-end
-
-#自定义MyError2异常继承自MyError，并重写message方法
-class MyError2 &lt; MyError
-    def message
-        "the exception message is from MyError2"
-    end
-end
-
-#定义带块的处理异常的方法
-def raiseException
-    yield
-rescue MyError1 =&gt; ex
-    puts ex.message
-rescue MyError2 =&gt; ex
-    puts ex.message
-rescue
-    puts $!.message
-end
-
-#抛出异常MyError1
-raiseException do
-    raise MyError1      #=&gt; the exception message is from MyError1      
-end
-
-#抛出异常MyError2   
-raiseException do
-    raise MyError2      #=&gt; the exception message is from MyError2
-end
-</code></pre>
-
-<h4>抛出异常</h4>
-
-<p>使用<strong>raise</strong>方法，可以使程序主动抛出异常。</p>
-
-<p>raise方法有一下4中调用方式：</p>
-
-<ul>
-<li><p>raise message
-抛出<em>RuntimeError</em>异常，并把字符串作为message设置给新生成的异常对象</p></li>
-<li><p>raise 异常类
-抛出指定的异常</p></li>
-<li><p>raise 异常类，message
-抛出指定的异常，并把message信息设置给新生成的异常对象</p></li>
-<li><p>raise
-在rescue外抛出RuntimeError。 在rescue中调用时，会再次抛出最后一次发生的异常。</p></li>
-</ul>
-
-
-<pre><code class="ruby">#自定义MyError3异常
-MyError3 = Class.new(MyError
-
-raiseException do
-    raise MyError3, "customized message for MyError3"   #=&gt;抛出指定message
-end
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8/"/>
-    <updated>2015-09-06T20:36:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8</id>
-    <content type="html"><![CDATA[<h3>运算符</h3>
-
-<p>以下两种运算符是等价的, op即代表操作运算符</p>
-
-<pre><code>value1 op= value2
-value1 = value1 op value2
-</code></pre>
-
-<p>利用运算符<strong>||</strong>的特性，可以简化相关的赋值代码，如下是等价的
-<code>ruby 赋值方式1
 name = "Ruby"
-if var              #当var不是nil或false时
-    name = var
-end
-</code></p>
+p sprintf("Hello,%s", name)     #=&gt; "Hello,Ruby"
+p sprintf("Hello,%8s", name)        #=&gt; "Hello,    Ruby"
+p sprintf("Hello,%-8s", name)       #=&gt; "Hello,Ruby    "
+</code></pre>
 
-<pre><code class="ruby 赋值方式2">name = var || "Ruby"
+<h4>字符串长度</h4>
+
+<p>用<strong>length</strong>方法和<strong>size</strong>方法获取字符串长度。<strong>bytesize</strong>方法可以获取字节长度。</p>
+
+<pre><code class="ruby">str = "This is a string"
+str2 = "字符串"
+
+#get the length of a string object
+puts str.length         #=&gt; 16
+puts str.size           #=&gt; 16
+puts str2.length        #=&gt; 3
+
+#get the bytesize of a string 
+puts str.bytesize       #=&gt; 16
+puts str2.bytesize      #=&gt; 9
+</code></pre>
+
+<p>判断字符串是否为空，可用<strong>empty?</strong>方法。</p>
+
+<pre><code class="ruby">#judge the string if is empty
+puts "".empty?          #=&gt; true
+puts "string".empty?    #=&gt; false
+</code></pre>
+
+<p><em>字符串的索引与数组的索引用法一样，可参照使用</em></p>
+
+<h5>字符串的连接</h5>
+
+<p>字符串的连接有以下两种情况： <br/>
+- 将字符串合并为一个新的字符串 <br/>
+- 扩展原有字符串</p>
+
+<p>使用<strong>+</strong>可以合并两个字符串时，会创建一个新的字符串。</p>
+
+<pre><code class="ruby">#using '+', will create a new string object
+str1 = "hello "
+str2 = "world"
+str3 = str1
+
+puts str1 + str2            #=&gt; hello world
+puts str1                   #=&gt; hello
+
+puts str1 = str1 + str2     #=&gt; hello world
+puts str1                   #=&gt; hello world
+puts str3                   #=&gt; hello
+</code></pre>
+
+<p>如果只想扩展原有字符串，可以使用<strong>&lt;&lt;</strong>或<strong>concat</strong>方法。</p>
+
+<pre><code class="ruby">#using '&lt;&lt;', will change the original string object
+str1 = "hello "
+str2 = "world"
+str3 = str1
+
+puts str1&lt;&lt;str2             #=&gt; hello world
+puts str1                   #=&gt; hello world
+puts str3                   #=&gt; hello world
+
+#using 'concat' method, also will change the original string object
+str1 = "hello "
+str2 = "world"
+str3 = str1
+
+puts str1.concat str2       #=&gt; hello world
+puts str1                   #=&gt; hello world
+puts str3                   #=&gt; hello world
+</code></pre>
+
+<p><em>注意：一般情况下使用<strong>&lt;&lt;</strong>和<strong>concat</strong>方法更有效率，但是也可以根据情况而定</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
+    <updated>2015-11-11T22:46:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
+    <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
+
+<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
+
+<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+Errno::ENOENT: No such file or directory - compass
+/Users/user/git/octopress/Rakefile:85:in spawn
+/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
+Tasks: TOP =&gt; preview
+(See full trace by running task with --trace)
 </code></pre>
 
 <!-- more -->
 
 
-<p>而利用<strong>&amp;&amp;</strong>运算符，可以避免不必要要得程序错误</p>
+<p>Why we get this error, this error caused by rake command, so that means maybe it is ruby version problem. let&rsquo;s take a look it.</p>
 
-<pre><code class="ruby 隐藏的错误">name = ary[0]          #如果ary为nil，则此时将引发程序错误
+<pre><code>~-&gt; $ ruby -v
+~-&gt; ruby 2.0.0p645 (2015-04-13 revision 50299) [universal.x86_64-darwin15]
 </code></pre>
 
-<pre><code class="ruby 使用&&避免错误">name = ary &amp;&amp; ary[0]    #避免当ary为nil时，读取ary[0]时的错误
+<p>The ruby newest version is 2.2.3. Ok, let&rsquo;s upgrade it. There are two ways to do it.</p>
+
+<h4>Using rbenv</h4>
+
+<p>If you don&rsquo;t have rbenv in your local machine. You need to install it firstly.  <br/>
+1.Go to <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a> to get it. <br/>
+2.install ruby-2.2.3</p>
+
+<pre><code>rbenv install 2.2.3
 </code></pre>
 
-<p>使用<strong>&amp;&amp;</strong>可以在确定对象存在后再调用方法。而且代码更加简洁。</p>
+<p>3.In the root of your octopress blog, put below commands</p>
 
-<h4>范围运算符</h4>
+<pre><code>rbenv local 2.2.3
 
-<p>相比其他的语言如Java等，范围运算符算是一个比较特殊的运算符，范围运算符有<strong>..</strong>和<strong>&hellip;</strong>两种，其区别在于如下</p>
+gem install bundler
 
-<ul>
-<li><strong>x..y</strong>的范围是从x到y</li>
-<li><strong>x&hellip;y</strong>的范围是从x到y得前一个元素</li>
-</ul>
-
-
-<pre><code class="ruby">(1..5).to_a             #=&gt; [1, 2, 3, 4, 5]
-("a".."d").to_a         #=&gt; ["a", "b", "c", "d"]
-
-(1...5).to_a                #=&gt; [1, 2, 3, 4]
-("a"..."d").to_a            #=&gt; ["a", "b", "c"]
+bundle install
 </code></pre>
 
-<p>Ruby中有范围对象(Range)来表示范围对象，以下两个写法是等价的</p>
+<h4>Using RVM</h4>
 
-<pre><code class="ruby">ary = Range.new(1, 5)   #=&gt; 1..5
-ary.class                   #=&gt; Range
+<p>1.Clear git cache</p>
 
-
-ary = 1..5              #=&gt; 1..5
-ary.class                   #=&gt; Range
+<pre><code>rm -rf /usr/local/.git
 </code></pre>
 
-<p>在Range对象内部，可以使用<strong>succ</strong>方法根据起点值逐个生成下一值</p>
+<p>2.Install RVM</p>
 
-<pre><code class="ruby">a = 1
-a = a.succ                  #=&gt; 2
-a = a.succ                  #=&gt; 3
-a.succ.succ                 #=&gt; 5
+<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
 </code></pre>
 
-<h4>运算符重定义</h4>
+<p>3.Install Ruby 2.2.3</p>
 
-<p>在Ruby中有以下运算符不能重定义
-::, &amp;&amp;, ||, .., &hellip;, ?:, not, =, and</p>
+<pre><code>rvm install ruby-2.2.3
 
-<p><em>二元运算符重定义</em>,如加号+、减号-</p>
+rvm use 2.2.3
 
-<pre><code class="ruby">class Point
-    attr_reader :x, :y
+rvm rubygems latest
+</code></pre>
 
-    def initialize(x, y)
-        @x, @y = x, y
-    end
+<p>After these steps, make sure you&rsquo;re using Ruby 2.2.3
+4.Go to the root of the your octopress blog</p>
 
-    def +(other)
-        self.class.new(x + other.x, y + other.y)
-    end
+<pre><code>gem install bundler
 
-    def -(other)
-        self.class.new(x - other.x, y - other.y)
-    end
+bundle install
+</code></pre>
 
-    def display
-        "(#{x}, #{y})"
+<p>Both ways can bring octopress back.</p>
+
+<p><em>Reference: <a href="https://github.com/imathis/octopress/issues/1749">https://github.com/imathis/octopress/issues/1749</a></em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(13)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/"/>
+    <updated>2015-10-26T22:13:32+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13</id>
+    <content type="html"><![CDATA[<h4>替换数组内的元素</h4>
+
+<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
+
+<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
+ary.<strong>collect!</strong> { |item| &hellip;} <br/>
+ary.<strong>map</strong> { |item| &hellip;} <br/>
+ary.<strong>map!</strong> { |item| &hellip;}</p>
+
+<p>将数组ary中的各元素item传递给块做处理。</p>
+
+<pre><code class="ruby">ary = [1, 2, 3]
+ary1 = ary.collect do |item|
+    item*2
+end
+
+p ary1                  #=&gt; [ 2, 4, 6]
+
+ary2 = ary.map do |item|
+    if item % 2 == 0
+        0
+    else
+        1
     end
 end
 
-p1 = Point.new(1, 2)
-p2 = Point.new(3, 4)
-p = p1 + p2
-puts p.display                  #=&gt; (4, 6)
-
-p = p2 - p1
-puts p.display                  #=&gt; (2, 2)
+p ary2                  #=&gt; [1, 0, 1]
 </code></pre>
 
-<p><em>一元运算符</em>，如正号+，负号-等，其重定义与二元运算符不同。可定义的一元运算符有<strong>+</strong>, <strong>-</strong>, <strong>~</strong>, <strong>!</strong>4个。分别以+@， -@， ~@， !@为方法名进行方法定义。而且一元运算符都是没有参数的。</p>
+<!-- more -->
 
-<pre><code class="ruby">class Point
-    attr_reader :x, :y
 
-    def initialize(x, y)
-        @x, @y = x, y
-    end
+<p>ary.<strong>fill</strong>(value)  <br/>
+ary.<strong>fill</strong>(value, begin) <br/>
+ary.<strong>fill</strong>(value, begin, len) <br/>
+ary.<strong>fill</strong>(vlaue, n..m)  <br/>
+将数组ary的元素替换为value。</p>
 
-    def +@
-        dup
-    end
+<pre><code class="ruby">p [1, 2, 3].fill(0)         #=&gt; [0, 0, 0]
+p [1, 2, 3].fill(0, 1)      #=&gt; [1, 0, 0]
+p [1, 2, 3].fill(0, 0, 2)       #=&gt; [0, 0 ,3]
+p [1, 2, 3].fill(0, 1..2)       #=&gt; [1, 0, 0]
 
-    def -@
-        self.class.new(-x ,-y)
-    end
-
-    def ~@
-        self.class.new(-y, x)
-    end
-
-    def display
-        "(#{x}, #{y})"
-    end
-end
-
-p1 = Point.new(1, 2)
-puts (-p1).display              #=&gt; (-1, -2)
-puts (+p1).display              #=&gt; (1, 2)
+ary = [1, 2, 3]
+ary.fill(0)
+p ary                       #=&gt; [0, 0, 0]
 </code></pre>
 
-<h4>下标方法</h4>
+<p>*注意，此方法会修改原对象的值。即为破坏方法。</p>
 
-<p>数组、散列中的<em>obj[i]</em>以及<em>obj[i]=x</em>这样的方法，称为下标方法。定义下标方法时的方法名分别为<strong>[]</strong>和<strong>[]=</strong>.</p>
+<p>ary.<strong>flatten</strong> <br/>
+ary.<strong>flatten</strong> <br/>
+平坦化数组ary，所谓平坦化是指展开嵌套数组变为一个大数组。</p>
 
-<pre><code class="ruby">class Point
-    attr_reader :x, :y
+<pre><code class="ruby">ary = [1, [2, 3], [4, [5, 6]]]
+p ary.flatten        #=&gt; [1, 2, 3, 4, 5, 6]
+</code></pre>
 
-    def initialize(x, y)
-        @x, @y = x, y
-    end
+<p>ary.<strong>reverse</strong>  <br/>
+ary.<strong>reverse!</strong>  <br/>
+反转数组ary的元素顺序</p>
 
-    def [](index)
-        case index
-        when 0
-            x
-        when 1
-            y
-        else
-            raise ArgumentError, "out of range (#{index})"
-        end
-    end
+<pre><code class="ruby">ary = [1, 2, 3]
+p ary.reverse       #=&gt; [3, 2, 1]
+</code></pre>
 
-    def []=(index, val)
-        case index
-        when 0
-            self.x = val
-        when 1
-            self.y = val
-        else
-            raise ArgumentError, "out of range (#{index})"
-        end
-    end
+<p>ary.<strong>sort</strong> <br/>
+ary.<strong>sort!</strong> <br/>
+ary.<strong>sort</strong>{|i, j| &hellip; } <br/>
+ary.<strong>sort!</strong>{|i, j| &hellip;} <br/>
+ary.<strong>sort_by</strong> {|i| &hellip;}</p>
 
+<p>对数组ary中进行排序，排序方法可以由块指定。没有块时，使用<em>&lt;=></em>运算符比较。其中<strong>sort_by</strong>方法中排序是根据块的运行结果来对数组的所有元素进行排序。</p>
 
-    def display
-        "(#{x}, #{y})"
-    end
+<pre><code class="ruby">ary = [4, 9, 5]
+p ary.sort          #=&gt; [4, 5, 9]
+ary.sort! { |i, j|
+    i % 3 &lt;=&gt; j % 3
+}
+p ary               #=&gt; [9, 4, 5]
+
+p [2, 4, 3, 1].sort_by { |i| -i }  #=&gt; [4, 3, 2, 1]
+</code></pre>
+
+<h4>数组的迭代</h4>
+
+<p><strong>each</strong>方法并不知道元素的索引值。当需要指定索引值时，可以使用<strong>each_with_index</strong>方法</p>
+
+<pre><code class="ruby">ary = [23, 54, 14]
+ary.each { |item| print "#{item} " }    #=&gt; 23 54 14
+
+ary.each_with_index do |item, index|
+    print "The ", index+1, " element is :", item, "\n"
 end
+</code></pre>
+
+<p>如果数组内各元素全部处理完毕后该数组就不需要了，此时可以通过逐个删除数组元素使数组变空这样的手段来实现循环。</p>
+
+<pre><code class="ruby">while item = ary.pop
+    ## the handle of the item
+end
+</code></pre>
+
+<h4>多维数组</h4>
+
+<p>数组中的各个元素也可以是数组，也就是数组的数组。可以用它来表示矩阵。</p>
+
+<pre><code class="ruby">ary = [[1, 2], [3, 4], [5, 6]]
+
+p ary[1][1]     #=&gt; 4
+
+#3个元素引用的是同一个数组对象
+ary = Array.new(3, [0, 0])
+ary[0][1] = 1
+p ary           #=&gt; [[0, 1], [0, 1], [0, 1]]
+
+#避免引用同一个数组对象，在块中，重复创建新的对象
+ary = Array.new(3) do
+    [0, 0]
+end     
+
+ary[0][1] = 1
+p ary           #=&gt; [[0, 1], [0, 0], [0, 0]]    
+</code></pre>
+
+<p>使用<em>Array.new(length, array)</em>创建二维数组。创建的所有元素引用的都是同一个对象array，修改其中一个元素的值，其他元素也会变化。如上示例代码。如何避免？可在创建数组的块中重复创建新对象。</p>
+
+<p>ary.<strong>zip</strong>(ary1, ary2, &hellip;) <br/>
+<strong>zip</strong>方法会将接收器和参数传来的数组元素逐一取出，而且每次都会启动块。参数可以是一个或多个。</p>
+
+<pre><code class="ruby">ary1 = [1, 2, 3]
+ary2 = [10, 20, 30]
+ary3 = [100, 200, 300]
+
+result = []
+ary1.zip(ary2, ary3) do |a, b, c|
+    result &lt;&lt; a + b + c
+end
+
+p result            #=&gt; [111, 222, 333]
 </code></pre>
 ]]></content>
   </entry>

@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/</loc>
+    <lastmod>2015-12-05T11:51:04+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request/</loc>
+    <lastmod>2015-11-22T13:54:34+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/</loc>
+    <lastmod>2015-11-18T10:49:41+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/</loc>
+    <lastmod>2015-11-17T16:15:17+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14/</loc>
+    <lastmod>2015-11-12T17:09:35+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/</loc>
+    <lastmod>2015-11-11T22:46:35+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/</loc>
+    <lastmod>2015-10-26T22:13:32+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12/</loc>
     <lastmod>2015-10-13T10:25:41+08:00</lastmod>
     <priority>0.8</priority>
@@ -56,7 +91,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://stonefishy.github.io/blog/2015/08/13/ru-practice-2/</loc>
+    <loc>http://stonefishy.github.io/blog/2015/08/13/ruby-practice-2/</loc>
     <lastmod>2015-08-13T13:35:15+08:00</lastmod>
     <priority>0.8</priority>
   </url>
@@ -382,13 +417,13 @@
   </url>
   <url>
     <loc>http://stonefishy.github.io/blog/archives/</loc>
-    <lastmod>2015-10-26T22:12:16+08:00</lastmod>
+    <lastmod>2015-12-14T22:01:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://stonefishy.github.io/</loc>
-    <lastmod>2015-10-26T22:12:16+08:00</lastmod>
+    <lastmod>2015-12-14T22:01:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

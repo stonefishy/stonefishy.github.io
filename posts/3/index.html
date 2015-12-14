@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="What is Pointcut of Spring AOP? let&rsquo;s describe it. A Pointcut defines what Advices are required at what Join Points. In fact all business logic &hellip;">
+  <meta name="description" content="The HttpClient is library which is support by apache. It can post or get data from specific webservice and represents only the most basic contract &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,271 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-06T22:22:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <strong>HttpClient</strong> is library which is support by apache. It can post or get data from specific  webservice and represents only the most basic contract for HTTP request execution.</p>
+
+<p>We explain how to use this library with a example. In this example, we are going to use it to access the google tranlated API. Translating some text from specific language to other language. And this example using the Spring framework and Maven tool to build.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Using TSD to Improve Javascript Intellisense of IDE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-30T23:27:10+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
+
+<p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
+
+<p><code>TypeScipt</code> is also like <code>CoffeeScript</code>, it can be compiled to <code>JavaScript</code>. It is developed by Microsoft company. To See the TypeScript, go to this official <a href="http://www.typescriptlang.org/">website</a>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Implicit Submission of Form When Pressing Enter Key</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-30T15:08:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
+
+<p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/16/spring-aop-at-aspectj-annotation/">Spring AOP - @AspectJ Annotation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-16T17:46:08+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this article, we introduce how to use <code>AOP</code> with the <code>@AspectJ</code> Annotation. If we want to use this Annotation. we should include below code in the XML schema-based configuration file.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'> <span class="nt">&lt;aop:aspectj-autoproxy/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>And also you need to add these libraries to your project, <em>aspectjrt.jar</em>, <em>aspectjweaver.jar</em>, <em>aspectj.jar</em> and <em>aopalliance.jar</em>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/16/spring-aop-at-aspectj-annotation/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/14/spring-aop-xml-schema/">Spring AOP - XML Schema</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-14T15:48:55+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
+ - <em>aspectjrt.jar</em> <br/>
+ - <em>aspectjweaver.jar</em> <br/>
+ - <em>aopalliance.jar</em></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/14/spring-aop-xml-schema/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Spring AOP - Dynamic Pointcut</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-12T16:23:30+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/11/spring-aop-static-pointcut/">Spring AOP - Static Pointcut</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-11T16:08:48+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&rsquo;s first to see the three very technical terms as below.</p>
+
+<ul>
+<li>Adivce - Indicate the action to take either before or after the method execution.</li>
+<li>Pointcut - Indicate which method should be intercept, by method name or regular expression pattern.</li>
+<li>Advisor - Group ‘Advice’ and ‘Pointcut’ into a single unit, and pass it to a proxy factory object</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/11/spring-aop-static-pointcut/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -176,310 +441,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/08/spring-aop-around-advice/">Spring AOP - Around Advice</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-08T09:42:08+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:42 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In this blog, let us talk about <code>Around Advice</code>. There are some few points about it.</p>
-
-<ul>
-<li><code>Around Advice</code> is combination of <code>Before Advice</code> and <code>After Advice</code>.</li>
-<li>In a single <code>Around Advice</code> we can implement both <em>before</em> and <em>after</em> services.</li>
-<li><strong>Note</strong>, <code>Around Advice</code> is not given by <em>spring framework</em>, it is from <em>Open Source</em> implementation called <code>AOP</code> alliance.</li>
-<li><code>Around Advice</code> can be used by any framework which supports <code>AOP</code>.</li>
-<li><code>Around Advice</code> can access the return value of business method and it can modify the value and it can return a different value back to the client, as return type is Object, but in the <code>After Advice</code> its not possible right, as its return type is void.</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/08/spring-aop-around-advice/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-06T10:14:46+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:14 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
-
-<p>There are four types of Advice:</p>
-
-<ul>
-<li>Before Advice</li>
-<li><strong>After Advice</strong></li>
-<li>Around Advice</li>
-<li>Throws Advice</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/06/spring-aop-after-advice/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/05/spring-aop-before-advice/">Spring AOP - Before Advice</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-05T15:33:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:33 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As we know the <code>Aspect</code> is just the name of the <code>cross-cutting</code> functionality, not the implementation. So what&rsquo;s the implementation of the <code>cross-cutting</code> functionality? It&rsquo;s called <code>Advice</code>. An <code>Advice</code> provides the code for implementation of the service. It is like <em>Logging</em> service, <em>Logging</em> is a <code>Aspect</code> and <code>Advice</code> denotes the implementation of <em>Log4j</em>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/05/spring-aop-before-advice/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/05/spring-aop-aspect/">Spring AOP - Aspect</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-05T09:25:53+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:25 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>An <code>Aspect</code> represent the <strong>name</strong> of a <code>cross-cutting</code> functionality, it&rsquo;s only name not implementation.</p>
-
-<p>Let us see the example.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">//This is my logic for one.</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
-</span><span class='line'>      <span class="c1">//Call Logging Service</span>
-</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
-</span><span class='line'>      <span class="c1">//Call Email Service</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">//This is my logic for two.</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
-</span><span class='line'>      <span class="c1">//Call Logging Service</span>
-</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
-</span><span class='line'>      <span class="c1">//Call Email Service</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/05/spring-aop-aspect/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/spring-aop-what-is-aop/">Spring AOP - What Is AOP?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T20:43:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:43 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What is <code>AOP</code>?, <code>AOP</code> stand for <code>Aspect Oriented Programming</code>. It&rsquo;s very important module for <code>Spring</code> framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called <code>cross-cutting</code> functionalities. <code>AOP</code> do this job.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/spring-aop-what-is-aop/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T16:40:06+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:40 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
-The answer is yes, we can. Let me show you screenshots firstly. <br/>
-<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T16:01:24+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:01 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -506,23 +467,23 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+        <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
       </li>
     
   </ul>
