@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Typescript | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/typescript/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-10-26T22:12:16+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using TSD to Improve Javascript Intellisense of IDE]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/"/>
+    <updated>2015-07-30T23:27:10+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide</id>
+    <content type="html"><![CDATA[<p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
+
+<p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
+
+<p><code>TypeScipt</code> is also like <code>CoffeeScript</code>, it can be compiled to <code>JavaScript</code>. It is developed by Microsoft company. To See the TypeScript, go to this official <a href="http://www.typescriptlang.org/">website</a>.</p>
+
+<!-- more -->
+
+
+<p>If you used the <code>NPM</code> before, I believe you also can use <code>TSD</code> quickly. The <code>TSD</code> usage is very similar with <code>NPM</code>. And also it has <code>tsd.json</code> file to contains javascript libraries type definitions which you want to make them intellisense, just like <code>package.json</code> file of <code>NPM</code>.</p>
+
+<p>To install it, we can using <code>NPM</code> command.</p>
+
+<pre><code>npm install tsd -g
+</code></pre>
+
+<p>Use below command to search the DefinitelyTyped file of Javascript library.</p>
+
+<pre><code>tsd query &lt;javascript library name&gt; -i -r
+</code></pre>
+
+<p>for example, we search the definitelyTyped file of angular:</p>
+
+<pre><code>tsd query angular -i -r
+</code></pre>
+
+<p>this will print below information:</p>
+
+<pre><code>- angularjs / angular
+   -&gt; jquery &gt; jquery
+    v latest
+    v 1.0.0
+    v 1.2.0
+   &gt;&gt; Angular JS 1.4            : angularjs.org
+    @ Diego Vilar               : github.com/diegovilar
+    &lt; angular (external module)
+</code></pre>
+
+<p>To install the definitelyTyped file into your project. Just follow below commands:</p>
+
+<pre><code>tsd install angular --save
+</code></pre>
+
+<p>also like using NPM to install the package. For tsd, this will create <code>tsd.json</code> file firstly, and then create <code>typing</code> directory, put the related definitelytyped file which is the <code>.d.ts</code> extension TypeScript file.</p>
+
+<p>The example of <code>tsd.json</code> file:</p>
+
+<pre><code class="json">{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "383a3bc8e654a77eb8bd07d9feb7208735dcb6fa"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "383a3bc8e654a77eb8bd07d9feb7208735dcb6fa"
+    }
+  }
+}
+</code></pre>
+
+<p>The example of <code>tsd.d.ts</code> file, this file is reference the definitelytyped file. and it under the <code>typings</code> directory.</p>
+
+<pre><code class="javascript">    /// &lt;reference path="angularjs/angular.d.ts" /&gt;
+    /// &lt;reference path="jquery/jquery.d.ts" /&gt;
+</code></pre>
+
+<p>See below screenshots of files or directories:</p>
+
+<p><img src="/assets/images/tsd-file-tree.png" width="300"></p>
+
+<p>Go to <a href="https://github.com/DefinitelyTyped/tsd">https://github.com/DefinitelyTyped/tsd</a> to see the tsd command details.</p>
+
+<p>And TSD has supports many javascript libraries, you can search them which you want in <a href="http://definitelytyped.org/tsd/">definitelytyped repositorty</a>.</p>
+
+<p>Currently, I found this is only work on <a href="https://code.visualstudio.com/">Visual Studio Code</a>, The <code>VSCode</code> is cross platform web develop tools, include Linux, Windows and Mac OS.</p>
+
+<p>To make the VSCode intellisense for javascript. you need to add tsd.d.ts file reference codes to your javascript file, like below.</p>
+
+<pre><code class="javascript"> /// &lt;reference path="../../typings/tsd.d.ts"/&gt;
+</code></pre>
+
+<p>Okay, lets test the <code>underscore</code> javascript library, first install definitely typed file with TSD, and then put the reference code to the js file which is you are working.</p>
+
+<pre><code class="javascript">/**
+ * Created by yushi on 30/07/15.
+ */
+
+/// &lt;reference path="../../typings/tsd.d.ts"/&gt;
+
+function sayHello(name){
+    return "Hello " + name;
+}
+</code></pre>
+
+<p>So when you invoke the undercore functions, the IDE will intellisense the method.</p>
+
+<p><img src="/assets/images/tsd-intellisense.png" alt="intellisense" /></p>
+]]></content>
+  </entry>
+  
+</feed>

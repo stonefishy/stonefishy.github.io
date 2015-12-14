@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Iterm2 | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/iterm2/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-10-26T22:12:16+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Cobalt2 Theme for iTerm2 and ZSH]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/"/>
+    <updated>2015-06-04T16:40:06+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh</id>
+    <content type="html"><![CDATA[<p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
+The answer is yes, we can. Let me show you screenshots firstly. <br/>
+<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
+
+<!--more -->
+
+
+<p>But for Mac OS X, we should use <code>iTerm2</code> instead of system default terminal. The <code>iTerm2</code> is power than the system default. It is a terminal  emulator for Mac OS X that does amazing things. And it has many feature you never knew you always wanted. just like me. So don&rsquo;t hesitate to go to offical website <a href="https://www.iterm2.com/f">iTerm2</a> and download it.</p>
+
+<p>For <code>ZSH</code>, it&rsquo;s open source and very cool thing to decorate your terminal. If you don&rsquo;t have yet. I strongly recommand you install it for your terminal. Go to <a href="http://ohmyz.sh/">Oh My Zsh</a> offical website to see how to install.</p>
+
+<p>Okay, after you already prepare these tools, go to <a href="https://github.com/wesbos/Cobalt2-iterm">Cobalt2-item</a> and follow step to install it.</p>
+]]></content>
+  </entry>
+  
+</feed>

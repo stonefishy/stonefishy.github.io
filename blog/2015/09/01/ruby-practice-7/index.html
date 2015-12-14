@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby修炼之道(7) - Stonefishy Blog</title>
+  <meta name="author" content="Yu">
+
+  
+  <meta name="description" content="模块 Ruby中的类是表现事物的属性和行为，那么模块呢？，在Ruby中模块表现的只是事物的行为。 模块与类的区别于下： 模块不能拥有实例
+模块不能被继承 如何访问模块内的方法？有两种方式可以访问 1.使用模块名.方法名的形式来直接调用模块中定义的方法。 1
+Math.sqrt(4) #=&gt; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/09/01/ruby-practice-7">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby修炼之道(7)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-01T09:06:53+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:06 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>模块</h3>
+
+<p>Ruby中的类是表现事物的属性和行为，那么模块呢？，在Ruby中<em>模块</em>表现的只是事物的行为。</p>
+
+<p>模块与类的区别于下：</p>
+
+<ul>
+<li>模块不能拥有实例</li>
+<li>模块不能被继承</li>
+</ul>
+
+
+<p>如何访问模块内的方法？有两种方式可以访问</p>
+
+<p>1.使用<strong>模块名.方法名</strong>的形式来直接调用模块中定义的方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>         <span class="c1">#=&gt; 2.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>2.通过<strong>include 模块名</strong>的形式预先将模块引入到当前的命名空间，然后就可直接访问模块内的方法和常量。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">include</span> <span class="no">Math</span>
+</span><span class='line'><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>              <span class="c1">#=&gt; 2.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第二种方式也就是<strong>Mix-in</strong>扩展类的功能，将模块混合到类中。在定义类时使用<strong>include</strong>引入指定的模块后，此时该类就可以使用模块里的所有方法和常量，从而增加了该类的功能。</p>
+
+<p><strong>Mix-in</strong>可以灵活地解决以下问题：</p>
+
+<ul>
+<li>虽然两个类拥有相似的功能，但是不希望把他们作为相同的种类（Class）来考虑的时候，此时可将相似功能封装为模块供这两个类使用</li>
+<li>Ruby不支持父类的多重继承，因此无法对已经继承的类添加共同的功能的时候</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Calculator</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Math</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">my_sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>            <span class="c1">#=&gt; 调用Math模块中得sqrt方法</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="vc">@@PI</span> <span class="o">=</span> <span class="no">PI</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">cal</span> <span class="o">=</span> <span class="no">Calculator</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">cal</span><span class="o">.</span><span class="n">my_sqrt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>                   <span class="c1">#=&gt; 3.0</span>
+</span><span class='line'><span class="no">Calculator</span><span class="o">::</span><span class="no">PI</span>                     <span class="c1">#=&gt; 3.141592653589793</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>创建模块</h4>
+
+<p>使用<strong>module</strong>关键来创建模块，模块名的首字母必须大写</p>
+
+<pre><code>module 模块名
+    模块定义
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">HelloModule</span>
+</span><span class='line'>  <span class="no">Version</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kp">module_function</span> <span class="ss">:say_hello</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="no">HelloModule</span><span class="o">::</span><span class="no">Version</span>                 <span class="c1">#=&gt; &quot;1.0&quot;</span>
+</span><span class='line'><span class="no">HelloModule</span><span class="o">.</span><span class="n">say_hello</span><span class="p">(</span><span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>           <span class="c1">#=&gt; Hello Ruby</span>
+</span><span class='line'>
+</span><span class='line'><span class="kp">include</span> <span class="no">HelloModule</span>                       <span class="c1">#=&gt; 包含模块</span>
+</span><span class='line'><span class="no">Version</span>                                   <span class="c1">#=&gt; &quot;1.0&quot;</span>
+</span><span class='line'><span class="n">say_hello</span><span class="p">(</span><span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>                      <span class="c1">#=&gt; Hello Ruby</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在上面代码中，我们可以看到<strong>module_function</strong>方法，此方法主要用于将需要把模块函数公开给外部使用，其参数是表示方法方法名的符号，可以跟多个参数。</p>
+
+<p><em>注：不建议在定义为模块函数的方法中使用self</em></p>
+
+<h4>Mix-in</h4>
+
+<p>前面提到的，在类中使用<em>include</em>引入模块，此时类的功能将得到增强。</p>
+
+<p>如果想知道类是否包含某个模块，可以使用<strong>include？</strong>方法，如之前的Calculator类中。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Calculator</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="no">Math</span><span class="p">)</span>                <span class="c1">#=&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby中类的实例在调用方法时的顺序为，该类>包含的模块>该类的父类等这个顺序查找该方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">HelloModule</span>
+</span><span class='line'>  <span class="no">Version</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HelloClass</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">HelloModule</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">hello</span> <span class="o">=</span> <span class="no">HelloClass</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">hello</span><span class="o">.</span><span class="n">say_hello</span><span class="p">(</span><span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>                  <span class="c1">#=&gt; Hello Ruby</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上代码中调用的是module中的方法。</p>
+
+<p>用<em>ancestors</em>方法和<em>superclass</em>方法调查类的继承关系。<em>superclass</em>方法可直接返回类的父类</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="no">HelloClass</span><span class="o">.</span><span class="n">ancestors</span>                 <span class="c1">#=&gt; [HelloClass, HelloModule, Object, Kernel, BasicObject]</span>
+</span><span class='line'><span class="nb">p</span> <span class="no">HelloClass</span><span class="o">.</span><span class="n">superclass</span>                 <span class="c1">#=&gt; Object</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Kenerl</em>是Ruby内部的一个核心模块，Ruby程序运行时所需的共通函数都封装在此模块中。</p>
+
+<p>单一继承的优点就是简单，不会因为过多的继承而导致类之间的关系变得复杂。所以我们需要灵活使用单一继承和Mix-in。</p>
+
+<h4>Mix-in查找方法的规则</h4>
+
+<ul>
+<li>优先使用原来中定义的同名方法。</li>
+<li>在同一个类中包含多个模块时，优先使用最后一个包含的模块。</li>
+<li>嵌套include时，查找顺序也是线性的。</li>
+<li>相同的模块被包含两次也上的，第2次以后的会被省略。</li>
+</ul>
+
+
+<h4>Object#extend方法</h4>
+
+<p>利用Object#extend方法可以使单例类包含模块，并把模块的功能扩展到对象中。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Welcome</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">welcome</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2"> Welcome </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span>
+</span><span class='line'><span class="n">str</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="no">Welcome</span><span class="p">)</span>                        <span class="c1">#=&gt; 将Welcome模块扩展到str对象上</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">welcome</span><span class="p">(</span><span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>             <span class="c1">#=&gt; World Welcome Ruby</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>include</strong>可以帮助我们突破继承的限制，通过模块扩展类的功能；而<strong>extend</strong>则可以帮助我们跨过类，直接通过模块扩展对象的功能.</p>
+
+<p>所有类本身都是Class类的对象，类方法就是类对象的实例方法。可以把类方法理解为下:</p>
+
+<ul>
+<li><strong>Class</strong>类的实例方法</li>
+<li>类对象的单例方法</li>
+</ul>
+
+
+<p>使用<strong>extend</strong>方法为类对象追加类方法，使用<strong>include</strong>方法追加实例方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ClassMethod</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">class_method</span>
+</span><span class='line'>      <span class="s2">&quot;class method&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">InstanceMethod</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">instance_method</span>
+</span><span class='line'>      <span class="s2">&quot;instance method&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">MyClass</span>
+</span><span class='line'>  <span class="kp">extend</span> <span class="no">ClassMethod</span>                  <span class="c1">#使用extend方法定义类方法</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">InstanceMethod</span>              <span class="c1">#使用include定义实例方法</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">class_method</span>                  <span class="c1">#=&gt; &quot;class method&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">instance_method</span>         <span class="c1">#=&gt; &quot;instance method&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-01T09:06:53+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:06 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/25/ruby-practice-6/" title="Previous Post: Ruby修炼之道(6)">&laquo; Ruby修炼之道(6)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/09/06/ruby-practice-8/" title="Next Post: Ruby修炼之道(8)">Ruby修炼之道(8) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Yu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

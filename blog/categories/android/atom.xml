@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-10-26T22:12:16+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Lifecycle of Android Activity]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity/"/>
+    <updated>2014-11-17T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity</id>
+    <content type="html"><![CDATA[<p><img src="/assets/images/android-lifecycle.png" alt="lifecycle of activity" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Building Blocks of Android Application]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application/"/>
+    <updated>2014-11-13T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application</id>
+    <content type="html"><![CDATA[<p>There are four builidng blocks for Android Application:</p>
+
+<ul>
+<li><strong><code>Activity</code></strong></li>
+<li><strong><code>Intent Receiver</code></strong></li>
+<li><strong><code>Service</code></strong></li>
+<li><strong><code>Content Provider</code></strong></li>
+</ul>
+
+
+<p>But Not every application needs have all them.</p>
+
+<p><code>AndroidManifest.xml</code> is XML file, it contains some information that where you declare the components of your application and what their capabilities and requirements are.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<h3>Activity</h3>
+
+<p>Activities are the most common of the four Android building blocks. An activity is usually a single screen in your application. Each activity is implemented as single class that extends the Activity base class.</p>
+
+<p>When a new screen is opened, the previous screen is paused and put onto a history stack. The user can navigate backward through previously opened screens in the history.</p>
+
+<h3>Intent</h3>
+
+<p>Android uses a special class called <code>Intent</code> to move from screen to screen. Intent describe what an application wants done. The two most important parts of the intent data structure are the action and the data to act upon.</p>
+
+<p>Typical values for actioin are <code>MAIN</code> (the front door of the application), VIEW, PICK, EDIT, etc. The data is expressed as a Uniform Resource Indicator (URI).</p>
+
+<blockquote><p>new Intent(android.content.Intent.VIEW_ACTION, ContentURI.create(&ldquo;<a href="http://anddev.org">http://anddev.org</a>&rdquo;);</p></blockquote>
+
+<h3>Intent Filter</h3>
+
+<p>Navigating from screen to screen is accomplished by resolving intents. An activity calls <code>startActivity(myIntent)</code> to navigation. The system then looks at the intent filters for all installed applications and picks activity whose intent filters best matches <code>myIntent</code>. And the new activity is informed by the intent which cause it to be launched.</p>
+
+<h3>Intent Receiver</h3>
+
+<p>You can use an IntentReceiver when you want code in your application to execute in reaction to an external event, for example, when the phone rings, or when the data network is available, or when it&rsquo;s midnight. Intent receivers do not display UI.</p>
+
+<p>Intent receivers can be registered in the <code>AndroidManifest.xml</code> file, and also you can register it in your code with <code>Context.registerReceiver()</code>.</p>
+
+<p>Applications can also send their own intent broadcasts to others with <code>Context.broadcastIntent()</code>.</p>
+
+<h3>Service</h3>
+
+<p>A <code>Service</code> is long-lived and runs without a UI, such as media player.</p>
+
+<p>You can start a service with <code>Context.startService()</code> to run in the background. And you can connect to a service with the <code>Context.bindService()</code> method. When you connected to a service. you can communicate with it through an interface exposed by the service. For the music service you can pause and rewind it etc.</p>
+
+<h3>ContentProvider</h3>
+
+<p>Applications can store their data in files, a SQLite database, preferences or any other mechanism that makes sense.</p>
+
+<p>A content provider is useful if you want your application&rsquo;s data to be shared with other applications.</p>
+
+<p>A content provider is a class that implements a standard set of methods to let other applications store and retrieve the type of data that is handled by that content provider.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What Is Andriod]]></title>
+    <link href="http://stonefishy.github.io/blog/2014/11/03/what-is-andriod/"/>
+    <updated>2014-11-03T00:00:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2014/11/03/what-is-andriod</id>
+    <content type="html"><![CDATA[<p><img src="/assets/images/android.jpg" alt="Andriod" />
+<code>Andriod</code> is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware resource in a mobile environment.</p>
+
+<!--more-->
+
+
+<p></p>
+
+<p>And this virtual machine is called <code>Dalvik</code> virtual machine(<code>DalvikVM</code>), which is  a register based on virtual machine, designed and written by <em>Dan Bornstein</em> and some other Google engineers, it&rsquo;s an important part of the <code>Andriod</code> platform. And it differece to normal Java virtual machines(<code>JVM</code>) which are stack based.</p>
+
+<p>Developers can 100% customize their <code>Andriod-Device</code>. The <code>Andriod</code> System Communication is based on called <code>Intents</code>, which are more or less just a String(with some data attached) which defines an anction that needs to be handled.For example: <br/>
+<code>
+"android.provider.Telephony.SMS_RECEIVED"
+</code></p>
+
+<p>If you want to develope <code>Andriod</code> applications, firstly you need to install the development tools just like <code>ADT</code>(Andriod Development Tools), you can download it  for mac from <a href="https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">here</a>, or go to this <a href="http://developer.android.com/sdk/index.html">website</a> download it for other os.</p>
+
+<p>And you can visit the offical website of <code>Andriod</code> from <a href="http://developer.android.com/index.html">here</a>. There have some steps which can teach how to get started and how to develop an Andriod application, even supplies lots of application examples.</p>
+
+<p>So just enjoy it. Have your fun!</p>
+]]></content>
+  </entry>
+  
+</feed>

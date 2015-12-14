@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>HTML5 - New Common Elements - Stonefishy Blog</title>
+  <meta name="author" content="Yu">
+
+  
+  <meta name="description" content="In HTML5, It adds a mount of elements, these elements are more easier to present the document in browser. Structure element Before HTML5, we just use &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">HTML5 - New Common Elements</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-03T17:13:53+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>5:13 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In <code>HTML5</code>, It adds a mount of elements, these elements are more easier to present the document in browser.</p>
+
+<h3>Structure element</h3>
+
+<p>Before <code>HTML5</code>, we just use <code>div</code> tag to act as the <code>Document Structure Element</code>, but now the <code>HTML5</code> supports more elements like <code>section</code>, <code>article</code>, <code>nav</code>, <code>aside</code>, <code>header</code>, <code>footer</code> and so on.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h5>article</h5>
+
+<p><code>article</code> use to present an entire, independent article. We should use it when we need to present a entire, independent document content. <br/>
+It can contain <code>header</code> tag to define the header of the article.    <br/>
+It can contain <code>footer</code> tag to define the footer of the article.  <br/>
+It can contain <code>section</code> tag to split content to multiple paragraphs.   <br/>
+Also, it can be nested by itself.</p>
+
+<h5>section</h5>
+
+<p><code>section</code> splits the page content to multiple blocks, and it usually contains title and content. And here the title stand for <code>h1</code>&hellip;.<code>h6</code> tag. <code>section</code> can contains <code>article</code> and <code>section</code> tag.</p>
+
+<h5>nav</h5>
+
+<p><code>nav</code> tag use to define the navigation bar, include the top of page, the left or right side, and the bottom and so on.</p>
+
+<h5>aside</h5>
+
+<p>It&rsquo;s recommend to use it to present the side of page with <code>CSS</code>.</p>
+
+<h5>header</h5>
+
+<p>The <code>header</code> tag use to define the header of the <code>article</code>, and it can contain multiple title tags (<code>h1</code>&hellip;.<code>h6</code>) with <code>hgroup</code> tag. And also the common tags like <code>p</code>, <code>span</code> can be nested in it.</p>
+
+<h5>hgroup</h5>
+
+<p>It&rsquo;s mainaly use for including multiple title tag.</p>
+
+<h5>footer</h5>
+
+<p>The footer of page, use to contains foot information, copy right and author related stuff.</p>
+
+<h5>figure</h5>
+
+<p><code>figure</code> tag express an independant image area, it may contain one or more images， in addition to this tag can contain a new tag <code>figcaption</code> to express the title of images.</p>
+
+<h3>Semantic related elemnent</h3>
+
+<h5>mark</h5>
+
+<p>It is mark some information need to be noticed.</p>
+
+<h4>time</h4>
+
+<p>It presents some content want to be time, date. Setting the <code>datetime</code> attribute&rsquo;s value to present which date formatter you want.</p>
+
+<h4>Special function element</h4>
+
+<h4>meter</h4>
+
+<p><code>meter</code> tag express an as known maxium and minimum counter. It has many attributes to set. <code>value</code>, <code>min</code>, <code>max</code>, <code>low</code>, <code>high</code>, <code>optimum</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div&gt;</span>
+</span><span class='line'>      current speed of car: <span class="nt">&lt;meter</span> <span class="na">id=</span><span class="s">&quot;meter&quot;</span> <span class="na">max=</span><span class="s">&quot;200&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">low=</span><span class="s">&quot;0&quot;</span> <span class="na">high=</span><span class="s">&quot;180&quot;</span> <span class="na">value=</span><span class="s">&quot;150&quot;</span><span class="nt">&gt;</span>kilometre/hour
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="/assets/images/meter-tag.png" width="300" height="80"></p>
+
+<h4>progress</h4>
+
+<p><code>progress</code> tag use to express an progress bar. It has two attributes, one is <code>max</code>, another is <code>value</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div&gt;</span>
+</span><span class='line'>   the progress of un-finished task: <span class="nt">&lt;progress</span> <span class="na">id=</span><span class="s">&quot;progress&quot;</span> <span class="na">max=</span><span class="s">&quot;1&quot;</span> <span class="na">value=</span><span class="s">&quot;0.4&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="/assets/images/progress-tag.png" width="350" height="100"></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-03-03T17:13:53+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>5:13 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/html5/'>html5</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/03/02/html5-new-common-attributes/" title="Previous Post: HTML5 - New Common Attributes">&laquo; HTML5 - New Common Attributes</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/" title="Next Post: Give me a cup of coffeescript">Give me a cup of coffeescript &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Yu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
