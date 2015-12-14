@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <title>What Is Git - Stonefishy Blog</title>
-  <meta name="author" content="Yu SHI">
+  <meta name="author" content="Yu">
 
   
   <meta name="description" content="">
@@ -36,7 +36,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Stonefishy Blog</a></h1>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
   
 </hgroup>
 
@@ -115,7 +117,7 @@ Go to offical website and download mac version as below address: <br/>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Yu SHI</span></span>
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
 
       
 
@@ -156,28 +158,37 @@ Go to offical website and download mac version as below address: <br/>
 
 <aside class="sidebar">
   
-    <section>
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a>
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a>
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
   </ul>
@@ -203,7 +214,7 @@ Go to offical website and download mac version as below address: <br/>
 
         github.showRepos({
             user: 'stonefishy',
-            count: 0,
+            count: 5,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -215,6 +226,40 @@ Go to offical website and download mac version as below address: <br/>
 
 
 
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
 
   
 </aside>
@@ -223,7 +268,7 @@ Go to offical website and download mac version as below address: <br/>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Yu SHI -
+  Copyright &copy; 2015 - Yu -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

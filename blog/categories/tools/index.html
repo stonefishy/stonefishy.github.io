@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <title>Category: Tools - Stonefishy Blog</title>
-  <meta name="author" content="Yu SHI">
+  <meta name="author" content="Yu">
 
   
   <meta name="description" content="Category: tools">
@@ -36,7 +36,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Stonefishy Blog</a></h1>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
   
 </hgroup>
 
@@ -75,6 +77,62 @@
 
   
   <h2>2015</h2>
+
+<article>
+  
+<h1><a href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Using TSD to Improve Javascript Intellisense of IDE</a></h1>
+<time datetime="2015-07-30T23:27:10+08:00" pubdate><span class='month'>Jul</span> <span class='day'>30</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/tools/'>tools</a>, <a class='category' href='/blog/categories/typescript/'>typescript</a>, <a class='category' href='/blog/categories/vscode/'>vscode</a></span>
+</footer>
+
+
+</article>
+
+
+
+<article>
+  
+<h1><a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a></h1>
+<time datetime="2015-06-04T16:40:06+08:00" pubdate><span class='month'>Jun</span> <span class='day'>04</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/iterm2/'>iterm2</a>, <a class='category' href='/blog/categories/tools/'>tools</a></span>
+</footer>
+
+
+</article>
+
+
+
+<article>
+  
+<h1><a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a></h1>
+<time datetime="2015-06-04T16:01:24+08:00" pubdate><span class='month'>Jun</span> <span class='day'>04</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/sublime-text/'>sublime text</a>, <a class='category' href='/blog/categories/tools/'>tools</a></span>
+</footer>
+
+
+</article>
+
+
+
+<article>
+  
+<h1><a href="/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/">Sublime Text - Keyboard Shortcuts for Mac</a></h1>
+<time datetime="2015-05-16T12:21:06+08:00" pubdate><span class='month'>May</span> <span class='day'>16</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/sublime-text/'>sublime text</a>, <a class='category' href='/blog/categories/tools/'>tools</a></span>
+</footer>
+
+
+</article>
+
+
 
 <article>
   
@@ -142,28 +200,37 @@
 
 <aside class="sidebar">
   
-    <section>
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a>
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a>
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
   </ul>
@@ -189,7 +256,7 @@
 
         github.showRepos({
             user: 'stonefishy',
-            count: 0,
+            count: 5,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -201,6 +268,40 @@
 
 
 
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
 
   
 </aside>
@@ -209,7 +310,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Yu SHI -
+  Copyright &copy; 2015 - Yu -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

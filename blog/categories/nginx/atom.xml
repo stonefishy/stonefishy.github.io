@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Nginx | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/nginx/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-11T16:54:57+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using Nginx in Mac OS X]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
+    <updated>2015-12-05T11:51:04+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
+    <content type="html"><![CDATA[<h4>Introduction</h4>
+
+<p><strong>Nginx</strong> is a open source quite lightweight HTTP server which is written by Russian <em>Igor Sysoev</em>, the pronunciation is &ldquo;engine X&rdquo;. It&rsquo;s a high performance HTTP and reverse proxy server, and also it is a IMAP/POP3/SMTP proxy server。</p>
+
+<p>There are lots of website using Nginx in China, like Sina, Tencent, 163, Discuz and so on. The Nginx has a very high performance due to event driven way, and also it is a high performance reverse proxy, load balancing.</p>
+
+<!-- more -->
+
+
+<p>The features of Nginx Http server are below:</p>
+
+<p>1.dealing with static file, indexing file and also automatically indexing.</p>
+
+<p>2.accelerating reverse proxy server,load balancing</p>
+
+<p>3.FastCGI, Caching, Security</p>
+
+<p>4.Support SSL and TLS</p>
+
+<p>From investigation, the Nginx can support about 50,000 concurrence request connection, and also support hot deploy, even running 7*24 hours uninterrupted.</p>
+
+<h4>Installing</h4>
+
+<p>So, how to install it on Mac OS X. Let&rsquo;s assume you have installed the <em>Home brew</em>, using brew to install the nginx with command:</p>
+
+<pre><code>brew install nginx
+</code></pre>
+
+<h4>Starting And Runing</h4>
+
+<p>After install, we can use below command to run it:</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>If you get the failed message which is &ldquo;[emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)&rdquo;. You have to kill the progress which is running with that address, it usually is Apache. And also there is another way, changing the port number, we will introduce later.</p>
+
+<p>The nginx running success, you will get the below page when you access the <a href="http://localhost:8080">http://localhost:8080</a></p>
+
+<p><img src="/assets/images/nginx-welcome.png" alt="nginx, devops" /></p>
+
+<p>There are several commands to start, stop nginx and reload configuration.</p>
+
+<pre><code class="">nginx -s stop           #=&gt; fast shutdown
+
+nginx -s quit               #=&gt; graceful shutdown
+
+nginx -s reload         #=&gt; reloading the configuration file
+
+nginx -s reopen         #=&gt; reopening the log files
+</code></pre>
+
+<h4>Simple Configuration</h4>
+
+<p>The default place of nginx.conf on Mac after installing with brew is:</p>
+
+<pre><code class="">/usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>Let&rsquo;s change the port number in this file. First, we need to stop the nginx.</p>
+
+<pre><code>sudo nginx -s stop
+</code></pre>
+
+<p>And then open that file, you will see the below server configuration section. It includes the listen, server_name, location/root, location/index. location/root is your website root folder, and index is your website first page file.</p>
+
+<pre><code>server {
+listen       8080;          
+server_name  localhost;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    root   html;
+    index  index.html index.htm;
+}
+</code></pre>
+
+<p>okay, let&rsquo;s change the port number from 8080 to 80, and then run it again</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>Access it with <a href="http://localhost">http://localhost</a>, the 80 port number is http default port number, so we don&rsquo;t need to append it into url.</p>
+
+<p>Now, let&rsquo;s put our blog website in the nginx, to do so, we need to reference the location/root to our blog website folder.</p>
+
+<pre><code class="">server {
+listen       80;            
+server_name  localhost;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    root   /Users/yushi/Codes/Blog/stonefishy.github.io/public;;
+    index  index.html index.htm;
+}
+</code></pre>
+
+<p>let&rsquo;s running it again with clicking <a href="http://localhost">http://localhost</a>. Woow, cool, very nice, we can access our blog with nignx.</p>
+
+<p>This is a just simple usage of nginx, we will talk about more later.</p>
+]]></content>
+  </entry>
+  
+</feed>

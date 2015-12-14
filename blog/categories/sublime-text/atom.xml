@@ -4,14 +4,475 @@
   <title><![CDATA[Category: Sublime Text | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/sublime-text/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-03-03T23:04:38+08:00</updated>
+<<<<<<< HEAD
+  <updated>2015-12-11T16:56:37+08:00</updated>
+=======
+  <updated>2015-10-26T22:12:16+08:00</updated>
+>>>>>>> 6a3d8b925845447a44dfe73b8dc4099486899485
   <id>http://stonefishy.github.io/</id>
   <author>
-    <name><![CDATA[Yu SHI]]></name>
+    <name><![CDATA[Yu]]></name>
     <email><![CDATA[andrewsy@live.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
+    <updated>2015-06-04T16:01:24+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
+    <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<!-- more -->
+
+
+<h4>Installation</h4>
+
+<ol>
+<li>Open package control via pressing <code>Command + Shift + P</code> (mac os) or <code>Ctrl + Shift + P</code> (windows) to open the command window, and then type <code>Install Package</code>.</li>
+<li>Search for <code>Cobalt2</code> and hit <code>enter</code> key.</li>
+<li>Once you installed finish, open <code>Preference</code> -> <code>Settings - User</code> and add the below lines:</li>
+</ol>
+
+
+<pre><code>"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+"theme": "Cobalt2.sublime-theme",
+</code></pre>
+
+<p><code>color_scheme</code> defines how the code looks and <code>theme</code> defines how the sidebar, tabs, search, command palette work.</p>
+
+<p><em>Note: the sidebar icons only supports  the latest version of sublime text3.</em></p>
+
+<h4>Screenshots</h4>
+
+<p>There have some screenshots of Cobalt2 theme from <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<p><img src="/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
+
+<p>So, it&rsquo;s really cool. Hope you like it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text - Keyboard Shortcuts for Mac]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/"/>
+    <updated>2015-05-16T12:21:06+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac</id>
+    <content type="html"><![CDATA[<h3>Editor</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress     </th>
+<th> Command                                                                  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + X        </td>
+<td> Cut line                                                                 </td>
+</tr>
+<tr>
+<td> ⌘ + ↩        </td>
+<td> Insert line after                                                        </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + ↩    </td>
+<td> Insert line before                                                       </td>
+</tr>
+<tr>
+<td> ⌘ + ⌃ + ↑    </td>
+<td> Move line/selection up                                                   </td>
+</tr>
+<tr>
+<td> ⌘ + ⌃ + ↓    </td>
+<td> Move line/selection down                                                 </td>
+</tr>
+<tr>
+<td> ⌘ + L        </td>
+<td> Select line - Repeat to select next lines                                </td>
+</tr>
+<tr>
+<td> ⌘ + D        </td>
+<td> Select word - Repeat to select next occurrence                           </td>
+</tr>
+<tr>
+<td> ⌃ + ⌘ + G    </td>
+<td> Select all occurrences of current selection                              </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + ↑    </td>
+<td> Extra cursor on the line above                                           </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + ↓    </td>
+<td> Extra cursor on the line below                                           </td>
+</tr>
+<tr>
+<td> ⌃ + M        </td>
+<td> Jump to closing parentheses Repeat to jump to opening parentheses        </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + M    </td>
+<td> Select all contents of the current parentheses                           </td>
+</tr>
+<tr>
+<td> ⌃ + A        </td>
+<td> Move to beginning of line                                                </td>
+</tr>
+<tr>
+<td> ⌃ + E        </td>
+<td> Move to end of line                                                      </td>
+</tr>
+<tr>
+<td> ⌘ + K, ⌘ + K </td>
+<td> Delete from cursor to end of line                                        </td>
+</tr>
+<tr>
+<td> ⌘ + K + ⌫    </td>
+<td> Delete from cursor to start of line                                      </td>
+</tr>
+<tr>
+<td> ⌘ + ]        </td>
+<td> Indent current line(s)                                                   </td>
+</tr>
+<tr>
+<td> ⌘ + [        </td>
+<td> Un-indent current line(s)                                                </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + D    </td>
+<td> Duplicate line(s)                                                        </td>
+</tr>
+<tr>
+<td> ⌘ + J        </td>
+<td> Join line below to the end of the current line                           </td>
+</tr>
+<tr>
+<td> ⌘ + /        </td>
+<td> Comment/un-comment current line                                          </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + /    </td>
+<td> Block comment current selection                                          </td>
+</tr>
+<tr>
+<td> ⌘ + Y        </td>
+<td> Redo, or repeat last keyboard shortcut command                           </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + V    </td>
+<td> Paste and indent correctly                                               </td>
+</tr>
+<tr>
+<td> ⌃ + Space    </td>
+<td> Select next auto-complete suggestion                                     </td>
+</tr>
+<tr>
+<td> ⌃ + U        </td>
+<td> Soft undo; jumps to your last change before undoing change when repeated </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + Up   </td>
+<td> Column selection up                                                      </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + Down </td>
+<td> Column selection down                                                    </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + W    </td>
+<td> Wrap Selection in html tag                                               </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + K    </td>
+<td> Delete current line of cursor                                            </td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- more -->
+
+
+<hr />
+
+<h3>Navigation</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress       </th>
+<th> Command                   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + P or ⌘ + T </td>
+<td> Quick-open files by name  </td>
+</tr>
+<tr>
+<td> ⌘ + R          </td>
+<td> Goto symbol               </td>
+</tr>
+<tr>
+<td> ⌃ + G          </td>
+<td> Goto line in current file </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>General</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress      </th>
+<th> Command                      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + ⇧ + P     </td>
+<td> Command Palette              </td>
+</tr>
+<tr>
+<td> ⌃ + `         </td>
+<td> Python Console               </td>
+</tr>
+<tr>
+<td> ⌃ + ⌘ + F     </td>
+<td> Toggle fullscreen mode       </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + ⌘ + F </td>
+<td> Toggle distraction-free mode </td>
+</tr>
+<tr>
+<td> ⌘ + K, ⌘ + B  </td>
+<td> Toggle side bar              </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + P     </td>
+<td> Show scope in status bar     </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>Find/Replace</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress  </th>
+<th> Command       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + F     </td>
+<td> Find          </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + F </td>
+<td> Replace       </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + F </td>
+<td> Find in files </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>Scrolling</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress </th>
+<th> Command                                </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌃ + V    </td>
+<td> Scroll down one page                   </td>
+</tr>
+<tr>
+<td> ⌃ + L    </td>
+<td> Center current line vertically in page </td>
+</tr>
+<tr>
+<td> ⌘ + Down </td>
+<td> Scroll to end of file                  </td>
+</tr>
+<tr>
+<td> ⌘ + Up   </td>
+<td> Scroll to start of file                </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>Tabs</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress    </th>
+<th> Command                                       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + ⇧ + t   </td>
+<td> Open last closed tab                          </td>
+</tr>
+<tr>
+<td> ⌘ + [NUM]   </td>
+<td> Jump to tab in current group where num is 1-9 </td>
+</tr>
+<tr>
+<td> ⌘ + 0       </td>
+<td> Jump to 10th tab in current group             </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + [   </td>
+<td> Cycle left through tabs                       </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + ]   </td>
+<td> Cycle right through tabs                      </td>
+</tr>
+<tr>
+<td> ^ + Tab     </td>
+<td> Cycle up through recent tabs                  </td>
+</tr>
+<tr>
+<td> ⇧ + ^ + Tab </td>
+<td> Cycle down through recent tabs                </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>Split window</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress      </th>
+<th> Command                                       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + ⌥ + 1     </td>
+<td> Revert view to single column                  </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + 2     </td>
+<td> Split view into two columns                   </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + 3     </td>
+<td> Split view into three columns                 </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + 4     </td>
+<td> Split view into four columns                  </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + 5     </td>
+<td> Set view to grid (4 groups)                   </td>
+</tr>
+<tr>
+<td> ⌃ + [NUM]     </td>
+<td> Jump to group where num is 1-4                </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + [NUM] </td>
+<td> Move file to specified group where num is 1-4 </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>BookMark</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress   </th>
+<th> Command           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + F2     </td>
+<td> Toggle bookmark   </td>
+</tr>
+<tr>
+<td> F2         </td>
+<td> Next bookmark     </td>
+</tr>
+<tr>
+<td> ⇧ + F2     </td>
+<td> Previous bookmark </td>
+</tr>
+<tr>
+<td> ⇧ + ⌘ + F2 </td>
+<td> Clear bookmarks   </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<h3>Text manipulation</h3>
+
+<table>
+<thead>
+<tr>
+<th> Keypress                 </th>
+<th> Command                       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + K, ⌘ + U             </td>
+<td> Transform to Uppercase        </td>
+</tr>
+<tr>
+<td> ⌘ + K, ⌘ + L             </td>
+<td> Transform to Lowercase        </td>
+</tr>
+<tr>
+<td> ⌘ + ⌃ + up, ⌘ + ⌃ + down </td>
+<td> Clip text upwards / downwards </td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Install Packages in Sublime Text 3]]></title>

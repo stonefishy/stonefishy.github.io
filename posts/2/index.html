@@ -6,10 +6,11 @@
 <head>
   <meta charset="utf-8">
   <title>Stonefishy Blog</title>
-  <meta name="author" content="Yu SHI">
+  <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Cucumber is a tool that can execute plain-text functional descriptions. And also it&rsquo;s BDD(Behaviour Driven Development) automated tests. It is &hellip;">
+  <meta name="description" content="在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。 变量 和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。 局部变量(local variable)
+以英文字母或者_开头 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,7 +37,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Stonefishy Blog</a></h1>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
   
 </hgroup>
 
@@ -69,7 +72,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/12/23/what-is-cucumber/">What Is Cucumber</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/08/14/ruby-practice-3/">Ruby修炼之道(3)</a></h1>
     
     
       <p class="meta">
@@ -78,85 +81,26 @@
 
 
 
-<time class='entry-date' datetime='2014-12-23T00:23:25+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:23 am</span></time>
+<time class='entry-date' datetime='2015-08-14T17:47:01+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:47 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><code>Cucumber</code> is a tool that can execute <code>plain-text</code> functional descriptions. And also it&rsquo;s  <code>BDD(Behaviour Driven Development)</code> <code>automated tests</code>. It is written by <code>Ruby</code>, and now it supports more than 40 languages, such as <code>Java</code>, <code>C#</code> and <code>Scala</code> etc.</p>
+  <div class="entry-content"><p>在Ruby中任何表现数据的基本单位都称为对象(object), 而Ruby的类(class)表示的就是这些对象的种类。</p>
 
-<h3>Install</h3>
+<h3>变量</h3>
 
-<p>Firstly, we need to install <code>Ruby</code> and <code>RubyGems</code>, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:</p>
+<p>和其他面向对象语言一样，Ruby也有多种类型的变量，但是在Ruby中，变量的类型是由变量的命名方式决定的。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>~  ruby --version
-</span><span class='line'>ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
-</span><span class='line'>~  gem --version
-</span><span class='line'>2.0.14  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>And then we can run the command below to install <code>Cucumber</code>:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>~  gem install cucumber</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After this, put below command to see how to use it.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>~  cucumber --help</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/12/23/what-is-cucumber/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/19/what-is-ractive-dot-js/">What Is Ractive.js</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-19T22:18:45+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Ractive.js</code> is a <code>template-driven</code> UI library, it transforms your templates into blueprints for application that are interative by default. <code>Ractive.js</code> is very similar with <code>AngularJS</code>, and it supports <code>Two-way binding</code>, <code>animations</code> as well. Another powerfull feature is <code>SVG</code> support.</p>
-
-<h3>Template + Data = UI</h3>
-
-<p>You just need to prepare your html template and datas, and the <code>Ractive.js</code> will automatically to combine them then give you what you want. Whe you change your datas, it intelligently updates the real DOM.</p>
-
-<h3>Usage</h3>
-
-<p>First, you need to include <code>Ractive.js</code> to your application. Just like include other javascript librarys easily. You can download it to local and then include it. And if you want include latest version, you just put below codes to your project.</p>
+<p><em>局部变量(local variable)</em>
+以英文字母或者_开头</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://cdn.ractivejs.org/latest/ractive.js&#39;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
+</span><span class='line'><span class="n">_words</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -164,7 +108,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/12/19/what-is-ractive-dot-js/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/08/14/ruby-practice-3/">Read on &rarr;</a>
     </footer>
   
 
@@ -176,7 +120,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/12/18/how-to-learn-any-language-in-six-months/">How to Learn Any Language in Six Months</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/08/13/ru-practice-2/">Ruby修炼之道(2)</a></h1>
     
     
       <p class="meta">
@@ -185,133 +129,32 @@
 
 
 
-<time class='entry-date' datetime='2014-12-18T22:19:37+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:19 pm</span></time>
+<time class='entry-date' datetime='2015-08-13T13:35:15+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:35 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Just see a video that teachs you how to learn any language in six months on youtube. It&rsquo;s created by Chris Lonsdale. I think it&rsquo;s very interesting and I believe those ways will be useful for us. So that&rsquo;s why I note it.</p>
+  <div class="entry-content"><h3>数组</h3>
 
-<h3>The Big Question</h3>
-
-<ul>
-<li>How can normal adults learn a <code>NEW LANGUAGE</code> <strong>Quickly</strong>, <strong>Easily</strong>, <strong>Effectively</strong>?</li>
-</ul>
-
-
-<h3>How</h3>
-
-<ul>
-<li>There have <strong><code>5 Principles</code></strong> and <strong><code>7 Actions</code></strong>.</li>
-<li>The two things that really don&rsquo;t matter:
-
-<ul>
-<li><del>Talent</del></li>
-<li><del>Immersion per se</del></li>
-</ul>
-</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/12/18/how-to-learn-any-language-in-six-months/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/12/guava-ordering/">Guava - Ordering</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-12T17:28:07+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:28 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Ordering</code> is Guava&rsquo;s fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to collections of objects.</p>
-
-<p>Okay, so let&rsquo;s getting started. Firstly, we declared a <code>String</code> type List:</p>
+<p>Ruby中数组的大小是按实际情况自动调整的，即所谓的<strong>动态数组</strong></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">locations</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span>
-</span><span class='line'>        <span class="s">&quot;Guang zhou&quot;</span><span class="o">,</span>
-</span><span class='line'>        <span class="s">&quot;Cheng du&quot;</span><span class="o">,</span>
-</span><span class='line'>        <span class="s">&quot;&quot;</span><span class="o">,</span>
-</span><span class='line'>        <span class="s">&quot;Shang hai&quot;</span>
-</span><span class='line'><span class="o">);</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;data1&quot;</span><span class="p">,</span> <span class="s2">&quot;data2&quot;</span><span class="o">]</span>   <span class="c1">##定义两个数据的数组</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">rubyArray</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;data3&quot;</span>           <span class="c1">##新增第三个数据</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="n">rubyArray</span>                  <span class="c1">##打印[&quot;data1&quot;, &quot;data2&quot;, &quot;data3&quot;]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-We will use this locations variable later.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/12/12/guava-ordering/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/01/jsp-custom-tag/">JSP - Custom Tag</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-01T21:30:41+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>9:30 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Custom Tag is a user-defined JSP language element. When it is contained in JSP page and it will translate into a servlet, the custom tag is converted to opertions on an object called a tag handler. The web container then invokes those operations when the JSP page&rsquo;s servlet is executed.</p>
-
-<p>If we want to create a custom tag, what we need to do is simply extend <code>SimpleTagSupport</code> class and override the <code>doTag()</code> method, where you can place your code to generate content for the tag.</p>
-
-<p>Let&rsquo;s getting started to create a custom tag now. <br/>
-As you can see below, consider we want to create two tag, one is user tag with name and isMale attribute, another is system tag with size attribute.</p>
+<p>Ruby数组还支持多种不同对象的混合保存, 通过<strong>数组.size</strong>可获取数组的大小</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='jsp'><span class='line'><span class="nt">&lt;custom:user</span> <span class="na">name=</span><span class="s">&quot;user1&quot;</span> <span class="na">isMale=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;custom:system</span> <span class="na">size=</span><span class="s">&quot;1024&quot;</span><span class="nt">/&gt;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">mixedArray</span><span class="o">.</span><span class="n">size</span>     <span class="c1">#=&gt; 5</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -319,7 +162,7 @@ As you can see below, consider we want to create two tag, one is user tag with n
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/12/01/jsp-custom-tag/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/08/13/ru-practice-2/">Read on &rarr;</a>
     </footer>
   
 
@@ -331,7 +174,7 @@ As you can see below, consider we want to create two tag, one is user tag with n
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/27/guava-common-object-method/">Guava &#8211; Common Object Methods</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a></h1>
     
     
       <p class="meta">
@@ -340,32 +183,178 @@ As you can see below, consider we want to create two tag, one is user tag with n
 
 
 
-<time class='entry-date' datetime='2014-11-27T20:41:45+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:41 pm</span></time>
+<time class='entry-date' datetime='2015-08-12T16:08:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Usage</h3>
+  <div class="entry-content"><p><img src="/assets/images/ruby-logo.png" width="50" height="50"><strong>Ruby</strong>是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是<strong>红宝石</strong>.</p>
 
-<p><code>Objects.equal(Object, Object)</code> <br/>
-Invoking this method then it will avoid the risking of NullPointerException when we need to compare two object whether they equal.</p>
+<h3>特点</h3>
+
+<p><em>脚本语言</em> <br/>
+即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/12/ruby-practice-1/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">How to Get or Post Data via HttpClient With Proxy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-06T22:22:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <strong>HttpClient</strong> is library which is support by apache. It can post or get data from specific  webservice and represents only the most basic contract for HTTP request execution.</p>
+
+<p>We explain how to use this library with a example. In this example, we are going to use it to access the google tranlated API. Translating some text from specific language to other language. And this example using the Spring framework and Maven tool to build.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/06/how-to-get-or-post-data-via-httpclient-with-proxy/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Using TSD to Improve Javascript Intellisense of IDE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-30T23:27:10+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
+
+<p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
+
+<p><code>TypeScipt</code> is also like <code>CoffeeScript</code>, it can be compiled to <code>JavaScript</code>. It is developed by Microsoft company. To See the TypeScript, go to this official <a href="http://www.typescriptlang.org/">website</a>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Implicit Submission of Form When Pressing Enter Key</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-30T15:08:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
+
+<p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/16/spring-aop-at-aspectj-annotation/">Spring AOP - @AspectJ Annotation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-16T17:46:08+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this article, we introduce how to use <code>AOP</code> with the <code>@AspectJ</code> Annotation. If we want to use this Annotation. we should include below code in the XML schema-based configuration file.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">);</span> <span class="c1">// return true;</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">);</span> <span class="c1">// return false;</span>
-</span><span class='line'><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span> <span class="c1">// return true;</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'> <span class="nt">&lt;aop:aspectj-autoproxy/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p></p>
+
+<p>And also you need to add these libraries to your project, <em>aspectjrt.jar</em>, <em>aspectjweaver.jar</em>, <em>aspectj.jar</em> and <em>aopalliance.jar</em>.</p>
+
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/27/guava-common-object-method/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/16/spring-aop-at-aspectj-annotation/">Read on &rarr;</a>
     </footer>
   
 
@@ -377,7 +366,7 @@ Invoking this method then it will avoid the risking of NullPointerException when
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/26/guava-preconditions/">Guava &#8211; Preconditions</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/14/spring-aop-xml-schema/">Spring AOP - XML Schema</a></h1>
     
     
       <p class="meta">
@@ -386,28 +375,23 @@ Invoking this method then it will avoid the risking of NullPointerException when
 
 
 
-<time class='entry-date' datetime='2014-11-26T22:36:07+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:36 pm</span></time>
+<time class='entry-date' datetime='2015-06-14T15:48:55+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:48 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Guava provides a number of precondition checking utilities. It&rsquo;s <code>Preconditions</code> class. You can use it into your project.</p>
-
-<h3>Usage</h3>
-
-<p><code>checkArgument(boolean)</code> <br/>
-Checks that the boolean is true. Use for validating arguments to methods.</p>
-
-<p><code>checkNotNull(T)</code> <br/>
-Checks that the value is not null. Returns the value directly, so you can use checkNotNull(value) inline.</p>
+  <div class="entry-content"><p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
+ - <em>aspectjrt.jar</em> <br/>
+ - <em>aspectjweaver.jar</em> <br/>
+ - <em>aopalliance.jar</em></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/26/guava-preconditions/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/14/spring-aop-xml-schema/">Read on &rarr;</a>
     </footer>
   
 
@@ -419,7 +403,7 @@ Checks that the value is not null. Returns the value directly, so you can use ch
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/21/guava-optional/">Guava &#8211; Optional</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Spring AOP - Dynamic Pointcut</a></h1>
     
     
       <p class="meta">
@@ -428,20 +412,20 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
 
 
-<time class='entry-date' datetime='2014-11-21T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-12T16:23:30+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
+  <div class="entry-content"><p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/21/guava-optional/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Read on &rarr;</a>
     </footer>
   
 
@@ -453,7 +437,7 @@ Checks that the value is not null. Returns the value directly, so you can use ch
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/17/the-lifecycle-of-android-activity/">The Lifecycle of Android Activity</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/11/spring-aop-static-pointcut/">Spring AOP - Static Pointcut</a></h1>
     
     
       <p class="meta">
@@ -462,61 +446,27 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
 
 
-<time class='entry-date' datetime='2014-11-17T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-11T16:08:48+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><img src="/assets/images/android-lifecycle.png" alt="lifecycle of activity" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/13/building-blocks-of-android-application/">Building Blocks of Android Application</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-13T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There are four builidng blocks for Android Application:</p>
+  <div class="entry-content"><p>Let&rsquo;s first to see the three very technical terms as below.</p>
 
 <ul>
-<li><strong><code>Activity</code></strong></li>
-<li><strong><code>Intent Receiver</code></strong></li>
-<li><strong><code>Service</code></strong></li>
-<li><strong><code>Content Provider</code></strong></li>
+<li>Adivce - Indicate the action to take either before or after the method execution.</li>
+<li>Pointcut - Indicate which method should be intercept, by method name or regular expression pattern.</li>
+<li>Advisor - Group ‘Advice’ and ‘Pointcut’ into a single unit, and pass it to a proxy factory object</li>
 </ul>
 
 
-<p>But Not every application needs have all them.</p>
-
-<p><code>AndroidManifest.xml</code> is XML file, it contains some information that where you declare the components of your application and what their capabilities and requirements are.</p>
-
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/13/building-blocks-of-android-application/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/11/spring-aop-static-pointcut/">Read on &rarr;</a>
     </footer>
   
 
@@ -535,28 +485,37 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 </div>
 <aside class="sidebar">
   
-    <section>
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a>
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a>
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
   </ul>
@@ -582,7 +541,7 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
         github.showRepos({
             user: 'stonefishy',
-            count: 0,
+            count: 5,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -594,6 +553,40 @@ Checks that the value is not null. Returns the value directly, so you can use ch
 
 
 
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
 
   
 </aside>
@@ -601,7 +594,7 @@ Checks that the value is not null. Returns the value directly, so you can use ch
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Yu SHI -
+  Copyright &copy; 2015 - Yu -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

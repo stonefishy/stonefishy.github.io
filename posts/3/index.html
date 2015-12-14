@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <title>Stonefishy Blog</title>
-  <meta name="author" content="Yu SHI">
+  <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Note: the original website address in here Technical notes The contents of files are not actually stored in the index (.git/index) or in commit &hellip;">
+  <meta name="description" content="What is Pointcut of Spring AOP? let&rsquo;s describe it. A Pointcut defines what Advices are required at what Join Points. In fact all business logic &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,7 +36,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Stonefishy Blog</a></h1>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
   
 </hgroup>
 
@@ -69,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-technical-notes/">Visual Git Guide (Technical Notes)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/10/spring-aop-pointcut/">Spring AOP - Pointcut</a></h1>
     
     
       <p class="meta">
@@ -78,24 +80,20 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-10T11:19:44+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:19 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Technical notes</h3>
-
-<p>The contents of files are not actually stored in the index (.git/index) or in commit objects. Rather, each file is stored in the object database (.git/objects) as a blob, identified by its SHA-1 hash. The index file lists the filenames along with the identifier of the associated blob, as well as some other data. For commits, there is an additional data type, a tree, also identified by its hash. Trees correspond to directories in the working directory, and contain a list of trees and blobs corresponding to each filename within that directory. Each commit stores the identifier of its top-level tree, which in turn contains all of the blobs and other trees associated with that commit.</p>
+  <div class="entry-content"><p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-technical-notes/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/10/spring-aop-pointcut/">Read on &rarr;</a>
     </footer>
   
 
@@ -107,7 +105,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-reset-command/">Visual Git Guide (Reset Command)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/09/spring-aop-joint-point/">Spring AOP - Join Point</a></h1>
     
     
       <p class="meta">
@@ -116,26 +114,62 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-09T17:19:23+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:19 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+  <div class="entry-content"><p>In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as <code>JoinPoint</code>.</p>
 
-<h3>Reset command</h3>
+<p>At a join point place services will be injected at run time. And while executing business logic of method, the services can be injected in following 3 join points.</p>
 
-<p><strong>The reset command moves the current branch to another position</strong>, and optionally updates the stage and the working directory. It also is used to copy files from the history to the stage without touching the working directory.</p>
+<ul>
+<li>Before business logic of method starts</li>
+<li>After business logic of method complete</li>
+<li>If business logic of method throws exception at run time.</li>
+</ul>
 
-<p>If a commit is given with no filenames, the current branch is moved to that commit, and then the stage is updated to match this commit. If &ndash;hard is given, the working directory is also updated. If &ndash;soft is given, neither is updated.</p>
+
+<p>In a <code>join point</code>, many <code>Aspect</code>s(just name, not implementation) can be injected. Actually the <code>Advice</code>(the implementation of Aspect) is injected.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/08/spring-aop-throws-advice/">Spring AOP - Throws Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-08T14:39:43+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:39 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called <code>ThrowsAdvice</code>.</p>
+
+<p><code>ThrowsAdvice</code> is provided by <em>org.springframework.aop.*</em> package. But it has not any method we need to override.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-reset-command/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/08/spring-aop-throws-advice/">Read on &rarr;</a>
     </footer>
   
 
@@ -147,7 +181,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-rebase-command/">Visual Git Guide (Rebase Command)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/08/spring-aop-around-advice/">Spring AOP - Around Advice</a></h1>
     
     
       <p class="meta">
@@ -156,24 +190,29 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-08T09:42:08+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:42 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+  <div class="entry-content"><p>In this blog, let us talk about <code>Around Advice</code>. There are some few points about it.</p>
 
-<h3>Rebase command</h3>
+<ul>
+<li><code>Around Advice</code> is combination of <code>Before Advice</code> and <code>After Advice</code>.</li>
+<li>In a single <code>Around Advice</code> we can implement both <em>before</em> and <em>after</em> services.</li>
+<li><strong>Note</strong>, <code>Around Advice</code> is not given by <em>spring framework</em>, it is from <em>Open Source</em> implementation called <code>AOP</code> alliance.</li>
+<li><code>Around Advice</code> can be used by any framework which supports <code>AOP</code>.</li>
+<li><code>Around Advice</code> can access the return value of business method and it can modify the value and it can return a different value back to the client, as return type is Object, but in the <code>After Advice</code> its not possible right, as its return type is void.</li>
+</ul>
 
-<p>A rebase is an alternative to a merge for combining multiple branches. Whereas a merge creates a single commit with two parents, leaving a non-linear history, a rebase replays the commits from the current branch onto another, leaving a linear history. <em>In essence, this is an automated way of performing several cherry-picks in a row</em>.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-rebase-command/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/08/spring-aop-around-advice/">Read on &rarr;</a>
     </footer>
   
 
@@ -185,7 +224,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-merge-command/">Visual Git Guide (Merge Command)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a></h1>
     
     
       <p class="meta">
@@ -194,24 +233,30 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-06T10:14:46+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:14 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+  <div class="entry-content"><p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
 
-<h3>Merge command</h3>
+<p>There are four types of Advice:</p>
 
-<p>A merge creates a new commit that incorporates changes from other commits. Before merging, the stage must match the current commit. The trivial case is if the other commit is an ancestor of the current commit, in which case nothing is done. The next most simple is if the current commit is an ancestor of the other commit. This results in a fast-forward merge. The reference is simply moved, and then the new commit is checked out.</p>
+<ul>
+<li>Before Advice</li>
+<li><strong>After Advice</strong></li>
+<li>Around Advice</li>
+<li>Throws Advice</li>
+</ul>
+
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-merge-command/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/06/spring-aop-after-advice/">Read on &rarr;</a>
     </footer>
   
 
@@ -223,7 +268,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-diff-command/">Visual Git Guide (Diff Command)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/05/spring-aop-before-advice/">Spring AOP - Before Advice</a></h1>
     
     
       <p class="meta">
@@ -232,24 +277,20 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-05T15:33:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:33 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Diff Command</h3>
-
-<p>There are various ways to look at differences between commits. Below are some common examples. Any of these commands can optionally take extra filename arguments that limit the differences to the named files.</p>
+  <div class="entry-content"><p>As we know the <code>Aspect</code> is just the name of the <code>cross-cutting</code> functionality, not the implementation. So what&rsquo;s the implementation of the <code>cross-cutting</code> functionality? It&rsquo;s called <code>Advice</code>. An <code>Advice</code> provides the code for implementation of the service. It is like <em>Logging</em> service, <em>Logging</em> is a <code>Aspect</code> and <code>Advice</code> denotes the implementation of <em>Log4j</em>.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-diff-command/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/05/spring-aop-before-advice/">Read on &rarr;</a>
     </footer>
   
 
@@ -261,7 +302,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-commit-command/">Visual Git Guide (Commit Command)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/05/spring-aop-aspect/">Spring AOP - Aspect</a></h1>
     
     
       <p class="meta">
@@ -270,24 +311,65 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-05T09:25:53+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:25 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
+  <div class="entry-content"><p>An <code>Aspect</code> represent the <strong>name</strong> of a <code>cross-cutting</code> functionality, it&rsquo;s only name not implementation.</p>
 
-<h3>Commit command</h3>
+<p>Let us see the example.</p>
 
-<p>When you commit, git creates a new commit object using the files from the stage and sets the parent to the current commit. It then points the current branch to this new commit. In the image below, the current branch is <em>master</em>. Before the command was run, <em>master</em> pointed to ed489. Afterward, a new commit, f0cec, was created, with parent ed489, and then <em>master</em> was moved to the new commit.</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicOne</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//This is my logic for one.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
+</span><span class='line'>      <span class="c1">//Call Logging Service</span>
+</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
+</span><span class='line'>      <span class="c1">//Call Email Service</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicTwo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//This is my logic for two.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//Call Authentication Service </span>
+</span><span class='line'>      <span class="c1">//Call Logging Service</span>
+</span><span class='line'>      <span class="c1">//Call Transcation Service</span>
+</span><span class='line'>      <span class="c1">//Call Email Service</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-commit-command/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/05/spring-aop-aspect/">Read on &rarr;</a>
     </footer>
   
 
@@ -299,7 +381,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-cherry-pick-command/">Visual Git Guide (Cherry Pick Command)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/04/spring-aop-what-is-aop/">Spring AOP - What Is AOP?</a></h1>
     
     
       <p class="meta">
@@ -308,63 +390,20 @@
 
 
 
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-04T20:43:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:43 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Cherry-pick command</h3>
-
-<p>The cherry-pick command &ldquo;copies&rdquo; a commit, creating a new commit on the current branch with the same message and patch as another commit.</p>
-
-<p><img src="/assets/images/cherry-pick.png" alt="cherry-pick" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/07/visual-git-guide-checkout-command/">Visual Git Guide (Checkout Command)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-07T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Checkout</h3>
-
-<p>The checkout command is used to copy files from the history (or stage) to the working directory, and to optionally switch branches.</p>
-
-<p>When a filename (and/or -p) is given, git copies those files from the given commit to the stage and the working directory. For example, git checkout HEAD~ foo.c copies the file foo.c from the commit called HEAD~ (the parent of the current commit) to the working directory, and also stages it. (<em>If no commit name is given, files are copied from the stage.</em>) <strong>Note that the current branch is not changed.</strong></p>
-
-<p><img src="/assets/images/checkout-files.png" alt="checkout-files" /></p>
+  <div class="entry-content"><p>What is <code>AOP</code>?, <code>AOP</code> stand for <code>Aspect Oriented Programming</code>. It&rsquo;s very important module for <code>Spring</code> framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called <code>cross-cutting</code> functionalities. <code>AOP</code> do this job.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/07/visual-git-guide-checkout-command/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/04/spring-aop-what-is-aop/">Read on &rarr;</a>
     </footer>
   
 
@@ -376,7 +415,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/06/visual-git-guide-conventions/">Visual Git Guide (Conventions)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a></h1>
     
     
       <p class="meta">
@@ -385,24 +424,22 @@
 
 
 
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-04T16:40:06+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:40 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Conventions</h3>
-
-<p><img src="/assets/images/conventions.png" alt="conventions" /></p>
+  <div class="entry-content"><p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
+The answer is yes, we can. Let me show you screenshots firstly. <br/>
+<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/06/visual-git-guide-conventions/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">Read on &rarr;</a>
     </footer>
   
 
@@ -414,7 +451,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/06/visual-git-guide-basic-usage/">Visual Git Guide (Basic Usage)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a></h1>
     
     
       <p class="meta">
@@ -423,26 +460,20 @@
 
 
 
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-06-04T16:01:24+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:01 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>Note:</strong> the original website address is <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
-
-<h3>Basic Usage</h3>
-
-<p><img src="/assets/images/basic-usage.png" alt="basic-usage" /></p>
-
-<p>The four commands above copy files between the working directory, the stage (also called the index), and the history (in the form of commits).</p>
+  <div class="entry-content"><p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/06/visual-git-guide-basic-usage/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">Read on &rarr;</a>
     </footer>
   
 
@@ -461,28 +492,37 @@
 </div>
 <aside class="sidebar">
   
-    <section>
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a>
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a>
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
   </ul>
@@ -508,7 +548,7 @@
 
         github.showRepos({
             user: 'stonefishy',
-            count: 0,
+            count: 5,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -520,6 +560,40 @@
 
 
 
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
 
   
 </aside>
@@ -527,7 +601,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Yu SHI -
+  Copyright &copy; 2015 - Yu -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

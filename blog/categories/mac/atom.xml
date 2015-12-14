@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mac | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-11T16:54:57+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
+    <updated>2015-11-11T22:46:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
+    <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
+
+<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
+
+<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+Errno::ENOENT: No such file or directory - compass
+/Users/user/git/octopress/Rakefile:85:in spawn
+/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
+Tasks: TOP =&gt; preview
+(See full trace by running task with --trace)
+</code></pre>
+
+<!-- more -->
+
+
+<p>Why we get this error, this error caused by rake command, so that means maybe it is ruby version problem. let&rsquo;s take a look it.</p>
+
+<pre><code>~-&gt; $ ruby -v
+~-&gt; ruby 2.0.0p645 (2015-04-13 revision 50299) [universal.x86_64-darwin15]
+</code></pre>
+
+<p>The ruby newest version is 2.2.3. Ok, let&rsquo;s upgrade it. There are two ways to do it.</p>
+
+<h4>Using rbenv</h4>
+
+<p>If you don&rsquo;t have rbenv in your local machine. You need to install it firstly.  <br/>
+1.Go to <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a> to get it. <br/>
+2.install ruby-2.2.3</p>
+
+<pre><code>rbenv install 2.2.3
+</code></pre>
+
+<p>3.In the root of your octopress blog, put below commands</p>
+
+<pre><code>rbenv local 2.2.3
+
+gem install bundler
+
+bundle install
+</code></pre>
+
+<h4>Using RVM</h4>
+
+<p>1.Clear git cache</p>
+
+<pre><code>rm -rf /usr/local/.git
+</code></pre>
+
+<p>2.Install RVM</p>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
+
+<p>3.Install Ruby 2.2.3</p>
+
+<pre><code>rvm install ruby-2.2.3
+
+rvm use 2.2.3
+
+rvm rubygems latest
+</code></pre>
+
+<p>After these steps, make sure you&rsquo;re using Ruby 2.2.3
+4.Go to the root of the your octopress blog</p>
+
+<pre><code>gem install bundler
+
+bundle install
+</code></pre>
+
+<p>Both ways can bring octopress back.</p>
+
+<p><em>Reference: <a href="https://github.com/imathis/octopress/issues/1749">https://github.com/imathis/octopress/issues/1749</a></em></p>
+]]></content>
+  </entry>
+  
+</feed>

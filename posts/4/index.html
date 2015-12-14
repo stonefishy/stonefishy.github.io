@@ -6,11 +6,10 @@
 <head>
   <meta charset="utf-8">
   <title>Stonefishy Blog</title>
-  <meta name="author" content="Yu SHI">
+  <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Redo Commits Undo all commits after [commit], and preserve changes locally: $ git reset [commit]
-Discard all history and changes back to the &hellip;">
+  <meta name="description" content="The call() function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear. Syntax &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -37,7 +36,9 @@ Discard all history and changes back to the &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Stonefishy Blog</a></h1>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
   
 </hgroup>
 
@@ -70,7 +71,7 @@ Discard all history and changes back to the &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-3/">Git Commands (3)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/05/20/analyze-call-function-of-javascript/">Analyze Call Function of Javascript</a></h1>
     
     
       <p class="meta">
@@ -79,28 +80,28 @@ Discard all history and changes back to the &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-05-20T19:24:35+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:24 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Redo Commits</h3>
+  <div class="entry-content"><p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
 
-<ul>
-<li><p>Undo all commits after [commit], and preserve changes locally: <br/>
-<code>$ git reset [commit]</code></p></li>
-<li><p>Discard all history and changes back to the specified commit: <br/>
-<code>$ git reset --hard [commit]</code></p></li>
-</ul>
+<h3>Syntax</h3>
 
+<p><code>call([thisObj[,arg1[, arg2[, [,.argN]]]]])</code> <br/>
+ - <strong>thisObj</strong> (optional): it&rsquo;s object which can be act as currently <code>this</code> object. <br/>
+ - <strong>arg1, arg2, argN</strong> (optional) : the parameters which can be passed to the method.</p>
+
+<p>The <em>call</em> method can be used to instead of another object to invoke a method. It can change the object context of a function to a new object which <em>thisObj</em> referenced.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/06/git-commands-3/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/05/20/analyze-call-function-of-javascript/">Read on &rarr;</a>
     </footer>
   
 
@@ -112,7 +113,7 @@ Discard all history and changes back to the &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/06/git-commands-2/">Git Commands (2)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/05/19/destroy-your-website/">Destroy Your Website</a></h1>
     
     
       <p class="meta">
@@ -121,34 +122,23 @@ Discard all history and changes back to the &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-11-06T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-05-19T12:16:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:16 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Group Changes</h3>
-
-<ul>
-<li><p>List all local branches in the current repository: <br/>
-<code>$ git branch</code></p></li>
-<li><p>Create a new branch with specified name: <br/>
-<code>$ git branch [branch-new]</code></p></li>
-<li><p>Switch to the specified branch and updates the working directory: <br/>
-<code>$ git checkout [branch-name]</code></p></li>
-<li><p>Combine the specified branch to the current branch: <br/>
-<code>$ git merge [branch-name]</code></p></li>
-<li><p>Delete the specified branch: <br/>
-<code>$ git branch -d [branch-name]</code></p></li>
-</ul>
-
+  <div class="entry-content"><p>Ha, Confusion? Don&rsquo;t, it&rsquo;s true. Let me introduce to you how to destroy the website you want. <br/>
+Click the below button:<br/>
+<button type="button" onclick="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</button>  <br/>
+Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Space</strong> key to fire. And also Press and hold <strong>B</strong> to find targets which can be destroy.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/06/git-commands-2/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/05/19/destroy-your-website/">Read on &rarr;</a>
     </footer>
   
 
@@ -160,7 +150,7 @@ Discard all history and changes back to the &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/05/git-commands-1/">Git Commands (1)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/">Sublime Text - Keyboard Shortcuts for Mac</a></h1>
     
     
       <p class="meta">
@@ -169,30 +159,152 @@ Discard all history and changes back to the &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-11-05T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-05-16T12:21:06+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:21 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Configure</h3>
+  <div class="entry-content"><h3>Editor</h3>
 
-<ul>
-<li><p>Sets the name you want attached to your commit transactions: <br/>
-<code>$ git config --global user.name "[name]"</code></p></li>
-<li><p>Sets the email you want attached to your commit transactions: <br/>
-<code>$ git config --global user.email "[email]"</code></p></li>
-<li><p>Enable git color for command line output: <br/>
-<code>$ git config --global color.ui true</code></p></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th> Keypress     </th>
+<th> Command                                                                  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ⌘ + X        </td>
+<td> Cut line                                                                 </td>
+</tr>
+<tr>
+<td> ⌘ + ↩        </td>
+<td> Insert line after                                                        </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + ↩    </td>
+<td> Insert line before                                                       </td>
+</tr>
+<tr>
+<td> ⌘ + ⌃ + ↑    </td>
+<td> Move line/selection up                                                   </td>
+</tr>
+<tr>
+<td> ⌘ + ⌃ + ↓    </td>
+<td> Move line/selection down                                                 </td>
+</tr>
+<tr>
+<td> ⌘ + L        </td>
+<td> Select line - Repeat to select next lines                                </td>
+</tr>
+<tr>
+<td> ⌘ + D        </td>
+<td> Select word - Repeat to select next occurrence                           </td>
+</tr>
+<tr>
+<td> ⌃ + ⌘ + G    </td>
+<td> Select all occurrences of current selection                              </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + ↑    </td>
+<td> Extra cursor on the line above                                           </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + ↓    </td>
+<td> Extra cursor on the line below                                           </td>
+</tr>
+<tr>
+<td> ⌃ + M        </td>
+<td> Jump to closing parentheses Repeat to jump to opening parentheses        </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + M    </td>
+<td> Select all contents of the current parentheses                           </td>
+</tr>
+<tr>
+<td> ⌃ + A        </td>
+<td> Move to beginning of line                                                </td>
+</tr>
+<tr>
+<td> ⌃ + E        </td>
+<td> Move to end of line                                                      </td>
+</tr>
+<tr>
+<td> ⌘ + K, ⌘ + K </td>
+<td> Delete from cursor to end of line                                        </td>
+</tr>
+<tr>
+<td> ⌘ + K + ⌫    </td>
+<td> Delete from cursor to start of line                                      </td>
+</tr>
+<tr>
+<td> ⌘ + ]        </td>
+<td> Indent current line(s)                                                   </td>
+</tr>
+<tr>
+<td> ⌘ + [        </td>
+<td> Un-indent current line(s)                                                </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + D    </td>
+<td> Duplicate line(s)                                                        </td>
+</tr>
+<tr>
+<td> ⌘ + J        </td>
+<td> Join line below to the end of the current line                           </td>
+</tr>
+<tr>
+<td> ⌘ + /        </td>
+<td> Comment/un-comment current line                                          </td>
+</tr>
+<tr>
+<td> ⌘ + ⌥ + /    </td>
+<td> Block comment current selection                                          </td>
+</tr>
+<tr>
+<td> ⌘ + Y        </td>
+<td> Redo, or repeat last keyboard shortcut command                           </td>
+</tr>
+<tr>
+<td> ⌘ + ⇧ + V    </td>
+<td> Paste and indent correctly                                               </td>
+</tr>
+<tr>
+<td> ⌃ + Space    </td>
+<td> Select next auto-complete suggestion                                     </td>
+</tr>
+<tr>
+<td> ⌃ + U        </td>
+<td> Soft undo; jumps to your last change before undoing change when repeated </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + Up   </td>
+<td> Column selection up                                                      </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + Down </td>
+<td> Column selection down                                                    </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + W    </td>
+<td> Wrap Selection in html tag                                               </td>
+</tr>
+<tr>
+<td> ⌃ + ⇧ + K    </td>
+<td> Delete current line of cursor                                            </td>
+</tr>
+</tbody>
+</table>
 
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/05/git-commands-1/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/">Read on &rarr;</a>
     </footer>
   
 
@@ -204,7 +316,7 @@ Discard all history and changes back to the &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/04/what-is-git/">What Is Git</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/05/16/angularjs-angular-dot-extend/">AngularJs - angular.extend()</a></h1>
     
     
       <p class="meta">
@@ -213,22 +325,29 @@ Discard all history and changes back to the &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-11-04T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-05-16T11:08:31+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:08 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Introduction</h3>
+  <div class="entry-content"><p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
 
-<p><img src="/assets/images/git-logo.png" alt="Git" /> is <code>open source distributed version control system</code> that allows a team of people to work together, all using the same files. And it helps the team cope with the confusion that tends to happen when multiple people are editing the same files.</p>
+<h3>Usage</h3>
+
+<blockquote><p><code>angular.extend(dst, src);</code></p>
+
+<p>dst:        <strong>destination object</strong><br/>
+src:        <strong>source object(s)</strong></p>
+
+<p>return:     <strong>refercen to dst object</strong></p></blockquote>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/04/what-is-git/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/05/16/angularjs-angular-dot-extend/">Read on &rarr;</a>
     </footer>
   
 
@@ -240,7 +359,7 @@ Discard all history and changes back to the &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/03/what-is-andriod/">What Is Andriod</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">How to Use Jdbc in Spring</a></h1>
     
     
       <p class="meta">
@@ -249,21 +368,22 @@ Discard all history and changes back to the &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-11-03T00:00:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-05-05T16:31:53+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:31 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><img src="/assets/images/android.jpg" alt="Andriod" />
-<code>Andriod</code> is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware resource in a mobile environment.</p>
+  <div class="entry-content"><p>As we know, we can use <code>jdbc</code> to access database in java programming. And now let us use <code>jdbc</code> in spring. The <code>spring framework</code> reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are <code>org.springframework.jdbc.datasource.DriverManagerDataSource</code> and <code>org.springframework.jdbc.core.JdbcTemplate</code>.</p>
+
+<p>And here we use the <code>hsqldb</code> to act as our memory database. You can go to <a href="http://hsqldb.org/">here</a> to look at it. we use the <code>Maven</code> tools to management our project. the dependencies is:</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/11/03/what-is-andriod/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">Read on &rarr;</a>
     </footer>
   
 
@@ -275,7 +395,7 @@ Discard all history and changes back to the &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/28/backslash-escapes-in-markdown/">Backslash Escapes in Markdown</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Give Me a Cup of Coffeescript</a></h1>
     
     
       <p class="meta">
@@ -284,81 +404,22 @@ Discard all history and changes back to the &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-10-28T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-03-19T15:47:18+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:47 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><code>Markdown</code> allows you to use backslash to generate literal characters that possesses
-special meaning in <code>Markdown</code> syntax.</p>
+  <div class="entry-content"><p><img src="/assets/images/coffee-script-logo.png" width="200" height="100"> is programming language, which is built on top of <code>JavaScript</code>. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes <code>Python</code> or <code>Ruby</code>.</p>
 
-<p><code>Markdown</code> provides backslash escapes for the following characters:</p>
-
-<blockquote><ul>
-<li>\ blackslash</li>
-<li>` backtick</li>
-<li>* asterisk</li>
-<li>_ underscore</li>
-<li>{} curly braces</li>
-<li>[] square brackets</li>
-<li>() parentheses</li>
-<li># hash mark</li>
-<li>+ push sign</li>
-<li>- minus sign (hyphen)</li>
-<li>. dot</li>
-<li>! exclamation mark</li>
-</ul>
-</blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/24/markdown-syntax-for-span-elements/">Markdown Syntax for Span Elements</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-24T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Links</h3>
-
-<p><code>Markdown</code> supports two styles for Links:</p>
-
-<ul>
-<li><em>inline</em>
-
-<blockquote><p><strong><em>Syntax:</em></strong><br/>
-<code>[inline link text](www.inlinelink.com "optional title")</code></p>
-
-<p><strong><em>Effect:</em></strong><br/>
-<a href="www.inlinelink.com" title="optional title">inline link text</a></p></blockquote></li>
-</ul>
-
+<p>Actually, The <code>CoffeeScript</code> is just a JavaScript. So you can use any exsiting JavaScript library seamlessly from CoffeeScript. And both <code>client-side</code> and <code>server-side</code> can be written by <code>CoffeeScript</code>. So CoffeeScript can write entire web application completely, not like JavaScript only write client-side.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/10/24/markdown-syntax-for-span-elements/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/03/19/give-me-a-cup-of-coffeescript/">Read on &rarr;</a>
     </footer>
   
 
@@ -370,7 +431,7 @@ special meaning in <code>Markdown</code> syntax.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/23/what-editor-tools-used-for-markdown/">What Editor Tools Used for Markdown</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a></h1>
     
     
       <p class="meta">
@@ -379,29 +440,24 @@ special meaning in <code>Markdown</code> syntax.</p>
 
 
 
-<time class='entry-date' datetime='2014-10-23T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-03-03T17:13:53+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>5:13 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>There have many editor tools for Markdown now, but we just recommend a few of popular tools for you. You can choose it which you like. Hope it will be helpful for you.</p>
+  <div class="entry-content"><p>In <code>HTML5</code>, It adds a mount of elements, these elements are more easier to present the document in browser.</p>
 
-<h3>Online tools</h3>
+<h3>Structure element</h3>
 
-<ul>
-<li><p><a href="https://stackedit.io/">StackEdit</a></p>
-
-<p>   In browser Markdown editor, it supplies many commands to create Markdown syntax instead of type it manually. And also it have supported many other functions, for example import, export and manage Markdown files.</p></li>
-</ul>
-
+<p>Before <code>HTML5</code>, we just use <code>div</code> tag to act as the <code>Document Structure Element</code>, but now the <code>HTML5</code> supports more elements like <code>section</code>, <code>article</code>, <code>nav</code>, <code>aside</code>, <code>header</code>, <code>footer</code> and so on.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/10/23/what-editor-tools-used-for-markdown/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/03/03/html5-new-common-elements/">Read on &rarr;</a>
     </footer>
   
 
@@ -413,7 +469,7 @@ special meaning in <code>Markdown</code> syntax.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/23/markdonw-syntax-for-block-elements/">Markdonw Syntax for Block Elements</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a></h1>
     
     
       <p class="meta">
@@ -422,22 +478,24 @@ special meaning in <code>Markdown</code> syntax.</p>
 
 
 
-<time class='entry-date' datetime='2014-10-23T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-03-02T20:33:14+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:33 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Line breaks</h3>
+  <div class="entry-content"><p><code>HTML5</code> adds new common attributes for original <code>HTML</code> Tag, and these attributes enhances the <code>HTML</code> elements&rsquo;s function.</p>
 
-<p>Markdown can&rsquo;t break line automatically in paragraph. The break line is a break tag <code>&lt; br /&gt;</code> in HTML. If you want to break line in paragraph, you need to <code>end a line with two or more spaces</code>, then type return.</p>
+<h3>contentEditable</h3>
+
+<p>The <code>contentEditable</code> attribute supports most tags. The browser allows user edits the content of element if this attribute is set to true. These elements is not like input or textarea tags. They are not support editable content like table, div, span and so on these tags.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/10/23/markdonw-syntax-for-block-elements/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/03/02/html5-new-common-attributes/">Read on &rarr;</a>
     </footer>
   
 
@@ -449,7 +507,7 @@ special meaning in <code>Markdown</code> syntax.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/22/what-is-markdown/">What Is Markdown</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a></h1>
     
     
       <p class="meta">
@@ -458,20 +516,75 @@ special meaning in <code>Markdown</code> syntax.</p>
 
 
 
-<time class='entry-date' datetime='2014-10-22T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-03-02T17:19:17+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>5:19 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Markdown is a <strong>text-to-HTML</strong> conversion tool for web writer. It can convert plain text format to  valid <code>XHTML</code>(or <code>HTML</code>) structure that can be represented by browser.</p>
+  <div class="entry-content"><p><code>Bracket</code> is open source web design text editor, it focus with visual tools and preprocesssor support. It is easy to design web page in the browser, we can get the page layout in time when we change the html, css, javascript. We don&rsquo;t need to save the file and refresh the browser. That&rsquo;s so convenience.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/10/22/what-is-markdown/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-13T14:58:17+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:58 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Immutable</code> that means it can not be changed. Let&rsquo;s get example to see what&rsquo;s different with <code>mutable</code> objects.</p>
+
+<p>Normal mutable collections:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="c1">//define a mutable list</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mutableList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//modify the first item in the mutable list</span>
+</span><span class='line'><span class="c1">//will print [aa, b, c]</span>
+</span><span class='line'><span class="n">mutableList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;aa&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">mutableList</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/02/13/guave-immutable-collection/">Read on &rarr;</a>
     </footer>
   
 
@@ -479,6 +592,8 @@ special meaning in <code>Markdown</code> syntax.</p>
     </article>
   
   <div class="pagination">
+    
+      <a class="prev" href="/posts/5">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -488,28 +603,37 @@ special meaning in <code>Markdown</code> syntax.</p>
 </div>
 <aside class="sidebar">
   
-    <section>
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/03/03/html5-new-common-elements/">HTML5 - New Common Elements</a>
+        <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/html5-new-common-attributes/">HTML5 - New Common Attributes</a>
+        <a href="/blog/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/02/a-nice-web-design-tool-bracket/">A Nice Web Design Tool - Bracket</a>
+        <a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/13/guave-immutable-collection/">Guave - Immutable Collection</a>
+        <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/">Understading MVC, MVP and MVVM Design Patterns</a>
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
   </ul>
@@ -535,7 +659,7 @@ special meaning in <code>Markdown</code> syntax.</p>
 
         github.showRepos({
             user: 'stonefishy',
-            count: 0,
+            count: 5,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -547,6 +671,40 @@ special meaning in <code>Markdown</code> syntax.</p>
 
 
 
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
 
   
 </aside>
@@ -554,7 +712,7 @@ special meaning in <code>Markdown</code> syntax.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Yu SHI -
+  Copyright &copy; 2015 - Yu -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

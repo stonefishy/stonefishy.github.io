@@ -4,10 +4,14 @@
   <title><![CDATA[Category: Guard | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/guard/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-03-03T23:04:38+08:00</updated>
+<<<<<<< HEAD
+  <updated>2015-12-11T16:56:37+08:00</updated>
+=======
+  <updated>2015-10-26T22:12:16+08:00</updated>
+>>>>>>> 6a3d8b925845447a44dfe73b8dc4099486899485
   <id>http://stonefishy.github.io/</id>
   <author>
-    <name><![CDATA[Yu SHI]]></name>
+    <name><![CDATA[Yu]]></name>
     <email><![CDATA[andrewsy@live.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -72,23 +76,35 @@ And you can see that there has some watch command in the Guardfile. Changing it 
 <img src="/assets/images/project-structure.png" alt="" /></p>
 
 <p>In test project directory, we can find the Gemfile and Guardfile.
-&#8220;` ruby Gemfile</p>
-
-<h1>A sample Gemfile</h1>
-
-<p>source &ldquo;<a href="https://rubygems.org">https://rubygems.org</a>&rdquo;</p>
-
-<h1>gem &ldquo;rails&rdquo;</h1>
-
-<p>group :development do
-    gem &lsquo;guard&rsquo;
-    gem &lsquo;guard-livereload&rsquo;, require: false
-end
-<code>``
-And here we just only use</code>guard-livereload plugin<code>, we also can use</code>guard-less<code>to configure the less to auto generate css file. But here we use the</code>Sublime Text` development tools to develop this project, it supports plugin to generate less to css.</p>
-
-<p>Let&rsquo;s see the guard how to watch our project files. the content of Guardfile is below:
-&#8220;` ruby Guardfile</p>
+<figure class='code'><figcaption><span>Gemfile</p></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">A</span> <span class="n">sample</span> <span class="no">Gemfile</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;source &amp;ldquo;&lt;a href=&quot;https:/</span><span class="o">/</span><span class="n">rubygems</span><span class="o">.</span><span class="n">org</span><span class="s2">&quot;&gt;https://rubygems.org&lt;/a&gt;&amp;rdquo;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;h1&gt;gem &amp;ldquo;rails&amp;rdquo;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;group :development do</span>
+</span><span class='line'><span class="s2">    gem &amp;lsquo;guard&amp;rsquo;</span>
+</span><span class='line'><span class="s2">    gem &amp;lsquo;guard-livereload&amp;rsquo;, require: false</span>
+</span><span class='line'><span class="s2">end</span>
+</span><span class='line'><span class="s2">&lt;code&gt;``</span>
+</span><span class='line'><span class="s2">And here we just only use&lt;/code&gt;guard-livereload plugin&lt;code&gt;, we also can use&lt;/code&gt;guard-less&lt;code&gt;to configure the less to auto generate css file. But here we use the&lt;/code&gt;Sublime Text` development tools to develop this project, it supports plugin to generate less to css.&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;Let&amp;rsquo;s see the guard how to watch our project files. the content of Guardfile is below:</span>
+</span></code></pre></td></tr></table></div></figure> ruby Guardfile</p>
 
 <h1>A sample Guardfile</h1>
 
