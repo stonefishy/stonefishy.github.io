@@ -9,7 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="替换数组内的元素 根据指定规则替换数组中的元素，Ruby也提供了以下方法: ary.collect { |item| &hellip;} ary.collect! { |item| &hellip;} ary.map { |item| &hellip;} ary.map! { |item| & &hellip;">
+  <meta name="description" content="数组(Array)也是Ruby中表现一组数据的对象 数组的创建 创建方式有一下几种： 1.使用Array.new Array#new方法可带两个可选参数，第1个参数表示数组中得个数，第2个参数表示每个元素初始值。如果没有指定第2个参数，其元素的初始值为nil。如果不带参数则会创建一个空数组。 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,84 +65,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/26/ruby-practice-13/">Ruby修炼之道(13)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-26T22:13:32+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:13 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>替换数组内的元素</h4>
-
-<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
-
-<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
-ary.<strong>collect!</strong> { |item| &hellip;} <br/>
-ary.<strong>map</strong> { |item| &hellip;} <br/>
-ary.<strong>map!</strong> { |item| &hellip;}</p>
-
-<p>将数组ary中的各元素item传递给块做处理。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">item</span><span class="o">*</span><span class="mi">2</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary1</span>                 <span class="c1">#=&gt; [ 2, 4, 6]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="mi">0</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>        <span class="mi">1</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary2</span>                 <span class="c1">#=&gt; [1, 0, 1]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/10/26/ruby-practice-13/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -675,6 +597,50 @@ end
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/17/ruby-practice-4/">Ruby修炼之道(4)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-17T17:01:35+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>循环</h3>
+
+<p>对于任何一种程序设计语言，都有循环处理的方法，Ruby也一样，但是在Ruby中有两种实现循环的方法。</p>
+
+<ul>
+<li>使用循环语句，即利用Ruby提供的现有循环语句</li>
+<li>使用方法实现循环，其具体做法为，将块传给方法，然后在块里面写上需要循环的处理。</li>
+</ul>
+
+
+<p>在Ruby中，有6种循环语句或方法：</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/17/ruby-practice-4/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -699,10 +665,6 @@ end
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/26/ruby-practice-13/">Ruby修炼之道(13)</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
       </li>
     
@@ -716,6 +678,10 @@ end
     
       <li class="post">
         <a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/09/ruby-practice-9/">Ruby修炼之道(9)</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-11-11T00:00:30+08:00</updated>
+  <updated>2015-10-26T22:12:16+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,155 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(13)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/"/>
-    <updated>2015-10-26T22:13:32+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13</id>
-    <content type="html"><![CDATA[<h4>替换数组内的元素</h4>
-
-<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
-
-<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
-ary.<strong>collect!</strong> { |item| &hellip;} <br/>
-ary.<strong>map</strong> { |item| &hellip;} <br/>
-ary.<strong>map!</strong> { |item| &hellip;}</p>
-
-<p>将数组ary中的各元素item传递给块做处理。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary1 = ary.collect do |item|
-    item*2
-end
-
-p ary1                  #=&gt; [ 2, 4, 6]
-
-ary2 = ary.map do |item|
-    if item % 2 == 0
-        0
-    else
-        1
-    end
-end
-
-p ary2                  #=&gt; [1, 0, 1]
-</code></pre>
-
-<!-- more -->
-
-
-<p>ary.<strong>fill</strong>(value)  <br/>
-ary.<strong>fill</strong>(value, begin) <br/>
-ary.<strong>fill</strong>(value, begin, len) <br/>
-ary.<strong>fill</strong>(vlaue, n..m)  <br/>
-将数组ary的元素替换为value。</p>
-
-<pre><code class="ruby">p [1, 2, 3].fill(0)         #=&gt; [0, 0, 0]
-p [1, 2, 3].fill(0, 1)      #=&gt; [1, 0, 0]
-p [1, 2, 3].fill(0, 0, 2)       #=&gt; [0, 0 ,3]
-p [1, 2, 3].fill(0, 1..2)       #=&gt; [1, 0, 0]
-
-ary = [1, 2, 3]
-ary.fill(0)
-p ary                       #=&gt; [0, 0, 0]
-</code></pre>
-
-<p>*注意，此方法会修改原对象的值。即为破坏方法。</p>
-
-<p>ary.<strong>flatten</strong> <br/>
-ary.<strong>flatten</strong> <br/>
-平坦化数组ary，所谓平坦化是指展开嵌套数组变为一个大数组。</p>
-
-<pre><code class="ruby">ary = [1, [2, 3], [4, [5, 6]]]
-p ary.flatten        #=&gt; [1, 2, 3, 4, 5, 6]
-</code></pre>
-
-<p>ary.<strong>reverse</strong>  <br/>
-ary.<strong>reverse!</strong>  <br/>
-反转数组ary的元素顺序</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-p ary.reverse       #=&gt; [3, 2, 1]
-</code></pre>
-
-<p>ary.<strong>sort</strong> <br/>
-ary.<strong>sort!</strong> <br/>
-ary.<strong>sort</strong>{|i, j| &hellip; } <br/>
-ary.<strong>sort!</strong>{|i, j| &hellip;} <br/>
-ary.<strong>sort_by</strong> {|i| &hellip;}</p>
-
-<p>对数组ary中进行排序，排序方法可以由块指定。没有块时，使用<em>&lt;=></em>运算符比较。其中<strong>sort_by</strong>方法中排序是根据块的运行结果来对数组的所有元素进行排序。</p>
-
-<pre><code class="ruby">ary = [4, 9, 5]
-p ary.sort          #=&gt; [4, 5, 9]
-ary.sort! { |i, j|
-    i % 3 &lt;=&gt; j % 3
-}
-p ary               #=&gt; [9, 4, 5]
-
-p [2, 4, 3, 1].sort_by { |i| -i }  #=&gt; [4, 3, 2, 1]
-</code></pre>
-
-<h4>数组的迭代</h4>
-
-<p><strong>each</strong>方法并不知道元素的索引值。当需要指定索引值时，可以使用<strong>each_with_index</strong>方法</p>
-
-<pre><code class="ruby">ary = [23, 54, 14]
-ary.each { |item| print "#{item} " }    #=&gt; 23 54 14
-
-ary.each_with_index do |item, index|
-    print "The ", index+1, " element is :", item, "\n"
-end
-</code></pre>
-
-<p>如果数组内各元素全部处理完毕后该数组就不需要了，此时可以通过逐个删除数组元素使数组变空这样的手段来实现循环。</p>
-
-<pre><code class="ruby">while item = ary.pop
-    ## the handle of the item
-end
-</code></pre>
-
-<h4>多维数组</h4>
-
-<p>数组中的各个元素也可以是数组，也就是数组的数组。可以用它来表示矩阵。</p>
-
-<pre><code class="ruby">ary = [[1, 2], [3, 4], [5, 6]]
-
-p ary[1][1]     #=&gt; 4
-
-#3个元素引用的是同一个数组对象
-ary = Array.new(3, [0, 0])
-ary[0][1] = 1
-p ary           #=&gt; [[0, 1], [0, 1], [0, 1]]
-
-#避免引用同一个数组对象，在块中，重复创建新的对象
-ary = Array.new(3) do
-    [0, 0]
-end     
-
-ary[0][1] = 1
-p ary           #=&gt; [[0, 1], [0, 0], [0, 0]]    
-</code></pre>
-
-<p>使用<em>Array.new(length, array)</em>创建二维数组。创建的所有元素引用的都是同一个对象array，修改其中一个元素的值，其他元素也会变化。如上示例代码。如何避免？可在创建数组的块中重复创建新对象。</p>
-
-<p>ary.<strong>zip</strong>(ary1, ary2, &hellip;) <br/>
-<strong>zip</strong>方法会将接收器和参数传来的数组元素逐一取出，而且每次都会启动块。参数可以是一个或多个。</p>
-
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [10, 20, 30]
-ary3 = [100, 200, 300]
-
-result = []
-ary1.zip(ary2, ary3) do |a, b, c|
-    result &lt;&lt; a + b + c
-end
-
-p result            #=&gt; [111, 222, 333]
-</code></pre>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(12)]]></title>
@@ -1106,6 +957,187 @@ MyError3 = Class.new(MyError
 
 raiseException do
     raise MyError3, "customized message for MyError3"   #=&gt;抛出指定message
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8/"/>
+    <updated>2015-09-06T20:36:07+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8</id>
+    <content type="html"><![CDATA[<h3>运算符</h3>
+
+<p>以下两种运算符是等价的, op即代表操作运算符</p>
+
+<pre><code>value1 op= value2
+value1 = value1 op value2
+</code></pre>
+
+<p>利用运算符<strong>||</strong>的特性，可以简化相关的赋值代码，如下是等价的
+<code>ruby 赋值方式1
+name = "Ruby"
+if var              #当var不是nil或false时
+    name = var
+end
+</code></p>
+
+<pre><code class="ruby 赋值方式2">name = var || "Ruby"
+</code></pre>
+
+<!-- more -->
+
+
+<p>而利用<strong>&amp;&amp;</strong>运算符，可以避免不必要要得程序错误</p>
+
+<pre><code class="ruby 隐藏的错误">name = ary[0]          #如果ary为nil，则此时将引发程序错误
+</code></pre>
+
+<pre><code class="ruby 使用&&避免错误">name = ary &amp;&amp; ary[0]    #避免当ary为nil时，读取ary[0]时的错误
+</code></pre>
+
+<p>使用<strong>&amp;&amp;</strong>可以在确定对象存在后再调用方法。而且代码更加简洁。</p>
+
+<h4>范围运算符</h4>
+
+<p>相比其他的语言如Java等，范围运算符算是一个比较特殊的运算符，范围运算符有<strong>..</strong>和<strong>&hellip;</strong>两种，其区别在于如下</p>
+
+<ul>
+<li><strong>x..y</strong>的范围是从x到y</li>
+<li><strong>x&hellip;y</strong>的范围是从x到y得前一个元素</li>
+</ul>
+
+
+<pre><code class="ruby">(1..5).to_a             #=&gt; [1, 2, 3, 4, 5]
+("a".."d").to_a         #=&gt; ["a", "b", "c", "d"]
+
+(1...5).to_a                #=&gt; [1, 2, 3, 4]
+("a"..."d").to_a            #=&gt; ["a", "b", "c"]
+</code></pre>
+
+<p>Ruby中有范围对象(Range)来表示范围对象，以下两个写法是等价的</p>
+
+<pre><code class="ruby">ary = Range.new(1, 5)   #=&gt; 1..5
+ary.class                   #=&gt; Range
+
+
+ary = 1..5              #=&gt; 1..5
+ary.class                   #=&gt; Range
+</code></pre>
+
+<p>在Range对象内部，可以使用<strong>succ</strong>方法根据起点值逐个生成下一值</p>
+
+<pre><code class="ruby">a = 1
+a = a.succ                  #=&gt; 2
+a = a.succ                  #=&gt; 3
+a.succ.succ                 #=&gt; 5
+</code></pre>
+
+<h4>运算符重定义</h4>
+
+<p>在Ruby中有以下运算符不能重定义
+::, &amp;&amp;, ||, .., &hellip;, ?:, not, =, and</p>
+
+<p><em>二元运算符重定义</em>,如加号+、减号-</p>
+
+<pre><code class="ruby">class Point
+    attr_reader :x, :y
+
+    def initialize(x, y)
+        @x, @y = x, y
+    end
+
+    def +(other)
+        self.class.new(x + other.x, y + other.y)
+    end
+
+    def -(other)
+        self.class.new(x - other.x, y - other.y)
+    end
+
+    def display
+        "(#{x}, #{y})"
+    end
+end
+
+p1 = Point.new(1, 2)
+p2 = Point.new(3, 4)
+p = p1 + p2
+puts p.display                  #=&gt; (4, 6)
+
+p = p2 - p1
+puts p.display                  #=&gt; (2, 2)
+</code></pre>
+
+<p><em>一元运算符</em>，如正号+，负号-等，其重定义与二元运算符不同。可定义的一元运算符有<strong>+</strong>, <strong>-</strong>, <strong>~</strong>, <strong>!</strong>4个。分别以+@， -@， ~@， !@为方法名进行方法定义。而且一元运算符都是没有参数的。</p>
+
+<pre><code class="ruby">class Point
+    attr_reader :x, :y
+
+    def initialize(x, y)
+        @x, @y = x, y
+    end
+
+    def +@
+        dup
+    end
+
+    def -@
+        self.class.new(-x ,-y)
+    end
+
+    def ~@
+        self.class.new(-y, x)
+    end
+
+    def display
+        "(#{x}, #{y})"
+    end
+end
+
+p1 = Point.new(1, 2)
+puts (-p1).display              #=&gt; (-1, -2)
+puts (+p1).display              #=&gt; (1, 2)
+</code></pre>
+
+<h4>下标方法</h4>
+
+<p>数组、散列中的<em>obj[i]</em>以及<em>obj[i]=x</em>这样的方法，称为下标方法。定义下标方法时的方法名分别为<strong>[]</strong>和<strong>[]=</strong>.</p>
+
+<pre><code class="ruby">class Point
+    attr_reader :x, :y
+
+    def initialize(x, y)
+        @x, @y = x, y
+    end
+
+    def [](index)
+        case index
+        when 0
+            x
+        when 1
+            y
+        else
+            raise ArgumentError, "out of range (#{index})"
+        end
+    end
+
+    def []=(index, val)
+        case index
+        when 0
+            self.x = val
+        when 1
+            self.y = val
+        else
+            raise ArgumentError, "out of range (#{index})"
+        end
+    end
+
+
+    def display
+        "(#{x}, #{y})"
+    end
 end
 </code></pre>
 ]]></content>

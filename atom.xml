@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-11-11T00:00:30+08:00</updated>
+  <updated>2015-10-26T22:12:16+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,237 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(13)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/"/>
-    <updated>2015-10-26T22:13:32+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13</id>
-    <content type="html"><![CDATA[<h4>替换数组内的元素</h4>
-
-<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
-
-<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
-ary.<strong>collect!</strong> { |item| &hellip;} <br/>
-ary.<strong>map</strong> { |item| &hellip;} <br/>
-ary.<strong>map!</strong> { |item| &hellip;}</p>
-
-<p>将数组ary中的各元素item传递给块做处理。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">item</span><span class="o">*</span><span class="mi">2</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary1</span>                 <span class="c1">#=&gt; [ 2, 4, 6]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="mi">0</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>        <span class="mi">1</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary2</span>                 <span class="c1">#=&gt; [1, 0, 1]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<p>ary.<strong>fill</strong>(value)  <br/>
-ary.<strong>fill</strong>(value, begin) <br/>
-ary.<strong>fill</strong>(value, begin, len) <br/>
-ary.<strong>fill</strong>(vlaue, n..m)  <br/>
-将数组ary的元素替换为value。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>         <span class="c1">#=&gt; [0, 0, 0]</span>
-</span><span class='line'><span class="nb">p</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        <span class="c1">#=&gt; [1, 0, 0]</span>
-</span><span class='line'><span class="nb">p</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1">#=&gt; [0, 0 ,3]</span>
-</span><span class='line'><span class="nb">p</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">2</span><span class="p">)</span>       <span class="c1">#=&gt; [1, 0, 0]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>                      <span class="c1">#=&gt; [0, 0, 0]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>*注意，此方法会修改原对象的值。即为破坏方法。</p>
-
-<p>ary.<strong>flatten</strong> <br/>
-ary.<strong>flatten</strong> <br/>
-平坦化数组ary，所谓平坦化是指展开嵌套数组变为一个大数组。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="o">]]]</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">.</span><span class="n">flatten</span>         <span class="c1">#=&gt; [1, 2, 3, 4, 5, 6]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ary.<strong>reverse</strong>  <br/>
-ary.<strong>reverse!</strong>  <br/>
-反转数组ary的元素顺序</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">.</span><span class="n">reverse</span>        <span class="c1">#=&gt; [3, 2, 1]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ary.<strong>sort</strong> <br/>
-ary.<strong>sort!</strong> <br/>
-ary.<strong>sort</strong>{|i, j| &hellip; } <br/>
-ary.<strong>sort!</strong>{|i, j| &hellip;} <br/>
-ary.<strong>sort_by</strong> {|i| &hellip;}</p>
-
-<p>对数组ary中进行排序，排序方法可以由块指定。没有块时，使用<em>&lt;=></em>运算符比较。其中<strong>sort_by</strong>方法中排序是根据块的运行结果来对数组的所有元素进行排序。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span>           <span class="c1">#=&gt; [4, 5, 9]</span>
-</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">sort!</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">&lt;=&gt;</span> <span class="n">j</span> <span class="o">%</span> <span class="mi">3</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [9, 4, 5]</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">].</span><span class="n">sort_by</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="o">-</span><span class="n">i</span> <span class="p">}</span>  <span class="c1">#=&gt; [4, 3, 2, 1]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>数组的迭代</h4>
-
-<p><strong>each</strong>方法并不知道元素的索引值。当需要指定索引值时，可以使用<strong>each_with_index</strong>方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">14</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="s2"> &quot;</span> <span class="p">}</span> <span class="c1">#=&gt; 23 54 14</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="p">,</span> <span class="n">index</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot;The &quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot; element is :&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果数组内各元素全部处理完毕后该数组就不需要了，此时可以通过逐个删除数组元素使数组变空这样的手段来实现循环。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">while</span> <span class="n">item</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">pop</span>
-</span><span class='line'>  <span class="c1">## the handle of the item</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>多维数组</h4>
-
-<p>数组中的各个元素也可以是数组，也就是数组的数组。可以用它来表示矩阵。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="o">]]</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span>       <span class="c1">#=&gt; 4</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#3个元素引用的是同一个数组对象</span>
-</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [[0, 1], [0, 1], [0, 1]]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#避免引用同一个数组对象，在块中，重复创建新的对象</span>
-</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>        
-</span><span class='line'>
-</span><span class='line'><span class="n">ary</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [[0, 1], [0, 0], [0, 0]]    </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用<em>Array.new(length, array)</em>创建二维数组。创建的所有元素引用的都是同一个对象array，修改其中一个元素的值，其他元素也会变化。如上示例代码。如何避免？可在创建数组的块中重复创建新对象。</p>
-
-<p>ary.<strong>zip</strong>(ary1, ary2, &hellip;) <br/>
-<strong>zip</strong>方法会将接收器和参数传来的数组元素逐一取出，而且每次都会启动块。参数可以是一个或多个。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="o">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary3</span> <span class="o">=</span> <span class="o">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'><span class="n">ary1</span><span class="o">.</span><span class="n">zip</span><span class="p">(</span><span class="n">ary2</span><span class="p">,</span> <span class="n">ary3</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">result</span>           <span class="c1">#=&gt; [111, 222, 333]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(12)]]></title>
@@ -6342,6 +6111,524 @@ MethodTwo is running with argument 11
 </code></pre>
 
 <p>You see, only <em>methodTwo</em> with argument 11 (larger than 10) is intercepted.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Static Pointcut]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut/"/>
+    <updated>2015-06-11T16:08:48+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut</id>
+    <content type="html"><![CDATA[<p>Let&rsquo;s first to see the three very technical terms as below.</p>
+
+<ul>
+<li>Adivce - Indicate the action to take either before or after the method execution.</li>
+<li>Pointcut - Indicate which method should be intercept, by method name or regular expression pattern.</li>
+<li>Advisor - Group ‘Advice’ and ‘Pointcut’ into a single unit, and pass it to a proxy factory object</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>No pointcut example</h3>
+
+<figure class='code'><figcaption><span>MyLogicClass</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogicClass</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicMethodOne</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;This is from logicMethodOne&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logicMethodTwo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;This is from logicMethodTwo&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testLogic</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;This is from testLogic&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>MyAroundAdvice.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.aopalliance.intercept.MethodInterceptor</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.aopalliance.intercept.MethodInvocation</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAroundAdvice</span> <span class="kd">implements</span> <span class="n">MethodInterceptor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">MethodInvocation</span> <span class="n">invocation</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Before method execuation&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">invocation</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;After method execuation&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>App.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">aop</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="n">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;springConfig.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">MyLogicClass</span> <span class="n">logicClass</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyLogicClass</span><span class="o">)</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;proxyFactoryBean&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;\n--------------------\n&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">logicClass</span><span class="o">.</span><span class="na">logicMethodOne</span><span class="o">();</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;\n--------------------\n&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">logicClass</span><span class="o">.</span><span class="na">logicMethodTwo</span><span class="o">();</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;\n--------------------\n&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">logicClass</span><span class="o">.</span><span class="na">testLogic</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;\n--------------------\n&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;!DOCTYPE beans PUBLIC &quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
+</span><span class='line'><span class="cp">         &quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;beans&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myAroundAdvice&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyAroundAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interceptorNames&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>myAroundAdvice<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;myLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>output</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>Before method execuation
+</span><span class='line'>This is from logicMethodOne
+</span><span class='line'>After method execuation
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>Before method execuation
+</span><span class='line'>This is from logicMethodTwo
+</span><span class='line'>After method execuation
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>Before method execuation
+</span><span class='line'>This is from testLogic
+</span><span class='line'>After method execuation
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In above example, all logic methods of the class has been intercepted due to the application doesn&rsquo;t use the pointcut to specific.</p>
+
+<h3>Name match example</h3>
+
+<p>And now, we just want to intercept the method <em>testLogic</em>, so we need to create <strong>NameMatchMethodPointcut</strong> bean in spring config xml. and put the method name you want to intercept to the <strong>mappedName</strong> property value.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;nameMatchPointcut&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.NameMatchMethodPointcut&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mappedName&quot;</span> <span class="na">value=</span><span class="s">&quot;testLogic&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And also you can mapped multiple methods with <strong>mappedNames</strong>, like below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;nameMatchPointcut&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.NameMatchMethodPointcut&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mappedNames&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>logicMethodOne<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>logicMethodTwo<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then create <strong>DefaultPointcutAdvisor</strong> bean to group and associate the pointcut and advice.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myPointcutAdvisor&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.DefaultPointcutAdvisor&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pointcut&quot;</span> <span class="na">ref=</span><span class="s">&quot;nameMatchPointcut&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;advice&quot;</span> <span class="na">ref=</span><span class="s">&quot;myAroundAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Replace the <strong>interceptorNames</strong> of <strong>ProxyFactoryBean</strong> with the new Advisor.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interceptorNames&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>myPointcutAdvisor<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;myLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s done, let&rsquo;s see the full spring config file and output.</p>
+
+<figure class='code'><figcaption><span>springConfig.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;!DOCTYPE beans PUBLIC &quot;-//SPRING//DTD BEAN 2.0//EN&quot;</span>
+</span><span class='line'><span class="cp">         &quot;http://www.springframework.org/dtd/spring-beans-2.0.dtd&quot;&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;beans&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myAroundAdvice&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyAroundAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myLogicClass&quot;</span> <span class="na">class=</span><span class="s">&quot;spring.test.aop.MyLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;nameMatchPointcut&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.NameMatchMethodPointcut&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mappedName&quot;</span> <span class="na">value=</span><span class="s">&quot;testLogic&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="c">&lt;!-- &lt;property name=&quot;mappedNames&quot;&gt;</span>
+</span><span class='line'><span class="c">          &lt;list&gt;</span>
+</span><span class='line'><span class="c">              &lt;value&gt;logicMethodOne&lt;/value&gt;</span>
+</span><span class='line'><span class="c">              &lt;value&gt;logicMethodTwo&lt;/value&gt;</span>
+</span><span class='line'><span class="c">          &lt;/list&gt;</span>
+</span><span class='line'><span class="c">      &lt;/property&gt; --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myPointcutAdvisor&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.DefaultPointcutAdvisor&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pointcut&quot;</span> <span class="na">ref=</span><span class="s">&quot;nameMatchPointcut&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;advice&quot;</span> <span class="na">ref=</span><span class="s">&quot;myAroundAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interceptorNames&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>myPointcutAdvisor<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;myLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>output</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>This is from logicMethodOne
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>This is from logicMethodTwo
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>Before method execuation
+</span><span class='line'>This is from testLogic
+</span><span class='line'>After method execuation
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Regular expression example</h3>
+
+<p>Also we can use regular expression to match methods which should be intercepted. Create <strong>RegexpMethodPointcutAdvisor</strong> bean and set the <em>pattern</em> property value with regular expression and combine with advice.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;regexPointcutAdvisor&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.RegexpMethodPointcutAdvisor&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span> <span class="na">value=</span><span class="s">&quot;.*Method.*&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;advice&quot;</span> <span class="na">ref=</span><span class="s">&quot;myAroundAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you can specific multiple patterns with <em>patterns</em> property.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;regexPointcutAdvisor&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.support.RegexpMethodPointcutAdvisor&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;patterns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>.*Method.*<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;advice&quot;</span> <span class="na">ref=</span><span class="s">&quot;myAroundAdvice&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally pass the advisor to the <strong>ProxyFactoryBean</strong>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;proxyFactoryBean&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.aop.framework.ProxyFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interceptorNames&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;value&gt;</span>regexPointcutAdvisor<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;myLogicClass&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>output</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>Before method execuation
+</span><span class='line'>This is from logicMethodOne
+</span><span class='line'>After method execuation
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>Before method execuation
+</span><span class='line'>This is from logicMethodTwo
+</span><span class='line'>After method execuation
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span><span class='line'>
+</span><span class='line'>This is from testLogic
+</span><span class='line'>
+</span><span class='line'>--------------------
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In practice, you can use it to manage DAO layer, where you can declare “.*DAO.*” to intercept all your DAO classes to support transaction.</p>
 ]]></content>
   </entry>
   
