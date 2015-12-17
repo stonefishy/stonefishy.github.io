@@ -17,6 +17,7 @@ reg1 = /Ruby/
 puts reg1.class       #=> Regexp
 ```
 <!-- more -->
+
 2.使用**Regexp.new("字符串")**创建正则表达式
 
 ``` ruby

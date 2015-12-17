@@ -9,11 +9,7 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="块 块(block)，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的each，time就是带块的方法。 1
-2
-3
-(1..5).each do |i| puts i
-end 上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下： 对象 &hellip;">
+  <meta name="description" content="Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +65,97 @@ end 上面代码中do和end之间的部分就是所谓的块。这样的方法�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-23T10:59:23+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>10:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;../../bower_components/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../bower_components/angular/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../js/ngModel.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span>
+</span><span class='line'><span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">&quot;ModelApp&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;page-header&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;text-center&quot;</span><span class="nt">&gt;</span>ng-model initialize example<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel panel-danger&quot;</span> <span class="na">ng-controller=</span><span class="s">&quot;ModelController1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-heading&quot;</span><span class="nt">&gt;</span>the angular model without initialize:<span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput1&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;myModel1&quot;</span> <span class="na">value=</span><span class="s">&quot;A&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag bundles the ngModel which name is &#39;myModel1&#39;<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">disabled=</span><span class="s">&quot;true&quot;</span> <span class="na">id=</span><span class="s">&quot;displayModelValue1&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag displays the value of the above ngModel<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -555,45 +642,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-12T16:08:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/assets/images/ruby-logo.png" width="50" height="50"><strong>Ruby</strong>是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是<strong>红宝石</strong>.</p>
-
-<h3>特点</h3>
-
-<p><em>脚本语言</em> <br/>
-即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/12/ruby-practice-1/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -620,6 +668,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
       </li>
     
@@ -633,10 +685,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
       </li>
     
   </ul>

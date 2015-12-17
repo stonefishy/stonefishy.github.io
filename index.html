@@ -9,7 +9,11 @@
   <meta name="author" content="Yu">
 
   
-  <meta name="description" content="Introduction Nginx is a open source quite lightweight HTTP server which is written by Russian Igor Sysoev, the pronunciation is &ldquo;engine X&rdquo &hellip;">
+  <meta name="description" content="正则表达式(Regexp) Ruby中的正则表达式用Regexp类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。 创建 其创建方式有多种：
+1.使用/ / 把字符串括起来，可以简单地创建出正则表达式 1
+2
+reg1 = /Ruby/
+puts reg1.class #=&gt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +69,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-17T09:46:29+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:46 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>正则表达式(Regexp)</h4>
+
+<p>Ruby中的正则表达式用<strong>Regexp</strong>类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。</p>
+
+<h5>创建</h5>
+
+<p>其创建方式有多种：
+1.使用<strong>/ /</strong> 把字符串括起来，可以简单地创建出正则表达式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg1</span> <span class="o">=</span> <span class="sr">/Ruby/</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/12/17/ruby-practice-17/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -538,97 +590,6 @@ Array#new方法可带两个可选参数，第1个参数表示数组中得个数�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">The Initialization of the Angular ngModel</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-23T10:59:23+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>10:59 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;../../bower_components/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../bower_components/angular/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../js/ngModel.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">&quot;ModelApp&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;page-header&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;text-center&quot;</span><span class="nt">&gt;</span>ng-model initialize example<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel panel-danger&quot;</span> <span class="na">ng-controller=</span><span class="s">&quot;ModelController1&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-heading&quot;</span><span class="nt">&gt;</span>the angular model without initialize:<span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput1&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;myModel1&quot;</span> <span class="na">value=</span><span class="s">&quot;A&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag bundles the ngModel which name is &#39;myModel1&#39;<span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">disabled=</span><span class="s">&quot;true&quot;</span> <span class="na">id=</span><span class="s">&quot;displayModelValue1&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag displays the value of the above ngModel<span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -653,6 +614,10 @@ Array#new方法可带两个可选参数，第1个参数表示数组中得个数�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
       </li>
     
@@ -666,10 +631,6 @@ Array#new方法可带两个可选参数，第1个参数表示数组中得个数�
     
       <li class="post">
         <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
       </li>
     
   </ul>
