@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Markdown Syntax for Span Elements - Stonefishy Blog</title>
+  <meta name="author" content="Yu">
+
+  
+  <meta name="description" content="">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Markdown Syntax for Span Elements</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-24T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>Links</h3>
+
+<p><code>Markdown</code> supports two styles for Links:</p>
+
+<ul>
+<li><em>inline</em>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>[inline link text](www.inlinelink.com "optional title")</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<a href="www.inlinelink.com" title="optional title">inline link text</a></p></blockquote></li>
+</ul>
+
+
+<!--more-->
+
+
+<ul>
+<li><em>reference</em>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>[reference link text][id]</code>
+<code>[id]: www.referencelink.com "optional title"</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<a href="www.referencelink.com" title="optional title">reference link text</a></p></blockquote></li>
+</ul>
+
+
+<blockquote><p><strong><em>Note:</em></strong><br/>
+The <code>optional title</code> is not necessary.  You can input it for your demand.
+Link definitions can be placed anywhere in your <code>Markdown</code> document.</p></blockquote>
+
+<h3>Emphasis</h3>
+
+<p><code>Markdown</code> uses asterisk(*) and underscore(_) symbol to wraps the text that you want to emphasis.</p>
+
+<ul>
+<li><p>Use one symbol asterisk<code>*</code> or underscore<code>_</code> to wrap text, it will produce the <code>&lt; em&gt;</code> tag of HTML Tags.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>*Sample Text*</code>  or <code>_Sample Text_</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<em>Sample Text</em> or <em>Sample Text</em></p></blockquote></li>
+<li><p>Use double symbols asterisk<code>*</code> or underscore<code>_</code>, it will produce the <code>&lt; strong&gt;</code> tag of HTML Tags.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>**Sample Text**</code> or <code>__Sample Text__</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<strong>Sample Text</strong> or <strong>Sample Text</strong></p></blockquote></li>
+</ul>
+
+
+<h3>Code</h3>
+
+<p><code>Markdown</code> uses backtick quotes<code>`</code> to wrap the code text. It will produce the <code>&lt; code&gt;</code> tag of HTML tags.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>`Code statement`</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<code>Code statement</code></p></blockquote>
+
+<p>And if you want to wrap the backtick quote<code>`</code> symbol. you can use double backticks as the opening and closing delimiter.</p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+` ` There is a literal backtick(`) here ` `</p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<code>There is a literal backtick(`) here</code></p></blockquote>
+
+<h3>Image</h3>
+
+<p><code>Markdown</code> uses an image syntax that is intended to resemble the syntax for links, allowing <em>inline</em> and <em>reference</em></p>
+
+<ul>
+<li><p><em>inline</em></p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>![alt text](http://daringfireball.net/graphics/logos/ "optional title")</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<img src="http://daringfireball.net/graphics/logos/" title="optional title" alt="alt text" /></p></blockquote></li>
+<li><p><em>reference</em></p>
+
+<blockquote><p><strong><em>Syntax:</em></strong><br/>
+<code>![alt text][id]</code>
+<code>[id]:http://daringfireball.net/graphics/logos/ "optional title"</code></p>
+
+<p><strong><em>Effect:</em></strong><br/>
+<img src="http://daringfireball.net/graphics/logos/" title="optional title" alt="alt text" /></p></blockquote></li>
+</ul>
+
+
+<blockquote><p><strong><em>Note:</em></strong><br/>
+<code>Markdown</code> has no syntax for specifying the dimensions of an image; if this is important to you, you can simply use regular HTML <code>&lt; img&gt;</code> tags.</p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-24T00:00:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/markdown/'>markdown</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/23/what-editor-tools-used-for-markdown/" title="Previous Post: What editor tools used for Markdown">&laquo; What editor tools used for Markdown</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/10/28/backslash-escapes-in-markdown/" title="Next Post: Backslash escapes in Markdown">Backslash escapes in Markdown &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Yu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

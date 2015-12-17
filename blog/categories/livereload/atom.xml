@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Livereload | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/livereload/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A New Way for Developing Web Application Front-End]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end/"/>
+    <updated>2015-01-13T22:43:30+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end</id>
+    <content type="html"><![CDATA[<p>When we develop web application, if we write or modify the HTML structure, CSS style and javascript, we need to compile the code and deploy it, and then refresh page, finally we can see our changes. There are so many steps. So could we skip these steps and just see our changes on page directly when we save the codes. Yes, I can answer you now.</p>
+
+<p>In order to achieve this goal, we need to install <code>Guard</code>, <code>LiveReload</code> and related stuff, configure it in our web application project.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h3>Guard</h3>
+
+<p><code>Guard</code> is a command line tool to easily handle events on file system modifications. The offical website in <a href="http://guardgem.org/">here</a>.</p>
+
+<ul>
+<li>File system changes handled by awesome Listen gem.</li>
+<li>Support for visual system notifications.</li>
+<li>Huge eco-system with more than 220 guard plugins, go to this <a href="https://rubygems.org/search?query=guard-">website</a> to get plugins what you want.</li>
+</ul>
+
+
+<p>The simplest way to install guard is to use <code>Bundler</code>. Go to the guard offical website to see how to install it.</p>
+
+<h3>LiveReload</h3>
+
+<p><code>LiveReload</code> monitors changes in the file system. As soon as you save a file, it is preprocessed as needed, and the browser is refreshed.  <br/>
+Even cooler, when you change a CSS file or an image, the browser is updated instantly without reloading the page.</p>
+
+<p>And here, we use <code>guard-livereload</code> plugin to notificate the browser to reload page. this plugin base on <code>Guard</code> and <code>LiveReload</code>, you have to install Guard firstly. Visit this <a href="https://github.com/guard/guard-livereload/">website</a> to see how to install it.</p>
+
+<h3>LiveReload Safari/Chrome extension</h3>
+
+<p>Finally, you need to install <code>LiveReload Safari Or Chrome Extension</code>, and here, we just use chrome to load web application. So go to Chrome Web Store and find livereload extension to install it on your chrome browser. And also you can use Safari browser.</p>
+
+<p>And now the tools we need have been installed. So let&rsquo;s getting started.
+<code>
+$ guard init livereload
+</code>
+By runing above command line, it will add guard definition to your <code>Guardfile</code>. You can adapt your &lsquo;view&rsquo; files like you want. And the default content of Guardfile by livereload initialize is below:  <br/>
+<code>ruby
+guard 'livereload' do
+  watch(%r{app/views/.+\.(erb|haml|slim)})
+  watch(%r{app/helpers/.+\.rb})
+  watch(%r{public/.+\.(css|js|html)})
+  watch(%r{config/locales/.+\.yml})
+  # Rails Assets Pipeline
+  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
+end
+</code>
+And you can see that there has some watch command in the Guardfile. Changing it by your situation.</p>
+
+<p>Now I will use a login page to test the guard and livereload how to work. This project contains script file, less file and html file. When we change the less file it will generate css file automatically, and here we use Sublime Text plugin to finished it, and also you can use <code>guard-less</code> plugin which is guard plugin. <br/>
+<img src="/assets/images/project-structure.png" alt="" /></p>
+
+<p>In test project directory, we can find the Gemfile and Guardfile.
+<figure class='code'><figcaption><span>Gemfile</p></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">A</span> <span class="n">sample</span> <span class="no">Gemfile</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;source &amp;ldquo;&lt;a href=&quot;https:/</span><span class="o">/</span><span class="n">rubygems</span><span class="o">.</span><span class="n">org</span><span class="s2">&quot;&gt;https://rubygems.org&lt;/a&gt;&amp;rdquo;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;h1&gt;gem &amp;ldquo;rails&amp;rdquo;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;group :development do</span>
+</span><span class='line'><span class="s2">    gem &amp;lsquo;guard&amp;rsquo;</span>
+</span><span class='line'><span class="s2">    gem &amp;lsquo;guard-livereload&amp;rsquo;, require: false</span>
+</span><span class='line'><span class="s2">end</span>
+</span><span class='line'><span class="s2">&lt;code&gt;``</span>
+</span><span class='line'><span class="s2">And here we just only use&lt;/code&gt;guard-livereload plugin&lt;code&gt;, we also can use&lt;/code&gt;guard-less&lt;code&gt;to configure the less to auto generate css file. But here we use the&lt;/code&gt;Sublime Text` development tools to develop this project, it supports plugin to generate less to css.&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;Let&amp;rsquo;s see the guard how to watch our project files. the content of Guardfile is below:</span>
+</span></code></pre></td></tr></table></div></figure> ruby Guardfile</p>
+
+<h1>A sample Guardfile</h1>
+
+<h1>More info at <a href="https://github.com/guard/guard#readme">https://github.com/guard/guard#readme</a></h1>
+
+<h2>Uncomment and set this to only include directories you want to watch</h2>
+
+<h1>directories %w(app lib config test spec feature)</h1>
+
+<h2>Uncomment to clear the screen before every task</h2>
+
+<h1>clearing :on</h1>
+
+<h2>Guard internally checks for changes in the Guardfile and exits.</h2>
+
+<h2>If you want Guard to automatically start up again, run guard in a</h2>
+
+<h2>shell loop, e.g.:</h2>
+
+<h1>#</h1>
+
+<h2>$ while bundle exec guard; do echo &ldquo;Restarting Guard&hellip;&rdquo;; done</h2>
+
+<h1>#</h1>
+
+<h2>Note: if you are using the <code>directories</code> clause above and you are not</h2>
+
+<h2>watching the project directory (&lsquo;.&rsquo;), the you will want to move the Guardfile</h2>
+
+<h2>to a watched dir and symlink it back, e.g.</h2>
+
+<p>#</p>
+
+<h1>$ mkdir config</h1>
+
+<h1>$ mv Guardfile config/</h1>
+
+<h1>$ ln -s config/Guardfile .</h1>
+
+<p>#</p>
+
+<h1>and, you&rsquo;ll have to watch &ldquo;config/Guardfile&rdquo; instead of &ldquo;Guardfile&rdquo;</h1>
+
+<p>guard &lsquo;livereload&rsquo; do
+    watch /.*/
+end
+&#8220;`
+In there, you will see that the all file in this project directory has been watched by guard-livereload.</p>
+
+<p>Type below commands in your terminal.
+<code>
+$ guard
+</code>
+It will prompt you that LiveReload is waiting for a browser to connect. And the Guard is now watching at your specific files.</p>
+
+<p>Open the web application on your chrome browser, and click LiveReload extension. And now you will see the terminal has a message said Browser connected.</p>
+
+<p>So far, you have prepared all configurations. And now you can modify the source file and save it, then you will see the web application automatically refresh. <br/>
+<img src="/assets/images/auto-refresh-page.png" alt="" /></p>
+]]></content>
+  </entry>
+  
+</feed>

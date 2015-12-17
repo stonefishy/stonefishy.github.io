@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Aop | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/aop/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - @AspectJ Annotation]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation/"/>
+    <updated>2015-06-16T17:46:08+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation</id>
+    <content type="html"><![CDATA[<p>In this article, we introduce how to use <code>AOP</code> with the <code>@AspectJ</code> Annotation. If we want to use this Annotation. we should include below code in the XML schema-based configuration file.</p>
+
+<pre><code class="xml"> &lt;aop:aspectj-autoproxy/&gt; 
+</code></pre>
+
+<p>And also you need to add these libraries to your project, <em>aspectjrt.jar</em>, <em>aspectjweaver.jar</em>, <em>aspectj.jar</em> and <em>aopalliance.jar</em>.</p>
+
+<!-- more -->
+
+
+<h4>Declare Aspect</h4>
+
+<p>Using <code>@Aspect</code> annotation to the class which you want to appoint it as an <code>Aspect</code>.</p>
+
+<pre><code class="java">@Aspect
+public class MyLogging {
+    // some codes in here
+}
+</code></pre>
+
+<h4>Declare Pointcut</h4>
+
+<p>Declaring pointcut in your aspect module with <code>@Pointcut</code> annotation.
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Aspect</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLogging</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@Pointcut</span><span class="o">(</span><span class="s">&quot;execution(* spring.test.aop.MyData.saveData(..))&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">saveDataPointcut</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure>
+In above codes, the pointcut is only work for <em>saveData</em> method of <em>MyData</em> class in the <em>spring.test.aop</em> package. To see the regular expression, go to <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html#aop-pointcuts-examples">here</a></p>
+
+<h4>Delcare Advice</h4>
+
+<p>We can declare more types of advice using specific annotation in the aspect module, like <code>@Before</code>, <code>@After</code>, <code>@AfterReturning</code>, <code>@AfterThrowing</code>, <code>@Around</code>. Let&rsquo;s see the codes directly.</p>
+
+<pre><code class="java ">@Aspect
+public class MyLogging {
+
+    @Pointcut("execution(* spring.test.aop.MyData.saveData(..))")
+    private void saveDataPointcut() {
+
+    }
+
+    @Before("saveDataPointcut()")
+    public void beforeSaveData() {
+        System.out.println("The Data is going to be saved");
+    }
+
+    @After("saveDataPointcut()")
+    public void afterSaveData() {
+        System.out.println("The Data has been saved");
+    }
+
+    @Before("execution(* spring.test.aop.MyData.getData())")
+    public void beforeGetData() {
+        System.out.println("Ready to get the data");
+    }
+
+    @After("execution(* spring.test.aop.*.getData())")
+    public void afterGetData() {
+        System.out.println("The data has been got");
+    }
+
+    @AfterReturning(pointcut = "execution(* spring.test.aop.MyData.getData())", returning = "returnValue")
+    public void afterReturningAdvice(Object returnValue) {
+        System.out.println(String.format("The return value is: %s ",
+                returnValue.toString()));
+    }
+
+    @AfterThrowing(pointcut = "execution(* spring.test.aop.*.concatData(..))", throwing = "ex")
+    public void throwingAdvice(NullPointerException ex) {
+        System.out.println(String.format("Throw exception is: %s",
+                ex.getMessage()));
+    }
+
+    @Around("saveDataPointcut()")
+    public void aroundAdvice(ProceedingJoinPoint point) throws Throwable {
+        System.out.println("Saving Data....");
+
+        point.proceed();
+
+        System.out.println("Saved Data!");
+    }
+
+}
+</code></pre>
+
+<p>You can specify the pointcut name or pointcut expression to advice. whatever you want. One important thing is you must let the advice know which pointcut works for.</p>
+
+<h4>Simple Instance</h4>
+
+<pre><code class="java MyData.java">package spring.test.aop;
+
+public class MyData {
+    public String data;
+
+    public void saveData(String data) {
+        System.out.println("Saving the data: " + data);
+        this.data = data;
+    }
+
+    public String getData() {
+        System.out.println("Get the data: " + this.data);
+        return this.data;
+    }
+
+    public void concatData(String data) {
+        this.data.concat(data);
+    }
+}
+</code></pre>
+
+<pre><code class="java MyLogging.java">package spring.test.aop;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+
+@Aspect
+public class MyLogging {
+
+    @Pointcut("execution(* spring.test.aop.MyData.saveData(..))")
+    private void saveDataPointcut() {
+
+    }
+
+    @Before("saveDataPointcut()")
+    public void beforeSaveData() {
+        System.out.println("The Data is going to be saved");
+    }
+
+    @After("saveDataPointcut()")
+    public void afterSaveData() {
+        System.out.println("The Data has been saved");
+    }
+
+    @Before("execution(* spring.test.aop.MyData.getData())")
+    public void beforeGetData() {
+        System.out.println("Ready to get the data");
+    }
+
+    @After("execution(* spring.test.aop.*.getData())")
+    public void afterGetData() {
+        System.out.println("The data has been got");
+    }
+
+    @AfterReturning(pointcut = "execution(* spring.test.aop.MyData.getData())", returning = "returnValue")
+    public void afterReturningAdvice(Object returnValue) {
+        System.out.println(String.format("The return value is: %s ",
+                returnValue.toString()));
+    }
+
+    @AfterThrowing(pointcut = "execution(* spring.test.aop.*.concatData(..))", throwing = "ex")
+    public void throwingAdvice(NullPointerException ex) {
+        System.out.println(String.format("Throw exception is: %s",
+                ex.getMessage()));
+    }
+
+    @Around("saveDataPointcut()")
+    public void aroundAdvice(ProceedingJoinPoint point) throws Throwable {
+        System.out.println("Saving Data....");
+
+        point.proceed();
+
+        System.out.println("Saved Data!");
+    }
+
+}
+</code></pre>
+
+<pre><code class="xml springConfig.xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+    &lt;aop:aspectj-autoproxy/&gt;
+
+    &lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+    &lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext context;
+
+    public static void main(String[] args) {
+        context = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyData myData = (MyData) context.getBean("myData");
+
+        myData.saveData("35");
+
+        System.out.println("-----------------");
+        myData.getData();
+
+        System.out.println("-----------------");
+        myData.concatData(null);
+    }
+
+}
+</code></pre>
+
+<p>Okay, run above simple instance. the output is below:</p>
+
+<pre><code>Saving Data....
+The Data is going to be saved
+Saving the data: 35
+Saved Data!
+The Data has been saved
+-----------------
+Ready to get the data
+Get the data: 35
+The data has been got
+The return value is: 35 
+-----------------
+Throw exception is: null
+Exception in thread "main" java.lang.NullPointerException
+...
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - XML Schema]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema/"/>
+    <updated>2015-06-14T15:48:55+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema</id>
+    <content type="html"><![CDATA[<p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
+ - <em>aspectjrt.jar</em> <br/>
+ - <em>aspectjweaver.jar</em> <br/>
+ - <em>aopalliance.jar</em></p>
+
+<!-- more -->
+
+
+<p>Let&rsquo;s see our pom.xml
+<code>xml pom.xml
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;Spring-AOP-XML-Schema&lt;/groupId&gt;
+    &lt;artifactId&gt;Spring-AOP-XML-Schema&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;build&gt;
+        &lt;sourceDirectory&gt;src&lt;/sourceDirectory&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.1&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;source&gt;1.7&lt;/source&gt;
+                    &lt;target&gt;1.7&lt;/target&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+            &lt;version&gt;1.8.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;
+            &lt;version&gt;1.8.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;aopalliance&lt;/groupId&gt;
+            &lt;artifactId&gt;aopalliance&lt;/artifactId&gt;
+            &lt;version&gt;1.0&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></p>
+
+<p>Okay, so we start to config the AOP with xml schema.</p>
+
+<ol>
+<li>Declaring Aspect:</li>
+</ol>
+
+
+<pre><code class="xml">&lt;aop:config&gt;
+    &lt;aop:aspect id="logging" ref="myLogging"&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+</code></pre>
+
+<p>Create our service bean called <em>myLogging</em>. this service should be injected before or after in the logic method. And use <code>&lt;aop:aspect&gt;</code> to reference it.</p>
+
+<ol>
+<li>Declaring Pointcut:</li>
+</ol>
+
+
+<pre><code class="xml">&lt;aop:config&gt;
+    &lt;aop:aspect id="logging" ref="myLogging"&gt;
+        &lt;aop:pointcut id="saveDataPointcut" expression="execution(* spring.test.aop.*.saveData(..))" /&gt;
+            &lt;aop:pointcut id="getDataPointcut" expression="execution(* spring.test.aop.*.getData())"/&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+&lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+</code></pre>
+
+<p>Create logic class bean and pointcut with <code>&lt;aop:pointcut&gt;</code> , define the expression matcher to match the methods which will be executed with AOP. To see the expression of pointcut, go to <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html</a>.</p>
+
+<ol>
+<li>Declaring Advice:</li>
+</ol>
+
+
+<pre><code class="xml">&lt;aop:config&gt;
+    &lt;aop:aspect id="logging" ref="myLogging"&gt;
+
+        &lt;aop:pointcut id="saveDataPointcut" expression="execution(* spring.test.aop.*.saveData(..))" /&gt;
+
+        &lt;aop:pointcut id="getDataPointcut" expression="execution(* spring.test.aop.*.getData())"/&gt;
+
+        &lt;aop:before method="beforeSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+        &lt;aop:after method="afterSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+        &lt;aop:before method="beforeGetData" pointcut="execution(* spring.test.aop.MyData.getData())"/&gt;
+
+        &lt;aop:after method="afterGetData" pointcut="execution(* spring.test.aop.*.get*())"/&gt;
+
+        &lt;aop:after-returning method="afterReturningAdvice"
+                pointcut-ref="getDataPointcut" returning="returnValue" /&gt;
+
+        &lt;aop:after-throwing method="throwingAdvice"
+                pointcut="execution(* spring.test.aop.MyData.concatData(String))" throwing="ex" /&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+&lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+</code></pre>
+
+<p>Use <code>&lt;aop:before&gt;</code>, <code>&lt;aop:after&gt;</code>, <code>&lt;aop:after-returning&gt;</code> and <code>&lt;aop:after-throwing&gt;</code> to create each advices. Reference to pointcut bean and appoint which method of service can be injected. Note, for <em>after-returning</em> and <em>after-throwing</em>, we should add attributes <em>returning</em> and <em>throwing</em> to access their variables.</p>
+
+<p>The full configration file is:</p>
+
+<pre><code class="xml springConfig.xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+    &lt;aop:config&gt;
+        &lt;aop:aspect id="logging" ref="myLogging"&gt;
+
+            &lt;aop:pointcut id="saveDataPointcut" expression="execution(* spring.test.aop.*.saveData(..))" /&gt;
+
+            &lt;aop:pointcut id="getDataPointcut" expression="execution(* spring.test.aop.*.getData())"/&gt;
+
+            &lt;aop:before method="beforeSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+            &lt;aop:after method="afterSaveData" pointcut-ref="saveDataPointcut" /&gt;
+
+            &lt;aop:before method="beforeGetData" pointcut="execution(* spring.test.aop.MyData.getData())"/&gt;
+
+            &lt;aop:after method="afterGetData" pointcut="execution(* spring.test.aop.*.get*())"/&gt;
+
+            &lt;aop:after-returning method="afterReturningAdvice"
+                pointcut-ref="getDataPointcut" returning="returnValue" /&gt;
+
+            &lt;aop:after-throwing method="throwingAdvice"
+                pointcut="execution(* spring.test.aop.MyData.concatData(String))" throwing="ex" /&gt;
+
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+
+    &lt;bean id="myLogging" class="spring.test.aop.MyLogging" /&gt;
+
+    &lt;bean id="myData" class="spring.test.aop.MyData" /&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>From now, the AOP configration completed. Let&rsquo;s see our Logging service and Logic class.</p>
+
+<pre><code class="java MyLogging.java">package spring.test.aop;
+
+public class MyLogging {
+
+    public void beforeSaveData() {
+        System.out.println("The Data is going to be saved");
+    }
+
+    public void afterSaveData() {
+        System.out.println("The Data has been saved");
+    }
+
+    public void beforeGetData() {
+        System.out.println("Ready to get the data");
+    }
+
+    public void afterGetData() {
+        System.out.println("The data has been got");
+    }
+
+    public void afterReturningAdvice(Object returnValue) {
+        System.out.println(String.format(
+                "The return value is: %s ", returnValue.toString()));
+    }
+
+    public void throwingAdvice(NullPointerException ex) {
+        System.out.println(String.format(
+                "Throw exception is: %s", ex.getMessage()));
+    }
+
+}
+</code></pre>
+
+<p>In our Logging service, the <em>afterReturningAdvice</em> and <em>throwingAdvice</em> methods should take <em>returnValue</em> which is Object type and Exception type <em>ex</em> paramters.</p>
+
+<pre><code class="java MyData.java">package spring.test.aop;
+
+public class MyData {
+    public String data;
+
+    public void saveData(String data) {
+        System.out.println("Saving the data: " + data);
+        this.data = data;
+    }
+
+    public String getData() {
+        System.out.println("Get the data: " + this.data);
+        return this.data;
+    }
+
+    public void concatData(String data) {
+        this.data.concat(data);
+    }
+}
+</code></pre>
+
+<p>We use the different pointcut to decide which service method can be injected which logic method.</p>
+
+<p>Finally, let&rsquo;s get our main class:</p>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext context;
+
+    public static void main(String[] args) {
+        context = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyData myData = (MyData) context.getBean("myData");
+
+        myData.saveData("This is my data");
+
+        System.out.println("-----------------");
+        myData.getData();
+    }
+
+}
+</code></pre>
+
+<p>See the output of application:</p>
+
+<pre><code>he Data is going to be saved
+Saving the data: This is my data
+The Data has been saved
+-----------------
+Ready to get the data
+Get the data: This is my data
+The return value is: This is my data 
+The data has been got
+-----------------
+Throw exception is: null
+Exception in thread "main" java.lang.NullPointerException
+at java.lang.String.concat(String.java:1970)
+at spring.test.aop.MyData.concatData(MyData.java:17)
+at spring.test.aop.MyData$$FastClassBySpringCGLIB$$731fbdfd.invoke(&lt;generated&gt;)
+at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:717)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:58)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:653)
+at spring.test.aop.MyData$$EnhancerBySpringCGLIB$$5a76fbda.concatData(&lt;generated&gt;)
+at spring.test.aop.App.main(App.java:21)
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Dynamic Pointcut]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut/"/>
+    <updated>2015-06-12T16:23:30+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut</id>
+    <content type="html"><![CDATA[<p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
+
+<!-- more -->
+
+
+<pre><code class="java MyDynamicPointcut.java">package spring.test.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.ClassFilter;
+import org.springframework.aop.support.DynamicMethodMatcherPointcut;
+
+public class MyDynamicPointcut extends DynamicMethodMatcherPointcut {
+
+    @Override
+    public boolean matches(Method method, Class&lt;?&gt; targetClass, Object[] args) {
+        System.out.println("Dynamic check for " + method.getName());
+
+        if (args.length &gt; 0 &amp;&amp; (int) args[0] &gt; 10)
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public ClassFilter getClassFilter() {
+        return new ClassFilter() {
+
+            @Override
+            public boolean matches(Class&lt;?&gt; clazz) {
+                return clazz.equals(MyLogicClass.class);
+            }
+
+        };
+    }
+
+}
+</code></pre>
+
+<p>In above dynamic pointcut class, we verify the class name must be <em>MyLogicClass</em> and the value of the first argument in method must larger than 10, otherwise the method will not be intercepted.</p>
+
+<pre><code class="java MyAroundAdvice.java">package spring.test.aop;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MyAroundAdvice implements MethodInterceptor {
+
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        System.out.println("&gt;&gt;&gt;&gt;&gt;&gt; Invoking method "
+                + invocation.getMethod().getName());
+
+        Object result = invocation.proceed();
+
+        System.out.println("&gt;&gt;&gt;&gt;&gt;&gt; Invoked Done");
+
+        return result;
+    }
+
+}
+</code></pre>
+
+<p>We print some message before and after the invocation of method.</p>
+
+<pre><code class="java MyLogicClass">package spring.test.aop;
+
+public class MyLogicClass {
+
+    public void methodOne() {
+        System.out.println("MethodOne is Running");
+    }
+
+    public void methodTwo(int x) {
+        System.out.println(String.format(
+                "MethodTwo is running with argument %s", x));
+    }
+}
+</code></pre>
+
+<p>Here, in our logic class, there are two methods, one without argument, another with int type argument. Both method print message in console.</p>
+
+<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAroundAdvice" class="spring.test.aop.MyAroundAdvice" /&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass" /&gt;
+
+    &lt;bean id="myDynamicPointcut" class="spring.test.aop.MyDynamicPointcut" /&gt;
+
+    &lt;bean id="advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"&gt;
+        &lt;property name="pointcut" ref="myDynamicPointcut" /&gt;
+        &lt;property name="advice" ref="myAroundAdvice" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;advisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass" /&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>Create our <em>MyDynamicPointcut</em> bean and <em>MyAroundAdvice</em> bean and put them into <strong>DefaultPointcutAdvisor</strong> bean. Finally put the advisor and target class to the <strong>ProxyFactoryBean</strong>.</p>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+    private static ApplicationContext context;
+
+    public static void main(String[] args) {
+        context = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyLogicClass proxy = (MyLogicClass) context.getBean("proxyFactoryBean");
+
+        proxy.methodOne();
+        System.out.println("\n--------------------\n");
+        proxy.methodTwo(1);
+        System.out.println("\n--------------------\n");
+        proxy.methodTwo(11);
+
+    }
+}
+</code></pre>
+
+<p>We call the <em>methodTwo</em> twice with different arguments. Let&rsquo;s see the output.</p>
+
+<pre><code>Dynamic check for methodOne
+MethodOne is Running
+
+--------------------
+
+Dynamic check for methodTwo
+MethodTwo is running with argument 1
+
+--------------------
+
+Dynamic check for methodTwo
+&gt;&gt;&gt;&gt;&gt;&gt; Invoking method methodTwo
+MethodTwo is running with argument 11
+&gt;&gt;&gt;&gt;&gt;&gt; Invoked Done
+</code></pre>
+
+<p>You see, only <em>methodTwo</em> with argument 11 (larger than 10) is intercepted.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Static Pointcut]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut/"/>
+    <updated>2015-06-11T16:08:48+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut</id>
+    <content type="html"><![CDATA[<p>Let&rsquo;s first to see the three very technical terms as below.</p>
+
+<ul>
+<li>Adivce - Indicate the action to take either before or after the method execution.</li>
+<li>Pointcut - Indicate which method should be intercept, by method name or regular expression pattern.</li>
+<li>Advisor - Group ‘Advice’ and ‘Pointcut’ into a single unit, and pass it to a proxy factory object</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>No pointcut example</h3>
+
+<pre><code class="java MyLogicClass">package spring.test.aop;
+
+public class MyLogicClass {
+
+    public void logicMethodOne() {
+        System.out.println("This is from logicMethodOne");
+    }
+
+    public void logicMethodTwo() {
+        System.out.println("This is from logicMethodTwo");
+    }
+
+    public void testLogic() {
+        System.out.println("This is from testLogic");
+    }
+}
+</code></pre>
+
+<pre><code class="java MyAroundAdvice.java">package spring.test.aop;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MyAroundAdvice implements MethodInterceptor {
+
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        System.out.println("Before method execuation");
+
+        Object result = invocation.proceed();
+
+        System.out.println("After method execuation");
+
+        return result;
+    }
+
+}
+</code></pre>
+
+<pre><code class="java App.java">package spring.test.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+
+        applicationContext = new ClassPathXmlApplicationContext("springConfig.xml");
+
+        MyLogicClass logicClass = (MyLogicClass)applicationContext.getBean("proxyFactoryBean");
+
+        System.out.println("\n--------------------\n");
+        logicClass.logicMethodOne();
+
+        System.out.println("\n--------------------\n");
+        logicClass.logicMethodTwo();
+
+        System.out.println("\n--------------------\n");
+        logicClass.testLogic();
+        System.out.println("\n--------------------\n");
+
+    }
+
+}
+</code></pre>
+
+<pre><code class="xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAroundAdvice" class="spring.test.aop.MyAroundAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myAroundAdvice&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="text output">--------------------
+
+Before method execuation
+This is from logicMethodOne
+After method execuation
+
+--------------------
+
+Before method execuation
+This is from logicMethodTwo
+After method execuation
+
+--------------------
+
+Before method execuation
+This is from testLogic
+After method execuation
+
+--------------------
+</code></pre>
+
+<p>In above example, all logic methods of the class has been intercepted due to the application doesn&rsquo;t use the pointcut to specific.</p>
+
+<h3>Name match example</h3>
+
+<p>And now, we just want to intercept the method <em>testLogic</em>, so we need to create <strong>NameMatchMethodPointcut</strong> bean in spring config xml. and put the method name you want to intercept to the <strong>mappedName</strong> property value.</p>
+
+<pre><code class="xml">&lt;bean id="nameMatchPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut"&gt;
+        &lt;property name="mappedName" value="testLogic"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>And also you can mapped multiple methods with <strong>mappedNames</strong>, like below.</p>
+
+<pre><code class="xml">&lt;bean id="nameMatchPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut"&gt;
+        &lt;property name="mappedNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;logicMethodOne&lt;/value&gt;
+                &lt;value&gt;logicMethodTwo&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>Then create <strong>DefaultPointcutAdvisor</strong> bean to group and associate the pointcut and advice.</p>
+
+<pre><code class="xml">&lt;bean id="myPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"&gt;
+        &lt;property name="pointcut" ref="nameMatchPointcut"/&gt;
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>Replace the <strong>interceptorNames</strong> of <strong>ProxyFactoryBean</strong> with the new Advisor.</p>
+
+<pre><code class="xml">&lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myPointcutAdvisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>It&rsquo;s done, let&rsquo;s see the full spring config file and output.</p>
+
+<pre><code class="xml springConfig.xml">&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+
+&lt;beans&gt;
+    &lt;bean id="myAroundAdvice" class="spring.test.aop.MyAroundAdvice"/&gt;
+
+    &lt;bean id="myLogicClass" class="spring.test.aop.MyLogicClass"/&gt;
+
+    &lt;bean id="nameMatchPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut"&gt;
+        &lt;property name="mappedName" value="testLogic"/&gt;
+        &lt;!-- &lt;property name="mappedNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;logicMethodOne&lt;/value&gt;
+                &lt;value&gt;logicMethodTwo&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt; --&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="myPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"&gt;
+        &lt;property name="pointcut" ref="nameMatchPointcut"/&gt;
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;myPointcutAdvisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="text output">--------------------
+
+This is from logicMethodOne
+
+--------------------
+
+This is from logicMethodTwo
+
+--------------------
+
+Before method execuation
+This is from testLogic
+After method execuation
+
+--------------------
+</code></pre>
+
+<h3>Regular expression example</h3>
+
+<p>Also we can use regular expression to match methods which should be intercepted. Create <strong>RegexpMethodPointcutAdvisor</strong> bean and set the <em>pattern</em> property value with regular expression and combine with advice.</p>
+
+<pre><code class="xml ">&lt;bean id="regexPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"&gt;
+        &lt;property name="pattern" value=".*Method.*"/&gt;
+
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>And you can specific multiple patterns with <em>patterns</em> property.</p>
+
+<pre><code class="xml ">&lt;bean id="regexPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"&gt;
+        &lt;property name="patterns"&gt;
+            &lt;list&gt;
+                &lt;value&gt;.*Method.*&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+
+        &lt;property name="advice" ref="myAroundAdvice"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>Finally pass the advisor to the <strong>ProxyFactoryBean</strong>.</p>
+
+<pre><code class="xml">&lt;bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean"&gt;
+        &lt;property name="interceptorNames"&gt;
+            &lt;list&gt;
+                &lt;value&gt;regexPointcutAdvisor&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="target" ref="myLogicClass"/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<pre><code class="text output">--------------------
+
+Before method execuation
+This is from logicMethodOne
+After method execuation
+
+--------------------
+
+Before method execuation
+This is from logicMethodTwo
+After method execuation
+
+--------------------
+
+This is from testLogic
+
+--------------------
+</code></pre>
+
+<p>In practice, you can use it to manage DAO layer, where you can declare “.*DAO.*” to intercept all your DAO classes to support transaction.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring AOP - Pointcut]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut/"/>
+    <updated>2015-06-10T11:19:44+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut</id>
+    <content type="html"><![CDATA[<p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
+
+<!-- more -->
+
+
+<p>There are two types of AOP:</p>
+
+<ul>
+<li>StaticMethodMatcherPointcut</li>
+<li>DynamicMethodMatcherPointcut</li>
+</ul>
+
+
+<p>Pointcut verifys whether a particular method of particular class is eligible for getting the advice or not. Spring AOP has two static pointcut class.</p>
+
+<ul>
+<li>NameMatchMethodPointcut</li>
+<li>RegexpMethodPointcutAdvisor</li>
+</ul>
+
+
+<p>In above two static pointcut class, they given by spring AOP framework. And they only verify whether the method name is matching with given condition or not, but they doesn&rsquo;t check whether the class names are matching or not. If you want to verify the class name, you can implement <code>StaticMethodMatcherPointcut</code> abstract class and override the <code>getClassFilter()</code>, <code>matches()</code> methods.</p>
+
+<p>The dynamic pointcut is almost same with static pointcut, the only difference is that the dynamic pointcut can verify the arguments of the method at runtime, but static pointcut couldn&rsquo;t.</p>
+]]></content>
+  </entry>
+  
+</feed>

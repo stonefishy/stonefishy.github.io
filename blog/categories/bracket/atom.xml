@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bracket | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/bracket/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A Nice Web Design Tool - Bracket]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket/"/>
+    <updated>2015-03-02T17:19:17+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket</id>
+    <content type="html"><![CDATA[<p><code>Bracket</code> is open source web design text editor, it focus with visual tools and preprocesssor support. It is easy to design web page in the browser, we can get the page layout in time when we change the html, css, javascript. We don&rsquo;t need to save the file and refresh the browser. That&rsquo;s so convenience.</p>
+
+<!-- more -->
+
+
+<p><code>Bracket</code> supports the element highlight on the page in time when you put your mouse cursor on the specific html tag.</p>
+
+<p>Absolutly, I recommend you to design you website with it. You can download it from <a href="https://github.com/adobe/brackets/releases/download/release-1.1%2Beb4/Brackets.1.1.Extract.dmg">here</a> for Mac OS. Also you can download it for other platform from <a href="https://github.com/adobe/brackets/releases">this</a>.</p>
+
+<p>The Extract for <code>Brackets</code> (Preview) extension lets you pull out design information from a PSD including colors, fonts, gradients, and measurement information as clean, minimal CSS via contextual code hints. You can also extract layers as images, use information from the PSD to define preprocessor variables, and easily get dimensions between objects. This is very benefit for web designer which want to design web page with PSD source file.</p>
+
+<p>The <code>Bracket</code> has three big features, they are below:</p>
+
+<ul>
+<li><p><strong>Inline Editor</strong> <br/>
+We don&rsquo;t need to jump between file tabs when we want to change the style of the specific ID.
+Just put the mouse cursor on that ID and press <code>Command</code>/<code>Ctrl + E</code>, <code>Bracket</code> will show you all the CSS selectors with that ID in an inline window so you can work on your code side-by-side without any popups.</p></li>
+<li><p><strong>Live Preview</strong> <br/>
+Get a real-time connection to your browser. Make changes to CSS and HTML and you&rsquo;ll instantly see those changes on the page.</p></li>
+<li><p><strong>Preprocessor Support</strong> <br/>
+  With Brackets you can use <code>Quick Edit</code> and <code>Live Highlight</code> with your <code>LESS</code> and <code>SCSS</code> files which will make working with them easier than ever.</p></li>
+</ul>
+
+
+<p>With <code>Bracket</code>, you can improve your working efficiency and save your time. This web design tool is so power, and the offical website is <a href="http://brackets.io/">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Html | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/html/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Implicit Submission of Form When Pressing Enter Key]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
+    <updated>2015-06-30T15:08:03+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
+    <content type="html"><![CDATA[<p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
+
+<p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
+
+<!-- more -->
+
+
+<h4>Implicit submission situation 1</h4>
+
+<p>The form will be submitted automatically when there is only one input element in the form and pressing the enter key in the input element.</p>
+
+<pre><code class="html">&lt;form action="/abc.txt"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input id="name" name="name" type="text" /&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>The form will be submitted and get the data from <em>abc.txt</em> file when we press the enter key in the input element.</p>
+
+<p>But if the form has multiple input elements, the form can not be submitted automatically. like below codes.</p>
+
+<pre><code class="html">&lt;form action="/abc.txt"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;label for="age"&gt;Age:&lt;/label&gt;
+    &lt;input type="text" id="age" name="age"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<h4>Implicit submission situation 2</h4>
+
+<p>For multiple input elements in the form situation, the form can not be submitted automatically. So how to make it implicit submission. This is second situation we are introducing.</p>
+
+<p>If the form has <em>submit</em> type element(input, button), the form will be submitted when pressing the enter key in the input element regardless of how many input elements in this form.</p>
+
+<pre><code class="html ">&lt;form action="/abc.txt"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;label for="age"&gt;Age:&lt;/label&gt;
+    &lt;input type="text" id="age" name="age"&gt;
+    &lt;input type="submit"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>If you need to run some JavaScript before the form is submitted (validation, data manipulation, etc), do it in a <code>submit</code> event handler on the form, not a <code>click</code> handler on a button.</p>
+
+<h4>How to suppress it</h4>
+
+<p>The solution is very simple, just prevent the event trigger when pressing the enter key. So we can deal with it in the <code>keypress</code> event handler.</p>
+
+<pre><code class="html">    &lt;form action="/abc.txt"&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name"&gt;
+        &lt;label for="age"&gt;Age:&lt;/label&gt;
+        &lt;input type="text" id="age" name="age"&gt;
+        &lt;input type="submit"&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+        (function(){
+            var age = document.getElementById('age');
+            age.addEventListener('keypress',function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            });
+        }());
+    &lt;/script&gt;
+</code></pre>
+
+<p>Note, the code of enter key is 13. Using <code>event.preventDefault()</code> to stop the form submission when the keycode is 13. And for above codes, we only suppress the age input element, so when pressing enter key in the name input element, the form still is submitted.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Html5 | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/html5/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Implicit Submission of Form When Pressing Enter Key]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
+    <updated>2015-06-30T15:08:03+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
+    <content type="html"><![CDATA[<p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
+
+<p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
+
+<!-- more -->
+
+
+<h4>Implicit submission situation 1</h4>
+
+<p>The form will be submitted automatically when there is only one input element in the form and pressing the enter key in the input element.</p>
+
+<pre><code class="html">&lt;form action="/abc.txt"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input id="name" name="name" type="text" /&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>The form will be submitted and get the data from <em>abc.txt</em> file when we press the enter key in the input element.</p>
+
+<p>But if the form has multiple input elements, the form can not be submitted automatically. like below codes.</p>
+
+<pre><code class="html">&lt;form action="/abc.txt"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;label for="age"&gt;Age:&lt;/label&gt;
+    &lt;input type="text" id="age" name="age"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<h4>Implicit submission situation 2</h4>
+
+<p>For multiple input elements in the form situation, the form can not be submitted automatically. So how to make it implicit submission. This is second situation we are introducing.</p>
+
+<p>If the form has <em>submit</em> type element(input, button), the form will be submitted when pressing the enter key in the input element regardless of how many input elements in this form.</p>
+
+<pre><code class="html ">&lt;form action="/abc.txt"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;label for="age"&gt;Age:&lt;/label&gt;
+    &lt;input type="text" id="age" name="age"&gt;
+    &lt;input type="submit"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>If you need to run some JavaScript before the form is submitted (validation, data manipulation, etc), do it in a <code>submit</code> event handler on the form, not a <code>click</code> handler on a button.</p>
+
+<h4>How to suppress it</h4>
+
+<p>The solution is very simple, just prevent the event trigger when pressing the enter key. So we can deal with it in the <code>keypress</code> event handler.</p>
+
+<pre><code class="html">    &lt;form action="/abc.txt"&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name"&gt;
+        &lt;label for="age"&gt;Age:&lt;/label&gt;
+        &lt;input type="text" id="age" name="age"&gt;
+        &lt;input type="submit"&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+        (function(){
+            var age = document.getElementById('age');
+            age.addEventListener('keypress',function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            });
+        }());
+    &lt;/script&gt;
+</code></pre>
+
+<p>Note, the code of enter key is 13. Using <code>event.preventDefault()</code> to stop the form submission when the keycode is 13. And for above codes, we only suppress the age input element, so when pressing enter key in the name input element, the form still is submitted.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTML5 - New Common Elements]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements/"/>
+    <updated>2015-03-03T17:13:53+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements</id>
+    <content type="html"><![CDATA[<p>In <code>HTML5</code>, It adds a mount of elements, these elements are more easier to present the document in browser.</p>
+
+<h3>Structure element</h3>
+
+<p>Before <code>HTML5</code>, we just use <code>div</code> tag to act as the <code>Document Structure Element</code>, but now the <code>HTML5</code> supports more elements like <code>section</code>, <code>article</code>, <code>nav</code>, <code>aside</code>, <code>header</code>, <code>footer</code> and so on.</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h5>article</h5>
+
+<p><code>article</code> use to present an entire, independent article. We should use it when we need to present a entire, independent document content. <br/>
+It can contain <code>header</code> tag to define the header of the article.    <br/>
+It can contain <code>footer</code> tag to define the footer of the article.  <br/>
+It can contain <code>section</code> tag to split content to multiple paragraphs.   <br/>
+Also, it can be nested by itself.</p>
+
+<h5>section</h5>
+
+<p><code>section</code> splits the page content to multiple blocks, and it usually contains title and content. And here the title stand for <code>h1</code>&hellip;.<code>h6</code> tag. <code>section</code> can contains <code>article</code> and <code>section</code> tag.</p>
+
+<h5>nav</h5>
+
+<p><code>nav</code> tag use to define the navigation bar, include the top of page, the left or right side, and the bottom and so on.</p>
+
+<h5>aside</h5>
+
+<p>It&rsquo;s recommend to use it to present the side of page with <code>CSS</code>.</p>
+
+<h5>header</h5>
+
+<p>The <code>header</code> tag use to define the header of the <code>article</code>, and it can contain multiple title tags (<code>h1</code>&hellip;.<code>h6</code>) with <code>hgroup</code> tag. And also the common tags like <code>p</code>, <code>span</code> can be nested in it.</p>
+
+<h5>hgroup</h5>
+
+<p>It&rsquo;s mainaly use for including multiple title tag.</p>
+
+<h5>footer</h5>
+
+<p>The footer of page, use to contains foot information, copy right and author related stuff.</p>
+
+<h5>figure</h5>
+
+<p><code>figure</code> tag express an independant image area, it may contain one or more images， in addition to this tag can contain a new tag <code>figcaption</code> to express the title of images.</p>
+
+<h3>Semantic related elemnent</h3>
+
+<h5>mark</h5>
+
+<p>It is mark some information need to be noticed.</p>
+
+<h4>time</h4>
+
+<p>It presents some content want to be time, date. Setting the <code>datetime</code> attribute&rsquo;s value to present which date formatter you want.</p>
+
+<h4>Special function element</h4>
+
+<h4>meter</h4>
+
+<p><code>meter</code> tag express an as known maxium and minimum counter. It has many attributes to set. <code>value</code>, <code>min</code>, <code>max</code>, <code>low</code>, <code>high</code>, <code>optimum</code>. <br/>
+&#8220;` html</p>
+
+<div>
+    current speed of car: <meter id="meter" max="200" min="0" low="0" high="180" value="150">kilometre/hour
+</div>
+
+
+<pre><code><img src="/assets/images/meter-tag.png" width="300" height="80">
+
+####progress
+`progress` tag use to express an progress bar. It has two attributes, one is `max`, another is `value`.
+</code></pre>
+
+<div>
+   the progress of un-finished task: <progress id="progress" max="1" value="0.4"/>
+</div>
+
+
+<p>&#8220;`
+<img src="/assets/images/progress-tag.png" width="350" height="100"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTML5 - New Common Attributes]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/03/02/html5-new-common-attributes/"/>
+    <updated>2015-03-02T20:33:14+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/03/02/html5-new-common-attributes</id>
+    <content type="html"><![CDATA[<p><code>HTML5</code> adds new common attributes for original <code>HTML</code> Tag, and these attributes enhances the <code>HTML</code> elements&rsquo;s function.</p>
+
+<h3>contentEditable</h3>
+
+<p>The <code>contentEditable</code> attribute supports most tags. The browser allows user edits the content of element if this attribute is set to true. These elements is not like input or textarea tags. They are not support editable content like table, div, span and so on these tags.</p>
+
+<!-- more -->
+
+
+<p><code>contentEditable</code> attribute can be inherited by children tags. If the contentEditable is true, all children tags&rsquo;s contentEditable will be true except we define it to false.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+    &lt;title&gt;contentEditable&lt;/title&gt;
+    &lt;style&gt;
+        div {
+            width: 240px;
+            height: 150px;
+        }
+        table {
+            width:inherit;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        table &gt; tr {
+            background-color: blue;
+        }
+
+        .myDiv {
+            width:inherit;
+            height: 30px;
+            line-height: 30px;
+            margin-top:10px;
+            border: 1px solid black;
+        }
+    &lt;/style&gt;
+    &lt;script type="text/javascript"&gt;
+        var turnOnContentEditable = function() {
+            var target = document.getElementById("target");
+            target.contentEditable = true;
+        };
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;div id="target" contentEditable="false"&gt;
+       &lt;table border="1"&gt;
+           &lt;tr&gt;
+               &lt;td&gt;Java&lt;/td&gt;
+               &lt;td&gt;CSharp&lt;/td&gt;
+           &lt;/tr&gt;
+           &lt;tr&gt;
+               &lt;td&gt;Javascript&lt;/td&gt;
+               &lt;td&gt;Python&lt;/td&gt;
+           &lt;/tr&gt;
+       &lt;/table&gt;
+       &lt;div class="myDiv"&gt;
+           This is Div Tag
+       &lt;/div&gt;
+   &lt;/div&gt;
+    &lt;input type="button" onclick="turnOnContentEditable();"value="Turn On Edit Mode"&gt;&lt;/input&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>The root div is can&rsquo;t be edited by default. when we click button to turn on contentEditable attribute. all children tags of this tag can be edited.</p>
+
+<p><code>contentEditable</code> attribute is false: <br/>
+<img src="/assets/images/contentEditable-before.png" width="300" height="350"></p>
+
+<p><code>contentEditable</code> attribute is true: <br/>
+<img src="/assets/images/contentEditable-after.png" width="300" height="350"></p>
+
+<h3>designMode</h3>
+
+<p><code>designMode</code> attribute is actually entire document&rsquo;s <code>contentEditable</code>. If we turn on the <code>designMode</code> attribute of the entire page, all the elements which supports <code>contentEditable</code> attributes can be edited. It is false by default.</p>
+
+<p>We can just use javascript to turn on the document&rsquo;s <code>designMode</code>.</p>
+
+<pre><code class="javascript">document.designMode = "on";
+</code></pre>
+
+<h3>hidden</h3>
+
+<p><code>HTML5</code> supports <code>hidden</code> attribute for all elements. The <code>hidden</code> attribute can be set to &lsquo;false&rsquo; and &lsquo;true&rsquo; both values. The browser doesn&rsquo;t display the element when <code>hidden = 'true'</code>.</p>
+
+<p>The <code>hidden = 'true'</code> actually like we write <code>display:none</code> is <code>CSS</code> file. And also we can get its value by <code>hidden</code>.</p>
+
+<h3>spellcheck</h3>
+
+<p><code>HTML5</code> add new attributes <code>spellcheck</code> for editable elements like <code>input</code>,<code>textarea</code>, &hellip; The <code>spellcheck</code> can be set to &lsquo;true&rsquo;, &lsquo;false&rsquo; both values. The browser will check the content user input and prompt error message for spell error words when it is set to &lsquo;true&rsquo;.</p>
+
+<pre><code class="html">&lt;input type="text" spellcheck="true"/&gt;
+</code></pre>
+
+<p><img src="/assets/images/spellcheck.png" width="300" height="80"></p>
+
+<blockquote><p><em>Note: Supports <code>spellcheck</code> attribute&rsquo;s browsers include <code>Chrome</code>, <code>Opera</code>, <code>Safari</code>, the <code>IE</code>, <code>FireFox</code> doesn&rsquo;t support it for now.</em></p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Css | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Conditional Stylesheets for IE Version]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version/"/>
+    <updated>2015-01-28T17:35:06+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version</id>
+    <content type="html"><![CDATA[<p>The tool of choice for fighting IE problems is the <code>conditional stylesheet</code>. IE provides comment tags, supported all the way up to the current IE 8 to target specific versions, as well as greater-than/less-than stuff for targeting multiple versions at once.</p>
+
+<h3>Why use conditional stylesheets?</h3>
+
+<ul>
+<li>You got problems, they need fixin&#8217;</li>
+<li>Keeps your code hack-free and valid</li>
+<li>Keeps your main stylesheet clean</li>
+<li>Perfectly acceptable technique, sanctioned by Microsoft</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>And remember, these conditional tags don&rsquo;t have to be used only for CSS. You could load JavaScript, or even use them down in the content of your site to display special IE-specific messages.</p>
+
+<h3>The Code</h3>
+
+<p>This would go in your <head> with all the other regular CSS \<link>ed CSS files. The opening and closing tags should be familiar, that&rsquo;s just regular ol&#8217; HTML comments. Then between the brackets, &ldquo;IF&rdquo; and &ldquo;IE&rdquo; should be fairly obvious. The syntax to note is &ldquo;!&rdquo; stand for &ldquo;not&rdquo;, so !IE means &ldquo;not IE&rdquo;. gt means &ldquo;greater than&rdquo;, gte means &ldquo;greater than or equal&rdquo;, lt means &ldquo;less than&rdquo;, lte means &ldquo;less than or equal.&rdquo;</p>
+
+<blockquote><p><strong>Note that IE 10 and up DO NOT support conditional comments at all.</strong></p></blockquote>
+
+<p>Target ALL VERSIONS of IE
+&#8220;` html</p>
+
+<!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="all-ie-only.css" />
+<![endif]-->
+
+
+<pre><code>Target everything EXCEPT IE
+</code></pre>
+
+<!--[if !IE]><!-->
+
+
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="not-ie.css" /&gt;
+</code></pre>
+
+<p> <!--<![endif]-->
+<code>
+Target IE 7 ONLY
+</code> html</p>
+
+<!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie7.css">
+<![endif]-->
+
+
+<pre><code>Target IE 6 ONLY
+</code></pre>
+
+<!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="ie6.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 5 ONLY
+</code></pre>
+
+<!--[if IE 5]>
+    <link rel="stylesheet" type="text/css" href="ie5.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 5.5 ONLY
+</code></pre>
+
+<!--[if IE 5.5000]>
+<link rel="stylesheet" type="text/css" href="ie55.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 6 and LOWER
+</code></pre>
+
+<!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie6-and-down.css" />
+<![endif]-->
+
+
+<!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="ie6-and-down.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 7 and LOWER
+</code></pre>
+
+<!--[if lt IE 8]>
+    <link rel="stylesheet" type="text/css" href="ie7-and-down.css" />
+<![endif]-->
+
+
+<!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie7-and-down.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 8 and LOWER
+</code></pre>
+
+<!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="ie8-and-down.css" />
+<![endif]-->
+
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" type="text/css" href="ie8-and-down.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 6 and HIGHER
+</code></pre>
+
+<!--[if gt IE 5.5]>
+    <link rel="stylesheet" type="text/css" href="ie6-and-up.css" />
+<![endif]-->
+
+
+<!--[if gte IE 6]>
+    <link rel="stylesheet" type="text/css" href="ie6-and-up.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 7 and HIGHER
+</code></pre>
+
+<!--[if gt IE 6]>
+    <link rel="stylesheet" type="text/css" href="ie7-and-up.css" />
+<![endif]-->
+
+
+<!--[if gte IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie7-and-up.css" />
+<![endif]-->
+
+
+<pre><code>Target IE 8 and HIGHER
+</code></pre>
+
+<!--[if gt IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie8-and-up.css" />
+<![endif]-->
+
+
+<!--[if gte IE 8]>
+    <link rel="stylesheet" type="text/css" href="ie8-and-up.css" />
+<![endif]-->
+
+
+<p>&#8220;`</p>
+
+<p><em>Note: The original artical you can see <a href="http://css-tricks.com/how-to-create-an-ie-only-stylesheet/">here</a></em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CSS Tricks for IE6,IE7,IE8,IE9]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/"/>
+    <updated>2015-01-28T16:35:34+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9</id>
+    <content type="html"><![CDATA[<p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for <code>IE6</code>, <code>IE7</code>, <code>IE8</code>, <code>IE9</code>. This is very helpful for you.</p>
+
+<pre><code class="css">#ie-tricks{
+
+    /* All browsers */
+    color:red;
+
+    /* All browsers but IE6 */
+    color:red !important;
+
+    /* Only works in IE6 */
+    _color:red;
+
+    /* IE6, IE7 */ 
+    *color:red; 
+
+    /* Only works in IE7*/
+    +color:red;
+
+    /* Only works in IE7 */
+    *+color:red;
+
+    /* IE6, IE7, IE8, IE9 */ 
+    color:red\9;
+
+    /* IE8, IE9 */ 
+    color:red\0; 
+
+    /*Only works in IE9*/
+    color:red\9\0;
+
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

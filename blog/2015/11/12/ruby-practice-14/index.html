@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby修炼之道(14) - Stonefishy Blog</title>
+  <meta name="author" content="Yu">
+
+  
+  <meta name="description" content="字符串的创建 普通创建 Ruby中使用&ldquo; &rdquo;或&lsquo; &rsquo;符号来创建字符串，在字符串中也可以包含表达式#{}，这个表达式被称之为内嵌表达式。如果字符串中需要包含"&ldquo;或者'&lsquo;等字符时，则可以通过转义字符\来实现。 1
+2
+3
+4
+5 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby修炼之道(14)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-12T17:09:35+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:09 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>字符串的创建</h4>
+
+<h5>普通创建</h5>
+
+<p>Ruby中使用<strong>&ldquo; &rdquo;</strong>或<strong>&lsquo; &rsquo;</strong>符号来创建字符串，在字符串中也可以包含表达式<strong>#{}</strong>，这个表达式被称之为内嵌表达式。如果字符串中需要包含&#8221;&ldquo;或者&#8217;&lsquo;等字符时，则可以通过转义字符\来实现。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;this is a string&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s1">&#39;this is also a string&#39;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;string with argument&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;this is a </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello &#39;string&#39;&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello </span><span class="se">\&quot;</span><span class="s2">string</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<h5>%Q或%q创建</h5>
+
+<p>针对字符串中包含&#8221;&ldquo;或&#8217;&lsquo;等字符的，建议采用<strong>%Q</strong>或者<strong>%q</strong>来创建字符串，这样更加清晰明了。使用<strong>%Q</strong>相当于<strong>&rdquo; &ldquo;</strong>创建字符串，<strong>%q</strong>相当于<strong>&rsquo; &lsquo;</strong>创建字符.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="sx">%Q(this string created by %Q)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="sx">%q(this string created by %q)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="sx">%Q(contains &#39;special&#39; &quot;character&quot; directly)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="sx">%q(contains &#39;special&#39; &quot;character&quot; directly)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>Here Document创建，</h5>
+
+<p>对于字符串中包含换行符的字符串，使用Here Document语法来创建极为方便。Here Document是Unix中使用Shell的一种语法，通常用<strong>&lt;&lt;</strong>来创建字符串。其语法结构如下：</p>
+
+<pre><code>&lt;&lt;"结束标识符"
+字符串内容
+结束标识符
+</code></pre>
+
+<p><em>注意：结束标识符可以使用&#8221; &ldquo;或&#8217; &lsquo;来定义，使用&rdquo; &ldquo;时，字符串内可以使用转义字符和内嵌表达式，而&rsquo; &lsquo;则不会，只会原封不动的显示所有字符。</em></p>
+
+<p>一般使用<em>EOF(End of File)</em>或<em>EOB(End of Block)</em>等作为结束标识符。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">EOB</span>
+</span><span class='line'><span class="sh">the first string</span>
+</span><span class='line'><span class="sh">the second string in a new line</span>
+</span><span class='line'><span class="sh">ok, I also get the third string</span>
+</span><span class='line'><span class="no">EOB</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span> <span class="n">str</span>      <span class="c1">#=&gt;the string has three lines, just like defined.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果字符串中存在缩进，可以使用<strong>&lt;&lt;-</strong>来替代<strong>&lt;&lt;</strong>，这样将会保持字符串定义中的缩进。</p>
+
+<h5>使用<code></code></h5>
+
+<p>通过使用<strong>`命令`</strong>, 可以创建命令的标准输出并将其转换为字符串对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="sb">`ls -l`</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>       
+</span><span class='line'><span class="c1">#=&gt; </span>
+</span><span class='line'><span class="n">total</span> <span class="mi">8</span>
+</span><span class='line'><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">yushi</span>  <span class="n">staff</span>  <span class="mi">634</span> <span class="no">Nov</span> <span class="mi">16</span> <span class="mi">17</span><span class="p">:</span><span class="mi">12</span> <span class="n">string_create</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>使用printf和sprintf</h5>
+
+<p><strong>printf</strong>与<strong>sprintf</strong>均是可以输出指定格式的字符串，不同之处在于printf会将字符串直接输出在控制台上，而sprintf则会将字符串转为为字符串对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">number</span> <span class="o">=</span> <span class="mi">123</span>
+</span><span class='line'><span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>      <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%4d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>     <span class="c1">#=&gt;  123</span>
+</span><span class='line'><span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%04d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>    <span class="c1">#=&gt; 0123</span>
+</span><span class='line'><span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%+d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>     <span class="c1">#=&gt; +123</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s2">&quot;Hello,%s&quot;</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>        <span class="c1">#=&gt; &quot;Hello,Ruby&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s2">&quot;Hello,%8s&quot;</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>       <span class="c1">#=&gt; &quot;Hello,    Ruby&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s2">&quot;Hello,%-8s&quot;</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>      <span class="c1">#=&gt; &quot;Hello,Ruby    &quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>字符串长度</h4>
+
+<p>用<strong>length</strong>方法和<strong>size</strong>方法获取字符串长度。<strong>bytesize</strong>方法可以获取字节长度。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;This is a string&quot;</span>
+</span><span class='line'><span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;字符串&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#get the length of a string object</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">length</span>          <span class="c1">#=&gt; 16</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">size</span>            <span class="c1">#=&gt; 16</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str2</span><span class="o">.</span><span class="n">length</span>     <span class="c1">#=&gt; 3</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#get the bytesize of a string </span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">bytesize</span>        <span class="c1">#=&gt; 16</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str2</span><span class="o">.</span><span class="n">bytesize</span>       <span class="c1">#=&gt; 9</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>判断字符串是否为空，可用<strong>empty?</strong>方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#judge the string if is empty</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">empty?</span>            <span class="c1">#=&gt; true</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;string&quot;</span><span class="o">.</span><span class="n">empty?</span>  <span class="c1">#=&gt; false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>字符串的索引与数组的索引用法一样，可参照使用</em></p>
+
+<h5>字符串的连接</h5>
+
+<p>字符串的连接有以下两种情况： <br/>
+- 将字符串合并为一个新的字符串 <br/>
+- 扩展原有字符串</p>
+
+<p>使用<strong>+</strong>可以合并两个字符串时，会创建一个新的字符串。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#using &#39;+&#39;, will create a new string object</span>
+</span><span class='line'><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;hello &quot;</span>
+</span><span class='line'><span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+</span><span class='line'><span class="n">str3</span> <span class="o">=</span> <span class="n">str1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span>             <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span>                  <span class="c1">#=&gt; hello</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span> <span class="o">=</span> <span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span>    <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span>                  <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str3</span>                  <span class="c1">#=&gt; hello</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果只想扩展原有字符串，可以使用<strong>&lt;&lt;</strong>或<strong>concat</strong>方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#using &#39;&lt;&lt;&#39;, will change the original string object</span>
+</span><span class='line'><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;hello &quot;</span>
+</span><span class='line'><span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+</span><span class='line'><span class="n">str3</span> <span class="o">=</span> <span class="n">str1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span><span class="o">&lt;&lt;</span><span class="n">str2</span>                <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span>                  <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str3</span>                  <span class="c1">#=&gt; hello world</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#using &#39;concat&#39; method, also will change the original string object</span>
+</span><span class='line'><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;hello &quot;</span>
+</span><span class='line'><span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+</span><span class='line'><span class="n">str3</span> <span class="o">=</span> <span class="n">str1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span><span class="o">.</span><span class="n">concat</span> <span class="n">str2</span>     <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str1</span>                  <span class="c1">#=&gt; hello world</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str3</span>                  <span class="c1">#=&gt; hello world</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注意：一般情况下使用<strong>&lt;&lt;</strong>和<strong>concat</strong>方法更有效率，但是也可以根据情况而定</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-11-12T17:09:35+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:09 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/" title="Previous Post: How to make the octopress adapt OS X EI Capitan">&laquo; How to make the octopress adapt OS X EI Capitan</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/11/17/ruby-practice-15/" title="Next Post: Ruby修炼之道(15)">Ruby修炼之道(15) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Yu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

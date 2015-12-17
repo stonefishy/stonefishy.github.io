@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tools | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/tools/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2015-12-14T22:01:06+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Yu]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using Nginx in Mac OS X]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
+    <updated>2015-12-05T11:51:04+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
+    <content type="html"><![CDATA[<h4>Introduction</h4>
+
+<p><strong>Nginx</strong> is a open source quite lightweight HTTP server which is written by Russian <em>Igor Sysoev</em>, the pronunciation is &ldquo;engine X&rdquo;. It&rsquo;s a high performance HTTP and reverse proxy server, and also it is a IMAP/POP3/SMTP proxy server。</p>
+
+<p>There are lots of website using Nginx in China, like Sina, Tencent, 163, Discuz and so on. The Nginx has a very high performance due to event driven way, and also it is a high performance reverse proxy, load balancing.</p>
+
+<!-- more -->
+
+
+<p>The features of Nginx Http server are below:</p>
+
+<p>1.dealing with static file, indexing file and also automatically indexing.</p>
+
+<p>2.accelerating reverse proxy server,load balancing</p>
+
+<p>3.FastCGI, Caching, Security</p>
+
+<p>4.Support SSL and TLS</p>
+
+<p>From investigation, the Nginx can support about 50,000 concurrence request connection, and also support hot deploy, even running 7*24 hours uninterrupted.</p>
+
+<h4>Installing</h4>
+
+<p>So, how to install it on Mac OS X. Let&rsquo;s assume you have installed the <em>Home brew</em>, using brew to install the nginx with command:</p>
+
+<pre><code>brew install nginx
+</code></pre>
+
+<h4>Starting And Runing</h4>
+
+<p>After install, we can use below command to run it:</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>If you get the failed message which is &ldquo;[emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)&rdquo;. You have to kill the progress which is running with that address, it usually is Apache. And also there is another way, changing the port number, we will introduce later.</p>
+
+<p>The nginx running success, you will get the below page when you access the <a href="http://localhost:8080">http://localhost:8080</a></p>
+
+<p><img src="/assets/images/nginx-welcome.png" alt="nginx, devops" /></p>
+
+<p>There are several commands to start, stop nginx and reload configuration.</p>
+
+<pre><code class="">nginx -s stop           #=&gt; fast shutdown
+
+nginx -s quit               #=&gt; graceful shutdown
+
+nginx -s reload         #=&gt; reloading the configuration file
+
+nginx -s reopen         #=&gt; reopening the log files
+</code></pre>
+
+<h4>Simple Configuration</h4>
+
+<p>The default place of nginx.conf on Mac after installing with brew is:</p>
+
+<pre><code class="">/usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>Let&rsquo;s change the port number in this file. First, we need to stop the nginx.</p>
+
+<pre><code>sudo nginx -s stop
+</code></pre>
+
+<p>And then open that file, you will see the below server configuration section. It includes the listen, server_name, location/root, location/index. location/root is your website root folder, and index is your website first page file.</p>
+
+<pre><code>server {
+listen       8080;          
+server_name  localhost;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    root   html;
+    index  index.html index.htm;
+}
+</code></pre>
+
+<p>okay, let&rsquo;s change the port number from 8080 to 80, and then run it again</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>Access it with <a href="http://localhost">http://localhost</a>, the 80 port number is http default port number, so we don&rsquo;t need to append it into url.</p>
+
+<p>Now, let&rsquo;s put our blog website in the nginx, to do so, we need to reference the location/root to our blog website folder.</p>
+
+<pre><code class="">server {
+listen       80;            
+server_name  localhost;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    root   /Users/yushi/Codes/Blog/stonefishy.github.io/public;;
+    index  index.html index.htm;
+}
+</code></pre>
+
+<p>let&rsquo;s running it again with clicking <a href="http://localhost">http://localhost</a>. Woow, cool, very nice, we can access our blog with nignx.</p>
+
+<p>This is a just simple usage of nginx, we will talk about more later.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
+    <updated>2015-11-11T22:46:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
+    <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
+
+<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
+
+<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+Errno::ENOENT: No such file or directory - compass
+/Users/user/git/octopress/Rakefile:85:in spawn
+/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
+Tasks: TOP =&gt; preview
+(See full trace by running task with --trace)
+</code></pre>
+
+<!-- more -->
+
+
+<p>Why we get this error, this error caused by rake command, so that means maybe it is ruby version problem. let&rsquo;s take a look it.</p>
+
+<pre><code>~-&gt; $ ruby -v
+~-&gt; ruby 2.0.0p645 (2015-04-13 revision 50299) [universal.x86_64-darwin15]
+</code></pre>
+
+<p>The ruby newest version is 2.2.3. Ok, let&rsquo;s upgrade it. There are two ways to do it.</p>
+
+<h4>Using rbenv</h4>
+
+<p>If you don&rsquo;t have rbenv in your local machine. You need to install it firstly.  <br/>
+1.Go to <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a> to get it. <br/>
+2.install ruby-2.2.3</p>
+
+<pre><code>rbenv install 2.2.3
+</code></pre>
+
+<p>3.In the root of your octopress blog, put below commands</p>
+
+<pre><code>rbenv local 2.2.3
+
+gem install bundler
+
+bundle install
+</code></pre>
+
+<h4>Using RVM</h4>
+
+<p>1.Clear git cache</p>
+
+<pre><code>rm -rf /usr/local/.git
+</code></pre>
+
+<p>2.Install RVM</p>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
+
+<p>3.Install Ruby 2.2.3</p>
+
+<pre><code>rvm install ruby-2.2.3
+
+rvm use 2.2.3
+
+rvm rubygems latest
+</code></pre>
+
+<p>After these steps, make sure you&rsquo;re using Ruby 2.2.3
+4.Go to the root of the your octopress blog</p>
+
+<pre><code>gem install bundler
+
+bundle install
+</code></pre>
+
+<p>Both ways can bring octopress back.</p>
+
+<p><em>Reference: <a href="https://github.com/imathis/octopress/issues/1749">https://github.com/imathis/octopress/issues/1749</a></em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using TSD to Improve Javascript Intellisense of IDE]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/"/>
+    <updated>2015-07-30T23:27:10+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide</id>
+    <content type="html"><![CDATA[<p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
+
+<p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
+
+<p><code>TypeScipt</code> is also like <code>CoffeeScript</code>, it can be compiled to <code>JavaScript</code>. It is developed by Microsoft company. To See the TypeScript, go to this official <a href="http://www.typescriptlang.org/">website</a>.</p>
+
+<!-- more -->
+
+
+<p>If you used the <code>NPM</code> before, I believe you also can use <code>TSD</code> quickly. The <code>TSD</code> usage is very similar with <code>NPM</code>. And also it has <code>tsd.json</code> file to contains javascript libraries type definitions which you want to make them intellisense, just like <code>package.json</code> file of <code>NPM</code>.</p>
+
+<p>To install it, we can using <code>NPM</code> command.</p>
+
+<pre><code>npm install tsd -g
+</code></pre>
+
+<p>Use below command to search the DefinitelyTyped file of Javascript library.</p>
+
+<pre><code>tsd query &lt;javascript library name&gt; -i -r
+</code></pre>
+
+<p>for example, we search the definitelyTyped file of angular:</p>
+
+<pre><code>tsd query angular -i -r
+</code></pre>
+
+<p>this will print below information:</p>
+
+<pre><code>- angularjs / angular
+   -&gt; jquery &gt; jquery
+    v latest
+    v 1.0.0
+    v 1.2.0
+   &gt;&gt; Angular JS 1.4            : angularjs.org
+    @ Diego Vilar               : github.com/diegovilar
+    &lt; angular (external module)
+</code></pre>
+
+<p>To install the definitelyTyped file into your project. Just follow below commands:</p>
+
+<pre><code>tsd install angular --save
+</code></pre>
+
+<p>also like using NPM to install the package. For tsd, this will create <code>tsd.json</code> file firstly, and then create <code>typing</code> directory, put the related definitelytyped file which is the <code>.d.ts</code> extension TypeScript file.</p>
+
+<p>The example of <code>tsd.json</code> file:</p>
+
+<pre><code class="json">{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "383a3bc8e654a77eb8bd07d9feb7208735dcb6fa"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "383a3bc8e654a77eb8bd07d9feb7208735dcb6fa"
+    }
+  }
+}
+</code></pre>
+
+<p>The example of <code>tsd.d.ts</code> file, this file is reference the definitelytyped file. and it under the <code>typings</code> directory.</p>
+
+<pre><code class="javascript">    /// &lt;reference path="angularjs/angular.d.ts" /&gt;
+    /// &lt;reference path="jquery/jquery.d.ts" /&gt;
+</code></pre>
+
+<p>See below screenshots of files or directories:</p>
+
+<p><img src="/assets/images/tsd-file-tree.png" width="300"></p>
+
+<p>Go to <a href="https://github.com/DefinitelyTyped/tsd">https://github.com/DefinitelyTyped/tsd</a> to see the tsd command details.</p>
+
+<p>And TSD has supports many javascript libraries, you can search them which you want in <a href="http://definitelytyped.org/tsd/">definitelytyped repositorty</a>.</p>
+
+<p>Currently, I found this is only work on <a href="https://code.visualstudio.com/">Visual Studio Code</a>, The <code>VSCode</code> is cross platform web develop tools, include Linux, Windows and Mac OS.</p>
+
+<p>To make the VSCode intellisense for javascript. you need to add tsd.d.ts file reference codes to your javascript file, like below.</p>
+
+<pre><code class="javascript"> /// &lt;reference path="../../typings/tsd.d.ts"/&gt;
+</code></pre>
+
+<p>Okay, lets test the <code>underscore</code> javascript library, first install definitely typed file with TSD, and then put the reference code to the js file which is you are working.</p>
+
+<pre><code class="javascript">/**
+ * Created by yushi on 30/07/15.
+ */
+
+/// &lt;reference path="../../typings/tsd.d.ts"/&gt;
+
+function sayHello(name){
+    return "Hello " + name;
+}
+</code></pre>
+
+<p>So when you invoke the undercore functions, the IDE will intellisense the method.</p>
+
+<p><img src="/assets/images/tsd-intellisense.png" alt="intellisense" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Cobalt2 Theme for iTerm2 and ZSH]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/"/>
+    <updated>2015-06-04T16:40:06+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh</id>
+    <content type="html"><![CDATA[<p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
+The answer is yes, we can. Let me show you screenshots firstly. <br/>
+<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
+
+<!--more -->
+
+
+<p>But for Mac OS X, we should use <code>iTerm2</code> instead of system default terminal. The <code>iTerm2</code> is power than the system default. It is a terminal  emulator for Mac OS X that does amazing things. And it has many feature you never knew you always wanted. just like me. So don&rsquo;t hesitate to go to offical website <a href="https://www.iterm2.com/f">iTerm2</a> and download it.</p>
+
+<p>For <code>ZSH</code>, it&rsquo;s open source and very cool thing to decorate your terminal. If you don&rsquo;t have yet. I strongly recommand you install it for your terminal. Go to <a href="http://ohmyz.sh/">Oh My Zsh</a> offical website to see how to install.</p>
+
+<p>Okay, after you already prepare these tools, go to <a href="https://github.com/wesbos/Cobalt2-iterm">Cobalt2-item</a> and follow step to install it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
+    <updated>2015-06-04T16:01:24+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
+    <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<!-- more -->
+
+
+<h4>Installation</h4>
+
+<ol>
+<li>Open package control via pressing <code>Command + Shift + P</code> (mac os) or <code>Ctrl + Shift + P</code> (windows) to open the command window, and then type <code>Install Package</code>.</li>
+<li>Search for <code>Cobalt2</code> and hit <code>enter</code> key.</li>
+<li>Once you installed finish, open <code>Preference</code> -> <code>Settings - User</code> and add the below lines:</li>
+</ol>
+
+
+<pre><code>"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+"theme": "Cobalt2.sublime-theme",
+</code></pre>
+
+<p><code>color_scheme</code> defines how the code looks and <code>theme</code> defines how the sidebar, tabs, search, command palette work.</p>
+
+<p><em>Note: the sidebar icons only supports  the latest version of sublime text3.</em></p>
+
+<h4>Screenshots</h4>
+
+<p>There have some screenshots of Cobalt2 theme from <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
+
+<p><img src="/assets/images/sublime-cobalt2-theme.png" alt="cobalt2-theme" /></p>
+
+<p>So, it&rsquo;s really cool. Hope you like it.</p>
+]]></content>
+  </entry>
+  
+</feed>
