@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-12-14T22:01:06+08:00</updated>
+  <updated>2015-12-17T14:24:58+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,337 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(17)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
+    <updated>2015-12-17T09:46:29+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
+    <content type="html"><![CDATA[<h4>正则表达式(Regexp)</h4>
+
+<p>Ruby中的正则表达式用<strong>Regexp</strong>类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。</p>
+
+<h5>创建</h5>
+
+<p>其创建方式有多种：
+1.使用<strong>/ /</strong> 把字符串括起来，可以简单地创建出正则表达式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg1</span> <span class="o">=</span> <span class="sr">/Ruby/</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>2.使用<strong>Regexp.new(&ldquo;字符串&rdquo;)</strong>创建正则表达式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.使用<strong>%r</strong>创建正则表达式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">%r(Ruby)</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">%r&lt;Ruby&gt;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">%r|Ruby|</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">%r!Ruby!</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg</span><span class="o">.</span><span class="n">class</span>       <span class="c1">#=&gt; Regexp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>匹配</h5>
+
+<p>Ruby的正则表达式匹配使用<strong>=~</strong>符号，如果匹配成功返回匹配字符串的位置，否则返回nil。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/R..y/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;regexp of Ruby&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">matched</span> <span class="o">=</span> <span class="n">reg</span> <span class="o">=~</span> <span class="n">str</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">matched</span>        <span class="c1">#=&gt; 10</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">unmatched</span> <span class="o">=</span> <span class="n">reg</span> <span class="o">=~</span> <span class="s2">&quot;test&quot;</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">unmatched</span>         <span class="c1">#=&gt; nil</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">matched</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;matched&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;unmatched&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此处并不过多的介绍正则表达式的语法规则，具体详细语法请参见<a href="http://regexlib.com/CheatSheet.aspx">http://regexlib.com/CheatSheet.aspx</a></p>
+
+<h5>转义</h5>
+
+<p>对特殊字符的转义方式有两种，使用<strong>\</strong>字符和使用<strong>Regexp#quote</strong>方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#using \ symbol</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/ruby\*regexp/</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg</span> <span class="o">=~</span> <span class="s2">&quot;ruby*regexp&quot;</span>     <span class="c1">#=&gt; 0</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">reg</span> <span class="o">=~</span> <span class="s2">&quot;rubyregexp&quot;</span>          <span class="c1">#=&gt; nil</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#using Regexp#quote method</span>
+</span><span class='line'><span class="n">reg1</span> <span class="o">=</span> <span class="sr">%r(ruby*regexp)</span>
+</span><span class='line'><span class="n">reg2</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Regexp</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s2">&quot;ruby*regexp&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;ruby*regexp&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="n">str</span>         <span class="c1">#=&gt; nil</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">reg2</span> <span class="o">=~</span> <span class="n">str</span>         <span class="c1">#=&gt; 0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>选项</h5>
+
+<p>在正则表达式的后面添加特定的字符如<strong>i</strong>, <strong>x</strong>, <strong>m</strong>等时，匹配后的规则会有点变化</p>
+
+<p><strong>i</strong>   Regexp::IGNORECASE  忽略字符串大小写  <br/>
+<strong>x</strong>   Regexp::EXTENDED        忽略字符串中的空白字符   <br/>
+<strong>m</strong>   Regexp::MULTILINE   匹配多行字符串</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#using i optional symbol to ignore the cap</span>
+</span><span class='line'><span class="n">reg1</span> <span class="o">=</span> <span class="sr">/test String/i</span>
+</span><span class='line'><span class="n">reg2</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;test string&quot;</span><span class="p">,</span> <span class="no">Regexp</span><span class="o">::</span><span class="no">IGNORECASE</span><span class="p">)</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="s2">&quot;test string&quot;</span>     <span class="c1">#=&gt; 0</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="s2">&quot;test string&quot;</span>     <span class="c1">#=&gt; 0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#using x optional symbol to ignore the white space symbol</span>
+</span><span class='line'><span class="n">reg1</span> <span class="o">=</span> <span class="sr">/test string/x</span>
+</span><span class='line'><span class="n">reg2</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;test string&quot;</span><span class="p">,</span> <span class="no">Regexp</span><span class="o">::</span><span class="no">EXTENDED</span><span class="p">)</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="s2">&quot;teststring&quot;</span>      <span class="c1">#=&gt; 0</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="s2">&quot;teststring&quot;</span>      <span class="c1">#=&gt; 0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#using m optional symbol to match multiline</span>
+</span><span class='line'><span class="n">reg1</span> <span class="o">=</span> <span class="sr">/test\nstring/m</span>
+</span><span class='line'><span class="n">reg2</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;test</span><span class="se">\n</span><span class="s2">string&quot;</span><span class="p">,</span> <span class="no">Regexp</span><span class="o">::</span><span class="no">MULTILINE</span><span class="p">)</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="s2">&quot;test</span><span class="se">\n</span><span class="s2">string&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">reg1</span> <span class="o">=~</span> <span class="s2">&quot;test</span><span class="se">\n</span><span class="s2">string&quot;</span>      <span class="c1">#=&gt; 0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>捕获</h5>
+
+<p>捕获，就是从正则表达式的匹配部分中提取某部分字符，通过&#8221;<strong>$数字</strong>&ldquo;这种形式的变量获取匹配了正则表达式中的用<strong>()</strong>括住的字符。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/(.)(C.)(.)/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;ABCDE&quot;</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=~</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$1</span>   <span class="c1">#=&gt; B</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$2</span>   <span class="c1">#=&gt; CD</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$3</span>   <span class="c1">#=&gt; E</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用&#8221;<strong>(?: )</strong>&ldquo;可以过滤掉不需要捕获的模式.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/(.)(?:C.)(.)/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;ABCDE&quot;</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=~</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$1</span>   <span class="c1">#=&gt; B</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$2</span>   <span class="c1">#=&gt; E</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby中也可以使用<strong>$`</strong>, <strong>$&amp;</strong>, <strong>$&lsquo;</strong>分别代表匹配部分前的字符串、匹配部分的字符串、匹配部分后的字符串。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/(C.)/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;ABCDE&quot;</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=~</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$`</span>     <span class="c1">#=&gt; AB</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$&amp;</span>     <span class="c1">#=&gt; CD</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$&#39;</span>     <span class="c1">#=&gt; E</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>常用方法</h5>
+
+<p><strong>sub</strong>和<strong>gsub</strong>方法的作用是用指定的字符置换字符串中的某部分字符。<strong>sub</strong>方法只置换首次匹配的部分，而<strong>gsub</strong>则会置换所有匹配的部分.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/\s+/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;This is test string&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>   <span class="c1">#=&gt; &quot;This-is test string&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>   <span class="c1">#=&gt; &quot;This-is-test-string&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>sub和gsub方法同样支持block块模式，针对匹配到的字符做处理</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span><span class="sr">/i/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;This is test string&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">matched</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">matched</span><span class="o">.</span><span class="n">upcase</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">result</span>     <span class="c1">#=&gt; ThIs is test string</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">matched</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">matched</span><span class="o">.</span><span class="n">upcase</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">result</span>     <span class="c1">#=&gt; ThIs Is test strIng</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>scan</strong>方法和<strong>gsub</strong>方法类似，都可以获取到所有匹配到的字符，但是不能置换。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/(r)(.)/</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;racrtrhrdra&quot;</span>
+</span><span class='line'><span class="n">str</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">matched</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">matched</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#[&quot;r&quot;, &quot;a&quot;]</span>
+</span><span class='line'><span class="c1">#[&quot;r&quot;, &quot;t&quot;]</span>
+</span><span class='line'><span class="c1">#[&quot;r&quot;, &quot;h&quot;]</span>
+</span><span class='line'><span class="c1">#[&quot;r&quot;, &quot;d&quot;]</span>
+</span><span class='line'><span class="c1">#[&quot;r&quot;, &quot;a&quot;]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">val1</span><span class="p">,</span> <span class="n">val2</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">val1</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="n">val2</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#&quot;r-a&quot;</span>
+</span><span class='line'><span class="c1">#&quot;r-t&quot;</span>
+</span><span class='line'><span class="c1">#&quot;r-h&quot;</span>
+</span><span class='line'><span class="c1">#&quot;r-d&quot;</span>
+</span><span class='line'><span class="c1">#&quot;r-a&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Nginx in Mac OS X]]></title>
@@ -5306,218 +5637,6 @@ pp的输出格式如下:
 </code></pre>
 
 <p>与<strong>p</strong>方法的不同之处在于，<strong>pp</strong>方法在输出对象的结果时，为了更容易看懂，会适当的换行以调整输出结果。如上所示。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(1)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1/"/>
-    <updated>2015-08-12T16:08:21+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/08/12/ruby-practice-1</id>
-    <content type="html"><![CDATA[<p><img src="http://stonefishy.github.io/assets/images/ruby-logo.png" width="50" height="50"><strong>Ruby</strong>是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是<strong>红宝石</strong>.</p>
-
-<h3>特点</h3>
-
-<p><em>脚本语言</em> <br/>
-即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
-
-<!-- more -->
-
-
-<p><em>完全的面向对象</em><br/>
-对Ruby来说，纯数字都属于对象，可以直接调用其方法。比如下面代码：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>-1.abs   #return 1</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是其他面向对象编程语言如C#、Java不具备的。同时Ruby也具备有其他面向对象编程语言的特性，如：继承、Mixin等。</p>
-
-<p><em>跨平台</em> <br/>
-能在类Unix操作系统如：Mac OS X、Linux和windows操作系统上运行。</p>
-
-<h3>安装</h3>
-
-<p>Ruby的安装很简单，以在Mac OS X电脑的安装为例。使用Homebrew包管理器可以得到ruby的最新版本:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install ruby</span></code></pre></td></tr></table></div></figure>
-
-
-<p>安装完后，在输入如下命令查看ruby版本:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -v</span></code></pre></td></tr></table></div></figure>
-
-
-<p>进入<a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby Installation</a>链接可以查看Ruby在其他操作系统上的安装</p>
-
-<h3>HelloWorld</h3>
-
-<p>用ruby编写第一个Hello world程序，只需一行代码，比其他的面向对象语言简单多了。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>直接将这行代码写入helloworld.rb文件，然后输入如下指令运行即可看到内容输出在终端控制器上。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ruby</span> <span class="n">helloworld</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>当然如果你想直接和ruby交互的话，也有办法，Ruby提供了和Python类似的交互式操作。在命令行输入<strong>irb</strong>进入交互模式。</p>
-
-<p>ruby也提供了字符的转义功能，比如换行(\n), 制表符(\t)等等。如上面的打印Hello world。</p>
-
-<p><em>注:上面代码中调用print方法的括号可以省略。ruby尽量的简化了开发人员的工作量</em></p>
-
-<h3>puts、print和p的区别</h3>
-
-<p><strong>puts</strong>方法会在每次输出后输出换行符，而<strong>print</strong>则不会。例如以下的输出内容是一致的:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Helle world&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用<strong>p</strong>方法可以将数据按照原始类型输出来，这是<strong>puts</strong>和<strong>print</strong>所不具备的，直接用代码来解释:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;1&quot;</span>   <span class="c1">#=&gt; 1</span>
-</span><span class='line'><span class="nb">puts</span> <span class="mi">1</span>     <span class="c1">#=&gt; 1</span>
-</span><span class='line'><span class="nb">print</span> <span class="mi">1</span>    <span class="c1">#=&gt; 1</span>
-</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;1&quot;</span>  <span class="c1">#=&gt; 1</span>
-</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;1&quot;</span>      <span class="c1">#=&gt; &quot;1&quot;</span>
-</span><span class='line'><span class="nb">p</span> <span class="mi">1</span>        <span class="c1">#=&gt; 1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>所以基于<strong>p</strong>方法的特性，转义字符在其内是不工作的，将会被直接打印出来,如以下代码将会输出&#8221;Hello world\n&#8221;。还有<strong>p</strong>方法也会输出换行符，并且还会将打印的内容按数据类型返回，而其他两种方法只返回<strong>nil</strong>空值。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>注:在Ruby中，任何函数均有返回值。<strong>nil</strong>空值就是其中一种常见的返回。</em></p>
-
-<p><strong>print</strong>, <strong>puts</strong>和<strong>p</strong>方法均可传入多个参数，调用方式和返回结果如下，可以体会下用法:<br/>
-<em>print方法</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">print</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot; Ruby“</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<pre><code>Hello Ruby
-</code></pre>
-
-<p><em>puts方法</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot; Ruby&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<pre><code>Hello
-Ruby
-</code></pre>
-
-<p><em>p方法</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot; Ruby&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<pre><code>”Hello"
-"Ruby"
-</code></pre>
-
-<h3>变量</h3>
-
-<p>在ruby中声明变量也很简单，不需要任何如javascript的<em>var</em>等关键字，直接定义赋值。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">greet</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>访问变量也简单:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">greet</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">greet</span><span class="si">}</span><span class="s2">&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>  <br/>
-以上两种写法均会直接输出Hello world.</p>
-
-<h3>控制语句</h3>
-
-<p><em>if 语句</em></p>
-
-<pre><code>if 条件 then
-    逻辑处理
-end
-</code></pre>
-
-<p><em>if else 语句</em></p>
-
-<pre><code>if 条件 then
-    逻辑处理
-else
-    逻辑处理
-end
-</code></pre>
-
-<p><em>if elsif 语句</em></p>
-
-<pre><code>if 条件 then
-    逻辑处理
-elsif 条件 then
-    逻辑处理
-else
-    逻辑处理
-end
-</code></pre>
-
-<p><em>注:在上面的if各种控制语句中，<strong>then</strong>关键字是可以省略的.</em></p>
-
-<h3>循环语句</h3>
-
-<p><em>while 语句</em></p>
-
-<pre><code>while 条件 do
-    逻辑处理
-end
-</code></pre>
-
-<p><em>times迭代器</em></p>
-
-<p>当循环的次数已经确定时，可直接使用times方法来循环处理我们需要的逻辑
-    I
-    循环次数.times do
-        逻辑处理
-    end</p>
-
-<p><em>注:<strong>times</strong>方法被成为迭代器，除了times方法迭代器，ruby还提供了其他的迭代器，比如<strong>each</strong>方法.</em></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-12-14T22:01:06+08:00</updated>
+  <updated>2015-12-17T14:24:58+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,205 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(17)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
+    <updated>2015-12-17T09:46:29+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
+    <content type="html"><![CDATA[<h4>正则表达式(Regexp)</h4>
+
+<p>Ruby中的正则表达式用<strong>Regexp</strong>类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。</p>
+
+<h5>创建</h5>
+
+<p>其创建方式有多种：
+1.使用<strong>/ /</strong> 把字符串括起来，可以简单地创建出正则表达式</p>
+
+<pre><code class="ruby">reg1 = /Ruby/
+puts reg1.class       #=&gt; Regexp
+</code></pre>
+
+<!-- more -->
+
+
+<p>2.使用<strong>Regexp.new(&ldquo;字符串&rdquo;)</strong>创建正则表达式</p>
+
+<pre><code class="ruby">reg = Regexp.new("Ruby")
+puts reg.class       #=&gt; Regexp
+</code></pre>
+
+<p>3.使用<strong>%r</strong>创建正则表达式</p>
+
+<pre><code class="ruby">reg = %r(Ruby)
+puts reg.class       #=&gt; Regexp
+
+reg = %r&lt;Ruby&gt;
+puts reg.class       #=&gt; Regexp
+
+reg = %r|Ruby|
+puts reg.class       #=&gt; Regexp
+
+reg = %r!Ruby!
+puts reg.class       #=&gt; Regexp
+</code></pre>
+
+<h5>匹配</h5>
+
+<p>Ruby的正则表达式匹配使用<strong>=~</strong>符号，如果匹配成功返回匹配字符串的位置，否则返回nil。</p>
+
+<pre><code class="ruby">reg = /R..y/
+str = "regexp of Ruby"
+
+matched = reg =~ str
+puts matched        #=&gt; 10
+
+unmatched = reg =~ "test"
+p unmatched         #=&gt; nil
+
+if matched
+  puts "matched"
+else
+  puts "unmatched"
+end
+</code></pre>
+
+<p>此处并不过多的介绍正则表达式的语法规则，具体详细语法请参见<a href="http://regexlib.com/CheatSheet.aspx">http://regexlib.com/CheatSheet.aspx</a></p>
+
+<h5>转义</h5>
+
+<p>对特殊字符的转义方式有两种，使用<strong>\</strong>字符和使用<strong>Regexp#quote</strong>方法</p>
+
+<pre><code class="ruby">#using \ symbol
+reg = /ruby\*regexp/
+puts reg =~ "ruby*regexp"     #=&gt; 0
+p reg =~ "rubyregexp"          #=&gt; nil
+
+#using Regexp#quote method
+reg1 = %r(ruby*regexp)
+reg2 = Regexp.new(Regexp.quote("ruby*regexp"))
+str = "ruby*regexp"
+
+p reg1 =~ str         #=&gt; nil
+p reg2 =~ str         #=&gt; 0
+</code></pre>
+
+<h5>选项</h5>
+
+<p>在正则表达式的后面添加特定的字符如<strong>i</strong>, <strong>x</strong>, <strong>m</strong>等时，匹配后的规则会有点变化</p>
+
+<p><strong>i</strong>   Regexp::IGNORECASE  忽略字符串大小写  <br/>
+<strong>x</strong>   Regexp::EXTENDED        忽略字符串中的空白字符   <br/>
+<strong>m</strong>   Regexp::MULTILINE   匹配多行字符串</p>
+
+<pre><code class="ruby">#using i optional symbol to ignore the cap
+reg1 = /test String/i
+reg2 = Regexp.new("test string", Regexp::IGNORECASE)
+puts reg1 =~ "test string"     #=&gt; 0
+puts reg1 =~ "test string"     #=&gt; 0
+
+#using x optional symbol to ignore the white space symbol
+reg1 = /test string/x
+reg2 = Regexp.new("test string", Regexp::EXTENDED)
+puts reg1 =~ "teststring"      #=&gt; 0
+puts reg1 =~ "teststring"      #=&gt; 0
+
+#using m optional symbol to match multiline
+reg1 = /test\nstring/m
+reg2 = Regexp.new("test\nstring", Regexp::MULTILINE)
+puts reg1 =~ "test\nstring"
+puts reg1 =~ "test\nstring"      #=&gt; 0
+</code></pre>
+
+<h5>捕获</h5>
+
+<p>捕获，就是从正则表达式的匹配部分中提取某部分字符，通过&#8221;<strong>$数字</strong>&ldquo;这种形式的变量获取匹配了正则表达式中的用<strong>()</strong>括住的字符。</p>
+
+<pre><code class="ruby">reg = /(.)(C.)(.)/
+str = "ABCDE"
+reg =~ str
+
+puts $1   #=&gt; B
+puts $2   #=&gt; CD
+puts $3   #=&gt; E
+</code></pre>
+
+<p>使用&#8221;<strong>(?: )</strong>&ldquo;可以过滤掉不需要捕获的模式.</p>
+
+<pre><code class="ruby">reg = /(.)(?:C.)(.)/
+str = "ABCDE"
+reg =~ str
+
+puts $1   #=&gt; B
+puts $2   #=&gt; E
+</code></pre>
+
+<p>Ruby中也可以使用<strong>$`</strong>, <strong>$&amp;</strong>, <strong>$&lsquo;</strong>分别代表匹配部分前的字符串、匹配部分的字符串、匹配部分后的字符串。</p>
+
+<pre><code class="ruby">reg = /(C.)/
+str = "ABCDE"
+reg =~ str
+
+puts $`     #=&gt; AB
+puts $&amp;     #=&gt; CD
+puts $'     #=&gt; E
+</code></pre>
+
+<h5>常用方法</h5>
+
+<p><strong>sub</strong>和<strong>gsub</strong>方法的作用是用指定的字符置换字符串中的某部分字符。<strong>sub</strong>方法只置换首次匹配的部分，而<strong>gsub</strong>则会置换所有匹配的部分.</p>
+
+<pre><code class="ruby">reg = /\s+/
+str = "This is test string"
+
+puts str.sub(reg, '-')   #=&gt; "This-is test string"
+puts str.gsub(reg, '-')   #=&gt; "This-is-test-string"
+</code></pre>
+
+<p>sub和gsub方法同样支持block块模式，针对匹配到的字符做处理</p>
+
+<pre><code class="ruby">reg =/i/
+str = "This is test string"
+
+result = str.sub(reg) do |matched|
+  matched.upcase
+end
+
+puts result     #=&gt; ThIs is test string
+
+result = str.gsub(reg) do |matched|
+  matched.upcase
+end
+
+puts result     #=&gt; ThIs Is test strIng
+</code></pre>
+
+<p><strong>scan</strong>方法和<strong>gsub</strong>方法类似，都可以获取到所有匹配到的字符，但是不能置换。</p>
+
+<pre><code class="ruby ">reg = /(r)(.)/
+str = "racrtrhrdra"
+str.scan(reg) do |matched|
+  p matched
+end
+
+#["r", "a"]
+#["r", "t"]
+#["r", "h"]
+#["r", "d"]
+#["r", "a"]
+
+str.scan(reg) do |val1, val2|
+  p val1 + "-" + val2
+end
+
+#"r-a"
+#"r-t"
+#"r-h"
+#"r-d"
+#"r-a"
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(16)]]></title>
@@ -695,155 +894,6 @@ bundle install
 <p>Both ways can bring octopress back.</p>
 
 <p><em>Reference: <a href="https://github.com/imathis/octopress/issues/1749">https://github.com/imathis/octopress/issues/1749</a></em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(13)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/"/>
-    <updated>2015-10-26T22:13:32+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13</id>
-    <content type="html"><![CDATA[<h4>替换数组内的元素</h4>
-
-<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
-
-<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
-ary.<strong>collect!</strong> { |item| &hellip;} <br/>
-ary.<strong>map</strong> { |item| &hellip;} <br/>
-ary.<strong>map!</strong> { |item| &hellip;}</p>
-
-<p>将数组ary中的各元素item传递给块做处理。</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-ary1 = ary.collect do |item|
-    item*2
-end
-
-p ary1                  #=&gt; [ 2, 4, 6]
-
-ary2 = ary.map do |item|
-    if item % 2 == 0
-        0
-    else
-        1
-    end
-end
-
-p ary2                  #=&gt; [1, 0, 1]
-</code></pre>
-
-<!-- more -->
-
-
-<p>ary.<strong>fill</strong>(value)  <br/>
-ary.<strong>fill</strong>(value, begin) <br/>
-ary.<strong>fill</strong>(value, begin, len) <br/>
-ary.<strong>fill</strong>(vlaue, n..m)  <br/>
-将数组ary的元素替换为value。</p>
-
-<pre><code class="ruby">p [1, 2, 3].fill(0)         #=&gt; [0, 0, 0]
-p [1, 2, 3].fill(0, 1)      #=&gt; [1, 0, 0]
-p [1, 2, 3].fill(0, 0, 2)       #=&gt; [0, 0 ,3]
-p [1, 2, 3].fill(0, 1..2)       #=&gt; [1, 0, 0]
-
-ary = [1, 2, 3]
-ary.fill(0)
-p ary                       #=&gt; [0, 0, 0]
-</code></pre>
-
-<p>*注意，此方法会修改原对象的值。即为破坏方法。</p>
-
-<p>ary.<strong>flatten</strong> <br/>
-ary.<strong>flatten</strong> <br/>
-平坦化数组ary，所谓平坦化是指展开嵌套数组变为一个大数组。</p>
-
-<pre><code class="ruby">ary = [1, [2, 3], [4, [5, 6]]]
-p ary.flatten        #=&gt; [1, 2, 3, 4, 5, 6]
-</code></pre>
-
-<p>ary.<strong>reverse</strong>  <br/>
-ary.<strong>reverse!</strong>  <br/>
-反转数组ary的元素顺序</p>
-
-<pre><code class="ruby">ary = [1, 2, 3]
-p ary.reverse       #=&gt; [3, 2, 1]
-</code></pre>
-
-<p>ary.<strong>sort</strong> <br/>
-ary.<strong>sort!</strong> <br/>
-ary.<strong>sort</strong>{|i, j| &hellip; } <br/>
-ary.<strong>sort!</strong>{|i, j| &hellip;} <br/>
-ary.<strong>sort_by</strong> {|i| &hellip;}</p>
-
-<p>对数组ary中进行排序，排序方法可以由块指定。没有块时，使用<em>&lt;=></em>运算符比较。其中<strong>sort_by</strong>方法中排序是根据块的运行结果来对数组的所有元素进行排序。</p>
-
-<pre><code class="ruby">ary = [4, 9, 5]
-p ary.sort          #=&gt; [4, 5, 9]
-ary.sort! { |i, j|
-    i % 3 &lt;=&gt; j % 3
-}
-p ary               #=&gt; [9, 4, 5]
-
-p [2, 4, 3, 1].sort_by { |i| -i }  #=&gt; [4, 3, 2, 1]
-</code></pre>
-
-<h4>数组的迭代</h4>
-
-<p><strong>each</strong>方法并不知道元素的索引值。当需要指定索引值时，可以使用<strong>each_with_index</strong>方法</p>
-
-<pre><code class="ruby">ary = [23, 54, 14]
-ary.each { |item| print "#{item} " }    #=&gt; 23 54 14
-
-ary.each_with_index do |item, index|
-    print "The ", index+1, " element is :", item, "\n"
-end
-</code></pre>
-
-<p>如果数组内各元素全部处理完毕后该数组就不需要了，此时可以通过逐个删除数组元素使数组变空这样的手段来实现循环。</p>
-
-<pre><code class="ruby">while item = ary.pop
-    ## the handle of the item
-end
-</code></pre>
-
-<h4>多维数组</h4>
-
-<p>数组中的各个元素也可以是数组，也就是数组的数组。可以用它来表示矩阵。</p>
-
-<pre><code class="ruby">ary = [[1, 2], [3, 4], [5, 6]]
-
-p ary[1][1]     #=&gt; 4
-
-#3个元素引用的是同一个数组对象
-ary = Array.new(3, [0, 0])
-ary[0][1] = 1
-p ary           #=&gt; [[0, 1], [0, 1], [0, 1]]
-
-#避免引用同一个数组对象，在块中，重复创建新的对象
-ary = Array.new(3) do
-    [0, 0]
-end     
-
-ary[0][1] = 1
-p ary           #=&gt; [[0, 1], [0, 0], [0, 0]]    
-</code></pre>
-
-<p>使用<em>Array.new(length, array)</em>创建二维数组。创建的所有元素引用的都是同一个对象array，修改其中一个元素的值，其他元素也会变化。如上示例代码。如何避免？可在创建数组的块中重复创建新对象。</p>
-
-<p>ary.<strong>zip</strong>(ary1, ary2, &hellip;) <br/>
-<strong>zip</strong>方法会将接收器和参数传来的数组元素逐一取出，而且每次都会启动块。参数可以是一个或多个。</p>
-
-<pre><code class="ruby">ary1 = [1, 2, 3]
-ary2 = [10, 20, 30]
-ary3 = [100, 200, 300]
-
-result = []
-ary1.zip(ary2, ary3) do |a, b, c|
-    result &lt;&lt; a + b + c
-end
-
-p result            #=&gt; [111, 222, 333]
-</code></pre>
 ]]></content>
   </entry>
   
