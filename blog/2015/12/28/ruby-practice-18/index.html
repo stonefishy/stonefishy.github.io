@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby修炼之道(18) - Stonefishy Blog</title>
+  <meta name="author" content="Yu">
+
+  
+  <meta name="description" content="IO Ruby程序在启动后会预先分配3个IO对象: 标准输入 - 预定义常量(STDIN), 全局变量(\$stdin) 标准输出 - 预定义常量(STDOUT), 全局变量(\$stdout) 标准错误输出 - 预定义常量(STDERR), 全局变量(\$stderr) 1
+2
+$stdout. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Yu </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby修炼之道(18)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-28T10:59:48+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>IO</h4>
+
+<p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:  <br/>
+标准输入 - 预定义常量(<strong>STDIN</strong>), 全局变量(<strong>\$stdin</strong>)      <br/>
+标准输出 - 预定义常量(<strong>STDOUT</strong>), 全局变量(<strong>\$stdout</strong>) <br/>
+标准错误输出 - 预定义常量(<strong>STDERR</strong>), 全局变量(<strong>\$stderr</strong>)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;output something from $stdout</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="no">STDERR</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;output something from $stderr</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>IO对象是否与控制台关联，我们可以通过<strong>tty?</strong>方法来判断。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="vg">$stdin</span><span class="o">.</span><span class="n">tty?</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot;stdin is a tty&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot;stdin is not a tty&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<h5>文件操作</h5>
+
+<p>通过File.open方法或open方法打开文件并获取新的IO对象，</p>
+
+<pre><code>io = File.open(file, mode)
+io = open(file, mode)
+</code></pre>
+
+<p>mode为文件的读写方法，缺省情况下为只读模式&reg;.</p>
+
+<p>r  - 只读模式  <br/>
+r+ - 读写模式 <br/>
+w  - 只写模式，如果文件不存在则创建新文件，如果文件存在，则清空文件 <br/>
+w+ - 读写模式，其余同w  <br/>
+a  - 追加模式，文件不存在则创建新文件  <br/>
+a+ - 读取、追加模式，文件不存在则创建新文件</p>
+
+<p>io.<strong>close</strong>
+使用<strong>close</strong>方法关闭已打开的文件。File.open方法使用块，则文件会在使用完毕后自动关闭，io变量会被作为块变量传递给块。并且使用io.closed?方法可以检查是否关闭。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;tty.rb&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">line</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>    <span class="nb">print</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用<strong>File.read</strong>可以一次性读取文件的内容。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;tty.rb&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>基本输入</h5>
+
+<p>io.<strong>gets</strong>(rs) <br/>
+io.<strong>each</strong>(rs) <br/>
+io.<strong>each_line</strong>(rs) <br/>
+io.<strong>readlines</strong>(rs) <br/>
+从IO类的对象中读取一行数据，用参数<strong>rs</strong>的字符串分行，缺省模式下为换行符。</p>
+
+<p>使用<strong>eof?</strong>可以检查输入是否已经完毕。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">io</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;tty.rb&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">while</span> <span class="n">line</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>  <span class="n">line</span><span class="o">.</span><span class="n">chomp!</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="n">line</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">eof?</span>     <span class="c1">#=&gt; true</span>
+</span><span class='line'><span class="n">io</span><span class="o">.</span><span class="n">close</span>      <span class="c1">#=&gt; close file</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">closed?</span>   <span class="c1">#=&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>用<strong>readlines</strong>方法可以一次性读取所有数据，并返回将每行数据作为元素封装的数组.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">io</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;tty.rb&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">readlines</span>
+</span><span class='line'><span class="n">io</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">line</span><span class="o">.</span><span class="n">chomp!</span>
+</span><span class='line'>  <span class="nb">print</span> <span class="n">line</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>io.<strong>lineno</strong> <br/>
+使用gets方法，each_line方法逐行读取文件时，io会自动记录读取的行数，可以通过<strong>io.lineno</strong>来获取当前行数。</p>
+
+<p>io.<strong>each_char</strong>  <br/>
+逐个字符读取io对象中的数据,并启动块。</p>
+
+<p>io.<strong>each_byte</strong>
+逐个字节读取io对象中的数据，并启动块。</p>
+
+<p>io.<strong>getc</strong>  <br/>
+只读取io对象中的一个字符。
+io.<strong>ungetc(ch)</strong>  <br/>
+将参数ch指定的字符退回到io得缓冲流中</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello Ruby&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">getc</span>       <span class="c1">#=&gt; H</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">ungetc</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>       <span class="c1">#=&gt; Hello Ruby</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>io.<strong>getbyte</strong>, io.<strong>ungetbyte</strong>的使用方法同上，不同之处在于此处是字节。</p>
+
+<p>io.<strong>read</strong>(size)  <br/>
+读取参数size指定大小的数据，如果没指定，则一次性读取所有数据。</p>
+
+<h5>输出操作</h5>
+
+<p>io.<strong>puts</strong>(str0, str1, &hellip;)  <br/>
+指定多个字符串时，会在每个字符串后面添加换行符。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;hey&quot;</span>          <span class="c1">#=&gt; hi\nhello\nhey\n</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>io.<strong>putc</strong>(ch)  <br/>
+输出指定参数ch字符，如果参数为字符串，则输出首个字符</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">putc</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>       <span class="c1">#=&gt; H</span>
+</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">putc</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>   <span class="c1">#=&gt; H</span>
+</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">putc</span><span class="p">(</span><span class="s1">&#39;\n&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>io.<strong>print</strong>(str0, str1, &hellip;) <br/>
+输出参数指定的字符串，不会在每个字符串后面追加换行符</p>
+
+<p>io.<strong>printf</strong>(fmt, arg0, arg1, &hellip;)  <br/>
+按照指定格式输出字符串。</p>
+
+<p>io.<strong>write</strong>(str)  <br/>
+输出参数str指定的字符串，方法返回值为输出的字节数</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="vg">$stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>        <span class="c1">#=&gt; Hello</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">size</span>         <span class="c1">#=&gt; 5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>文件指针</h5>
+
+<p>用文件指针或者当前文件偏移量来表示IO对象指向文件的位置。</p>
+
+<p>io.<strong>pos</strong> <br/>
+io.<strong>pos</strong>=position  <br/>
+通过<strong>pos</strong>方法获取文件指针位置，改变文件指针使用<strong>pos=</strong>方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello Ruby&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>      <span class="c1">#=&gt; Hello</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>         <span class="c1">#=&gt; Hello Ruby</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>io.<strong>seek</strong>(offset, whence) <br/>
+offset为指定位置的整数，whence为指定offset如何移动， 以下为whence的值:   <br/>
+IO::SEEK_SET - 将文件指针移动到指定offset指定的位置  <br/>
+IO::SEEK_CUR - 将offset视为相对于当前位置的偏移位置来移动文件指针  <br/>
+IO::SEEK_END - 将offset视为相对于文件末尾的偏移位置</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello Ruby&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>      <span class="c1">#=&gt; Hello</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="no">IO</span><span class="o">::</span><span class="no">SEEK_CUR</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>         <span class="c1">#=&gt; Hello Ruby</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="no">IO</span><span class="o">::</span><span class="no">SEEK_SET</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>         <span class="c1">#=&gt; Hello Ruby</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="no">IO</span><span class="o">::</span><span class="no">SEEK_END</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>         <span class="c1">#=&gt; Ruby</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>io.<strong>rewind</strong> <br/>
+将文件指针重置到文件开始处，结果同以下两个操作:</p>
+
+<pre><code>io.pos = 0   
+io.seek(0, IO::SEEK_SET)
+</code></pre>
+
+<p>io.<strong>truncate</strong>(size)  <br/>
+按照参数size指定的大小截断文件。</p>
+
+<p><em>注，新的IO对象默认为文本模式，可以通过io.<strong>binmode</strong>将其转为二进制模式</em></p>
+
+<h5>缓冲</h5>
+
+<p>IO对象在输出数据时，结果并不一定会马上输出出来，程序会在内部开辟一个缓冲空间来缓存输出，当空间满的时候再输出来。但是标准错误输出不会使用缓冲，如果有错误信息，则立刻输出。所以标准错误输出一般用于输出警告、错误之类的信息，能够立刻输出数据</p>
+
+<p>io.<strong>flush</strong>  <br/>
+强制输出缓冲中的数据。</p>
+
+<p>io.<strong>sync</strong>  <br/>
+io.<strong>sync</strong>=state <br/>
+通过io.sync = true, 程序写入缓冲时flush方法会被自动调用。</p>
+
+<h5>与命令行交互</h5>
+
+<p>IO.<strong>popen</strong>(command, mode) <br/>
+command为相关的命令</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pattern</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="sr">/.gz$/</span> <span class="o">=~</span> <span class="n">filename</span>
+</span><span class='line'>  <span class="n">file</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;gunzip -c </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p><strong>open</strong>(&ldquo;|command&rdquo;, mode) <br/>
+将带有管道符号的命令传递给open方法的效果与使用IO.popen方法是一样的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;|gunzip -c </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">io</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">print</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-12-28T10:59:48+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:59 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/12/17/ruby-practice-17/" title="Previous Post: Ruby修炼之道(17)">&laquo; Ruby修炼之道(17)</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Yu <br/> I&#8217;m a Front and back ends developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Yu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
