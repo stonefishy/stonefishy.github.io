@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2015-12-17T14:24:58+08:00</updated>
+  <updated>2015-12-28T15:21:36+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Yu]]></name>
@@ -12,6 +12,247 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(18)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18/"/>
+    <updated>2015-12-28T10:59:48+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18</id>
+    <content type="html"><![CDATA[<h4>IO</h4>
+
+<p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:  <br/>
+标准输入 - 预定义常量(<strong>STDIN</strong>), 全局变量(<strong>\$stdin</strong>)      <br/>
+标准输出 - 预定义常量(<strong>STDOUT</strong>), 全局变量(<strong>\$stdout</strong>) <br/>
+标准错误输出 - 预定义常量(<strong>STDERR</strong>), 全局变量(<strong>\$stderr</strong>)</p>
+
+<pre><code class="ruby">$stdout.print "output something from $stdout\n"
+STDERR.print "output something from $stderr\n"
+</code></pre>
+
+<p>IO对象是否与控制台关联，我们可以通过<strong>tty?</strong>方法来判断。</p>
+
+<pre><code class="ruby">if $stdin.tty?
+  print "stdin is a tty"
+else
+  print "stdin is not a tty"
+end
+</code></pre>
+
+<!-- more -->
+
+
+<h5>文件操作</h5>
+
+<p>通过File.open方法或open方法打开文件并获取新的IO对象，</p>
+
+<pre><code>io = File.open(file, mode)
+io = open(file, mode)
+</code></pre>
+
+<p>mode为文件的读写方法，缺省情况下为只读模式&reg;.</p>
+
+<p>r  - 只读模式  <br/>
+r+ - 读写模式 <br/>
+w  - 只写模式，如果文件不存在则创建新文件，如果文件存在，则清空文件 <br/>
+w+ - 读写模式，其余同w  <br/>
+a  - 追加模式，文件不存在则创建新文件  <br/>
+a+ - 读取、追加模式，文件不存在则创建新文件</p>
+
+<p>io.<strong>close</strong>
+使用<strong>close</strong>方法关闭已打开的文件。File.open方法使用块，则文件会在使用完毕后自动关闭，io变量会被作为块变量传递给块。并且使用io.closed?方法可以检查是否关闭。</p>
+
+<pre><code class="ruby">File.open("tty.rb") do |io|
+  while line = io.gets
+    print line
+  end
+end
+</code></pre>
+
+<p>使用<strong>File.read</strong>可以一次性读取文件的内容。</p>
+
+<pre><code class="ruby">data = File.read("tty.rb")
+</code></pre>
+
+<h5>基本输入</h5>
+
+<p>io.<strong>gets</strong>(rs) <br/>
+io.<strong>each</strong>(rs) <br/>
+io.<strong>each_line</strong>(rs) <br/>
+io.<strong>readlines</strong>(rs) <br/>
+从IO类的对象中读取一行数据，用参数<strong>rs</strong>的字符串分行，缺省模式下为换行符。</p>
+
+<p>使用<strong>eof?</strong>可以检查输入是否已经完毕。</p>
+
+<pre><code class="ruby">io = File.open("tty.rb")
+while line = io.gets
+  line.chomp!
+  print line
+end
+p io.eof?     #=&gt; true
+io.close      #=&gt; close file
+p io.closed?   #=&gt; true
+</code></pre>
+
+<p>用<strong>readlines</strong>方法可以一次性读取所有数据，并返回将每行数据作为元素封装的数组.</p>
+
+<pre><code class="ruby">io = File.open("tty.rb")
+ary = io.readlines
+io.close
+ary.each do |line|
+  line.chomp!
+  print line
+end
+</code></pre>
+
+<p>io.<strong>lineno</strong> <br/>
+使用gets方法，each_line方法逐行读取文件时，io会自动记录读取的行数，可以通过<strong>io.lineno</strong>来获取当前行数。</p>
+
+<p>io.<strong>each_char</strong>  <br/>
+逐个字符读取io对象中的数据,并启动块。</p>
+
+<p>io.<strong>each_byte</strong>
+逐个字节读取io对象中的数据，并启动块。</p>
+
+<p>io.<strong>getc</strong>  <br/>
+只读取io对象中的一个字符。
+io.<strong>ungetc(ch)</strong>  <br/>
+将参数ch指定的字符退回到io得缓冲流中</p>
+
+<pre><code class="ruby">File.open("hello.txt", 'w') do |io|
+  io.write("Hello Ruby")
+end
+File.open("hello.txt") do |io|
+  p io.getc       #=&gt; H
+  io.ungetc('H')
+  p io.gets       #=&gt; Hello Ruby
+end
+
+File.delete("hello.txt")
+</code></pre>
+
+<p>io.<strong>getbyte</strong>, io.<strong>ungetbyte</strong>的使用方法同上，不同之处在于此处是字节。</p>
+
+<p>io.<strong>read</strong>(size)  <br/>
+读取参数size指定大小的数据，如果没指定，则一次性读取所有数据。</p>
+
+<h5>输出操作</h5>
+
+<p>io.<strong>puts</strong>(str0, str1, &hellip;)  <br/>
+指定多个字符串时，会在每个字符串后面添加换行符。</p>
+
+<pre><code class="ruby">$stdout.puts "hi", "hello", "hey"           #=&gt; hi\nhello\nhey\n
+</code></pre>
+
+<p>io.<strong>putc</strong>(ch)  <br/>
+输出指定参数ch字符，如果参数为字符串，则输出首个字符</p>
+
+<pre><code class="ruby">$stdout.putc('H')       #=&gt; H
+$stdout.putc('Hello')   #=&gt; H
+$stdout.putc('\n')
+</code></pre>
+
+<p>io.<strong>print</strong>(str0, str1, &hellip;) <br/>
+输出参数指定的字符串，不会在每个字符串后面追加换行符</p>
+
+<p>io.<strong>printf</strong>(fmt, arg0, arg1, &hellip;)  <br/>
+按照指定格式输出字符串。</p>
+
+<p>io.<strong>write</strong>(str)  <br/>
+输出参数str指定的字符串，方法返回值为输出的字节数</p>
+
+<pre><code class="ruby">size = $stdout.write("Hello")       #=&gt; Hello
+p size          #=&gt; 5
+</code></pre>
+
+<h5>文件指针</h5>
+
+<p>用文件指针或者当前文件偏移量来表示IO对象指向文件的位置。</p>
+
+<p>io.<strong>pos</strong> <br/>
+io.<strong>pos</strong>=position  <br/>
+通过<strong>pos</strong>方法获取文件指针位置，改变文件指针使用<strong>pos=</strong>方法。</p>
+
+<pre><code class="ruby">File.open("hello.txt", 'w') do |io|
+  io.write("Hello Ruby")
+end
+File.open("hello.txt") do |io|
+  p io.read(5)      #=&gt; Hello
+  io.pos = 0
+  p io.gets         #=&gt; Hello Ruby
+end
+</code></pre>
+
+<p>io.<strong>seek</strong>(offset, whence) <br/>
+offset为指定位置的整数，whence为指定offset如何移动， 以下为whence的值:   <br/>
+IO::SEEK_SET - 将文件指针移动到指定offset指定的位置  <br/>
+IO::SEEK_CUR - 将offset视为相对于当前位置的偏移位置来移动文件指针  <br/>
+IO::SEEK_END - 将offset视为相对于文件末尾的偏移位置</p>
+
+<pre><code class="ruby">File.open("hello.txt", 'w') do |io|
+  io.write("Hello Ruby")
+end
+File.open("hello.txt") do |io|
+  p io.read(5)      #=&gt; Hello
+  io.seek(-5, IO::SEEK_CUR)
+  p io.gets         #=&gt; Hello Ruby
+  io.seek(0, IO::SEEK_SET)
+  p io.gets         #=&gt; Hello Ruby
+  io.seek(-4, IO::SEEK_END)
+  p io.gets         #=&gt; Ruby
+end
+</code></pre>
+
+<p>io.<strong>rewind</strong> <br/>
+将文件指针重置到文件开始处，结果同以下两个操作:</p>
+
+<pre><code>io.pos = 0   
+io.seek(0, IO::SEEK_SET)
+</code></pre>
+
+<p>io.<strong>truncate</strong>(size)  <br/>
+按照参数size指定的大小截断文件。</p>
+
+<p><em>注，新的IO对象默认为文本模式，可以通过io.<strong>binmode</strong>将其转为二进制模式</em></p>
+
+<h5>缓冲</h5>
+
+<p>IO对象在输出数据时，结果并不一定会马上输出出来，程序会在内部开辟一个缓冲空间来缓存输出，当空间满的时候再输出来。但是标准错误输出不会使用缓冲，如果有错误信息，则立刻输出。所以标准错误输出一般用于输出警告、错误之类的信息，能够立刻输出数据</p>
+
+<p>io.<strong>flush</strong>  <br/>
+强制输出缓冲中的数据。</p>
+
+<p>io.<strong>sync</strong>  <br/>
+io.<strong>sync</strong>=state <br/>
+通过io.sync = true, 程序写入缓冲时flush方法会被自动调用。</p>
+
+<h5>与命令行交互</h5>
+
+<p>IO.<strong>popen</strong>(command, mode) <br/>
+command为相关的命令</p>
+
+<pre><code class="ruby">pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+
+if /.gz$/ =~ filename
+  file = IO.popen("gunzip -c #{filename}")
+else
+  file = File.open(filename)
+end
+file.close
+</code></pre>
+
+<p><strong>open</strong>(&ldquo;|command&rdquo;, mode) <br/>
+将带有管道符号的命令传递给open方法的效果与使用IO.popen方法是一样的</p>
+
+<pre><code class="ruby">filename = ARGV[0]
+open("|gunzip -c #{filename}") do |io|
+  io.each_line do |line|
+    print line
+  end
+end
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(17)]]></title>
@@ -812,88 +1053,6 @@ puts str3                   #=&gt; hello world
 </code></pre>
 
 <p><em>注意：一般情况下使用<strong>&lt;&lt;</strong>和<strong>concat</strong>方法更有效率，但是也可以根据情况而定</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
-    <updated>2015-11-11T22:46:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
-    <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
-
-<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
-
-<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
-rake aborted!
-Errno::ENOENT: No such file or directory - compass
-/Users/user/git/octopress/Rakefile:85:in spawn
-/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
-Tasks: TOP =&gt; preview
-(See full trace by running task with --trace)
-</code></pre>
-
-<!-- more -->
-
-
-<p>Why we get this error, this error caused by rake command, so that means maybe it is ruby version problem. let&rsquo;s take a look it.</p>
-
-<pre><code>~-&gt; $ ruby -v
-~-&gt; ruby 2.0.0p645 (2015-04-13 revision 50299) [universal.x86_64-darwin15]
-</code></pre>
-
-<p>The ruby newest version is 2.2.3. Ok, let&rsquo;s upgrade it. There are two ways to do it.</p>
-
-<h4>Using rbenv</h4>
-
-<p>If you don&rsquo;t have rbenv in your local machine. You need to install it firstly.  <br/>
-1.Go to <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a> to get it. <br/>
-2.install ruby-2.2.3</p>
-
-<pre><code>rbenv install 2.2.3
-</code></pre>
-
-<p>3.In the root of your octopress blog, put below commands</p>
-
-<pre><code>rbenv local 2.2.3
-
-gem install bundler
-
-bundle install
-</code></pre>
-
-<h4>Using RVM</h4>
-
-<p>1.Clear git cache</p>
-
-<pre><code>rm -rf /usr/local/.git
-</code></pre>
-
-<p>2.Install RVM</p>
-
-<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
-</code></pre>
-
-<p>3.Install Ruby 2.2.3</p>
-
-<pre><code>rvm install ruby-2.2.3
-
-rvm use 2.2.3
-
-rvm rubygems latest
-</code></pre>
-
-<p>After these steps, make sure you&rsquo;re using Ruby 2.2.3
-4.Go to the root of the your octopress blog</p>
-
-<pre><code>gem install bundler
-
-bundle install
-</code></pre>
-
-<p>Both ways can bring octopress back.</p>
-
-<p><em>Reference: <a href="https://github.com/imathis/octopress/issues/1749">https://github.com/imathis/octopress/issues/1749</a></em></p>
 ]]></content>
   </entry>
   
