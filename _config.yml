@@ -4,7 +4,7 @@
 
 url: http://stonefishy.github.io
 title: Stonefishy Blog
-subtitle: Scribbles of a front and back ends developer
+subtitle: Scribbles of a programming boy
 author: Andrew Shi
 simple_search: https://www.google.com/search
 description:
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email: andrewsy@live.com
+email: andrewsy@163.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -91,11 +91,11 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: disqus_ac8j00A9DF
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
