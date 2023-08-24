@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2023-08-25T00:54:25+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Andrew Shi]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Fix Gem FilePermissionError]]></title>
+    <link href="http://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror/"/>
+    <updated>2016-01-12T23:31:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror</id>
+    <content type="html"><![CDATA[<p>Sometimes we face the erorr &ldquo;Gem::FilePermissionError: You don&rsquo;t have write permissions for the /Library/Ruby/Gems/x.x.x directory&rdquo;. This error message indicates that the user doesn&rsquo;t have the necessary permissions to install Ruby gems system-wide. This is because the system Ruby installation requires administrative privileges to modify its gem directory.</p>
+
+<p>To resolve this issue, there is a few options:</p>
+
+<h3>1. Use a Ruby Version Manager (Recommended)</h3>
+
+<p>Instead of installing gems globally, consider using a Ruby version manager like <code>rbenv</code> or <code>RVM</code>. These tools allow you to manage multiple Ruby versions and gems without requiring administrative permissions.</p>
+
+<h4>Using rbenv</h4>
+
+<pre><code>1. Install rbenv if you haven't already.
+2. Install the desired version of Ruby using rbenv.
+3. Install gems without needing elevated permissions.
+</code></pre>
+
+<h4>Using RVM</h4>
+
+<pre><code>1. Install RVM if you haven't already.
+2. Install the desired version of Ruby using RVM.
+3. Use the installed Ruby version without needing elevated permissions to install gems.
+</code></pre>
+
+<!-- more -->
+
+
+<h3>2. Install Gems Locally</h3>
+
+<p>If you want to install gems for the system Ruby without using a version manager, you&rsquo;ll need administrative privileges. You can use the sudo command to install gems as the superuser:</p>
+
+<pre><code class="bash">sudo gem install gem_name
+</code></pre>
+
+<p>However, keep in mind that modifying the system Ruby environment might affect other applications, and it&rsquo;s generally recommended to use a version manager to manage Ruby environments.</p>
+
+<h3>3. Use &ndash;user-install Option</h3>
+
+<p>If you want to install gems locally without administrative privileges, you can use the <strong>&ndash;user-install</strong> option:</p>
+
+<pre><code class="bash">gem install gem_name --user-install
+</code></pre>
+
+<p>This installs the gem in your user&rsquo;s home directory, avoiding the need for system-wide modifications.</p>
+
+<h3>4. Install to Custom Directory</h3>
+
+<p>You can configure gems to be installed in a specific directory where you have write permissions. This involves configuring the <strong>GEM_HOME</strong> and <strong>GEM_PATH</strong> environment variables:</p>
+
+<pre><code class="bash">export GEM_HOME=$HOME/gems
+export GEM_PATH=$GEM_HOME:/path/to/system/gems
+gem install gem_name
+</code></pre>
+
+<p>Make sure to adjust the paths according to your preferences.</p>
+
+<p>In general, using a Ruby version manager like <strong>rbenv</strong> or <strong>RVM</strong> is recommended, as it provides a more flexible and isolated way to manage Ruby versions and gems without affecting system-wide configurations or requiring administrative permissions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(18)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18/"/>
+    <updated>2015-12-28T10:59:48+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18</id>
+    <content type="html"><![CDATA[<h4>IO</h4>
+
+<p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:  <br/>
+标准输入 - 预定义常量(<strong>STDIN</strong>), 全局变量(<strong>\$stdin</strong>)      <br/>
+标准输出 - 预定义常量(<strong>STDOUT</strong>), 全局变量(<strong>\$stdout</strong>) <br/>
+标准错误输出 - 预定义常量(<strong>STDERR</strong>), 全局变量(<strong>\$stderr</strong>)</p>
+
+<pre><code class="ruby">$stdout.print "output something from $stdout\n"
+STDERR.print "output something from $stderr\n"
+</code></pre>
+
+<p>IO对象是否与控制台关联，我们可以通过<strong>tty?</strong>方法来判断。</p>
+
+<pre><code class="ruby">if $stdin.tty?
+  print "stdin is a tty"
+else
+  print "stdin is not a tty"
+end
+</code></pre>
+
+<!-- more -->
+
+
+<h5>文件操作</h5>
+
+<p>通过File.open方法或open方法打开文件并获取新的IO对象，</p>
+
+<pre><code>io = File.open(file, mode)
+io = open(file, mode)
+</code></pre>
+
+<p>mode为文件的读写方法，缺省情况下为只读模式&reg;.</p>
+
+<p>r  - 只读模式  <br/>
+r+ - 读写模式 <br/>
+w  - 只写模式，如果文件不存在则创建新文件，如果文件存在，则清空文件 <br/>
+w+ - 读写模式，其余同w  <br/>
+a  - 追加模式，文件不存在则创建新文件  <br/>
+a+ - 读取、追加模式，文件不存在则创建新文件</p>
+
+<p>io.<strong>close</strong>
+使用<strong>close</strong>方法关闭已打开的文件。File.open方法使用块，则文件会在使用完毕后自动关闭，io变量会被作为块变量传递给块。并且使用io.closed?方法可以检查是否关闭。</p>
+
+<pre><code class="ruby">File.open("tty.rb") do |io|
+  while line = io.gets
+    print line
+  end
+end
+</code></pre>
+
+<p>使用<strong>File.read</strong>可以一次性读取文件的内容。</p>
+
+<pre><code class="ruby">data = File.read("tty.rb")
+</code></pre>
+
+<h5>基本输入</h5>
+
+<p>io.<strong>gets</strong>(rs) <br/>
+io.<strong>each</strong>(rs) <br/>
+io.<strong>each_line</strong>(rs) <br/>
+io.<strong>readlines</strong>(rs) <br/>
+从IO类的对象中读取一行数据，用参数<strong>rs</strong>的字符串分行，缺省模式下为换行符。</p>
+
+<p>使用<strong>eof?</strong>可以检查输入是否已经完毕。</p>
+
+<pre><code class="ruby">io = File.open("tty.rb")
+while line = io.gets
+  line.chomp!
+  print line
+end
+p io.eof?     #=&gt; true
+io.close      #=&gt; close file
+p io.closed?   #=&gt; true
+</code></pre>
+
+<p>用<strong>readlines</strong>方法可以一次性读取所有数据，并返回将每行数据作为元素封装的数组.</p>
+
+<pre><code class="ruby">io = File.open("tty.rb")
+ary = io.readlines
+io.close
+ary.each do |line|
+  line.chomp!
+  print line
+end
+</code></pre>
+
+<p>io.<strong>lineno</strong> <br/>
+使用gets方法，each_line方法逐行读取文件时，io会自动记录读取的行数，可以通过<strong>io.lineno</strong>来获取当前行数。</p>
+
+<p>io.<strong>each_char</strong>  <br/>
+逐个字符读取io对象中的数据,并启动块。</p>
+
+<p>io.<strong>each_byte</strong>
+逐个字节读取io对象中的数据，并启动块。</p>
+
+<p>io.<strong>getc</strong>  <br/>
+只读取io对象中的一个字符。
+io.<strong>ungetc(ch)</strong>  <br/>
+将参数ch指定的字符退回到io得缓冲流中</p>
+
+<pre><code class="ruby">File.open("hello.txt", 'w') do |io|
+  io.write("Hello Ruby")
+end
+File.open("hello.txt") do |io|
+  p io.getc       #=&gt; H
+  io.ungetc('H')
+  p io.gets       #=&gt; Hello Ruby
+end
+
+File.delete("hello.txt")
+</code></pre>
+
+<p>io.<strong>getbyte</strong>, io.<strong>ungetbyte</strong>的使用方法同上，不同之处在于此处是字节。</p>
+
+<p>io.<strong>read</strong>(size)  <br/>
+读取参数size指定大小的数据，如果没指定，则一次性读取所有数据。</p>
+
+<h5>输出操作</h5>
+
+<p>io.<strong>puts</strong>(str0, str1, &hellip;)  <br/>
+指定多个字符串时，会在每个字符串后面添加换行符。</p>
+
+<pre><code class="ruby">$stdout.puts "hi", "hello", "hey"           #=&gt; hi\nhello\nhey\n
+</code></pre>
+
+<p>io.<strong>putc</strong>(ch)  <br/>
+输出指定参数ch字符，如果参数为字符串，则输出首个字符</p>
+
+<pre><code class="ruby">$stdout.putc('H')       #=&gt; H
+$stdout.putc('Hello')   #=&gt; H
+$stdout.putc('\n')
+</code></pre>
+
+<p>io.<strong>print</strong>(str0, str1, &hellip;) <br/>
+输出参数指定的字符串，不会在每个字符串后面追加换行符</p>
+
+<p>io.<strong>printf</strong>(fmt, arg0, arg1, &hellip;)  <br/>
+按照指定格式输出字符串。</p>
+
+<p>io.<strong>write</strong>(str)  <br/>
+输出参数str指定的字符串，方法返回值为输出的字节数</p>
+
+<pre><code class="ruby">size = $stdout.write("Hello")       #=&gt; Hello
+p size          #=&gt; 5
+</code></pre>
+
+<h5>文件指针</h5>
+
+<p>用文件指针或者当前文件偏移量来表示IO对象指向文件的位置。</p>
+
+<p>io.<strong>pos</strong> <br/>
+io.<strong>pos</strong>=position  <br/>
+通过<strong>pos</strong>方法获取文件指针位置，改变文件指针使用<strong>pos=</strong>方法。</p>
+
+<pre><code class="ruby">File.open("hello.txt", 'w') do |io|
+  io.write("Hello Ruby")
+end
+File.open("hello.txt") do |io|
+  p io.read(5)      #=&gt; Hello
+  io.pos = 0
+  p io.gets         #=&gt; Hello Ruby
+end
+</code></pre>
+
+<p>io.<strong>seek</strong>(offset, whence) <br/>
+offset为指定位置的整数，whence为指定offset如何移动， 以下为whence的值:   <br/>
+IO::SEEK_SET - 将文件指针移动到指定offset指定的位置  <br/>
+IO::SEEK_CUR - 将offset视为相对于当前位置的偏移位置来移动文件指针  <br/>
+IO::SEEK_END - 将offset视为相对于文件末尾的偏移位置</p>
+
+<pre><code class="ruby">File.open("hello.txt", 'w') do |io|
+  io.write("Hello Ruby")
+end
+File.open("hello.txt") do |io|
+  p io.read(5)      #=&gt; Hello
+  io.seek(-5, IO::SEEK_CUR)
+  p io.gets         #=&gt; Hello Ruby
+  io.seek(0, IO::SEEK_SET)
+  p io.gets         #=&gt; Hello Ruby
+  io.seek(-4, IO::SEEK_END)
+  p io.gets         #=&gt; Ruby
+end
+</code></pre>
+
+<p>io.<strong>rewind</strong> <br/>
+将文件指针重置到文件开始处，结果同以下两个操作:</p>
+
+<pre><code>io.pos = 0   
+io.seek(0, IO::SEEK_SET)
+</code></pre>
+
+<p>io.<strong>truncate</strong>(size)  <br/>
+按照参数size指定的大小截断文件。</p>
+
+<p><em>注，新的IO对象默认为文本模式，可以通过io.<strong>binmode</strong>将其转为二进制模式</em></p>
+
+<h5>缓冲</h5>
+
+<p>IO对象在输出数据时，结果并不一定会马上输出出来，程序会在内部开辟一个缓冲空间来缓存输出，当空间满的时候再输出来。但是标准错误输出不会使用缓冲，如果有错误信息，则立刻输出。所以标准错误输出一般用于输出警告、错误之类的信息，能够立刻输出数据</p>
+
+<p>io.<strong>flush</strong>  <br/>
+强制输出缓冲中的数据。</p>
+
+<p>io.<strong>sync</strong>  <br/>
+io.<strong>sync</strong>=state <br/>
+通过io.sync = true, 程序写入缓冲时flush方法会被自动调用。</p>
+
+<h5>与命令行交互</h5>
+
+<p>IO.<strong>popen</strong>(command, mode) <br/>
+command为相关的命令</p>
+
+<pre><code class="ruby">pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+
+if /.gz$/ =~ filename
+  file = IO.popen("gunzip -c #{filename}")
+else
+  file = File.open(filename)
+end
+file.close
+</code></pre>
+
+<p><strong>open</strong>(&ldquo;|command&rdquo;, mode) <br/>
+将带有管道符号的命令传递给open方法的效果与使用IO.popen方法是一样的</p>
+
+<pre><code class="ruby">filename = ARGV[0]
+open("|gunzip -c #{filename}") do |io|
+  io.each_line do |line|
+    print line
+  end
+end
+</code></pre>
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(17)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
+    <updated>2015-12-17T09:46:29+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
+    <content type="html"><![CDATA[<h4>正则表达式(Regexp)</h4>
+
+<p>Ruby中的正则表达式用<strong>Regexp</strong>类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。</p>
+
+<h5>创建</h5>
+
+<p>其创建方式有多种：
+1.使用<strong>/ /</strong> 把字符串括起来，可以简单地创建出正则表达式</p>
+
+<pre><code class="ruby">reg1 = /Ruby/
+puts reg1.class       #=&gt; Regexp
+</code></pre>
+
+<!-- more -->
+
+
+<p>2.使用<strong>Regexp.new(&ldquo;字符串&rdquo;)</strong>创建正则表达式</p>
+
+<pre><code class="ruby">reg = Regexp.new("Ruby")
+puts reg.class       #=&gt; Regexp
+</code></pre>
+
+<p>3.使用<strong>%r</strong>创建正则表达式</p>
+
+<pre><code class="ruby">reg = %r(Ruby)
+puts reg.class       #=&gt; Regexp
+
+reg = %r&lt;Ruby&gt;
+puts reg.class       #=&gt; Regexp
+
+reg = %r|Ruby|
+puts reg.class       #=&gt; Regexp
+
+reg = %r!Ruby!
+puts reg.class       #=&gt; Regexp
+</code></pre>
+
+<h5>匹配</h5>
+
+<p>Ruby的正则表达式匹配使用<strong>=~</strong>符号，如果匹配成功返回匹配字符串的位置，否则返回nil。</p>
+
+<pre><code class="ruby">reg = /R..y/
+str = "regexp of Ruby"
+
+matched = reg =~ str
+puts matched        #=&gt; 10
+
+unmatched = reg =~ "test"
+p unmatched         #=&gt; nil
+
+if matched
+  puts "matched"
+else
+  puts "unmatched"
+end
+</code></pre>
+
+<p>此处并不过多的介绍正则表达式的语法规则，具体详细语法请参见<a href="http://regexlib.com/CheatSheet.aspx">http://regexlib.com/CheatSheet.aspx</a></p>
+
+<h5>转义</h5>
+
+<p>对特殊字符的转义方式有两种，使用<strong>\</strong>字符和使用<strong>Regexp#quote</strong>方法</p>
+
+<pre><code class="ruby">#using \ symbol
+reg = /ruby\*regexp/
+puts reg =~ "ruby*regexp"     #=&gt; 0
+p reg =~ "rubyregexp"          #=&gt; nil
+
+#using Regexp#quote method
+reg1 = %r(ruby*regexp)
+reg2 = Regexp.new(Regexp.quote("ruby*regexp"))
+str = "ruby*regexp"
+
+p reg1 =~ str         #=&gt; nil
+p reg2 =~ str         #=&gt; 0
+</code></pre>
+
+<h5>选项</h5>
+
+<p>在正则表达式的后面添加特定的字符如<strong>i</strong>, <strong>x</strong>, <strong>m</strong>等时，匹配后的规则会有点变化</p>
+
+<p><strong>i</strong>   Regexp::IGNORECASE  忽略字符串大小写  <br/>
+<strong>x</strong>   Regexp::EXTENDED        忽略字符串中的空白字符   <br/>
+<strong>m</strong>   Regexp::MULTILINE   匹配多行字符串</p>
+
+<pre><code class="ruby">#using i optional symbol to ignore the cap
+reg1 = /test String/i
+reg2 = Regexp.new("test string", Regexp::IGNORECASE)
+puts reg1 =~ "test string"     #=&gt; 0
+puts reg1 =~ "test string"     #=&gt; 0
+
+#using x optional symbol to ignore the white space symbol
+reg1 = /test string/x
+reg2 = Regexp.new("test string", Regexp::EXTENDED)
+puts reg1 =~ "teststring"      #=&gt; 0
+puts reg1 =~ "teststring"      #=&gt; 0
+
+#using m optional symbol to match multiline
+reg1 = /test\nstring/m
+reg2 = Regexp.new("test\nstring", Regexp::MULTILINE)
+puts reg1 =~ "test\nstring"
+puts reg1 =~ "test\nstring"      #=&gt; 0
+</code></pre>
+
+<h5>捕获</h5>
+
+<p>捕获，就是从正则表达式的匹配部分中提取某部分字符，通过&#8221;<strong>$数字</strong>&ldquo;这种形式的变量获取匹配了正则表达式中的用<strong>()</strong>括住的字符。</p>
+
+<pre><code class="ruby">reg = /(.)(C.)(.)/
+str = "ABCDE"
+reg =~ str
+
+puts $1   #=&gt; B
+puts $2   #=&gt; CD
+puts $3   #=&gt; E
+</code></pre>
+
+<p>使用&#8221;<strong>(?: )</strong>&ldquo;可以过滤掉不需要捕获的模式.</p>
+
+<pre><code class="ruby">reg = /(.)(?:C.)(.)/
+str = "ABCDE"
+reg =~ str
+
+puts $1   #=&gt; B
+puts $2   #=&gt; E
+</code></pre>
+
+<p>Ruby中也可以使用<strong>$`</strong>, <strong>$&amp;</strong>, <strong>$&lsquo;</strong>分别代表匹配部分前的字符串、匹配部分的字符串、匹配部分后的字符串。</p>
+
+<pre><code class="ruby">reg = /(C.)/
+str = "ABCDE"
+reg =~ str
+
+puts $`     #=&gt; AB
+puts $&amp;     #=&gt; CD
+puts $'     #=&gt; E
+</code></pre>
+
+<h5>常用方法</h5>
+
+<p><strong>sub</strong>和<strong>gsub</strong>方法的作用是用指定的字符置换字符串中的某部分字符。<strong>sub</strong>方法只置换首次匹配的部分，而<strong>gsub</strong>则会置换所有匹配的部分.</p>
+
+<pre><code class="ruby">reg = /\s+/
+str = "This is test string"
+
+puts str.sub(reg, '-')   #=&gt; "This-is test string"
+puts str.gsub(reg, '-')   #=&gt; "This-is-test-string"
+</code></pre>
+
+<p>sub和gsub方法同样支持block块模式，针对匹配到的字符做处理</p>
+
+<pre><code class="ruby">reg =/i/
+str = "This is test string"
+
+result = str.sub(reg) do |matched|
+  matched.upcase
+end
+
+puts result     #=&gt; ThIs is test string
+
+result = str.gsub(reg) do |matched|
+  matched.upcase
+end
+
+puts result     #=&gt; ThIs Is test strIng
+</code></pre>
+
+<p><strong>scan</strong>方法和<strong>gsub</strong>方法类似，都可以获取到所有匹配到的字符，但是不能置换。</p>
+
+<pre><code class="ruby ">reg = /(r)(.)/
+str = "racrtrhrdra"
+str.scan(reg) do |matched|
+  p matched
+end
+
+#["r", "a"]
+#["r", "t"]
+#["r", "h"]
+#["r", "d"]
+#["r", "a"]
+
+str.scan(reg) do |val1, val2|
+  p val1 + "-" + val2
+end
+
+#"r-a"
+#"r-t"
+#"r-h"
+#"r-d"
+#"r-a"
+</code></pre>
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(16)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/"/>
+    <updated>2015-11-18T10:49:41+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16</id>
+    <content type="html"><![CDATA[<h4>散列类</h4>
+
+<p>散列(<strong>Hash</strong>)和数组一样，都是表示对象集合的对象，不同之处在于，数组使用索引来取得元素，而散列则是用键key，key可以是任何对象，而索引则不能，只能是整数。</p>
+
+<h5>散列的创建</h5>
+
+<p>1.使用 <strong>{}</strong></p>
+
+<pre><code>    {key=&gt;value}
+    或
+    {key:value}
+</code></pre>
+
+<!-- more -->
+
+
+<pre><code class="ruby">hash1 = {"key1"=&gt;"value1", "key2"=&gt;"value2"}
+p hash1["key1"]         #=&gt; "value1"
+
+hash2 = {key1:"value1", key2:"value2"}
+p hash2[:key1]          #=&gt; "value1"
+</code></pre>
+
+<p>2.使用<strong>Hash.new</strong></p>
+
+<p>Hash.new()可带参数，当带参数的时候表示该参数为默认值，即当键不存在时，所得的值为该默认值；不带参数情况下，其默认值为nil</p>
+
+<pre><code class="ruby">hash1 = Hash.new
+hash2 = Hash.new("ruby")
+
+p hash1["key"]          #=&gt; nil
+p hash2["key"]          #=&gt; "ruby"
+</code></pre>
+
+<p>散列的键可以是任意对象，一般推荐使用下列类型的对象来作为键：字符串(String), 数值(Numberic), 符号(Symbol), 日期(Date).</p>
+
+<h5>散列值的设置和获取</h5>
+
+<p>一般情况下，我们大多使用最普通的方法来给散列赋值或取值, 如果键不存在，则返回nil</p>
+
+<pre><code class="ruby">#common set and get
+hash = Hash.new
+hash["a"] = "first"
+
+p hash["a"]         #=&gt; "first"
+p hash["abc"]       #=&gt; nil
+</code></pre>
+
+<p>Ruby还提供了<strong>store</strong>方法来存储值，使用<strong>fetch</strong>方法来获取值</p>
+
+<pre><code class="ruby">#store and fetch
+hash = Hash.new
+
+hash.store("key", "ruby")
+
+p hash.fetch("key")     #=&gt; "ruby"
+</code></pre>
+
+<p>但<strong>fetch</strong>方法与[]不同之处在于，如果hash对象中不存在键时，使用此方法将会出错</p>
+
+<pre><code class="ruby">hash = Hash.new
+
+hash.store("key", "ruby")
+
+hash.fetch("abc")       #=&gt; KeyError
+</code></pre>
+
+<p><strong>fetch</strong>方法同样可以返回一个默认值，当它指定第2个参数时或者带块时</p>
+
+<pre><code class="ruby">hash = Hash.new
+
+p hash.fetch("abc", "default value")    #=&gt; "default value"
+
+p hash.fetch("abc") {"a_"+ String.new("bc")}    #=&gt;"a_bc"
+</code></pre>
+
+<p>通过<strong>keys</strong>和<strong>values</strong>方法可以得到所有的键和值，而且<strong>to_a</strong>方法可以键值组合的数组。</p>
+
+<pre><code class="ruby">get all keys and values
+hash = {"a"=&gt;"b", "c"=&gt;"d"}
+
+p hash.keys     #=&gt; ["a", "c"]
+p hash.values       #=&gt; ["b", "d"]
+p hash.to_a     #=&gt; [["a", "b"], ["c", "d"]]
+</code></pre>
+
+<p>Ruby也支持了Hash对象的迭代遍历</p>
+
+<pre><code class="ruby">hash = {"a"=&gt;"b", "c"=&gt;"d"}
+
+hash.each_key do |key|
+    puts key
+end
+
+hash.each_value do |value|
+    puts value
+end
+
+hash.each do |key, value|
+    puts "#{key}=&gt;#{value}"
+end
+</code></pre>
+
+<h5>散列的默认值</h5>
+
+<p>散列的默认值设置有三种方式
+1.使用Hash.new带参数作为默认值</p>
+
+<pre><code class="ruby">hash = Hash.new("ruby")
+p hash["a"]         #=&gt; "ruby"
+</code></pre>
+
+<p>2.使用块指定默认值</p>
+
+<pre><code class="ruby">hash = Hash.new do |hash, key|
+    hash[key] = key.upcase
+end
+
+p hash["a"]         #=&gt; "A"
+p hash["B"]         #=&gt; "B"
+</code></pre>
+
+<p>3.使用fetch方法指定默认值</p>
+
+<pre><code class="ruby">hash = Hash.new do |hash, key|
+    hash[key] = key.upcase
+end
+
+p hash.fetch("a", "abc")            #=&gt; "abc"
+</code></pre>
+
+<p><em>注：当Hash.new方法指定了默认值或块时，fetch方法的第二个参数指定的默认值的优先级是最高的，且看上例</em></p>
+
+<h5>散列其他方法</h5>
+
+<p>1.查看指定对象是否为散列的键  <br/>
+h.<strong>key?</strong>(key)  <br/>
+h.<strong>has_key?</strong>(key)  <br/>
+h.<strong>include?</strong>(key)  <br/>
+h.<strong>member?</strong>(key)</p>
+
+<pre><code class="ruby">hash = {"a" =&gt; "b", "c"=&gt; "d"}
+
+p hash.key?("a")    #=&gt; true
+p hash.key?("x")    #=&gt; false
+p hash.has_key?("c")  #=&gt; true
+p hash.include?("a")  #=&gt; true
+p hash.member?("x")   #=&gt; false
+</code></pre>
+
+<p>2.查看指定对象是否为散列的值  <br/>
+h.<strong>value?</strong>(val)  <br/>
+h.<strong>has_value?</strong>(val)</p>
+
+<pre><code class="ruby">hash = {"a"=&gt;"b", "c"=&gt;"d"}
+
+p hash.value?("a")        #=&gt; true
+p hash.has_value?("x")    #=&gt; false
+</code></pre>
+
+<p>3.获取散列的大小  <br/>
+hash.<strong>length</strong>  <br/>
+hash.<strong>size</strong></p>
+
+<pre><code class="ruby">hash = {:a =&gt; "b", :c =&gt; "d"}
+
+p hash.length   #=&gt; 2
+p hash.size   #=&gt; 2
+</code></pre>
+
+<p>4.判断散列是否为空    <br/>
+hash.<strong>empty?</strong></p>
+
+<pre><code class="ruby">hash = {:a=&gt;"b"}
+p hash.empty?     #=&gt; false
+
+hash = Hash.new
+p hash.empty?     #=&gt; true
+</code></pre>
+
+<p>6.删除键值  <br/>
+h.<strong>delete</strong>(key) <br/>
+h.<strong>delete_if</strong>{|key,val| &hellip;}  <br/>
+h.<strong>reject!</strong>{|key, val| &hellip;}</p>
+
+<pre><code class="ruby">hash = {:a =&gt; "b"}
+p hash[:a]    #=&gt; "b"
+
+hash.delete(:a)
+p hash[:a]    #=&gt; nil
+
+hash = {:a =&gt; "b"}
+p hash.delete(:x) { |key| "no #{key} in this hash object"}   #=&gt;"no x in this hash object"
+
+hash = {:a =&gt; "b", :c =&gt; "d"}
+p hash.delete_if {|key, val| key == :a }     #=&gt; {:c=&gt;"d"}
+p hash.delete_if {|key, val| key == :b }     #=&gt; {:c=&gt;"d"}
+
+hash = {:a =&gt; "b", :c =&gt; "d"}
+p hash.reject! {|key, val| key == :a}       #=&gt; {:c=&gt;"d"}
+p hash.reject! {|key, val| key == :b}       #=&gt; nil
+</code></pre>
+
+<p>delete方法带块时，如果不存在指定的键, 则返回块中的结果。<strong>delete_if</strong>方法和<strong>reject!</strong>功能一样，区别在于如果不满足条件是，delete_if返回的是散列对象本身，而reject！则返回nil。</p>
+
+<p>7.初始化散列  <br/>
+h.<strong>clear</strong>  <br/>
+用<strong>clear</strong>方法清空使用过的散列</p>
+
+<pre><code class="ruby">hash = {a:"b", c:"d"}
+p hash.size     #=&gt; 2
+
+hash.clear
+p hash.size     #=&gt; 0
+</code></pre>
+
+<h5>关于散列的键</h5>
+
+<pre><code class="ruby">hash = Hash.new
+key1 = 1
+key2 = 1.0
+
+p key1 == key2      #=&gt; true
+
+hash[key1] = "ruby"
+p hash.key?(key1)     #=&gt; true
+p hash.has_key?(key2)   #=&gt; false
+</code></pre>
+
+<p>注：在散列内部，程序会将散列获取值时指定的键，与将值保存到散列时指定的键做比较，判断两者是否一致。具体来说就是，如果两个键key1，key2，当key1.hash与key2.hash得到的整数值相同，并且key1.eql?(key2)为true时，就会认为这两个键是一致的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby修炼之道(15)]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/"/>
+    <updated>2015-11-17T16:15:17+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15</id>
+    <content type="html"><![CDATA[<h5>字符串比较</h5>
+
+<p>Ruby中比较字符串是否相同也是用<strong>==</strong>和<strong>!=</strong>等运算符</p>
+
+<pre><code class="ruby">#whether two strings are equal
+puts "aaa" == "aab"         #=&gt; false
+puts "aaa" != "aab"         #=&gt; true
+</code></pre>
+
+<p>如果是判断两字符串是否相似，采用正则表达式匹配更加简单。</p>
+
+<pre><code class="ruby">#whether two strings are similar
+reg = Regexp.new("^a+b$")
+p "aaa" =~ reg          #=&gt; nil (not similar)
+p "ab" =~ reg           #=&gt; 0 (similar)
+p "aab" =~ reg          #=&gt; 0 (similar)
+p "acb" =~ reg          #=&gt; nil (not similar)
+</code></pre>
+
+<!-- more -->
+
+
+<p>字符串大小由字符编码的顺序决定，可以通过调用<strong>String#ord</strong>方法获取字符编码的码位。</p>
+
+<pre><code class="ruby ">#compare two strings, which is bigger
+puts "aaa" &gt; "aab"      #=&gt; false
+puts "aaa" &lt;= "aab"     #=&gt; true
+</code></pre>
+
+<p><em>注：Windows平台下的中文字符使用GBK编码，但非Windows平台下的中文字符使用UTF-8编码</em></p>
+
+<h5>字符串的分割</h5>
+
+<p>用特定字符分割字符串时可以使用<strong>split</strong>方法。</p>
+
+<pre><code class="ruby">#split string with a special character
+str = "This is a string"
+p str.split(" ")        #=&gt; ["This", "is", "a", "string"]
+</code></pre>
+
+<h5>字符串的换行符</h5>
+
+<p>用<strong>each_line</strong>方法从标准输入读取字符串时，字符串后面肯定有换行符。在操作字符串时，我们可能不需要换行符。此时可以使用<strong>chomp</strong>和<strong>chomp!</strong>方法来删除字符串行末的换行符。</p>
+
+<pre><code class="ruby">#delete the line break character from a string
+str = "hello ruby\n"
+p str                   #=&gt; "hello ruby\n"
+p str.chomp             #=&gt; "hello ruby"
+p str.chomp!            #=&gt; "hello ruby"
+p str                   #=&gt; "hello ruby"
+</code></pre>
+
+<p>如果说只想移除字符串行末的最后一个任意字符，可以通过是用<strong>chop</strong>和<strong>chop!</strong>方法来实现</p>
+
+<pre><code class="ruby">#delete the last character from a string
+str = "hello ruby"
+puts str.chop           #=&gt; hello rub
+puts str                #=&gt; hello ruby
+puts str.chop!          #=&gt; hello rub
+puts str                #=&gt; hello rub
+</code></pre>
+
+<h5>字符串的索引</h5>
+
+<p>使用<strong>index</strong>和<strong>rindex</strong>方法可以获取某个字符串在另一个字符串中得索引位置，如果不在，则返回nil。<strong>index</strong>方法从左向右检索，<strong>rindex</strong>从右向左检索。</p>
+
+<pre><code class="ruby">#get the index which a string in another string
+str1 = "aaabbbbbb"
+str2 = "bb"
+
+puts str1.index(str2)   #=&gt; 3
+puts str1.rindex(str2)  #=&gt; 7
+</code></pre>
+
+<p>如果只想判断某个字符串中是否包含另一个字符串时，使用<strong>include?</strong>方法更佳。</p>
+
+<pre><code class="ruby">#a string whether contains another string
+str1 = "abc"
+str2 = "ab"
+puts str1.include?(str2) #=&gt; true
+</code></pre>
+
+<h5>字符串的置换</h5>
+
+<p>字符串的置换可以通过调用<strong>sub</strong>和<strong>gsub</strong>来实现。<strong>sub</strong>方法仅替换第一个出现的匹配字符，而<strong>gsub</strong>则会替换所有的匹配字符。</p>
+
+<pre><code class="ruby">#the replacing of string
+puts "hello".sub('l', '*')      #=&gt; he*lo
+puts "hello".gsub('l', '*')     #=&gt; he**o
+</code></pre>
+
+<p>字符串的置换还可以通过像替换数组中元素的方式来实现，即索引</p>
+
+<pre><code class="ruby">str = "hello"
+
+str[2] = '*'
+puts str                        #=&gt; he*lo
+
+str[2..3] = '**'       
+puts str                        #=&gt; he**o
+
+str[1, 3]= '***'        
+puts str                        #=&gt; h***o
+</code></pre>
+
+<h5>字符串与数组相同的方法</h5>
+
+<p>字符串的很多方法都与数组相同，主要分为以下三大类：  <br/>
+- 与索引操作相关的方法 <br/>
+- 与<strong>Enumerable</strong>模块相关的方法  <br/>
+- 与连接、反转相关的方法</p>
+
+<p>删除字符串中的一部分字符并返回，可使用<strong>slice</strong>方法</p>
+
+<p><strong>slice(n)</strong>  <br/>
+<strong>slice(n..m)</strong>  <br/>
+<strong>slice(n, m)</strong>  <br/>
+<strong>slice!(n)</strong>  <br/>
+<strong>slice!(n..m)</strong>
+<strong>slice!(n, m)</strong></p>
+
+<pre><code class="ruby">#the slice of string
+str = "hello ruby"
+puts str.slice(1)               #=&gt; e
+puts str.slice(1..3)            #=&gt; ell
+puts str.slice(2, 3)            #=&gt; llo
+</code></pre>
+
+<p>不带块的情况下，大部分原生的迭代器在调用时都会返回<strong>Enumberable</strong>对象。因此我们可以对<strong>each_line</strong>, <strong>each_byte</strong>， <strong>each_char</strong>等方法的返回值继续使用像<strong>map</strong>， <strong>collect</strong>等方法。</p>
+
+<pre><code class="ruby">#the enumerable of string
+str = &lt;&lt;EOB
+hello
+ruby
+EOB
+
+p str               #=&gt; "hello\nruby\n"
+#return enumerable
+p str.each_line                 #=&gt; #&lt;Enumerator: "hello\nruby\n":each_line&gt;
+
+p str.each_line.map { |e| e.chomp  }   #=&gt; ["hello", "ruby"]
+
+p str.each_line.collect { |e| e.chomp.upcase} #=&gt; ["HELLO", "RUBY"]
+</code></pre>
+
+<p><strong>delete(str)</strong>  <br/>
+<strong>delete!(str)</strong> <br/>
+删除字符串中指定的字符串，并返回删除后的字符</p>
+
+<pre><code class="ruby">#delete the specific string from another string
+str = "hello\n ruby\n"
+p str.delete("\n")      #=&gt; "hello ruby"
+p str                   #=&gt; "hello\n ruby\n"
+
+p str.delete!("\n")     #=&gt; "hello ruby"
+p str                   #=&gt; "hello ruby"
+</code></pre>
+
+<p><strong>reverse(str)</strong>  <br/>
+<strong>reverse!(str)</strong>  <br/>
+反转字符串，包括破坏方法与非破坏方法</p>
+
+<pre><code class="ruby">#reverse a string
+str = "hello ruby"
+p str.reverse           #=&gt; "ybur olleh"
+</code></pre>
+
+<p><strong>str.strip</strong>  <br/>
+<strong>str.strip!</strong>  <br/>
+删除字符串str中行首和行尾的空白字符</p>
+
+<pre><code class="ruby">#remove the white space at the begin and end of string
+str = " hello ruby "
+p str                   #=&gt; " hello ruby"
+p str.strip             #=&gt; "hello ruby"
+</code></pre>
+
+<p><strong>str.upcase/str.upcase!</strong>  <br/>
+<strong>str.downcase/str.downcase!</strong>  <br/>
+<strong>str.swapcase/str.swapcase!</strong>  <br/>
+<strong>str.capitalize/str.capitalize!</strong> <br/>
+字符串大小写的转换系列方法, <strong>swapcase</strong>方法是将字符串中的大小写相互转换。而<strong>capitalize</strong>方法则是将字符串的首个字符大写，其余的均改为小写</p>
+
+<pre><code class="ruby">#text transform
+str = "Hello RUBY"
+p str.upcase            #=&gt; "HELLO RUBY"
+p str.downcase          #=&gt; "hello ruby"
+p str.swapcase          #=&gt; "hELLO ruby"
+p str.capitalize        #=&gt; "Hello ruby"
+</code></pre>
+
+
+]]></content>
+  </entry>
+  
+</feed>

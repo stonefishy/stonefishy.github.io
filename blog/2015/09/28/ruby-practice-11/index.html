@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby修炼之道(11) - Stonefishy Blog</title>
+  <meta name="author" content="Andrew Shi">
+
+  
+  <meta name="description" content="Ruby中所有表现数据的类型都称为数值类，他们都是Numeric的子类。起详尽的类继承结构如下： Ruby中一般用到得整数都是在Fixnum类范围内的，如果超过了Fixnum的范围，Ruby会自动将其转换为Bignum类。 正如上图所示，Ruby可以处理有理数和复数，有理数用Rational类表示 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Andrew Shi </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby修炼之道(11)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-28T10:33:41+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:33 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
+
+<p><img src="assets/images/numeric-inheritance.png" alt="assets/images/numberic-inheritance.png" /></p>
+
+<!-- more -->
+
+
+<p>Ruby中一般用到得整数都是在<strong>Fixnum</strong>类范围内的，如果超过了Fixnum的范围，Ruby会自动将其转换为<strong>Bignum</strong>类。</p>
+
+<p>正如上图所示，Ruby可以处理有理数和复数，有理数用<strong>Rational</strong>类表示，复数用<strong>Complex</strong>类表示。其定义形式如下：</p>
+
+<p>1.Rational对象</p>
+
+<pre><code>Rational(分子，分母)
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="no">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1">#=&gt; (1/3)</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">to_f</span>                       <span class="c1">#=&gt; 0.3333333</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过<em>Rational#to_f</em>方法可将有理数转为Float对象</p>
+
+<p>2.Complex对象</p>
+
+<pre><code>Complex(实数，虚数)
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="no">Complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; (1+2i)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>单纯的数字罗列表示10进制整数。以0b开头的数值表示2进制数，以0或者0o开头的数值表示8进制数，以0d开头的数值表示10进制数，以0x开头的数值表示16进制数。字面量中的_会被自动忽略。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">123</span>            <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1_23</span>            <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">p</span> <span class="mo">0123</span>        <span class="c1">#=&gt; 83</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">0</span><span class="n">o123</span>        <span class="c1">#=&gt; 83</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">0</span><span class="n">d123</span>        <span class="c1">#=&gt; 123</span>
+</span><span class='line'><span class="nb">p</span> <span class="mh">0x123</span>       <span class="c1">#=&gt; 291</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Integer对象与Float对象的计算结果为Float对象。</p>
+
+<p>x.<strong>div</strong>(y)
+返回x除以y后的商的整数</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; 2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>quo</strong>(y)
+返回x除以y后的商，如果x、y都是整数则返回Rational对象</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">quo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; (5/2)</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">quo</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">#=&gt; 2.27272727</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>modulo</strong>(y)
+返回x除以y后的余数，与<em>x % y</em>等价</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">modulo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span>                <span class="c1">#=&gt; 1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>divmod</strong>(y)
+将x除以y后的商和余数作为数组返回,余数的符号与y的符号一致。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1">#=&gt; [2, 1]</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; [-3, 1]</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; [-3, -1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>x.<strong>remainder</strong>(y)
+返回x除以y的余数，结果的符号与x的符号一致</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">5</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#=&gt; -1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>注：当除数为0时，Integer类会返回错误，而Float类则会返回Infinity（无限大）或者NaN（Not a Number）。</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>           <span class="c1">#=&gt; ZeroDivisionError</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span>       <span class="c1">#=&gt; Infinity</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span>           <span class="c1">#=&gt; NaN</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>针对数值类型，Ruby提供<strong>Math</strong>模块增强数据的处理功能，包括三角函数，对数函数等常用的函数运算方法。通过调用如下方法可得到<strong>Math</strong>模块提供的方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">methods</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>to_f</strong>方法可将Integer对象转换为Float对象，<strong>to_i</strong>方法可将Float对象转换为Integer对象，to_i方法会将小数点以后的值去掉。通过使用<strong>round</strong>方法可对小数进行四舍五入的处理.<strong>ceil</strong>方法返回比比原数值大得最小整数，<strong>floor</strong>方法返回比原数值小的最大整数。通过<strong>to_r</strong>和<strong>to_c</strong>方法可将数值转换为Rational对象和Complex对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="n">to_f</span>           <span class="c1">#=&gt; 1.0</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">to_i</span>      <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">round</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">50</span><span class="o">.</span><span class="n">round</span>     <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">ceil</span>      <span class="c1">#=&gt; 2</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="n">floor</span>     <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">5</span><span class="o">.</span><span class="n">to_r</span>       <span class="c1">#=&gt; (3/2)</span>
+</span><span class='line'><span class="nb">p</span> <span class="mi">1</span><span class="o">.</span><span class="mi">5</span><span class="o">.</span><span class="n">to_c</span>       <span class="c1">#=&gt; (1.5+0i)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Integer类按照指定次数循环处理逻辑</p>
+
+<p>执行指定的n次逻辑</p>
+
+<pre><code>n.times do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [0, 1, 2, 3, 4]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从<em>from</em>开始循环加对<em>i</em>进行加1处理，直到<em>i</em>等于<em>to</em></p>
+
+<pre><code>from.upto(to) do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [1, 2, 3, 4, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从<em>from</em>开始循环对<em>i</em>进行减1处理，直到<em>i</em>等于<em>to</em></p>
+
+<pre><code>from.downto(to) do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">5</span><span class="o">.</span><span class="n">downto</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [5, 4, 3, 2, 1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从<em>from</em>开始循环对<em>i</em>进行加<em>step</em>处理，直到<em>i</em>等于<em>to</em></p>
+
+<pre><code>from.step(to, step) do |i|
+    逻辑
+end
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [1, 3, 5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Andrew Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-28T10:33:41+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:33 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/" title="Previous Post: The initialization of the angular ngModel">&laquo; The initialization of the angular ngModel</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/10/13/ruby-practice-12/" title="Next Post: Ruby修炼之道(12)">Ruby修炼之道(12) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Andrew <br/> A web developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2023 - Andrew Shi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

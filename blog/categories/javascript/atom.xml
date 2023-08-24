@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2023-08-25T00:54:25+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Andrew Shi]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
+    <updated>2015-09-23T10:59:23+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
+    <content type="html"><![CDATA[<p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/&gt;
+    &lt;script src="../../bower_components/angular/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="../../js/ngModel.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-app="ModelApp"&gt;
+    &lt;div class="page-header"&gt;
+        &lt;h1 class="text-center"&gt;ng-model initialize example&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="panel panel-danger" ng-controller="ModelController1"&gt;
+        &lt;div class="panel-heading"&gt;the angular model without initialize:&lt;/div&gt;
+        &lt;div class="panel-body"&gt;
+            &lt;div&gt;
+                &lt;input type="text" id="myInput1" ng-model="myModel1" value="A"/&gt;
+                &lt;label for=""&gt; -&gt; This input tag bundles the ngModel which name is 'myModel1'&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;input disabled="true" id="displayModelValue1" type="text" value=""/&gt;
+                &lt;label for=""&gt; -&gt; This input tag displays the value of the above ngModel&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<!-- more -->
+
+
+<p>In the code, there is a input which id is &lsquo;myInput1&rsquo; has bundled a ngModel which name is &lsquo;myModel1&rsquo;. The value of the input we give it &lsquo;A&rsquo;. And we put this input tag into the ModelController1 angular controller. Also, there is another input tag which id is &lsquo;displayModelValue1&rsquo;, the purpose of it is to display the value of the &lsquo;myModel1&rsquo;.</p>
+
+<p>Let&rsquo;s see the controller code.</p>
+
+<pre><code class="javascript">var ModelApp = angular.module("ModelApp", []);
+
+ModelApp.controller('ModelController1', function($scope) {
+
+});
+</code></pre>
+
+<p>You will notice that there is nothing in the ModelController1. Now, running this page. let&rsquo;s see the result.</p>
+
+<p><img src="/assets/images/angular-ngModel-1.png" alt="" /></p>
+
+<p>From the result, the value of the myInput1 is empty, but we have set the default value &lsquo;A&rsquo; to it. So we guess maybe the value has changed. But when we inspect the element, we found the value has been set to &lsquo;A&rsquo; in the html source. so far, I&rsquo;m so confused. To find the reason, I open the console of the browser, put below javascript code to see the value. It still empty.</p>
+
+<pre><code class="javascript">$('#myInput1').value
+</code></pre>
+
+<p><img src="/assets/images/angular-ngModel-2.png" alt="" /></p>
+
+<p>So I guess that maybe it is ngModel affect it, the value has been changed by ngModel, but the html source didn&rsquo;t changed. So let&rsquo;s remove the ngModel from that input tag.</p>
+
+<pre><code class="html">&lt;input type="text" id="myInput1" value="A"/&gt;
+</code></pre>
+
+<p>And now，the value has displayed. it proves our suppose is correct.</p>
+
+<p>Ok, Let&rsquo;s get started to find the reason use a new example.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/&gt;
+    &lt;script src="../../bower_components/angular/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="../../js/ngModel.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-app="ModelApp"&gt;
+    &lt;div class="page-header"&gt;
+        &lt;h1 class="text-center"&gt;ng-model initialize example&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="panel panel-success" ng-controller="ModelController2"&gt;
+        &lt;div class="panel-heading"&gt;the angular model with initialize:&lt;/div&gt;
+        &lt;div class="panel-body"&gt;
+            &lt;div&gt;
+                &lt;input type="text" id="myInput2" ng-model="myModel2" value="A"/&gt;
+                &lt;label for=""&gt; -&gt; This input tag bundles the ngModel which name is 'myModel2'&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;input disabled="true" id="displayModelValue2" type="text" value=""/&gt;
+                &lt;label for=""&gt; -&gt; This input tag displays the value of the above ngModel&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>The above html source code is same with before, just the id and ngModel name are different. And there is another different is that we initialize the ngModel in the controller.</p>
+
+<pre><code class="javascript">ModelApp.controller('ModelController2', function($scope) {
+    $scope.myModel2 = "B";
+
+});
+</code></pre>
+
+<p>We have set the myModel2 value to &lsquo;B&rsquo; in the ModelController2. But in the html source code, we set the default value to &lsquo;A&rsquo; and bundle it to ngModel. So let&rsquo;s see the result:</p>
+
+<p><img src="/assets/images/angular-ngModel-3.png" alt="" /></p>
+
+<p>The result is &lsquo;B&rsquo; not &lsquo;A&rsquo;. That means the ngModel is initialized in the controller. And then render it to the browser. So this can explain the weird problem.</p>
+
+<p>The finial reason is that the ngModel is initialized in the controller. If it is not initialize, the value will be empty, like the first example. So if we initialize it in the controller, the ngModel value will be changed with initialzed value.</p>
+
+<p>And also, you can use the <code>ng-init</code> directive to initialize the ngModel value which you want.</p>
+
+<pre><code class="html">&lt;input type="text" id="myInput2" ng-model="myModel2" ng-init="myModel2 = 'A'"/&gt;
+</code></pre>
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using TSD to Improve Javascript Intellisense of IDE]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/"/>
+    <updated>2015-07-30T23:27:10+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide</id>
+    <content type="html"><![CDATA[<p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
+
+<p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
+
+<p><code>TypeScipt</code> is also like <code>CoffeeScript</code>, it can be compiled to <code>JavaScript</code>. It is developed by Microsoft company. To See the TypeScript, go to this official <a href="http://www.typescriptlang.org/">website</a>.</p>
+
+<!-- more -->
+
+
+<p>If you used the <code>NPM</code> before, I believe you also can use <code>TSD</code> quickly. The <code>TSD</code> usage is very similar with <code>NPM</code>. And also it has <code>tsd.json</code> file to contains javascript libraries type definitions which you want to make them intellisense, just like <code>package.json</code> file of <code>NPM</code>.</p>
+
+<p>To install it, we can using <code>NPM</code> command.</p>
+
+<pre><code>npm install tsd -g
+</code></pre>
+
+<p>Use below command to search the DefinitelyTyped file of Javascript library.</p>
+
+<pre><code>tsd query &lt;javascript library name&gt; -i -r
+</code></pre>
+
+<p>for example, we search the definitelyTyped file of angular:</p>
+
+<pre><code>tsd query angular -i -r
+</code></pre>
+
+<p>this will print below information:</p>
+
+<pre><code>- angularjs / angular
+   -&gt; jquery &gt; jquery
+    v latest
+    v 1.0.0
+    v 1.2.0
+   &gt;&gt; Angular JS 1.4            : angularjs.org
+    @ Diego Vilar               : github.com/diegovilar
+    &lt; angular (external module)
+</code></pre>
+
+<p>To install the definitelyTyped file into your project. Just follow below commands:</p>
+
+<pre><code>tsd install angular --save
+</code></pre>
+
+<p>also like using NPM to install the package. For tsd, this will create <code>tsd.json</code> file firstly, and then create <code>typing</code> directory, put the related definitelytyped file which is the <code>.d.ts</code> extension TypeScript file.</p>
+
+<p>The example of <code>tsd.json</code> file:</p>
+
+<pre><code class="json">{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "383a3bc8e654a77eb8bd07d9feb7208735dcb6fa"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "383a3bc8e654a77eb8bd07d9feb7208735dcb6fa"
+    }
+  }
+}
+</code></pre>
+
+<p>The example of <code>tsd.d.ts</code> file, this file is reference the definitelytyped file. and it under the <code>typings</code> directory.</p>
+
+<pre><code class="javascript">    /// &lt;reference path="angularjs/angular.d.ts" /&gt;
+    /// &lt;reference path="jquery/jquery.d.ts" /&gt;
+</code></pre>
+
+<p>See below screenshots of files or directories:</p>
+
+<p><img src="/assets/images/tsd-file-tree.png" width="300"></p>
+
+<p>Go to <a href="https://github.com/DefinitelyTyped/tsd">https://github.com/DefinitelyTyped/tsd</a> to see the tsd command details.</p>
+
+<p>And TSD has supports many javascript libraries, you can search them which you want in <a href="http://definitelytyped.org/tsd/">definitelytyped repositorty</a>.</p>
+
+<p>Currently, I found this is only work on <a href="https://code.visualstudio.com/">Visual Studio Code</a>, The <code>VSCode</code> is cross platform web develop tools, include Linux, Windows and Mac OS.</p>
+
+<p>To make the VSCode intellisense for javascript. you need to add tsd.d.ts file reference codes to your javascript file, like below.</p>
+
+<pre><code class="javascript"> /// &lt;reference path="../../typings/tsd.d.ts"/&gt;
+</code></pre>
+
+<p>Okay, lets test the <code>underscore</code> javascript library, first install definitely typed file with TSD, and then put the reference code to the js file which is you are working.</p>
+
+<pre><code class="javascript">/**
+ * Created by yushi on 30/07/15.
+ */
+
+/// &lt;reference path="../../typings/tsd.d.ts"/&gt;
+
+function sayHello(name){
+    return "Hello " + name;
+}
+</code></pre>
+
+<p>So when you invoke the undercore functions, the IDE will intellisense the method.</p>
+
+<p><img src="/assets/images/tsd-intellisense.png" alt="intellisense" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Analyze Call Function of Javascript]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript/"/>
+    <updated>2015-05-20T19:24:35+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript</id>
+    <content type="html"><![CDATA[<p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
+
+<h3>Syntax</h3>
+
+<p><code>call([thisObj[,arg1[, arg2[, [,.argN]]]]])</code> <br/>
+ - <strong>thisObj</strong> (optional): it&rsquo;s object which can be act as currently <code>this</code> object. <br/>
+ - <strong>arg1, arg2, argN</strong> (optional) : the parameters which can be passed to the method.</p>
+
+<p>The <em>call</em> method can be used to instead of another object to invoke a method. It can change the object context of a function to a new object which <em>thisObj</em> referenced.</p>
+
+<!-- more --> 
+
+
+<p><strong>Note</strong>: <em>The thisObj is a optional parameter, it will reference to Global object if it is not provided. And the <code>call</code> method is only used by <code>Function</code> object.</em></p>
+
+<h3>Example</h3>
+
+<p>Let&rsquo;s use fake code to explain it firstly. see below code:</p>
+
+<pre><code class="javascript">obj1.method1.call(obj2, arg1, arg2);
+</code></pre>
+
+<p>The functionality of <em>call</em> method is that <em>obj2</em> is able to invoke the <em>method1</em> of <em>obj1</em> with <em>arg1</em>, <em>arg2</em> parameters.</p>
+
+<p>Let&rsquo;s see a simple example:</p>
+
+<pre><code class="javascript">var add = function(a, b) {
+    return a + b;
+};
+
+var sub = function(a, b) {
+    return a - b;
+};
+
+var result = add.call(sub, 1, 2);
+</code></pre>
+
+<p>The value of <em>result</em> variable is 3, not -1. Because the <em>sub</em> function object has been insteaded by <em>add</em> function object. So the <code>add.call(sub, 1, 2)</code> actually is <code>add(1, 2)</code>.</p>
+
+<p><strong>Note</strong>: <em>The </em>function<em> actually is a </em>object* in javascript, and the function name is a reference of <code>Fuction</code> object.</p>
+
+<p>Okay, so let&rsquo;s see a little complex example:</p>
+
+<pre><code class="javascript">function ClassOne() {
+    this.message = "class one";
+    this.showMessage = function () {
+        console.log(this.message);
+    };
+};
+
+function ClassTwo() {
+    this.message = "class two";
+};
+
+var classOne = new ClassOne();
+var classTwo = new ClassTwo();
+classOne.showMessage.call(classTwo);
+</code></pre>
+
+<p>This will print the &lsquo;class two&rsquo; message in the console window of browser. You can execute above code fragment to check it.  <br/>
+In this example, the <em>classTwo</em> object doesn&rsquo;t have <em>showMesage</em> function, but he want to display his message, so he can invoke <em>classOne</em>&rsquo;s with <code>call</code> method.</p>
+
+<p>So far, maybe you will think we can use the <code>call</code> function to simulate the <code>Inheritance</code> of <code>OOP</code>. You are right, let&rsquo;s get the example.</p>
+
+<pre><code class="javascript">function BaseClass() {
+    this.message = "base class";
+    this.showMessage = function () {
+        console.log(this.message);
+    };
+};
+
+function MyClass() {
+    BaseClass.call(this);
+};
+
+var myClass = new MyClass();
+myClass.showMessage();
+</code></pre>
+
+<p>So the <em>MyClass</em> inherites the <em>BaseClass</em>. The <code>BaseClass.call(this)</code> that means using the object of <em>BaseClass</em> to instead of <em>this</em> object. So the <em>MyClass</em> can access the property and function of <em>BaseClass</em>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Destroy Your Website]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/19/destroy-your-website/"/>
+    <updated>2015-05-19T12:16:00+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/19/destroy-your-website</id>
+    <content type="html"><![CDATA[<p>Ha, Confusion? Don&rsquo;t, it&rsquo;s true. Let me introduce to you how to destroy the website you want. <br/>
+Click the below button:<br/>
+<button type="button" onclick="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</button>  <br/>
+Use the <strong>Arrow</strong> key to move the rocket, and press the <strong>Space</strong> key to fire. And also Press and hold <strong>B</strong> to find targets which can be destroy.</p>
+
+<!-- more -->
+
+
+<p>Visit <a href="http://erkie.github.com/">http://erkie.github.com/</a> and drag the graphic onto your bookmarks bar to use this on whatever webpage you want to destory.</p>
+
+<p>Actually, it&rsquo;s very easy to do this with javascript. <br/>
+1. Download this javascript library from <a href="">here</a>, and put it in your project directory. <br/>
+2. Adding below code snippet to your element target you want to triggle</p>
+
+<pre><code class="javascript">javascript:var jst = document.createElement('script');
+jst.type='text/javascript';
+document.body.appendChild(jst);
+jst.src='/javascripts/libs/asteroids.min.js';void(0);
+</code></pre>
+
+<p>Note: you need to change the src of the variable <strong>jst</strong> to your javascript library&rsquo;s location, like below:</p>
+
+<pre><code class="javascript">    jst.src = 'YOUR LIBRARY LOCATION';
+</code></pre>
+
+<p>So, it&rsquo;s quite simple.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
+    <updated>2015-05-16T11:08:31+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
+    <content type="html"><![CDATA[<p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
+
+<h3>Usage</h3>
+
+<blockquote><p><code>angular.extend(dst, src);</code></p>
+
+<p>dst:        <strong>destination object</strong><br/>
+src:        <strong>source object(s)</strong></p>
+
+<p>return:     <strong>refercen to dst object</strong></p></blockquote>
+
+<!-- more -->
+
+
+<h3>Example</h3>
+
+<p>Let&rsquo;s understand how to use it with example instance. Create a normal controller which contains user&rsquo;s name, gender and age. And create a method to get the full description of the user.</p>
+
+<pre><code class="javascript">angular.Module('app',[])
+
+.app.controller('UserController', ['$scope', function ($scope) {
+    $scope.name = 'angular';
+    $scope.gender = 'male';
+    $scope.age = '2';
+
+    $scope.getDescription = function() {
+        return "My name is " + $scope.name + " and I am " + $scope.gender + " " + $scope.age +  " years old";
+    }
+}]);
+</code></pre>
+
+<p>We can use angular.extend function to do like above functionality, see below:</p>
+
+<pre><code class="javascript">app.controller('UserController', ['$scope', function($scope) {
+  angular.extend($scope, {
+    name : 'angular',
+    gender : 'male',
+    age : '2'
+  });
+
+  angular.extend($scope, {
+    getDescription : function() {
+      return "My name is " + $scope.name + " and I am " + $scope.gender + " " + $scope.age + " years old";
+    }
+  });
+}])
+</code></pre>
+
+<p>And also we can use angular.extend() function to implement mixins. Let&rsquo;s consider the below contrived Logging class.</p>
+
+<pre><code class="javascript">var debug = true;
+var Logger = {
+  log: function (msg) {
+    console.log(debug ? msg : '');      
+  }
+};
+</code></pre>
+
+<p>If we set debug variable to true, so it will print message in the browser console window when we invoke the log function. Otherwise nothing will be printed.</p>
+
+<p>Okay, now we create a controler called LoggerController, and &ldquo;mixin&rdquo; Logger class to it.</p>
+
+<pre><code class="javascript">app.controller('LoggerController', ['$scope', function($scope) {
+  angular.extend($scope, Logger);
+
+  $scope.print = function (msg) {
+    this.log(msg);
+  }
+}])
+</code></pre>
+
+<p>In LoggerController, we &ldquo;mixin&rdquo; the Logger class to the $scope, and this will inovke the log function of the Logger class when the print function was called.</p>
+]]></content>
+  </entry>
+  
+</feed>

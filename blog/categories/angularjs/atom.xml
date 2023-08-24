@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Angularjs | Stonefishy Blog]]></title>
+  <link href="http://stonefishy.github.io/blog/categories/angularjs/atom.xml" rel="self"/>
+  <link href="http://stonefishy.github.io/"/>
+  <updated>2023-08-25T00:54:25+08:00</updated>
+  <id>http://stonefishy.github.io/</id>
+  <author>
+    <name><![CDATA[Andrew Shi]]></name>
+    <email><![CDATA[andrewsy@live.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
+    <updated>2015-09-23T10:59:23+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
+    <content type="html"><![CDATA[<p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/&gt;
+    &lt;script src="../../bower_components/angular/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="../../js/ngModel.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-app="ModelApp"&gt;
+    &lt;div class="page-header"&gt;
+        &lt;h1 class="text-center"&gt;ng-model initialize example&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="panel panel-danger" ng-controller="ModelController1"&gt;
+        &lt;div class="panel-heading"&gt;the angular model without initialize:&lt;/div&gt;
+        &lt;div class="panel-body"&gt;
+            &lt;div&gt;
+                &lt;input type="text" id="myInput1" ng-model="myModel1" value="A"/&gt;
+                &lt;label for=""&gt; -&gt; This input tag bundles the ngModel which name is 'myModel1'&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;input disabled="true" id="displayModelValue1" type="text" value=""/&gt;
+                &lt;label for=""&gt; -&gt; This input tag displays the value of the above ngModel&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<!-- more -->
+
+
+<p>In the code, there is a input which id is &lsquo;myInput1&rsquo; has bundled a ngModel which name is &lsquo;myModel1&rsquo;. The value of the input we give it &lsquo;A&rsquo;. And we put this input tag into the ModelController1 angular controller. Also, there is another input tag which id is &lsquo;displayModelValue1&rsquo;, the purpose of it is to display the value of the &lsquo;myModel1&rsquo;.</p>
+
+<p>Let&rsquo;s see the controller code.</p>
+
+<pre><code class="javascript">var ModelApp = angular.module("ModelApp", []);
+
+ModelApp.controller('ModelController1', function($scope) {
+
+});
+</code></pre>
+
+<p>You will notice that there is nothing in the ModelController1. Now, running this page. let&rsquo;s see the result.</p>
+
+<p><img src="/assets/images/angular-ngModel-1.png" alt="" /></p>
+
+<p>From the result, the value of the myInput1 is empty, but we have set the default value &lsquo;A&rsquo; to it. So we guess maybe the value has changed. But when we inspect the element, we found the value has been set to &lsquo;A&rsquo; in the html source. so far, I&rsquo;m so confused. To find the reason, I open the console of the browser, put below javascript code to see the value. It still empty.</p>
+
+<pre><code class="javascript">$('#myInput1').value
+</code></pre>
+
+<p><img src="/assets/images/angular-ngModel-2.png" alt="" /></p>
+
+<p>So I guess that maybe it is ngModel affect it, the value has been changed by ngModel, but the html source didn&rsquo;t changed. So let&rsquo;s remove the ngModel from that input tag.</p>
+
+<pre><code class="html">&lt;input type="text" id="myInput1" value="A"/&gt;
+</code></pre>
+
+<p>And now，the value has displayed. it proves our suppose is correct.</p>
+
+<p>Ok, Let&rsquo;s get started to find the reason use a new example.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/&gt;
+    &lt;script src="../../bower_components/angular/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="../../js/ngModel.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-app="ModelApp"&gt;
+    &lt;div class="page-header"&gt;
+        &lt;h1 class="text-center"&gt;ng-model initialize example&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="panel panel-success" ng-controller="ModelController2"&gt;
+        &lt;div class="panel-heading"&gt;the angular model with initialize:&lt;/div&gt;
+        &lt;div class="panel-body"&gt;
+            &lt;div&gt;
+                &lt;input type="text" id="myInput2" ng-model="myModel2" value="A"/&gt;
+                &lt;label for=""&gt; -&gt; This input tag bundles the ngModel which name is 'myModel2'&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;input disabled="true" id="displayModelValue2" type="text" value=""/&gt;
+                &lt;label for=""&gt; -&gt; This input tag displays the value of the above ngModel&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>The above html source code is same with before, just the id and ngModel name are different. And there is another different is that we initialize the ngModel in the controller.</p>
+
+<pre><code class="javascript">ModelApp.controller('ModelController2', function($scope) {
+    $scope.myModel2 = "B";
+
+});
+</code></pre>
+
+<p>We have set the myModel2 value to &lsquo;B&rsquo; in the ModelController2. But in the html source code, we set the default value to &lsquo;A&rsquo; and bundle it to ngModel. So let&rsquo;s see the result:</p>
+
+<p><img src="/assets/images/angular-ngModel-3.png" alt="" /></p>
+
+<p>The result is &lsquo;B&rsquo; not &lsquo;A&rsquo;. That means the ngModel is initialized in the controller. And then render it to the browser. So this can explain the weird problem.</p>
+
+<p>The finial reason is that the ngModel is initialized in the controller. If it is not initialize, the value will be empty, like the first example. So if we initialize it in the controller, the ngModel value will be changed with initialzed value.</p>
+
+<p>And also, you can use the <code>ng-init</code> directive to initialize the ngModel value which you want.</p>
+
+<pre><code class="html">&lt;input type="text" id="myInput2" ng-model="myModel2" ng-init="myModel2 = 'A'"/&gt;
+</code></pre>
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
+    <link href="http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
+    <updated>2015-05-16T11:08:31+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
+    <content type="html"><![CDATA[<p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
+
+<h3>Usage</h3>
+
+<blockquote><p><code>angular.extend(dst, src);</code></p>
+
+<p>dst:        <strong>destination object</strong><br/>
+src:        <strong>source object(s)</strong></p>
+
+<p>return:     <strong>refercen to dst object</strong></p></blockquote>
+
+<!-- more -->
+
+
+<h3>Example</h3>
+
+<p>Let&rsquo;s understand how to use it with example instance. Create a normal controller which contains user&rsquo;s name, gender and age. And create a method to get the full description of the user.</p>
+
+<pre><code class="javascript">angular.Module('app',[])
+
+.app.controller('UserController', ['$scope', function ($scope) {
+    $scope.name = 'angular';
+    $scope.gender = 'male';
+    $scope.age = '2';
+
+    $scope.getDescription = function() {
+        return "My name is " + $scope.name + " and I am " + $scope.gender + " " + $scope.age +  " years old";
+    }
+}]);
+</code></pre>
+
+<p>We can use angular.extend function to do like above functionality, see below:</p>
+
+<pre><code class="javascript">app.controller('UserController', ['$scope', function($scope) {
+  angular.extend($scope, {
+    name : 'angular',
+    gender : 'male',
+    age : '2'
+  });
+
+  angular.extend($scope, {
+    getDescription : function() {
+      return "My name is " + $scope.name + " and I am " + $scope.gender + " " + $scope.age + " years old";
+    }
+  });
+}])
+</code></pre>
+
+<p>And also we can use angular.extend() function to implement mixins. Let&rsquo;s consider the below contrived Logging class.</p>
+
+<pre><code class="javascript">var debug = true;
+var Logger = {
+  log: function (msg) {
+    console.log(debug ? msg : '');      
+  }
+};
+</code></pre>
+
+<p>If we set debug variable to true, so it will print message in the browser console window when we invoke the log function. Otherwise nothing will be printed.</p>
+
+<p>Okay, now we create a controler called LoggerController, and &ldquo;mixin&rdquo; Logger class to it.</p>
+
+<pre><code class="javascript">app.controller('LoggerController', ['$scope', function($scope) {
+  angular.extend($scope, Logger);
+
+  $scope.print = function (msg) {
+    this.log(msg);
+  }
+}])
+</code></pre>
+
+<p>In LoggerController, we &ldquo;mixin&rdquo; the Logger class to the $scope, and this will inovke the log function of the Logger class when the print function was called.</p>
+]]></content>
+  </entry>
+  
+</feed>

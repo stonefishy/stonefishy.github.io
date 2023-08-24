@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What Is Cucumber - Stonefishy Blog</title>
+  <meta name="author" content="Andrew Shi">
+
+  
+  <meta name="description" content="Cucumber is a tool that can execute plain-text functional descriptions. And also it&rsquo;s BDD(Behaviour Driven Development) automated tests. It is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2014/12/23/what-is-cucumber">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Andrew Shi </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What Is Cucumber</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-23T00:23:25+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:23 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><code>Cucumber</code> is a tool that can execute <code>plain-text</code> functional descriptions. And also it&rsquo;s  <code>BDD(Behaviour Driven Development)</code> <code>automated tests</code>. It is written by <code>Ruby</code>, and now it supports more than 40 languages, such as <code>Java</code>, <code>C#</code> and <code>Scala</code> etc.</p>
+
+<h3>Install</h3>
+
+<p>Firstly, we need to install <code>Ruby</code> and <code>RubyGems</code>, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  ruby --version
+</span><span class='line'>ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
+</span><span class='line'>~  gem --version
+</span><span class='line'>2.0.14  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>And then we can run the command below to install <code>Cucumber</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  gem install cucumber</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After this, put below command to see how to use it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~  cucumber --help</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<h3>Gherkin</h3>
+
+<p><code>Gherkin</code> is a language that can be understand by <code>Cucumber</code>. It&rsquo;s a <code>Business Readable</code>, <code>Domain Specific Language</code>. Very easy to understand what the functional want to do.</p>
+
+<p>The <code>Gherkin</code> has two purpose, documention and automated test. The structure is Treetop grammer than is part of Cucumber codebase and use indentation to format it.</p>
+
+<p> The <code>Gherkin</code> has two conventions:
+ + Single <code>Gherkin</code> source file contains a description of single feature.
+ + The source file is feature extention file(<code>*.feature</code>).</p>
+
+<p>Like <code>YAML(Yet Another Markup Language)</code>, Gherkin is a line-oriented language that uses indentation to define structure. Most lines start with keyword. And you can start with a hash sign(#) to comment the text.</p>
+
+<p>A Gherkin source file usually looks like this</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf"> </span><span class="s">1</span><span class="nf">: Feature: Some terse yet descriptive text of what is desired</span>
+</span><span class='line'><span class="nf"> </span><span class="s">2</span><span class="nf">:   Textual description of the business value of this feature</span>
+</span><span class='line'><span class="nf"> </span><span class="s">3</span><span class="nf">:   Business rules that govern the scope of the feature</span>
+</span><span class='line'><span class="nf"> </span><span class="s">4</span><span class="nf">:   Any additional information that will make the feature easier to understand</span>
+</span><span class='line'><span class="nf"> </span><span class="s">5</span><span class="nf">: </span>
+</span><span class='line'><span class="nf"> </span><span class="s">6</span><span class="nf">:   Scenario: Some determinable business situation</span>
+</span><span class='line'><span class="nf"> </span><span class="s">7</span><span class="nf">:     Given some precondition</span>
+</span><span class='line'><span class="nf"> </span><span class="s">8</span><span class="nf">:       And some other precondition</span>
+</span><span class='line'><span class="nf"> </span><span class="s">9</span><span class="nf">:      When some action by the actor</span>
+</span><span class='line'><span class="s">10</span><span class="nf">:       And some other action</span>
+</span><span class='line'><span class="s">11</span><span class="nf">:       And yet another action</span>
+</span><span class='line'><span class="s">12</span><span class="nf">:      Then some testable outcome is achieved</span>
+</span><span class='line'><span class="s">13</span><span class="nf">:       And something else we can check happens too</span>
+</span><span class='line'><span class="s">14</span><span class="nf">: </span>
+</span><span class='line'><span class="s">15</span><span class="nf">:   Scenario: A different situation</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above the codes, It&rsquo;s very similar with <code>Given-When-Then</code> the <code>Feature</code>, <code>Scenario</code>, <code>Given</code>, <code>And</code>, <code>When</code>, <code>Then</code> all are keywords of <code>Gherkin</code>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Andrew Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-12-23T00:23:25+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:23 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/test/'>test</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/19/what-is-ractive-dot-js/" title="Previous Post: What is Ractive.js">&laquo; What is Ractive.js</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/12/26/how-to-install-sublime-text-plugin/" title="Next Post: how to install packages in sublime text 3">how to install packages in sublime text 3 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Andrew <br/> A web developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2023 - Andrew Shi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

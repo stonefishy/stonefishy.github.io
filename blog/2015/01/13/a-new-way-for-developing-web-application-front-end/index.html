@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A New Way for Developing Web Application Front-End - Stonefishy Blog</title>
+  <meta name="author" content="Andrew Shi">
+
+  
+  <meta name="description" content="When we develop web application, if we write or modify the HTML structure, CSS style and javascript, we need to compile the code and deploy it, and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Andrew Shi </span></h1>
+  
+    <h2>Scribbles of a front and back ends developer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A New Way for Developing Web Application Front-End</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-13T22:43:30+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:43 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>When we develop web application, if we write or modify the HTML structure, CSS style and javascript, we need to compile the code and deploy it, and then refresh page, finally we can see our changes. There are so many steps. So could we skip these steps and just see our changes on page directly when we save the codes. Yes, I can answer you now.</p>
+
+<p>In order to achieve this goal, we need to install <code>Guard</code>, <code>LiveReload</code> and related stuff, configure it in our web application project.</p>
+
+<!-- more -->  
+
+
+<h3>Guard</h3>
+
+<p><code>Guard</code> is a command line tool to easily handle events on file system modifications. The offical website in <a href="http://guardgem.org/">here</a>.</p>
+
+<ul>
+<li>File system changes handled by awesome Listen gem.</li>
+<li>Support for visual system notifications.</li>
+<li>Huge eco-system with more than 220 guard plugins, go to this <a href="https://rubygems.org/search?query=guard-">website</a> to get plugins what you want.</li>
+</ul>
+
+
+<p>The simplest way to install guard is to use <code>Bundler</code>. Go to the guard offical website to see how to install it.</p>
+
+<h3>LiveReload</h3>
+
+<p><code>LiveReload</code> monitors changes in the file system. As soon as you save a file, it is preprocessed as needed, and the browser is refreshed.  <br/>
+Even cooler, when you change a CSS file or an image, the browser is updated instantly without reloading the page.</p>
+
+<p>And here, we use <code>guard-livereload</code> plugin to notificate the browser to reload page. this plugin base on <code>Guard</code> and <code>LiveReload</code>, you have to install Guard firstly. Visit this <a href="https://github.com/guard/guard-livereload/">website</a> to see how to install it.</p>
+
+<h3>LiveReload Safari/Chrome extension</h3>
+
+<p>Finally, you need to install <code>LiveReload Safari Or Chrome Extension</code>, and here, we just use chrome to load web application. So go to Chrome Web Store and find livereload extension to install it on your chrome browser. And also you can use Safari browser.</p>
+
+<p>And now the tools we need have been installed. So let&rsquo;s getting started.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ guard init livereload</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By runing above command line, it will add guard definition to your <code>Guardfile</code>. You can adapt your &lsquo;view&rsquo; files like you want. And the default content of Guardfile by livereload initialize is below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="s1">&#39;livereload&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{app/views/.+\.(erb|haml|slim)}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{app/helpers/.+\.rb}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{public/.+\.(css|js|html)}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{config/locales/.+\.yml}</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># Rails Assets Pipeline</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;/assets/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you can see that there has some watch command in the Guardfile. Changing it by your situation.</p>
+
+<p>Now I will use a login page to test the guard and livereload how to work. This project contains script file, less file and html file. When we change the less file it will generate css file automatically, and here we use Sublime Text plugin to finished it, and also you can use <code>guard-less</code> plugin which is guard plugin. <br/>
+<img src="/assets/images/project-structure.png" alt="" /></p>
+
+<p>In test project directory, we can find the Gemfile and Guardfile.</p>
+
+<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># A sample Gemfile</span>
+</span><span class='line'><span class="n">source</span> <span class="s2">&quot;https://rubygems.org&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># gem &quot;rails&quot;</span>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard-livereload&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here we just only use <code>guard-livereload plugin</code>, we also can use <code>guard-less</code> to configure the less to auto generate css file. But here we use the <code>Sublime Text</code> development tools to develop this project, it supports plugin to generate less to css.</p>
+
+<p>Let&rsquo;s see the guard how to watch our project files. the content of Guardfile is below:</p>
+
+<figure class='code'><figcaption><span>Guardfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># A sample Guardfile</span>
+</span><span class='line'><span class="c1"># More info at https://github.com/guard/guard#readme</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## Uncomment and set this to only include directories you want to watch</span>
+</span><span class='line'><span class="c1"># directories %w(app lib config test spec feature)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## Uncomment to clear the screen before every task</span>
+</span><span class='line'><span class="c1"># clearing :on</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## Guard internally checks for changes in the Guardfile and exits.</span>
+</span><span class='line'><span class="c1">## If you want Guard to automatically start up again, run guard in a</span>
+</span><span class='line'><span class="c1">## shell loop, e.g.:</span>
+</span><span class='line'><span class="c1">##</span>
+</span><span class='line'><span class="c1">##  $ while bundle exec guard; do echo &quot;Restarting Guard...&quot;; done</span>
+</span><span class='line'><span class="c1">##</span>
+</span><span class='line'><span class="c1">## Note: if you are using the `directories` clause above and you are not</span>
+</span><span class='line'><span class="c1">## watching the project directory (&#39;.&#39;), the you will want to move the Guardfile</span>
+</span><span class='line'><span class="c1">## to a watched dir and symlink it back, e.g.</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1">#  $ mkdir config</span>
+</span><span class='line'><span class="c1">#  $ mv Guardfile config/</span>
+</span><span class='line'><span class="c1">#  $ ln -s config/Guardfile .</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># and, you&#39;ll have to watch &quot;config/Guardfile&quot; instead of &quot;Guardfile&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;livereload&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span> <span class="sr">/.*/</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In there, you will see that the all file in this project directory has been watched by guard-livereload.</p>
+
+<p>Type below commands in your terminal.</p>
+
+<figure class='code'><figcaption><span>Guardfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">guard</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It will prompt you that LiveReload is waiting for a browser to connect. And the Guard is now watching at your specific files.</p>
+
+<p>Open the web application on your chrome browser, and click LiveReload extension. And now you will see the terminal has a message said Browser connected.</p>
+
+<p>So far, you have prepared all configurations. And now you can modify the source file and save it, then you will see the web application automatically refresh. <br/>
+<img src="/assets/images/auto-refresh-page.png" alt="" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Andrew Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-01-13T22:43:30+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:43 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/guard/'>guard</a>, <a class='category' href='/blog/categories/livereload/'>livereload</a>, <a class='category' href='/blog/categories/tools/'>tools</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim/" title="Previous Post: How to run multiple IE version on same computer">&laquo; How to run multiple IE version on same computer</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/" title="Next Post: CSS tricks for IE6,IE7,IE8,IE9">CSS tricks for IE6,IE7,IE8,IE9 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Andrew <br/> A web developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/stonefishy">@stonefishy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'stonefishy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2023 - Andrew Shi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
