@@ -24,7 +24,7 @@ Instead of installing gems globally, consider using a Ruby version manager like 
     2. Install the desired version of Ruby using RVM.
     3. Use the installed Ruby version without needing elevated permissions to install gems.
 
-
+<!-- more -->
 ### 2. Install Gems Locally
 If you want to install gems for the system Ruby without using a version manager, you'll need administrative privileges. You can use the sudo command to install gems as the superuser:
 
