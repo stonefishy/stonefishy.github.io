@@ -9,7 +9,7 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="If we want to intercept methods with dynamic pointcut, we need to override matches and getClassFilter methods of DynamicMethodMatcher abstract class &hellip;">
+  <meta name="description" content="Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/14/spring-aop-xml-schema/">Spring AOP - XML Schema</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-14T15:48:55+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:48 pm</span></time>
+        
+           | <a href="/blog/2015/06/14/spring-aop-xml-schema/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
+ - <em>aspectjrt.jar</em> <br/>
+ - <em>aspectjweaver.jar</em> <br/>
+ - <em>aopalliance.jar</em></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/14/spring-aop-xml-schema/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -478,43 +518,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/spring-aop-what-is-aop/">Spring AOP - What Is AOP?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T20:43:03+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:43 pm</span></time>
-        
-           | <a href="/blog/2015/06/04/spring-aop-what-is-aop/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/04/spring-aop-what-is-aop/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What is <code>AOP</code>?, <code>AOP</code> stand for <code>Aspect Oriented Programming</code>. It&rsquo;s very important module for <code>Spring</code> framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called <code>cross-cutting</code> functionalities. <code>AOP</code> do this job.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/spring-aop-what-is-aop/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -541,6 +544,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
       </li>
     
@@ -554,10 +561,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
       </li>
     
   </ul>

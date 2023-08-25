@@ -9,13 +9,11 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="在上一篇中，我们讲到了双指针算法的几种使用场景，这里具体举例，以经典的两数之和为例。 给定一个有序数字的数组和一个目标值，在有序数组中找到两个数字之和等于该目标值，返回包含两个数字的数组，如果没有找到返回包含两个-1值的数组。 1
+  <meta name="description" content="一个常见的最短子数组算法题是 &ldquo;Minimum Size Subarray Sum"。在这个问题中，给定一个正整数数组和一个目标值，要找到数组中一个连续子数组，使得子数组的元素和大于等于目标值，并且子数组的长度最小。 例如 1
 2
 3
 4
-5
-找到的情况
-输入： 有序数组: [2, 4, 5 &hellip;">
+输入： 数组: [5, 3, 4, 2, 8 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +69,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-03-01T17:18:50+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2016</span></span> <span class='time'>5:18 pm</span></time>
+        
+           | <a href="/blog/2016/03/01/minimum-size-subarray-sum/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一个常见的最短子数组算法题是 &ldquo;Minimum Size Subarray Sum&#8221;。在这个问题中，给定一个正整数数组和一个目标值，要找到数组中一个连续子数组，使得子数组的元素和大于等于目标值，并且子数组的长度最小。</p>
+
+<p>例如</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>输入： 
+</span><span class='line'>数组: [5, 3, 4, 2, 8, 5];  目标值: 10
+</span><span class='line'>输出：
+</span><span class='line'>[2, 8]</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>输入： 
+</span><span class='line'>数组: [5, 3, 4, 2, 8, 5];  目标值: 28
+</span><span class='line'>输出：
+</span><span class='line'>[]</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/03/01/minimum-size-subarray-sum/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -163,13 +220,13 @@
   </header>
 
 
-  <div class="entry-content"><p>双指针算法（Two Pointer Algorithm）是一种常见的算法技巧，用于解决一些数组或链表等数据结构上的问题。它的核心思想是使用两个指针在数据结构中进行遍历、搜索、比较或操作，以达到解决问题的目的。</p>
+  <div class="entry-content"><p>双指针算法（Two Pointer Algorithm）是一种常见的算法技巧，通常用于数组、链表等数据结构中解决一些问题。双指针算法的核心思想是使用两个指针在不同的位置上移动，以达到解决问题的目的。这两个指针可以朝着相同的方向移动，也可以朝着相反的方向移动，视问题而定。</p>
 
-<p>通常用于解决以下类型的问题：</p>
+<p>双指针算法的常见应用场景和实现方法：</p>
 
-<p><strong>快慢指针：</strong> 在链表中，使用两个指针分别以不同的速度遍历，常用于判断是否存在环，寻找链表的中间节点等。</p>
+<p><strong>对撞指针（Two Sum、Three Sum）：</strong> 在有序数组中查找满足特定条件的元素对或元素组合。使用两个指针分别从数组的两端开始，向中间逼近，根据元素之间的大小关系，调整指针的位置。</p>
 
-<p><strong>左右指针：</strong> 在数组中，使用两个指针从数组的两端向中间移动，可以解决一些需要比较两个元素之间关系的问题，如两数之和、反转数组等。</p>
+<p><strong>快慢指针（环形链表判断、链表中间节点）：</strong> 在链表中判断是否存在环或找到链表的中间节点。使用两个指针，一个快指针每次移动两步，一个慢指针每次移动一步，根据指针的移动速度判断链表的性质。</p>
 
 </div>
   
@@ -545,78 +602,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-11-12T17:09:35+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:09 pm</span></time>
-        
-           | <a href="/blog/2015/11/12/ruby-practice-14/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>字符串的创建</h4>
-
-<h5>普通创建</h5>
-
-<p>Ruby中使用<strong>&ldquo; &rdquo;</strong>或<strong>&lsquo; &rsquo;</strong>符号来创建字符串，在字符串中也可以包含表达式<strong>#{}</strong>，这个表达式被称之为内嵌表达式。如果字符串中需要包含&#8221;&ldquo;或者&#8217;&lsquo;等字符时，则可以通过转义字符\来实现。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;this is a string&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s1">&#39;this is also a string&#39;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;string with argument&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;this is a </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello &#39;string&#39;&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello </span><span class="se">\&quot;</span><span class="s2">string</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/11/12/ruby-practice-14/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -641,6 +626,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
       </li>
     
@@ -654,10 +643,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
       </li>
     
   </ul>

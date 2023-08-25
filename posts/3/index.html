@@ -9,10 +9,10 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="方法 在Ruby中，调用方法时是可以省略()的 1
+  <meta name="description" content="Ruby的类 和其他面向对象语言一样，Ruby的类也表示对象的种类。通过class方法可以知道某个对象属于哪个类。 1
 2
-&gt;&gt; print(&quot;Hello world&quot;) #=&gt;Hello world
-&gt;&gt; print &quot;Hello world&quot; #=&gt;Hello world 带块的方法 &hellip;">
+&quot;hello&quot;.class #=&gt; String
+1.class #=&gt; Fixnum 判断某个对象时候属于某个类时， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +68,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/25/ruby-practice-6/">Ruby修炼之道(6)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-25T10:12:07+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:12 am</span></time>
+        
+           | <a href="/blog/2015/08/25/ruby-practice-6/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/08/25/ruby-practice-6/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Ruby的类</h3>
+
+<p>和其他面向对象语言一样，Ruby的类也表示对象的种类。通过<strong>class</strong>方法可以知道某个对象属于哪个类。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">class</span>                <span class="c1">#=&gt; String</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">class</span>                 <span class="c1">#=&gt; Fixnum</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>判断某个对象时候属于某个类时，可以使用<strong>instance_of?</strong>方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">instance_of?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>           <span class="c1">#=&gt; true</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">instance_of?</span> <span class="no">Fixnum</span>                   <span class="c1">#=&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/25/ruby-practice-6/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -487,46 +542,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/14/spring-aop-xml-schema/">Spring AOP - XML Schema</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-14T15:48:55+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:48 pm</span></time>
-        
-           | <a href="/blog/2015/06/14/spring-aop-xml-schema/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
- - <em>aspectjrt.jar</em> <br/>
- - <em>aspectjweaver.jar</em> <br/>
- - <em>aopalliance.jar</em></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/14/spring-aop-xml-schema/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -553,6 +568,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
       </li>
     
@@ -566,10 +585,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
       </li>
     
   </ul>

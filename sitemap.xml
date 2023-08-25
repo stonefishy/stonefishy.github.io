@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum/</loc>
+<lastmod>2016-03-01T17:18:50+08:00</lastmod>
+</url>
+<url>
 <loc>http://stonefishy.github.io/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/</loc>
 <lastmod>2016-02-05T09:51:39+08:00</lastmod>
 </url>
@@ -468,5 +472,29 @@
 </url>
 <url>
 <loc>http://stonefishy.github.io/blog/categories/shu-ju-jie-gou/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/2/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/3/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/4/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/5/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/6/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/7/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/8/</loc>
+</url>
+<url>
+<loc>http://stonefishy.github.io/posts/9/</loc>
 </url>
 </urlset>

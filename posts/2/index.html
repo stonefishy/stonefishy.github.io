@@ -9,7 +9,11 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below. Octopress is work well in &hellip;">
+  <meta name="description" content="字符串的创建 普通创建 Ruby中使用&ldquo; &rdquo;或&lsquo; &rsquo;符号来创建字符串，在字符串中也可以包含表达式#{}，这个表达式被称之为内嵌表达式。如果字符串中需要包含"&ldquo;或者'&lsquo;等字符时，则可以通过转义字符\来实现。 1
+2
+3
+4
+5 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +69,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-12T17:09:35+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:09 pm</span></time>
+        
+           | <a href="/blog/2015/11/12/ruby-practice-14/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>字符串的创建</h4>
+
+<h5>普通创建</h5>
+
+<p>Ruby中使用<strong>&ldquo; &rdquo;</strong>或<strong>&lsquo; &rsquo;</strong>符号来创建字符串，在字符串中也可以包含表达式<strong>#{}</strong>，这个表达式被称之为内嵌表达式。如果字符串中需要包含&#8221;&ldquo;或者&#8217;&lsquo;等字符时，则可以通过转义字符\来实现。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;this is a string&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s1">&#39;this is also a string&#39;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;string with argument&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;this is a </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello &#39;string&#39;&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello </span><span class="se">\&quot;</span><span class="s2">string</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/11/12/ruby-practice-14/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -642,61 +718,6 @@ value1 = value1 op value2
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/25/ruby-practice-6/">Ruby修炼之道(6)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-25T10:12:07+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:12 am</span></time>
-        
-           | <a href="/blog/2015/08/25/ruby-practice-6/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/08/25/ruby-practice-6/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Ruby的类</h3>
-
-<p>和其他面向对象语言一样，Ruby的类也表示对象的种类。通过<strong>class</strong>方法可以知道某个对象属于哪个类。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">class</span>                <span class="c1">#=&gt; String</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">class</span>                 <span class="c1">#=&gt; Fixnum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>判断某个对象时候属于某个类时，可以使用<strong>instance_of?</strong>方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">instance_of?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>           <span class="c1">#=&gt; true</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">instance_of?</span> <span class="no">Fixnum</span>                   <span class="c1">#=&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/25/ruby-practice-6/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -723,6 +744,10 @@ value1 = value1 op value2
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
       </li>
     
@@ -736,10 +761,6 @@ value1 = value1 op value2
     
       <li class="post">
         <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
       </li>
     
   </ul>

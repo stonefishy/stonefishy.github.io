@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T10:13:27+08:00</updated>
+  <updated>2023-08-25T17:38:33+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -12,6 +12,158 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[最短子数组之和]]></title>
+    <link href="http://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum/"/>
+    <updated>2016-03-01T17:18:50+08:00</updated>
+    <id>http://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum</id>
+    <content type="html"><![CDATA[<p>一个常见的最短子数组算法题是 &ldquo;Minimum Size Subarray Sum&#8221;。在这个问题中，给定一个正整数数组和一个目标值，要找到数组中一个连续子数组，使得子数组的元素和大于等于目标值，并且子数组的长度最小。</p>
+
+<p>例如</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>输入： 
+</span><span class='line'>数组: [5, 3, 4, 2, 8, 5];  目标值: 10
+</span><span class='line'>输出：
+</span><span class='line'>[2, 8]</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>输入： 
+</span><span class='line'>数组: [5, 3, 4, 2, 8, 5];  目标值: 28
+</span><span class='line'>输出：
+</span><span class='line'>[]</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>输入： 
+</span><span class='line'>数组: [5, 3, 4, 2, 8, 5];  目标值: 4
+</span><span class='line'>输出：
+</span><span class='line'>[5]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个问题可以使用双指针来解决窗口的滑动问题，核心代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">minSizeSubArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">//定义两个指针</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">minLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 最小子数组的左边界</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">minLen</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span> <span class="c1">// 最小子数组的长度</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>    <span class="c1">//子数组元素和</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="o">(</span><span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">p2</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">p2</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">sum</span> <span class="o">+=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">p2</span><span class="o">];</span> <span class="c1">// 将右指针的元素加入子数组</span>
+</span><span class='line'>        <span class="k">while</span> <span class="o">(</span><span class="n">sum</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 如果子数组的和大于等于目标值</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">curLen</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 获取当前子数组长度</span>
+</span><span class='line'>            <span class="k">if</span> <span class="o">(</span><span class="n">minLen</span> <span class="o">&gt;</span> <span class="n">curLen</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 如果子数组长度比上次还更小</span>
+</span><span class='line'>                <span class="n">minLen</span> <span class="o">=</span> <span class="n">curLen</span><span class="o">;</span> <span class="c1">// 更新子数组最小长度</span>
+</span><span class='line'>                <span class="n">minLeft</span> <span class="o">=</span> <span class="n">p1</span><span class="o">;</span>   <span class="c1">// 更新子数组的左边界</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>            <span class="n">sum</span> <span class="o">-=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">p1</span><span class="o">];</span> <span class="c1">// 将左指针的元素从子数组中移除</span>
+</span><span class='line'>            <span class="n">p1</span><span class="o">++;</span>   <span class="c1">//移动左指针，缩小子数组</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">minLen</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>  <span class="c1">// 没有找到匹配的子数组</span>
+</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">//根据子数组的左边界以及长度，返回子数组</span>
+</span><span class='line'>        <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">minLen</span><span class="o">];</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">minLen</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">minLeft</span><span class="o">];</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在上述代码中，我们使用了两个指针 p1 和 p2，分别表示子数组的左右边界。我们在数组上使用滑动窗口来寻找满足条件的最短子数组。当子数组的和大于等于目标值时，我们移动左指针，并更新最小长度。如果发现有更小的数组长度，则更新最小数组长度以及数组的左边界值，当子数组的和不足以满足条件时，我们移动右指针，并继续扩展子数组。</p>
+
+<p>测试结果如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
+</span><span class='line'>    <span class="n">printArray</span><span class="o">(</span><span class="n">minSizeSubArray</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span> <span class="c1">// [2, 8]</span>
+</span><span class='line'>    <span class="n">printArray</span><span class="o">(</span><span class="n">minSizeSubArray</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="mi">28</span><span class="o">));</span> <span class="c1">// []</span>
+</span><span class='line'>    <span class="n">printArray</span><span class="o">(</span><span class="n">minSizeSubArray</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="mi">4</span><span class="o">));</span> <span class="c1">// [5]</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;[&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]).</span><span class="na">append</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">?</span> <span class="s">&quot;&quot;</span> <span class="o">:</span> <span class="s">&quot;, &quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;]&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[双指针算法之两数之和]]></title>
@@ -121,98 +273,24 @@
     <link href="http://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa/"/>
     <updated>2016-01-25T09:09:24+08:00</updated>
     <id>http://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa</id>
-    <content type="html"><![CDATA[<p>双指针算法（Two Pointer Algorithm）是一种常见的算法技巧，用于解决一些数组或链表等数据结构上的问题。它的核心思想是使用两个指针在数据结构中进行遍历、搜索、比较或操作，以达到解决问题的目的。</p>
+    <content type="html"><![CDATA[<p>双指针算法（Two Pointer Algorithm）是一种常见的算法技巧，通常用于数组、链表等数据结构中解决一些问题。双指针算法的核心思想是使用两个指针在不同的位置上移动，以达到解决问题的目的。这两个指针可以朝着相同的方向移动，也可以朝着相反的方向移动，视问题而定。</p>
 
-<p>通常用于解决以下类型的问题：</p>
+<p>双指针算法的常见应用场景和实现方法：</p>
 
-<p><strong>快慢指针：</strong> 在链表中，使用两个指针分别以不同的速度遍历，常用于判断是否存在环，寻找链表的中间节点等。</p>
+<p><strong>对撞指针（Two Sum、Three Sum）：</strong> 在有序数组中查找满足特定条件的元素对或元素组合。使用两个指针分别从数组的两端开始，向中间逼近，根据元素之间的大小关系，调整指针的位置。</p>
 
-<p><strong>左右指针：</strong> 在数组中，使用两个指针从数组的两端向中间移动，可以解决一些需要比较两个元素之间关系的问题，如两数之和、反转数组等。</p>
+<p><strong>快慢指针（环形链表判断、链表中间节点）：</strong> 在链表中判断是否存在环或找到链表的中间节点。使用两个指针，一个快指针每次移动两步，一个慢指针每次移动一步，根据指针的移动速度判断链表的性质。</p>
 
 <!-- more -->
 
 
-<p><strong>滑动窗口：</strong> 使用两个指针表示窗口的左右边界，通过移动窗口来实现区间内的计算，例如字符串中的最小覆盖子串、子数组的最大和等问题。</p>
+<p><strong>滑动窗口（子数组问题、字符串问题）：</strong> 用于解决一些窗口内的问题，例如找到最短子数组、找到最长连续子数组等。使用两个指针表示窗口的左右边界，移动窗口进行计算。</p>
 
-<p><strong>对撞指针：</strong> 在排序数组中，使用两个指针从两端向中间靠拢，解决一些需要判断两个元素之间关系的问题，如两数之和、三数之和等。</p>
+<p><strong>夹逼法（容器装水问题、三数最接近问题）：</strong> 在一维数组中寻找满足特定条件的元素对。使用两个指针从两端开始，逐渐向中间夹逼，根据元素之间的大小关系，调整指针的位置。</p>
+
+<p><strong>多指针法（四数之和问题、删除排序数组中的重复项）：</strong> 在一维或二维数组中寻找满足特定条件的元素组合。使用多个指针在数组中移动，根据问题需要，进行相应的指针调整。</p>
 
 <p>双指针算法的优势在于它可以在O(N)的时间复杂度内解决一些复杂的问题，而不需要使用额外的空间。它在数组和链表等数据结构上都有广泛的应用，常用于解决数组遍历、查找、排序和操作等问题。这种算法可以帮助简化问题的解决过程，提高代码效率。</p>
-
-<p>下面我们来举个列子，如何用双指针快速在有序数组中找到我们想要的数据。
-给定一个有序数字的数组和一个目标值，在有序数组中找到两个数字之和等于该目标值，返回包含两个数字的数组，如果没有找到返回包含两个-1值的数组。</p>
-
-<p>比如</p>
-
-<blockquote><p>找到的情况
-输入：
-有序数组: [2, 4, 5, 6, 12];  目标值: 10
-输出：
-[4, 6]</p>
-
-<p>找不到的情况
-输入：
-有序数组: [2, 4, 5, 6, 12];  目标值: 3
-输出：
-[-1, -1]</p></blockquote>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">findNumbers</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">pLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  <span class="c1">// 左指针初始位置</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">pRight</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 右指针初始位置</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">while</span> <span class="o">(</span><span class="n">pLeft</span> <span class="o">&lt;</span> <span class="n">pRight</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">pLeft</span><span class="o">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="o">[</span><span class="n">pRight</span><span class="o">];</span>
-</span><span class='line'>            <span class="k">if</span> <span class="o">(</span><span class="n">sum</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">numbers</span><span class="o">[</span><span class="n">pLeft</span><span class="o">],</span> <span class="n">numbers</span><span class="o">[</span><span class="n">pRight</span><span class="o">]};</span> <span class="c1">// 返回匹配的元素</span>
-</span><span class='line'>            <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">sum</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">pLeft</span><span class="o">++;</span> <span class="c1">// 和小于目标值，左指针右移</span>
-</span><span class='line'>            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">pRight</span><span class="o">--;</span> <span class="c1">// 和大于目标值，右指针左移</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">};</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">int</span><span class="o">[]</span> <span class="n">results</span> <span class="o">=</span> <span class="n">findNumbers</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">12</span><span class="o">},</span> <span class="mi">10</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;[%d, %d]%n&quot;</span><span class="o">,</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span> <span class="c1">// 输出 [4, 6]</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">results</span> <span class="o">=</span> <span class="n">findNumbers</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">12</span><span class="o">},</span> <span class="mi">3</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;[%d, %d]%n&quot;</span><span class="o">,</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span> <span class="c1">// 输出 [-1, -1]</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在上述代码中，我们使用了两个指针 pLeft 和 pRight 分别指向有序数组的两端。然后，我们计算 numbers[pLeft] 和 numbers[pRight] 的和，并与目标值进行比较。根据和与目标值的大小关系，我们移动左指针或右指针，直到找到符合条件的元素对，或者指针重合没有找到。</p>
 ]]></content>
   </entry>
   
@@ -4541,618 +4619,6 @@ end
 </span><span class='line'>
 </span><span class='line'><span class="nb">p</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">class_method</span>                  <span class="c1">#=&gt; &quot;class method&quot;</span>
 </span><span class='line'><span class="nb">p</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">instance_method</span>         <span class="c1">#=&gt; &quot;instance method&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(6)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/08/25/ruby-practice-6/"/>
-    <updated>2015-08-25T10:12:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/08/25/ruby-practice-6</id>
-    <content type="html"><![CDATA[<h3>Ruby的类</h3>
-
-<p>和其他面向对象语言一样，Ruby的类也表示对象的种类。通过<strong>class</strong>方法可以知道某个对象属于哪个类。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">class</span>                <span class="c1">#=&gt; String</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">class</span>                 <span class="c1">#=&gt; Fixnum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>判断某个对象时候属于某个类时，可以使用<strong>instance_of?</strong>方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">instance_of?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>           <span class="c1">#=&gt; true</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">instance_of?</span> <span class="no">Fixnum</span>                   <span class="c1">#=&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<p>通过扩展已定义的类来创建新类成为<em>继承</em>，通过继承，我们可以实现以下事情：</p>
-
-<ul>
-<li>在不影响原有功能的前提下追加新功能</li>
-<li>重定义原有功能，使名称相同的方法产生不同的效果</li>
-<li>在已有功能的基础上追加处理，扩展已有共更能</li>
-</ul>
-
-
-<p><strong>BasicObject</strong>类是Ruby中所有类的父类，它定义了Ruby对象的最基本功能。普通对象所需要的类一般都被定义为<strong>Object</strong>类。字符串、数组等都是Object类的子类。</p>
-
-<p>子类与父类的关系称为&#8221;is-a&#8221;关系。我们可以通过类的继承关系使用<strong>is_a?</strong>方法反向追查对象是否属于某个类</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>              <span class="c1">#=&gt; true</span>
-</span><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="no">Object</span><span class="p">)</span>               <span class="c1">#=&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>*注：<strong>instance_of?</strong>方法与<strong>is_a?</strong>方法已经在Object类中定义过，因此普通的对象可以直接使用者两个方法。</p>
-
-<h4>类的定义</h4>
-
-<p>使用<strong>class</strong>关键字定义类，类名的首字母必须大写</p>
-
-<pre><code>class 类名
-    类的定义
-end
-</code></pre>
-
-<p>类定义中有个特别的方法名为<strong>initialize</strong>方法，当我们使用<strong>new</strong>方法生成新的对象时，initialize方法会被调用，同时new方法的参数也会被原封不动的传递给initialize方法。</p>
-
-<p>定义一个Greeter类，当对象被创建时，会将new方法中得参数传递给initialize方法中得实例变量@name，如果不传参数，则使用默认的值Ruby传给实例变量，在say_hello实例方法中，将其打印出来。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>利用Greeter类的对象来问候，其执行结果如下</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default_greeter</span> <span class="o">=</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="n">default_greeter</span><span class="o">.</span><span class="n">say_hello</span>                    <span class="c1">#=&gt; Hello Ruby</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">world_greeter</span> <span class="o">=</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">world_greeter</span><span class="o">.</span><span class="n">say_hello</span>                      <span class="c1">#=&gt; Hello World</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>注：引用未初始化的实例变量时的返回值为nil</em></p>
-
-<p>在上面的Greeter类中，@name实例变量是不能被外部直接访问或赋值的，需要通过方法来访问对象的内部。我们可以在Greeter类内部定义两个方法来解决这个问题。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="c1">#other codes in here</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">def</span> <span class="nf">name</span>                 <span class="c1">#获取@name</span>
-</span><span class='line'>      <span class="vi">@name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">name</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>         <span class="c1">#修改@name</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="n">value</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>有了这这两个方法，现在我们可以访问@name实例变量了。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default_greeter</span><span class="o">.</span><span class="n">name</span>                    <span class="c1">#=&gt; Ruby</span>
-</span><span class='line'><span class="n">default_greeter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
-</span><span class='line'><span class="n">default_greeter</span><span class="o">.</span><span class="n">say_hello</span>                <span class="c1">#=&gt; Hello Python</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但是，如果一个类里面有多个实例变量需要被访问时，定义这么多得方法会使得代码量过多，有没有像C#中的属性访问器get/set之类的呢。其实Ruby也为我们提供了这个，称为存取器。使用<strong>attr_reader</strong>, <strong>attr_writer</strong>, <strong>attr_accessor</strong>，只要指定实例变量名的符号（symbol）,注意，此处是实例变量的符号，Ruby就会自动定义相应的存取器。</p>
-
-<pre><code>attr_reader :name           只读 (定义name方法)
-attr_writer :name           只写 (定义name=方法)
-attr_accessor :name         读写 (定义以上两个方法)
-</code></pre>
-
-<p>通过使用他们，我们的Greeter类可以简化为如下</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby中还提供了特殊变量<strong>self</strong>.使用<strong>self</strong>这个特殊变量可以引用方法的接受者。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_bye</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Bye </span><span class="si">#{</span><span class="nb">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用在实例方法内部使用@name和使用self.name是一样的意思，只不过self调用的是name方法。<strong>self</strong>即使对像的本身，相当于C#、Java中的<strong>this</strong>对象。所以上面的self.name可以省略self，直接调用name方法。</p>
-
-<p>但是，在调用像<em>name=</em>方法这样的以<em>=</em>结束的方法时，有一点我们需要注意。因为在Ruby中，定义局部变量也是用<em>=</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">test_name</span>
-</span><span class='line'>      <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span>                  <span class="c1">#定义局部变量name并赋值</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ruby&quot;</span>           <span class="c1">#调用Greeter类的name=方法</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>所以此时省略self后，含义是不一样的。</p>
-
-<h4>类方法的定义</h4>
-
-<p>如果方法的接受者是类本身（类对象）的方法成为类方法。其定义方式主要有以下两种</p>
-
-<ol>
-<li><p>在<strong>class &lt;&lt; 类名 ~ end</strong>这个特殊的类中定义实例方法的形式</p>
-
-<pre><code> class &lt;&lt; 类名
-     方法的定义
- end
-</code></pre></li>
-</ol>
-
-
-<p>为Greeter类定义类方法<em>good_morning</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="no">Greeter</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">good_morning</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Good morning </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li><p>使用<strong>def 类名.方法名 ~ end</strong>这样的形式来定义类方法。</p>
-
-<pre><code> def 类名.方法名
-     方法的定义
- end
-</code></pre></li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">Greeter</span><span class="o">.</span><span class="nf">good_morning</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Good morning </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>注意以上两种定义形式都在类的外部定义，如果在类的内部定义，可以将类名用<strong>self</strong>，这时self引用的对象是该类本身。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
-</span><span class='line'>      <span class="k">def</span> <span class="nf">good_morning</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>          <span class="nb">puts</span> <span class="s2">&quot;Good morning </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">good_morning</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Good morning </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>注：<strong>class &lt;&lt; 类名 ~ end</strong> 这种写法的类定义称为单例类定义，单例类定义中定义的方法称为单例方法</em></p>
-
-<h4>常量</h4>
-
-<p>在class中定义常量，通过使用<strong>类名::常量名</strong>形式来实现外部访问.常量是不可修改的。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="no">Hello</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="no">Greeter</span><span class="o">::</span><span class="no">Hello</span>               <span class="c1">#=&gt; &quot;Hello&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>类变量</h4>
-
-<p>以<strong>@@</strong>开头的变量成为类变量，类变量是该类中所有实例的共享变量，这点和常量类似，不同的是这个类变量可以被修改。当然，从类的外部访问类变量时也需要存取器，但是不能使用<em>attr_accessor</em>,它使属于实例变量的，所以我们需要自己定义，使用类方法来获取类变量是个好的形式</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="vc">@@greeter_count</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="vc">@@greeter_count</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">def</span> <span class="nc">Greeter</span><span class="o">.</span><span class="nf">greeter_count</span>
-</span><span class='line'>      <span class="vc">@@greeter_count</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Greeter</span><span class="o">.</span><span class="n">greeter_count</span>                   <span class="c1">#=&gt; 0</span>
-</span><span class='line'><span class="n">greeter</span> <span class="o">=</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">greeter</span><span class="o">.</span><span class="n">say_hello</span>
-</span><span class='line'><span class="n">greeter</span> <span class="o">=</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="n">greeter</span><span class="o">.</span><span class="n">say_hello</span>
-</span><span class='line'><span class="no">Greeter</span><span class="o">.</span><span class="n">greeter_count</span>                   <span class="c1">#=&gt; 2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>限制方法的调用</h4>
-
-<p>和其他面向对象语言一样，Ruby也有方法的访问修饰符，分别为<strong>public</strong>，<strong>protected</strong>，<strong>private</strong>。其表达的含义也一样。</p>
-
-<ul>
-<li>public 以实例的方法的形式向外部公开</li>
-<li>protect 仅向同一个类或子类公开</li>
-<li>private 仅内部类可调用</li>
-</ul>
-
-
-<p>定义方式，有两种，一种是访问修饰符后面带方法符号</p>
-
-<pre><code>public :方法1, :方法2
-</code></pre>
-
-<p>另外一种是后面不带参数，那么下面所有定义的方法均在这个访问修饰符下，直到有新的访问修饰符。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">public</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_bye</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Bye </span><span class="si">#{</span><span class="nb">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_haha</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Haha </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kp">private</span> <span class="ss">:say_haha</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如以上方法的定义，public修饰符下定义了3个方法，这个3个方法都可以在外部访问，但是最后我们又将最后一个方法标记为private。所以如果在外部企图访问这个方法，将跑出如下错误信息</p>
-
-<pre><code>class_definition.rb:47:in `&lt;main&gt;': private method `say_haha' called for #&lt;Greeter: 0x007fb57c101510 @name="Ruby"&gt; (NoMethodError)
-</code></pre>
-
-<p>如果没有指定访问级别的方法默认为public，但是<strong>initialize</strong>方法是个例外，它通常被定义为private</p>
-
-<h3>扩展类</h3>
-
-<p>Ruby允许我们在已经定义好的类中添加方法。即为扩展方法。如在String类中定义一个计算字符串单词数的方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">String</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">count_word</span>
-</span><span class='line'>      <span class="n">ary</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\s+/</span><span class="p">)</span>   <span class="c1">#用空格分割接收者</span>
-</span><span class='line'>      <span class="n">ary</span><span class="o">.</span><span class="n">size</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Hello Ruby&quot;</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">str</span><span class="o">.</span><span class="n">count_word</span>             <span class="c1">#=&gt; 2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>继承</h4>
-
-<p>使用class关键字指定类名的同时指定父类名</p>
-
-<pre><code>class 类名 &lt; 父类名
-    类定义
-end
-</code></pre>
-
-<p>定义类时没有指定父类的情况下，Ruby会默认该类为<strong>Object</strong>类的子类。通过类对象调用**instance_methods方法，可以得到以符号形式返回的该类的实例方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Greeter</span><span class="o">.</span><span class="n">instance_methods</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果想定义<strong>BasicObject</strong>的子类，我们需要明确指定BasicObject类为父类；而Object类为父类时不需要。</p>
-
-<h4>alias</h4>
-
-<p><strong>alias</strong>即别名，在Ruby中我们可以给方法设置别名，设置别名也两种方式，一种alias后面带方法名参数，第二种后面带方法符号名参数</p>
-
-<pre><code>alias 别名    原名      #使用方法名
-
-alias :别名 :原名       #使用符号名
-</code></pre>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">RubyGreeter</span> <span class="o">&lt;</span> <span class="no">Greeter</span>
-</span><span class='line'>  <span class="k">alias</span> <span class="n">old_say_hello</span> <span class="n">say_hello</span>  <span class="c1">#将继承的say_hello方法设置别名为old_say_hello</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello Ruby&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">rubyGreeter</span> <span class="o">=</span> <span class="no">RubyGreeter</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">rubyGreeter</span><span class="o">.</span><span class="n">old_say_hello</span>      <span class="c1">#=&gt; &quot;Hello&quot;</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">rubyGreeter</span><span class="o">.</span><span class="n">say_hello</span>              <span class="c1">#=&gt; &quot;Hello Ruby&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>undef</h4>
-
-<p><strong>undef</strong>用于删除已有方法的定义。与alias一样，参数可以指定方法名或者符号名。</p>
-
-<pre><code>undef 方法名     #使用方法名
-
-undef :方法名        #使用符号名
-</code></pre>
-
-<p>在子类中希望删除父类的方法时可以直接使用undef。试图访问已删除的方法将会引发<em>NoMethodError</em>错误。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Greeter</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">RubyGreeter</span> <span class="o">&lt;</span> <span class="no">Greeter</span>
-</span><span class='line'>  <span class="k">undef</span> <span class="n">say_hello</span>  <span class="c1">#删除继承的say_hello</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">rubyGreeter</span> <span class="o">=</span> <span class="no">RubyGreeter</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">rubyGreeter</span><span class="o">.</span><span class="n">say_hello</span>                      <span class="c1">#=&gt;抛出异常，undefined method `say_hello&#39; for #&lt;RubyGreeter:0x007fbff4167220&gt; (NoMethodError)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>单例类</h4>
-
-<p>利用单例类定义，可以给对象添加方法（单例方法）。单列类定义被用于定义对象的专属实例方法。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span>
-</span><span class='line'><span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="n">str1</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">hello</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">str1</span><span class="o">.</span><span class="n">hello</span>                         <span class="c1">#=&gt; &quot;Hello Ruby&quot;</span>
-</span><span class='line'><span class="nb">p</span> <span class="n">str2</span><span class="o">.</span><span class="n">hello</span>                     <span class="c1">#=&gt;引发NoMethodError错误</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
