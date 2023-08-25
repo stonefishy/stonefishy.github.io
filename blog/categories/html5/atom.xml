@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Html5 | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/html5/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:30:58+08:00</updated>
+  <updated>2023-08-25T18:44:45+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -163,7 +163,7 @@ Also, it can be nested by itself.</p>
 </div>
 
 
-<pre><code><img src="/assets/images/meter-tag.png" width="300" height="80">
+<pre><code>{% img /assets/images/meter-tag.png 300 80 %}
 
 ####progress
 `progress` tag use to express an progress bar. It has two attributes, one is `max`, another is `value`.
@@ -175,7 +175,7 @@ Also, it can be nested by itself.</p>
 
 
 <p>&#8220;`
-<img src="/assets/images/progress-tag.png" width="350" height="100"></p>
+{% img /assets/images/progress-tag.png 350 100 %}</p>
 ]]></content>
   </entry>
   
@@ -251,10 +251,10 @@ Also, it can be nested by itself.</p>
 <p>The root div is can&rsquo;t be edited by default. when we click button to turn on contentEditable attribute. all children tags of this tag can be edited.</p>
 
 <p><code>contentEditable</code> attribute is false: <br/>
-<img src="/assets/images/contentEditable-before.png" width="300" height="350"></p>
+{% img /assets/images/contentEditable-before.png 300 350 %}</p>
 
 <p><code>contentEditable</code> attribute is true: <br/>
-<img src="/assets/images/contentEditable-after.png" width="300" height="350"></p>
+{% img /assets/images/contentEditable-after.png 300 350 %}</p>
 
 <h3>designMode</h3>
 
@@ -278,7 +278,7 @@ Also, it can be nested by itself.</p>
 <pre><code class="html">&lt;input type="text" spellcheck="true"/&gt;
 </code></pre>
 
-<p><img src="/assets/images/spellcheck.png" width="300" height="80"></p>
+<p>{% img /assets/images/spellcheck.png 300 80 %}</p>
 
 <blockquote><p><em>Note: Supports <code>spellcheck</code> attribute&rsquo;s browsers include <code>Chrome</code>, <code>Opera</code>, <code>Safari</code>, the <code>IE</code>, <code>FireFox</code> doesn&rsquo;t support it for now.</em></p></blockquote>
 ]]></content>
