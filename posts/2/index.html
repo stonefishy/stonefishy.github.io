@@ -9,11 +9,12 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="字符串的创建 普通创建 Ruby中使用&ldquo; &rdquo;或&lsquo; &rsquo;符号来创建字符串，在字符串中也可以包含表达式#{}，这个表达式被称之为内嵌表达式。如果字符串中需要包含"&ldquo;或者'&lsquo;等字符时，则可以通过转义字符\来实现。 1
+  <meta name="description" content="字符串比较 Ruby中比较字符串是否相同也是用==和!=等运算符 1
 2
 3
-4
-5 &hellip;">
+#whether two strings are equal
+puts &quot;aaa&quot; == &quot;aab&quot; #=&gt; false
+puts &quot;aaa&quot; != & &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +70,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-17T16:15:17+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:15 pm</span></time>
+        
+           | <a href="/blog/2015/11/17/ruby-practice-15/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h5>字符串比较</h5>
+
+<p>Ruby中比较字符串是否相同也是用<strong>==</strong>和<strong>!=</strong>等运算符</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#whether two strings are equal</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;aaa&quot;</span> <span class="o">==</span> <span class="s2">&quot;aab&quot;</span>        <span class="c1">#=&gt; false</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;aaa&quot;</span> <span class="o">!=</span> <span class="s2">&quot;aab&quot;</span>            <span class="c1">#=&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果是判断两字符串是否相似，采用正则表达式匹配更加简单。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#whether two strings are similar</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;^a+b$&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;aaa&quot;</span> <span class="o">=~</span> <span class="n">reg</span>            <span class="c1">#=&gt; nil (not similar)</span>
+</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;ab&quot;</span> <span class="o">=~</span> <span class="n">reg</span>             <span class="c1">#=&gt; 0 (similar)</span>
+</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;aab&quot;</span> <span class="o">=~</span> <span class="n">reg</span>            <span class="c1">#=&gt; 0 (similar)</span>
+</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;acb&quot;</span> <span class="o">=~</span> <span class="n">reg</span>            <span class="c1">#=&gt; nil (not similar)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/11/17/ruby-practice-15/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -662,62 +728,6 @@ value1 = value1 op value2
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/01/ruby-practice-7/">Ruby修炼之道(7)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-01T09:06:53+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:06 am</span></time>
-        
-           | <a href="/blog/2015/09/01/ruby-practice-7/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/09/01/ruby-practice-7/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>模块</h3>
-
-<p>Ruby中的类是表现事物的属性和行为，那么模块呢？，在Ruby中<em>模块</em>表现的只是事物的行为。</p>
-
-<p>模块与类的区别于下：</p>
-
-<ul>
-<li>模块不能拥有实例</li>
-<li>模块不能被继承</li>
-</ul>
-
-
-<p>如何访问模块内的方法？有两种方式可以访问</p>
-
-<p>1.使用<strong>模块名.方法名</strong>的形式来直接调用模块中定义的方法。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>         <span class="c1">#=&gt; 2.0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/01/ruby-practice-7/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -736,12 +746,16 @@ value1 = value1 op value2
     <img src="/images/yushi.jpg" alt="yushi">
   </span>
   <span class="about-desc">
-    <span>Hey, I&#8217;m Andrew <br/> A web developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <span>Hey, I&#8217;m Andrew <br/> A developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
     <br/>
   </span>
 </div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
@@ -757,10 +771,6 @@ value1 = value1 op value2
     
       <li class="post">
         <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
       </li>
     
   </ul>

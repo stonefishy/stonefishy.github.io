@@ -9,11 +9,7 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="一个常见的最短子数组算法题是 &ldquo;Minimum Size Subarray Sum"。在这个问题中，给定一个正整数数组和一个目标值，要找到数组中一个连续子数组，使得子数组的元素和大于等于目标值，并且子数组的长度最小。 例如 1
-2
-3
-4
-输入： 数组: [5, 3, 4, 2, 8 &hellip;">
+  <meta name="description" content="很多时候在写文章或者制作PPT时需要用到一些图片资源，最近刚好发现了一个实用的高分辨率的免费资源平台Unspash, 跟大家分享一下。 Unsplash.com 是一个知名的免费高质量图片分享平台，提供各种类型的高分辨率摄影图片供用户免费下载和使用。这些图片可以用于个人、商业、创意和学术项目， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +65,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-02-23T18:02:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2017</span></span> <span class='time'>6:02 pm</span></time>
+        
+           | <a href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>很多时候在写文章或者制作PPT时需要用到一些图片资源，最近刚好发现了一个实用的高分辨率的免费资源平台Unspash, 跟大家分享一下。
+<img src="/assets/images/ziyuan/laptop-1.png" alt="" />
+<a href="https://unsplash.com" title="免费高质量的图片分享平台">Unsplash.com</a> 是一个知名的免费高质量图片分享平台，提供各种类型的高分辨率摄影图片供用户免费下载和使用。这些图片可以用于个人、商业、创意和学术项目，包括网站、博客、社交媒体、演示文稿等。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -537,71 +572,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-11-17T16:15:17+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:15 pm</span></time>
-        
-           | <a href="/blog/2015/11/17/ruby-practice-15/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h5>字符串比较</h5>
-
-<p>Ruby中比较字符串是否相同也是用<strong>==</strong>和<strong>!=</strong>等运算符</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#whether two strings are equal</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;aaa&quot;</span> <span class="o">==</span> <span class="s2">&quot;aab&quot;</span>        <span class="c1">#=&gt; false</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;aaa&quot;</span> <span class="o">!=</span> <span class="s2">&quot;aab&quot;</span>            <span class="c1">#=&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果是判断两字符串是否相似，采用正则表达式匹配更加简单。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#whether two strings are similar</span>
-</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="no">Regexp</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;^a+b$&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;aaa&quot;</span> <span class="o">=~</span> <span class="n">reg</span>            <span class="c1">#=&gt; nil (not similar)</span>
-</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;ab&quot;</span> <span class="o">=~</span> <span class="n">reg</span>             <span class="c1">#=&gt; 0 (similar)</span>
-</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;aab&quot;</span> <span class="o">=~</span> <span class="n">reg</span>            <span class="c1">#=&gt; 0 (similar)</span>
-</span><span class='line'><span class="nb">p</span> <span class="s2">&quot;acb&quot;</span> <span class="o">=~</span> <span class="n">reg</span>            <span class="c1">#=&gt; nil (not similar)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/11/17/ruby-practice-15/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -618,12 +588,16 @@
     <img src="/images/yushi.jpg" alt="yushi">
   </span>
   <span class="about-desc">
-    <span>Hey, I&#8217;m Andrew <br/> A web developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <span>Hey, I&#8217;m Andrew <br/> A developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
     <br/>
   </span>
 </div> <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
@@ -639,10 +613,6 @@
     
       <li class="post">
         <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
       </li>
     
   </ul>
