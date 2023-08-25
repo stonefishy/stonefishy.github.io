@@ -9,7 +9,7 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="数组(Array)也是Ruby中表现一组数据的对象 数组的创建 创建方式有一下几种： 1.使用Array.new Array#new方法可带两个可选参数，第1个参数表示数组中得个数，第2个参数表示每个元素初始值。如果没有指定第2个参数，其元素的初始值为nil。如果不带参数则会创建一个空数组。 1 &hellip;">
+  <meta name="description" content="Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below. Octopress is work well in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,135 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">How to Make the Octopress Adapt OS X EI Capitan</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-11T22:46:35+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:46 pm</span></time>
+        
+           | <a href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
+
+<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
+
+<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+Errno::ENOENT: No such file or directory - compass
+/Users/user/git/octopress/Rakefile:85:in spawn
+/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
+Tasks: TOP =&gt; preview
+(See full trace by running task with --trace)
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/10/26/ruby-practice-13/">Ruby修炼之道(13)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-26T22:13:32+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:13 pm</span></time>
+        
+           | <a href="/blog/2015/10/26/ruby-practice-13/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>替换数组内的元素</h4>
+
+<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
+
+<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
+ary.<strong>collect!</strong> { |item| &hellip;} <br/>
+ary.<strong>map</strong> { |item| &hellip;} <br/>
+ary.<strong>map!</strong> { |item| &hellip;}</p>
+
+<p>将数组ary中的各元素item传递给块做处理。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">item</span><span class="o">*</span><span class="mi">2</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary1</span>                 <span class="c1">#=&gt; [ 2, 4, 6]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>        <span class="mi">0</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>        <span class="mi">1</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="n">ary2</span>                 <span class="c1">#=&gt; [1, 0, 1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/10/26/ruby-practice-13/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -568,109 +697,6 @@ value1 = value1 op value2
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/24/ruby-practice-5/">Ruby修炼之道(5)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-24T15:22:56+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:22 pm</span></time>
-        
-           | <a href="/blog/2015/08/24/ruby-practice-5/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/08/24/ruby-practice-5/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>方法</h3>
-
-<p>在Ruby中，调用方法时是可以省略()的</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>             <span class="c1">#=&gt;Hello world</span>
-</span><span class='line'><span class="o">&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;Hello world&quot;</span>             <span class="c1">#=&gt;Hello world</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>带块的方法</em>
-带块的方法如time,each方法，其语法如下：</p>
-
-<pre><code>对象.方法名(参数，...) do |变量1，...|
-    块内容
-end
-</code></pre>
-
-<p>Ruby中方法可归为3类：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/24/ruby-practice-5/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/17/ruby-practice-4/">Ruby修炼之道(4)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-17T17:01:35+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:01 pm</span></time>
-        
-           | <a href="/blog/2015/08/17/ruby-practice-4/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/08/17/ruby-practice-4/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>循环</h3>
-
-<p>对于任何一种程序设计语言，都有循环处理的方法，Ruby也一样，但是在Ruby中有两种实现循环的方法。</p>
-
-<ul>
-<li>使用循环语句，即利用Ruby提供的现有循环语句</li>
-<li>使用方法实现循环，其具体做法为，将块传给方法，然后在块里面写上需要循环的处理。</li>
-</ul>
-
-
-<p>在Ruby中，有6种循环语句或方法：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/17/ruby-practice-4/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -697,6 +723,14 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">双指针算法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
       </li>
     
@@ -706,14 +740,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="What is Pointcut of Spring AOP? let&rsquo;s describe it. A Pointcut defines what Advices are required at what Join Points. In fact all business logic &hellip;">
+  <meta name="description" content="If we want to intercept methods with dynamic pointcut, we need to override matches and getClassFilter methods of DynamicMethodMatcher abstract class &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Spring AOP - Dynamic Pointcut</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-12T16:23:30+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
+        
+           | <a href="/blog/2015/06/12/spring-aop-dynamic-pointcut/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/12/spring-aop-dynamic-pointcut/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/11/spring-aop-static-pointcut/">Spring AOP - Static Pointcut</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-11T16:08:48+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:08 pm</span></time>
+        
+           | <a href="/blog/2015/06/11/spring-aop-static-pointcut/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&rsquo;s first to see the three very technical terms as below.</p>
+
+<ul>
+<li>Adivce - Indicate the action to take either before or after the method execution.</li>
+<li>Pointcut - Indicate which method should be intercept, by method name or regular expression pattern.</li>
+<li>Advisor - Group ‘Advice’ and ‘Pointcut’ into a single unit, and pass it to a proxy factory object</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/11/spring-aop-static-pointcut/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -434,82 +515,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">The Cobalt2 Theme for iTerm2 and ZSH</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T16:40:06+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:40 pm</span></time>
-        
-           | <a href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
-The answer is yes, we can. Let me show you screenshots firstly. <br/>
-<img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">A Cool Theme for Sublime Text</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-04T16:01:24+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:01 pm</span></time>
-        
-           | <a href="/blog/2015/06/04/a-cool-theme-for-sublime-text/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/04/a-cool-theme-for-sublime-text/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -536,6 +541,14 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">双指针算法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
       </li>
     
@@ -545,14 +558,6 @@ The answer is yes, we can. Let me show you screenshots firstly. <br/>
     
       <li class="post">
         <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
   </ul>

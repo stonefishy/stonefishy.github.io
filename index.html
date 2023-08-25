@@ -9,7 +9,13 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="Sometimes we face the erorr &ldquo;Gem::FilePermissionError: You don&rsquo;t have write permissions for the /Library/Ruby/Gems/x.x.x directory&rdquo &hellip;">
+  <meta name="description" content="在上一篇中，我们讲到了双指针算法的几种使用场景，这里具体举例，以经典的两数之和为例。 给定一个有序数字的数组和一个目标值，在有序数组中找到两个数字之和等于该目标值，返回包含两个数字的数组，如果没有找到返回包含两个-1值的数组。 1
+2
+3
+4
+5
+找到的情况
+输入： 有序数组: [2, 4, 5 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +71,116 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-02-05T09:51:39+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:51 am</span></time>
+        
+           | <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在上一篇中，我们讲到了双指针算法的几种使用场景，这里具体举例，以经典的两数之和为例。</p>
+
+<p>给定一个有序数字的数组和一个目标值，在有序数组中找到两个数字之和等于该目标值，返回包含两个数字的数组，如果没有找到返回包含两个-1值的数组。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>找到的情况
+</span><span class='line'>输入： 
+</span><span class='line'>有序数组: [2, 4, 5, 6, 12];  目标值: 10
+</span><span class='line'>输出：
+</span><span class='line'>[4, 6]</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>找不到的情况
+</span><span class='line'>输入： 
+</span><span class='line'>有序数组: [2, 4, 5, 6, 12];  目标值: 3
+</span><span class='line'>输出：
+</span><span class='line'>[-1, -1]</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">双指针算法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-25T09:09:24+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:09 am</span></time>
+        
+           | <a href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/#disqus_thread"
+             data-disqus-identifier="http://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>双指针算法（Two Pointer Algorithm）是一种常见的算法技巧，用于解决一些数组或链表等数据结构上的问题。它的核心思想是使用两个指针在数据结构中进行遍历、搜索、比较或操作，以达到解决问题的目的。</p>
+
+<p>通常用于解决以下类型的问题：</p>
+
+<p><strong>快慢指针：</strong> 在链表中，使用两个指针分别以不同的速度遍历，常用于判断是否存在环，寻找链表的中间节点等。</p>
+
+<p><strong>左右指针：</strong> 在数组中，使用两个指针从数组的两端向中间移动，可以解决一些需要比较两个元素之间关系的问题，如两数之和、反转数组等。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -501,135 +617,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">How to Make the Octopress Adapt OS X EI Capitan</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-11-11T22:46:35+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:46 pm</span></time>
-        
-           | <a href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
-
-<p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
-
-<pre><code>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
-rake aborted!
-Errno::ENOENT: No such file or directory - compass
-/Users/user/git/octopress/Rakefile:85:in spawn
-/Users/user/git/octopress/Rakefile:85:in block in &lt;top (required)&gt;
-Tasks: TOP =&gt; preview
-(See full trace by running task with --trace)
-</code></pre>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/26/ruby-practice-13/">Ruby修炼之道(13)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-26T22:13:32+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:13 pm</span></time>
-        
-           | <a href="/blog/2015/10/26/ruby-practice-13/#disqus_thread"
-             data-disqus-identifier="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>替换数组内的元素</h4>
-
-<p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
-
-<p>ary.<strong>collect</strong> { |item| &hellip;} <br/>
-ary.<strong>collect!</strong> { |item| &hellip;} <br/>
-ary.<strong>map</strong> { |item| &hellip;} <br/>
-ary.<strong>map!</strong> { |item| &hellip;}</p>
-
-<p>将数组ary中的各元素item传递给块做处理。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
-</span><span class='line'><span class="n">ary1</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">item</span><span class="o">*</span><span class="mi">2</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary1</span>                 <span class="c1">#=&gt; [ 2, 4, 6]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">ary2</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="mi">0</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>        <span class="mi">1</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="n">ary2</span>                 <span class="c1">#=&gt; [1, 0, 1]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/10/26/ruby-practice-13/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -654,6 +641,14 @@ ary.<strong>map!</strong> { |item| &hellip;}</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">双指针算法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/12/how-to-fix-gem-filepermissionerror/">How to Fix Gem FilePermissionError</a>
       </li>
     
@@ -663,14 +658,6 @@ ary.<strong>map!</strong> { |item| &hellip;}</p>
     
       <li class="post">
         <a href="/blog/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
       </li>
     
   </ul>
