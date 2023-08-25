@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 算法 | Stonefishy Blog]]></title>
   <link href="http://stonefishy.github.io/blog/categories/suan-fa/atom.xml" rel="self"/>
   <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:44:45+08:00</updated>
+  <updated>2023-08-25T18:45:48+08:00</updated>
   <id>http://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -44,65 +44,114 @@
 </code></pre>
 
 <p>这个问题可以使用双指针来解决窗口的滑动问题，核心代码如下：
-&#8220;`Java
-public static int[] minSizeSubArray(int[] numbers, int target) {
-    int p1 = 0, p2 = 0; //定义两个指针
-    int minLeft = 0; // 最小子数组的左边界
-    int minLen = Integer.MAX_VALUE; // 最小子数组的长度
-    int sum = 0;    //子数组元素和</p>
-
-<pre><code>for (p2 = 0; p2 &lt; numbers.length; p2++) {
-    sum += numbers[p2]; // 将右指针的元素加入子数组
-    while (sum &gt;= target) { // 如果子数组的和大于等于目标值
-        int curLen = p2 - p1 + 1; // 获取当前子数组长度
-        if (minLen &gt; curLen) { // 如果子数组长度比上次还更小
-            minLen = curLen; // 更新子数组最小长度
-            minLeft = p1;   // 更新子数组的左边界
-        }
-        sum -= numbers[p1]; // 将左指针的元素从子数组中移除
-        p1++;   //移动左指针，缩小子数组
-    }
-}
-
-if (minLen == Integer.MAX_VALUE) {
-    return new int[0];  // 没有找到匹配的子数组
-} else {
-    //根据子数组的左边界以及长度，返回子数组
-    int[] result = new int[minLen];
-    for (int i = 0; i &lt; minLen; i++) {
-        result[i] = numbers[i + minLeft];
-    }
-    return result;
-}
-</code></pre>
-
-<p>}
-&#8220;`</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">minSizeSubArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">//定义两个指针</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">minLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 最小子数组的左边界</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">minLen</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span> <span class="c1">// 最小子数组的长度</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>    <span class="c1">//子数组元素和&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">for</span> <span class="o">(</span><span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">p2</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">p2</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">sum</span> <span class="o">+=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">p2</span><span class="o">];</span> <span class="c1">// 将右指针的元素加入子数组</span>
+</span><span class='line'>    <span class="k">while</span> <span class="o">(</span><span class="n">sum</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 如果子数组的和大于等于目标值</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">curLen</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 获取当前子数组长度</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">minLen</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">curLen</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 如果子数组长度比上次还更小</span>
+</span><span class='line'>            <span class="n">minLen</span> <span class="o">=</span> <span class="n">curLen</span><span class="o">;</span> <span class="c1">// 更新子数组最小长度</span>
+</span><span class='line'>            <span class="n">minLeft</span> <span class="o">=</span> <span class="n">p1</span><span class="o">;</span>   <span class="c1">// 更新子数组的左边界</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="n">sum</span> <span class="o">-=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">p1</span><span class="o">];</span> <span class="c1">// 将左指针的元素从子数组中移除</span>
+</span><span class='line'>        <span class="n">p1</span><span class="o">++;</span>   <span class="c1">//移动左指针，缩小子数组</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">minLen</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>  <span class="c1">// 没有找到匹配的子数组</span>
+</span><span class='line'><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">//根据子数组的左边界以及长度，返回子数组</span>
+</span><span class='line'>    <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">minLen</span><span class="o">];</span>
+</span><span class='line'>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">minLen</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">minLeft</span><span class="o">];</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>在上述代码中，我们使用了两个指针 p1 和 p2，分别表示子数组的左右边界。我们在数组上使用滑动窗口来寻找满足条件的最短子数组。当子数组的和大于等于目标值时，我们移动左指针，并更新最小长度。如果发现有更小的数组长度，则更新最小数组长度以及数组的左边界值，当子数组的和不足以满足条件时，我们移动右指针，并继续扩展子数组。</p>
 
 <p>测试结果如下
-&#8220;`Java
-public static void main(String[] args) {
-    int[] numbers = {5, 3, 4, 2, 8, 5};
-    printArray(minSizeSubArray(numbers, 10)); // [2, 8]
-    printArray(minSizeSubArray(numbers, 28)); // []
-    printArray(minSizeSubArray(numbers, 4)); // [5]
-}</p>
-
-<p>private static void printArray(int[] numbers) {
-    StringBuilder sb = new StringBuilder();
-    sb.append(&ldquo;[&rdquo;);
-    for(int i =0; i &lt; numbers.length; i++) {
-        sb.append(numbers[i]).append(i == numbers.length - 1 ? &ldquo;&rdquo; : &ldquo;, &rdquo;);
-    }
-    sb.append(&ldquo;]&rdquo;);</p>
-
-<pre><code>System.out.println(sb.toString());
-</code></pre>
-
-<p>}
-&#8220;`</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
+</span><span class='line'>    <span class="n">printArray</span><span class="o">(</span><span class="n">minSizeSubArray</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span> <span class="c1">// [2, 8]</span>
+</span><span class='line'>    <span class="n">printArray</span><span class="o">(</span><span class="n">minSizeSubArray</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="mi">28</span><span class="o">));</span> <span class="c1">// []</span>
+</span><span class='line'>    <span class="n">printArray</span><span class="o">(</span><span class="n">minSizeSubArray</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="mi">4</span><span class="o">));</span> <span class="c1">// [5]</span>
+</span><span class='line'><span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;[&amp;</span><span class="n">rdquo</span><span class="o">;);</span>
+</span><span class='line'>    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]).</span><span class="na">append</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">?</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;&amp;</span><span class="n">rdquo</span><span class="o">;</span> <span class="o">:</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;]&amp;</span><span class="n">rdquo</span><span class="o">;);&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
