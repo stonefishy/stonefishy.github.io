@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Stonefishy Blog]]></title>
   <link href="https://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="https://stonefishy.github.io/"/>
-  <updated>2023-08-26T16:15:32+08:00</updated>
+  <updated>2023-08-26T23:47:42+08:00</updated>
   <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[聊聊前端优化手段防抖]]></title>
+    <link href="https://stonefishy.github.io/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/"/>
+    <updated>2017-03-16T16:29:09+08:00</updated>
+    <id>https://stonefishy.github.io/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou</id>
+    <content type="html"><![CDATA[<p>在前端开发中，<strong>防抖（Debouncing）</strong> 是一种常用的优化技术，用于处理频繁触发的事件，如浏览器窗口的resize、input输入等。<strong>防抖的目标是在事件被触发后，等待一段时间，只执行一次事件处理函数，以避免频繁的重复操作</strong>。</p>
+
+<p><strong>防抖的原理</strong>很简单：当一个事件被触发时，立即设置一个定时器，在规定的时间内没有再次触发该事件时，执行事件处理函数。如果在定时器规定的时间内再次触发了事件，那么就清除前一个定时器，并重新设置新的定时器。这样，只有在事件停止触发一段时间后，才会执行事件处理函数。</p>
+
+<p>以下是一个防抖的基本实现示例（使用 JavaScript）：</p>
+
+<pre><code class="JavaScript">function debounce(func, delay) {
+    let timer = null;
+    return function () {
+        const context = this;
+        const args = arguments;
+
+        clearTimeout(timer); // 每次执行时，清除之前的定时器
+        timer = setTimeout(function () { //设置新的定时器
+            func.apply(context, args);
+        }, delay);
+    }
+}
+
+const debounceFunction = debounce((args) =&gt; {
+    console.log("Debounce function called", args);
+}, 500);
+
+window.addEventListener('resize', debounceFunction);
+</code></pre>
+
+<!--more-->
+
+
+<p>在上面的示例中，debounce 函数接受两个参数：<strong>要执行的事件处理函数</strong>和<strong>延迟时间</strong>（规定的等待时间）。在事件被触发时，debounce 返回一个新的函数，该函数会设置一个定时器来等待延迟时间，然后执行事件处理函数。</p>
+
+<p>防抖的实现可以根据需要进行适当的调整，例如增加立即执行选项，即在事件触发时立即执行一次事件处理函数，然后再进入防抖模式。这样可以在事件触发的瞬间即时响应，同时仍然保留了后续的防抖效果。</p>
+
+<p>现在在上面防抖的基础上多增加一个参数，<strong>immediate</strong>， 参数值为true时，函数立即执行，为false时延时执行</p>
+
+<pre><code class="JavaScript">function debounce(func, delay, immediate) {
+  let timer;
+
+  return function() {
+    const context = this;
+    const args = arguments;
+
+    clearTimeout(timer);
+
+    if (immediate) {    // immediate为true，立即执行
+        if (!timer) {
+            func.apply(context, args); // 立即执行一次事件处理函数
+        }
+        timer = setTimeout(function() {
+            timer = null; // delay时间到后，将计时器设置null，下一次立即执行
+        }, delay);
+    } else {    //immediate为false，延时执行
+        timer = setTimeout(function() {
+            func.apply(context, args); // 在延迟时间后执行事件处理函数
+        }, delay);
+    }
+  };
+}
+
+// 使用防抖处理事件，第一次触发立即执行，之后每次触发等待300毫秒后执行
+const debouncedFunction = debounce(function() {
+  console.log("Debounce function called.");
+}, 500, true);
+
+// 触发事件
+window.addEventListener("resize", debouncedFunction);
+</code></pre>
+
+<p>总的来说，防抖是一种有效的优化手段，可以帮助减少频繁触发的事件造成的重复操作，提升前端应用的性能和用户体验。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
@@ -365,86 +442,6 @@ jst.src='/javascripts/libs/asteroids.min.js';void(0);
 </code></pre>
 
 <p>So, it&rsquo;s quite simple.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
-    <link href="https://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
-    <updated>2015-05-16T11:08:31+08:00</updated>
-    <id>https://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
-    <content type="html"><![CDATA[<p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
-
-<h3>Usage</h3>
-
-<blockquote><p><code>angular.extend(dst, src);</code></p>
-
-<p>dst:        <strong>destination object</strong><br/>
-src:        <strong>source object(s)</strong></p>
-
-<p>return:     <strong>refercen to dst object</strong></p></blockquote>
-
-<!-- more -->
-
-
-<h3>Example</h3>
-
-<p>Let&rsquo;s understand how to use it with example instance. Create a normal controller which contains user&rsquo;s name, gender and age. And create a method to get the full description of the user.</p>
-
-<pre><code class="javascript">angular.Module('app',[])
-
-.app.controller('UserController', ['$scope', function ($scope) {
-    $scope.name = 'angular';
-    $scope.gender = 'male';
-    $scope.age = '2';
-
-    $scope.getDescription = function() {
-        return "My name is " + $scope.name + " and I am " + $scope.gender + " " + $scope.age +  " years old";
-    }
-}]);
-</code></pre>
-
-<p>We can use angular.extend function to do like above functionality, see below:</p>
-
-<pre><code class="javascript">app.controller('UserController', ['$scope', function($scope) {
-  angular.extend($scope, {
-    name : 'angular',
-    gender : 'male',
-    age : '2'
-  });
-
-  angular.extend($scope, {
-    getDescription : function() {
-      return "My name is " + $scope.name + " and I am " + $scope.gender + " " + $scope.age + " years old";
-    }
-  });
-}])
-</code></pre>
-
-<p>And also we can use angular.extend() function to implement mixins. Let&rsquo;s consider the below contrived Logging class.</p>
-
-<pre><code class="javascript">var debug = true;
-var Logger = {
-  log: function (msg) {
-    console.log(debug ? msg : '');      
-  }
-};
-</code></pre>
-
-<p>If we set debug variable to true, so it will print message in the browser console window when we invoke the log function. Otherwise nothing will be printed.</p>
-
-<p>Okay, now we create a controler called LoggerController, and &ldquo;mixin&rdquo; Logger class to it.</p>
-
-<pre><code class="javascript">app.controller('LoggerController', ['$scope', function($scope) {
-  angular.extend($scope, Logger);
-
-  $scope.print = function (msg) {
-    this.log(msg);
-  }
-}])
-</code></pre>
-
-<p>In LoggerController, we &ldquo;mixin&rdquo; the Logger class to the $scope, and this will inovke the log function of the Logger class when the print function was called.</p>
 ]]></content>
   </entry>
   

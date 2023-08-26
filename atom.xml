@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="https://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="https://stonefishy.github.io/"/>
-  <updated>2023-08-26T16:15:32+08:00</updated>
+  <updated>2023-08-26T23:47:42+08:00</updated>
   <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -12,6 +12,134 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[聊聊前端优化手段防抖]]></title>
+    <link href="https://stonefishy.github.io/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/"/>
+    <updated>2017-03-16T16:29:09+08:00</updated>
+    <id>https://stonefishy.github.io/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou</id>
+    <content type="html"><![CDATA[<p>在前端开发中，<strong>防抖（Debouncing）</strong> 是一种常用的优化技术，用于处理频繁触发的事件，如浏览器窗口的resize、input输入等。<strong>防抖的目标是在事件被触发后，等待一段时间，只执行一次事件处理函数，以避免频繁的重复操作</strong>。</p>
+
+<p><strong>防抖的原理</strong>很简单：当一个事件被触发时，立即设置一个定时器，在规定的时间内没有再次触发该事件时，执行事件处理函数。如果在定时器规定的时间内再次触发了事件，那么就清除前一个定时器，并重新设置新的定时器。这样，只有在事件停止触发一段时间后，才会执行事件处理函数。</p>
+
+<p>以下是一个防抖的基本实现示例（使用 JavaScript）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='JavaScript'><span class='line'><span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kr">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'>        <span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span> <span class="c1">// 每次执行时，清除之前的定时器</span>
+</span><span class='line'>        <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="c1">//设置新的定时器</span>
+</span><span class='line'>            <span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">const</span> <span class="nx">debounceFunction</span> <span class="o">=</span> <span class="nx">debounce</span><span class="p">((</span><span class="nx">args</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Debounce function called&quot;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;resize&#39;</span><span class="p">,</span> <span class="nx">debounceFunction</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<p>在上面的示例中，debounce 函数接受两个参数：<strong>要执行的事件处理函数</strong>和<strong>延迟时间</strong>（规定的等待时间）。在事件被触发时，debounce 返回一个新的函数，该函数会设置一个定时器来等待延迟时间，然后执行事件处理函数。</p>
+
+<p>防抖的实现可以根据需要进行适当的调整，例如增加立即执行选项，即在事件触发时立即执行一次事件处理函数，然后再进入防抖模式。这样可以在事件触发的瞬间即时响应，同时仍然保留了后续的防抖效果。</p>
+
+<p>现在在上面防抖的基础上多增加一个参数，<strong>immediate</strong>， 参数值为true时，函数立即执行，为false时延时执行</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='JavaScript'><span class='line'><span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">delay</span><span class="p">,</span> <span class="nx">immediate</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">let</span> <span class="nx">timer</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kr">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'>    <span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">immediate</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// immediate为true，立即执行</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">timer</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="c1">// 立即执行一次事件处理函数</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// delay时间到后，将计时器设置null，下一次立即执行</span>
+</span><span class='line'>        <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>    <span class="c1">//immediate为false，延时执行</span>
+</span><span class='line'>        <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="c1">// 在延迟时间后执行事件处理函数</span>
+</span><span class='line'>        <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 使用防抖处理事件，第一次触发立即执行，之后每次触发等待300毫秒后执行</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">debouncedFunction</span> <span class="o">=</span> <span class="nx">debounce</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Debounce function called.&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">500</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 触发事件</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">debouncedFunction</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>总的来说，防抖是一种有效的优化手段，可以帮助减少频繁触发的事件造成的重复操作，提升前端应用的性能和用户体验。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一个免费高质量的图片分享平台]]></title>
@@ -4074,311 +4202,6 @@ end
 </span><span class='line'>
 </span><span class='line'><span class="n">raiseException</span> <span class="k">do</span>
 </span><span class='line'>  <span class="k">raise</span> <span class="no">MyError3</span><span class="p">,</span> <span class="s2">&quot;customized message for MyError3&quot;</span>   <span class="c1">#=&gt;抛出指定message</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
-    <link href="https://stonefishy.github.io/blog/2015/09/06/ruby-practice-8/"/>
-    <updated>2015-09-06T20:36:07+08:00</updated>
-    <id>https://stonefishy.github.io/blog/2015/09/06/ruby-practice-8</id>
-    <content type="html"><![CDATA[<h3>运算符</h3>
-
-<p>以下两种运算符是等价的, op即代表操作运算符</p>
-
-<pre><code>value1 op= value2
-value1 = value1 op value2
-</code></pre>
-
-<p>利用运算符<strong>||</strong>的特性，可以简化相关的赋值代码，如下是等价的</p>
-
-<figure class='code'><figcaption><span>赋值方式1</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span>
-</span><span class='line'><span class="k">if</span> <span class="n">var</span>              <span class="c1">#当var不是nil或false时</span>
-</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="n">var</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>赋值方式2</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="n">var</span> <span class="o">||</span> <span class="s2">&quot;Ruby&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<p>而利用<strong>&amp;&amp;</strong>运算符，可以避免不必要要得程序错误</p>
-
-<figure class='code'><figcaption><span>隐藏的错误</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="n">ary</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>          <span class="c1">#如果ary为nil，则此时将引发程序错误</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>使用&&避免错误</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="n">ary</span> <span class="o">&amp;&amp;</span> <span class="n">ary</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>   <span class="c1">#避免当ary为nil时，读取ary[0]时的错误</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用<strong>&amp;&amp;</strong>可以在确定对象存在后再调用方法。而且代码更加简洁。</p>
-
-<h4>范围运算符</h4>
-
-<p>相比其他的语言如Java等，范围运算符算是一个比较特殊的运算符，范围运算符有<strong>..</strong>和<strong>&hellip;</strong>两种，其区别在于如下</p>
-
-<ul>
-<li><strong>x..y</strong>的范围是从x到y</li>
-<li><strong>x&hellip;y</strong>的范围是从x到y得前一个元素</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>                <span class="c1">#=&gt; [1, 2, 3, 4, 5]</span>
-</span><span class='line'><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="o">.</span><span class="n">.</span><span class="s2">&quot;d&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>         <span class="c1">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>             <span class="c1">#=&gt; [1, 2, 3, 4]</span>
-</span><span class='line'><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="s2">&quot;d&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>         <span class="c1">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby中有范围对象(Range)来表示范围对象，以下两个写法是等价的</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="no">Range</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>   <span class="c1">#=&gt; 1..5</span>
-</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">class</span>                    <span class="c1">#=&gt; Range</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span>                <span class="c1">#=&gt; 1..5</span>
-</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">class</span>                    <span class="c1">#=&gt; Range</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在Range对象内部，可以使用<strong>succ</strong>方法根据起点值逐个生成下一值</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">succ</span>                 <span class="c1">#=&gt; 2</span>
-</span><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">succ</span>                 <span class="c1">#=&gt; 3</span>
-</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">succ</span><span class="o">.</span><span class="n">succ</span>                    <span class="c1">#=&gt; 5</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>运算符重定义</h4>
-
-<p>在Ruby中有以下运算符不能重定义
-::, &amp;&amp;, ||, .., &hellip;, ?:, not, =, and</p>
-
-<p><em>二元运算符重定义</em>,如加号+、减号-</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:x</span><span class="p">,</span> <span class="ss">:y</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@x</span><span class="p">,</span> <span class="vi">@y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">+</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">-</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">display</span>
-</span><span class='line'>      <span class="s2">&quot;(</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">p1</span> <span class="o">=</span> <span class="no">Point</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</span><span class='line'><span class="n">p2</span> <span class="o">=</span> <span class="no">Point</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span>
-</span><span class='line'><span class="nb">puts</span> <span class="nb">p</span><span class="o">.</span><span class="n">display</span>                  <span class="c1">#=&gt; (4, 6)</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span>
-</span><span class='line'><span class="nb">puts</span> <span class="nb">p</span><span class="o">.</span><span class="n">display</span>                  <span class="c1">#=&gt; (2, 2)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><em>一元运算符</em>，如正号+，负号-等，其重定义与二元运算符不同。可定义的一元运算符有<strong>+</strong>, <strong>-</strong>, <strong>~</strong>, <strong>!</strong>4个。分别以+@， -@， ~@， !@为方法名进行方法定义。而且一元运算符都是没有参数的。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:x</span><span class="p">,</span> <span class="ss">:y</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@x</span><span class="p">,</span> <span class="vi">@y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">+@</span>
-</span><span class='line'>      <span class="nb">dup</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">-@</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="p">,</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">~</span><span class="err">@</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">display</span>
-</span><span class='line'>      <span class="s2">&quot;(</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">p1</span> <span class="o">=</span> <span class="no">Point</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</span><span class='line'><span class="nb">puts</span> <span class="p">(</span><span class="o">-</span><span class="n">p1</span><span class="p">)</span><span class="o">.</span><span class="n">display</span>              <span class="c1">#=&gt; (-1, -2)</span>
-</span><span class='line'><span class="nb">puts</span> <span class="p">(</span><span class="o">+</span><span class="n">p1</span><span class="p">)</span><span class="o">.</span><span class="n">display</span>              <span class="c1">#=&gt; (1, 2)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>下标方法</h4>
-
-<p>数组、散列中的<em>obj[i]</em>以及<em>obj[i]=x</em>这样的方法，称为下标方法。定义下标方法时的方法名分别为<strong>[]</strong>和<strong>[]=</strong>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:x</span><span class="p">,</span> <span class="ss">:y</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@x</span><span class="p">,</span> <span class="vi">@y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">[]</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">case</span> <span class="n">index</span>
-</span><span class='line'>      <span class="k">when</span> <span class="mi">0</span>
-</span><span class='line'>          <span class="n">x</span>
-</span><span class='line'>      <span class="k">when</span> <span class="mi">1</span>
-</span><span class='line'>          <span class="n">y</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">&quot;out of range (</span><span class="si">#{</span><span class="n">index</span><span class="si">}</span><span class="s2">)&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">[]=</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">case</span> <span class="n">index</span>
-</span><span class='line'>      <span class="k">when</span> <span class="mi">0</span>
-</span><span class='line'>          <span class="nb">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">val</span>
-</span><span class='line'>      <span class="k">when</span> <span class="mi">1</span>
-</span><span class='line'>          <span class="nb">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">val</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">&quot;out of range (</span><span class="si">#{</span><span class="n">index</span><span class="si">}</span><span class="s2">)&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">display</span>
-</span><span class='line'>      <span class="s2">&quot;(</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
