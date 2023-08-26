@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Iterm2 | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/iterm2/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/iterm2/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Cobalt2 Theme for iTerm2 and ZSH]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh/"/>
     <updated>2015-06-04T16:40:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh</id>
+    <id>https://stonefishy.github.io/blog/2015/06/04/the-cobalt2-theme-for-iterm2-and-zsh</id>
     <content type="html"><![CDATA[<p>From last blog, maybe you already love the <code>Cobalt2</code> theme, like me. We usually use the terminal to do something we need. So can changed the theme for our terminal?  <br/>
 The answer is yes, we can. Let me show you screenshots firstly. <br/>
 <img src="/assets/images/iterm-cobalt2.png" alt="item-cobalt2" /></p>

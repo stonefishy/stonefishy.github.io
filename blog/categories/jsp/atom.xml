@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Jsp | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/jsp/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/jsp/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[JSP - Custom Tag]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag/"/>
+    <link href="https://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag/"/>
     <updated>2014-12-01T21:30:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag</id>
+    <id>https://stonefishy.github.io/blog/2014/12/01/jsp-custom-tag</id>
     <content type="html"><![CDATA[<p>Custom Tag is a user-defined JSP language element. When it is contained in JSP page and it will translate into a servlet, the custom tag is converted to opertions on an object called a tag handler. The web container then invokes those operations when the JSP page&rsquo;s servlet is executed.</p>
 
 <p>If we want to create a custom tag, what we need to do is simply extend <code>SimpleTagSupport</code> class and override the <code>doTag()</code> method, where you can place your code to generate content for the tag.</p>

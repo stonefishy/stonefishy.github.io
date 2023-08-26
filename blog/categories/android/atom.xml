@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,18 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[The Lifecycle of Android Activity]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity/"/>
     <updated>2014-11-17T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity</id>
+    <id>https://stonefishy.github.io/blog/2014/11/17/the-lifecycle-of-android-activity</id>
     <content type="html"><![CDATA[<p><img src="/assets/images/android-lifecycle.png" alt="lifecycle of activity" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Building Blocks of Android Application]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application/"/>
     <updated>2014-11-13T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application</id>
+    <id>https://stonefishy.github.io/blog/2014/11/13/building-blocks-of-android-application</id>
     <content type="html"><![CDATA[<p>There are four builidng blocks for Android Application:</p>
 
 <ul>
@@ -88,9 +88,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Is Andriod]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/03/what-is-andriod/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/03/what-is-andriod/"/>
     <updated>2014-11-03T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/03/what-is-andriod</id>
+    <id>https://stonefishy.github.io/blog/2014/11/03/what-is-andriod</id>
     <content type="html"><![CDATA[<p><img src="/assets/images/android.jpg" alt="Andriod" />
 <code>Andriod</code> is built on the open linux kernel. Furthermore, it utilizes a custom virtual machine that has been designed to optimize memory and hardware resource in a mobile environment.</p>
 

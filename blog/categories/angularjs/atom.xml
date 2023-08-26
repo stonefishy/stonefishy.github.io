@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Angularjs | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/angularjs/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/angularjs/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
     <updated>2015-09-23T10:59:23+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
+    <id>https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
     <content type="html"><![CDATA[<p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
 
 <pre><code class="html">&lt;!DOCTYPE html&gt;
@@ -139,9 +139,9 @@ ModelApp.controller('ModelController1', function($scope) {
   
   <entry>
     <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
+    <link href="https://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
     <updated>2015-05-16T11:08:31+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
+    <id>https://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
     <content type="html"><![CDATA[<p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
 
 <h3>Usage</h3>

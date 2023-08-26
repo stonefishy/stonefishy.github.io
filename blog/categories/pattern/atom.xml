@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Pattern | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/pattern/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/pattern/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Understading MVC, MVP and MVVM Design Patterns]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/"/>
+    <link href="https://stonefishy.github.io/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns/"/>
     <updated>2015-02-06T17:26:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns</id>
+    <id>https://stonefishy.github.io/blog/2015/02/06/understading-mvc-mvp-and-mvvm-design-patterns</id>
     <content type="html"><![CDATA[<p><code>MVC</code>, <code>MVP</code> and <code>MVVM</code> design patterns are most popular technologies in our web application. Many people don&rsquo;t understand what&rsquo;s difference among them, so do I. But I found a blog which explains the difference of three design patterns, and its&#8217; really good.</p>
 
 <p>To read original article, see <a href="http://www.dotnet-tricks.com/Tutorial/designpatterns/2FMM060314-Understanding-MVC,-MVP-and-MVVM-Design-Patterns.html">here</a></p>

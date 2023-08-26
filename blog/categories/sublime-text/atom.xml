@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sublime Text | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/sublime-text/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/sublime-text/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[A Cool Theme for Sublime Text]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text/"/>
     <updated>2015-06-04T16:01:24+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
+    <id>https://stonefishy.github.io/blog/2015/06/04/a-cool-theme-for-sublime-text</id>
     <content type="html"><![CDATA[<p>There is a sublime text theme I want to introduce to you guys. It&rsquo;s called <code>Cobalt2</code>, it not only colour scheme for editor window, but also it includes all sublime theme(e.g. sidebar, search, tabs, etc&hellip;). You can get it from github <a href="https://github.com/wesbos/cobalt2">cobalt2</a>.</p>
 
 <!-- more -->
@@ -52,9 +52,9 @@
   
   <entry>
     <title type="html"><![CDATA[Sublime Text - Keyboard Shortcuts for Mac]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/"/>
+    <link href="https://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac/"/>
     <updated>2015-05-16T12:21:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac</id>
+    <id>https://stonefishy.github.io/blog/2015/05/16/sublime-text-keyboard-shortcuts-for-mac</id>
     <content type="html"><![CDATA[<h3>Editor</h3>
 
 <table>
@@ -472,9 +472,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Install Packages in Sublime Text 3]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin/"/>
+    <link href="https://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin/"/>
     <updated>2014-12-26T22:35:36+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin</id>
+    <id>https://stonefishy.github.io/blog/2014/12/26/how-to-install-sublime-text-plugin</id>
     <content type="html"><![CDATA[<p><code>Sublime Text</code> is a sophisticated text editor for code, markup and prose. You can go to offical <strong><a href="http://www.sublimetext.com/">website</a></strong> to download and see how to use it. It&rsquo;s a very powerful weapon for developer. And also it has so many packages to expand its functional.</p>
 
 <p>If you want to install packages in your sublime text. First of all, you need to install <code>Package Control</code> that is <code>Sublime Text</code> package manager that makes it exceedingly simple to find, install and keep packages up-to-date.</p>

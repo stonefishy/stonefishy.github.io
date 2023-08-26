@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Css | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/css/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/css/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Conditional Stylesheets for IE Version]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version/"/>
+    <link href="https://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version/"/>
     <updated>2015-01-28T17:35:06+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version</id>
+    <id>https://stonefishy.github.io/blog/2015/01/28/conditinal-stylesheets-for-ie-version</id>
     <content type="html"><![CDATA[<p>The tool of choice for fighting IE problems is the <code>conditional stylesheet</code>. IE provides comment tags, supported all the way up to the current IE 8 to target specific versions, as well as greater-than/less-than stuff for targeting multiple versions at once.</p>
 
 <h3>Why use conditional stylesheets?</h3>
@@ -178,9 +178,9 @@ Target IE 7 ONLY
   
   <entry>
     <title type="html"><![CDATA[CSS Tricks for IE6,IE7,IE8,IE9]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/"/>
+    <link href="https://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9/"/>
     <updated>2015-01-28T16:35:34+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9</id>
+    <id>https://stonefishy.github.io/blog/2015/01/28/css-tricks-for-ie6-ie7-ie8-ie9</id>
     <content type="html"><![CDATA[<p>As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for <code>IE6</code>, <code>IE7</code>, <code>IE8</code>, <code>IE9</code>. This is very helpful for you.</p>
 
 <pre><code class="css">#ie-tricks{

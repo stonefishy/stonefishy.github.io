@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Guava | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/guava/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/guava/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Guave - Immutable Collection]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection/"/>
+    <link href="https://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection/"/>
     <updated>2015-02-13T14:58:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection</id>
+    <id>https://stonefishy.github.io/blog/2015/02/13/guave-immutable-collection</id>
     <content type="html"><![CDATA[<p><code>Immutable</code> that means it can not be changed. Let&rsquo;s get example to see what&rsquo;s different with <code>mutable</code> objects.</p>
 
 <p>Normal mutable collections: <br/>
@@ -214,9 +214,9 @@
 </span><span class='line'>
 </span><span class='line'>  <span class="o">&lt;</span><span class="n">entry</span><span class="o">&gt;</span>
 </span><span class='line'>    <span class="o">&lt;</span><span class="n">title</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[</span><span class="n">Guava</span> <span class="o">-</span> <span class="n">Ordering</span><span class="o">]]&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://stonefishy.github.io/blog/2014/12/12/guava-ordering/&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;https://stonefishy.github.io/blog/2014/12/12/guava-ordering/&quot;</span><span class="o">/&gt;</span>
 </span><span class='line'>    <span class="o">&lt;</span><span class="n">updated</span><span class="o">&gt;</span><span class="mi">2014</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="nl">T17:</span><span class="mi">28</span><span class="o">:</span><span class="mi">07</span><span class="o">+</span><span class="mi">08</span><span class="o">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">updated</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">http:</span><span class="c1">//stonefishy.github.io/blog/2014/12/12/guava-ordering&lt;/id&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="n">id</span><span class="o">&gt;</span><span class="nl">https:</span><span class="c1">//stonefishy.github.io/blog/2014/12/12/guava-ordering&lt;/id&gt;</span>
 </span><span class='line'>    <span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="o">&gt;&lt;![</span><span class="n">CDATA</span><span class="o">[&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Ordering</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">Guava</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">fluent</span> <span class="n">Comparator</span> <span class="kd">class</span> <span class="nc">and</span> <span class="kd">implements</span> <span class="n">Comparator</span> <span class="n">interface</span><span class="o">.</span> <span class="n">It</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">build</span> <span class="n">complex</span> <span class="n">comparators</span> <span class="n">and</span> <span class="n">apply</span> <span class="n">them</span> <span class="n">to</span> <span class="n">collections</span> <span class="n">of</span> <span class="n">objects</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Okay</span><span class="o">,</span> <span class="n">so</span> <span class="n">let</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span><span class="n">s</span> <span class="n">getting</span> <span class="n">started</span><span class="o">.</span> <span class="n">Firstly</span><span class="o">,</span> <span class="n">we</span> <span class="n">declared</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">String</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">type</span> <span class="nl">List:</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
@@ -440,9 +440,9 @@ System.out.println(fooOrdering.max(fooList));
   
   <entry>
     <title type="html"><![CDATA[Guava -- Common Object Methods]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/27/guava-common-object-method/"/>
     <updated>2014-11-27T20:41:45+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/27/guava-common-object-method</id>
+    <id>https://stonefishy.github.io/blog/2014/11/27/guava-common-object-method</id>
     <content type="html"><![CDATA[<h3>Usage</h3>
 
 <p><code>Objects.equal(Object, Object)</code> <br/>
@@ -480,9 +480,9 @@ int result = ComparisonChain.start()
   
   <entry>
     <title type="html"><![CDATA[Guava -- Preconditions]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/26/guava-preconditions/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/26/guava-preconditions/"/>
     <updated>2014-11-26T22:36:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/26/guava-preconditions</id>
+    <id>https://stonefishy.github.io/blog/2014/11/26/guava-preconditions</id>
     <content type="html"><![CDATA[<p>Guava provides a number of precondition checking utilities. It&rsquo;s <code>Preconditions</code> class. You can use it into your project.</p>
 
 <h3>Usage</h3>
@@ -527,9 +527,9 @@ Preconditions.checkPositionIndex(i,2); // throw IndexOutOfBoundsException</p>
   
   <entry>
     <title type="html"><![CDATA[Guava -- Optional]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/21/guava-optional/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/21/guava-optional/"/>
     <updated>2014-11-21T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/21/guava-optional</id>
+    <id>https://stonefishy.github.io/blog/2014/11/21/guava-optional</id>
     <content type="html"><![CDATA[<p><code>Optional&lt;T&gt;</code> is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is &ldquo;present&rdquo;), or it may contain nothing (in which case we say the reference is &ldquo;absent&rdquo;). It is never said to &ldquo;contain null.&rdquo;</p>
 
 <!--more-->

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ietester | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/ietester/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/ietester/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Run Multiple IE Version on Same Computer]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim/"/>
+    <link href="https://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim/"/>
     <updated>2015-01-07T16:31:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim</id>
+    <id>https://stonefishy.github.io/blog/2015/01/07/how-to-run-multiple-ie-version-on-same-cotim</id>
     <content type="html"><![CDATA[<p>As web developer, we usually need to face the challenge of making cross-browser compatible. Especially IE browser&rsquo;s multiple version. Because its quirks of rendering websites differently across its versions of <code>IE6</code>, <code>IE7</code>, <code>IE8</code> and possibly <code>IE9</code> and <code>IE10</code>.</p>
 
 <p>Most of us have only one version of IE browser on our computer, and the compatible mode of IE is not really specific version which you want to simulate.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Test | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/test/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/test/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Is Cucumber]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/23/what-is-cucumber/"/>
+    <link href="https://stonefishy.github.io/blog/2014/12/23/what-is-cucumber/"/>
     <updated>2014-12-23T00:23:25+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/23/what-is-cucumber</id>
+    <id>https://stonefishy.github.io/blog/2014/12/23/what-is-cucumber</id>
     <content type="html"><![CDATA[<p><code>Cucumber</code> is a tool that can execute <code>plain-text</code> functional descriptions. And also it&rsquo;s  <code>BDD(Behaviour Driven Development)</code> <code>automated tests</code>. It is written by <code>Ruby</code>, and now it supports more than 40 languages, such as <code>Java</code>, <code>C#</code> and <code>Scala</code> etc.</p>
 
 <h3>Install</h3>

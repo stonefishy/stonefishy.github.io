@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Fix Gem FilePermissionError]]></title>
-    <link href="http://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror/"/>
+    <link href="https://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror/"/>
     <updated>2016-01-12T23:31:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror</id>
+    <id>https://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror</id>
     <content type="html"><![CDATA[<p>Sometimes we face the erorr &ldquo;Gem::FilePermissionError: You don&rsquo;t have write permissions for the /Library/Ruby/Gems/x.x.x directory&rdquo;. This error message indicates that the user doesn&rsquo;t have the necessary permissions to install Ruby gems system-wide. This is because the system Ruby installation requires administrative privileges to modify its gem directory.</p>
 
 <p>To resolve this issue, there is a few options:</p>
@@ -78,9 +78,9 @@ gem install gem_name
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(18)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18/"/>
+    <link href="https://stonefishy.github.io/blog/2015/12/28/ruby-practice-18/"/>
     <updated>2015-12-28T10:59:48+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18</id>
+    <id>https://stonefishy.github.io/blog/2015/12/28/ruby-practice-18</id>
     <content type="html"><![CDATA[<h4>IO</h4>
 
 <p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:  <br/>
@@ -321,9 +321,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(17)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
+    <link href="https://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
     <updated>2015-12-17T09:46:29+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
+    <id>https://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
     <content type="html"><![CDATA[<h4>正则表达式(Regexp)</h4>
 
 <p>Ruby中的正则表达式用<strong>Regexp</strong>类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。</p>
@@ -522,9 +522,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(16)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/"/>
     <updated>2015-11-18T10:49:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16</id>
+    <id>https://stonefishy.github.io/blog/2015/11/18/ruby-practice-16</id>
     <content type="html"><![CDATA[<h4>散列类</h4>
 
 <p>散列(<strong>Hash</strong>)和数组一样，都是表示对象集合的对象，不同之处在于，数组使用索引来取得元素，而散列则是用键key，key可以是任何对象，而索引则不能，只能是整数。</p>
@@ -760,9 +760,9 @@ p hash.has_key?(key2)   #=&gt; false
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(15)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/"/>
     <updated>2015-11-17T16:15:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15</id>
+    <id>https://stonefishy.github.io/blog/2015/11/17/ruby-practice-15</id>
     <content type="html"><![CDATA[<h5>字符串比较</h5>
 
 <p>Ruby中比较字符串是否相同也是用<strong>==</strong>和<strong>!=</strong>等运算符</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Spring | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/spring/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/spring/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - @AspectJ Annotation]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation/"/>
     <updated>2015-06-16T17:46:08+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation</id>
+    <id>https://stonefishy.github.io/blog/2015/06/16/spring-aop-at-aspectj-annotation</id>
     <content type="html"><![CDATA[<p>In this article, we introduce how to use <code>AOP</code> with the <code>@AspectJ</code> Annotation. If we want to use this Annotation. we should include below code in the XML schema-based configuration file.</p>
 
 <pre><code class="xml"> &lt;aop:aspectj-autoproxy/&gt; 
@@ -274,9 +274,9 @@ Exception in thread "main" java.lang.NullPointerException
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - XML Schema]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema/"/>
     <updated>2015-06-14T15:48:55+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema</id>
+    <id>https://stonefishy.github.io/blog/2015/06/14/spring-aop-xml-schema</id>
     <content type="html"><![CDATA[<p>Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below <strong>AspectJ</strong> libraries to our project. So downloading and adding them to the <em>CLASSPATH</em> of application,  and also we can use the maven to build our application.  <br/>
  - <em>aspectjrt.jar</em> <br/>
  - <em>aspectjweaver.jar</em> <br/>
@@ -574,9 +574,9 @@ at spring.test.aop.App.main(App.java:21)
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Dynamic Pointcut]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut/"/>
     <updated>2015-06-12T16:23:30+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut</id>
+    <id>https://stonefishy.github.io/blog/2015/06/12/spring-aop-dynamic-pointcut</id>
     <content type="html"><![CDATA[<p>If we want to intercept methods with dynamic pointcut, we need to override <em>matches</em> and <em>getClassFilter</em> methods of <strong>DynamicMethodMatcher</strong> abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.</p>
 
 <!-- more -->
@@ -734,9 +734,9 @@ MethodTwo is running with argument 11
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Static Pointcut]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut/"/>
     <updated>2015-06-11T16:08:48+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut</id>
+    <id>https://stonefishy.github.io/blog/2015/06/11/spring-aop-static-pointcut</id>
     <content type="html"><![CDATA[<p>Let&rsquo;s first to see the three very technical terms as below.</p>
 
 <ul>
@@ -1029,9 +1029,9 @@ This is from testLogic
   
   <entry>
     <title type="html"><![CDATA[Spring AOP - Pointcut]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut/"/>
     <updated>2015-06-10T11:19:44+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut</id>
+    <id>https://stonefishy.github.io/blog/2015/06/10/spring-aop-pointcut</id>
     <content type="html"><![CDATA[<p>What is <code>Pointcut</code> of Spring AOP? let&rsquo;s describe it. A <code>Pointcut</code> defines what <code>Advice</code>s are required at what <code>Join Point</code>s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don&rsquo;t require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.</p>
 
 <!-- more -->

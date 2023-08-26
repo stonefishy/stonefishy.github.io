@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Livereload | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/livereload/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/livereload/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[A New Way for Developing Web Application Front-End]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end/"/>
+    <link href="https://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end/"/>
     <updated>2015-01-13T22:43:30+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end</id>
+    <id>https://stonefishy.github.io/blog/2015/01/13/a-new-way-for-developing-web-application-front-end</id>
     <content type="html"><![CDATA[<p>When we develop web application, if we write or modify the HTML structure, CSS style and javascript, we need to compile the code and deploy it, and then refresh page, finally we can see our changes. There are so many steps. So could we skip these steps and just see our changes on page directly when we save the codes. Yes, I can answer you now.</p>
 
 <p>In order to achieve this goal, we need to install <code>Guard</code>, <code>LiveReload</code> and related stuff, configure it in our web application project.</p>

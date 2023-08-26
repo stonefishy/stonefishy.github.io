@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Javascript | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
     <updated>2015-09-23T10:59:23+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
+    <id>https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
     <content type="html"><![CDATA[<p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
 
 <pre><code class="html">&lt;!DOCTYPE html&gt;
@@ -139,9 +139,9 @@ ModelApp.controller('ModelController1', function($scope) {
   
   <entry>
     <title type="html"><![CDATA[Using TSD to Improve Javascript Intellisense of IDE]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/"/>
+    <link href="https://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide/"/>
     <updated>2015-07-30T23:27:10+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide</id>
+    <id>https://stonefishy.github.io/blog/2015/07/30/using-tsd-to-improve-javascript-intellisense-of-ide</id>
     <content type="html"><![CDATA[<p>As we know, it&rsquo;s very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.</p>
 
 <p><code>TSD</code> is TypeScript Definition manager for DefinitelyTyped. It can search and install <code>TypeScript</code> definition files directly from repository. The <code>TypeScript</code> definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.</p>
@@ -248,9 +248,9 @@ function sayHello(name){
   
   <entry>
     <title type="html"><![CDATA[Analyze Call Function of Javascript]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript/"/>
+    <link href="https://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript/"/>
     <updated>2015-05-20T19:24:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript</id>
+    <id>https://stonefishy.github.io/blog/2015/05/20/analyze-call-function-of-javascript</id>
     <content type="html"><![CDATA[<p>The <code>call()</code> function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.</p>
 
 <h3>Syntax</h3>
@@ -336,9 +336,9 @@ myClass.showMessage();
   
   <entry>
     <title type="html"><![CDATA[Destroy Your Website]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/19/destroy-your-website/"/>
+    <link href="https://stonefishy.github.io/blog/2015/05/19/destroy-your-website/"/>
     <updated>2015-05-19T12:16:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/19/destroy-your-website</id>
+    <id>https://stonefishy.github.io/blog/2015/05/19/destroy-your-website</id>
     <content type="html"><![CDATA[<p>Ha, Confusion? Don&rsquo;t, it&rsquo;s true. Let me introduce to you how to destroy the website you want. <br/>
 Click the below button:<br/>
 <button type="button" onclick="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</button>  <br/>
@@ -370,9 +370,9 @@ jst.src='/javascripts/libs/asteroids.min.js';void(0);
   
   <entry>
     <title type="html"><![CDATA[AngularJs - angular.extend()]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
+    <link href="https://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend/"/>
     <updated>2015-05-16T11:08:31+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
+    <id>https://stonefishy.github.io/blog/2015/05/16/angularjs-angular-dot-extend</id>
     <content type="html"><![CDATA[<p>The <code>angular.extend()</code> function has very powerful to copy object to another object, including all of properties from the source object(s).</p>
 
 <h3>Usage</h3>

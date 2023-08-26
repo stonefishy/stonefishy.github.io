@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Git | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/git/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/git/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[代码审查之Pull Request]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request/"/>
     <updated>2015-11-22T13:54:34+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request</id>
+    <id>https://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request</id>
     <content type="html"><![CDATA[<p>代码审查(Code Review)一直是一个高效团队里面必备的流程，团队成员可以通过它达到技术交流，相互学习以及提升自身编码水平的目的。当然它的目的并不止于此，我们在做某一件事的过程中，所用的技能和工具不外乎都是为了能使结果更符合我们的期望，就拿建筑工程来说，质量控制就是其把控最严的一关，有专门的质量管理领导小组、质量组织管理体系制度来贯穿这个过程，其最终目的就是为了使这栋建筑坚固牢稳，避免随时有可能崩塌的危险。</p>
 
 <!-- more -->
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[Visual Git Guide (Technical Notes)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-technical-notes/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-technical-notes/"/>
     <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-technical-notes</id>
+    <id>https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-technical-notes</id>
     <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
 
 <h3>Technical notes</h3>
@@ -73,9 +73,9 @@
   
   <entry>
     <title type="html"><![CDATA[Visual Git Guide (Reset Command)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-reset-command/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-reset-command/"/>
     <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-reset-command</id>
+    <id>https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-reset-command</id>
     <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
 
 <h3>Reset command</h3>
@@ -101,9 +101,9 @@
   
   <entry>
     <title type="html"><![CDATA[Visual Git Guide (Rebase Command)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-rebase-command/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-rebase-command/"/>
     <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-rebase-command</id>
+    <id>https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-rebase-command</id>
     <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
 
 <h3>Rebase command</h3>
@@ -127,9 +127,9 @@
   
   <entry>
     <title type="html"><![CDATA[Visual Git Guide (Merge Command)]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command/"/>
+    <link href="https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command/"/>
     <updated>2014-11-07T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command</id>
+    <id>https://stonefishy.github.io/blog/2014/11/07/visual-git-guide-merge-command</id>
     <content type="html"><![CDATA[<p><strong>Note:</strong> the original website address in <a href="http://marklodato.github.io/visual-git-guide/index-en.html?no-svg">here</a></p>
 
 <h3>Merge command</h3>

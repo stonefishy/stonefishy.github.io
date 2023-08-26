@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Devops | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/devops/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/devops/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Using Nginx in Mac OS X]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
+    <link href="https://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
     <updated>2015-12-05T11:51:04+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
+    <id>https://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
     <content type="html"><![CDATA[<h4>Introduction</h4>
 
 <p><strong>Nginx</strong> is a open source quite lightweight HTTP server which is written by Russian <em>Igor Sysoev</em>, the pronunciation is &ldquo;engine X&rdquo;. It&rsquo;s a high performance HTTP and reverse proxy server, and also it is a IMAP/POP3/SMTP proxy server。</p>

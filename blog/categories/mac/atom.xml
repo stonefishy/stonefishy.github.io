@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Mac | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/mac/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
     <updated>2015-11-11T22:46:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
+    <id>https://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
     <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
 
 <p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>

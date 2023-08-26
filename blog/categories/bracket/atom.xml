@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Bracket | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/bracket/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/bracket/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[A Nice Web Design Tool - Bracket]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket/"/>
+    <link href="https://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket/"/>
     <updated>2015-03-02T17:19:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket</id>
+    <id>https://stonefishy.github.io/blog/2015/03/02/a-nice-web-design-tool-bracket</id>
     <content type="html"><![CDATA[<p><code>Bracket</code> is open source web design text editor, it focus with visual tools and preprocesssor support. It is easy to design web page in the browser, we can get the page layout in time when we change the html, css, javascript. We don&rsquo;t need to save the file and refresh the browser. That&rsquo;s so convenience.</p>
 
 <!-- more -->

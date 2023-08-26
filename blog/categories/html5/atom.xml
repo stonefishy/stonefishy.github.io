@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Html5 | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/html5/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/html5/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Implicit Submission of Form When Pressing Enter Key]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
     <updated>2015-06-30T15:08:03+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
+    <id>https://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
     <content type="html"><![CDATA[<p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
 
 <p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>
@@ -93,9 +93,9 @@
   
   <entry>
     <title type="html"><![CDATA[HTML5 - New Common Elements]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements/"/>
+    <link href="https://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements/"/>
     <updated>2015-03-03T17:13:53+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements</id>
+    <id>https://stonefishy.github.io/blog/2015/03/03/html5-new-common-elements</id>
     <content type="html"><![CDATA[<p>In <code>HTML5</code>, It adds a mount of elements, these elements are more easier to present the document in browser.</p>
 
 <h3>Structure element</h3>
@@ -181,9 +181,9 @@ Also, it can be nested by itself.</p>
   
   <entry>
     <title type="html"><![CDATA[HTML5 - New Common Attributes]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/03/02/html5-new-common-attributes/"/>
+    <link href="https://stonefishy.github.io/blog/2015/03/02/html5-new-common-attributes/"/>
     <updated>2015-03-02T20:33:14+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/03/02/html5-new-common-attributes</id>
+    <id>https://stonefishy.github.io/blog/2015/03/02/html5-new-common-attributes</id>
     <content type="html"><![CDATA[<p><code>HTML5</code> adds new common attributes for original <code>HTML</code> Tag, and these attributes enhances the <code>HTML</code> elements&rsquo;s function.</p>
 
 <h3>contentEditable</h3>

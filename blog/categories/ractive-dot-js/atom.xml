@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ractive.js | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/ractive-dot-js/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/ractive-dot-js/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Is Ractive.js]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js/"/>
+    <link href="https://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js/"/>
     <updated>2014-12-19T22:18:45+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js</id>
+    <id>https://stonefishy.github.io/blog/2014/12/19/what-is-ractive-dot-js</id>
     <content type="html"><![CDATA[<p><code>Ractive.js</code> is a <code>template-driven</code> UI library, it transforms your templates into blueprints for application that are interative by default. <code>Ractive.js</code> is very similar with <code>AngularJS</code>, and it supports <code>Two-way binding</code>, <code>animations</code> as well. Another powerfull feature is <code>SVG</code> support.</p>
 
 <h3>Template + Data = UI</h3>

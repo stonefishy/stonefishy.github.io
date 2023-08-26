@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Markdown | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/markdown/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/markdown/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Backslash Escapes in Markdown]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/10/28/backslash-escapes-in-markdown/"/>
+    <link href="https://stonefishy.github.io/blog/2014/10/28/backslash-escapes-in-markdown/"/>
     <updated>2014-10-28T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/10/28/backslash-escapes-in-markdown</id>
+    <id>https://stonefishy.github.io/blog/2014/10/28/backslash-escapes-in-markdown</id>
     <content type="html"><![CDATA[<p><code>Markdown</code> allows you to use backslash to generate literal characters that possesses
 special meaning in <code>Markdown</code> syntax.</p>
 
@@ -43,9 +43,9 @@ special meaning in <code>Markdown</code> syntax.</p>
   
   <entry>
     <title type="html"><![CDATA[Markdown Syntax for Span Elements]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements/"/>
+    <link href="https://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements/"/>
     <updated>2014-10-24T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements</id>
+    <id>https://stonefishy.github.io/blog/2014/10/24/markdown-syntax-for-span-elements</id>
     <content type="html"><![CDATA[<h3>Links</h3>
 
 <p><code>Markdown</code> supports two styles for Links:</p>
@@ -150,9 +150,9 @@ Link definitions can be placed anywhere in your <code>Markdown</code> document.<
   
   <entry>
     <title type="html"><![CDATA[What Editor Tools Used for Markdown]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/10/23/what-editor-tools-used-for-markdown/"/>
+    <link href="https://stonefishy.github.io/blog/2014/10/23/what-editor-tools-used-for-markdown/"/>
     <updated>2014-10-23T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/10/23/what-editor-tools-used-for-markdown</id>
+    <id>https://stonefishy.github.io/blog/2014/10/23/what-editor-tools-used-for-markdown</id>
     <content type="html"><![CDATA[<p>There have many editor tools for Markdown now, but we just recommend a few of popular tools for you. You can choose it which you like. Hope it will be helpful for you.</p>
 
 <h3>Online tools</h3>
@@ -206,9 +206,9 @@ Link definitions can be placed anywhere in your <code>Markdown</code> document.<
   
   <entry>
     <title type="html"><![CDATA[Markdonw Syntax for Block Elements]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/10/23/markdonw-syntax-for-block-elements/"/>
+    <link href="https://stonefishy.github.io/blog/2014/10/23/markdonw-syntax-for-block-elements/"/>
     <updated>2014-10-23T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/10/23/markdonw-syntax-for-block-elements</id>
+    <id>https://stonefishy.github.io/blog/2014/10/23/markdonw-syntax-for-block-elements</id>
     <content type="html"><![CDATA[<h3>Line breaks</h3>
 
 <p>Markdown can&rsquo;t break line automatically in paragraph. The break line is a break tag <code>&lt; br /&gt;</code> in HTML. If you want to break line in paragraph, you need to <code>end a line with two or more spaces</code>, then type return.</p>
@@ -312,9 +312,9 @@ _____
   
   <entry>
     <title type="html"><![CDATA[What Is Markdown]]></title>
-    <link href="http://stonefishy.github.io/blog/2014/10/22/what-is-markdown/"/>
+    <link href="https://stonefishy.github.io/blog/2014/10/22/what-is-markdown/"/>
     <updated>2014-10-22T00:00:00+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2014/10/22/what-is-markdown</id>
+    <id>https://stonefishy.github.io/blog/2014/10/22/what-is-markdown</id>
     <content type="html"><![CDATA[<p>Markdown is a <strong>text-to-HTML</strong> conversion tool for web writer. It can convert plain text format to  valid <code>XHTML</code>(or <code>HTML</code>) structure that can be represented by browser.</p>
 
 <!--more-->

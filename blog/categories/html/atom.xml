@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Html | Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/blog/categories/html/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/blog/categories/html/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Implicit Submission of Form When Pressing Enter Key]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
+    <link href="https://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key/"/>
     <updated>2015-06-30T15:08:03+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
+    <id>https://stonefishy.github.io/blog/2015/06/30/implicit-submission-of-form-when-pressing-enter-key</id>
     <content type="html"><![CDATA[<p>As we know, if we want to submit data in the form, we just need to create a <em>input</em> or <em>button</em> element in the form and give them the <em>submit</em> value to the type attribute. Or using javascript to call <code>form.submit()</code>.</p>
 
 <p>But there is third way to submit form. That&rsquo;s the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.</p>

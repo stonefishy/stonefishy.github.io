@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Stonefishy Blog]]></title>
-  <link href="http://stonefishy.github.io/atom.xml" rel="self"/>
-  <link href="http://stonefishy.github.io/"/>
-  <updated>2023-08-25T18:45:48+08:00</updated>
-  <id>http://stonefishy.github.io/</id>
+  <link href="https://stonefishy.github.io/atom.xml" rel="self"/>
+  <link href="https://stonefishy.github.io/"/>
+  <updated>2023-08-26T16:15:32+08:00</updated>
+  <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
     <email><![CDATA[andrewsy@163.com]]></email>
@@ -15,11 +15,11 @@
   
   <entry>
     <title type="html"><![CDATA[一个免费高质量的图片分享平台]]></title>
-    <link href="http://stonefishy.github.io/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/"/>
+    <link href="https://stonefishy.github.io/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/"/>
     <updated>2017-02-23T18:02:19+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai</id>
+    <id>https://stonefishy.github.io/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai</id>
     <content type="html"><![CDATA[<p>很多时候在写文章或者制作PPT时需要用到一些图片资源，最近刚好发现了一个实用的高分辨率的免费资源平台Unspash, 跟大家分享一下。
-<img src="http://stonefishy.github.io/assets/images/ziyuan/laptop-1.png" alt="" />
+<img src="https://stonefishy.github.io/assets/images/ziyuan/laptop-1.png" alt="" />
 <a href="https://unsplash.com" title="免费高质量的图片分享平台">Unsplash.com</a> 是一个知名的免费高质量图片分享平台，提供各种类型的高分辨率摄影图片供用户免费下载和使用。这些图片可以用于个人、商业、创意和学术项目，包括网站、博客、社交媒体、演示文稿等。</p>
 
 <!-- more -->
@@ -28,19 +28,19 @@
 <p>这个平台的特点包括：</p>
 
 <p><strong>高质量图片：</strong> Unsplash 上的图片质量往往很高，包括风景、人物、食物、建筑等多种主题。这些图片通常由专业摄影师拍摄，因此在设计和内容创作中具有很大的价值。
-<img src="http://stonefishy.github.io/assets/images/ziyuan/fengjing-1.png" alt="" /></p>
+<img src="https://stonefishy.github.io/assets/images/ziyuan/fengjing-1.png" alt="" /></p>
 
 <p><strong>免费使用：</strong> Unsplash 的图片都是免费提供的，无需付费或订阅。用户可以自由下载、编辑和使用这些图片，而不需要担心版权问题。
-<img src="http://stonefishy.github.io/assets/images/ziyuan/coding-1.png" alt="" /></p>
+<img src="https://stonefishy.github.io/assets/images/ziyuan/coding-1.png" alt="" /></p>
 
 <p><strong>简单的许可：</strong> Unsplash 使用的是创作共用许可（Creative Commons Zero License），这意味着用户可以自由使用这些图片，甚至可以用于商业目的，无需给予作者署名。
-<img src="http://stonefishy.github.io/assets/images/ziyuan/license-1.png" alt="" /></p>
+<img src="https://stonefishy.github.io/assets/images/ziyuan/license-1.png" alt="" /></p>
 
 <p><strong>搜索和浏览功能：</strong> Unsplash 网站提供搜索功能和浏览不同主题的图片集合，帮助用户快速找到符合自己需求的图片。
-<img src="http://stonefishy.github.io/assets/images/ziyuan/search-1.png" alt="" /></p>
+<img src="https://stonefishy.github.io/assets/images/ziyuan/search-1.png" alt="" /></p>
 
 <p><strong>社区和创作者：</strong> Unsplash 构建了一个活跃的摄影师社区，用户可以查看摄影师的个人主页，了解他们的作品，并选择关注自己喜欢的创作者。
-<img src="http://stonefishy.github.io/assets/images/ziyuan/community-1.png" alt="" /></p>
+<img src="https://stonefishy.github.io/assets/images/ziyuan/community-1.png" alt="" /></p>
 
 <p>总的来说，Unsplash.com 是一个受欢迎的图片资源平台，适用于需要高质量图片的个人和商业项目。真的是一个很棒的资源平台！</p>
 ]]></content>
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[最短子数组之和]]></title>
-    <link href="http://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum/"/>
+    <link href="https://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum/"/>
     <updated>2016-03-01T17:18:50+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum</id>
+    <id>https://stonefishy.github.io/blog/2016/03/01/minimum-size-subarray-sum</id>
     <content type="html"><![CDATA[<p>一个常见的最短子数组算法题是 &ldquo;Minimum Size Subarray Sum&#8221;。在这个问题中，给定一个正整数数组和一个目标值，要找到数组中一个连续子数组，使得子数组的元素和大于等于目标值，并且子数组的长度最小。</p>
 
 <p>例如</p>
@@ -200,9 +200,9 @@
   
   <entry>
     <title type="html"><![CDATA[双指针算法之两数之和]]></title>
-    <link href="http://stonefishy.github.io/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/"/>
+    <link href="https://stonefishy.github.io/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/"/>
     <updated>2016-02-05T09:51:39+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he</id>
+    <id>https://stonefishy.github.io/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he</id>
     <content type="html"><![CDATA[<p>在上一篇中，我们讲到了双指针算法的几种使用场景，这里具体举例，以经典的两数之和为例。</p>
 
 <p>给定一个有序数字的数组和一个目标值，在有序数组中找到两个数字之和等于该目标值，返回包含两个数字的数组，如果没有找到返回包含两个-1值的数组。</p>
@@ -303,9 +303,9 @@
   
   <entry>
     <title type="html"><![CDATA[双指针算法]]></title>
-    <link href="http://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa/"/>
+    <link href="https://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa/"/>
     <updated>2016-01-25T09:09:24+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa</id>
+    <id>https://stonefishy.github.io/blog/2016/01/25/shuang-zhi-zhen-suan-fa</id>
     <content type="html"><![CDATA[<p>双指针算法（Two Pointer Algorithm）是一种常见的算法技巧，通常用于数组、链表等数据结构中解决一些问题。双指针算法的核心思想是使用两个指针在不同的位置上移动，以达到解决问题的目的。这两个指针可以朝着相同的方向移动，也可以朝着相反的方向移动，视问题而定。</p>
 
 <p>双指针算法的常见应用场景和实现方法：</p>
@@ -329,9 +329,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Fix Gem FilePermissionError]]></title>
-    <link href="http://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror/"/>
+    <link href="https://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror/"/>
     <updated>2016-01-12T23:31:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror</id>
+    <id>https://stonefishy.github.io/blog/2016/01/12/how-to-fix-gem-filepermissionerror</id>
     <content type="html"><![CDATA[<p>Sometimes we face the erorr &ldquo;Gem::FilePermissionError: You don&rsquo;t have write permissions for the /Library/Ruby/Gems/x.x.x directory&rdquo;. This error message indicates that the user doesn&rsquo;t have the necessary permissions to install Ruby gems system-wide. This is because the system Ruby installation requires administrative privileges to modify its gem directory.</p>
 
 <p>To resolve this issue, there is a few options:</p>
@@ -400,9 +400,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(18)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18/"/>
+    <link href="https://stonefishy.github.io/blog/2015/12/28/ruby-practice-18/"/>
     <updated>2015-12-28T10:59:48+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/12/28/ruby-practice-18</id>
+    <id>https://stonefishy.github.io/blog/2015/12/28/ruby-practice-18</id>
     <content type="html"><![CDATA[<h4>IO</h4>
 
 <p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:  <br/>
@@ -738,9 +738,9 @@ command为相关的命令</p>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(17)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
+    <link href="https://stonefishy.github.io/blog/2015/12/17/ruby-practice-17/"/>
     <updated>2015-12-17T09:46:29+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
+    <id>https://stonefishy.github.io/blog/2015/12/17/ruby-practice-17</id>
     <content type="html"><![CDATA[<h4>正则表达式(Regexp)</h4>
 
 <p>Ruby中的正则表达式用<strong>Regexp</strong>类来表示，正则表达式描述的是一种模式，该模式用于匹配字符串。</p>
@@ -1069,9 +1069,9 @@ command为相关的命令</p>
   
   <entry>
     <title type="html"><![CDATA[Using Nginx in Mac OS X]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
+    <link href="https://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/"/>
     <updated>2015-12-05T11:51:04+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
+    <id>https://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x</id>
     <content type="html"><![CDATA[<h4>Introduction</h4>
 
 <p><strong>Nginx</strong> is a open source quite lightweight HTTP server which is written by Russian <em>Igor Sysoev</em>, the pronunciation is &ldquo;engine X&rdquo;. It&rsquo;s a high performance HTTP and reverse proxy server, and also it is a IMAP/POP3/SMTP proxy server。</p>
@@ -1113,7 +1113,7 @@ command为相关的命令</p>
 
 <p>The nginx running success, you will get the below page when you access the <a href="http://localhost:8080">http://localhost:8080</a></p>
 
-<p><img src="http://stonefishy.github.io/assets/images/nginx-welcome.png" alt="nginx, devops" /></p>
+<p><img src="https://stonefishy.github.io/assets/images/nginx-welcome.png" alt="nginx, devops" /></p>
 
 <p>There are several commands to start, stop nginx and reload configuration.</p>
 
@@ -1212,9 +1212,9 @@ command为相关的命令</p>
   
   <entry>
     <title type="html"><![CDATA[代码审查之Pull Request]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request/"/>
     <updated>2015-11-22T13:54:34+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request</id>
+    <id>https://stonefishy.github.io/blog/2015/11/22/code-review-with-pull-request</id>
     <content type="html"><![CDATA[<p>代码审查(Code Review)一直是一个高效团队里面必备的流程，团队成员可以通过它达到技术交流，相互学习以及提升自身编码水平的目的。当然它的目的并不止于此，我们在做某一件事的过程中，所用的技能和工具不外乎都是为了能使结果更符合我们的期望，就拿建筑工程来说，质量控制就是其把控最严的一关，有专门的质量管理领导小组、质量组织管理体系制度来贯穿这个过程，其最终目的就是为了使这栋建筑坚固牢稳，避免随时有可能崩塌的危险。</p>
 
 <!-- more -->
@@ -1242,7 +1242,7 @@ command为相关的命令</p>
 </ul>
 
 
-<p><img src="http://stonefishy.github.io/assets/images/stash-pull-request.png" alt="stash-pull-request.png" /></p>
+<p><img src="https://stonefishy.github.io/assets/images/stash-pull-request.png" alt="stash-pull-request.png" /></p>
 
 <p>当一个Pull Request相关问题都已修改后或不存在任何问题时，就可以直接Approve并Merge到CodeBase中去，这样能够很好的确保CodeBase中的代码是经过监管控制过的。而且在Stash的Pull Request中，还可以设置当须不少于指定个数的Reviewer同意代码提交通过后，提交者才有权限Merge到CodeBase中。这样也能极大的确保项目的代码质量规范是整体开发人员认同的。</p>
 
@@ -1252,9 +1252,9 @@ command为相关的命令</p>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(16)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/18/ruby-practice-16/"/>
     <updated>2015-11-18T10:49:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/18/ruby-practice-16</id>
+    <id>https://stonefishy.github.io/blog/2015/11/18/ruby-practice-16</id>
     <content type="html"><![CDATA[<h4>散列类</h4>
 
 <p>散列(<strong>Hash</strong>)和数组一样，都是表示对象集合的对象，不同之处在于，数组使用索引来取得元素，而散列则是用键key，key可以是任何对象，而索引则不能，只能是整数。</p>
@@ -1622,9 +1622,9 @@ h.<strong>clear</strong>  <br/>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(15)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/17/ruby-practice-15/"/>
     <updated>2015-11-17T16:15:17+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/17/ruby-practice-15</id>
+    <id>https://stonefishy.github.io/blog/2015/11/17/ruby-practice-15</id>
     <content type="html"><![CDATA[<h5>字符串比较</h5>
 
 <p>Ruby中比较字符串是否相同也是用<strong>==</strong>和<strong>!=</strong>等运算符</p>
@@ -1926,9 +1926,9 @@ h.<strong>clear</strong>  <br/>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(14)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/12/ruby-practice-14/"/>
     <updated>2015-11-12T17:09:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/12/ruby-practice-14</id>
+    <id>https://stonefishy.github.io/blog/2015/11/12/ruby-practice-14</id>
     <content type="html"><![CDATA[<h4>字符串的创建</h4>
 
 <h5>普通创建</h5>
@@ -2188,9 +2188,9 @@ h.<strong>clear</strong>  <br/>
   
   <entry>
     <title type="html"><![CDATA[How to Make the Octopress Adapt OS X EI Capitan]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
+    <link href="https://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/"/>
     <updated>2015-11-11T22:46:35+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
+    <id>https://stonefishy.github.io/blog/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan</id>
     <content type="html"><![CDATA[<p>Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.</p>
 
 <p>Octopress is work well in Mac10.10. but when I upgraded to Mac10.11.1(OS X EI Capitan). And put <em>rake preview</em> in terminal to see the blog what looks like, got following error.</p>
@@ -2270,9 +2270,9 @@ bundle install
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(13)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/"/>
+    <link href="https://stonefishy.github.io/blog/2015/10/26/ruby-practice-13/"/>
     <updated>2015-10-26T22:13:32+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/10/26/ruby-practice-13</id>
+    <id>https://stonefishy.github.io/blog/2015/10/26/ruby-practice-13</id>
     <content type="html"><![CDATA[<h4>替换数组内的元素</h4>
 
 <p>根据指定规则替换数组中的元素，Ruby也提供了以下方法:</p>
@@ -2501,9 +2501,9 @@ ary.<strong>sort_by</strong> {|i| &hellip;}</p>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(12)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12/"/>
+    <link href="https://stonefishy.github.io/blog/2015/10/13/ruby-practice-12/"/>
     <updated>2015-10-13T10:25:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/10/13/ruby-practice-12</id>
+    <id>https://stonefishy.github.io/blog/2015/10/13/ruby-practice-12</id>
     <content type="html"><![CDATA[<p>数组(<strong>Array</strong>)也是Ruby中表现一组数据的对象</p>
 
 <h4>数组的创建</h4>
@@ -2922,9 +2922,9 @@ ary.<strong>slice!</strong>(n, len)  <br/>
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(11)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/28/ruby-practice-11/"/>
     <updated>2015-09-28T10:33:41+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/28/ruby-practice-11</id>
+    <id>https://stonefishy.github.io/blog/2015/09/28/ruby-practice-11</id>
     <content type="html"><![CDATA[<p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
 
 <p><img src="assets/images/numeric-inheritance.png" alt="assets/images/numberic-inheritance.png" /></p>
@@ -3160,9 +3160,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
     <updated>2015-09-23T10:59:23+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
+    <id>https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
     <content type="html"><![CDATA[<p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -3244,7 +3244,7 @@ end
 
 <p>You will notice that there is nothing in the ModelController1. Now, running this page. let&rsquo;s see the result.</p>
 
-<p><img src="http://stonefishy.github.io/assets/images/angular-ngModel-1.png" alt="" /></p>
+<p><img src="https://stonefishy.github.io/assets/images/angular-ngModel-1.png" alt="" /></p>
 
 <p>From the result, the value of the myInput1 is empty, but we have set the default value &lsquo;A&rsquo; to it. So we guess maybe the value has changed. But when we inspect the element, we found the value has been set to &lsquo;A&rsquo; in the html source. so far, I&rsquo;m so confused. To find the reason, I open the console of the browser, put below javascript code to see the value. It still empty.</p>
 
@@ -3253,7 +3253,7 @@ end
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://stonefishy.github.io/assets/images/angular-ngModel-2.png" alt="" /></p>
+<p><img src="https://stonefishy.github.io/assets/images/angular-ngModel-2.png" alt="" /></p>
 
 <p>So I guess that maybe it is ngModel affect it, the value has been changed by ngModel, but the html source didn&rsquo;t changed. So let&rsquo;s remove the ngModel from that input tag.</p>
 
@@ -3338,7 +3338,7 @@ end
 
 <p>We have set the myModel2 value to &lsquo;B&rsquo; in the ModelController2. But in the html source code, we set the default value to &lsquo;A&rsquo; and bundle it to ngModel. So let&rsquo;s see the result:</p>
 
-<p><img src="http://stonefishy.github.io/assets/images/angular-ngModel-3.png" alt="" /></p>
+<p><img src="https://stonefishy.github.io/assets/images/angular-ngModel-3.png" alt="" /></p>
 
 <p>The result is &lsquo;B&rsquo; not &lsquo;A&rsquo;. That means the ngModel is initialized in the controller. And then render it to the browser. So this can explain the weird problem.</p>
 
@@ -3357,9 +3357,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(10)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/15/ruby-practice-10/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/15/ruby-practice-10/"/>
     <updated>2015-09-15T15:18:16+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/15/ruby-practice-10</id>
+    <id>https://stonefishy.github.io/blog/2015/09/15/ruby-practice-10</id>
     <content type="html"><![CDATA[<h3>块</h3>
 
 <p><strong>块(block)</strong>，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的<em>each</em>，<em>time</em>就是带块的方法。</p>
@@ -3648,9 +3648,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(9)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/09/ruby-practice-9/"/>
     <updated>2015-09-09T23:22:26+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/09/ruby-practice-9</id>
+    <id>https://stonefishy.github.io/blog/2015/09/09/ruby-practice-9</id>
     <content type="html"><![CDATA[<h3>异常处理</h3>
 
 <p>在Ruby中，抛出异常的信息格式如下：</p>
@@ -4082,9 +4082,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby修炼之道(8)]]></title>
-    <link href="http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8/"/>
+    <link href="https://stonefishy.github.io/blog/2015/09/06/ruby-practice-8/"/>
     <updated>2015-09-06T20:36:07+08:00</updated>
-    <id>http://stonefishy.github.io/blog/2015/09/06/ruby-practice-8</id>
+    <id>https://stonefishy.github.io/blog/2015/09/06/ruby-practice-8</id>
     <content type="html"><![CDATA[<h3>运算符</h3>
 
 <p>以下两种运算符是等价的, op即代表操作运算符</p>
