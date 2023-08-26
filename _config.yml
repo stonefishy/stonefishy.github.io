@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://stonefishy.github.io
+url: https://stonefishy.github.io
 title: Stonefishy Blog
 subtitle: Scribbles of a programming boy
 author: Andrew Shi
@@ -18,6 +18,8 @@ date_format: "ordinal"
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
 subscribe_email:
+# Enable per category RSS feeds (defaults to false in 2.1)
+category_feeds: true
 # RSS feeds can list your email address if you like
 email: andrewsy@163.com
 
@@ -51,7 +53,7 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [custom/asides/about_me.html, asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html, custom/asides/spoof.html]
+default_asides: [custom/asides/about_me.html, asides/recent_posts.html, custom/asides/category_list.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html, custom/asides/spoof.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
