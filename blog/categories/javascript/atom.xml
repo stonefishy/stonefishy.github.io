@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Stonefishy Blog]]></title>
   <link href="https://stonefishy.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="https://stonefishy.github.io/"/>
-  <updated>2023-08-26T23:47:42+08:00</updated>
+  <updated>2023-08-30T23:36:26+08:00</updated>
   <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -51,7 +51,7 @@ window.addEventListener('resize', debounceFunction);
 
 <p>防抖的实现可以根据需要进行适当的调整，例如增加立即执行选项，即在事件触发时立即执行一次事件处理函数，然后再进入防抖模式。这样可以在事件触发的瞬间即时响应，同时仍然保留了后续的防抖效果。</p>
 
-<p>现在在上面防抖的基础上多增加一个参数，<strong>immediate</strong>， 参数值为true时，函数立即执行，为false时延时执行</p>
+<p>现在在上面防抖的基础上多增加一个参数，<strong>immediate</strong>， 参数值为true时，函数立即执行，为false时延时执行。</p>
 
 <pre><code class="JavaScript">function debounce(func, delay, immediate) {
   let timer;

@@ -9,7 +9,7 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="As we know the Aspect is just the name of the cross-cutting functionality, not the implementation. So what&rsquo;s the implementation of the cross- &hellip;">
+  <meta name="description" content="Advice is the implementation of the cross-cutting functionality. An Adivce provides the code for implementation of the service. There are four types &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/06/spring-aop-after-advice/">Spring AOP - After Advice</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-06T10:14:46+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:14 am</span></time>
+        
+           | <a href="/blog/2015/06/06/spring-aop-after-advice/#disqus_thread"
+             data-disqus-identifier="https://stonefishy.github.io/blog/2015/06/06/spring-aop-after-advice/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Advice</code> is the implementation of the <code>cross-cutting</code> functionality. An <code>Adivce</code> provides the code for implementation of the service.</p>
+
+<p>There are four types of Advice:</p>
+
+<ul>
+<li>Before Advice</li>
+<li><strong>After Advice</strong></li>
+<li>Around Advice</li>
+<li>Throws Advice</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/06/spring-aop-after-advice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -598,45 +645,6 @@ src:        <strong>source object(s)</strong></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">How to Use Jdbc in Spring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-05T16:31:53+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:31 pm</span></time>
-        
-           | <a href="/blog/2015/05/05/how-to-use-jdbc-in-spring/#disqus_thread"
-             data-disqus-identifier="https://stonefishy.github.io/blog/2015/05/05/how-to-use-jdbc-in-spring/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As we know, we can use <code>jdbc</code> to access database in java programming. And now let us use <code>jdbc</code> in spring. The <code>spring framework</code> reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are <code>org.springframework.jdbc.datasource.DriverManagerDataSource</code> and <code>org.springframework.jdbc.core.JdbcTemplate</code>.</p>
-
-<p>And here we use the <code>hsqldb</code> to act as our memory database. You can go to <a href="http://hsqldb.org/">here</a> to look at it. we use the <code>Maven</code> tools to management our project. the dependencies is:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/05/how-to-use-jdbc-in-spring/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -663,6 +671,10 @@ src:        <strong>source object(s)</strong></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/">聊聊前端优化手段防抖</a>
       </li>
     
@@ -678,10 +690,6 @@ src:        <strong>source object(s)</strong></p>
         <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2016/01/25/shuang-zhi-zhen-suan-fa/">双指针算法</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -690,6 +698,7 @@ src:        <strong>source object(s)</strong></p>
         <li class='category'><a href='/blog/categories/android/'>android (3)</a></li>
 <li class='category'><a href='/blog/categories/angularjs/'>angularjs (2)</a></li>
 <li class='category'><a href='/blog/categories/aop/'>aop (12)</a></li>
+<li class='category'><a href='/blog/categories/aws/'>aws (1)</a></li>
 <li class='category'><a href='/blog/categories/bracket/'>bracket (1)</a></li>
 <li class='category'><a href='/blog/categories/coffeescript/'>coffeescript (1)</a></li>
 <li class='category'><a href='/blog/categories/css/'>css (2)</a></li>
@@ -722,6 +731,7 @@ src:        <strong>source object(s)</strong></p>
 <li class='category'><a href='/blog/categories/tools/'>tools (10)</a></li>
 <li class='category'><a href='/blog/categories/typescript/'>typescript (1)</a></li>
 <li class='category'><a href='/blog/categories/vscode/'>vscode (1)</a></li>
+<li class='category'><a href='/blog/categories/yun-ji-suan/'>云计算 (1)</a></li>
 <li class='category'><a href='/blog/categories/shu-ju-jie-gou/'>数据结构 (3)</a></li>
 <li class='category'><a href='/blog/categories/suan-fa/'>算法 (3)</a></li>
 <li class='category'><a href='/blog/categories/zi-yuan/'>资源 (1)</a></li>
