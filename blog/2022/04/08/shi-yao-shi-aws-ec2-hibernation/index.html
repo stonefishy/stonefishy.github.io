@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>什么是AWS EC2 Hibernation - Stonefishy Blog</title>
+  <meta name="author" content="Andrew Shi">
+
+  
+  <meta name="description" content="EC2 Hibernation 是 Amazon Elastic Compute Cloud (EC2) 服务的一个功能，它允许您将 EC2 实例从运行状态转换为休眠状态，然后再次唤醒它，而不会丢失实例的内存中的数据。这个功能非常适合那些需要保持应用程序状态或长时间运行进程的工作负载。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://stonefishy.github.io/blog/2022/04/08/shi-yao-shi-aws-ec2-hibernation">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Andrew Shi </span></h1>
+  
+    <h2>Scribbles of a programming boy</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">什么是AWS EC2 Hibernation</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2022-04-08T17:00:59+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2022</span></span> <span class='time'>5:00 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="https://stonefishy.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><code>EC2 Hibernation</code> 是 Amazon Elastic Compute Cloud (EC2) 服务的一个功能，它允许您将 EC2 实例从运行状态转换为休眠状态，然后再次唤醒它，而不会丢失实例的内存中的数据。这个功能非常适合那些需要保持应用程序状态或长时间运行进程的工作负载。
+<img src="/assets/images/aws/aws-ec2-hibernation-flow.png" alt="" />
+这里详细说明 EC2 Hibernation 的<strong>工作原理</strong></p>
+
+<!--more-->
+
+
+<h3>工作原理</h3>
+
+<p><strong>1.启用 Hibernation：</strong> 要使用 EC2 Hibernation，首先需要在 EC2 实例上启用它。这可以通过使用支持 Hibernation 的实例类型，并在启动时启用 Hibernation 选项来完成。并且EBS卷必须要开启加密。
+<img src="/assets/images/aws/aws-ec2-hibernation-enable.png" alt="" /></p>
+
+<p><strong>2.创建 Hibernation 快照：</strong> 在启用 Hibernation 后，EC2 实例的内存状态将被定期保存到 Amazon Elastic Block Store (EBS) 卷上的 Hibernation 快照中。这确保了在实例休眠时不会丢失内存中的数据。</p>
+
+<p><strong>3.休眠实例：</strong> 一旦 Hibernation 启用并创建了快照，您可以通过执行 hibernate 命令或使用 AWS 管理控制台将实例转换为休眠状态。在休眠期间，实例的状态和数据将保存在 EBS 卷上。</p>
+
+<p><strong>4.唤醒实例：</strong> 当您希望恢复实例的运行状态时，只需执行唤醒命令或使用控制台，EC2 实例将从 Hibernation 快照中还原内存状态，并继续运行。</p>
+
+<h3>使用场景</h3>
+
+<p>EC2 Hibernation 可以应用于多种使用场景，包括但不限于：</p>
+
+<p><strong>长时间运行的进程：</strong> 如果您的 EC2 实例运行有状态的应用程序或长时间运行的进程，您可以使用 Hibernation 将实例休眠，以节省计算成本，而无需中断应用程序。</p>
+
+<p><strong>工作负载保持状态：</strong> 某些工作负载需要保持状态，例如内存中的会话数据或数据库连接。通过 Hibernation，您可以在需要时恢复工作负载，而无需重新创建状态。</p>
+
+<p><strong>成本优化：</strong> 对于不需要全天候运行的工作负载，您可以使用 Hibernation 在闲置时降低成本，然后在需要时快速恢复。</p>
+
+<p><strong>实例维护：</strong> 在 EC2 实例需要进行操作系统更新或其他维护操作时，可以使用 Hibernation 将实例休眠，然后在完成维护后唤醒它，以减少维护期间的停机时间。</p>
+
+<p>==请注意==，<u>不是所有的 EC2 实例类型都支持 Hibernation</u>，您需要选择支持该功能的实例类型并启用它。此外，<u>使用 Hibernation 可能会产生额外的 EBS 存储费用，因为需要存储 Hibernation 快照</u>。所以，在使用 Hibernation 时，需要权衡成本和性能需求。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Andrew Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2022-04-08T17:00:59+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2022</span></span> <span class='time'>5:00 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/" title="Previous Post: AWS EC2的主要特点和工作方式以及计费模式">&laquo; AWS EC2的主要特点和工作方式以及计费模式</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Andrew <br/> A developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2022/04/08/shi-yao-shi-aws-ec2-hibernation/">什么是AWS EC2 Hibernation</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/">AWS EC2的主要特点和工作方式以及计费模式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/">聊聊前端优化手段防抖</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+    <h1>分类目录</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/android/'>android (3)</a></li>
+<li class='category'><a href='/blog/categories/angularjs/'>angularjs (2)</a></li>
+<li class='category'><a href='/blog/categories/aop/'>aop (12)</a></li>
+<li class='category'><a href='/blog/categories/aws/'>aws (2)</a></li>
+<li class='category'><a href='/blog/categories/bracket/'>bracket (1)</a></li>
+<li class='category'><a href='/blog/categories/coffeescript/'>coffeescript (1)</a></li>
+<li class='category'><a href='/blog/categories/css/'>css (2)</a></li>
+<li class='category'><a href='/blog/categories/cucumber/'>cucumber (1)</a></li>
+<li class='category'><a href='/blog/categories/devops/'>devops (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (15)</a></li>
+<li class='category'><a href='/blog/categories/guard/'>guard (1)</a></li>
+<li class='category'><a href='/blog/categories/guava/'>guava (5)</a></li>
+<li class='category'><a href='/blog/categories/html/'>html (1)</a></li>
+<li class='category'><a href='/blog/categories/html5/'>html5 (3)</a></li>
+<li class='category'><a href='/blog/categories/ie/'>ie (3)</a></li>
+<li class='category'><a href='/blog/categories/ietester/'>ietester (1)</a></li>
+<li class='category'><a href='/blog/categories/iterm2/'>iterm2 (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>java (20)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>javascript (6)</a></li>
+<li class='category'><a href='/blog/categories/js/'>js (1)</a></li>
+<li class='category'><a href='/blog/categories/jsp/'>jsp (1)</a></li>
+<li class='category'><a href='/blog/categories/learning-skill/'>learning skill (1)</a></li>
+<li class='category'><a href='/blog/categories/livereload/'>livereload (1)</a></li>
+<li class='category'><a href='/blog/categories/mac/'>mac (1)</a></li>
+<li class='category'><a href='/blog/categories/markdown/'>markdown (5)</a></li>
+<li class='category'><a href='/blog/categories/nginx/'>nginx (1)</a></li>
+<li class='category'><a href='/blog/categories/other/'>other (1)</a></li>
+<li class='category'><a href='/blog/categories/pattern/'>pattern (1)</a></li>
+<li class='category'><a href='/blog/categories/ractive-dot-js/'>ractive.js (1)</a></li>
+<li class='category'><a href='/blog/categories/ruby/'>ruby (19)</a></li>
+<li class='category'><a href='/blog/categories/spring/'>spring (13)</a></li>
+<li class='category'><a href='/blog/categories/sublime-text/'>sublime text (3)</a></li>
+<li class='category'><a href='/blog/categories/test/'>test (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (10)</a></li>
+<li class='category'><a href='/blog/categories/typescript/'>typescript (1)</a></li>
+<li class='category'><a href='/blog/categories/vscode/'>vscode (1)</a></li>
+<li class='category'><a href='/blog/categories/yun-ji-suan/'>云计算 (2)</a></li>
+<li class='category'><a href='/blog/categories/shu-ju-jie-gou/'>数据结构 (3)</a></li>
+<li class='category'><a href='/blog/categories/suan-fa/'>算法 (3)</a></li>
+<li class='category'><a href='/blog/categories/zi-yuan/'>资源 (1)</a></li>
+
+    </ul>
+</section>
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2023 - Andrew Shi 
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'stonefishy';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://stonefishy.github.io/blog/2022/04/08/shi-yao-shi-aws-ec2-hibernation/';
+        var disqus_url = 'https://stonefishy.github.io/blog/2022/04/08/shi-yao-shi-aws-ec2-hibernation/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

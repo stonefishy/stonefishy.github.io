@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="https://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="https://stonefishy.github.io/"/>
-  <updated>2023-09-02T12:31:16+08:00</updated>
+  <updated>2023-09-02T17:26:49+08:00</updated>
   <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[什么是AWS EC2 Hibernation]]></title>
+    <link href="https://stonefishy.github.io/blog/2022/04/08/shi-yao-shi-aws-ec2-hibernation/"/>
+    <updated>2022-04-08T17:00:59+08:00</updated>
+    <id>https://stonefishy.github.io/blog/2022/04/08/shi-yao-shi-aws-ec2-hibernation</id>
+    <content type="html"><![CDATA[<p><code>EC2 Hibernation</code> 是 Amazon Elastic Compute Cloud (EC2) 服务的一个功能，它允许您将 EC2 实例从运行状态转换为休眠状态，然后再次唤醒它，而不会丢失实例的内存中的数据。这个功能非常适合那些需要保持应用程序状态或长时间运行进程的工作负载。
+<img src="https://stonefishy.github.io/assets/images/aws/aws-ec2-hibernation-flow.png" alt="" />
+这里详细说明 EC2 Hibernation 的<strong>工作原理</strong></p>
+
+<!--more-->
+
+
+<h3>工作原理</h3>
+
+<p><strong>1.启用 Hibernation：</strong> 要使用 EC2 Hibernation，首先需要在 EC2 实例上启用它。这可以通过使用支持 Hibernation 的实例类型，并在启动时启用 Hibernation 选项来完成。并且EBS卷必须要开启加密。
+<img src="https://stonefishy.github.io/assets/images/aws/aws-ec2-hibernation-enable.png" alt="" /></p>
+
+<p><strong>2.创建 Hibernation 快照：</strong> 在启用 Hibernation 后，EC2 实例的内存状态将被定期保存到 Amazon Elastic Block Store (EBS) 卷上的 Hibernation 快照中。这确保了在实例休眠时不会丢失内存中的数据。</p>
+
+<p><strong>3.休眠实例：</strong> 一旦 Hibernation 启用并创建了快照，您可以通过执行 hibernate 命令或使用 AWS 管理控制台将实例转换为休眠状态。在休眠期间，实例的状态和数据将保存在 EBS 卷上。</p>
+
+<p><strong>4.唤醒实例：</strong> 当您希望恢复实例的运行状态时，只需执行唤醒命令或使用控制台，EC2 实例将从 Hibernation 快照中还原内存状态，并继续运行。</p>
+
+<h3>使用场景</h3>
+
+<p>EC2 Hibernation 可以应用于多种使用场景，包括但不限于：</p>
+
+<p><strong>长时间运行的进程：</strong> 如果您的 EC2 实例运行有状态的应用程序或长时间运行的进程，您可以使用 Hibernation 将实例休眠，以节省计算成本，而无需中断应用程序。</p>
+
+<p><strong>工作负载保持状态：</strong> 某些工作负载需要保持状态，例如内存中的会话数据或数据库连接。通过 Hibernation，您可以在需要时恢复工作负载，而无需重新创建状态。</p>
+
+<p><strong>成本优化：</strong> 对于不需要全天候运行的工作负载，您可以使用 Hibernation 在闲置时降低成本，然后在需要时快速恢复。</p>
+
+<p><strong>实例维护：</strong> 在 EC2 实例需要进行操作系统更新或其他维护操作时，可以使用 Hibernation 将实例休眠，然后在完成维护后唤醒它，以减少维护期间的停机时间。</p>
+
+<p>==请注意==，<u>不是所有的 EC2 实例类型都支持 Hibernation</u>，您需要选择支持该功能的实例类型并启用它。此外，<u>使用 Hibernation 可能会产生额外的 EBS 存储费用，因为需要存储 Hibernation 快照</u>。所以，在使用 Hibernation 时，需要权衡成本和性能需求。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AWS EC2的主要特点和工作方式以及计费模式]]></title>
@@ -3453,203 +3492,6 @@ end
 </span><span class='line'>  <span class="n">ary</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'><span class="nb">p</span> <span class="n">ary</span>              <span class="c1">#=&gt; [1, 3, 5]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Initialization of the Angular ngModel]]></title>
-    <link href="https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel/"/>
-    <updated>2015-09-23T10:59:23+08:00</updated>
-    <id>https://stonefishy.github.io/blog/2015/09/23/the-initialization-of-the-angular-ngmodel</id>
-    <content type="html"><![CDATA[<p>Recently, I&rsquo;ve encoutered a weird problem in the project, it&rsquo;s about the value of the ngModel. Let me explain the problem. see the code</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;../../bower_components/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../bower_components/angular/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../js/ngModel.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">&quot;ModelApp&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;page-header&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;text-center&quot;</span><span class="nt">&gt;</span>ng-model initialize example<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel panel-danger&quot;</span> <span class="na">ng-controller=</span><span class="s">&quot;ModelController1&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-heading&quot;</span><span class="nt">&gt;</span>the angular model without initialize:<span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput1&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;myModel1&quot;</span> <span class="na">value=</span><span class="s">&quot;A&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag bundles the ngModel which name is &#39;myModel1&#39;<span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">disabled=</span><span class="s">&quot;true&quot;</span> <span class="na">id=</span><span class="s">&quot;displayModelValue1&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag displays the value of the above ngModel<span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<p>In the code, there is a input which id is &lsquo;myInput1&rsquo; has bundled a ngModel which name is &lsquo;myModel1&rsquo;. The value of the input we give it &lsquo;A&rsquo;. And we put this input tag into the ModelController1 angular controller. Also, there is another input tag which id is &lsquo;displayModelValue1&rsquo;, the purpose of it is to display the value of the &lsquo;myModel1&rsquo;.</p>
-
-<p>Let&rsquo;s see the controller code.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">ModelApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s2">&quot;ModelApp&quot;</span><span class="p">,</span> <span class="p">[]);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">ModelApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;ModelController1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You will notice that there is nothing in the ModelController1. Now, running this page. let&rsquo;s see the result.</p>
-
-<p><img src="https://stonefishy.github.io/assets/images/angular-ngModel-1.png" alt="" /></p>
-
-<p>From the result, the value of the myInput1 is empty, but we have set the default value &lsquo;A&rsquo; to it. So we guess maybe the value has changed. But when we inspect the element, we found the value has been set to &lsquo;A&rsquo; in the html source. so far, I&rsquo;m so confused. To find the reason, I open the console of the browser, put below javascript code to see the value. It still empty.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myInput1&#39;</span><span class="p">).</span><span class="nx">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="https://stonefishy.github.io/assets/images/angular-ngModel-2.png" alt="" /></p>
-
-<p>So I guess that maybe it is ngModel affect it, the value has been changed by ngModel, but the html source didn&rsquo;t changed. So let&rsquo;s remove the ngModel from that input tag.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput1&quot;</span> <span class="na">value=</span><span class="s">&quot;A&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And now，the value has displayed. it proves our suppose is correct.</p>
-
-<p>Ok, Let&rsquo;s get started to find the reason use a new example.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;../../bower_components/bootstrap/dist/css/bootstrap.min.css&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../bower_components/angular/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../js/ngModel.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">&quot;ModelApp&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;page-header&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;text-center&quot;</span><span class="nt">&gt;</span>ng-model initialize example<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel panel-success&quot;</span> <span class="na">ng-controller=</span><span class="s">&quot;ModelController2&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-heading&quot;</span><span class="nt">&gt;</span>the angular model with initialize:<span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput2&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;myModel2&quot;</span> <span class="na">value=</span><span class="s">&quot;A&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag bundles the ngModel which name is &#39;myModel2&#39;<span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;input</span> <span class="na">disabled=</span><span class="s">&quot;true&quot;</span> <span class="na">id=</span><span class="s">&quot;displayModelValue2&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> -&gt; This input tag displays the value of the above ngModel<span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The above html source code is same with before, just the id and ngModel name are different. And there is another different is that we initialize the ngModel in the controller.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">ModelApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;ModelController2&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">$scope</span><span class="p">.</span><span class="nx">myModel2</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span><span class="p">;</span>
-</span><span class='line'>  
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We have set the myModel2 value to &lsquo;B&rsquo; in the ModelController2. But in the html source code, we set the default value to &lsquo;A&rsquo; and bundle it to ngModel. So let&rsquo;s see the result:</p>
-
-<p><img src="https://stonefishy.github.io/assets/images/angular-ngModel-3.png" alt="" /></p>
-
-<p>The result is &lsquo;B&rsquo; not &lsquo;A&rsquo;. That means the ngModel is initialized in the controller. And then render it to the browser. So this can explain the weird problem.</p>
-
-<p>The finial reason is that the ngModel is initialized in the controller. If it is not initialize, the value will be empty, like the first example. So if we initialize it in the controller, the ngModel value will be changed with initialzed value.</p>
-
-<p>And also, you can use the <code>ng-init</code> directive to initialize the ngModel value which you want.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput2&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;myModel2&quot;</span> <span class="na">ng-init=</span><span class="s">&quot;myModel2 = &#39;A&#39;&quot;</span><span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
