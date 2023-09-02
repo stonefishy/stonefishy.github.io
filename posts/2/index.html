@@ -9,7 +9,7 @@
   <meta name="author" content="Andrew Shi">
 
   
-  <meta name="description" content="代码审查(Code Review)一直是一个高效团队里面必备的流程，团队成员可以通过它达到技术交流，相互学习以及提升自身编码水平的目的。当然它的目的并不止于此，我们在做某一件事的过程中，所用的技能和工具不外乎都是为了能使结果更符合我们的期望，就拿建筑工程来说，质量控制就是其把控最严的一关， &hellip;">
+  <meta name="description" content="Introduction Nginx is a open source quite lightweight HTTP server which is written by Russian Igor Sysoev, the pronunciation is &ldquo;engine X&rdquo &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-05T11:51:04+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:51 am</span></time>
+        
+           | <a href="/blog/2015/12/05/using-nginx-in-mac-os-x/#disqus_thread"
+             data-disqus-identifier="https://stonefishy.github.io/blog/2015/12/05/using-nginx-in-mac-os-x/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>Introduction</h4>
+
+<p><strong>Nginx</strong> is a open source quite lightweight HTTP server which is written by Russian <em>Igor Sysoev</em>, the pronunciation is &ldquo;engine X&rdquo;. It&rsquo;s a high performance HTTP and reverse proxy server, and also it is a IMAP/POP3/SMTP proxy server。</p>
+
+<p>There are lots of website using Nginx in China, like Sina, Tencent, 163, Discuz and so on. The Nginx has a very high performance due to event driven way, and also it is a high performance reverse proxy, load balancing.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/12/05/using-nginx-in-mac-os-x/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -618,67 +659,6 @@ Array#new方法可带两个可选参数，第1个参数表示数组中得个数�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/15/ruby-practice-10/">Ruby修炼之道(10)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-15T15:18:16+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:18 pm</span></time>
-        
-           | <a href="/blog/2015/09/15/ruby-practice-10/#disqus_thread"
-             data-disqus-identifier="https://stonefishy.github.io/blog/2015/09/15/ruby-practice-10/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>块</h3>
-
-<p><strong>块(block)</strong>，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的<em>each</em>，<em>time</em>就是带块的方法。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下：</p>
-
-<pre><code>对象.方法名(参数列表) do |变量|
-    希望的处理
-end
-
-或者
-
-对象.方法名(参数列表) { |变量|
-    希望的处理
-}
-</code></pre>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/15/ruby-practice-10/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -705,6 +685,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/">AWS EC2的主要特点和工作方式以及计费模式</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
       </li>
     
@@ -720,10 +704,6 @@ end
         <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -732,7 +712,7 @@ end
         <li class='category'><a href='/blog/categories/android/'>android (3)</a></li>
 <li class='category'><a href='/blog/categories/angularjs/'>angularjs (2)</a></li>
 <li class='category'><a href='/blog/categories/aop/'>aop (12)</a></li>
-<li class='category'><a href='/blog/categories/aws/'>aws (1)</a></li>
+<li class='category'><a href='/blog/categories/aws/'>aws (2)</a></li>
 <li class='category'><a href='/blog/categories/bracket/'>bracket (1)</a></li>
 <li class='category'><a href='/blog/categories/coffeescript/'>coffeescript (1)</a></li>
 <li class='category'><a href='/blog/categories/css/'>css (2)</a></li>
@@ -765,7 +745,7 @@ end
 <li class='category'><a href='/blog/categories/tools/'>tools (10)</a></li>
 <li class='category'><a href='/blog/categories/typescript/'>typescript (1)</a></li>
 <li class='category'><a href='/blog/categories/vscode/'>vscode (1)</a></li>
-<li class='category'><a href='/blog/categories/yun-ji-suan/'>云计算 (1)</a></li>
+<li class='category'><a href='/blog/categories/yun-ji-suan/'>云计算 (2)</a></li>
 <li class='category'><a href='/blog/categories/shu-ju-jie-gou/'>数据结构 (3)</a></li>
 <li class='category'><a href='/blog/categories/suan-fa/'>算法 (3)</a></li>
 <li class='category'><a href='/blog/categories/zi-yuan/'>资源 (1)</a></li>

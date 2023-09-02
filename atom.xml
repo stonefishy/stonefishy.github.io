@@ -4,7 +4,7 @@
   <title><![CDATA[Stonefishy Blog]]></title>
   <link href="https://stonefishy.github.io/atom.xml" rel="self"/>
   <link href="https://stonefishy.github.io/"/>
-  <updated>2023-08-30T23:36:26+08:00</updated>
+  <updated>2023-09-02T12:31:16+08:00</updated>
   <id>https://stonefishy.github.io/</id>
   <author>
     <name><![CDATA[Andrew Shi]]></name>
@@ -12,6 +12,129 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AWS EC2的主要特点和工作方式以及计费模式]]></title>
+    <link href="https://stonefishy.github.io/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/"/>
+    <updated>2022-03-02T11:28:07+08:00</updated>
+    <id>https://stonefishy.github.io/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi</id>
+    <content type="html"><![CDATA[<p>Amazon Elastic Compute Cloud（Amazon EC2）是Amazon Web Services（AWS）提供的一项基于云的可伸缩性、弹性、安全性和监控的计算服务，它允许用户租用虚拟服务器（称为EC2实例）来运行应用程序。我们从主要特点，工作方式以及计价模式来介绍下EC2
+<img src="https://stonefishy.github.io/assets/images/aws/aws-ec2-intro.png" alt="" /></p>
+
+<!--more-->
+
+
+<h3>主要特点</h3>
+
+<p><strong>可伸缩性 (Scalability)</strong>
+EC2 允许用户根据需要快速扩展或缩减实例数量。这种可伸缩性使您能够适应不断变化的工作负载，确保您的应用程序始终具备所需的计算资源。</p>
+
+<p><strong>多样性的实例类型 (Diverse Instance Types)</strong>
+AWS 提供多种不同类型的 EC2 实例，以满足各种计算需求。这些类型包括计算优化、内存优化、存储优化、GPU 实例等，每种类型都针对不同类型的工作负载进行了优化。</p>
+
+<p><strong>弹性IP地址 (Elastic IP Addresses)</strong>
+您可以分配弹性 IP 地址给 EC2 实例，确保即使实例停止和重新启动，IP 地址也能保持不变。这有助于确保应用程序的连通性。</p>
+
+<p><strong>安全组和网络 ACL (Security Groups and Network ACLs)</strong>
+EC2 允许您配置安全组和网络 ACL，以控制实例的入站和出站流量。这提供了一层网络安全性，以确保只有授权的流量可以访问实例。</p>
+
+<p><strong>Amazon Machine Images (AMIs)</strong>
+AMIs 是虚拟机镜像，包含了操作系统、应用程序和配置信息。您可以使用标准 AMIs 或创建自定义 AMIs 来启动 EC2 实例，从而简化部署。</p>
+
+<p><strong>多个操作系统支持 (Multiple OS Support)</strong>
+EC2 支持多种操作系统，包括各种 Linux 发行版、Windows Server 和其他操作系统。这使您可以选择适合您应用程序的操作系统。</p>
+
+<p><strong>自动化和托管选项 (Automation and Managed Options)</strong>
+EC2 实例可以与其他 AWS 服务集成，如 AWS Auto Scaling、Elastic Load Balancing 和 AWS Elastic Beanstalk，以实现自动化部署和托管。</p>
+
+<p><strong>监控和警报 (Monitoring and Alerts)</strong>
+EC2 实例集成了 Amazon CloudWatch，可监控实例的性能和状态，并配置警报以及自动响应性能问题。</p>
+
+<p><strong>可靠性和容错性 (Reliability and Fault Tolerance)</strong>
+EC2 提供高可用性和容错性，实例可以在不同的可用性区域和可用性域中运行，以确保服务的连续性。</p>
+
+<p><strong>身份和访问管理 (Identity and Access Management)</strong>
+EC2 实例可以与 AWS Identity and Access Management (IAM) 集成，以进行身份验证和授权，使您能够控制对实例和资源的访问权限。</p>
+
+<p><strong>多种定价选项 (Pricing Options)</strong>
+EC2 提供多种不同的定价选项，包括按需实例、预留实例、定期实例、Spot 实例等，以满足不同的预算和使用需求。</p>
+
+<h3>工作方式：</h3>
+
+<p><strong>选择实例类型</strong>
+在使用 EC2 之前，您首先需要选择适合您工作负载需求的 EC2 实例类型。不同类型的实例提供不同的计算、内存、存储和网络性能。您可以根据您的需求来选择。</p>
+
+<p><strong>启动实例</strong>
+一旦选择了实例类型，您可以使用 Amazon Machine Image（AMI）启动 EC2 实例。AMI 是一个预配置的虚拟机镜像，它包含了操作系统、应用程序和配置信息。您可以选择 AWS 提供的标准 AMI，也可以创建自己的自定义 AMI。</p>
+
+<p><strong>安全组和密钥对</strong>
+在启动实例时，您可以选择一个或多个安全组，这些安全组定义了实例的入站和出站流量规则，以确保安全性。您还可以选择密钥对，以便安全地访问您的 EC2 实例。</p>
+
+<p><strong>运行实例</strong>
+一旦实例启动，它将在 AWS 的数据中心中的物理服务器上运行。您可以通过 SSH（对于 Linux 实例）或 RDP（对于 Windows 实例）等远程协议连接到实例。</p>
+
+<p><strong>管理实例</strong>
+一旦运行，您可以随时管理 EC2 实例。这包括启动、停止、重启、终止实例，以及更改实例的配置，如调整实例大小、添加存储卷等。</p>
+
+<p><strong>存储和快照</strong>
+EC2 实例通常附带 Elastic Block Store（EBS）卷，您可以使用这些卷来存储数据。您还可以创建 EBS 快照，以备份数据或复制数据到其他地方。</p>
+
+<p><strong>监控和伸缩</strong>
+AWS 提供了 Amazon CloudWatch，它可以用于监视 EC2 实例的性能指标，如 CPU 使用率、网络流量等。您可以设置警报以响应性能问题，并根据需要配置自动伸缩策略，以自动调整实例数量。</p>
+
+<p><strong>安全性和身份验证</strong>
+EC2 实例可以与 AWS Identity and Access Management（IAM）集成，以实现身份验证和授权。您可以为实例分配 IAM 角色，以便它们可以访问其他 AWS 服务或资源，而无需硬编码的凭据。</p>
+
+<h3>计费模式</h3>
+
+<p><strong>按需实例 (On-Demand Instances)</strong>
+按需实例是一种灵活的计费方式，您只需为您实际使用的计算资源付费，没有长期合同或预付费。这意味着您可以随时启动或停止实例，只支付实际的运行时间。</p>
+
+<p>适用于需要灵活性的工作负载，如开发和测试、临时工作负载、突发性工作负载。</p>
+
+<p><strong>预留实例 (Reserved Instances)</strong>
+预留实例是一种合同制度，您提前支付一定费用，获得对特定实例类型的一定时期内的折扣，通常为1年或3年。这通常比按需实例更经济。</p>
+
+<p>适用于长期工作负载，可以预测的、稳定的使用情况，例如生产服务器。</p>
+
+<p><strong>可用性区域保留实例 (Reserved Instances for Availability Zones)</strong>
+这是预留实例的一种变种，允许您为特定的可用性区域（AZ）购买预留容量。这对于需要在特定区域内保留容量的应用程序非常有用。</p>
+
+<p>适用于需要确保在特定可用性区域内拥有计算资源的工作负载。</p>
+
+<p><strong>可调整实例 (Convertible Reserved Instances)</strong>
+这是一种预留实例，允许在合同期内更改实例类型，以适应不同的工作负载需求。</p>
+
+<p>适用于工作负载需求可能会变化的情况，但仍然希望获得折扣。</p>
+
+<p><strong>定期实例 (Scheduled Instances)</strong>
+定期实例允许您按预定的时间启动 EC2 实例。您可以在每天的特定时间、每周某个时间或其他预定时间启动实例。</p>
+
+<p>适用于周期性的、预定的工作负载，如每天备份、批处理处理等。</p>
+
+<p><strong>批量实例 (Spot Instances)</strong>
+Spot 实例基于竞价定价模式，您可以设定愿意支付的价格，当市场价格低于您的出价时，您可以获得实例。但它们可能随时被终止。</p>
+
+<p>适用于可以容忍实例随时中断的工作负载，如大规模数据分析和渲染任务。</p>
+
+<p><strong>Dedicated Hosts（专用主机）</strong>
+专用主机允许您在 AWS 的物理服务器上运行 EC2 实例，这些服务器专门为您的账户保留。这提供了硬件级别的隔离，适用于具有特殊合规性要求的工作负载。</p>
+
+<p>适用于需要硬件隔离的工作负载，例如合规性要求非常高的应用程序，或者需要将许多实例部署到同一物理服务器上的场景。</p>
+
+<p><strong>Dedicated Instances（专用实例）</strong>
+专用实例是 EC2 实例，它们在共享的物理服务器上运行，但只与您的账户中的其他实例共享。这提供了实例级别的隔离。</p>
+
+<p>适用于需要实例级别隔离的工作负载，但不需要物理主机级别的隔离的场景。</p>
+
+<p><strong>Free Tier（免费层级）</strong>
+AWS 提供了一定程度的免费使用，即免费层级，对于新用户以及AWS账户中的某些服务和资源，提供有限的免费额度，通常为12个月。这是用于学习、试验和小型项目的好方法，以降低成本。</p>
+
+<p>适用于学习 AWS、开发和测试小型应用程序，或者初期的小规模项目。</p>
+
+<p>这些计费模式为不同的使用情况提供了各种选择。您可以根据您的需求和预算来选择适合您的模式。请注意，AWS定期更新其价格和计费模式，因此建议查看官方文档以获取最新的信息。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AWS IAM原理以及如何使用]]></title>
@@ -3527,297 +3650,6 @@ end
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;myInput2&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;myModel2&quot;</span> <span class="na">ng-init=</span><span class="s">&quot;myModel2 = &#39;A&#39;&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby修炼之道(10)]]></title>
-    <link href="https://stonefishy.github.io/blog/2015/09/15/ruby-practice-10/"/>
-    <updated>2015-09-15T15:18:16+08:00</updated>
-    <id>https://stonefishy.github.io/blog/2015/09/15/ruby-practice-10</id>
-    <content type="html"><![CDATA[<h3>块</h3>
-
-<p><strong>块(block)</strong>，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的<em>each</em>，<em>time</em>就是带块的方法。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上面代码中do和end之间的部分就是所谓的块。这样的方法称为“带块的方法”或“调用块”，其调用方式如下：</p>
-
-<pre><code>对象.方法名(参数列表) do |变量|
-    希望的处理
-end
-
-或者
-
-对象.方法名(参数列表) { |变量|
-    希望的处理
-}
-</code></pre>
-
-<!-- more -->
-
-
-<p>each方法可以将数组的元素一个一个取出来然后处理，散列也可以，但与数组不同的是，散列会将*[key,value]的组合作为数组来提取元素。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">outcome</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;breakfast&quot;</span><span class="o">=&gt;</span><span class="mi">10</span><span class="o">.</span><span class="mo">00</span><span class="p">,</span> <span class="s2">&quot;lunch&quot;</span><span class="o">=&gt;</span><span class="mi">20</span><span class="o">.</span><span class="mo">00</span><span class="p">,</span> <span class="s2">&quot;dinner&quot;</span><span class="o">=&gt;</span><span class="mi">15</span><span class="o">.</span><span class="mo">00</span> <span class="p">}</span>
-</span><span class='line'><span class="n">sum_outcome</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">outcome</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">pair</span><span class="o">|</span>           <span class="c1">#pair是key，value组成的数组，pair[0]为key，pair[1]为value</span>
-</span><span class='line'>  <span class="n">sum_outcome</span> <span class="o">+=</span> <span class="n">pair</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">puts</span> <span class="n">sum_outcome</span>                   <span class="c1">#=&gt; 45.0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在接收块变量时，多重赋值规则也同样适用。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">outcome</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2"> : </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>    <span class="c1">#=&gt; 打印对应的outcome信息</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>块除了应用于迭代器以外，还被广泛用于其他地方，其中一个就是确保后处理被执行。看代码</p>
-
-<ul>
-<li>(1)未使用块做后处理</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>file_open.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;each_hash_data.rb&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">line</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>(2)使用块做后处理</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>block_file_open.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;each_hash_data.rb&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>仔细观察代码，你会发现在第种方式中，File#open方法接收了块，然后将file对象作为块变量，并且执行完毕后，并没有调用close方法去关闭文件。用这种方式会使程序出问题吗？答案是不会，因为块内部其实执行了如下代码的处理。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;each_hash_data.rb&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">ensure</span>
-</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">close</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>块还有一种常见的用法，用于替换部分算法，以Array类的sort方法为例</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;ruby&quot;</span><span class="p">,</span> <span class="s2">&quot;pathon&quot;</span><span class="p">,</span> <span class="s2">&quot;c#&quot;</span><span class="p">,</span> <span class="s2">&quot;javascript&quot;</span><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sorted_ary</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span>
-</span><span class='line'><span class="nb">print</span> <span class="n">sorted_ary</span>           <span class="c1">#=&gt; [&quot;c#&quot;, &quot;javascript&quot;, &quot;pathon&quot;, &quot;ruby&quot;]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sorted_ary</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">|</span> <span class="n">a</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">length</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">print</span> <span class="n">sorted_ary</span>           <span class="c1">#=&gt; [&quot;c#&quot;, &quot;ruby&quot;, &quot;pathon&quot;, &quot;javascript&quot;]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sorted_ary</span> <span class="o">=</span> <span class="n">ary</span><span class="o">.</span><span class="n">sort</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">|</span> <span class="n">a</span><span class="o">.</span><span class="n">reverse</span> <span class="o">&lt;=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">reverse</span><span class="p">}</span>
-</span><span class='line'><span class="nb">print</span> <span class="n">sorted_ary</span>           <span class="c1">#=&gt; [&quot;c#&quot;, &quot;pathon&quot;, &quot;javascript&quot;, &quot;ruby&quot;]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>将排序算法作为块传递给sort方法，然后返回按指定排序方式排序后的数组。</p>
-
-<p><em>注意：块中最后一个表达式的值就是块的执行结果</em></p>
-
-<h4>定义带块的方法</h4>
-
-<p>使用<strong>yield</strong>关键字代替块，如下</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">my_block</span>
-</span><span class='line'>  <span class="k">yield</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">my_block</span> <span class="k">do</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;this is execution in my block&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>传递块参数，获取块的值</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="n">from</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
-</span><span class='line'>      <span class="k">if</span> <span class="nb">block_given?</span>                  <span class="c1"># 如果有快的话</span>
-</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="k">yield</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>      <span class="c1"># 将经过块处理后的值累加</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="n">num</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="n">result</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">print</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>                            <span class="c1">#=&gt; 55</span>
-</span><span class='line'><span class="nb">print</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>      <span class="c1">#=&gt; 110</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>block_given?</strong>方法被用于判断当调用方法时是否有块被传递，有则返回true，否则false</p>
-
-<p><em>yield</em>参数的个数可以与块变量的个数不一样，当块变量的个数多时，多出的参数会被赋值为nil，当块变量不足时，则不能接受多余的参数值。</p>
-
-<p>*注：<strong>break</strong>和<strong>next</strong>方法可指定参数，如果没有指定任何参数，则返回nil，如果指定了参数则返回参数，如：break 0 和next 0 都会返回0。</p>
-
-<h5>将块封装为对象</h5>
-
-<p>Ruby还可以将块当作对象处理。把块当作对象处理后，就可以在接收块的方法之外的其他地方执行块，或者把块交给其他方法执行。如果要实现这样的功能，就需要<strong>Proc</strong>对象，<strong>Proc</strong>对象是能让块作为对象在程序中使用的类。</p>
-
-<p>通过调用<strong>Proc.new</strong>这个带块的方法，可以定义Proc对象，然后再调用Proc对象的<strong>call</strong>方法执行块。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">hello</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>          <span class="c1"># 使用Proc.new方法定义块对象hello</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">hello</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>                  <span class="c1"># 使用Proc.call方法调用块对象</span>
-</span><span class='line'><span class="n">hello</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;ruby&quot;</span><span class="p">)</span>               
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在方法定义时，如果末尾的参数使用<strong>&amp;参数名</strong>的形式，Ruby就会自动把调用方法时传进来的块封装为Proc对象。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="n">from</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">block</span>                              <span class="c1">#如果有块对象</span>
-</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="n">block</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>       <span class="c1">#执行快对象</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="n">result</span> <span class="o">+=</span> <span class="n">num</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="n">result</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">puts</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>                         <span class="c1">#=&gt; 55</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">total</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>       <span class="c1">#=&gt; 110</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在变量名前添加<strong>&amp;</strong>的参数被成为<strong>Proc参数</strong>. 而且Proc参数一定要在所有参数之后，也就是方法的最后一个参数。</p>
-
-<p>将Proc对象作为块传递给其他方法处理，在调用方法时，用<strong>&amp;Proc对象</strong>的形式定义参数就可以了。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">my_each</span><span class="p">(</span><span class="n">ary</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>    
-</span><span class='line'>  <span class="n">ary</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>           <span class="c1">#将proc对象以块的形式传递给数组的each方法</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">my_each</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2"> &quot;</span>
-</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

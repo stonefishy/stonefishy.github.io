@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AWS EC2的主要特点和工作方式以及计费模式 - Stonefishy Blog</title>
+  <meta name="author" content="Andrew Shi">
+
+  
+  <meta name="description" content="Amazon Elastic Compute Cloud（Amazon EC2）是Amazon Web Services（AWS）提供的一项基于云的可伸缩性、弹性、安全性和监控的计算服务，它允许用户租用虚拟服务器（称为EC2实例）来运行应用程序。我们从主要特点，工作方式以及计价模式来介绍下EC2 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://stonefishy.github.io/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Stonefishy Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stonefishy Blog</a><span class="note">  - by Andrew Shi </span></h1>
+  
+    <h2>Scribbles of a programming boy</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:stonefishy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AWS EC2的主要特点和工作方式以及计费模式</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2022-03-02T11:28:07+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2022</span></span> <span class='time'>11:28 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="https://stonefishy.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Amazon Elastic Compute Cloud（Amazon EC2）是Amazon Web Services（AWS）提供的一项基于云的可伸缩性、弹性、安全性和监控的计算服务，它允许用户租用虚拟服务器（称为EC2实例）来运行应用程序。我们从主要特点，工作方式以及计价模式来介绍下EC2
+<img src="/assets/images/aws/aws-ec2-intro.png" alt="" /></p>
+
+<!--more-->
+
+
+<h3>主要特点</h3>
+
+<p><strong>可伸缩性 (Scalability)</strong>
+EC2 允许用户根据需要快速扩展或缩减实例数量。这种可伸缩性使您能够适应不断变化的工作负载，确保您的应用程序始终具备所需的计算资源。</p>
+
+<p><strong>多样性的实例类型 (Diverse Instance Types)</strong>
+AWS 提供多种不同类型的 EC2 实例，以满足各种计算需求。这些类型包括计算优化、内存优化、存储优化、GPU 实例等，每种类型都针对不同类型的工作负载进行了优化。</p>
+
+<p><strong>弹性IP地址 (Elastic IP Addresses)</strong>
+您可以分配弹性 IP 地址给 EC2 实例，确保即使实例停止和重新启动，IP 地址也能保持不变。这有助于确保应用程序的连通性。</p>
+
+<p><strong>安全组和网络 ACL (Security Groups and Network ACLs)</strong>
+EC2 允许您配置安全组和网络 ACL，以控制实例的入站和出站流量。这提供了一层网络安全性，以确保只有授权的流量可以访问实例。</p>
+
+<p><strong>Amazon Machine Images (AMIs)</strong>
+AMIs 是虚拟机镜像，包含了操作系统、应用程序和配置信息。您可以使用标准 AMIs 或创建自定义 AMIs 来启动 EC2 实例，从而简化部署。</p>
+
+<p><strong>多个操作系统支持 (Multiple OS Support)</strong>
+EC2 支持多种操作系统，包括各种 Linux 发行版、Windows Server 和其他操作系统。这使您可以选择适合您应用程序的操作系统。</p>
+
+<p><strong>自动化和托管选项 (Automation and Managed Options)</strong>
+EC2 实例可以与其他 AWS 服务集成，如 AWS Auto Scaling、Elastic Load Balancing 和 AWS Elastic Beanstalk，以实现自动化部署和托管。</p>
+
+<p><strong>监控和警报 (Monitoring and Alerts)</strong>
+EC2 实例集成了 Amazon CloudWatch，可监控实例的性能和状态，并配置警报以及自动响应性能问题。</p>
+
+<p><strong>可靠性和容错性 (Reliability and Fault Tolerance)</strong>
+EC2 提供高可用性和容错性，实例可以在不同的可用性区域和可用性域中运行，以确保服务的连续性。</p>
+
+<p><strong>身份和访问管理 (Identity and Access Management)</strong>
+EC2 实例可以与 AWS Identity and Access Management (IAM) 集成，以进行身份验证和授权，使您能够控制对实例和资源的访问权限。</p>
+
+<p><strong>多种定价选项 (Pricing Options)</strong>
+EC2 提供多种不同的定价选项，包括按需实例、预留实例、定期实例、Spot 实例等，以满足不同的预算和使用需求。</p>
+
+<h3>工作方式：</h3>
+
+<p><strong>选择实例类型</strong>
+在使用 EC2 之前，您首先需要选择适合您工作负载需求的 EC2 实例类型。不同类型的实例提供不同的计算、内存、存储和网络性能。您可以根据您的需求来选择。</p>
+
+<p><strong>启动实例</strong>
+一旦选择了实例类型，您可以使用 Amazon Machine Image（AMI）启动 EC2 实例。AMI 是一个预配置的虚拟机镜像，它包含了操作系统、应用程序和配置信息。您可以选择 AWS 提供的标准 AMI，也可以创建自己的自定义 AMI。</p>
+
+<p><strong>安全组和密钥对</strong>
+在启动实例时，您可以选择一个或多个安全组，这些安全组定义了实例的入站和出站流量规则，以确保安全性。您还可以选择密钥对，以便安全地访问您的 EC2 实例。</p>
+
+<p><strong>运行实例</strong>
+一旦实例启动，它将在 AWS 的数据中心中的物理服务器上运行。您可以通过 SSH（对于 Linux 实例）或 RDP（对于 Windows 实例）等远程协议连接到实例。</p>
+
+<p><strong>管理实例</strong>
+一旦运行，您可以随时管理 EC2 实例。这包括启动、停止、重启、终止实例，以及更改实例的配置，如调整实例大小、添加存储卷等。</p>
+
+<p><strong>存储和快照</strong>
+EC2 实例通常附带 Elastic Block Store（EBS）卷，您可以使用这些卷来存储数据。您还可以创建 EBS 快照，以备份数据或复制数据到其他地方。</p>
+
+<p><strong>监控和伸缩</strong>
+AWS 提供了 Amazon CloudWatch，它可以用于监视 EC2 实例的性能指标，如 CPU 使用率、网络流量等。您可以设置警报以响应性能问题，并根据需要配置自动伸缩策略，以自动调整实例数量。</p>
+
+<p><strong>安全性和身份验证</strong>
+EC2 实例可以与 AWS Identity and Access Management（IAM）集成，以实现身份验证和授权。您可以为实例分配 IAM 角色，以便它们可以访问其他 AWS 服务或资源，而无需硬编码的凭据。</p>
+
+<h3>计费模式</h3>
+
+<p><strong>按需实例 (On-Demand Instances)</strong>
+按需实例是一种灵活的计费方式，您只需为您实际使用的计算资源付费，没有长期合同或预付费。这意味着您可以随时启动或停止实例，只支付实际的运行时间。</p>
+
+<p>适用于需要灵活性的工作负载，如开发和测试、临时工作负载、突发性工作负载。</p>
+
+<p><strong>预留实例 (Reserved Instances)</strong>
+预留实例是一种合同制度，您提前支付一定费用，获得对特定实例类型的一定时期内的折扣，通常为1年或3年。这通常比按需实例更经济。</p>
+
+<p>适用于长期工作负载，可以预测的、稳定的使用情况，例如生产服务器。</p>
+
+<p><strong>可用性区域保留实例 (Reserved Instances for Availability Zones)</strong>
+这是预留实例的一种变种，允许您为特定的可用性区域（AZ）购买预留容量。这对于需要在特定区域内保留容量的应用程序非常有用。</p>
+
+<p>适用于需要确保在特定可用性区域内拥有计算资源的工作负载。</p>
+
+<p><strong>可调整实例 (Convertible Reserved Instances)</strong>
+这是一种预留实例，允许在合同期内更改实例类型，以适应不同的工作负载需求。</p>
+
+<p>适用于工作负载需求可能会变化的情况，但仍然希望获得折扣。</p>
+
+<p><strong>定期实例 (Scheduled Instances)</strong>
+定期实例允许您按预定的时间启动 EC2 实例。您可以在每天的特定时间、每周某个时间或其他预定时间启动实例。</p>
+
+<p>适用于周期性的、预定的工作负载，如每天备份、批处理处理等。</p>
+
+<p><strong>批量实例 (Spot Instances)</strong>
+Spot 实例基于竞价定价模式，您可以设定愿意支付的价格，当市场价格低于您的出价时，您可以获得实例。但它们可能随时被终止。</p>
+
+<p>适用于可以容忍实例随时中断的工作负载，如大规模数据分析和渲染任务。</p>
+
+<p><strong>Dedicated Hosts（专用主机）</strong>
+专用主机允许您在 AWS 的物理服务器上运行 EC2 实例，这些服务器专门为您的账户保留。这提供了硬件级别的隔离，适用于具有特殊合规性要求的工作负载。</p>
+
+<p>适用于需要硬件隔离的工作负载，例如合规性要求非常高的应用程序，或者需要将许多实例部署到同一物理服务器上的场景。</p>
+
+<p><strong>Dedicated Instances（专用实例）</strong>
+专用实例是 EC2 实例，它们在共享的物理服务器上运行，但只与您的账户中的其他实例共享。这提供了实例级别的隔离。</p>
+
+<p>适用于需要实例级别隔离的工作负载，但不需要物理主机级别的隔离的场景。</p>
+
+<p><strong>Free Tier（免费层级）</strong>
+AWS 提供了一定程度的免费使用，即免费层级，对于新用户以及AWS账户中的某些服务和资源，提供有限的免费额度，通常为12个月。这是用于学习、试验和小型项目的好方法，以降低成本。</p>
+
+<p>适用于学习 AWS、开发和测试小型应用程序，或者初期的小规模项目。</p>
+
+<p>这些计费模式为不同的使用情况提供了各种选择。您可以根据您的需求和预算来选择适合您的模式。请注意，AWS定期更新其价格和计费模式，因此建议查看官方文档以获取最新的信息。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Andrew Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2022-03-02T11:28:07+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2022</span></span> <span class='time'>11:28 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aws/'>aws</a>, <a class='category' href='/blog/categories/yun-ji-suan/'>云计算</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" title="Previous Post: AWS IAM原理以及如何使用">&laquo; AWS IAM原理以及如何使用</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<div class="about sidebar">
+  <span class="about-image">
+    <img src="/images/yushi.jpg" alt="yushi">
+  </span>
+  <span class="about-desc">
+    <span>Hey, I&#8217;m Andrew <br/> A developer ( currently in Chengdu, China ). I use this space to share my experiences, experiments and thoughts. </span>
+    <br/>
+  </span>
+</div> <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/">AWS EC2的主要特点和工作方式以及计费模式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/">聊聊前端优化手段防抖</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+    <h1>分类目录</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/android/'>android (3)</a></li>
+<li class='category'><a href='/blog/categories/angularjs/'>angularjs (2)</a></li>
+<li class='category'><a href='/blog/categories/aop/'>aop (12)</a></li>
+<li class='category'><a href='/blog/categories/aws/'>aws (2)</a></li>
+<li class='category'><a href='/blog/categories/bracket/'>bracket (1)</a></li>
+<li class='category'><a href='/blog/categories/coffeescript/'>coffeescript (1)</a></li>
+<li class='category'><a href='/blog/categories/css/'>css (2)</a></li>
+<li class='category'><a href='/blog/categories/cucumber/'>cucumber (1)</a></li>
+<li class='category'><a href='/blog/categories/devops/'>devops (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (15)</a></li>
+<li class='category'><a href='/blog/categories/guard/'>guard (1)</a></li>
+<li class='category'><a href='/blog/categories/guava/'>guava (5)</a></li>
+<li class='category'><a href='/blog/categories/html/'>html (1)</a></li>
+<li class='category'><a href='/blog/categories/html5/'>html5 (3)</a></li>
+<li class='category'><a href='/blog/categories/ie/'>ie (3)</a></li>
+<li class='category'><a href='/blog/categories/ietester/'>ietester (1)</a></li>
+<li class='category'><a href='/blog/categories/iterm2/'>iterm2 (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>java (20)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>javascript (6)</a></li>
+<li class='category'><a href='/blog/categories/js/'>js (1)</a></li>
+<li class='category'><a href='/blog/categories/jsp/'>jsp (1)</a></li>
+<li class='category'><a href='/blog/categories/learning-skill/'>learning skill (1)</a></li>
+<li class='category'><a href='/blog/categories/livereload/'>livereload (1)</a></li>
+<li class='category'><a href='/blog/categories/mac/'>mac (1)</a></li>
+<li class='category'><a href='/blog/categories/markdown/'>markdown (5)</a></li>
+<li class='category'><a href='/blog/categories/nginx/'>nginx (1)</a></li>
+<li class='category'><a href='/blog/categories/other/'>other (1)</a></li>
+<li class='category'><a href='/blog/categories/pattern/'>pattern (1)</a></li>
+<li class='category'><a href='/blog/categories/ractive-dot-js/'>ractive.js (1)</a></li>
+<li class='category'><a href='/blog/categories/ruby/'>ruby (19)</a></li>
+<li class='category'><a href='/blog/categories/spring/'>spring (13)</a></li>
+<li class='category'><a href='/blog/categories/sublime-text/'>sublime text (3)</a></li>
+<li class='category'><a href='/blog/categories/test/'>test (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (10)</a></li>
+<li class='category'><a href='/blog/categories/typescript/'>typescript (1)</a></li>
+<li class='category'><a href='/blog/categories/vscode/'>vscode (1)</a></li>
+<li class='category'><a href='/blog/categories/yun-ji-suan/'>云计算 (2)</a></li>
+<li class='category'><a href='/blog/categories/shu-ju-jie-gou/'>数据结构 (3)</a></li>
+<li class='category'><a href='/blog/categories/suan-fa/'>算法 (3)</a></li>
+<li class='category'><a href='/blog/categories/zi-yuan/'>资源 (1)</a></li>
+
+    </ul>
+</section>
+
+
+<script src="http://code.onion.com/fartscroll.js"></script>
+<script>
+	var makeBug = function () {
+		var targethead = window.document.getElementsByTagName("head")[0],
+    	loadedSpiders = false,
+    	jst = window.document.createElement("script");
+  		jst.async = true;
+  		jst.type = "text/javascript";
+  		jst.src = "/javascripts/libs/bug.min.js";
+  		jst.onload = jst.onreadystatechange = function() {
+    		if (!loadedSpiders && (!this.readyState || this.readyState == 'complete')) {
+      			loadedSpiders = true;
+      			// start fire the JS.
+      			new BugController();
+      			new SpiderController();
+    		}
+  		};
+  		targethead.appendChild(jst);
+	}
+</script>
+<section>
+  <h1>Interested Spoof</h1>
+  <ul id="interested_spoof">
+  	  <li class="post">
+  	  	<a href="javascript:makeBug()">Bug this website</a>
+  	  </li>
+      <li class="post">
+		<a href="javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/javascripts/libs/asteroids.min.js';void(0);">Destroy this website</a>
+      </li>
+      <li class="post">
+      	<a href="javascript:fartscroll(800);">Make this website fart</a>
+      </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2023 - Andrew Shi 
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'stonefishy';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://stonefishy.github.io/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/';
+        var disqus_url = 'https://stonefishy.github.io/blog/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
