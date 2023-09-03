@@ -3,8 +3,8 @@
 title: "What is cucumber"
 date: 2014-12-23 00:23:25 +0800
 comments: true
-categories: Test
-tags: [Cucumber, Test]
+categories: Testing
+tags: [Cucumber]
 ---
 
 `Cucumber` is a tool that can execute `plain-text` functional descriptions. And also it's  `BDD(Behaviour Driven Development)` `automated tests`. It is written by `Ruby`, and now it supports more than 40 languages, such as `Java`, `C#` and `Scala` etc.
