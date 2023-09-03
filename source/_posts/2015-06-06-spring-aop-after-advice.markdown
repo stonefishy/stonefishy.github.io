@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - After Advice"
 date: 2015-06-06 10:14:46 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 `Advice` is the implementation of the `cross-cutting` functionality. An `Adivce` provides the code for implementation of the service.
 

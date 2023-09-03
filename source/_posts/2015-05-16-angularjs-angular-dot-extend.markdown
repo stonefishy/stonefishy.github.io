@@ -1,13 +1,14 @@
 ---
-layout: post
+
 title: "AngularJs - angular.extend()"
 date: 2015-05-16 11:08:31 +0800
 comments: true
-categories: [AngularJs, Javascript]
+categories: Frontend
+tags: [AngularJs, JavaScript]
 ---
 The `angular.extend()` function has very powerful to copy object to another object, including all of properties from the source object(s).
 
-###Usage
+### Usage
 > `angular.extend(dst, src);`
 > 
 > dst:        **destination object**  
@@ -16,7 +17,7 @@ The `angular.extend()` function has very powerful to copy object to another obje
 > return:     **refercen to dst object**
 
 <!-- more -->
-###Example
+### Example
 Let's understand how to use it with example instance. Create a normal controller which contains user's name, gender and age. And create a method to get the full description of the user.
 
 ``` javascript

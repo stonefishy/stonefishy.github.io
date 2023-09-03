@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "CSS tricks for IE6,IE7,IE8,IE9"
 date: 2015-01-28 16:35:34 +0800
 comments: true
-categories: [CSS, IE] 
+categories: Frontend
+tags: [CSS, IE] 
 ---
 
 As web developer, we usually to fix the style for special version of IE. Here are the newest CSS tricks for `IE6`, `IE7`, `IE8`, `IE9`. This is very helpful for you.   

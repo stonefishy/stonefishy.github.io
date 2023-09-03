@@ -1,15 +1,16 @@
 ---
-layout: post
+
 title: "Guava -- Optional"
-description: ""
-category: [Java, Guava]
+date: 2014-11-21 20:14
+categories: Backend
+tags: [Java, Guava]
 
 ---
 
 `Optional<T>` is a way of replacing a nullable T reference with a non-null value. An Optional may either contain a non-null T reference (in which case we say the reference is "present"), or it may contain nothing (in which case we say the reference is "absent"). It is never said to "contain null."
 
 <!--more-->
-###Usage
+### Usage
 
 `Optional.of(T)`      
 Make an Optional containing the given non-null value, or fail fast on null.    
@@ -33,7 +34,8 @@ Returns the present value in this Optional, or if there is none, returns the spe
 Returns the present value in this Optional, or if there is none, returns null. The inverse operation of fromNullable.
 
 
-###Example:
+### Example:
+
 ``` java   
 Optional<Integer> numberOptional = Optional.of(100);
 numberOptional.isPresent(); //return true

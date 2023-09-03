@@ -1,14 +1,15 @@
 ---
-layout: post
+
 title: "What is cucumber"
 date: 2014-12-23 00:23:25 +0800
 comments: true
-categories: [Cucumber, Test]
+categories: Test
+tags: [Cucumber, Test]
 ---
 
 `Cucumber` is a tool that can execute `plain-text` functional descriptions. And also it's  `BDD(Behaviour Driven Development)` `automated tests`. It is written by `Ruby`, and now it supports more than 40 languages, such as `Java`, `C#` and `Scala` etc.
 
-###Install
+### Install
 Firstly, we need to install `Ruby` and `RubyGems`, to check whether the installation of Ruby and RubyGems is successful. You can inputx the commands to terminal, just like as below:
 ```
 ~  ruby --version
@@ -28,7 +29,7 @@ After this, put below command to see how to use it.
 ```
 <!--more-->
 
-###Gherkin
+### Gherkin
 `Gherkin` is a language that can be understand by `Cucumber`. It's a `Business Readable`, `Domain Specific Language`. Very easy to understand what the functional want to do.    
 
 The `Gherkin` has two purpose, documention and automated test. The structure is Treetop grammer than is part of Cucumber codebase and use indentation to format it.   

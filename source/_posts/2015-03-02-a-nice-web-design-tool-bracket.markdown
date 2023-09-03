@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "A nice web design tool - Bracket"
 date: 2015-03-02 17:19:17 +0800
 comments: true
-categories: [Bracket, Tools]
+categories: Tools
+tags: [Bracket, Web Design]
 ---
 
 `Bracket` is open source web design text editor, it focus with visual tools and preprocesssor support. It is easy to design web page in the browser, we can get the page layout in time when we change the html, css, javascript. We don't need to save the file and refresh the browser. That's so convenience.   

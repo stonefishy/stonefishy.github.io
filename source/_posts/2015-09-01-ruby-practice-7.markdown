@@ -1,11 +1,12 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(7)"
 date: 2015-09-01 09:06:53 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
-###模块
+### 模块
 Ruby中的类是表现事物的属性和行为，那么模块呢？，在Ruby中*模块*表现的只是事物的行为。
 
 模块与类的区别于下：
@@ -50,7 +51,7 @@ cal.my_sqrt(1, 4)					#=> 3.0
 Calculator::PI						#=> 3.141592653589793
 ```
 
-####创建模块
+#### 创建模块
 使用**module**关键来创建模块，模块名的首字母必须大写
 
 	module 模块名
@@ -79,7 +80,7 @@ say_hello("Ruby")						#=> Hello Ruby
 
 *注：不建议在定义为模块函数的方法中使用self*
 
-####Mix-in
+#### Mix-in
 前面提到的，在类中使用*include*引入模块，此时类的功能将得到增强。
 
 如果想知道类是否包含某个模块，可以使用**include？**方法，如之前的Calculator类中。
@@ -119,13 +120,13 @@ p HelloClass.superclass					#=> Object
 
 单一继承的优点就是简单，不会因为过多的继承而导致类之间的关系变得复杂。所以我们需要灵活使用单一继承和Mix-in。
 
-####Mix-in查找方法的规则
+#### Mix-in查找方法的规则
 - 优先使用原来中定义的同名方法。
 - 在同一个类中包含多个模块时，优先使用最后一个包含的模块。
 - 嵌套include时，查找顺序也是线性的。
 - 相同的模块被包含两次也上的，第2次以后的会被省略。
 
-####Object#extend方法
+#### Object#extend方法
 利用Object#extend方法可以使单例类包含模块，并把模块的功能扩展到对象中。
 
 ``` ruby

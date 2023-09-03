@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(2)"
 date: 2015-08-13 13:35:15 +0800
 comments: true
-categories: [Ruby] 
+categories: Backend
+tags: [Ruby]
 ---
 
-###数组
+### 数组
 
 Ruby中数组的大小是按实际情况自动调整的，即所谓的**动态数组**
 
@@ -44,7 +45,7 @@ Ruby数组还支持多种不同对象的混合保存, 通过**数组.size**可�
 
 *注:通过在终端输入**irb --simple-promot**，可以简化ruby交互式的提示输入，如上面的Ruby的提示输入符'>>'*
 
-###散列
+### 散列
 Ruby中的键值(key-value pair)数据结构是用散列(hash)来表示，一般以字符串或者符号(Symbol)来作为键，值来保存对应的对象。
 
 *符号(symbol)*与字符串对象很相似，符号也是对象，一般都作为名称标签来使用。我们可以将符号简单理解为轻量级的字符串。
@@ -111,7 +112,7 @@ age - 20
 => {:name=>"yu", :gender=>"male", :alias=>"stonefishy", :age=>20}   ##each方法同样会返回散列
 ```
 
-###正则表达式
+### 正则表达式
 正则表达式(Regular Expression)的语法如下，
 
 	/模式/
@@ -146,7 +147,7 @@ pattern = Regexp.new("ruby")		##定义一个正则表达式
 ```
 *注: 如果想更加详细的了解正则表达式的语法，可以查看使用[Rubular](http://rubular.com/)*
 
-###命令行参数
+### 命令行参数
 Ruby中使用**ARGV**这个Ruby预定义好的数组来获取从命令行传递过来的数据。在命令行指定多个脚本参数时，各个参数之间用空格隔开。
 
 使用**each_with_index**方法可以获取遍历的index，
@@ -164,7 +165,7 @@ end
 	=> 第3个参数: and
 	=> 第4个参数: ruby
 
-###文件读取
+### 文件读取
 Ruby中通过File类来读取文件，两种读取方式，一次性读取和逐行读取，示例如下,
 
 ``` ruby read_all_text.rb
@@ -182,7 +183,7 @@ end
 file.close
 ```
 
-###方法的定义
+### 方法的定义
 Ruby方法的定义和Python一样简答，
 
 	def 方法名
@@ -202,7 +203,7 @@ end
 
 现在我们想在其他文件里面使用上面定义的文件读取方法，那么该如何引用了，且看下，
 
-###引用文件
+### 引用文件
 Ruby使用**require**方法来引用库或文件
 
 	require 希望使用的库名
@@ -221,7 +222,7 @@ read_file("argv.rb");			##直接调用库中的方法
 	=> puts "第#{index + 1}个参数: #{arg}"
 	=> end
 
-###p与pp方法
+### p与pp方法
 如前我们所介绍的打印数据到终端的有**p**, **puts**, **print**等方法，现在再介绍一种按数据排版打印的方法**pp**, 其全名为 pretty print。但是如果想使用该方法，需要使用require方法引入**pp**库。直接看示例
 
 ``` ruby p_and_pp.rb

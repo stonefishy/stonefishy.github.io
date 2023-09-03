@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Join Point"
 date: 2015-06-09 17:19:23 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 
 In Spring AOP, while we create business logic of the method we usually need to inject the services at different places or points. So we call these places or points as `JoinPoint`.   

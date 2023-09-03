@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - @AspectJ Annotation"
 date: 2015-06-16 17:46:08 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 
 In this article, we introduce how to use `AOP` with the `@AspectJ` Annotation. If we want to use this Annotation. we should include below code in the XML schema-based configuration file.

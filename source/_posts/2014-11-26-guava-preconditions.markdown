@@ -1,14 +1,15 @@
 ---
-layout: post
+
 title: "Guava -- Preconditions"
 date: 2014-11-26 22:36:07 +0800
 comments: true
-categories: [Guava, Java]
+categories: Backend
+tags: [Java, Guava]
 ---
 
 Guava provides a number of precondition checking utilities. It's `Preconditions` class. You can use it into your project.
 
-###Usage
+### Usage
 `checkArgument(boolean)`   
 Checks that the boolean is true. Use for validating arguments to methods.   
 
@@ -24,7 +25,8 @@ Returns index.
 Checks that index is a valid position index into a list, string, or array with the specified size. A position index may range from 0 inclusive to size inclusive. You don't pass the list, string, or array directly; you just pass its size.
 Returns index.   
 
-###Example
+### Example
+
 ``` java 
 
 int i = 3;

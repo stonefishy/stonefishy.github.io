@@ -1,11 +1,12 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(6)"
 date: 2015-08-25 10:12:07 +0800
 comments: true
-categories: 
+categories: Backend
+tags: [Ruby]
 ---
-###Ruby的类
+### Ruby的类
 和其他面向对象语言一样，Ruby的类也表示对象的种类。通过**class**方法可以知道某个对象属于哪个类。
 
 ``` ruby
@@ -36,7 +37,7 @@ categories:
 
 *注：**instance_of?**方法与**is_a?**方法已经在Object类中定义过，因此普通的对象可以直接使用者两个方法。
 
-####类的定义
+#### 类的定义
 使用**class**关键字定义类，类名的首字母必须大写
 
 	class 类名
@@ -144,7 +145,7 @@ end
 ```
 所以此时省略self后，含义是不一样的。
 
-####类方法的定义
+#### 类方法的定义
 如果方法的接受者是类本身（类对象）的方法成为类方法。其定义方式主要有以下两种
 
 1. 在**class << 类名 ~ end**这个特殊的类中定义实例方法的形式
@@ -194,7 +195,7 @@ end
 
 *注：**class << 类名 ~ end** 这种写法的类定义称为单例类定义，单例类定义中定义的方法称为单例方法*
 
-####常量
+#### 常量
 在class中定义常量，通过使用**类名::常量名**形式来实现外部访问.常量是不可修改的。
 
 ``` ruby
@@ -205,7 +206,7 @@ end
 p Greeter::Hello				#=> "Hello"
 ```
 
-####类变量
+#### 类变量
 以**@@**开头的变量成为类变量，类变量是该类中所有实例的共享变量，这点和常量类似，不同的是这个类变量可以被修改。当然，从类的外部访问类变量时也需要存取器，但是不能使用*attr_accessor*,它使属于实例变量的，所以我们需要自己定义，使用类方法来获取类变量是个好的形式
 
 ``` ruby
@@ -235,7 +236,7 @@ greeter.say_hello
 Greeter.greeter_count					#=> 2
 ```
 
-####限制方法的调用
+#### 限制方法的调用
 和其他面向对象语言一样，Ruby也有方法的访问修饰符，分别为**public**，**protected**，**private**。其表达的含义也一样。
 
 - public 以实例的方法的形式向外部公开
@@ -278,7 +279,7 @@ end
 
 如果没有指定访问级别的方法默认为public，但是**initialize**方法是个例外，它通常被定义为private
 
-###扩展类
+### 扩展类
 Ruby允许我们在已经定义好的类中添加方法。即为扩展方法。如在String类中定义一个计算字符串单词数的方法
 
 ``` ruby
@@ -293,7 +294,7 @@ str = "Hello Ruby"
 p str.count_word				#=> 2
 ```
 
-####继承
+#### 继承
 使用class关键字指定类名的同时指定父类名
 
 	class 类名 < 父类名
@@ -308,7 +309,7 @@ p str.count_word				#=> 2
 
 如果想定义**BasicObject**的子类，我们需要明确指定BasicObject类为父类；而Object类为父类时不需要。
 
-####alias
+#### alias
 **alias**即别名，在Ruby中我们可以给方法设置别名，设置别名也两种方式，一种alias后面带方法名参数，第二种后面带方法符号名参数
 
 	alias 别名	原名		#使用方法名
@@ -335,7 +336,7 @@ p rubyGreeter.old_say_hello		#=> "Hello"
 p rubyGreeter.say_hello				#=> "Hello Ruby"
 ```
 
-####undef
+#### undef
 **undef**用于删除已有方法的定义。与alias一样，参数可以指定方法名或者符号名。
 
 	undef 方法名		#使用方法名
@@ -359,7 +360,7 @@ rubyGreeter = RubyGreeter.new
 p rubyGreeter.say_hello						#=>抛出异常，undefined method `say_hello' for #<RubyGreeter:0x007fbff4167220> (NoMethodError)
 ```
 
-####单例类
+#### 单例类
 利用单例类定义，可以给对象添加方法（单例方法）。单列类定义被用于定义对象的专属实例方法。
 
 ```

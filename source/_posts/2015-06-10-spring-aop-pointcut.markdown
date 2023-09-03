@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Pointcut"
 date: 2015-06-10 11:19:44 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 
 What is `Pointcut` of Spring AOP? let's describe it. A `Pointcut` defines what `Advice`s are required at what `Join Point`s. In fact all business logic methods of the class are not required all services, that means each business logic method might require different service even some methods don't require. So Pointcut can informs IOC container that what business methods of a class needs what type of services.    

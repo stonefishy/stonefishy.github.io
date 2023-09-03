@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(4)"
 date: 2015-08-17 17:01:35 +0800
 comments: true
-categories: [ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
-###循环
+### 循环
 对于任何一种程序设计语言，都有循环处理的方法，Ruby也一样，但是在Ruby中有两种实现循环的方法。
 
 - 使用循环语句，即利用Ruby提供的现有循环语句
@@ -76,11 +77,11 @@ hello0 hello1 hello2 => 3			#=> 打印3个带有当前第几次循环的hello,�
 hello hello hello => 1..3			#=> 打印3个hello，返回1..3的range
 
 
->> language = ["Python", "Javascript", "Ruby"]
+>> language = ["Python", "JavaScript", "Ruby"]
 >> for lan in language
 >> 		print "#{lan} "
 >> end
-Python Javascript Ruby => ["Python", "Javascript", "Ruby"]			#=> 一次打印数组中的元素，并返回数组
+Python JavaScript Ruby => ["Python", "JavaScript", "Ruby"]			#=> 一次打印数组中的元素，并返回数组
 ```
 *注：..或者...都是创建范围对象时所需的符号*
 
@@ -130,11 +131,11 @@ Python Javascript Ruby => ["Python", "Javascript", "Ruby"]			#=> 一次打印数
 	end
 		
 ``` ruby each方法
->> language = ["Python", "Javascript", "Ruby"]
+>> language = ["Python", "JavaScript", "Ruby"]
 >> language.each do |lan|
 >> 		print "#{lan} "
 >> end
-Python Javascript Ruby => ["Python", "Javascript", "Ruby"]			#=> 返回对象
+Python JavaScript Ruby => ["Python", "JavaScript", "Ruby"]			#=> 返回对象
 ```
 
 *注：在Ruby内部，**for**语句是用**each**方法来实现的。可以使用**each**方法的对象，也可以用**for**语句*
@@ -146,7 +147,7 @@ Python Javascript Ruby => ["Python", "Javascript", "Ruby"]			#=> 返回对象
 		循环处理
 	end
 
-###循环控制命令
+### 循环控制命令
 - break 终止程序，跳出循环
 - next 跳到下一次循环，和其他类似Java，C#的continue一样
 - redo 在相同的条件下重复刚才的处理

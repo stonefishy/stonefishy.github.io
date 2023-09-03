@@ -1,9 +1,11 @@
 ---
-layout: post
+
 title: "双指针算法之两数之和"
 date: 2016-02-05 09:51:39 +0800
 comments: true
-categories: [算法,数据结构]
+categories: 算法
+tags: [算法,数据结构]
+top: true
 ---
 
 在上一篇中，我们讲到了双指针算法的几种使用场景，这里具体举例，以经典的两数之和为例。

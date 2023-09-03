@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Using TSD to improve javascript intellisense of IDE"
 date: 2015-07-30 23:27:10 +0800
 comments: true
-categories: [Tools, JavaScript, TypeScript, VSCode]
+categories: Frontend
+tags: [JavaScript, TypeScript, VSCode, Tool]
 ---
 
-As we know, it's very difficult to make the IDE to recognise the function of Javascript, we called code intellisense, because Javascript is weak language. So how to solve this problem. There is a way.
+As we know, it's very difficult to make the IDE to recognise the function of JavaScript, we called code intellisense, because JavaScript is weak language. So how to solve this problem. There is a way.
 
 `TSD` is TypeScript Definition manager for DefinitelyTyped. It can search and install `TypeScript` definition files directly from repository. The `TypeScript` definition file actually is TypeScript file, and TypeScript is strong type language. So IDE can intellisense the code, like Java and C#.
 
@@ -22,7 +23,7 @@ To install it, we can using `NPM` command.
 npm install tsd -g
 ```
 
-Use below command to search the DefinitelyTyped file of Javascript library.
+Use below command to search the DefinitelyTyped file of JavaScript library.
 
 ```
 tsd query <javascript library name> -i -r
@@ -82,7 +83,7 @@ The example of `tsd.d.ts` file, this file is reference the definitelytyped file.
 
 See below screenshots of files or directories:
 
-{% img /assets/images/tsd-file-tree.png 300 %}
+{% img /assets/images/legacy/tsd-file-tree.png 300 %}
 
 Go to [https://github.com/DefinitelyTyped/tsd](https://github.com/DefinitelyTyped/tsd) to see the tsd command details.
 
@@ -111,5 +112,5 @@ function sayHello(name){
 ```
 So when you invoke the undercore functions, the IDE will intellisense the method.
 
-![intellisense](/assets/images/tsd-intellisense.png)
+![intellisense](/assets/images/legacy/tsd-intellisense.png)
 

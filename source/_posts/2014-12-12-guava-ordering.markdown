@@ -1,14 +1,16 @@
 ---
-layout: post
+
 title: "Guava - Ordering"
 date: 2014-12-12 17:28:07 +0800
 comments: true
-categories: [Guava, Java]
+categories: Backend
+tags: [Java, Guava]
 ---
 
 `Ordering` is Guava's fluent Comparator class and implements Comparator interface. It can be used to build complex comparators and apply them to collections of objects. 
 
 Okay, so let's getting started. Firstly, we declared a `String` type List:   
+
 ``` Java
     private List<String> locations = Lists.newArrayList(
             "Guang zhou",
@@ -22,6 +24,7 @@ We will use this locations variable later.
 
 `natural()`   
 Use natural ordering for comparatable types. such as number from small to large. date from start to end. It is static method.   
+
 ``` Java
     // use natural comparator, such as a -> z
     // so the result is: [, Cheng du, Guang zhou, Shang hai]
@@ -31,6 +34,7 @@ Use natural ordering for comparatable types. such as number from small to large.
 `sortedCopy(Iterable)`   
 Return a sorted copy of the specified elements as a List.    
 We create a customized `Ordering` that sorted by the length of element from small to large. Let's get the code:
+
 ``` Java
     private Ordering<String> getCustomzieStringOrder() {
         return new Ordering<String>() {
@@ -42,6 +46,7 @@ We create a customized `Ordering` that sorted by the length of element from smal
     }
 ```
 Order the locations list with our new customize `Ordering`:   
+
 ``` Java
 	Ordering<String> byLengthOrdering = getCustomzieStringOrder();
 
@@ -52,6 +57,7 @@ Order the locations list with our new customize `Ordering`:
 
 `isOrdered(Iterable)`   
 Return a Boolean variable that can describe the Iterable if sorted.
+
 ``` Java
 	// will return false. because the locations array is not sorted.
     System.out.println(byLengthOrdering.isOrdered(locations));
@@ -59,6 +65,7 @@ Return a Boolean variable that can describe the Iterable if sorted.
 
 `reverse()`   
 Return the reverse `Ordering`.
+
 ``` Java
     // reverse customize comparator.
     // so the result is: [Guang zhou, Shang hai, Cheng du, ]
@@ -67,6 +74,7 @@ Return the reverse `Ordering`.
 
 `nullsFirst()`   
 Return an `Ordering` that will put the null object at the first.
+
 ``` Java
     // add null object to the locations array.
     locations.add(null);
@@ -78,6 +86,7 @@ Return an `Ordering` that will put the null object at the first.
 
 `nullsLast()`   
 Return an `Ordering` that will put the null object at the last.
+
 ``` Java
 	// null object will at last.
     // the result is : [, Cheng du, Shang hai, Guang zhou, null]
@@ -93,6 +102,7 @@ Return an `Ordering` that will put the null object at the last.
 
 `compound()`   
 Returns an `Ordering` which uses the specified Comparator to "break ties."
+
 ``` Java
     // the "AAAAAAAA" length is equal to "Cheng du" length. (8 characters)
     // and it will be appended at last.
@@ -108,6 +118,7 @@ Returns an `Ordering` which uses the specified Comparator to "break ties."
 `onResultOf(Fuction)`   
 Returns an Ordering which orders values by applying the function to them and then comparing the results using the original Ordering.   
 Declaring a Foo class:
+
 ``` Java
 	 public class Foo {
         @Nullable
@@ -143,6 +154,7 @@ Declaring a Foo class:
     }
 ```
 Declaring a new List with Foo class type:
+
 ``` Java
 	private List<Foo> fooList = Lists.newArrayList(
         new Foo(null, "abc"),
@@ -151,6 +163,7 @@ Declaring a new List with Foo class type:
     );	
 ```
 Define a new function that will return an customized `Ordering`:
+
 ``` Java
     private Ordering<Foo> getNaturalFooOrder() {
         return Ordering.natural().nullsFirst().onResultOf(new Function<Foo, Integer>() {
@@ -168,6 +181,7 @@ Define a new function that will return an customized `Ordering`:
 
 `greatestOf(Iterable iterable, int k)`   
 Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.
+
 ``` Java
     // the result will be [23+abc]
     System.out.println(fooOrdering.greatestOf(fooList, 1));
@@ -178,6 +192,7 @@ Returns the k greatest elements of the specified iterable, according to this ord
 
 `leastOf(Iterable iterable, int k)`   
 Returns the k least elements of the specified iterable, according to this ordering, in order from least to greatest. Not necessarily stable.
+
 ``` Java
     // the result will be [null+abc, 10+abc]
     System.out.println(fooOrdering.leastOf(fooList, 2));
@@ -185,6 +200,7 @@ Returns the k least elements of the specified iterable, according to this orderi
 
 `min(Iterable)`   
 Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.   
+
 ``` Java
     // the result will be null+abc
     System.out.println(fooOrdering.min(fooList));
@@ -192,6 +208,7 @@ Returns the minimum element of the specified Iterable. Throws a NoSuchElementExc
 
 `max(Iterable)`   
 Returns the maximum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.   
+
 ``` Java
     // the result will be 23+abc
     System.out.println(fooOrdering.max(fooList));

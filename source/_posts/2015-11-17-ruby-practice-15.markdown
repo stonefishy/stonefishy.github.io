@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(15)"
 date: 2015-11-17 16:15:17 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
-#####字符串比较
+##### 字符串比较
 Ruby中比较字符串是否相同也是用**==**和**!=**等运算符
 
 ``` ruby
@@ -34,7 +35,7 @@ puts "aaa" <= "aab"		#=> true
 ```
 *注：Windows平台下的中文字符使用GBK编码，但非Windows平台下的中文字符使用UTF-8编码*
 
-#####字符串的分割
+##### 字符串的分割
 用特定字符分割字符串时可以使用**split**方法。
 
 ``` ruby
@@ -43,7 +44,7 @@ str = "This is a string"
 p str.split(" ") 		#=> ["This", "is", "a", "string"]
 ```
 
-#####字符串的换行符
+##### 字符串的换行符
 用**each_line**方法从标准输入读取字符串时，字符串后面肯定有换行符。在操作字符串时，我们可能不需要换行符。此时可以使用**chomp**和**chomp!**方法来删除字符串行末的换行符。
 
 ``` ruby
@@ -64,7 +65,7 @@ puts str 				#=> hello ruby
 puts str.chop!			#=> hello rub
 puts str				#=> hello rub
 ```
-#####字符串的索引
+##### 字符串的索引
 使用**index**和**rindex**方法可以获取某个字符串在另一个字符串中得索引位置，如果不在，则返回nil。**index**方法从左向右检索，**rindex**从右向左检索。
 
 ``` ruby
@@ -83,7 +84,7 @@ str1 = "abc"
 str2 = "ab"
 puts str1.include?(str2) #=> true
 ```
-#####字符串的置换
+##### 字符串的置换
 字符串的置换可以通过调用**sub**和**gsub**来实现。**sub**方法仅替换第一个出现的匹配字符，而**gsub**则会替换所有的匹配字符。
 
 ``` ruby
@@ -106,7 +107,7 @@ str[1, 3]= '***'
 puts str 						#=> h***o
 ```
 
-#####字符串与数组相同的方法
+##### 字符串与数组相同的方法
 字符串的很多方法都与数组相同，主要分为以下三大类：    
 - 与索引操作相关的方法   
 - 与**Enumerable**模块相关的方法    

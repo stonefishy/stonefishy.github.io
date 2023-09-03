@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "A New Way For Developing Web Application Front-End"
 date: 2015-01-13 22:43:30 +0800
 comments: true
-categories: [Guard, LiveReload, Tools]
+categories: Frontend
+tags: [Guard, LiveReload, Tool]
 ---
 When we develop web application, if we write or modify the HTML structure, CSS style and javascript, we need to compile the code and deploy it, and then refresh page, finally we can see our changes. There are so many steps. So could we skip these steps and just see our changes on page directly when we save the codes. Yes, I can answer you now.    
 
@@ -11,7 +12,7 @@ In order to achieve this goal, we need to install `Guard`, `LiveReload` and rela
 
 <!-- more -->  
 
-###Guard###
+### Guard ###
 `Guard` is a command line tool to easily handle events on file system modifications. The offical website in [here](http://guardgem.org/).
 
 + File system changes handled by awesome Listen gem.
@@ -20,7 +21,7 @@ In order to achieve this goal, we need to install `Guard`, `LiveReload` and rela
 
 The simplest way to install guard is to use `Bundler`. Go to the guard offical website to see how to install it.    
 
-###LiveReload###
+### LiveReload ###
 `LiveReload` monitors changes in the file system. As soon as you save a file, it is preprocessed as needed, and the browser is refreshed.    
 Even cooler, when you change a CSS file or an image, the browser is updated instantly without reloading the page.
 
@@ -47,7 +48,7 @@ end
 And you can see that there has some watch command in the Guardfile. Changing it by your situation.
 
 Now I will use a login page to test the guard and livereload how to work. This project contains script file, less file and html file. When we change the less file it will generate css file automatically, and here we use Sublime Text plugin to finished it, and also you can use `guard-less` plugin which is guard plugin.   
-![](/assets/images/project-structure.png)
+![](/assets/images/legacy/project-structure.png)
 
 In test project directory, we can find the Gemfile and Guardfile.
 ``` ruby Gemfile
@@ -104,6 +105,6 @@ It will prompt you that LiveReload is waiting for a browser to connect. And the 
 Open the web application on your chrome browser, and click LiveReload extension. And now you will see the terminal has a message said Browser connected.    
 
 So far, you have prepared all configurations. And now you can modify the source file and save it, then you will see the web application automatically refresh.   
-![](/assets/images/auto-refresh-page.png)
+![](/assets/images/legacy/auto-refresh-page.png)
 
 

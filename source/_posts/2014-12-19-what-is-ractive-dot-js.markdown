@@ -1,17 +1,18 @@
 ---
-layout: post
+
 title: "What is Ractive.js"
 date: 2014-12-19 22:18:45 +0800
 comments: true
-categories: [Ractive.js, JS] 
+categories: Frontend
+tags: [JavaScript]
 ---
 
 `Ractive.js` is a `template-driven` UI library, it transforms your templates into blueprints for application that are interative by default. `Ractive.js` is very similar with `AngularJS`, and it supports `Two-way binding`, `animations` as well. Another powerfull feature is `SVG` support.   
 
-###Template + Data = UI
+### Template + Data = UI
 You just need to prepare your html template and datas, and the `Ractive.js` will automatically to combine them then give you what you want. Whe you change your datas, it intelligently updates the real DOM.   
 
-###Usage
+### Usage
 First, you need to include `Ractive.js` to your application. Just like include other javascript librarys easily. You can download it to local and then include it. And if you want include latest version, you just put below codes to your project.   
 ``` javascript
     <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
@@ -53,7 +54,7 @@ And last step, Let's combine the template and data with `Ractive.js`. the code a
 ```  
 
 So the style as we can see below:   
-{% img /assets/images/ractive-svg-test.png 400 200 %}
+{% img /assets/images/legacy/ractive-svg-test.png 400 200 %}
 
 Now, we can change the temperature data and let `Ractive.js` to update the DOM automatically. So there we increase the temperature by 1 per 100 millisecond, and when the temperature larger than 60 then reset it to 0.   
 ``` javascript

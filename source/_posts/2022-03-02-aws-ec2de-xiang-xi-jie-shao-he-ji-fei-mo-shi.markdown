@@ -1,9 +1,11 @@
 ---
-layout: post
+
 title: "AWS EC2的主要特点和工作方式以及计费模式"
 date: 2022-03-02 11:28:07 +0800
 comments: true
-categories: [云计算, AWS]
+categories: 云计算
+tags: [云计算, AWS]
+top: true
 ---
 
 Amazon Elastic Compute Cloud（Amazon EC2）是Amazon Web Services（AWS）提供的一项基于云的可伸缩性、弹性、安全性和监控的计算服务，它允许用户租用虚拟服务器（称为EC2实例）来运行应用程序。我们从主要特点，工作方式以及计价模式来介绍下EC2

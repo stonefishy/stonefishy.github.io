@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Before Advice"
 date: 2015-06-05 15:33:00 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 As we know the `Aspect` is just the name of the `cross-cutting` functionality, not the implementation. So what's the implementation of the `cross-cutting` functionality? It's called `Advice`. An `Advice` provides the code for implementation of the service. It is like *Logging* service, *Logging* is a `Aspect` and `Advice` denotes the implementation of *Log4j*.   
 <!-- more -->

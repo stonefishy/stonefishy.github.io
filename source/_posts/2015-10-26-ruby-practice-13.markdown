@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(13)"
 date: 2015-10-26 22:13:32 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
-####替换数组内的元素
+#### 替换数组内的元素
 根据指定规则替换数组中的元素，Ruby也提供了以下方法:
 
 ary.**collect** { |item| ...}   
@@ -90,7 +91,7 @@ p ary 				#=> [9, 4, 5]
 p [2, 4, 3, 1].sort_by { |i| -i }  #=> [4, 3, 2, 1]
 ```
 
-####数组的迭代
+#### 数组的迭代
 
 **each**方法并不知道元素的索引值。当需要指定索引值时，可以使用**each_with_index**方法
 
@@ -111,7 +112,7 @@ while item = ary.pop
 end
 ```
 
-####多维数组
+#### 多维数组
 数组中的各个元素也可以是数组，也就是数组的数组。可以用它来表示矩阵。
 
 ``` ruby

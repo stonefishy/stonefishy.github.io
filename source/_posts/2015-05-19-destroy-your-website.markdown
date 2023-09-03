@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Destroy your website"
 date: 2015-05-19 12:16:00 +0800
 comments: true
-categories: [javascript]
+categories: Frontend
+tags: [JavaScript]
 ---
 
 Ha, Confusion? Don't, it's true. Let me introduce to you how to destroy the website you want.   

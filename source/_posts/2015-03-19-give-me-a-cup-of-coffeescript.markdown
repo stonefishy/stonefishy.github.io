@@ -1,11 +1,12 @@
 ---
-layout: post
+
 title: "Give me a cup of coffeescript"
 date: 2015-03-19 15:47:18 +0800
 comments: true
-categories: [CoffeeScript]
+categories: Frontend
+tags: [CoffeeScript]
 ---
-{% img /assets/images/coffee-script-logo.png 200 100 %} is programming language, which is built on top of `JavaScript`. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes `Python` or `Ruby`.    
+{% img /assets/images/legacy/coffee-script-logo.png 200 100 %} is programming language, which is built on top of `JavaScript`. CoffeeScript compiles into JavaScript that is efficient and consistent with many best practices. And it offers a clean syntax that should appeal to anyone who likes `Python` or `Ruby`.    
 
 Actually, The `CoffeeScript` is just a JavaScript. So you can use any exsiting JavaScript library seamlessly from CoffeeScript. And both `client-side` and `server-side` can be written by `CoffeeScript`. So CoffeeScript can write entire web application completely, not like JavaScript only write client-side.  
 

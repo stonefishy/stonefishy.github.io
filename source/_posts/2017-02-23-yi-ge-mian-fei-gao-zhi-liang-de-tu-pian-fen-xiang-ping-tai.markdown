@@ -1,9 +1,11 @@
 ---
-layout: post
+
 title: "一个免费高质量的图片分享平台"
 date: 2017-02-23 18:02:19 +0800
 comments: true
-categories: [资源]
+categories: Resources
+tags: [高清图片,资源]
+top: true
 ---
 
 很多时候在写文章或者制作PPT时需要用到一些图片资源，最近刚好发现了一个实用的高分辨率的免费资源平台Unspash, 跟大家分享一下。

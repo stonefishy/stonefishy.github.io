@@ -1,13 +1,14 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(14)"
 date: 2015-11-12 17:09:35 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
-####字符串的创建
-#####普通创建
+#### 字符串的创建
+##### 普通创建
 Ruby中使用**" "**或**' '**符号来创建字符串，在字符串中也可以包含表达式**#{}**，这个表达式被称之为内嵌表达式。如果字符串中需要包含""或者''等字符时，则可以通过转义字符\来实现。
 
 ``` ruby 
@@ -28,7 +29,7 @@ puts str
 ```
 <!-- more -->
 
-#####%Q或%q创建
+##### %Q或%q创建
 针对字符串中包含""或''等字符的，建议采用**%Q**或者**%q**来创建字符串，这样更加清晰明了。使用**%Q**相当于**" "**创建字符串，**%q**相当于**' '**创建字符.
 
 ``` ruby 
@@ -40,7 +41,7 @@ puts %Q(contains 'special' "character" directly)
 
 puts %q(contains 'special' "character" directly)
 ```
-#####Here Document创建，
+##### Here Document创建，
 对于字符串中包含换行符的字符串，使用Here Document语法来创建极为方便。Here Document是Unix中使用Shell的一种语法，通常用**<<**来创建字符串。其语法结构如下：
 
 	<<"结束标识符"
@@ -61,7 +62,7 @@ print str		#=>the string has three lines, just like defined.
 ```
 如果字符串中存在缩进，可以使用**<<-**来替代**<<**，这样将会保持字符串定义中的缩进。
 
-#####使用` `
+##### 使用` `
 
 通过使用**\`命令\`**, 可以创建命令的标准输出并将其转换为字符串对象。
 
@@ -74,7 +75,7 @@ total 8
 -rw-r--r--  1 yushi  staff  634 Nov 16 17:12 string_create.rb
 ```
 
-#####使用printf和sprintf
+##### 使用printf和sprintf
 **printf**与**sprintf**均是可以输出指定格式的字符串，不同之处在于printf会将字符串直接输出在控制台上，而sprintf则会将字符串转为为字符串对象。
 
 ``` ruby
@@ -90,7 +91,7 @@ p sprintf("Hello,%8s", name)		#=> "Hello,    Ruby"
 p sprintf("Hello,%-8s", name)		#=> "Hello,Ruby    "
 ```
 
-####字符串长度
+#### 字符串长度
 用**length**方法和**size**方法获取字符串长度。**bytesize**方法可以获取字节长度。
 
 ``` ruby
@@ -117,7 +118,7 @@ puts "string".empty?	#=> false
 
 *字符串的索引与数组的索引用法一样，可参照使用*
 
-#####字符串的连接
+##### 字符串的连接
 字符串的连接有以下两种情况：   
 - 将字符串合并为一个新的字符串   
 - 扩展原有字符串

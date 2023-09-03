@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Guave - Immutable Collection"
 date: 2015-02-13 14:58:17 +0800
 comments: true
-categories: [Guava, Java]
+categories: Backend
+tags: [Java, Guava]
 ---
 `Immutable` that means it can not be changed. Let's get example to see what's different with `mutable` objects.
 
@@ -30,7 +31,7 @@ System.out.println(immutableList);
 ```    
 From above example, we can get the conclusion is that immutable collections doesn't support any changing content API. So it will throw `UnsupportedOperationException` when you try to modify it.    
 
-###What's advantage of Immutable Objects
+### What's advantage of Immutable Objects
 According to Guava Offical explain about `Immutable Objects`, there have four and more advantages of Immutable Objects:
 
  - Safe for use by untrusted libraries.
@@ -42,7 +43,7 @@ Making immutable copies of objects is a good defensive programming technique, an
 
 > *Note:* Each of the `Guava` immutable collection implementations reject *null* values.
 
-###How create it
+### How create it
 An ImmutableXXX collection can be created in several ways:
 
 - Using the `copyOf` method, like `ImmutableList.copyOf(collection)`:  

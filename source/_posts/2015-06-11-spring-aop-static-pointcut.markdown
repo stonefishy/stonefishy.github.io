@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Static Pointcut"
 date: 2015-06-11 16:08:48 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 Let's first to see the three very technical terms as below.
 

@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "The initialization of the angular ngModel"
 date: 2015-09-23 10:59:23 +0800
 comments: true
-categories: [AngularJs, Javascript]
+categories: Frontend
+tags: [AngularJs, JavaScript]
 ---
 
 Recently, I've encoutered a weird problem in the project, it's about the value of the ngModel. Let me explain the problem. see the code
@@ -51,7 +52,7 @@ ModelApp.controller('ModelController1', function($scope) {
 ```
 You will notice that there is nothing in the ModelController1. Now, running this page. let's see the result.
 
-![](/assets/images/angular-ngModel-1.png)
+![](/assets/images/legacy/angular-ngModel-1.png)
 
 From the result, the value of the myInput1 is empty, but we have set the default value 'A' to it. So we guess maybe the value has changed. But when we inspect the element, we found the value has been set to 'A' in the html source. so far, I'm so confused. To find the reason, I open the console of the browser, put below javascript code to see the value. It still empty.
 
@@ -59,7 +60,7 @@ From the result, the value of the myInput1 is empty, but we have set the default
 $('#myInput1').value
 ```
 
-![](/assets/images/angular-ngModel-2.png)
+![](/assets/images/legacy/angular-ngModel-2.png)
 
 So I guess that maybe it is ngModel affect it, the value has been changed by ngModel, but the html source didn't changed. So let's remove the ngModel from that input tag.
 
@@ -110,7 +111,7 @@ ModelApp.controller('ModelController2', function($scope) {
 ```
 We have set the myModel2 value to 'B' in the ModelController2. But in the html source code, we set the default value to 'A' and bundle it to ngModel. So let's see the result:
 
-![](/assets/images/angular-ngModel-3.png)
+![](/assets/images/legacy/angular-ngModel-3.png)
 
 The result is 'B' not 'A'. That means the ngModel is initialized in the controller. And then render it to the browser. So this can explain the weird problem. 
 

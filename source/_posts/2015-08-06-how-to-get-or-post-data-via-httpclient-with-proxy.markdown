@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "How to get or post data via HttpClient with proxy"
 date: 2015-08-06 22:22:33 +0800
 comments: true
-categories: [Java]
+categories: Backend
+tags: [Java, Spring]
 ---
 
 The **HttpClient** is library which is support by apache. It can post or get data from specific  webservice and represents only the most basic contract for HTTP request execution.

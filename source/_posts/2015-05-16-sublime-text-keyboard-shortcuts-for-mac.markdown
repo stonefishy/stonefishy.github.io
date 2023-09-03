@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Sublime Text - Keyboard Shortcuts For Mac"
 date: 2015-05-16 12:21:06 +0800
 comments: true
-categories: [sublime text, tools]
+categories: Tools
+tags: [Sublime Text, Tool]
 ---
 
-###Editor
+### Editor
 
 | Keypress     | Command                                                                  |
 |--------------|--------------------------------------------------------------------------|
@@ -43,7 +44,7 @@ categories: [sublime text, tools]
 
 <!-- more -->
 ---         
-###Navigation
+### Navigation
 | Keypress       | Command                   |
 |----------------|---------------------------|
 | ⌘ + P or ⌘ + T | Quick-open files by name  |
@@ -51,7 +52,7 @@ categories: [sublime text, tools]
 | ⌃ + G          | Goto line in current file |
 
 ---   
-###General
+### General
 | Keypress      | Command                      |
 |---------------|------------------------------|
 | ⌘ + ⇧ + P     | Command Palette              |
@@ -62,7 +63,7 @@ categories: [sublime text, tools]
 | ⌃ + ⇧ + P     | Show scope in status bar     |
 
 ---   
-###Find/Replace
+### Find/Replace
 | Keypress  | Command       |
 |-----------|---------------|
 | ⌘ + F     | Find          |
@@ -70,7 +71,7 @@ categories: [sublime text, tools]
 | ⌘ + ⇧ + F | Find in files |
 
 ---   
-###Scrolling
+### Scrolling
 | Keypress | Command                                |
 |----------|----------------------------------------|
 | ⌃ + V    | Scroll down one page                   |
@@ -79,7 +80,7 @@ categories: [sublime text, tools]
 | ⌘ + Up   | Scroll to start of file                |
 
 ---   
-###Tabs
+### Tabs
 | Keypress    | Command                                       |
 |-------------|-----------------------------------------------|
 | ⌘ + ⇧ + t   | Open last closed tab                          |
@@ -91,7 +92,7 @@ categories: [sublime text, tools]
 | ⇧ + ^ + Tab | Cycle down through recent tabs                |
 
 ---   
-###Split window
+### Split window
 | Keypress      | Command                                       |
 |---------------|-----------------------------------------------|
 | ⌘ + ⌥ + 1     | Revert view to single column                  |
@@ -103,7 +104,7 @@ categories: [sublime text, tools]
 | ⌃ + ⇧ + [NUM] | Move file to specified group where num is 1-4 |
 
 ---   
-###BookMark
+### BookMark
 | Keypress   | Command           |
 |------------|-------------------|
 | ⌘ + F2     | Toggle bookmark   |
@@ -112,7 +113,7 @@ categories: [sublime text, tools]
 | ⇧ + ⌘ + F2 | Clear bookmarks   |
 
 ---   
-###Text manipulation
+### Text manipulation
 | Keypress                 | Command                       |
 |--------------------------|-------------------------------|
 | ⌘ + K, ⌘ + U             | Transform to Uppercase        |

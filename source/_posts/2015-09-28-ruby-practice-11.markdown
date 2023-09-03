@@ -1,14 +1,15 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(11)"
 date: 2015-09-28 10:33:41 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
 Ruby中所有表现数据的类型都称为数值类，他们都是**Numeric**的子类。起详尽的类继承结构如下：
 
-![assets/images/numberic-inheritance.png](assets/images/numeric-inheritance.png)
+![assets/images/legacy/numberic-inheritance.png](assets/images/legacy/numeric-inheritance.png)
 <!-- more -->
 Ruby中一般用到得整数都是在**Fixnum**类范围内的，如果超过了Fixnum的范围，Ruby会自动将其转换为**Bignum**类。
 

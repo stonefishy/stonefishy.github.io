@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "How to make the octopress adapt OS X EI Capitan"
 date: 2015-11-11 22:46:35 +0800
 comments: true
-categories: [Ruby, Mac, Tools]
+categories: Backend
+tags: [Ruby, Tool, MacOS]
 ---
 Octopress was broken after I upgraded Mac to OS X EI Capitan 10.11.1 in these days. The details of the problem is below.
 

@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Dynamic Pointcut"
 date: 2015-06-12 16:23:30 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 If we want to intercept methods with dynamic pointcut, we need to override *matches* and *getClassFilter* methods of **DynamicMethodMatcher** abstract class. The dynamic pointcut can verify the arguments of the method at runtime. This is a difference with static pointcut.
 

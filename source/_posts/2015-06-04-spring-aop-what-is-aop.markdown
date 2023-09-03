@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - What is AOP?"
 date: 2015-06-04 20:43:03 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 What is `AOP`?, `AOP` stand for `Aspect Oriented Programming`. It's very important module for `Spring` framework. In the enterprise level application programming we used to add different types of services to our application at runtime automatically, like logging, email, transaction, authentication services. These actions we called `cross-cutting` functionalities. `AOP` do this job.    
 <!-- more -->

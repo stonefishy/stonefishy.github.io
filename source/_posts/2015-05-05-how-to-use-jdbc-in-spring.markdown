@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "how to use jdbc in spring"
 date: 2015-05-05 16:31:53 +0800
 comments: true
-categories: [Java, Spring]
+categories: Backend
+tags: [Java, Spring]
 ---
 
 As we know, we can use `jdbc` to access database in java programming. And now let us use `jdbc` in spring. The `spring framework` reduces developer handlers any accessing database exception, because it deal with them internally. The spring framework integrated the jdbctemplate, they are `org.springframework.jdbc.datasource.DriverManagerDataSource` and `org.springframework.jdbc.core.JdbcTemplate`.   

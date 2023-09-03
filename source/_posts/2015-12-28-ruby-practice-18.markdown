@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(18)"
 date: 2015-12-28 10:59:48 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
-####IO
+#### IO
 Ruby程序在启动后会预先分配3个**IO**对象:    
 标准输入 - 预定义常量(**STDIN**), 全局变量(**\$stdin**)        
 标准输出 - 预定义常量(**STDOUT**), 全局变量(**\$stdout**)   
@@ -28,7 +29,7 @@ else
 end
 ```
 <!-- more -->
-#####文件操作
+##### 文件操作
 通过File.open方法或open方法打开文件并获取新的IO对象，
 
 	io = File.open(file, mode)
@@ -61,7 +62,7 @@ end
 data = File.read("tty.rb")
 ```
 
-#####基本输入
+##### 基本输入
 io.**gets**(rs)   
 io.**each**(rs)   
 io.**each_line**(rs)   
@@ -126,7 +127,7 @@ io.**getbyte**, io.**ungetbyte**的使用方法同上，不同之处在于此处
 io.**read**(size)    
 读取参数size指定大小的数据，如果没指定，则一次性读取所有数据。    
 
-#####输出操作
+##### 输出操作
 io.**puts**(str0, str1, ...)    
 指定多个字符串时，会在每个字符串后面添加换行符。   
 
@@ -157,7 +158,7 @@ size = $stdout.write("Hello")		#=> Hello
 p size			#=> 5
 ```
 
-#####文件指针
+##### 文件指针
 用文件指针或者当前文件偏移量来表示IO对象指向文件的位置。    
 
 io.**pos**   
@@ -207,7 +208,7 @@ io.**truncate**(size)
 
 *注，新的IO对象默认为文本模式，可以通过io.**binmode**将其转为二进制模式*   
 
-#####缓冲
+##### 缓冲
 IO对象在输出数据时，结果并不一定会马上输出出来，程序会在内部开辟一个缓冲空间来缓存输出，当空间满的时候再输出来。但是标准错误输出不会使用缓冲，如果有错误信息，则立刻输出。所以标准错误输出一般用于输出警告、错误之类的信息，能够立刻输出数据    
 
 io.**flush**    
@@ -217,7 +218,7 @@ io.**sync**
 io.**sync**=state   
 通过io.sync = true, 程序写入缓冲时flush方法会被自动调用。    
 
-#####与命令行交互
+##### 与命令行交互
 IO.**popen**(command, mode)   
 command为相关的命令    
 

@@ -1,15 +1,16 @@
 ---
-layout: post
+
 title: "Implicit submission of form when pressing enter key"
 date: 2015-06-30 15:08:03 +0800
 comments: true
-categories: [html, html5]
+categories: Frontend
+tags: [HTML, HTML5]
 ---
 As we know, if we want to submit data in the form, we just need to create a *input* or *button* element in the form and give them the *submit* value to the type attribute. Or using javascript to call `form.submit()`.
 
 But there is third way to submit form. That's the implicit submission of form when pressing the enter key under some situations. The form implicit subbmission supported by all browsers, and html spec strongly recommand do this.
 <!-- more -->
-####Implicit submission situation 1
+#### Implicit submission situation 1
 The form will be submitted automatically when there is only one input element in the form and pressing the enter key in the input element.
 
 ``` html
@@ -31,7 +32,7 @@ But if the form has multiple input elements, the form can not be submitted autom
 </form>
 ```
 
-####Implicit submission situation 2
+#### Implicit submission situation 2
 For multiple input elements in the form situation, the form can not be submitted automatically. So how to make it implicit submission. This is second situation we are introducing.
 
 If the form has *submit* type element(input, button), the form will be submitted when pressing the enter key in the input element regardless of how many input elements in this form.
@@ -48,7 +49,7 @@ If the form has *submit* type element(input, button), the form will be submitted
 
 If you need to run some JavaScript before the form is submitted (validation, data manipulation, etc), do it in a `submit` event handler on the form, not a `click` handler on a button.
 
-####How to suppress it
+#### How to suppress it
 The solution is very simple, just prevent the event trigger when pressing the enter key. So we can deal with it in the `keypress` event handler.
 
 ``` html

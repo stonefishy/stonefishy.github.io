@@ -1,14 +1,15 @@
 ---
-layout: post
+
 title: "Analyze call function of javascript"
 date: 2015-05-20 19:24:35 +0800
 comments: true
-categories: [javascript]
+categories: Frontend
+tags: [JavaScript]
 ---
 
 The `call()` function is a fantastic method in javascript. It makes some people confusion some times, like me. Here let us to make it clear.    
 
-###Syntax
+### Syntax
 `call([thisObj[,arg1[, arg2[, [,.argN]]]]])`   
  - **thisObj** (optional): it's object which can be act as currently `this` object.   
  - **arg1, arg2, argN** (optional) : the parameters which can be passed to the method.
@@ -19,7 +20,7 @@ The *call* method can be used to instead of another object to invoke a method. I
 
 **Note**: *The thisObj is a optional parameter, it will reference to Global object if it is not provided. And the `call` method is only used by `Function` object.*  
 
-###Example
+### Example
 Let's use fake code to explain it firstly. see below code:     
 
 ``` javascript

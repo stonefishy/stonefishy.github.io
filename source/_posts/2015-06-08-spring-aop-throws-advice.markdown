@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Throws Advice"
 date: 2015-06-08 14:39:43 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 
 In this type of Advice. This service executed when the logic method throws exceptions. To create Throws Advice, we should implement the interface called `ThrowsAdvice`.    

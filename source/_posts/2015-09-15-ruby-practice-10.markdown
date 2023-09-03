@@ -1,12 +1,13 @@
 ---
-layout: post
+
 title: "Ruby修炼之道(10)"
 date: 2015-09-15 15:18:16 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby]
 ---
 
-###块
+### 块
 **块(block)**，有时也称代码块，能与参数一起传递的多个处理的集合。像之前的*each*，*time*就是带块的方法。
 
 ``` ruby
@@ -94,7 +95,7 @@ print sorted_ary			#=> ["c#", "pathon", "javascript", "ruby"]
 
 *注意：块中最后一个表达式的值就是块的执行结果*
 
-####定义带块的方法
+#### 定义带块的方法
 使用**yield**关键字代替块，如下
 
 ``` ruby
@@ -107,7 +108,7 @@ my_block do
 end
 ```
 
-#####传递块参数，获取块的值
+##### 传递块参数，获取块的值
 ``` ruby
 def total(from, to)
 	result = 0
@@ -130,7 +131,7 @@ print total(1, 10) { |num| num * 2}		#=> 110
 
 *注：**break**和**next**方法可指定参数，如果没有指定任何参数，则返回nil，如果指定了参数则返回参数，如：break 0 和next 0 都会返回0。
 
-#####将块封装为对象
+##### 将块封装为对象
 Ruby还可以将块当作对象处理。把块当作对象处理后，就可以在接收块的方法之外的其他地方执行块，或者把块交给其他方法执行。如果要实现这样的功能，就需要**Proc**对象，**Proc**对象是能让块作为对象在程序中使用的类。
 
 通过调用**Proc.new**这个带块的方法，可以定义Proc对象，然后再调用Proc对象的**call**方法执行块。

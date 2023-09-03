@@ -1,14 +1,15 @@
 ---
-layout: post
+
 title: "Conditional Stylesheets for IE version"
 date: 2015-01-28 17:35:06 +0800
 comments: true
-categories: [IE, CSS]
+categories: Frontend
+tags: [CSS, IE]
 ---
 
 The tool of choice for fighting IE problems is the `conditional stylesheet`. IE provides comment tags, supported all the way up to the current IE 8 to target specific versions, as well as greater-than/less-than stuff for targeting multiple versions at once.
 
-###Why use conditional stylesheets?   
+### Why use conditional stylesheets?   
 *  You got problems, they need fixin'
 *  Keeps your code hack-free and valid
 *  Keeps your main stylesheet clean
@@ -17,7 +18,7 @@ The tool of choice for fighting IE problems is the `conditional stylesheet`. IE 
 <!-- more -->
 And remember, these conditional tags don't have to be used only for CSS. You could load JavaScript, or even use them down in the content of your site to display special IE-specific messages.
 
-###The Code
+### The Code
 
 This would go in your <head> with all the other regular CSS \<link>ed CSS files. The opening and closing tags should be familiar, that's just regular ol' HTML comments. Then between the brackets, "IF" and "IE" should be fairly obvious. The syntax to note is "!" stand for "not", so !IE means "not IE". gt means "greater than", gte means "greater than or equal", lt means "less than", lte means "less than or equal."
 

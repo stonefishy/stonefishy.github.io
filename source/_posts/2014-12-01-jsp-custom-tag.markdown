@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "JSP - Custom Tag"
 date: 2014-12-01 21:30:41 +0800
 comments: true
-categories: [Java, JSP]
+categories: Backend
+tags: [Java, JSP]
 ---
 Custom Tag is a user-defined JSP language element. When it is contained in JSP page and it will translate into a servlet, the custom tag is converted to opertions on an object called a tag handler. The web container then invokes those operations when the JSP page's servlet is executed.   
 
@@ -18,6 +19,7 @@ As you can see below, consider we want to create two tag, one is user tag with n
 ```
 <!-- more -->
 So firstly what we need to do is create two java classes that act as a tag handler for each other tag. and them must extends `SimpleTagSupport` class.   
+
 ``` java UserTag.java
 package com.jsp.custom.tag;
 
@@ -137,6 +139,7 @@ Secondly we need to create tld extention file. It's a tag library file. let us s
 ```
 
 Finally, we can use these both tags in our JSP page.
+
 ``` jsp
 <%@ taglib prefix="custom" uri="WEB-INF/customTag.tld" %>
 <html>

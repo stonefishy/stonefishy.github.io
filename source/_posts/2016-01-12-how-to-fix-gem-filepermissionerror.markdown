@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "How to fix Gem FilePermissionError"
 date: 2016-01-12 23:31:35 +0800
 comments: true
-categories: [Ruby]
+categories: Backend
+tags: [Ruby, Tool]
 ---
 
 Sometimes we face the erorr "Gem::FilePermissionError: You don't have write permissions for the /Library/Ruby/Gems/x.x.x directory". This error message indicates that the user doesn't have the necessary permissions to install Ruby gems system-wide. This is because the system Ruby installation requires administrative privileges to modify its gem directory.

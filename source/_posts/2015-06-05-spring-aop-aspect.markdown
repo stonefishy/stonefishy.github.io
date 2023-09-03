@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - Aspect"
 date: 2015-06-05 09:25:53 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 An `Aspect` represent the **name** of a `cross-cutting` functionality, it's only name not implementation.
 

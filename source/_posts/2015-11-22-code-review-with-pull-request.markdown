@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "代码审查之Pull Request"
 date: 2015-11-22 13:54:34 +0800
 comments: true
-categories: [git,other] 
+categories: Others
+tags: [Git, Collaboration]
 ---
 
 代码审查(Code Review)一直是一个高效团队里面必备的流程，团队成员可以通过它达到技术交流，相互学习以及提升自身编码水平的目的。当然它的目的并不止于此，我们在做某一件事的过程中，所用的技能和工具不外乎都是为了能使结果更符合我们的期望，就拿建筑工程来说，质量控制就是其把控最严的一关，有专门的质量管理领导小组、质量组织管理体系制度来贯穿这个过程，其最终目的就是为了使这栋建筑坚固牢稳，避免随时有可能崩塌的危险。
@@ -24,7 +25,7 @@ categories: [git,other]
 - 建议被添加为Reviewer的开发人员均要在此次的Pull Request中留下自己的意见，这样在后续的集体Code Review中可以查看到相互的见解。
 - 如果发现代码存在问题的，可以及时在代码中留下注释。如果代码提交者对这个注释也赞同，可当即修改并更新Pull Request，这样可以保证代码是已经修正过的。
 
-![stash-pull-request.png](/assets/images/stash-pull-request.png)
+![stash-pull-request.png](/assets/images/legacy/stash-pull-request.png)
 
 当一个Pull Request相关问题都已修改后或不存在任何问题时，就可以直接Approve并Merge到CodeBase中去，这样能够很好的确保CodeBase中的代码是经过监管控制过的。而且在Stash的Pull Request中，还可以设置当须不少于指定个数的Reviewer同意代码提交通过后，提交者才有权限Merge到CodeBase中。这样也能极大的确保项目的代码质量规范是整体开发人员认同的。
 

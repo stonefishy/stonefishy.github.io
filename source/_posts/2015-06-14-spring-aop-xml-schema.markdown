@@ -1,9 +1,10 @@
 ---
-layout: post
+
 title: "Spring AOP - XML Schema"
 date: 2015-06-14 15:48:55 +0800
 comments: true
-categories: [Java, Spring, AOP]
+categories: Backend
+tags: [Java, Spring]
 ---
 Previously, we created AOP with Spring framework via implementing interface of spring AOP. And now we can use XML Schema to achieve it. We need to add below **AspectJ** libraries to our project. So downloading and adding them to the *CLASSPATH* of application,  and also we can use the maven to build our application.    
  - *aspectjrt.jar*   
