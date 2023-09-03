@@ -1,5 +1,5 @@
 ---
-title: How to Back and Restore AWS EBS
+title: How to Backup and Restore AWS EBS
 date: 2023-09-03 16:46:38
 categories: 云计算
 tags: [云计算, AWS]
