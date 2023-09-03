@@ -2782,6 +2782,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 80px;
   height: 80px;
   overflow: hidden;
+  border-radius: 10px;
 }
 .archive .post-archive .post-item .post-img-box img {
   width: 100%;
