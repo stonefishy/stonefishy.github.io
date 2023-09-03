@@ -181,7 +181,7 @@ swiper:
   on: true # 设置为false, 则首页不显示轮播图
   # 当在.md文件中，设置swiper:true，会将该文章放到轮播中，
   showPrevNext: true # 是否显示左右切换按钮
-  showIndicators: false  # 是否显示指示器
+  showIndicators: true  # 是否显示指示器
   autoplay: true # 是否自动轮播
   loop: true # 让轮播看起来是循环的, 例如false的话，到达最后一个轮播图的时候，右按钮不能点击
   delay: 5000 # 切换延迟时间
@@ -209,7 +209,7 @@ swiper:
   defaultDescTypedBackSpeed: 10 # defaultDesc 打字返回速度 typed backSpeed
   defaultDescTypedLoop: true # defaultDesc文字的打字特效是否循环  typed loop
   # defaultAddToSwiper表示：当有文章设置了swiper: true的时候，将上面的 默认内容 放在轮播图的第一页
-  defaultAddToSwiper: true # 开启这个，则loop默认为false
+  defaultAddToSwiper: false # 开启这个，则loop默认为false
   bothSideBlur: '300000px' # 轮播图两边模糊程度，px越大越模糊，针对下面的imgwidthFull、full为false的时候
   ## 轮播图样式更改
   # 轮播图的文字和按钮居中显示 (针对 imgwidthFull和 full都是false的时候)
@@ -233,7 +233,7 @@ fancybox:
 
 # 统计网站访问数量
 busuanzi:
-  on: false
+  on: true
 
 # 标签页和分类页中，显示这个标签或者分类在文章中出现的次数
 show_count: true

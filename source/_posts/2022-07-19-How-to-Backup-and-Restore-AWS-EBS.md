@@ -3,6 +3,8 @@ title: How to Backup and Restore AWS EBS
 date: 2022-07-19 16:46:38
 categories: 云计算
 tags: [云计算, AWS]
+swiper: true
+swiperImg: "/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp"
 ---
 
 在Amazon Web Services（AWS）中，`Snapshot`是一种备份和恢复Amazon Elastic Block Store（EBS）卷数据的关键工具。
