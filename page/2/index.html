@@ -1114,10 +1114,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2015-12-17</span>
+            <span class="post-time">2015-12-28</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/12/17/2015-12-17-ruby-practice-17/">Ruby修炼之道(17)</a>
+            <a class="post-title-link" href="/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1139,7 +1139,65 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/12/17/2015-12-17-ruby-practice-17/" style="background-size: cover; 
+            <a href="/2015/12/28/ruby-practice-18/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <h4 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h4><p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:<br>标准输入 - 预定义常量(<strong>STDIN</strong>), 全局变量(<strong>$stdin</strong>)<br>标准输出 - 预定义常量(<strong>STDOUT</strong>), 全局变量(<strong>$stdout</strong>)<br>标准错误输出 - 预定义常量(<strong>STDERR</strong>), 全局变量(<strong>$stderr</strong>)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$stdout</span>.print <span class="string">&quot;output something from $stdout\n&quot;</span></span><br><span class="line"><span class="variable constant_">STDERR</span>.print <span class="string">&quot;output something from $stderr\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>IO对象是否与控制台关联，我们可以通过**tty?**方法来判断。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="variable">$stdin</span>.tty?</span><br><span class="line">  print <span class="string">&quot;stdin is a tty&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  print <span class="string">&quot;stdin is not a tty&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2015/12/28/ruby-practice-18/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2015/12/28/ruby-practice-18/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2015-12-17</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2015/12/17/ruby-practice-17/">Ruby修炼之道(17)</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/Backend/">Backend</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2015/12/17/ruby-practice-17/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1151,13 +1209,13 @@
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/12/17/2015-12-17-ruby-practice-17/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          <a href="/2015/12/17/ruby-practice-17/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/12/17/2015-12-17-ruby-practice-17/" style="background-size: cover; 
+        <a href="/2015/12/17/ruby-practice-17/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1165,7 +1223,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1173,7 +1231,7 @@
             <span class="post-time">2015-12-05</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/12/05/2015-12-05-using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+            <a class="post-title-link" href="/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1195,7 +1253,7 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/12/05/2015-12-05-using-nginx-in-mac-os-x/" style="background-size: cover; 
+            <a href="/2015/12/05/using-nginx-in-mac-os-x/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1206,13 +1264,13 @@
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/12/05/2015-12-05-using-nginx-in-mac-os-x/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          <a href="/2015/12/05/using-nginx-in-mac-os-x/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/12/05/2015-12-05-using-nginx-in-mac-os-x/" style="background-size: cover; 
+        <a href="/2015/12/05/using-nginx-in-mac-os-x/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1220,7 +1278,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1228,7 +1286,7 @@
             <span class="post-time">2015-11-22</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/11/22/2015-11-22-code-review-with-pull-request/">代码审查之Pull Request</a>
+            <a class="post-title-link" href="/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1250,7 +1308,7 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/11/22/2015-11-22-code-review-with-pull-request/" style="background-size: cover; 
+            <a href="/2015/11/22/code-review-with-pull-request/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1260,13 +1318,13 @@
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/11/22/2015-11-22-code-review-with-pull-request/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          <a href="/2015/11/22/code-review-with-pull-request/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/11/22/2015-11-22-code-review-with-pull-request/" style="background-size: cover; 
+        <a href="/2015/11/22/code-review-with-pull-request/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1274,7 +1332,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1282,7 +1340,7 @@
             <span class="post-time">2015-11-18</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/11/18/2015-11-18-ruby-practice-16/">Ruby修炼之道(16)</a>
+            <a class="post-title-link" href="/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1304,7 +1362,7 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/11/18/2015-11-18-ruby-practice-16/" style="background-size: cover; 
+            <a href="/2015/11/18/ruby-practice-16/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1319,13 +1377,13 @@
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/11/18/2015-11-18-ruby-practice-16/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          <a href="/2015/11/18/ruby-practice-16/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/11/18/2015-11-18-ruby-practice-16/" style="background-size: cover; 
+        <a href="/2015/11/18/ruby-practice-16/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1333,7 +1391,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1341,7 +1399,7 @@
             <span class="post-time">2015-11-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/11/17/2015-11-17-ruby-practice-15/">Ruby修炼之道(15)</a>
+            <a class="post-title-link" href="/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1363,7 +1421,7 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/11/17/2015-11-17-ruby-practice-15/" style="background-size: cover; 
+            <a href="/2015/11/17/ruby-practice-15/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e6f5ee027177096c0950a053ab33a12d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e6f5ee027177096c0950a053ab33a12d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1376,13 +1434,13 @@
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/11/17/2015-11-17-ruby-practice-15/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          <a href="/2015/11/17/ruby-practice-15/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/11/17/2015-11-17-ruby-practice-15/" style="background-size: cover; 
+        <a href="/2015/11/17/ruby-practice-15/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e6f5ee027177096c0950a053ab33a12d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e6f5ee027177096c0950a053ab33a12d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1390,7 +1448,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1398,7 +1456,7 @@
             <span class="post-time">2015-11-12</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/11/12/2015-11-12-ruby-practice-14/">Ruby修炼之道(14)</a>
+            <a class="post-title-link" href="/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1420,7 +1478,7 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/11/12/2015-11-12-ruby-practice-14/" style="background-size: cover; 
+            <a href="/2015/11/12/ruby-practice-14/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1431,13 +1489,13 @@
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/11/12/2015-11-12-ruby-practice-14/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          <a href="/2015/11/12/ruby-practice-14/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/11/12/2015-11-12-ruby-practice-14/" style="background-size: cover; 
+        <a href="/2015/11/12/ruby-practice-14/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1445,7 +1503,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1453,7 +1511,7 @@
             <span class="post-time">2015-11-11</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/11/11/2015-11-11-how-to-make-the-octopress-adapt-os-x-ei-capitan/">How to make the octopress adapt OS X EI Capitan</a>
+            <a class="post-title-link" href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">How to make the octopress adapt OS X EI Capitan</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1475,7 +1533,7 @@
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/11/11/2015-11-11-how-to-make-the-octopress-adapt-os-x-ei-capitan/" style="background-size: cover; 
+            <a href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1494,13 +1552,13 @@ Tasks: TOP =&gt; preview
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/11/11/2015-11-11-how-to-make-the-octopress-adapt-os-x-ei-capitan/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          <a href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/11/11/2015-11-11-how-to-make-the-octopress-adapt-os-x-ei-capitan/" style="background-size: cover; 
+        <a href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1508,7 +1566,7 @@ Tasks: TOP =&gt; preview
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1516,7 +1574,7 @@ Tasks: TOP =&gt; preview
             <span class="post-time">2015-10-26</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/10/26/2015-10-26-ruby-practice-13/">Ruby修炼之道(13)</a>
+            <a class="post-title-link" href="/2015/10/26/ruby-practice-13/">Ruby修炼之道(13)</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1538,7 +1596,7 @@ Tasks: TOP =&gt; preview
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/10/26/2015-10-26-ruby-practice-13/" style="background-size: cover; 
+            <a href="/2015/10/26/ruby-practice-13/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1551,13 +1609,13 @@ Tasks: TOP =&gt; preview
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/10/26/2015-10-26-ruby-practice-13/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          <a href="/2015/10/26/ruby-practice-13/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/10/26/2015-10-26-ruby-practice-13/" style="background-size: cover; 
+        <a href="/2015/10/26/ruby-practice-13/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
@@ -1565,7 +1623,7 @@ Tasks: TOP =&gt; preview
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1573,7 +1631,7 @@ Tasks: TOP =&gt; preview
             <span class="post-time">2015-10-13</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2015/10/13/2015-10-13-ruby-practice-12/">Ruby修炼之道(12)</a>
+            <a class="post-title-link" href="/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1595,7 +1653,7 @@ Tasks: TOP =&gt; preview
             </div>
           </div>
           <div class="post-img-mobile">
-            <a href="/2015/10/13/2015-10-13-ruby-practice-12/" style="background-size: cover; 
+            <a href="/2015/10/13/ruby-practice-12/" style="background-size: cover; 
               background-position: center center;">
               <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
             </a>
@@ -1607,70 +1665,15 @@ Tasks: TOP =&gt; preview
           </div>
         </div>
         <div class="post-more">
-          <a href="/2015/10/13/2015-10-13-ruby-practice-12/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2015/10/13/2015-10-13-ruby-practice-12/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2015-09-28</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2015/09/28/2015-09-28-ruby-practice-11/">Ruby修炼之道(11)</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/Backend/">Backend</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2015/09/28/2015-09-28-ruby-practice-11/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
-<p><img src="/assets/images/legacy/numeric-inheritance.png" class="lazyload placeholder" data-srcset="/assets/images/legacy/numeric-inheritance.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="assets/images/legacy/numberic-inheritance.png"></p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2015/09/28/2015-09-28-ruby-practice-11/">
+          <a href="/2015/10/13/ruby-practice-12/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
-        <a href="/2015/09/28/2015-09-28-ruby-practice-11/" style="background-size: cover; 
+        <a href="/2015/10/13/ruby-practice-12/" style="background-size: cover; 
           background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
       </div>
     </article>
@@ -1836,7 +1839,7 @@ Tasks: TOP =&gt; preview
             <li><a class="flat-box"
               title="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"
               id="categoriesE4BA91E8AEA1E7AE97"
-              ><div class='name'>云计算</div><div class='badge'>(3)</div></a></li>
+              ><div class='name'>云计算</div><div class='badge'>(4)</div></a></li>
           
             <li><a class="flat-box"
               title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
@@ -1861,7 +1864,7 @@ Tasks: TOP =&gt; preview
 
 
     <div class='content'>
-    <a href="/tags/AWS/" style="font-size: 16.5px; color: #888">AWS</a> <a href="/tags/Android/" style="font-size: 16.5px; color: #888">Android</a> <a href="/tags/AngularJs/" style="font-size: 15.25px; color: #919191">AngularJs</a> <a href="/tags/Bracket/" style="font-size: 14px; color: #999">Bracket</a> <a href="/tags/CSS/" style="font-size: 15.25px; color: #919191">CSS</a> <a href="/tags/CoffeeScript/" style="font-size: 14px; color: #999">CoffeeScript</a> <a href="/tags/Collaboration/" style="font-size: 14px; color: #999">Collaboration</a> <a href="/tags/Cucumber/" style="font-size: 14px; color: #999">Cucumber</a> <a href="/tags/Git/" style="font-size: 22.75px; color: #5e5e5e">Git</a> <a href="/tags/Guard/" style="font-size: 14px; color: #999">Guard</a> <a href="/tags/Guava/" style="font-size: 17.75px; color: #808080">Guava</a> <a href="/tags/HTML/" style="font-size: 14px; color: #999">HTML</a> <a href="/tags/HTML5/" style="font-size: 16.5px; color: #888">HTML5</a> <a href="/tags/IE/" style="font-size: 16.5px; color: #888">IE</a> <a href="/tags/IETester/" style="font-size: 14px; color: #999">IETester</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px; color: #777">JavaScript</a> <a href="/tags/LiveReload/" style="font-size: 14px; color: #999">LiveReload</a> <a href="/tags/MVC/" style="font-size: 14px; color: #999">MVC</a> <a href="/tags/MVP/" style="font-size: 14px; color: #999">MVP</a> <a href="/tags/MVVM/" style="font-size: 14px; color: #999">MVVM</a> <a href="/tags/MacOS/" style="font-size: 15.25px; color: #919191">MacOS</a> <a href="/tags/Markdown/" style="font-size: 17.75px; color: #808080">Markdown</a> <a href="/tags/Nginx/" style="font-size: 14px; color: #999">Nginx</a> <a href="/tags/Ruby/" style="font-size: 24px; color: #555">Ruby</a> <a href="/tags/SoftSkill/" style="font-size: 14px; color: #999">SoftSkill</a> <a href="/tags/Spring/" style="font-size: 21.5px; color: #666">Spring</a> <a href="/tags/Sublime-Text/" style="font-size: 16.5px; color: #888">Sublime Text</a> <a href="/tags/Test/" style="font-size: 14px; color: #999">Test</a> <a href="/tags/Tool/" style="font-size: 20.25px; color: #6f6f6f">Tool</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/VSCode/" style="font-size: 14px; color: #999">VSCode</a> <a href="/tags/Web-Design/" style="font-size: 14px; color: #999">Web Design</a> <a href="/tags/iTerm2/" style="font-size: 14px; color: #999">iTerm2</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 16.5px; color: #888">云计算</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.5px; color: #888">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.5px; color: #888">算法</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 14px; color: #999">资源</a> <a href="/tags/%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87/" style="font-size: 14px; color: #999">高清图片</a>
+    <a href="/tags/AWS/" style="font-size: 17.33px; color: #828282">AWS</a> <a href="/tags/Android/" style="font-size: 16.22px; color: #8a8a8a">Android</a> <a href="/tags/AngularJs/" style="font-size: 15.11px; color: #919191">AngularJs</a> <a href="/tags/Bracket/" style="font-size: 14px; color: #999">Bracket</a> <a href="/tags/CSS/" style="font-size: 15.11px; color: #919191">CSS</a> <a href="/tags/CoffeeScript/" style="font-size: 14px; color: #999">CoffeeScript</a> <a href="/tags/Collaboration/" style="font-size: 14px; color: #999">Collaboration</a> <a href="/tags/Cucumber/" style="font-size: 14px; color: #999">Cucumber</a> <a href="/tags/Git/" style="font-size: 22.89px; color: #5d5d5d">Git</a> <a href="/tags/Guard/" style="font-size: 14px; color: #999">Guard</a> <a href="/tags/Guava/" style="font-size: 18.44px; color: #7b7b7b">Guava</a> <a href="/tags/HTML/" style="font-size: 14px; color: #999">HTML</a> <a href="/tags/HTML5/" style="font-size: 16.22px; color: #8a8a8a">HTML5</a> <a href="/tags/IE/" style="font-size: 16.22px; color: #8a8a8a">IE</a> <a href="/tags/IETester/" style="font-size: 14px; color: #999">IETester</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.56px; color: #737373">JavaScript</a> <a href="/tags/LiveReload/" style="font-size: 14px; color: #999">LiveReload</a> <a href="/tags/MVC/" style="font-size: 14px; color: #999">MVC</a> <a href="/tags/MVP/" style="font-size: 14px; color: #999">MVP</a> <a href="/tags/MVVM/" style="font-size: 14px; color: #999">MVVM</a> <a href="/tags/MacOS/" style="font-size: 15.11px; color: #919191">MacOS</a> <a href="/tags/Markdown/" style="font-size: 18.44px; color: #7b7b7b">Markdown</a> <a href="/tags/Nginx/" style="font-size: 14px; color: #999">Nginx</a> <a href="/tags/Ruby/" style="font-size: 24px; color: #555">Ruby</a> <a href="/tags/SoftSkill/" style="font-size: 14px; color: #999">SoftSkill</a> <a href="/tags/Spring/" style="font-size: 21.78px; color: #646464">Spring</a> <a href="/tags/Sublime-Text/" style="font-size: 16.22px; color: #8a8a8a">Sublime Text</a> <a href="/tags/Test/" style="font-size: 14px; color: #999">Test</a> <a href="/tags/Tool/" style="font-size: 20.67px; color: #6c6c6c">Tool</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/VSCode/" style="font-size: 14px; color: #999">VSCode</a> <a href="/tags/Web-Design/" style="font-size: 14px; color: #999">Web Design</a> <a href="/tags/iTerm2/" style="font-size: 14px; color: #999">iTerm2</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 17.33px; color: #828282">云计算</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.22px; color: #8a8a8a">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.22px; color: #8a8a8a">算法</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 14px; color: #999">资源</a> <a href="/tags/%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87/" style="font-size: 14px; color: #999">高清图片</a>
     </div>
 </section>
 
@@ -1889,7 +1892,28 @@ Tasks: TOP =&gt; preview
             
 
             <div class="post-img-box">
-              <a href="/2022/04/08/2022-04-08-shi-yao-shi-aws-ec2-hibernation/" class="post-img " style="background-size: cover; 
+              <a href="/2022/05/01/what-is-aws-ebs-and-how-to-use-it/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">05-01</span>
+                
+              </div>
+              <a class="post-title" href="/2022/05/01/what-is-aws-ebs-and-how-to-use-it/">What is AWS EBS and how to use it</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2022/04/08/shi-yao-shi-aws-ec2-hibernation/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e6f5ee027177096c0950a053ab33a12d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e6f5ee027177096c0950a053ab33a12d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
@@ -1900,7 +1924,7 @@ Tasks: TOP =&gt; preview
                   <span class="post-date">04-08</span>
                 
               </div>
-              <a class="post-title" href="/2022/04/08/2022-04-08-shi-yao-shi-aws-ec2-hibernation/">什么是AWS EC2 Hibernation</a>
+              <a class="post-title" href="/2022/04/08/shi-yao-shi-aws-ec2-hibernation/">什么是AWS EC2 Hibernation</a>
             </div>
           </div>
         
@@ -1910,7 +1934,7 @@ Tasks: TOP =&gt; preview
             
 
             <div class="post-img-box">
-              <a href="/2022/03/02/2022-03-02-aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/" class="post-img " style="background-size: cover; 
+              <a href="/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
@@ -1921,7 +1945,7 @@ Tasks: TOP =&gt; preview
                   <span class="post-date">03-02</span>
                 
               </div>
-              <a class="post-title" href="/2022/03/02/2022-03-02-aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/">AWS EC2的主要特点和工作方式以及计费模式</a>
+              <a class="post-title" href="/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/">AWS EC2的主要特点和工作方式以及计费模式</a>
             </div>
           </div>
         
@@ -1931,7 +1955,7 @@ Tasks: TOP =&gt; preview
             
 
             <div class="post-img-box">
-              <a href="/2022/02/17/2022-02-17-aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-img " style="background-size: cover; 
+              <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
@@ -1942,7 +1966,7 @@ Tasks: TOP =&gt; preview
                   <span class="post-date">02-17</span>
                 
               </div>
-              <a class="post-title" href="/2022/02/17/2022-02-17-aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
+              <a class="post-title" href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
             </div>
           </div>
         
@@ -1952,7 +1976,7 @@ Tasks: TOP =&gt; preview
             
 
             <div class="post-img-box">
-              <a href="/2017/03/16/2017-03-16-liao-liao-qian-duan-you-hua-shou-duan-fang-dou/" class="post-img " style="background-size: cover; 
+              <a href="/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
@@ -1963,28 +1987,7 @@ Tasks: TOP =&gt; preview
                   <span class="post-date">03-16</span>
                 
               </div>
-              <a class="post-title" href="/2017/03/16/2017-03-16-liao-liao-qian-duan-you-hua-shou-duan-fang-dou/">聊聊前端优化手段防抖</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2017/02/23/2017-02-23-yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-c72bc34662bb500f34f49d6d80881e0f_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-c72bc34662bb500f34f49d6d80881e0f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">02-23</span>
-                
-              </div>
-              <a class="post-title" href="/2017/02/23/2017-02-23-yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a>
+              <a class="post-title" href="/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/">聊聊前端优化手段防抖</a>
             </div>
           </div>
         
@@ -1995,7 +1998,7 @@ Tasks: TOP =&gt; preview
       
   <section class="widget side_archives">
     
-    <header><a style="color: null" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>Archives</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">April 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">March 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">February 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2017/03/"><span class="card-archive-list-date">March 2017</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2017/02/"><span class="card-archive-list-date">February 2017</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2016/03/"><span class="card-archive-list-date">March 2016</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2016/02/"><span class="card-archive-list-date">February 2016</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2016/01/"><span class="card-archive-list-date">January 2016</span><span class="card-archive-list-count">2</span></a></li></ul></div>
+    <header><a style="color: null" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>Archives</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">May 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">April 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">March 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">February 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2017/03/"><span class="card-archive-list-date">March 2017</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2017/02/"><span class="card-archive-list-date">February 2017</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2016/03/"><span class="card-archive-list-date">March 2016</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2016/02/"><span class="card-archive-list-date">February 2016</span><span class="card-archive-list-count">1</span></a></li></ul></div>
   </section>
 
       <section class="widget side_webinfo">
@@ -2012,7 +2015,7 @@ Tasks: TOP =&gt; preview
       
         <div class="webinfo-item">
           <div>Articles: </div>
-          <div>94 Chapter</div>
+          <div>95 Chapter</div>
         </div>
       
 
@@ -2034,7 +2037,7 @@ Tasks: TOP =&gt; preview
       
         <div class="webinfo-item">
           <div>Total words:</div>
-          <div>58k Count</div>
+          <div>58.8k Count</div>
         </div>
       
 
@@ -2060,7 +2063,7 @@ Tasks: TOP =&gt; preview
         <div class="webinfo-item">
           <div>Last activity: </div>
           
-            <div id="last-update" style="display: none;">Sun Sep 03 2023 04:52:06 GMT+0000 (Coordinated Universal Time)</div>
+            <div id="last-update" style="display: none;">Sun Sep 03 2023 08:07:45 GMT+0000 (Coordinated Universal Time)</div>
             <div id="last-update-show">2023-09-03 </div>
           
         </div>
@@ -2462,7 +2465,7 @@ Tasks: TOP =&gt; preview
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.css">
 
 <script>
-  var headerEl = 'h2, h3, h4',  //headers 
+  var headerEl = 'h1, h2, h3, h4, h5, h6',  //headers 
     content = '.post-detail',//文章容器
     idArr = {};  //标题数组以确定是否增加索引id
   //add #id
