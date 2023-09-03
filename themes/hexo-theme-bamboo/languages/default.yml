@@ -1,0 +1,78 @@
+categories: Categories
+search: Search
+tags: Tags
+tagcloud: Tag Cloud
+tweets: Tweets
+prev: Prev
+next: Next
+comment: Comments
+archive_a: Archives
+archive_b: "Archives: %s"
+page: Page %d
+recent_posts: Recent Posts
+newer: Newer
+older: Older
+share: Share
+powered_by: Powered by
+rss_feed: RSS Feed=
+tag: Tag
+category: Category
+archives: Archives
+about: About
+aboutBasicInfo: BasicInfo
+age: Age
+sex: Sex
+coordinate: Coordinate
+status: Status
+skill: skill
+socialAccounts: Social Accounts
+game: Game
+book: Book
+Menu:
+  Home: Home
+  Archives: Archives
+  Tags: Tags
+  Categories: Categories
+  Github: Github
+  About: About
+  link: Link
+
+Paginator:
+  Prev: Prev
+  Next: Next
+
+postCategoryTitle: Article Categories
+postTagTitle: Article Tags
+
+copyright:
+    author: "Author: "
+    link: "Link: "
+    license_title: "Copyright notice: "
+    left_license_content: "All articles on this website, unless otherwise stated, adopt "
+    right_license_content: "reprint policy. If reproduced, please indicate source!"
+
+friends: Friends
+keyword: Please enter keywords
+reading: Reading
+totalVisits: Total visits
+numberVisitors: Number of visitors
+
+lastArticle: Prev
+nextArticle: Next
+
+times: times
+people: people
+
+recommendedArticles: Recommend Articles
+readMore: Read More
+copy: Copy
+paperCatalog: Catalog
+loading: loading
+publishedIn: Published in
+wordcount: 'Words'
+min2read: 'Reading time'
+min: min
+no_title: No title
+side:
+  side_archives: 'Archives'
+  more_button: 'More'
