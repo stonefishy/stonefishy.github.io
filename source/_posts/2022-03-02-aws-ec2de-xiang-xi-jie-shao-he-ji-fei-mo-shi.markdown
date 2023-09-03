@@ -9,7 +9,7 @@ top: true
 ---
 
 Amazon Elastic Compute Cloud（Amazon EC2）是Amazon Web Services（AWS）提供的一项基于云的可伸缩性、弹性、安全性和监控的计算服务，它允许用户租用虚拟服务器（称为EC2实例）来运行应用程序。我们从主要特点，工作方式以及计价模式来介绍下EC2
-![](/assets/images/aws/aws-ec2-intro.png)
+![](/assets/images/aws/aws-ec2-intro.webp)
 <!--more-->
 ### 主要特点
 

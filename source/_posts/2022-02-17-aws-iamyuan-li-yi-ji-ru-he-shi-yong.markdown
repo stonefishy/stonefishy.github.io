@@ -13,17 +13,17 @@ AWS Identity and Access Management（`IAM`）是Amazon Web Services（AWS）提�
 IAM基于一些核心概念：
 
 **用户（Users）：** 代表实际的个人用户，可以分配安全凭证（如访问密钥、密码）来访问AWS资源。
-![](/assets/images/aws/aws-iam-users.png)
+![](/assets/images/aws/aws-iam-users.webp)
 <!--more-->
 **组（Groups）：** 用于将一组用户组合在一起，并将一组权限分配给该组，从而简化权限管理。
-![](/assets/images/aws/aws-iam-groups.png)
+![](/assets/images/aws/aws-iam-groups.webp)
 
 **角色（Roles）：** 类似于用户，但不是直接分配给人，而是分配给AWS资源（例如EC2实例）。角色可以用于临时授权。
-![](/assets/images/aws/aws-iam-roles.png)
+![](/assets/images/aws/aws-iam-roles.webp)
 
 **权限策略（Permissions Policies）：** 
 定义了用户、组或角色可以执行的特定操作的权限。AWS提供了许多预定义的权限策略，同时也可以创建自定义策略。
-![](/assets/images/aws/aws-iam-policies.png)
+![](/assets/images/aws/aws-iam-policies.webp)
 
 ### 如何使用IAM
 

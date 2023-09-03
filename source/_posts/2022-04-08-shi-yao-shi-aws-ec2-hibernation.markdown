@@ -9,13 +9,13 @@ top: true
 ---
 
 `EC2 Hibernation` 是 Amazon Elastic Compute Cloud (EC2) 服务的一个功能，它允许您将 EC2 实例从运行状态转换为休眠状态，然后再次唤醒它，而不会丢失实例的内存中的数据。这个功能非常适合那些需要保持应用程序状态或长时间运行进程的工作负载。
-![](/assets/images/aws/aws-ec2-hibernation-flow.png)
+![](/assets/images/aws/aws-ec2-hibernation-flow.webp)
 这里详细说明 EC2 Hibernation 的**工作原理**
 <!--more-->
 ### 工作原理
 
 **1.启用 Hibernation：** 要使用 EC2 Hibernation，首先需要在 EC2 实例上启用它。这可以通过使用支持 Hibernation 的实例类型，并在启动时启用 Hibernation 选项来完成。并且EBS卷必须要开启加密。
-![](/assets/images/aws/aws-ec2-hibernation-enable.png)
+![](/assets/images/aws/aws-ec2-hibernation-enable.webp)
 
 **2.创建 Hibernation 快照：** 在启用 Hibernation 后，EC2 实例的内存状态将被定期保存到 Amazon Elastic Block Store (EBS) 卷上的 Hibernation 快照中。这确保了在实例休眠时不会丢失内存中的数据。
 
