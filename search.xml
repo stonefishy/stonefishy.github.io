@@ -1732,7 +1732,7 @@
       
       <categories>
           
-          <category> Test </category>
+          <category> Testing </category>
           
       </categories>
       
@@ -1740,8 +1740,6 @@
         <tags>
             
             <tag> Cucumber </tag>
-            
-            <tag> Test </tag>
             
         </tags>
       
