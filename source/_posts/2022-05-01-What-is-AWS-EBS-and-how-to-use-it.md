@@ -3,7 +3,6 @@ title: What is AWS EBS and how to use it
 date: 2022-05-01 15:09:49
 categories: 云计算
 tags: [云计算, AWS]
-top: true
 ---
 
 `Amazon Elastic Block Store (EBS)` 是 Amazon Web Services (AWS) 提供的一项块存储服务，它允许用户创建和管理持久性块存储卷，并将这些卷附加到 Amazon Elastic Compute Cloud (EC2) 实例上。以下是关于 AWS EBS 的详细信息，包括特征、原理和使用方法。
