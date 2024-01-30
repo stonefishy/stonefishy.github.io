@@ -3,7 +3,7 @@
 title: "Understading MVC, MVP and MVVM Design Patterns"
 date: 2015-02-06 17:26:06 +0800
 comments: true
-categories: Design Pattern
+categories: 设计模式
 tags: [MVC, MVP, MVVM]
 ---
 

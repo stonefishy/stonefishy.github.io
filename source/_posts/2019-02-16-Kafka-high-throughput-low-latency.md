@@ -1,7 +1,7 @@
 ---
 title: Kafka为什么具有高吞吐量和低延迟的特性
 date: 2019-02-16 11:21:53
-categories: Backend
+categories: 中间件
 tags: [Kafka, MQ, BI]
 ---
 
