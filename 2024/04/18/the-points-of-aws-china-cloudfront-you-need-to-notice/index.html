@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Guava -- Common Object Methods | Andrewsy&#39;s Space</title>
+  <title>The Points of AWS China CloudFront You Need to Notice | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Guava -- Common Object Methods
+        The Points of AWS China CloudFront You Need to Notice
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2014-11-27 |
+          <i class="fas fa-calendar"></i> Published in：2024-04-18 |
         </span>
       
 
@@ -520,8 +520,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/Backend/" class="post-detail-header_category">
-              Backend
+            <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" class="post-detail-header_category">
+              云计算
             </a>
           
         </span>
@@ -530,11 +530,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 164 |
+            <i class="fas fa-file-text-o"></i> Words: 920 |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 1min |
+            <i class="fas fa-clock"></i> Reading time: 5min |
           </span>
   
           
@@ -561,28 +561,75 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p><code>Objects.equal(Object, Object)</code><br>Invoking this method then it will avoid the risking of NullPointerException when we need to compare two object whether they equal.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Objects.equal(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;a&quot;</span>); <span class="comment">// return true;</span></span><br><span class="line">Objects.equal(<span class="literal">null</span>, <span class="string">&quot;a&quot;</span>); <span class="comment">// return false;</span></span><br><span class="line">Objects.equal(<span class="literal">null</span>, <span class="literal">null</span>); <span class="comment">// return true;</span></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-<p><code>Objects.hashCode(Object, ....)</code><br>Generating hash code with multiple object will be simple. And it also can hash all fields of an Object to get more sensible code value.   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// generate hash code with multi object</span></span><br><span class="line">Objects.hashCode(<span class="built_in">this</span>.intField, <span class="built_in">this</span>.charField, <span class="built_in">this</span>.stringField, <span class="built_in">this</span>.dateField); </span><br></pre></td></tr></table></figure>
-
-<p><code>ComparisonChain</code><br>ComparisonChain is a fluent idiom and much more readable. less prone to accidental typos, and smart enough not to do more work than it must.<br>It only performs comparisons until it finds a non-zero result, after which it ignores further input.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ObjectsTraining</span> <span class="variable">objectsTraining</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectsTraining</span>();</span><br><span class="line"><span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> ComparisonChain.start()</span><br><span class="line">			   .compare(<span class="built_in">this</span>.intField, objectsTraining.intField)</span><br><span class="line">             .compare(<span class="built_in">this</span>.stringField, objectsTraining.stringField)</span><br><span class="line">             .compare(<span class="built_in">this</span>.charField, objectsTraining.charField)</span><br><span class="line">             .compare(<span class="built_in">this</span>.dateField, objectsTraining.dateField)</span><br><span class="line">             .result();</span><br></pre></td></tr></table></figure>
-
+        <p>There are much difference between AWS Global and AWS China. The background of this blog is that I’m responsible for migrating the aws global application to aws china. The application already go lived on AWS Global. The application is  collecting the user inforamtion and for business logic. The business wants this application to serve China customer. Due to the application regulation,  the application needs to deployed in AWS China and store the user information in AWS China.</p>
+<p>The application is using below AWS services:</p>
+<ul>
+<li>AWS S3: store the static website assets and user information.</li>
+<li>AWS ALB: the load balancer for the application.</li>
+<li>AWS ASG: auto scaling group for the application.</li>
+<li>AWS ECR: store the application container image.</li>
+<li>AWS ECS: run the application container.</li>
+<li>AWS ACM: manage the SSL certificate.</li>
+<li>AWS WAF: web application firewall.</li>
+<li>AWS VPC: virtual private cloud.</li>
+<li>AWS S3 VPC Gateway: access the S3 bucket from the VPC.</li>
+<li>AWS CloudWatch: monitor the application logs, performance and alarms.</li>
+<li>AWS SNS: notificate the stack holder when application performance is abnormal.</li>
+<li>AWS CloudFront: serve the static website and user information.</li>
+</ul>
+<h2 id="AWS-China"><a href="#AWS-China" class="headerlink" title="AWS China"></a>AWS China</h2><p>The AWS China is a separate entity operated by a local partner in compliance with Chinese regulations. Data centers located in Beijing and Ningxia. The operator is different between Beijing and Ningxia. Beijing region operated by Sinnet(光环新网)，Ningxia region operated by NWCD(西云数据). Basically， the service price of Ningxia region is cheaper than Beijing region. You can find the detail pricing in the AWS China link <a target="_blank" rel="noopener" href="https://calculator.amazonaws.cn/#/">https://calculator.amazonaws.cn/#/</a>. AWS Fargate priciing is here <a target="_blank" rel="noopener" href="https://www.amazonaws.cn/en/fargate/pricing">https://www.amazonaws.cn/en/fargate/pricing</a></p>
+<h2 id="Difference-between-AWS-Global-and-AWS-China"><a href="#Difference-between-AWS-Global-and-AWS-China" class="headerlink" title="Difference between AWS Global and AWS China"></a>Difference between AWS Global and AWS China</h2><p>The AWS China has many limiation and difference with AWS Global. And also some new services are not available in AWS China. When you migrate the application to AWS China, you need to consider the below points:</p>
+<ol>
+<li>AWS China has different pricing policy. The pricing policy is different between Beijing and Ningxia. </li>
+<li>The Infrastructure code is different between AWS Global and AWS China. The code need to be modified to adapt to AWS China.</li>
+<li>The Website should be do the ICP filling and Goverment Filling. (域名备案，网安备案)</li>
+</ol>
+<h3 id="Infrastructure-as-Code"><a href="#Infrastructure-as-Code" class="headerlink" title="Infrastructure as Code"></a>Infrastructure as Code</h3><p>We’re using <code>Pulumi</code> to manage the infrastructure as code. Pulumi is a tool for developing, building, and deploying cloud applications and infrastructure. It supports multiple cloud providers including AWS, Azure, GCP, and Kubernetes.<br>There are AWS Service Resource definition is different with AWS Global on AWS China. In AWS China there is an <code>amazonaws.com.cn</code> string for endpoint, and <code>aws-cn</code> ARN prefix. The code need to be modified to adapt to AWS China.</p>
+<h4 id="AWS-China-1"><a href="#AWS-China-1" class="headerlink" title="AWS China"></a>AWS China</h4><ul>
+<li>AWS EndPoint: xxxxxxx.s3.cn-northwest-1.<strong>amazonaws.com.cn</strong>&#x2F;example.txt</li>
+<li>AWS ARNs: arn:<strong>aws-cn</strong>:s3:::xxxxxxx&#x2F;example.txt</li>
+</ul>
+<h4 id="AWS-Global"><a href="#AWS-Global" class="headerlink" title="AWS Global"></a>AWS Global</h4><ul>
+<li>AWS EndPoint: xxxxxxx.s3.cn-northwest-1.<strong>amazonaws.com</strong>&#x2F;example.txt</li>
+<li>AWS ARNs: arn:<strong>aws</strong>:s3:::xxxxxxx&#x2F;example.txt</li>
+</ul>
+<h3 id="CloudFront"><a href="#CloudFront" class="headerlink" title="CloudFront"></a>CloudFront</h3><p>In our application is much difference between AWS Global and AWS China, especially the CloudFront.</p>
+<ul>
+<li>Requires ICP filing and domain name filing in AWS China.</li>
+<li>The CloudFront provides domain name like “*.cloudfront.cn” which cannot be used in for website serving in AWS China. You can not access the website through the CloudFront domain name. It returns 403 Forbidden error.</li>
+<li>The SSL&#x2F;TLS certificates for CloudFront does not support the Amazon Certificate Manager in AWS China. It requires to use SSL&#x2F;TLS certificate from third party, and then - - import certificate in IAM. It is only support IAM to store the certificates for CloudFront in AWS China.</li>
+<li>The CloudFront does not supports the Amazon WAF in AWS China.</li>
+<li>The Cache polices and Origin request polices does not support in AWS China</li>
+<li>The Lambda@Edge is not available in AWS China.</li>
+<li>CloudFront origin access only supports legacy access identities OAI for S3 bucket, does not support OAC in AWS China</li>
+<li>The CloudFront origin for S3 bucket which is not a website endpoint, the following format: <code>bucket-name.s3.region.amazonaws.com.cn</code>, remember <code>region</code> after <code>s3</code></li>
+<li>The CloudFront origin for S3 bucket which is a website endpoint, use the following format: <code>bucket-name.s3-website.region.amazonaws.com.cn</code>, remember <code>region</code> after <code>s3-website</code></li>
+</ul>
+<p>For more information, please refer to the AWS China CloudFront <a target="_blank" rel="noopener" href="https://docs.amazonaws.cn/en_us/aws/latest/userguide/cloudfront.html#feature-diff">https://docs.amazonaws.cn/en_us/aws/latest/userguide/cloudfront.html#feature-diff</a></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this blog, we have discussed the important points when migrate the aws global application to aws china, especially for the AWS CloudFront. We have listed the difference between AWS Global and AWS China, and also the CloudFront difference between AWS Global and AWS China.</p>
+<p>If you want to know more about AWS China service difference with AWS Global, you can refer to this official link <a target="_blank" rel="noopener" href="https://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html">https://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html</a></p>
+<p>Hope this blog can help you to migrate the application to AWS China.</p>
+<h2 id="Useful-Links"><a href="#Useful-Links" class="headerlink" title="Useful Links"></a>Useful Links</h2><ul>
+<li>AWS China Service Difference: <a target="_blank" rel="noopener" href="https://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html">https://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html</a></li>
+<li>AWS China Service Pricing: <a target="_blank" rel="noopener" href="https://calculator.amazonaws.cn/#/">https://calculator.amazonaws.cn/#/</a></li>
+<li>AWS China Fargate Pricing: <a target="_blank" rel="noopener" href="https://www.amazonaws.cn/en/fargate/pricing">https://www.amazonaws.cn/en/fargate/pricing</a></li>
+<li>AWS China Edge Location: <a target="_blank" rel="noopener" href="https://www.amazonaws.cn/en/cloudfront/features/">https://www.amazonaws.cn/en/cloudfront/features/</a></li>
+<li>AWS China CloudFront Error Investigation: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/182517851">https://zhuanlan.zhihu.com/p/182517851</a></li>
+<li>ICP&#x2F;IP地址&#x2F;域名信息备案管理系统: <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">https://beian.miit.gov.cn/#/Integrated/index</a></li>
+<li>全国互联网安全管理服务平台: <a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch">https://beian.mps.gov.cn/#/query/webSearch</a></li>
+</ul>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/Java/" class="">
-              Java
+            <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" class="">
+              云计算
             </a>
           
-            <a href="/tags/Guava/" class="">
-              Guava
+            <a href="/tags/AWS/" class="">
+              AWS
             </a>
           
         </div>
@@ -596,7 +643,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2014/11/27/guava-common-object-method/" target="_blank" title="Guava -- Common Object Methods">https://stonefishy.github.io/2014/11/27/guava-common-object-method/</a>
+    <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" target="_blank" title="The Points of AWS China CloudFront You Need to Notice">https://stonefishy.github.io/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -618,16 +665,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2014/12/01/jsp-custom-tag/" class="post-nav-link">
+    <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">JSP - Custom Tag</div>
+        <div class="title-text">Understanding the X-Frame-Options HTTP Header</div>
       </div>
       
       <!-- <div class="content">
-        Custom Tag is a user-defined JSP language element. When it i
+        Recently, we build a frontend website as a nginx docker imag
       </div> -->
     </a>
   </div>
@@ -638,15 +685,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2014/11/26/guava-preconditions/" class="post-nav-link">
+    <a href="/2024/01/25/why-redis-choose-single-thread/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Guava -- Preconditions</div>
+        <div class="title-text">为何Redis选择单线程而非多线程架构？</div>
       </div>
       <!-- <div class="content">
-        Guava provides a number of precondition checking utilities. 
+        在现代的互联网应用中，数据存储和访问速度是至关重要的。Redis，作为一款高性能的内存数据库，以其快速的读写速度和灵活的
       </div> -->
     </a>
   </div>
@@ -784,7 +831,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Usage"><span class="toc-text">Usage</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-China"><span class="toc-text">AWS China</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Difference-between-AWS-Global-and-AWS-China"><span class="toc-text">Difference between AWS Global and AWS China</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Infrastructure-as-Code"><span class="toc-text">Infrastructure as Code</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-China-1"><span class="toc-text">AWS China</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Global"><span class="toc-text">AWS Global</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudFront"><span class="toc-text">CloudFront</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-Links"><span class="toc-text">Useful Links</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
