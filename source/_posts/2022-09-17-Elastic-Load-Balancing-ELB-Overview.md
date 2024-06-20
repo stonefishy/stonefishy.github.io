@@ -1,8 +1,8 @@
 ---
 title: Elastic Load Balancing (ELB) Overview
 date: 2022-10-17 16:01:25
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 ---
 
 {% title h2, What is load balancing %}

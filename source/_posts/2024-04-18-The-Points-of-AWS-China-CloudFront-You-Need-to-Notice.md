@@ -1,8 +1,8 @@
 ---
 title: The Points of AWS China CloudFront You Need to Notice
 date: 2024-04-18 10:16:54
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 swiper: true
 ---
 

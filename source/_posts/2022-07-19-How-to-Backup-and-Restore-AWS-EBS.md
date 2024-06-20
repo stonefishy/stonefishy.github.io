@@ -1,8 +1,8 @@
 ---
 title: How to Backup and Restore AWS EBS
 date: 2022-07-19 16:46:38
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 swiper: true
 swiperImg: "/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp"
 ---

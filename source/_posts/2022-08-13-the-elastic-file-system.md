@@ -1,11 +1,11 @@
 ---
 title: AWS Elastic File System (EFS)：云中的弹性文件存储
 date: 2022-08-13 21:39:36
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 ---
 
-在云计算时代，数据的管理和共享至关重要。`AWS Elastic File System（EFS）`是 Amazon Web Services（AWS）提供的一项云存储服务，旨在满足企业和开发者对可扩展、高可用性文件存储的需求。本文将深入探讨 AWS EFS 的特点、优势、使用案例以及如何开始使用它。
+在Cloud时代，数据的管理和共享至关重要。`AWS Elastic File System（EFS）`是 Amazon Web Services（AWS）提供的一项云存储服务，旨在满足企业和开发者对可扩展、高可用性文件存储的需求。本文将深入探讨 AWS EFS 的特点、优势、使用案例以及如何开始使用它。
 
 ![AWS EFS](/assets/images/aws/aws-efs.webp)
 

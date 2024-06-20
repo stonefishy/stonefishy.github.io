@@ -1,11 +1,11 @@
 ---
 title: AWS Auto Scaling Group - 实现弹性自动扩展的技术指南
 date: 2022-11-15 22:27:54
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 ---
 
-在云计算领域，弹性自动扩展是确保应用程序高可用性和性能的关键组成部分。`AWS Auto Scaling Group（ASG）`是Amazon Web Services（AWS）提供的一项强大服务，可帮助您自动扩展和管理应用程序的资源，以适应不断变化的工作负载需求。本文将深入探讨AWS Auto Scaling Group的技术细节，包括其核心概念、配置选项、最佳实践和实际应用场景。
+在Cloud领域，弹性自动扩展是确保应用程序高可用性和性能的关键组成部分。`AWS Auto Scaling Group（ASG）`是Amazon Web Services（AWS）提供的一项强大服务，可帮助您自动扩展和管理应用程序的资源，以适应不断变化的工作负载需求。本文将深入探讨AWS Auto Scaling Group的技术细节，包括其核心概念、配置选项、最佳实践和实际应用场景。
 {% image /assets/images/aws/aws-asg-capacity.webp, width=600px, alt=AWS Auto Scaling Group %}
 
 ### 理解 AWS Auto Scaling Group（ASG）
@@ -159,4 +159,4 @@ Web应用程序通常会面临不断变化的流量。ASG可帮助您根据实�
 
 ### 结论
 
-AWS Auto Scaling Group（ASG）是云计算中实现弹性自动扩展的重要工具，它使您能够根据需求自动调整资源，同时优化资源使用和成本。通过深入了解ASG的核心概念、配置选项、最佳实践以及实际应用场景，您将能够构建可扩展和具有适应性的云基础架构，以应对不断变化的应用程序和服务需求。
+AWS Auto Scaling Group（ASG）是Cloud中实现弹性自动扩展的重要工具，它使您能够根据需求自动调整资源，同时优化资源使用和成本。通过深入了解ASG的核心概念、配置选项、最佳实践以及实际应用场景，您将能够构建可扩展和具有适应性的云基础架构，以应对不断变化的应用程序和服务需求。

@@ -1,8 +1,8 @@
 ---
 title: Pulumi - A Powerful IaC to manage the cloud infrastructure
 date: 2024-02-11 15:12:13
-categories: 云计算
-tags: [云计算, IaC, AWS, Pulumi, Python]
+categories: Cloud
+tags: [Cloud, IaC, AWS, Pulumi, Python]
 ---
 
 To manage the application cloud infrastructure more efficiently, we can use the `Terraform` for `IaC(Infrastructure as Code)`. But today, we're not going to talk about the Terraform, we're going to talk about the Pulumi. A powerful IaC tool that manages the cloud infrastructure.

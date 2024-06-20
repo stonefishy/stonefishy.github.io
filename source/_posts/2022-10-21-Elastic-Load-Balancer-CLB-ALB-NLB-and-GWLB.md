@@ -1,8 +1,8 @@
 ---
 title: 'Elastic Load Balancer: CLB, ALB, NLB and GWLB'
 date: 2022-10-21 20:23:06
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 ---
 
 ## Classic Load Balancers (v1)

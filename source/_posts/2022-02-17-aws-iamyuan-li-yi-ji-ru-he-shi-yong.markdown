@@ -3,8 +3,8 @@
 title: "AWS IAM原理以及如何使用"
 date: 2022-02-17 23:22:57 +0800
 comments: true
-categories: 云计算
-tags: [云计算, AWS]
+categories: Cloud
+tags: [Cloud, AWS]
 ---
 
 AWS Identity and Access Management（`IAM`）是Amazon Web Services（AWS）提供的身份和访问管理服务，用于安全地管理对AWS资源的访问权限。IAM使您能够精细控制用户、组、角色等实体对AWS服务和资源的访问权限，以确保安全性和合规性。

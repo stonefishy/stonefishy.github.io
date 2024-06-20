@@ -2,7 +2,7 @@
 title: AWS Glue DataBrew - 简化数据准备的利器
 date: 2023-09-05 23:21:33
 categories: 大数据
-tags: [大数据, AWS, 云计算]
+tags: [大数据, AWS, Cloud]
 swiper: true
 ---
 
