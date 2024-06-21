@@ -5,7 +5,6 @@ date: 2022-04-08 17:00:59 +0800
 comments: true
 categories: Cloud
 tags: [Cloud, AWS]
-top: true
 ---
 
 `EC2 Hibernation` 是 Amazon Elastic Compute Cloud (EC2) 服务的一个功能，它允许您将 EC2 实例从运行状态转换为休眠状态，然后再次唤醒它，而不会丢失实例的内存中的数据。这个功能非常适合那些需要保持应用程序状态或长时间运行进程的工作负载。

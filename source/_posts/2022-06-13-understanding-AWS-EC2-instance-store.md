@@ -3,9 +3,6 @@ title: Understanding AWS EC2 Instance Store
 date: 2022-06-13 21:08:54
 categories: Cloud
 tags: [Cloud, AWS]
-top: true
-swiper: true
-swiperImg: "/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp"
 ---
 
 Amazon Web Services (AWS) 的弹性Cloud实例（EC2）为用户提供了多种存储选项，其中之一是实例存储(`Instance Store`)，也被称为本地实例存储或瞬态存储。本文将深入研究 AWS EC2 实例存储，包括其定义、特点、使用场景以及最佳实践。

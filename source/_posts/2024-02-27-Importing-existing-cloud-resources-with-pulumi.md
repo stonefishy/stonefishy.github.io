@@ -3,6 +3,9 @@ title: Importing existing cloud resources with pulumi
 date: 2024-02-27 14:26:24
 categories: Cloud
 tags: [Cloud, IaC, AWS, Pulumi, Python]
+top: true
+swiper: true
+swiperImg: "/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp"
 ---
 
 In many real-world scenarios, cloud infrastructure is already in place before adopting infrastructure as code (IaC) solutions like Pulumi. Pulumi provides a feature called `import` to help manage existing cloud resources within its IaC framework. This feature allows users to import the current state of resources into their Pulumi codebase, making it easier to adopt Pulumi for managing existing infrastructure.

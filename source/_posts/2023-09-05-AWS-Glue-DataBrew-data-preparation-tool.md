@@ -3,7 +3,6 @@ title: AWS Glue DataBrew - 简化数据准备的利器
 date: 2023-09-05 23:21:33
 categories: 大数据
 tags: [大数据, AWS, Cloud]
-swiper: true
 ---
 
 数据准备是数据分析和机器学习的关键步骤之一。`AWS Glue DataBrew` 是 Amazon Web Services（AWS）提供的一项强大工具，旨在帮助数据工程师、数据分析师和数据科学家轻松地准备数据以进行分析、报告和机器学习。本文将深入探讨 AWS Glue DataBrew 的特点、优势、使用场景和如何入门。
