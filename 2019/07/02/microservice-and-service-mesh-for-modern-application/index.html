@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Archives | Andrewsy&#39;s Space</title>
+  <title>微服务与服务网格 - 现代应用架构的进化 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -484,292 +484,603 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp')">
-  <div class="archive-header-title">
-    Archives
-  </div>
-  <div class="archive-header-desc">
-  
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
+        
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    Archives
-  </div>
-  <div class="video-header-desc">
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        微服务与服务网格 - 现代应用架构的进化
+      </span>
+    </div>
+    
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2019-07-02 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/Microservice/" class="post-detail-header_category">
+              Microservice
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 968 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 3min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
-<!-- hash算法 -->
 
 
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>在当今快速发展的软件开发领域，<code>微服务架构</code>和<code>服务网格</code>成为了构建可扩展、灵活和高效应用的核心技术。本文将探讨微服务架构和服务网格的概念、优势以及它们如何共同推动现代应用架构的进化。</p>
+<h2 id="1-微服务架构概述"><a href="#1-微服务架构概述" class="headerlink" title="1. 微服务架构概述"></a>1. 微服务架构概述</h2><div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/microservice/microservice-architecture.png" class="lazyload placeholder" data-srcset="/assets/images/microservice/microservice-architecture.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Microservice Architecture"/></div><span class="image-caption">Microservice Architecture</span></div>
+<p>微服务架构是一种以服务为中心的软件设计方法，将大型应用拆分为一组<code>小型</code>、<code>自治</code>的服务。每个服务都专注于执行特定的业务功能，并通过轻量级通信机制（通常是<code>HTTP</code>或<code>RPC</code>）进行相互通信。微服务架构的核心原则包括：</p>
+<p><strong>服务自治性</strong>：每个微服务都是独立部署、独立扩展和独立管理的。<br><strong>松耦合</strong>：服务之间通过明确定义的接口进行通信，降低了耦合度。<br><strong>技术多样性</strong>：不同的服务可以使用不同的技术栈，选择最适合其需求的技术。</p>
+<p>微服务架构通过将大型系统拆分为小的、可独立部署的服务单元，带来了以下优势：</p>
+<p><strong>灵活性和可扩展性</strong>：每个服务都可以独立部署和扩展，无需影响整个应用。<br><strong>容错性</strong>：一个服务的故障不会影响其他服务的正常运行。<br><strong>团队自治</strong>：不同团队可以独立开发和部署自己的服务，加快了交付速度。</p>
+<h2 id="2-服务网格的崛起"><a href="#2-服务网格的崛起" class="headerlink" title="2. 服务网格的崛起"></a>2. 服务网格的崛起</h2><div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/microservice/service-mesh.png" class="lazyload placeholder" data-srcset="/assets/images/microservice/service-mesh.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Service Mesh Architecture"/></div><span class="image-caption">Service Mesh Architecture</span></div>
+<p>随着微服务架构的广泛采用，<code>服务网格</code>作为其演进的自然延伸，提供了对微服务通信、监控和安全性的增强支持。<span class='pbg danger'>服务网格是一种基础设施层，位于应用程序内部，负责管理服务间的所有通信</span>。其主要特征包括：</p>
+<p><strong>透明的服务间通信</strong>：服务网格通过<code>代理模式</code>处理服务间的所有通信，使服务之间的交互对开发者透明。<br><strong>流量管理和负载均衡</strong>：网格可以<code>智能地路由流量</code>、实施负载均衡，以确保高可用性和性能。<br><strong>安全性和策略执行</strong>：网格提供了对通信进行安全加密和执行策略的能力，如<code>访问控制</code>和<code>流量控制</code>。</p>
+<p>服务网格的出现弥补了微服务架构在通信、可观察性和安全性方面的一些挑战，并使得运维团队能够更好地管理大规模微服务应用。</p>
+<h2 id="3-微服务与服务网格的结合"><a href="#3-微服务与服务网格的结合" class="headerlink" title="3. 微服务与服务网格的结合"></a>3. 微服务与服务网格的结合</h2><p>微服务架构和服务网格的结合，为现代应用架构带来了多重好处：</p>
+<p><strong>运维简化</strong>：服务网格通过集中管理和控制服务间的通信，简化了运维工作，降低了运维成本。<br><strong>增强的安全性</strong>：网格提供了安全的服务间通信和访问控制，有助于保护应用程序免受各种网络攻击。<br><strong>流量管理和控制</strong>：通过服务网格，开发团队可以实现复杂的流量管理策略，如A&#x2F;B测试、金丝雀发布等，而无需修改应用代码。</p>
+<p>微服务架构和服务网格共同推动了现代应用架构的演进。它们通过解耦服务、增强通信和安全性，提升了应用的灵活性、可扩展性和可观察性，使得开发团队能够更快速地响应市场需求，提供更好的用户体验。随着技术的进步和应用场景的不断演化，微服务架构和服务网格将继续发挥重要作用，并不断演化和改进，以满足企业在构建和管理复杂应用时的需求和挑战。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Microservice/" class="">
+              Microservice
+            </a>
+          
+            <a href="/tags/Service-Mesh/" class="">
+              Service Mesh
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2019/07/02/microservice-and-service-mesh-for-modern-application/" target="_blank" title="微服务与服务网格 - 现代应用架构的进化">https://stonefishy.github.io/2019/07/02/microservice-and-service-mesh-for-modern-application/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2020/01/31/mysql-master-slave/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">MySQL主从同步详解与应用场景</div>
+      </div>
+      
+      <!-- <div class="content">
+        引言在大型数据库应用中，数据同步和备份是至关重要的。MySQL主从同步是一种常用的数据同步机制，它能够确保多个数据库服务
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2019/02/16/kafka-high-throughput-low-latency/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Kafka为什么具有高吞吐量和低延迟的特性</div>
+      </div>
+      <!-- <div class="content">
+        Apache Kafka 是一种分布式流处理平台，具有高吞吐量和低延迟的特征，这些特点使其成为处理大规模实时数据流的理想
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
         
         
+          <p>Stay hungry, Stay foolish</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
           
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2022">2022</a>
-            </div>
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
           
-          <li class="post-item" data-aos="fade-left">
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="toc-text">1. 微服务架构概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC%E7%9A%84%E5%B4%9B%E8%B5%B7"><span class="toc-text">2. 服务网格的崛起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC%E7%9A%84%E7%BB%93%E5%90%88"><span class="toc-text">3. 微服务与服务网格的结合</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2022/08/13/the-elastic-file-system/" class="post-img " style="background-size: cover; 
+              <a href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">08-13</span>
+                
+                  <span class="post-date">06-25</span>
+                
               </div>
-              <a class="post-title" href="/2022/08/13/the-elastic-file-system/">AWS Elastic File System (EFS)：云中的弹性文件存储</a>
+              <a class="post-title" href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/">Keras3.0 - A Multi-framework Machine Learning Library</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2022/07/19/how-to-backup-and-restore-aws-ebs/" class="post-img " style="background-size: cover; 
+              <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">07-19</span>
+                
+                  <span class="post-date">06-14</span>
+                
               </div>
-              <a class="post-title" href="/2022/07/19/how-to-backup-and-restore-aws-ebs/">How to Backup and Restore AWS EBS</a>
+              <a class="post-title" href="/2024/06/14/understanding-the-x-frame-options-http-header/">Understanding the X-Frame-Options HTTP Header</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2022/06/13/understanding-aws-ec2-instance-store/" class="post-img " style="background-size: cover; 
+              <a href="/2024/05/15/a-large-movie-review-dataset-for-binary-sementic-analysis/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">06-13</span>
+                
+                  <span class="post-date">05-15</span>
+                
               </div>
-              <a class="post-title" href="/2022/06/13/understanding-aws-ec2-instance-store/">Understanding AWS EC2 Instance Store</a>
+              <a class="post-title" href="/2024/05/15/a-large-movie-review-dataset-for-binary-sementic-analysis/">A Large Movie Review Dataset for Binary Sementic Analysis</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2022/05/01/what-is-aws-ebs-and-how-to-use-it/" class="post-img " style="background-size: cover; 
+              <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">05-01</span>
+                
+                  <span class="post-date">04-18</span>
+                
               </div>
-              <a class="post-title" href="/2022/05/01/what-is-aws-ebs-and-how-to-use-it/">What is AWS EBS and how to use it</a>
+              <a class="post-title" href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/">The Points of AWS China CloudFront You Need to Notice</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2022/04/08/shen-me-shi-aws-ec2-hibernation/" class="post-img " style="background-size: cover; 
+              <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-08</span>
+                
+                  <span class="post-date">03-13</span>
+                
               </div>
-              <a class="post-title" href="/2022/04/08/shen-me-shi-aws-ec2-hibernation/">什么是AWS EC2 Hibernation</a>
+              <a class="post-title" href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/">Migrate a legacy application to AWS Cloud</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-02</span>
-              </div>
-              <a class="post-title" href="/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/">AWS EC2的主要特点和工作方式以及计费模式</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">02-17</span>
-              </div>
-              <a class="post-title" href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/">AWS IAM原理以及如何使用</a>
-            </div>
-          </li>
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2020">2020</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2020/01/31/mysql-master-slave/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">01-31</span>
-              </div>
-              <a class="post-title" href="/2020/01/31/mysql-master-slave/">MySQL主从同步详解与应用场景</a>
-            </div>
-          </li>
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2019">2019</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2019/07/02/microservice-and-service-mesh-for-modern-application/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-02</span>
-              </div>
-              <a class="post-title" href="/2019/07/02/microservice-and-service-mesh-for-modern-application/">微服务与服务网格 - 现代应用架构的进化</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2019/02/16/kafka-high-throughput-low-latency/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">02-16</span>
-              </div>
-              <a class="post-title" href="/2019/02/16/kafka-high-throughput-low-latency/">Kafka为什么具有高吞吐量和低延迟的特性</a>
-            </div>
-          </li>
-        
-      </ul>
+      </div>
     </div>
   </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/2/">Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/13/">13</a><a class="extend next" rel="next" href="/archives/page/4/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/2/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">3 / 13</div>
-    </div>
-    
-      <a href="/archives/page/4/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
 
+    
   </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
