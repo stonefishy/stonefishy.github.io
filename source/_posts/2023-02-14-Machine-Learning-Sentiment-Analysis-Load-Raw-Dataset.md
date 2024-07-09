@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Sentiment Analysis - Load Raw Dataset
 date: 2023-02-14 09:42:45
-categories: AI
+categories: AI/ML
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Understanding Tensorflow for Machine Learning
 date: 2023-01-02 15:26:26
-categories: AI
+categories: AI/ML
 tags: [AI, Machine Learning, Keras, TensorFlow]
 ---
 

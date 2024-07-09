@@ -1,7 +1,7 @@
 ---
 title: The Pile - A Comprehensive Dataset for Training NLP Models
 date: 2023-02-01 10:54:23
-categories: AI
+categories: AI/ML
 tags: [AI, NLP, Machine Learning]
 top: true
 swiper: true

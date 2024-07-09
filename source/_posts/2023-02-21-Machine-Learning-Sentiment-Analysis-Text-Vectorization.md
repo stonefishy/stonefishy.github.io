@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Sentiment Analysis - Text Vectorization
 date: 2023-02-21 14:56:30
-categories: AI
+categories: AI/ML
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis]
 ---
 

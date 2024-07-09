@@ -1,7 +1,7 @@
 ---
 title: A Large Movie Review Dataset for Binary Sementic Analysis
 date: 2023-01-11 16:14:32
-categories: AI
+categories: AI/ML
 tags: [AI, Machine Learning, Keras, TensorFlow, Dataset]
 ---
 
