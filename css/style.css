@@ -3842,11 +3842,12 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   display: flex;
   position: relative;
   flex-direction: column;
-  width: 30rem;
   max-height: 60%;
   padding: 10px 20px;
   margin-top: 100px;
   background-color: #fff;
+  width: 680px;
+  border-radius: 5px;
 }
 .message-box_wrapper .message-box h2 {
   font-size: 1.5rem;
@@ -3884,7 +3885,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   max-height: 80%;
   overflow: auto;
   overflow-x: hidden;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .message-box_wrapper .result-wrapper .search-keyword {
   color: #d63200;
@@ -3897,18 +3898,25 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 .message-box_wrapper .result-wrapper ul {
   list-style-type: none;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0;
 }
 .message-box_wrapper .result-wrapper ul li {
-  padding: 15px 20px;
-  border-radius: 10px;
   margin-bottom: 15px;
-  box-shadow: 0 0 4px 1px rgba(0,0,0,0.12);
   transition: all 0.3s;
   word-wrap: break-word;
+  padding: 10px 10px;
+  background-color: rgba(249,249,250,0.8);
+  box-shadow: none;
+  border-radius: 5px;
 }
 .message-box_wrapper .result-wrapper ul li:hover {
-  box-shadow: 0 0 8px 3px rgba(0,0,0,0.12);
+  background-color: #eff1fb;
+}
+.message-box_wrapper .result-wrapper ul li a {
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5px;
 }
 @media (max-width: 551px) {
   .message-box_wrapper .message-box {
