@@ -3873,10 +3873,12 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   z-index: 2;
   padding: 0.25rem 0.7rem;
   outline: 0;
-  border: 2px solid rgba(24,35,44,0.8);
-  border-radius: 2rem;
   font-size: 14px;
   margin-top: 15px;
+  border: 1px solid #bebfc9;
+  border-radius: 3px;
+  line-height: 30px;
+  color: #262627;
 }
 .message-box_wrapper .result-wrapper {
   max-height: 80%;
