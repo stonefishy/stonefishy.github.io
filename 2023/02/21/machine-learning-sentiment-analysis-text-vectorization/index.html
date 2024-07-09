@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Tag: Sentiment Analysis | Andrewsy&#39;s Space</title>
+  <title>Machine Learning Sentiment Analysis - Text Vectorization | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -485,163 +485,632 @@
 </header>
         <!-- 内容区域 -->
         
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-tagDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="tag-header" style="background-image: url('/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp');">
-  <div class="tag-header-title">
-    Tag
-  </div>
-  <div class="tag-header-desc">
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-    <span class="title" id="tag-header-desc"></span>
-    <script>
-  function typedFn() {
-    const el = '#tag-header-desc';
-    const type = 'tagDetail';
-    let desc = 'Don&#39;t watch the clock; do what it does. Keep going.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Machine Learning Sentiment Analysis - Text Vectorization
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2023-02-21 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/AI/" class="post-detail-header_category">
+              AI
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 929 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 5min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>In previous blog, we discussed about the basics of Sentiment Analysis and load the raw dataset which is IMDb movie reviews. In this blog, we will discuss about text vectorization and how to use it in Sentiment Analysis.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/ai-ml/text-vectorization.png" class="lazyload placeholder" data-srcset="/assets/images/ai-ml/text-vectorization.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Text Vectorization" style="width:800px;"/></div><span class="image-caption">Text Vectorization</span></div>
+
+<h2 id="Text-Vectorization-Methods"><a href="#Text-Vectorization-Methods" class="headerlink" title="Text Vectorization Methods"></a>Text Vectorization Methods</h2><p>Before train the model, we need to convert the text data into numerical data. Text representation is the process of converting text data into a numerical form that can be used for machine learning tasks. There are several ways to represent text data, such as <code>Bag-of-Words</code>, <code>TF-IDF</code>, and <code>Word Embeddings</code>.</p>
+<h3 id="Bag-of-Words-BoW"><a href="#Bag-of-Words-BoW" class="headerlink" title="Bag-of-Words (BoW)"></a>Bag-of-Words (BoW)</h3><p><code>Bag-of-Words (BoW)</code> is a method of text representation that converts text into a word frequency vector. In this representation, the text is treated as a “bag” containing all the words, without considering their order and grammatical structure. The number of times each word appears in the text is recorded, forming a vector. This method ignores the order and context of words but is simple and easy to implement.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/ai-ml/BoW-bag-of-words.png" class="lazyload placeholder" data-srcset="/assets/images/ai-ml/BoW-bag-of-words.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="BoW Text Vectorization" style="width:800px;"/></div><span class="image-caption">BoW Text Vectorization</span></div>
+
+<h3 id="TF-IDF-Term-Frequency-Inverse-Document-Frequency"><a href="#TF-IDF-Term-Frequency-Inverse-Document-Frequency" class="headerlink" title="TF-IDF (Term Frequency-Inverse Document Frequency)"></a>TF-IDF (Term Frequency-Inverse Document Frequency)</h3><p><code>TF-IDF</code> is a statistical method used to evaluate the importance of a word in a document collection or corpus. It consists of two parts:<br><strong>Term Frequency (TF):</strong> The frequency of a word in a document.<br><strong>Inverse Document Frequency (IDF):</strong> The inverse of the document frequency, which measures the general importance of a word across all documents. IDF is calculated by taking the logarithm of the total number of documents divided by the number of documents containing the word.</p>
+<p>The TF-IDF value is the product of TF and IDF, used to measure the importance of a word in a document. The higher the TF-IDF value, the more important the word is in the document.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/ai-ml/TF-IDF.png" class="lazyload placeholder" data-srcset="/assets/images/ai-ml/TF-IDF.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="TF-IDF Text Vectorization" style="width:800px;"/></div><span class="image-caption">TF-IDF Text Vectorization</span></div>
+
+<h3 id="Word-Embeddings"><a href="#Word-Embeddings" class="headerlink" title="Word Embeddings"></a>Word Embeddings</h3><p><code>Word Embedding</code> is a technique that represents words as dense vectors. Unlike traditional <code>Bag-of-Words</code> and <code>TF-IDF</code> methods, Word Embedding captures semantic relationships between words. Through training, these vectors can represent words in a vector space, where words with similar meanings are closer to each other in the vector space. The main advantages of Word Embedding include:<br><strong>Semantic Capture:</strong> It can capture semantic relationships between words, for example, the distance between “king” and “queen” in the vector space will be closer than the distance between “king” and “apple”.<br><strong>Dimensionality Reduction:</strong> Compared to high-dimensional One-Hot encoding, Word Embedding typically uses lower-dimensional vectors to represent words.<br><strong>Context Awareness:</strong> Some advanced Word Embedding techniques (such as BERT and GPT) can capture the meaning of words in different contexts.<br>In deep learning models, Word Embedding is usually used as an input layer to convert text data into numerical vectors, making it easier for neural networks to process.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/ai-ml/word-embedding.png" class="lazyload placeholder" data-srcset="/assets/images/ai-ml/word-embedding.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Word Embedding Text Vectorization" style="width:800px;"/></div><span class="image-caption">Word Embedding Text Vectorization</span></div>
+
+<h2 id="Text-Vectorization"><a href="#Text-Vectorization" class="headerlink" title="Text Vectorization"></a>Text Vectorization</h2><p>In this section, we will discuss about different text vectorization techniques and how to use them in Sentiment Analysis. This method <code>TextVectorization</code> layer in TensorFlow is similar to Bag-of-Words because it converts text into sequences of integer encodings, without considering the order of words. Unlike traditional <code>Bag-of-Words</code> and <code>TF-IDF</code>, the TextVectorization layer is implemented directly in TensorFlow, making it easy to integrate with deep learning models.</p>
+<h3 id="Create-TextVectorization-Layer"><a href="#Create-TextVectorization-Layer" class="headerlink" title="Create TextVectorization Layer"></a>Create TextVectorization Layer</h3><p>Below is the code to covert the text data into numerical data using TextVectorization layer in TensorFlow:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">import</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_text_vectorization_layer</span>(<span class="params">raw_train_ds</span>):</span><br><span class="line">  vectorize_layer = layers.TextVectorization(</span><br><span class="line">    standardize=<span class="string">&#x27;lower_and_strip_punctuation&#x27;</span>,</span><br><span class="line">    max_tokens=config.max_features,</span><br><span class="line">    output_mode=<span class="string">&#x27;int&#x27;</span>,</span><br><span class="line">    output_sequence_length=config.sequence_length <span class="comment"># output sequence length</span></span><br><span class="line">    )</span><br><span class="line">  <span class="comment"># adapt the vectorization layer to the training data</span></span><br><span class="line">  train_text = raw_train_ds.<span class="built_in">map</span>(<span class="keyword">lambda</span> x, y: x)</span><br><span class="line">  vectorize_layer.adapt(train_text)</span><br><span class="line">  <span class="keyword">return</span> vectorize_layer</span><br></pre></td></tr></table></figure>
+
+<p>In the above code, we first import the necessary libraries and load the configuration file. We then define a function <code>create_text_vectorization_layer</code> which takes the raw training dataset as input and returns the TextVectorization layer.</p>
+<p>The <code>TextVectorization</code> layer is initialized with the <code>standardize</code> parameter set to <code>lower_and_strip_punctuation</code>, which converts all text to lowercase and removes any punctuation. The <code>max_tokens</code> parameter is set to <code>config.max_features</code>, which is the maximum number of unique words to keep in the vocabulary. The <code>output_mode</code> parameter is set to <code>int</code>, which means that the output will be integer indices representing the words in the vocabulary. The <code>output_sequence_length</code> parameter is set to <code>config.sequence_length</code>, which is the length of the output sequences.</p>
+<p>We then adapt the vectorization layer to the training data using the <code>adapt</code> method. This method fits the vectorization layer to the vocabulary of the training data, which is used to encode the input text into integer sequences.</p>
+<h3 id="Vectorize-Text-Data"><a href="#Vectorize-Text-Data" class="headerlink" title="Vectorize Text Data"></a>Vectorize Text Data</h3><p>After that, we can use the TextVectorization layer to vectorize the text data. Core code as below:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">vectorize_text</span>(<span class="params">text, label, vectorize_layer</span>):</span><br><span class="line">  text = tf.expand_dims(text, -<span class="number">1</span>) <span class="comment"># add a dimension for the text vectorization layer</span></span><br><span class="line">  <span class="keyword">return</span> vectorize_layer(text), label</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vectorize_dataset</span>(<span class="params">dataset, vectorize_layer</span>):</span><br><span class="line">  vectorized_dataset = dataset.<span class="built_in">map</span>(<span class="keyword">lambda</span> text, label: vectorize_text(text, label, vectorize_layer)) <span class="comment"># vectorize text data</span></span><br><span class="line">  vectorized_dataset = vectorized_dataset.cache().prefetch(buffer_size=tf.data.AUTOTUNE) <span class="comment"># performance optimization</span></span><br><span class="line">  <span class="keyword">return</span> vectorized_dataset</span><br></pre></td></tr></table></figure>
+
+<p>The above code defines two functions: <code>vectorize_text</code> and <code>vectorize_dataset</code>. The <code>vectorize_text</code> function takes the text data and label, and applies the TextVectorization layer to the text data. The <code>vectorize_dataset</code> function takes the raw dataset and the TextVectorization layer, and applies the <code>vectorize_text</code> function to each element in the dataset. The <code>cache</code> and <code>prefetch</code> methods are used to optimize the performance of the dataset.</p>
+<p>The function <code>vectorize_dataset</code> returns the vectorized dataset, which can be used to train the model.</p>
+<p>In next blog, we will talk about build a Sentiment Analysis model using TensorFlow and Keras, and using this vectorized dataset to train the model.</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/AI/" class="">
+              AI
+            </a>
+          
+            <a href="/tags/Machine-Learning/" class="">
+              Machine Learning
+            </a>
+          
+            <a href="/tags/Keras/" class="">
+              Keras
+            </a>
+          
+            <a href="/tags/NLP/" class="">
+              NLP
+            </a>
+          
+            <a href="/tags/Tensorflow/" class="">
+              Tensorflow
+            </a>
+          
+            <a href="/tags/Sentiment-Analysis/" class="">
+              Sentiment Analysis
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2023/02/21/machine-learning-sentiment-analysis-text-vectorization/" target="_blank" title="Machine Learning Sentiment Analysis - Text Vectorization">https://stonefishy.github.io/2023/02/21/machine-learning-sentiment-analysis-text-vectorization/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2023/02/14/machine-learning-sentiment-analysis-load-raw-dataset/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">Machine Learning Sentiment Analysis - Load Raw Dataset</div>
+      </div>
+      
+      <!-- <div class="content">
+        Recently, the ChatGPT is very hot in the NLP community. It i
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2023/05/25/how-to-install-additional-msi-components/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">How to install additional msi components.</div>
+      </div>
+      <!-- <div class="content">
+        Recently, I had the opportunity to work on a project that re
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
 </script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
     
   </div>
-  <div class="mask-box"></div>
-</div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
 
 
-
-<div class="tag">
-  <div class="tag-name">
-    <div class="name" style="background-color: #E8F8F5;">Sentiment Analysis Tag</div>
   </div>
-  <!-- 每一篇文章卡片 -->
-  <!-- hash算法 -->
 
-<section class="posts">
+  <!-- 目录 -->
+  <aside id='l_side'>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-02-21</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/02/21/machine-learning-sentiment-analysis-text-vectorization/">Machine Learning Sentiment Analysis - Text Vectorization</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras/" rel="tag">Keras</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentiment-Analysis/" rel="tag">Sentiment Analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tensorflow/" rel="tag">Tensorflow</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/AI/">AI</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/02/21/machine-learning-sentiment-analysis-text-vectorization/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            In previous blog, we discussed about the basics of Sentiment Analysis and load the raw dataset which is IMDb movie revie
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/02/21/machine-learning-sentiment-analysis-text-vectorization/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/02/21/machine-learning-sentiment-analysis-text-vectorization/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-544e3d61bf1b83a6f15cd3c1734e8cae_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
+      <section class="widget side_blogger">
+  <div class='content'>
     
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-02-14</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/02/14/machine-learning-sentiment-analysis-load-raw-dataset/">Machine Learning Sentiment Analysis - Load Raw Dataset</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
+        
+        
+          <p>Stay hungry, Stay foolish</p>
 
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras/" rel="tag">Keras</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentiment-Analysis/" rel="tag">Sentiment Analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tensorflow/" rel="tag">Tensorflow</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/AI/">AI</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/02/14/machine-learning-sentiment-analysis-load-raw-dataset/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
             </a>
-          </div>
-          <div class="post-content">
-            Recently, the ChatGPT is very hot in the NLP community. It is a transformer-based language model that can generate human
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/02/14/machine-learning-sentiment-analysis-load-raw-dataset/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
+          
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
       </div>
-      <div class="post-img">
-        <a href="/2023/02/14/machine-learning-sentiment-analysis-load-raw-dataset/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
+    
+  </div>
 </section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Text-Vectorization-Methods"><span class="toc-text">Text Vectorization Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bag-of-Words-BoW"><span class="toc-text">Bag-of-Words (BoW)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TF-IDF-Term-Frequency-Inverse-Document-Frequency"><span class="toc-text">TF-IDF (Term Frequency-Inverse Document Frequency)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word-Embeddings"><span class="toc-text">Word Embeddings</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Text-Vectorization"><span class="toc-text">Text Vectorization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-TextVectorization-Layer"><span class="toc-text">Create TextVectorization Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vectorize-Text-Data"><span class="toc-text">Vectorize Text Data</span></a></li></ol></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
 </div>
 
-<div class="w-70">
-  
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">07-04</span>
+                
+              </div>
+              <a class="post-title" href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/">Using Pulumi to Import the AWS Resources of the Other Region</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-25</span>
+                
+              </div>
+              <a class="post-title" href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/">Keras3.0 - A Multi-framework Machine Learning Library</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-14</span>
+                
+              </div>
+              <a class="post-title" href="/2024/06/14/understanding-the-x-frame-options-http-header/">Understanding the X-Frame-Options HTTP Header</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-18</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/">The Points of AWS China CloudFront You Need to Notice</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">03-13</span>
+                
+              </div>
+              <a class="post-title" href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/">Migrate a legacy application to AWS Cloud</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
