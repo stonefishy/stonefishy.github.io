@@ -99,23 +99,24 @@ var searchFunc = function (path, search_id, content_id) {
               "</a>";
             var content = orig_data_content;
             if (first_occur >= 0) {
-              // cut out 100 characters
-              var start = first_occur - 20;
-              var end = first_occur + 80;
+              // cut out 200 characters
+              var start = first_occur - 50;
+              var end = first_occur + 150;
 
               if (start < 0) {
                 start = 0;
               }
 
               if (start == 0) {
-                end = 100;
+                end = 200;
               }
 
               if (end > content.length) {
                 end = content.length;
               }
 
-              var match_content = content.substr(start, end);
+              var match_content = content.substring(start, end);
+              console.log(start, end, end-start, content.length, match_content.length, match_content)
 
               // highlight all keywords
               keywords.forEach(function (keyword) {
