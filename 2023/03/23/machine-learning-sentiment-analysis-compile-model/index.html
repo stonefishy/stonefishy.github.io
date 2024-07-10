@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Understanding AWS EC2 Instance Store | Andrewsy&#39;s Space</title>
+  <title>Machine Learning Sentiment Analysis - Compile Model | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Understanding AWS EC2 Instance Store
+        Machine Learning Sentiment Analysis - Compile Model
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2022-06-13 |
+          <i class="fas fa-calendar"></i> Published in：2023-03-23 |
         </span>
       
 
@@ -520,8 +520,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
+            <a href="/categories/AI-ML/" class="post-detail-header_category">
+              AI/ML
             </a>
           
         </span>
@@ -530,11 +530,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 759 |
+            <i class="fas fa-file-text-o"></i> Words: 1k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 2min |
+            <i class="fas fa-clock"></i> Reading time: 4min |
           </span>
   
           
@@ -561,41 +561,81 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>Amazon Web Services (AWS) 的弹性Cloud实例（EC2）为用户提供了多种存储选项，其中之一是实例存储(<code>Instance Store</code>)，也被称为本地实例存储或瞬态存储。本文将深入研究 AWS EC2 实例存储，包括其定义、特点、使用场景以及最佳实践。</p>
-<h2 class="bamboo-h " id="什么是 EC2 实例存储？z6m9w4n5bz">什么是 EC2 实例存储？</h2><br/>
+        <p>In previous blog, we have built a machine learning model to classify the sentiment of a given text. In this blog, we will introduce how to compile the model.</p>
+<h2 id="Compile-Model"><a href="#Compile-Model" class="headerlink" title="Compile Model"></a>Compile Model</h2><p>After building the model, we need to compile it. Compiling the model involves specifying the loss function, optimizer, and evaluation metric.</p>
+<h3 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h3><p>The loss function is used to measure the difference between the predicted output and the actual output. It is used to minimize the difference between the predicted output and the actual output.</p>
+<p>There are several loss functions available in <code>Keras</code>:</p>
+<ul>
+<li>Binary Crossentropy</li>
+<li>Categorical Crossentropy</li>
+</ul>
+<p><code>损失函数（Loss Function）</code>是机器学习和深度学习中用于衡量模型预测值与真实值之间差异的函数。它的作用是评估模型的预测性能，并指导模型在训练过程中进行参数调整，以最小化预测误差。</p>
+<ul>
+<li><strong>度量误差</strong>：损失函数计算模型预测值与真实值之间的差异，从而度量模型的预测误差。</li>
+<li><strong>优化目标</strong>：损失函数为模型的优化提供了一个明确的目标。在训练过程中，优化算法（如梯度下降）会调整模型的参数，以最小化损失函数的值。</li>
+<li><strong>评估性能</strong>：损失函数的值可以用于评估模型的性能。通常，损失函数的值越小，模型的预测性能越好</li>
+</ul>
+<h3 id="Optimizer"><a href="#Optimizer" class="headerlink" title="Optimizer"></a>Optimizer</h3><p>The optimizer is used to update the weights of the model during training. It adjusts the weights to minimize the loss function. There are several optimizers available in <code>Keras</code>:</p>
+<ul>
+<li>SGD (Stochastic Gradient Descent)</li>
+<li>Adam (Adaptive Moment Estimation)</li>
+<li>Adagrad</li>
+<li>Adadelta</li>
+<li>RMSprop</li>
+</ul>
+<p><code>优化器（Optimizer）</code>是机器学习和深度学习中用于更新模型参数以最小化损失函数的算法。它的作用是通过调整模型的参数，使得损失函数的值尽可能小，从而提高模型的预测性能。</p>
+<ul>
+<li><strong>参数更新</strong>：优化器根据损失函数的梯度信息，计算出模型参数的更新方向和步长，从而更新模型的参数。</li>
+<li><strong>加速收敛</strong>：优化器通过各种策略（如动量、自适应学习率等），加速模型的收敛过程，使得模型更快地达到最优解。</li>
+<li><strong>防止过拟合</strong>：优化器可以通过正则化等技术，防止模型在训练数据上过拟合，提高模型的泛化能力。</li>
+</ul>
+<h3 id="Evaluation-Metric"><a href="#Evaluation-Metric" class="headerlink" title="Evaluation Metric"></a>Evaluation Metric</h3><p>The evaluation metric is used to measure the performance of the model.  There are several evaluation metrics available in <code>Keras</code>:</p>
+<ul>
+<li>Accuracy</li>
+<li>Precision</li>
+<li>Recall</li>
+<li>F1 Score</li>
+<li>AUC (Area Under the Curve)</li>
+</ul>
+<p><code>指标（Metrics）</code>是机器学习和深度学习中用于评估模型性能的量化标准。它们的作用是提供一种客观的方式来衡量模型的预测能力，并帮助用户了解模型在不同方面的表现。</p>
+<ul>
+<li><strong>性能评估</strong>：指标用于评估模型在训练、验证和测试数据上的性能。不同的指标可以衡量模型在不同方面的表现，如准确率、精确率、召回率、F1分数等。</li>
+<li><strong>监控训练过程</strong>：指标可以用于监控模型的训练过程，帮助用户了解模型是否在正确地学习和改进。例如，通过观察训练和验证指标的变化，可以判断模型是否过拟合或欠拟合。</li>
+<li><strong>模型选择</strong>：指标可以用于比较不同模型的性能，从而选择最优的模型。例如，在多个模型中，可以选择在验证数据上表现最好的模型进行进一步的测试和部署。</li>
+</ul>
+<p>Now, let’s compile our model with <code>Binary Crossentropy</code> loss function, <code>Adam</code> optimizer, and <code>Accuracy</code> evaluation metric. Below is code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># compile the model</span></span><br><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">   <span class="comment"># Loss function (二分类交叉熵损失函数), aim to calculate the difference between the predicted and actual values</span></span><br><span class="line">    loss=losses.BinaryCrossentropy(), </span><br><span class="line">    <span class="comment"># A adam optimizer(自适应矩估计优化器)， a popular optimizer for neural networks, aim to minimize the loss function</span></span><br><span class="line">    optimizer=<span class="string">&#x27;adam&#x27;</span>, </span><br><span class="line">    <span class="comment"># Binary Accuracy metric(二分类准确率评估指标)，&gt;0.5 is positive，&lt;0.5 is negative</span></span><br><span class="line">    metrics=[tf.metrics.BinaryAccuracy(threshold=<span class="number">0.5</span>)]</span><br><span class="line">  ) </span><br></pre></td></tr></table></figure>
 
-<div class="note info"><p>EC2 实例存储是 EC2 实例上提供的临时、本地存储选项。这些存储卷是物理存储设备（如硬盘驱动器）的一部分，直接连接到宿主实例，而不是通过网络进行访问。实例存储通常提供了非常高的性能，适用于需要低延迟和高吞吐量的工作负载。</p></div>
-<p><img src="/assets/images/aws/aws-ec2-instancestore-iops.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-ec2-instancestore-iops.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="AWS EC2 Instance Store IOPS"></p>
-<h2 class="bamboo-h " id="实例存储的特点1x8rr9zf2om">实例存储的特点</h2><br/>
+<p>In above code, we have used <code>BinaryCrossentropy</code> loss function, <code>adam</code> optimizer, and <code>BinaryAccuracy</code> metric. We have also set the threshold to 0.5, which means that if the predicted value is greater than 0.5, it is considered as positive, otherwise it is considered as negative. </p>
+<p>Now, we have compiled our model. In next blog, we will introduce the process of training the model.</p>
 
-<p><strong>临时性</strong>：实例存储是临时的，与 EC2 实例的生命周期紧密相连。当 EC2 实例停止、终止或失败时，存储中的数据将不再可用。</p>
-<p><strong>高性能</strong>：实例存储通常提供非常高的 I&#x2F;O 性能，适用于需要大量读写操作的应用程序，如数据库缓存或临时计算。</p>
-<p><strong>低延迟</strong>：由于实例存储直接连接到宿主实例，因此具有非常低的访问延迟，适用于对速度要求极高的工作负载。</p>
-<p><strong>不同于 Amazon EBS</strong>：<wavy>, 与 Amazon Elastic Block Store（EBS）不同，实例存储不需要预配，也没有额外的费用，但缺乏 EBS 提供的持久性和数据备份功能。</wavy></p>
-<h2 class="bamboo-h " id="使用场景2161oclqul7">使用场景</h2><br/>
-
-<p><strong>缓存层</strong>：实例存储适用于临时数据，如缓存层。通过将缓存存储在实例存储上，可以提高读取速度和降低后端存储负担。</p>
-<p><strong>临时计算</strong>：对于需要执行大规模数据处理的任务，实例存储可以用作临时工作空间，以加速计算过程。</p>
-<p><strong>日志存储</strong>：对于需要快速记录大量日志数据的应用程序，实例存储可以提供高性能的日志存储解决方案。</p>
-<h2 class="bamboo-h " id="最佳实践6xr5st7gxlg">最佳实践</h2><br/>
-
-<p><strong>备份重要数据</strong>：由于实例存储是临时性的，重要数据需要备份到持久性存储（如 Amazon EBS 或 Amazon S3）以防止数据丢失。</p>
-<p><strong>了解生命周期</strong>：在使用实例存储时，了解 EC2 实例的生命周期非常重要。确保存储中的数据不会在实例终止时丢失。</p>
-<p><strong>监控性能</strong>：实例存储通常提供高性能，但仍然需要监控其性能以确保正常运行。</p>
-<h2 class="bamboo-h " id="总结68kr3wjzkc0">总结</h2><br/>
-
-<span class='pbg danger'>AWS EC2 实例存储是一种适用于需要高性能和低延迟的临时数据存储的选择。尽管它不适用于持久性数据存储，但在特定场景下，如缓存、临时计算和日志存储，它可以提供卓越的性能和效率</span>。使用实例存储时，请谨记存储临时性质，并采取适当的备份和监控措施，以确保数据的可用性和完整性。
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/Cloud/" class="">
-              Cloud
+            <a href="/tags/AI/" class="">
+              AI
             </a>
           
-            <a href="/tags/AWS/" class="">
-              AWS
+            <a href="/tags/Machine-Learning/" class="">
+              Machine Learning
+            </a>
+          
+            <a href="/tags/Keras/" class="">
+              Keras
+            </a>
+          
+            <a href="/tags/NLP/" class="">
+              NLP
+            </a>
+          
+            <a href="/tags/Tensorflow/" class="">
+              Tensorflow
+            </a>
+          
+            <a href="/tags/Sentiment-Analysis/" class="">
+              Sentiment Analysis
             </a>
           
         </div>
@@ -609,7 +649,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2022/06/13/understanding-aws-ec2-instance-store/" target="_blank" title="Understanding AWS EC2 Instance Store">https://stonefishy.github.io/2022/06/13/understanding-aws-ec2-instance-store/</a>
+    <a href="/2023/03/23/machine-learning-sentiment-analysis-compile-model/" target="_blank" title="Machine Learning Sentiment Analysis - Compile Model">https://stonefishy.github.io/2023/03/23/machine-learning-sentiment-analysis-compile-model/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -631,16 +671,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2022/05/01/what-is-aws-ebs-and-how-to-use-it/" class="post-nav-link">
+    <a href="/2023/03/23/machine-learning-sentiment-analysis-train-model/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">What is AWS EBS and how to use it</div>
+        <div class="title-text">Machine Learning Sentiment Analysis - Train Model</div>
       </div>
       
       <!-- <div class="content">
-        Amazon Elastic Block Store (EBS) 是 Amazon Web Services (AWS)
+        In previous blog, we have built a tensorflow model to classi
       </div> -->
     </a>
   </div>
@@ -651,15 +691,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2022/07/19/how-to-backup-and-restore-aws-ebs/" class="post-nav-link">
+    <a href="/2023/05/25/how-to-install-additional-msi-components/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">How to Backup and Restore AWS EBS</div>
+        <div class="title-text">How to install additional msi components.</div>
       </div>
       <!-- <div class="content">
-        在Amazon Web Services（AWS）中，Snapshot是一种备份和恢复Amazon Elastic Bl
+        Recently, I had the opportunity to work on a project that re
       </div> -->
     </a>
   </div>
@@ -797,7 +837,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%20EC2%20%E5%AE%9E%E4%BE%8B%E5%AD%98%E5%82%A8%EF%BC%9Fz6m9w4n5bz"><span class="toc-text">什么是 EC2 实例存储？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%AD%98%E5%82%A8%E7%9A%84%E7%89%B9%E7%82%B91x8rr9zf2om"><span class="toc-text">实例存储的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF2161oclqul7"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B56xr5st7gxlg"><span class="toc-text">最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%9368kr3wjzkc0"><span class="toc-text">总结</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Compile-Model"><span class="toc-text">Compile Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Loss-Function"><span class="toc-text">Loss Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Optimizer"><span class="toc-text">Optimizer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-Metric"><span class="toc-text">Evaluation Metric</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
