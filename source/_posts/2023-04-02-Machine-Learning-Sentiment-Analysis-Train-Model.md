@@ -5,7 +5,7 @@ categories: AI/ML
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis]
 ---
 
-In previous blog, we have built a tensorflow model to classify sentiments of movie reviews base on tensorflow and keras high level API. In this blog, we will train the model on the movie review dataset to improve the accuracy of the model.
+In previous blog, we have built a tensorflow model to classify sentiments of movie reviews base on tensorflow and keras high level API, and compile it. In this blog, we will train the model on the movie review dataset to improve the accuracy of the model.
 
 ## Train Model
 To train the model, we need to pass the training dataset` and validation dataset into the model. The `training dataset` is used to train the model and the `validation dataset` is used to evaluate the model's performance. Beside, we also need to specify the number of epochs to train the model.
