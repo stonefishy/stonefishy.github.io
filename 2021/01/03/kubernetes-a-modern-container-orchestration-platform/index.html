@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Archives | Andrewsy&#39;s Space</title>
+  <title>Kubernetes - 现代容器编排平台 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -484,280 +484,644 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp')">
-  <div class="archive-header-title">
-    Archives
-  </div>
-  <div class="archive-header-desc">
-  
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
+        
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    Archives
-  </div>
-  <div class="video-header-desc">
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Kubernetes - 现代容器编排平台
+      </span>
+    </div>
+    
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2021-01-03 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/DevOps/" class="post-detail-header_category">
+              DevOps
+            </a>
+          
+            <a href="/categories/DevOps/Cloud-Native/" class="post-detail-header_category">
+              Cloud Native
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 1.6k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 5min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
-<!-- hash算法 -->
 
 
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p><code>Kubernetes（简称为K8s）</code>是一个开源的<code>容器编排平台</code>，它以自动化容器部署、扩展和操作为目标，是现代<code>云原生</code>应用的重要基石。我们将探讨下Kubernetes的起源、整体架构、核心组件及其工作原理，全面理解这一强大工具的作用与运作方式。</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>Kubernetes项目最初由<code>Google</code>在2014年发布，并且迅速开源化。其灵感来自于Google内部的Borg系统，Borg系统用于管理Google的大规模应用程序容器化，实现了高效的资源管理和任务调度。Kubernetes的目标是提供一个开放、灵活和可移植的容器编排解决方案，使得开发者能够更轻松地部署、扩展和管理容器化应用。</p>
+<h2 id="Kubernetes的整体架构"><a href="#Kubernetes的整体架构" class="headerlink" title="Kubernetes的整体架构"></a>Kubernetes的整体架构</h2><p>Kubernetes的架构设计非常模块化和分布式，核心设计理念包括可扩展性、自动化、声明式配置和自愈能力。下图为Kubernetes的架构图：</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-architecture.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-architecture.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="High Level Architecture of Kubernetes" style="width:800px;"/></div><span class="image-caption">High Level Architecture of Kubernetes</span></div>
+
+<p>Kubernetes的主要组成部分，主要有<code>控制平面（Control Plane）</code>也就是Master节点和节点（Node）两大部分。</p>
+<h3 id="Master节点"><a href="#Master节点" class="headerlink" title="Master节点"></a>Master节点</h3><ul>
+<li><strong>kube-apiserver</strong>: Kubernetes的API服务器，作为所有操作的入口，负责接收和处理来自用户或其他组件的API请求。</li>
+<li><strong>kube-controller-manager</strong>: 各种控制器的集合，负责管理集群状态、节点控制和工作负载的调度。</li>
+<li><strong>kube-scheduler</strong>: 负责将新创建的Pod调度到集群内的节点上，根据资源需求和约束条件选择合适的节点。</li>
+<li><strong>etcd</strong>: 分布式键值存储系统，用于保存集群的状态和配置信息，作为整个Kubernetes集群的后端数据库。</li>
+</ul>
+<h3 id="节点（Node）"><a href="#节点（Node）" class="headerlink" title="节点（Node）"></a>节点（Node）</h3><ul>
+<li><strong>kubelet</strong>: 运行在每个节点上的代理服务，负责与Master节点通信，并管理节点上的Pod生命周期。</li>
+<li><strong>kube-proxy</strong>: 负责为Service提供网络代理和负载均衡服务，实现集群内部服务的访问。</li>
+</ul>
+<p>除了上面的一些核心组件外，还有<code>kubectl</code>命令行工具、网络插件、容器运行时（如Docker、Containerd）等。<br>-<strong>kubectl</strong>: Kubernetes命令行工具，用于与集群进行交互。<br>-<strong>网络插件</strong>: 负责为Pod提供网络连接和服务发现，例如Flannel、Calico等。<br>-<strong>容器运行时</strong>: 负责运行和管理容器，例如Docker、Containerd等。</p>
+<h2 id="Kubernetes的工作原理"><a href="#Kubernetes的工作原理" class="headerlink" title="Kubernetes的工作原理"></a>Kubernetes的工作原理</h2><p>Kubernetes通过一系列的控制循环（control loops）和声明式API来管理和调度容器化应用。其工作原理可以简述为以下几个步骤：</p>
+<ol>
+<li><p><strong>定义资源对象</strong>: 用户使用Kubernetes提供的API定义应用程序的所需状态，例如<code>Pod</code>、<code>Service</code>、<code>Deployment</code>等。</p>
+</li>
+<li><p><strong>API服务器处理请求</strong>: 所有的管理操作通过<code>kube-apiserver</code>处理，<code>kube-apiserver</code>接收到API请求后将操作存储到etcd中，并更新集群状态。</p>
+</li>
+<li><p><strong>控制器管理器监控状态</strong>: <code>kube-controller-manager</code>中的各种控制器（如ReplicaSet控制器、Deployment控制器）定期检查当前集群状态，确保实际状态与期望状态一致。</p>
+</li>
+<li><p><strong>调度器选择节点</strong>: 当有新的Pod需要调度时，<code>kube-scheduler</code>根据调度算法选择合适的节点，并将Pod分配到该节点上。</p>
+</li>
+<li><p><strong>节点上的kubelet管理Pod</strong>: 每个节点上的<code>kubelet</code>根据Master节点下发的<code>Pod</code>清单，通过容器运行时（如Docker、Containerd）运行和监控Pod中的容器。</p>
+</li>
+<li><p><strong>网络代理负责服务访问</strong>: <code>kube-proxy</code>在每个节点上维护着<code>Service</code>和<code>Pod</code> IP的映射关系，为Service提供集群内部负载均衡和访问。</p>
+</li>
+</ol>
+<p>通过这种方式，Kubernetes提供了高度自动化的容器编排能力，使得开发者可以专注于应用程序的开发和业务逻辑，而无需关心底层基础设施的管理和维护。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>我们可以通过一个具体的例子来演示如何在Kubernetes集群上部署两个nginx容器，并且使其可以从外部访问。</p>
+<h3 id="1-创建nginx-Deployment"><a href="#1-创建nginx-Deployment" class="headerlink" title="1. 创建nginx Deployment"></a>1. 创建nginx Deployment</h3><p>首先，我们需要定义一个Deployment资源，用来描述nginx容器的部署和运行规则。我们指定了一个Pod模板，其中包含一个nginx容器, 并设置副本数为2，表示我们希望运行两个nginx实例。 该容器使用nginx:latest镜像，并在容器内部打开了80端口用于HTTP服务。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">2</span>  <span class="comment"># 指定副本数为2个</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span>  <span class="comment"># 选择带有标签&quot;app: nginx&quot;的Pod</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span>  <span class="comment"># 给Pod打上标签&quot;app: nginx&quot;</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:latest</span>  <span class="comment"># 使用nginx镜像</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span>  <span class="comment"># 容器内部监听端口80</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-暴露nginx服务"><a href="#2-暴露nginx服务" class="headerlink" title="2. 暴露nginx服务"></a>2. 暴露nginx服务</h3><p>接下来，我们需要创建一个Service资源来公开nginx容器，使其可以从集群外部访问。我们选择标签为”app: nginx”的Pod来提供服务。通过设置type: LoadBalancer，Kubernetes将根据云提供商的支持自动创建一个外部负载均衡器，并分配一个外部IP地址或DNS名来访问nginx服务。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-service</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span>  <span class="comment"># 匹配标签为&quot;app: nginx&quot;的Pod</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span>  <span class="comment"># Service端口，集群内部访问端口</span></span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">80</span>  <span class="comment"># Pod中nginx容器的端口</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">LoadBalancer</span>  <span class="comment"># 指定Service类型为LoadBalancer，用于外部暴露</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Kubernetes工作流程概述"><a href="#3-Kubernetes工作流程概述" class="headerlink" title="3. Kubernetes工作流程概述"></a>3. Kubernetes工作流程概述</h3><p>在部署nginx容器并暴露外部访问的过程中，Kubernetes的各个组件扮演了不同的角色：</p>
+<ul>
+<li>API服务器 (kube-apiserver)：接收到Deployment和Service的定义请求，并将它们存储到etcd中。</li>
+<li>调度器 (kube-scheduler)：根据Pod的调度需求，选择合适的节点来运行nginx Pod。</li>
+<li>控制器管理器 (kube-controller-manager)：监控Deployment资源，确保运行着指定数量的nginx Pod副本。</li>
+<li>etcd：作为后端数据库存储整个集群的状态和配置信息。</li>
+<li>kubelet：在每个节点上运行并监控nginx Pod。</li>
+<li>kube-proxy：负责在集群内部实现Service的负载均衡和访问规则。</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Kubernetes作为现代容器编排平台的核心技术，通过其模块化的架构和强大的自动化能力，为云原生应用的部署和运维带来了革命性的变化。深入理解Kubernetes的起源、架构和工作原理，非常有助于我们开发和运维人员更好地利用这一技术，构建可靠、可扩展和高效的云原生应用。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Kubernetes/" class="">
+              Kubernetes
+            </a>
+          
+            <a href="/tags/Cloud-Native/" class="">
+              Cloud Native
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/" target="_blank" title="Kubernetes - 现代容器编排平台">https://stonefishy.github.io/2021/01/03/kubernetes-a-modern-container-orchestration-platform/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2020/01/31/mysql-master-slave/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">MySQL主从同步详解与应用场景</div>
+      </div>
+      
+      <!-- <div class="content">
+        引言在大型数据库应用中，数据同步和备份是至关重要的。MySQL主从同步是一种常用的数据同步机制，它能够确保多个数据库服务
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">AWS IAM原理以及如何使用</div>
+      </div>
+      <!-- <div class="content">
+        AWS Identity and Access Management（IAM）是Amazon Web Services（
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
         
         
+          <p>Stay hungry, Stay foolish</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
           
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2015">2015</a>
-            </div>
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
           
-          <li class="post-item" data-aos="fade-left">
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B7%E6%BA%90"><span class="toc-text">起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes%E7%9A%84%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">Kubernetes的整体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Master%E8%8A%82%E7%82%B9"><span class="toc-text">Master节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89"><span class="toc-text">节点（Node）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">Kubernetes的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BAnginx-Deployment"><span class="toc-text">1. 创建nginx Deployment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9A%B4%E9%9C%B2nginx%E6%9C%8D%E5%8A%A1"><span class="toc-text">2. 暴露nginx服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Kubernetes%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-text">3. Kubernetes工作流程概述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-text">最后</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2015/12/05/using-nginx-in-mac-os-x/" class="post-img " style="background-size: cover; 
+              <a href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">12-05</span>
+                
+                  <span class="post-date">07-04</span>
+                
               </div>
-              <a class="post-title" href="/2015/12/05/using-nginx-in-mac-os-x/">Using Nginx in Mac OS X</a>
+              <a class="post-title" href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/">Using Pulumi to Import the AWS Resources of the Other Region</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2015/11/22/code-review-with-pull-request/" class="post-img " style="background-size: cover; 
+              <a href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">11-22</span>
+                
+                  <span class="post-date">06-25</span>
+                
               </div>
-              <a class="post-title" href="/2015/11/22/code-review-with-pull-request/">代码审查之Pull Request</a>
+              <a class="post-title" href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/">Keras3.0 - A Multi-framework Machine Learning Library</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2015/11/18/ruby-practice-16/" class="post-img " style="background-size: cover; 
+              <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">11-18</span>
+                
+                  <span class="post-date">06-14</span>
+                
               </div>
-              <a class="post-title" href="/2015/11/18/ruby-practice-16/">Ruby修炼之道(16)</a>
+              <a class="post-title" href="/2024/06/14/understanding-the-x-frame-options-http-header/">Understanding the X-Frame-Options HTTP Header</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2015/11/17/ruby-practice-15/" class="post-img " style="background-size: cover; 
+              <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">11-17</span>
+                
+                  <span class="post-date">04-18</span>
+                
               </div>
-              <a class="post-title" href="/2015/11/17/ruby-practice-15/">Ruby修炼之道(15)</a>
+              <a class="post-title" href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/">The Points of AWS China CloudFront You Need to Notice</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2015/11/12/ruby-practice-14/" class="post-img " style="background-size: cover; 
+              <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">11-12</span>
+                
+                  <span class="post-date">03-13</span>
+                
               </div>
-              <a class="post-title" href="/2015/11/12/ruby-practice-14/">Ruby修炼之道(14)</a>
+              <a class="post-title" href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/">Migrate a legacy application to AWS Cloud</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">11-11</span>
-              </div>
-              <a class="post-title" href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">How to make the octopress adapt OS X EI Capitan</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2015/10/26/ruby-practice-13/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">10-26</span>
-              </div>
-              <a class="post-title" href="/2015/10/26/ruby-practice-13/">Ruby修炼之道(13)</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2015/10/13/ruby-practice-12/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">10-13</span>
-              </div>
-              <a class="post-title" href="/2015/10/13/ruby-practice-12/">Ruby修炼之道(12)</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2015/09/28/ruby-practice-11/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">09-28</span>
-              </div>
-              <a class="post-title" href="/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2015/09/23/the-initialization-of-the-angular-ngmodel/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">09-23</span>
-              </div>
-              <a class="post-title" href="/2015/09/23/the-initialization-of-the-angular-ngmodel/">The initialization of the angular ngModel</a>
-            </div>
-          </li>
-        
-      </ul>
+      </div>
     </div>
   </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/5/">Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/14/">14</a><a class="extend next" rel="next" href="/archives/page/7/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/5/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">6 / 14</div>
-    </div>
-    
-      <a href="/archives/page/7/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
 
+    
   </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
