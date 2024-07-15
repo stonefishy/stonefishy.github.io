@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Archives | Andrewsy&#39;s Space</title>
+  <title>深入理解 Kubernetes 中的常见资源类型 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -484,298 +484,669 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp')">
-  <div class="archive-header-title">
-    Archives
-  </div>
-  <div class="archive-header-desc">
-  
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
+        
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    Archives
-  </div>
-  <div class="video-header-desc">
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        深入理解 Kubernetes 中的常见资源类型
+      </span>
+    </div>
+    
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2021-02-15 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/DevOps/" class="post-detail-header_category">
+              DevOps
+            </a>
+          
+            <a href="/categories/DevOps/Cloud-Native/" class="post-detail-header_category">
+              Cloud Native
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 1.2k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 4min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
-<!-- hash算法 -->
 
 
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>在 <code>Kubernetes</code> 中，资源类型被称为 <code>kind</code>，每种 kind 对应着 Kubernetes API 中的一个特定对象。了解和正确使用这些资源类型对于有效管理和部署应用程序至关重要。本文将详细介绍几种常见的 Kubernetes 资源类型，包括它们的作用、示例和适用场景。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-kind.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-kind.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" style="width:800px;"/></div></div>
+
+<h2 id="1-Pod"><a href="#1-Pod" class="headerlink" title="1. Pod"></a>1. Pod</h2><p><strong>作用：</strong><br><code>Pod</code> 是 Kubernetes 中<code>最基本的部署单元</code>，可以包含一个或多个容器。它们共享存储、网络和一个生命周期。<code>Pod</code> 是临时性的实例，可以随着节点的重新调度而消失。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">nginx:latest</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>单个容器的应用程序部署。</li>
+<li>多个紧密耦合的容器需要共享资源和网络栈的情况。</li>
+</ul>
+<h2 id="2-Service"><a href="#2-Service" class="headerlink" title="2. Service"></a>2. Service</h2><p><strong>作用：</strong><br><code>Service</code> 定义了一组逻辑上相同的 Pod 的访问方式。它为这些 Pod 提供了稳定的网络地址和一个恒定的DNS名称，以及负载均衡访问这些 Pod 的能力。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-service</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>在集群内部或集群外部暴露应用程序。</li>
+<li>提供负载均衡和服务发现能力。</li>
+<li>实现应用程序的高可用和弹性伸缩。</li>
+</ul>
+<h2 id="3-Deployment"><a href="#3-Deployment" class="headerlink" title="3. Deployment"></a>3. Deployment</h2><p><strong>作用：</strong><br><code>Deployment</code> 是 Kubernetes 中用来管理一个可扩展的 Pod 集合，它们共享配置。Deployment 控制 Pod 的创建、更新和删除策略，支持<code>滚动更新</code>和<code>版本回退</code>。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">          <span class="attr">image:</span> <span class="string">nginx:latest</span></span><br><span class="line">          <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>部署和管理多个相同的 Pod。</li>
+<li>自动扩容和缩容。</li>
+<li>管理应用程序的部署和扩展。</li>
+<li>实现应用程序的无缝更新和回滚。</li>
+</ul>
+<h2 id="4-Namespace"><a href="#4-Namespace" class="headerlink" title="4. Namespace"></a>4. Namespace</h2><p><strong>作用：</strong><br><code>Namespace</code> 是 Kubernetes 中的一个逻辑隔离的概念，它可以用来将资源划分到不同的项目、团队或环境中。<code>Namespace</code> 提供了一种多租户的方式来将集群中的资源划分为多个虚拟分组。每个 Namespace 提供了对资源的独立隔离和命名范围。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Namespace</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">development</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>实现资源的逻辑分组，使得不同团队或项目可以共享同一个集群。</li>
+<li>实现资源的隔离, 将不同环境（如开发、测试、生产）的资源隔离开来。</li>
+<li>实现多团队或多项目在同一个集群内部的资源管理和隔离。</li>
+</ul>
+<h2 id="5-ConfigMap"><a href="#5-ConfigMap" class="headerlink" title="5. ConfigMap"></a>5. ConfigMap</h2><p><strong>作用：</strong><br><code>ConfigMap</code> 用来将配置数据与应用程序分离。它可以存储文本数据，可以通过 <code>Volume</code> 或<code>环境变量</code>注入到 Pod 中。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-config</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">nginx.conf:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    server &#123;</span></span><br><span class="line"><span class="string">      listen 80;</span></span><br><span class="line"><span class="string">      server_name localhost;</span></span><br><span class="line"><span class="string">      location / &#123;</span></span><br><span class="line"><span class="string">        root /usr/share/nginx/html;</span></span><br><span class="line"><span class="string">        index index.html;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>存储应用程序的配置信息, 将应用程序的配置信息分离出来，支持动态配置。</li>
+<li>实现应用程序的配置管理, 提供统一的配置中心, 降低配置管理的复杂度</li>
+<li>与应用程序代码分离配置，使配置更易于管理和更新。</li>
+</ul>
+<h2 id="6-Secret"><a href="#6-Secret" class="headerlink" title="6. Secret"></a>6. Secret</h2><p><strong>作用：</strong><br><code>Secret</code> 用来存储敏感数据，如密码、API 密钥等。它以加密方式存储，并且可以以安全的方式被 Pod 使用. <code>Secret</code>可以被用来保存 Docker 镜像、私有镜像仓库的密码、TLS 证书等。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Secret</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-secret</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">Opaque</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">username:</span> <span class="string">YWRtaW4=</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">MWYyZDFlMmU2N2Rm</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>存储和管理敏感数据，如数据库密码、TLS 证书等。</li>
+<li>将敏感数据以安全的方式注入到 Pod 中。</li>
+</ul>
+<h2 id="7-PersistentVolume"><a href="#7-PersistentVolume" class="headerlink" title="7. PersistentVolume"></a>7. PersistentVolume</h2><p><strong>作用：</strong><br><code>PersistentVolume (PV)</code> 是集群中由管理员静态配置的存储资源, 它可以用来持久化存储应用程序的数据, 供 Pod 使用。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolume</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">pv-1</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">capacity:</span></span><br><span class="line">    <span class="attr">storage:</span> <span class="string">5Gi</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ReadWriteOnce</span></span><br><span class="line">  <span class="attr">persistentVolumeReclaimPolicy:</span> <span class="string">Recycle</span></span><br><span class="line">  <span class="attr">storageClassName:</span> <span class="string">slow</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>持久化存储应用程序的数据，如数据库文件。</li>
+<li>保证数据持久性和数据的跨 Pod 使用。</li>
+</ul>
+<h2 id="8-PersistentVolumeClaim"><a href="#8-PersistentVolumeClaim" class="headerlink" title="8. PersistentVolumeClaim"></a>8. PersistentVolumeClaim</h2><p><strong>作用：</strong><br><code>PersistentVolumeClaim (PVC)</code> 是 <code>Pod</code> 对 <code>PersistentVolume</code> 的请求, 用于获取持久化存储资源。它可以用来动态申请 PV 资源, 供 Pod 使用。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolumeClaim</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-pvc</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ReadWriteOnce</span></span><br><span class="line">  <span class="attr">resources:</span></span><br><span class="line">    <span class="attr">requests:</span></span><br><span class="line">      <span class="attr">storage:</span> <span class="string">1Gi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过理解和有效使用这些 <code>Kubernetes</code> 资源类型，可以更好地管理和部署容器化应用程序。每种资源类型都有其独特的作用和使用场景，根据实际需求和部署策略选择合适的资源类型是非常重要的。Kubernetes 的灵活性和强大的管理能力使得它成为现代云原生应用部署和管理的首选平台之一。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Kubernetes/" class="">
+              Kubernetes
+            </a>
+          
+            <a href="/tags/Cloud-Native/" class="">
+              Cloud Native
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/" target="_blank" title="深入理解 Kubernetes 中的常见资源类型">https://stonefishy.github.io/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">Kubernetes - 现代容器编排平台</div>
+      </div>
+      
+      <!-- <div class="content">
+        Kubernetes（简称为K8s）是一个开源的容器编排平台，它以自动化容器部署、扩展和操作为目标，是现代云原生应用的重
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">AWS IAM原理以及如何使用</div>
+      </div>
+      <!-- <div class="content">
+        AWS Identity and Access Management（IAM）是Amazon Web Services（
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
         
         
+          <p>Stay hungry, Stay foolish</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
           
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2018">2018</a>
-            </div>
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
           
-          <li class="post-item" data-aos="fade-left">
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Pod"><span class="toc-text">1. Pod</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Service"><span class="toc-text">2. Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Deployment"><span class="toc-text">3. Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Namespace"><span class="toc-text">4. Namespace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-ConfigMap"><span class="toc-text">5. ConfigMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Secret"><span class="toc-text">6. Secret</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-PersistentVolume"><span class="toc-text">7. PersistentVolume</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-PersistentVolumeClaim"><span class="toc-text">8. PersistentVolumeClaim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2018/01/05/java-shuang-qin-weipai-jizi/" class="post-img " style="background-size: cover; 
+              <a href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">01-05</span>
+                
+                  <span class="post-date">07-04</span>
+                
               </div>
-              <a class="post-title" href="/2018/01/05/java-shuang-qin-weipai-jizi/">Java的双亲委派机制是什么？有哪些方式可以打破双亲委派机制</a>
+              <a class="post-title" href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/">Using Pulumi to Import the AWS Resources of the Other Region</a>
             </div>
-          </li>
+          </div>
         
-          
+          <div class="aside-list-item">
             
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2017">2017</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
             
+            
+
             <div class="post-img-box">
-              <a href="/2017/05/19/design-pattern-singleton/" class="post-img " style="background-size: cover; 
+              <a href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">05-19</span>
+                
+                  <span class="post-date">06-25</span>
+                
               </div>
-              <a class="post-title" href="/2017/05/19/design-pattern-singleton/">设计模式之单例模式详解与应用</a>
+              <a class="post-title" href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/">Keras3.0 - A Multi-framework Machine Learning Library</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2017/04/30/solid-principle/" class="post-img " style="background-size: cover; 
+              <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-30</span>
+                
+                  <span class="post-date">06-14</span>
+                
               </div>
-              <a class="post-title" href="/2017/04/30/solid-principle/">SOLID原则：构建稳健软件的五大支柱</a>
+              <a class="post-title" href="/2024/06/14/understanding-the-x-frame-options-http-header/">Understanding the X-Frame-Options HTTP Header</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/" class="post-img " style="background-size: cover; 
+              <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">03-16</span>
+                
+                  <span class="post-date">04-18</span>
+                
               </div>
-              <a class="post-title" href="/2017/03/16/liao-liao-qian-duan-you-hua-shou-duan-fang-dou/">聊聊前端优化手段防抖</a>
+              <a class="post-title" href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/">The Points of AWS China CloudFront You Need to Notice</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/" class="post-img " style="background-size: cover; 
+              <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">02-23</span>
+                
+                  <span class="post-date">03-13</span>
+                
               </div>
-              <a class="post-title" href="/2017/02/23/yi-ge-mian-fei-gao-zhi-liang-de-tu-pian-fen-xiang-ping-tai/">一个免费高质量的图片分享平台</a>
+              <a class="post-title" href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/">Migrate a legacy application to AWS Cloud</a>
             </div>
-          </li>
+          </div>
         
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2016">2016</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2016/03/01/minimum-size-subarray-sum/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-01</span>
-              </div>
-              <a class="post-title" href="/2016/03/01/minimum-size-subarray-sum/">最短子数组之和</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">02-05</span>
-              </div>
-              <a class="post-title" href="/2016/02/05/shuang-zhi-zhen-suan-fa-zhi-liang-shu-zhi-he/">双指针算法之两数之和</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2016/01/25/shuang-zhi-zhen-suan-fa/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">01-25</span>
-              </div>
-              <a class="post-title" href="/2016/01/25/shuang-zhi-zhen-suan-fa/">双指针算法</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2016/01/12/how-to-fix-gem-filepermissionerror/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">01-12</span>
-              </div>
-              <a class="post-title" href="/2016/01/12/how-to-fix-gem-filepermissionerror/">How to fix Gem FilePermissionError</a>
-            </div>
-          </li>
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2015">2015</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2015/12/28/ruby-practice-18/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">12-28</span>
-              </div>
-              <a class="post-title" href="/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
-            </div>
-          </li>
-        
-      </ul>
+      </div>
     </div>
   </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/4/">Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/14/">14</a><a class="extend next" rel="next" href="/archives/page/6/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/4/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">5 / 14</div>
-    </div>
-    
-      <a href="/archives/page/6/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
 
+    
   </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
