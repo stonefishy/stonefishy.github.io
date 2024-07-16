@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Category: DevOps | Andrewsy&#39;s Space</title>
+  <title>Kubernetes之RBAC授权模型 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -485,216 +485,622 @@
 </header>
         <!-- 内容区域 -->
         
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-categoryDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="category-header"  style="background-image:url('/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp')">
-  <div class="category-header-title">
-    Category
-  </div>
-  <div class="category-header-desc">
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Kubernetes之RBAC授权模型
+      </span>
+    </div>
     
-      <span class="title" id="category-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#category-header-desc';
-    const type = 'categoryDetail';
-    let desc = 'Believe you can, and you&#39;re halfway there.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2021-03-02 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/DevOps/" class="post-detail-header_category">
+              DevOps
+            </a>
+          
+            <a href="/categories/DevOps/Cloud-Native/" class="post-detail-header_category">
+              Cloud Native
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 785 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 2min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
 
-<div class="category">
-  <div class="category-name">
-    <div class="name" style="background-color: #F8F9F9;">DevOps Category</div>
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p><code>Kubernetes</code>中的<code>RBAC（Role-Based Access Control）</code>是一种强大的授权模型，用于管理对集群资源的访问权限。RBAC允许集群管理员定义谁可以执行哪些操作（例如创建、查看、修改或删除资源），并在资源级别进行精确的控制。以下是对Kubernetes RBAC授权模型的理解：</p>
+<h2 id="RBAC-核心概念"><a href="#RBAC-核心概念" class="headerlink" title="RBAC 核心概念"></a>RBAC 核心概念</h2><p>在Kubernetes中，RBAC基于四个核心对象：<code>Role</code>、<code>ClusterRole</code>、<code>RoleBinding</code>和<code>ClusterRoleBinding</code>。下面将对这些对象进行详细介绍。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-rbac.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-rbac.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes RBAC" style="width:600px;"/></div><span class="image-caption">Kubernetes RBAC</span></div>
+
+<h3 id="Role和ClusterRole："><a href="#Role和ClusterRole：" class="headerlink" title="Role和ClusterRole："></a>Role和ClusterRole：</h3><ul>
+<li><strong>Role</strong>：用于定义在<em>命名空间（Namespace）</em>级别的权限。它包含一组规则，规定了用户、用户组或服务账号在特定命名空间内可以访问的资源类型及其操作权限。</li>
+<li><strong>ClusterRole</strong>：类似于Role，但是作用于整个<em>集群（Cluster）</em>。ClusterRole定义了集群范围内的权限，不受命名空间限制。</li>
+</ul>
+<h3 id="RoleBinding和ClusterRoleBinding："><a href="#RoleBinding和ClusterRoleBinding：" class="headerlink" title="RoleBinding和ClusterRoleBinding："></a>RoleBinding和ClusterRoleBinding：</h3><ul>
+<li><strong>RoleBinding</strong>：用于将特定的Role绑定到用户、用户组或服务账号，从而赋予它们定义的权限。RoleBinding在命名空间内生效。</li>
+<li><strong>ClusterRoleBinding</strong>：类似于RoleBinding，但是作用于整个集群，用于将ClusterRole绑定到用户、用户组或服务账号。</li>
+</ul>
+<h2 id="RBAC-工作流程"><a href="#RBAC-工作流程" class="headerlink" title="RBAC 工作流程"></a>RBAC 工作流程</h2><p>Kubernetes中的RBAC工作流程通常包括以下步骤：</p>
+<ol>
+<li><p>创建角色和集群角色：<br>首先，集群管理员需要定义所需的Role和ClusterRole。这些角色会列出允许的<code>API操作</code>（如get、list、watch、create、update、delete等）和<code>资源类型</code>（如pods、services、deployments等）。</p>
+</li>
+<li><p>绑定角色：<br>接下来，管理员需要创建RoleBinding或ClusterRoleBinding来将这些角色与实际的用户、用户组或服务账号进行绑定。绑定可以基于名称空间（对于RoleBinding）或整个集群（对于ClusterRoleBinding）。</p>
+</li>
+<li><p>验证权限：<br>当用户或服务账号尝试执行操作时，Kubernetes将根据其绑定的角色来验证其权限。如果权限不足，操作将被拒绝。</p>
+</li>
+</ol>
+<h2 id="RBAC-的优势和最佳实践"><a href="#RBAC-的优势和最佳实践" class="headerlink" title="RBAC 的优势和最佳实践"></a>RBAC 的优势和最佳实践</h2><p>RBAC模型在Kubernetes中具有几个显著的优势和最佳实践：</p>
+<ul>
+<li><strong>最小权限原则</strong>：应该为每个用户、服务账号或应用程序分配最小必需的权限，以减少潜在的安全风险。</li>
+<li><strong>命名空间隔离</strong>：通过使用Role和RoleBinding，可以在不同的命名空间内对相同的用户或服务账号分配不同的权限，实现资源的细粒度控制和隔离。</li>
+<li><strong>集群范围控制</strong>：对于需要在整个集群内共享的权限，可以使用ClusterRole和ClusterRoleBinding，确保一致的授权管理。</li>
+<li><strong>审计和监控</strong>：RBAC可以帮助管理员跟踪和审计用户及服务账号的<code>操作历史</code>，提高安全性和合规性。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Kubernetes中的RBAC是一个灵活且强大的授权模型，它通过Role、ClusterRole、RoleBinding和ClusterRoleBinding这四个核心对象，为管理员提供了精确和可扩展的权限管理功能。合理配置RBAC可以帮助保护集群免受未经授权的访问和潜在的安全威胁。因此，理解和正确配置RBAC是使用Kubernetes管理安全性的重要组成部分。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Kubernetes/" class="">
+              Kubernetes
+            </a>
+          
+            <a href="/tags/Cloud-Native/" class="">
+              Cloud Native
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2021/03/02/kubernetes-rbac/" target="_blank" title="Kubernetes之RBAC授权模型">https://stonefishy.github.io/2021/03/02/kubernetes-rbac/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">深入理解 Kubernetes 中的常见资源类型</div>
+      </div>
+      
+      <!-- <div class="content">
+        在 Kubernetes 中，资源类型被称为 kind，每种 kind 对应着 Kubernetes API 中的一个特
+      </div> -->
+    </a>
   </div>
-  <!-- 每一篇文章卡片 -->
-  <!-- hash算法 -->
 
-<section class="posts">
+
+
   
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2021-03-02</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2021/03/02/kubernetes-rbac/">Kubernetes之RBAC授权模型</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">AWS IAM原理以及如何使用</div>
+      </div>
+      <!-- <div class="content">
+        AWS Identity and Access Management（IAM）是Amazon Web Services（
+      </div> -->
+    </a>
+  </div>
 
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud-Native/" rel="tag">Cloud Native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/DevOps/">DevOps</a> <a class="article-category-link" href="/categories/DevOps/Cloud-Native/">Cloud Native</a>
 </div>
 
+    
+    
 
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2021/03/02/kubernetes-rbac/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            Kubernetes中的RBAC（Role-Based Access Control）是一种强大的授权模型，用于管理对集群资源的访问权限。RBAC允许集群管理员定义谁可以执行哪些操作（例如创建、查看、修改或删除资源），并在资源级别进行精确的
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2021/03/02/kubernetes-rbac/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2021/03/02/kubernetes-rbac/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
   
     
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2021-02-15</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/">深入理解 Kubernetes 中的常见资源类型</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud-Native/" rel="tag">Cloud Native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/DevOps/">DevOps</a> <a class="article-category-link" href="/categories/DevOps/Cloud-Native/">Cloud Native</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            在 Kubernetes 中，资源类型被称为 kind，每种 kind 对应着 Kubernetes API 中的一个特定对象。了解和正确使用这些资源类型对于有效管理和部署应用程序至关重要。本文将详细介绍几种常见的 Kubernetes 资
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2021/02/15/deep-understanding-the-resource-type-of-the-kubernetes/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
+      <section class="widget side_blogger">
+  <div class='content'>
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2021-01-03</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/">Kubernetes - 现代容器编排平台</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
+        
+        
+          <p>Stay hungry, Stay foolish</p>
 
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud-Native/" rel="tag">Cloud Native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/DevOps/">DevOps</a> <a class="article-category-link" href="/categories/DevOps/Cloud-Native/">Cloud Native</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
             </a>
-          </div>
-          <div class="post-content">
-            Kubernetes（简称为K8s）是一个开源的容器编排平台，它以自动化容器部署、扩展和操作为目标，是现代云原生应用的重要基石。我们将探讨下Kubernetes的起源、整体架构、核心组件及其工作原理，全面理解这一强大工具的作用与运作方式。
-
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
+          
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
       </div>
-      <div class="post-img">
-        <a href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
+    
+  </div>
 </section>
-</div>
-<div class="w-70">
+
+    
   
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RBAC-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">RBAC 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Role%E5%92%8CClusterRole%EF%BC%9A"><span class="toc-text">Role和ClusterRole：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RoleBinding%E5%92%8CClusterRoleBinding%EF%BC%9A"><span class="toc-text">RoleBinding和ClusterRoleBinding：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RBAC-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">RBAC 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RBAC-%E7%9A%84%E4%BC%98%E5%8A%BF%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">RBAC 的优势和最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
 </div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">07-04</span>
+                
+              </div>
+              <a class="post-title" href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/">Using Pulumi to Import the AWS Resources of the Other Region</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-25</span>
+                
+              </div>
+              <a class="post-title" href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/">Keras3.0 - A Multi-framework Machine Learning Library</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-14</span>
+                
+              </div>
+              <a class="post-title" href="/2024/06/14/understanding-the-x-frame-options-http-header/">Understanding the X-Frame-Options HTTP Header</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-18</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/">The Points of AWS China CloudFront You Need to Notice</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">03-13</span>
+                
+              </div>
+              <a class="post-title" href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/">Migrate a legacy application to AWS Cloud</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
