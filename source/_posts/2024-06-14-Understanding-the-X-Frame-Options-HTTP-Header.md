@@ -3,14 +3,17 @@ title: Understanding the X-Frame-Options HTTP Header
 date: 2024-06-14 14:36:28
 categories: Frontend
 tags: [Web]
+top: true
+swiper: true
+swiperImg: "/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp"
 ---
 
-Recently, we build a frontend website as a nginx docker image, before go live on production. We asking the security team to do the security scan for the website on stage environment. One of security issues indicates the X-Frame-Options HTTP header is not set properly. It will cause the website to be vulnerable to clickjacking attacks.
+Recently, we build a frontend website as a nginx docker image, before go live on production. We asking the security team to do the security scan for the website on stage environment. One of security issues indicates the `X-Frame-Options` HTTP header is not set properly. It will cause the website to be vulnerable to clickjacking attacks.
 
 ## Clickjacking Attack
-Clickjacking is a type of security vulnerability that allows an attacker to trick a user into clicking on a link or button on a malicious website that is designed to look like the legitimate website. This can happen when the attacker embeds the malicious website within a frame on the legitimate website, which can trick the user into clicking on the malicious link or button.
+`Clickjacking` is a type of security vulnerability that allows an attacker to trick a user into clicking on a link or button on a malicious website that is designed to look like the legitimate website. This can happen when the attacker embeds the malicious website within a frame on the legitimate website, which can trick the user into clicking on the malicious link or button.
 
-To prevent clickjacking attacks, web developers can use the X-Frame-Options HTTP header to specify whether a web page can be displayed within a frame or iframe. This header can have three possible values: DENY, SAMEORIGIN, and ALLOW-FROM uri.
+To prevent clickjacking attacks, we can use the `X-Frame-Options` HTTP header to specify whether a web page can be displayed within a frame or iframe. This header can have three possible values: `DENY`, `SAMEORIGIN`, and `ALLOW-FROM` uri.
 
 ## What is X-Frame-Options?
 The X-Frame-Options is an HTTP response header used to control whether a web page can be displayed within a frame or iframe. It helps to mitigate clickjacking attacks by preventing malicious websites from embedding a vulnerable site within a frame and tricking users into taking unintended actions.
@@ -124,7 +127,7 @@ To test the effectiveness of the X-Frame-Options header, we can open the parent 
 #### Without X-Frame-Options Header
 By default, the `httpster` does not add the X-Frame-Options header to the response. Therefore, the child page can be embedded within a frame on the parent page. See below screenshot, these is no X-Frame-Options header in the response.
 
-{% image /assets/images/frontend/without-x-frame-options-response-header.png, width=500px, alt=Without X-Frame-Options Header %}
+{% image /assets/images/frontend/without-x-frame-options-response-header.png, alt=Without X-Frame-Options Header %}
 
 #### With X-Frame-Options Header
 With the X-Frame-Options header set to DENY, the child page cannot be embedded within a frame on the parent page.
@@ -142,11 +145,11 @@ app.use((req, res, next) => {
 
 We can then open the parent page in a browser and observe the behavior. See below screenshot, these is with X-Frame-Options header value set to DENY in the response. And the child page is blocked from being embedded within a frame on the parent page.
 
-{% image /assets/images/frontend/with-x-frame-options-response-header-deny.png, width=500px, alt=With X-Frame-Options Header Value DENY %}
+{% image /assets/images/frontend/with-x-frame-options-response-header-deny.png, alt=With X-Frame-Options Header Value DENY %}
 
 And also, there is error message in the console of the browser, which indicates that the child page is blocked from being embedded within a frame on the parent page.
 
-{% image /assets/images/frontend/with-x-frame-opitons-response-header-deny-console.png, width=500px, alt=With X-Frame-Options Header Value DENY Console Error %}
+{% image /assets/images/frontend/with-x-frame-opitons-response-header-deny-console.png,  alt=With X-Frame-Options Header Value DENY Console Error %}
 
 You can also test the X-Frame-Options header with different values such as SAMEORIGIN and ALLOW-FROM uri to see how it affects the behavior of the website.
 
