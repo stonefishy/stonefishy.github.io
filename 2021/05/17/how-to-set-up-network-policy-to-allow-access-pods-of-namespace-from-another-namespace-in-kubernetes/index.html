@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Kafka为什么具有高吞吐量和低延迟的特性 | Andrewsy&#39;s Space</title>
+  <title>Kubernetes Network Policy Pod之间的网络策略通信 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Kafka为什么具有高吞吐量和低延迟的特性
+        Kubernetes Network Policy Pod之间的网络策略通信
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2019-02-16 |
+          <i class="fas fa-calendar"></i> Published in：2021-05-17 |
         </span>
       
 
@@ -520,8 +520,12 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="post-detail-header_category">
-              中间件
+            <a href="/categories/DevOps/" class="post-detail-header_category">
+              DevOps
+            </a>
+          
+            <a href="/categories/DevOps/Cloud-Native/" class="post-detail-header_category">
+              Cloud Native
             </a>
           
         </span>
@@ -530,11 +534,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 635 |
+            <i class="fas fa-file-text-o"></i> Words: 1.8k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 2min |
+            <i class="fas fa-clock"></i> Reading time: 7min |
           </span>
   
           
@@ -561,31 +565,90 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>Apache Kafka 是一种分布式流处理平台，具有高吞吐量和低延迟的特征，这些特点使其成为处理大规模实时数据流的理想选择。以下是一些导致 Kafka 具有高吞吐量和低延迟的关键因素：</p>
-<p><strong>分布式架构</strong>：Kafka 是一个分布式系统，允许数据被分割成多个分区，并在多个服务器上进行并行处理。这种分布式架构有助于提高吞吐量，因为数据可以同时在多个节点上进行处理，而不会成为性能瓶颈。</p>
-<p><strong>消息队列模型</strong>：Kafka 使用消息队列模型，它将数据按顺序存储在分区中，每个消息都有一个唯一的偏移量。这使得 Kafka 能够支持顺序读取和写入，而且读写操作的效率非常高。</p>
-<p><strong>持久性存储</strong>：Kafka 具有持久性存储能力，它将消息持久化到磁盘上，即使消费者未及时处理消息，数据也不会丢失。这意味着 Kafka 可以在高吞吐量的情况下保持数据的可靠性，因为数据不会因为故障而丢失。</p>
-<p><strong>批量处理</strong>：Kafka 支持批量处理，生产者和消费者可以一次处理多个消息，从而减少了处理消息的开销，提高了吞吐量。</p>
-<p><strong>水平扩展性</strong>：Kafka 可以轻松地进行水平扩展，通过添加更多的节点来处理更多的负载。这种能力使其能够适应不断增长的数据流量，同时保持低延迟。</p>
-<p><strong>副本机制</strong>：Kafka 使用副本机制来提高可用性和容错性。每个分区可以配置多个副本，如果某个节点出现故障，其他副本仍然可以提供数据，从而降低了数据丢失的风险。</p>
-<p><strong>零拷贝技术</strong>：Kafka 使用零拷贝技术来提高性能。零拷贝允许数据在不涉及额外数据复制的情况下从生产者传输到 Kafka 服务器，以及从 Kafka 服务器传输到消费者，减少了数据传输的开销。</p>
-<p>总的来说，Kafka 的高吞吐量和低延迟特征得益于其分布式架构、消息队列模型、持久性存储、批量处理、水平扩展性、副本机制和零拷贝技术等多种因素的结合。这使得 Kafka 成为处理大规模实时数据流的可靠平台。</p>
+        <h2 id="Network-Policy-介绍"><a href="#Network-Policy-介绍" class="headerlink" title="Network Policy 介绍"></a>Network Policy 介绍</h2><p><code>Kubernetes</code>的<code>Network Policy</code>是用于定义和控制Pod之间通信的一种机制。它可以让您定义网络策略，指定哪些Pod可以与其他Pod通信，以及允许的通信方式。如下图，我们可以在MySQL Pod中创建一个Network Policy，仅允许来自HelloApp Pod的流量访问后端MySQL数据库，拒绝Rogue Pod的访问。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" style="width:800px;"/></div></div>
+
+<h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><ol>
+<li><p><strong>网络隔离和安全性增强</strong>：<br>  允许实现微服务架构中的网络隔离，确保只有经过授权的Pod可以相互通信。<br>  减少了攻击面，提高了集群的安全性，防止未经授权的访问和信息泄漏。</p>
+</li>
+<li><p><strong>细粒度的网络流量控制</strong>：<br>  可以定义细致的规则，例如允许从一个标签选择器的Pod通信到另一个标签选择器的Pod，或者限制来自特定IP地址范围的流量。<br>  支持的规则包括允许&#x2F;拒绝特定协议（如TCP、UDP）、端口号或IP块之间的通信。</p>
+</li>
+<li><p><strong>遵循最小权限原则</strong>：<br>  可以根据应用程序的需求设置最小必要的访问权限，防止不必要的网络访问和流量。</p>
+</li>
+<li><p><strong>优化网络性能</strong>：<br>  通过减少不必要的网络流量，有助于提高网络性能和资源利用率。</p>
+</li>
+</ol>
+<h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><strong>多租户环境</strong>：在多个团队或项目共享同一个Kubernetes集群时，可以使用Network Policy来确保彼此之间的隔离和安全。</li>
+<li><strong>符合法规要求</strong>：有一些国家的法规要求针对特定的系统需要网络隔离和数据保护。</li>
+<li><strong>微服务架构</strong>：在微服务架构中，不同服务之间的通信需要精细控制，只允许具有特定标签的服务之间进行HTTP通信，同时限制其他通信类型或服务，Network Policy提供了这种能力。</li>
+<li><strong>数据保护</strong>：保护包含敏感信息的Pod，确保只有授权的服务可以访问这些Pod。也可以限制来自特定IP地址或IP地址范围的流量访问集群中的Pod。</li>
+</ul>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><h3 id="相同命名空间的Pod访问"><a href="#相同命名空间的Pod访问" class="headerlink" title="相同命名空间的Pod访问"></a>相同命名空间的Pod访问</h3><p>我们创建一个新的命名空间<code>my-app-ns</code>和两个Pod来演示Network Policy的使用. 首先创建两个Pod，分别是<code>app1 Pod</code>和<code>app2 Pod</code>。<code>image</code>这里都使用<code>nginx</code>镜像来演示，实际上可以是任何需要通信的容器。本地环境nginx镜像之前已经下载好了，可以直接使用。我们这里重点是Network Policy的创建。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建my-app-ns命名空间</span></span><br><span class="line">kubectl create namespace my-app-ns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建HelloApp Pod</span></span><br><span class="line">kubectl -n my-app-ns run app1 --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建MySQL Pod</span></span><br><span class="line">kubectl -n my-app-ns run app2 --image=nginx</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-app1-app2.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-app1-app2.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>创建Network Policy，允许<code>app1 Pod</code>访问<code>app2 Pod</code>，这里我们不使用命令创建时自动添加的<code>label</code>标签，我们可以为每个Pod创建一个新的标签。查看Pod的标签可以使用<code>kubectl get pod --show-labels</code>命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod -n my-app-ns --show-labels</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-pod-show-labels.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-pod-show-labels.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>如下图，创建Pod时已经添加了标签<code>run=app1</code>和<code>run=app2</code>，我们可以为<code>app1 Pod</code>创建一个新的标签<code>app=app1-access</code>，并为<code>app2 Pod</code>创建一个新的标签<code>app=app2-access</code>。给已存在的Pod添加<code>label</code>标签使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl label pod app1 app=app1-access -n my-app-ns</span><br><span class="line">kubectl label pod app2 app=app2-access -n my-app-ns</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-label-app1-app2.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-label-app1-app2.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>创建Network Policy，允许<code>app1-access</code>标签的Pod访问<code>app2-access</code>标签的Pod。创建一个名为<code>allow-app1-access-app2.yaml</code>的文件，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-app1-access-app2</span> <span class="comment"># 网络策略名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app-ns</span> <span class="comment"># 命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">app2-access</span> <span class="comment"># 选择器，匹配app2-access标签的Pod</span></span><br><span class="line">  <span class="attr">ingress:</span> <span class="comment"># 允许的入站流量</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">podSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">app:</span> <span class="string">app1-access</span> <span class="comment"># 允许来自app1-access标签的Pod的流量</span></span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>kubectl apply -f &lt;yaml-file&gt;</code> 命令创建Network Policy。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f allow-app1-access-app2.yaml</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-create.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-create.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>上面显示的<code>allow-app1-access-app2.yaml</code>文件定义了一个名为<code>allow-app1-access-app2</code>的网络策略，它允许<code>app1-access</code>标签的Pod访问<code>app2-access</code>标签的Pod的任意端口号。现在我们更新下<code>Network Policy</code>仅允许app1访问app2的80端口，更新yaml文件<code>allow-app1-access-app2.yaml</code>的文件，在<code>ingress</code>下添加<code>port</code>字段，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-app1-access-app2-port80</span> <span class="comment"># 网络策略名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app-ns</span> <span class="comment"># 命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">app2-access</span> <span class="comment"># 选择器，匹配app2-access标签的Pod</span></span><br><span class="line">  <span class="attr">ingress:</span> <span class="comment"># 允许的入站流量</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">podSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">app:</span> <span class="string">app1-access</span> <span class="comment"># 允许来自app1-access标签的Pod的流量</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">80</span> <span class="comment"># 允许的端口号</span></span><br><span class="line">      <span class="attr">protocol:</span> <span class="string">TCP</span> <span class="comment"># 允许的协议</span></span><br></pre></td></tr></table></figure>
+
+<p>重新执行<code>kubectl apply -f &lt;yaml-file&gt;</code>命令更新Network Policy。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f allow-app1-access-app2.yaml</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>kubectl describe networkpolicy</code>命令查看Network Policy的详细信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe networkpolicy allow-app1-access-app2 -n my-app-ns</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-port.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-port.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>至此，我们就创建了一个在同一个命令空间<code>my-app-ns</code>中，允许<code>app1-access</code>标签的Pod访问<code>app2-access</code>标签的Pod的<code>80</code>端口的Network Policy。</p>
+<h3 id="不同命名空间的Pod访问"><a href="#不同命名空间的Pod访问" class="headerlink" title="不同命名空间的Pod访问"></a>不同命名空间的Pod访问</h3><p>现在我们来演示不同命名空间的Pod访问。我们创建一个新的命名空间<code>my-app-ns2</code>和一个名为<code>app3</code>的<code>Pod</code>， <code>app3</code> Pod和<code>app1</code>，<code>app2</code> Pod在不同的命名空间中，我们需要允许命令空间<code>my-app-ns2</code>中的<code>app3</code> Pod访问命令空间<code>my-app-ns</code>中的任何pod。访问端口号为9000</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建my-app-ns2命名空间</span></span><br><span class="line">kubectl create namespace my-app-ns2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建app3 Pod</span></span><br><span class="line">kubectl -n my-app-ns2 run app3 --image=nginx</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-app3.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-app3.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>我们为<code>app3</code> Pod创建一个新的标签<code>app=app3-access</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label pod app3 app=app3-access -n my-app-ns2</span><br></pre></td></tr></table></figure>
+
+<p>创建Network Policy，允许<code>app3-access</code>标签的Pod访问<code>app2-access</code>标签的Pod。创建一个名为<code>allow-ns2-app3-access-ns-apps.yaml</code>的文件，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-ns2-app3-access-ns-apps</span> <span class="comment"># 网络策略名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app-ns</span> <span class="comment"># 被访问的命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span> &#123;&#125; <span class="comment"># 选择器，匹配被访问命令空间的所有Pod</span></span><br><span class="line">  <span class="attr">ingress:</span> <span class="comment"># 允许的入站流量</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">namespaceSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">my-app-ns2</span> <span class="comment"># 允许来自my-app-ns2命名空间的Pod的流量</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">podSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">app:</span> <span class="string">app3-access</span> <span class="comment"># 允许来自app3-access标签的Pod的流量</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">9000</span> <span class="comment"># 允许的端口号</span></span><br><span class="line">      <span class="attr">protocol:</span> <span class="string">TCP</span> <span class="comment"># 允许的协议</span></span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>kubectl apply -f &lt;yaml-file&gt;</code> 命令创建Network Policy。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建Network Policy</span></span><br><span class="line">kubectl apply -f allow-ns2-app3-access-ns-apps.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Network Policy</span></span><br><span class="line">kubectl describe networkpolicy allow-ns2-app3-access-ns-apps -n my-app-ns</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-network-policy-access-ns-pods.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-network-policy-access-ns-pods.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div></div>
+
+<p>上面，我们创建了一个允许<code>my-app-ns2</code>命名空间中的<code>app3-access</code>标签的Pod访问<code>my-app-ns</code>命名空间中所有的Pod，允许的端口号是<code>9000</code>的Network Policy。 至此，我们就创建了一个允许不同命名空间的Pod访问另一个命名空间的Pod的Network Policy。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Kubernetes的Network Policy提供了一种强大的方式来管理和保护您的容器化应用程序之间的网络通信。通过定义网络策略，可以实现微服务架构中的网络隔离，确保只有经过授权的Pod可以相互通信。同时，还可以限制来自特定IP地址范围的流量访问集群中的Pod，保护包含敏感信息的Pod，确保只有授权的服务可以访问这些Pod。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/BI/" class="">
-              BI
+            <a href="/tags/Cloud-Native/" class="">
+              Cloud Native
             </a>
           
-            <a href="/tags/Kafka/" class="">
-              Kafka
-            </a>
-          
-            <a href="/tags/MQ/" class="">
-              MQ
+            <a href="/tags/Kubernetes/" class="">
+              Kubernetes
             </a>
           
         </div>
@@ -599,7 +662,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2019/02/16/kafka-high-throughput-low-latency/" target="_blank" title="Kafka为什么具有高吞吐量和低延迟的特性">https://stonefishy.github.io/2019/02/16/kafka-high-throughput-low-latency/</a>
+    <a href="/2021/05/17/how-to-set-up-network-policy-to-allow-access-pods-of-namespace-from-another-namespace-in-kubernetes/" target="_blank" title="Kubernetes Network Policy Pod之间的网络策略通信">https://stonefishy.github.io/2021/05/17/how-to-set-up-network-policy-to-allow-access-pods-of-namespace-from-another-namespace-in-kubernetes/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -621,16 +684,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2018/01/05/java-shuang-qin-weipai-jizi/" class="post-nav-link">
+    <a href="/2021/05/03/metrics-api-not-available-in-kubernetes-minikube/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">Java的双亲委派机制是什么？有哪些方式可以打破双亲委派机制</div>
+        <div class="title-text">Metrics API not available in Kubernetes minikube</div>
       </div>
       
       <!-- <div class="content">
-        双亲委派机制双亲委派机制（Parent-Delegation Model）是Java类加载机制中的一个重要概念。它是一种
+        问题当完成安装minikube并启动集群后，如果我们直接使用kubectl top命令去查看node的资源信息，会提示m
       </div> -->
     </a>
   </div>
@@ -641,15 +704,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2019/07/02/microservice-and-service-mesh-for-modern-application/" class="post-nav-link">
+    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">微服务与服务网格 - 现代应用架构的进化</div>
+        <div class="title-text">AWS IAM原理以及如何使用</div>
       </div>
       <!-- <div class="content">
-        在当今快速发展的软件开发领域，微服务架构和服务网格成为了构建可扩展、灵活和高效应用的核心技术。本文将探讨微服务架构和服务
+        AWS Identity and Access Management（IAM）是Amazon Web Services（
       </div> -->
     </a>
   </div>
@@ -787,7 +850,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!--  -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-Policy-%E4%BB%8B%E7%BB%8D"><span class="toc-text">Network Policy 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-text">作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-text">使用场景：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-text">实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84Pod%E8%AE%BF%E9%97%AE"><span class="toc-text">相同命名空间的Pod访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84Pod%E8%AE%BF%E9%97%AE"><span class="toc-text">不同命名空间的Pod访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
