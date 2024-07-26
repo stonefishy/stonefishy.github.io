@@ -2,7 +2,7 @@
 title: MySQL 8.x CTEs feature - WITH clause
 date: 2024-07-26 09:19:59
 tags: [MySQL]
-categories: 数据库
+categories: DataBase
 ---
 
 MySQL `Common Table Expressions (CTEs)` are a powerful feature introduced in `MySQL 8.0`. CTEs are a type of MySQL 8.0 that provide a way to create `temporary result sets` that can be referenced within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. {% pbg danger, The primary purpose of `CTEs` is to make complex queries more readable and manageable by breaking them down into simpler, more modular parts %}.

@@ -2,7 +2,7 @@
 title: MySQL主从同步详解与应用场景
 date: 2020-01-31 21:42:17
 tags: [MySQL]
-categories: 数据库
+categories: DataBase
 ---
 
 ### 引言
