@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Categories | Andrewsy&#39;s Space</title>
+  <title>Understanding CSS Units: px, rem, em, vh, vw, %, ch | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -485,187 +485,617 @@
 </header>
         <!-- 内容区域 -->
         
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-categories" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="categories-header" style="background-image:url('/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp')">
-    <div class="categories-header-title">
-        Categories
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Understanding CSS Units: px, rem, em, vh, vw, %, ch
+      </span>
     </div>
-    <div class="categories-header-desc">
     
-        <span class="title" id="categories-header-desc"></span>
-    <script>
-  function typedFn() {
-    const el = '#categories-header-desc';
-    const type = 'categories';
-    let desc = 'It does not matter how slowly you go as long as you do not stop.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
     
-    </div>
-    <div class="mask-box"></div>
-</div>
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2020-04-05 |
+        </span>
+      
 
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/Frontend/" class="post-detail-header_category">
+              Frontend
+            </a>
+          
+        </span>
+      
 
-
-<div id="categories" class="container">
-    <div class="card">
-        <div class="card-content">
-            <div class="category-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;Article Categories
-            </div>
-            <div class="category-chips">
-                
-                
-                <a href="/categories/Tools/" title="Tools: 25">
-                    <span class="category-content"
-                        title="Tools" style="background-color: #A3E4D7;">Tools
-                        <span class="category-length">25</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Mobile/" title="Mobile: 3">
-                    <span class="category-content"
-                        title="Mobile" style="background-color: #F9EBEA;">Mobile
-                        <span class="category-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Backend/" title="Backend: 41">
-                    <span class="category-content"
-                        title="Backend" style="background-color: #E8F8F5;">Backend
-                        <span class="category-length">41</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Others/" title="Others: 2">
-                    <span class="category-content"
-                        title="Others" style="background-color: #82E0AA;">Others
-                        <span class="category-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Frontend/" title="Frontend: 19">
-                    <span class="category-content"
-                        title="Frontend" style="background-color: #F8F9F9;">Frontend
-                        <span class="category-length">19</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Testing/" title="Testing: 1">
-                    <span class="category-content"
-                        title="Testing" style="background-color: #FEF9E7;">Testing
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式: 3">
-                    <span class="category-content"
-                        title="设计模式" style="background-color: #85C1E9;">设计模式
-                        <span class="category-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E7%AE%97%E6%B3%95/" title="算法: 3">
-                    <span class="category-content"
-                        title="算法" style="background-color: #F9EBEA;">算法
-                        <span class="category-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Resources/" title="Resources: 1">
-                    <span class="category-content"
-                        title="Resources" style="background-color: #82E0AA;">Resources
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="中间件: 3">
-                    <span class="category-content"
-                        title="中间件" style="background-color: #F5EEF8;">中间件
-                        <span class="category-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Microservice/" title="Microservice: 1">
-                    <span class="category-content"
-                        title="Microservice" style="background-color: #D7BDE2;">Microservice
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/DevOps/" title="DevOps: 8">
-                    <span class="category-content"
-                        title="DevOps" style="background-color: #F8F9F9;">DevOps
-                        <span class="category-length">8</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/DataBase/" title="DataBase: 2">
-                    <span class="category-content"
-                        title="DataBase" style="background-color: #FFF;">DataBase
-                        <span class="category-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/DevOps/Cloud-Native/" title="Cloud Native: 8">
-                    <span class="category-content"
-                        title="Cloud Native" style="background-color: #F8F9F9;">Cloud Native
-                        <span class="category-length">8</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Cloud/" title="Cloud: 16">
-                    <span class="category-content"
-                        title="Cloud" style="background-color: #F8C471;">Cloud
-                        <span class="category-length">16</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/AI-ML/" title="AI/ML: 12">
-                    <span class="category-content"
-                        title="AI/ML" style="background-color: #F8C471;">AI/ML
-                        <span class="category-length">12</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" title="大数据: 1">
-                    <span class="category-content"
-                        title="大数据" style="background-color: #F5EEF8;">大数据
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 703 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 4min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
         </div>
-    </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>In the web development, understanding CSS units is crucial for creating responsive and visually appealing designs. Each <code>CSS unit</code> serves a specific purpose, catering to different aspects of layout and design responsiveness. We will introduce the differences between <code>px</code>, <code>rem</code>, <code>em</code>, <code>vh</code>, <code>vw</code>, <code>%</code>, and <code>ch</code>, and discuss how and when to use each unit effectively.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/css/css-units.png" class="lazyload placeholder" data-srcset="/assets/images/css/css-units.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="CSS Units" style="width:800px;"/></div><span class="image-caption">CSS Units</span></div>
+
+<h2 id="px-Pixels"><a href="#px-Pixels" class="headerlink" title="px (Pixels)"></a>px (Pixels)</h2><p><code>px</code> stands for pixels and is the most commonly used unit in web design. It represents a single dot on a screen, and its size is fixed and does not change with the browser’s zoom settings.</p>
+<p><strong>Usage</strong>: Ideal for defining precise sizes, such as borders, margins, and fixed-width elements.<br><strong>When to Use</strong>: Use px when we need elements to maintain a consistent size regardless of the screen size or zoom level.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="rem-Root-em"><a href="#rem-Root-em" class="headerlink" title="rem (Root em)"></a>rem (Root em)</h2><p><code>rem</code> stands for root em, which is relative to the <code>font-size of the root element (html)</code>. Unlike em, which is relative to its parent element, rem is consistent across the entire document. <span class='pbg danger'>1 rem is equal to the font-size of the root element.</span></p>
+<p><strong>Usage</strong>: Useful for defining global sizes, especially for typography and spacing that should scale with the root font size.<br><strong>When to Use</strong>: Use <code>rem</code> for overall layout and sizing that should be consistent across different sections of our website.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>; <span class="comment">/* Set a base font size for the entire document */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1rem</span>; <span class="comment">/* Equivalent to 16px */</span></span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span>; <span class="comment">/* Padding will be 16px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="em-Relative-to-Parent-Font-Size"><a href="#em-Relative-to-Parent-Font-Size" class="headerlink" title="em (Relative to Parent Font Size)"></a>em (Relative to Parent Font Size)</h2><p><code>em</code> is a relative unit that is based on the font-size of its <code>parent element</code>. If used within nested elements, em can compound and result in unexpected sizes.</p>
+<p><strong>Usage</strong>: Suitable for defining sizes that need to be relative to the font-size of the parent element.<br><strong>When to Use</strong>: Use em for typography and spacing within elements where responsiveness to parent font size changes is desired.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1.2em</span>; <span class="comment">/* 1.2 * 16px = 19.2px */</span></span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">0.5em</span>; <span class="comment">/* 0.5 * 16px = 8px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vh-Viewport-Height-and-vw-Viewport-Width"><a href="#vh-Viewport-Height-and-vw-Viewport-Width" class="headerlink" title="vh (Viewport Height) and vw (Viewport Width)"></a>vh (Viewport Height) and vw (Viewport Width)</h2><p><code>vh</code> and <code>vw</code> are browser viewport-based units that represent a percentage of the viewport’s height and width, respectively. These units are useful for creating layouts that adjust dynamically based on the browser’s <code>viewport size</code>.</p>
+<p><strong>Usage</strong>: Perfect for creating elements that should fill a specific percentage of the browser viewport’s height or width.<br><strong>When to Use</strong>: Use vh and vw for responsive designs where elements should scale based on the viewport dimensions.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50vh</span>; <span class="comment">/* 50% of viewport height */</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">75vw</span>; <span class="comment">/* 75% of viewport width */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Percentage"><a href="#Percentage" class="headerlink" title="% (Percentage)"></a>% (Percentage)</h2><p><code>%</code> is a relative unit that is calculated based on the size of the parent element. It is widely used for creating fluid layouts and scaling elements proportionally. </p>
+<p><strong>Usage</strong>: Effective for creating responsive designs where elements should scale relative to their parent container.<br><strong>When to Use</strong>: Use % for widths, heights, padding, and margins that need to adapt to the size of the parent element.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80%</span>; <span class="comment">/* 80% of the parent container&#x27;s width */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50%</span>; <span class="comment">/* 50% of the parent container&#x27;s width */</span></span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>; <span class="comment">/* 5% of the parent container&#x27;s width */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ch-Character-Width"><a href="#ch-Character-Width" class="headerlink" title="ch (Character Width)"></a>ch (Character Width)</h2><p><code>ch</code> represents <span class='pbg danger'>the width of the zero (0) character in the current font</span>. It is useful for creating layouts based on the width of text characters.</p>
+<p><strong>Usage</strong>: Suitable for layouts that need to be based on the width of characters, such as <span class='pbg green'>creating fixed-width elements based on text content.</span><br><strong>When to Use</strong>: Use ch when we need elements to be sized based on the number of characters they contain.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">20ch</span>; <span class="comment">/* Width based on the width of 20 characters in the current font */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Understanding and using CSS units effectively is essential for creating modern, <code>responsive web designs</code>. Each unit — <code>px</code>, <code>rem</code>, <code>em</code>, <code>vh</code>, <code>vw</code>, <code>%</code>, and <code>ch</code> — serves a unique purpose in defining sizes and layouts. By leveraging these units appropriately, we can ensure that our web pages look great across various devices and screen sizes.</p>
+<p>Happy coding!</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/CSS/" class="">
+              CSS
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2020/04/05/understanding-css-units-px-rem-em-vh-vw-ch/" target="_blank" title="Understanding CSS Units: px, rem, em, vh, vw, %, ch">https://stonefishy.github.io/2020/04/05/understanding-css-units-px-rem-em-vh-vw-ch/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2020/03/19/error-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">解决 Docker permission denied while trying to connect to the Docker daemon socket</div>
+      </div>
+      
+      <!-- <div class="content">
+        问题当我们在本地运行 Docker 容器，直接使用以下命令非root方式执行时。
+1docker ps
+
+如果遇到以下错
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2021/01/03/kubernetes-a-modern-container-orchestration-platform/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Kubernetes - 现代容器编排平台</div>
+      </div>
+      <!-- <div class="content">
+        Kubernetes（简称为K8s）是一个开源的容器编排平台，它以自动化容器部署、扩展和操作为目标，是现代云原生应用的重
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
+        
+        
+          <p>Stay hungry, Stay foolish</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#px-Pixels"><span class="toc-text">px (Pixels)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rem-Root-em"><span class="toc-text">rem (Root em)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#em-Relative-to-Parent-Font-Size"><span class="toc-text">em (Relative to Parent Font Size)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vh-Viewport-Height-and-vw-Viewport-Width"><span class="toc-text">vh (Viewport Height) and vw (Viewport Width)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Percentage"><span class="toc-text">% (Percentage)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ch-Character-Width"><span class="toc-text">ch (Character Width)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">07-26</span>
+                
+              </div>
+              <a class="post-title" href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/">MySQL 8.x CTEs feature - WITH clause</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">07-04</span>
+                
+              </div>
+              <a class="post-title" href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/">Using Pulumi to Import the AWS Resources of the Other Region</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-25</span>
+                
+              </div>
+              <a class="post-title" href="/2024/06/25/keras3-0-a-multi-framework-machine-learning-library/">Keras3.0 - A Multi-framework Machine Learning Library</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/06/14/understanding-the-x-frame-options-http-header/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-14</span>
+                
+              </div>
+              <a class="post-title" href="/2024/06/14/understanding-the-x-frame-options-http-header/">Understanding the X-Frame-Options HTTP Header</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-18</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/">The Points of AWS China CloudFront You Need to Notice</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
