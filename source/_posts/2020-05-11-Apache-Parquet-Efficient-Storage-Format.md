@@ -2,7 +2,7 @@
 title: Apache Parquet 高效的数据存储格式
 date: 2020-05-11 10:17:20
 categories: [Big Data]
-tags: [Apache Parquet, Big Data]
+tags: [Parquet, Big Data]
 ---
 
 `Apache Parquet`是一种面向列的存储格式，广泛应用于大数据处理框架中，如`Apache Hadoop`、`Apache Spark`等。它最初由Twitter和Cloudera公司合作开发，并于2013年贡献给Apache软件基金会，成为Apache顶级项目之一。{% pbg green, Parquet的设计初衷是为了提高大数据处理的效率和性能，特别是在需要处理大量结构化数据的场景中 %}。
