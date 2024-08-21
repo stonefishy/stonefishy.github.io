@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>AWS EBS vs AWS EFS - Understanding the Key Differences | Andrewsy&#39;s Space</title>
+  <title>大数据存储格式之 Parquet, ORC, Avro | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        AWS EBS vs AWS EFS - Understanding the Key Differences
+        大数据存储格式之 Parquet, ORC, Avro
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2022-09-21 |
+          <i class="fas fa-calendar"></i> Published in：2023-10-21 |
         </span>
       
 
@@ -520,8 +520,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
+            <a href="/categories/Big-Data/" class="post-detail-header_category">
+              Big Data
             </a>
           
         </span>
@@ -530,7 +530,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 691 |
+            <i class="fas fa-file-text-o"></i> Words: 1.3k |
           </span>
   
           <span class="min2read">
@@ -561,71 +561,55 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 class="bamboo-h " id="Introductionfvytdeyj1r">Introduction</h2><br/>
+        <p>数据存储格式在大数据处理和分析中起着至关重要的作用。Avro、Parquet 和 ORC（优化行列式）是 Hadoop 生态系统中使用的三种流行格式。每种格式都有其优势和独特功能，使其适合特定用例。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/big-data/apache-parquet-orc-avro.png" class="lazyload placeholder" data-srcset="/assets/images/big-data/apache-parquet-orc-avro.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" style="width:800px;"/></div></div>
 
-<p>Amazon Web Services (AWS) offers a wide range of storage solutions to cater to the diverse needs of businesses and developers. Two popular options are <code>Amazon Elastic Block Store (EBS)</code> and <code>Amazon Elastic File System (EFS)</code>. While both provide storage capabilities within the AWS ecosystem, they serve different purposes and have distinct characteristics. In this blog post, we will explore the key differences between AWS EBS and AWS EFS to help you make an informed choice for your specific use case.</p>
-<h2 class="bamboo-h " id="Amazon Elastic Block Store (EBS)12rthw2kt9f">Amazon Elastic Block Store (EBS)</h2><br/>
-
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/aws/aws-ebs-efs-1.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-ebs-efs-1.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="AWS EBS" style="width:400px;"/></div><span class="image-caption">AWS EBS</span></div>
-
-<span class='pbg warning'>Amazon Elastic Block Store (EBS) is a block-level storage service that provides durable and high-performance storage volumes that can be attached to Amazon Elastic Compute Cloud (EC2) instances.</span>.
-<p>Here are some of the main characteristics and use cases of AWS EBS.</p>
-<h4 class="bamboo-h " id="Block Storage27j2srpt1j0">Block Storage</h4><br/>
-
-<p>EBS provides block storage, which means it is best suited for scenarios where you need to store data at the block level, such as databases and applications that require direct access to disk devices.</p>
-<h4 class="bamboo-h " id="Low-Latency Performance85kad4pjrq4">Low-Latency Performance</h4><br/>
-<p> EBS volumes offer low-latency, high-throughput performance, making them ideal for I&#x2F;O-intensive workloads where rapid data access is crucial.</p>
-<h4 class="bamboo-h " id="Data Persistencesmmpgy2na6">Data Persistence</h4><br/>
-<p> EBS volumes are persistent, meaning the data stored on them remains intact even when the associated EC2 instance is stopped or terminated. This is useful for maintaining critical data.</p>
-<h4 class="bamboo-h " id="Availability and Redundancy2lddjiyeng8">Availability and Redundancy</h4><br/>
-<p>EBS volumes can be replicated within a specific<br>Availability Zone (AZ) for redundancy, but they are not natively designed for cross-AZ or cross-region redundancy. For cross-AZ redundancy, you need to set up additional configurations.</p>
-<h4 class="bamboo-h " id="Cost12e97gy1bke">Cost</h4><br/>
-<p>You pay for the provisioned capacity of the EBS volume, regardless of whether it is in use or not. This can make it cost-effective for certain use cases but might require careful capacity planning.</p>
-<h2 class="bamboo-h " id="Amazon Elastic File System (EFS)4kqvzfstzo2">Amazon Elastic File System (EFS)</h2><br/>
-
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/aws/aws-ebs-efs-2.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-ebs-efs-2.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="AWS EFS" style="width:400px;"/></div><span class="image-caption">AWS EFS</span></div>
-
-<span class='pbg warning'>Amazon Elastic File System (EFS) is a fully managed</span> 
-<p>Here are the key attributes and use cases of AWS EFS:</p>
-<h4 class="bamboo-h " id="File Storagehmusfuur8r4">File Storage</h4><br/>
-
-<p>EFS offers file-level storage, making it suitable for scenarios where multiple instances need shared access to the same data, such as web applications, content management systems, and shared repositories.</p>
-<h4 class="bamboo-h " id="Scalability1l5qbiauq19">Scalability</h4><br/>
-<p>EFS is designed to scale automatically as your storage needs grow. It can handle a dynamic number of EC2 instances concurrently, making it a great choice for applications with varying workloads.</p>
-<h4 class="bamboo-h " id="Cross-AZ and Cross-Region88oswwmwnw8">Cross-AZ and Cross-Region</h4><br/>
-<p>EFS provides built-in redundancy and can be accessed across multiple Availability Zones and even across regions. This ensures high availability and disaster recovery capabilities.</p>
-<h4 class="bamboo-h " id="Pay-as-You-Go66vr5wizn3">Pay-as-You-Go</h4><br/>
-<p>With EFS, you pay for the storage capacity you use, making it a cost-effective option for applications with fluctuating storage requirements.</p>
-<h4 class="bamboo-h " id="Simplified Management2tqbp2f7bjy">Simplified Management</h4><br/>
-<p>EFS takes care of the underlying infrastructure and scaling, allowing you to focus on your applications without worrying about managing storage hardware.</p>
-<h2 class="bamboo-h " id="Choosing Between EBS and EFS1cp7gfjvldb">Choosing Between EBS and EFS</h2><br/>
-
-<p>To decide between AWS EBS and AWS EFS, consider the following factors:</p>
-<h4 class="bamboo-h " id="Use Case1n9f9l7xrba">Use Case</h4><br/>
-<p>Determine whether your application requires block-level storage (EBS) or file-level storage (EFS).</p>
-<h4 class="bamboo-h " id="Performance Requirements71dvzpnmeiw">Performance Requirements</h4><br/> 
-<p>Assess your performance needs. EBS is often preferred for high-performance workloads, while EFS offers good performance for a wide range of applications.</p>
-<h4 class="bamboo-h " id="Scalabilityhf7zam6i9">Scalability</h4><br/>
-<p>Consider whether your storage needs are likely to scale over time. EFS is designed for easy scalability.</p>
-<h4 class="bamboo-h " id="Availability and Redundancy12tq99x4d9">Availability and Redundancy</h4><br/> 
-<p>If high availability and redundancy are crucial, EFS may be a better choice due to its built-in cross-AZ and cross-region capabilities.</p>
-<h4 class="bamboo-h " id="Cost26hl1bh666v">Cost</h4><br/> 
-<p>Evaluate your budget and cost considerations. EBS charges are based on provisioned capacity, while EFS charges are based on actual usage.</p>
-<h2 class="bamboo-h " id="Conclusiontctlqn3rq7">Conclusion</h2><br/>
-
-<p>In summary, AWS EBS and AWS EFS are both valuable storage services within the AWS ecosystem, but they serve different purposes and have distinct characteristics. <span class='pbg danger'>EBS is ideal for block-level storage with high-performance requirements and provides data persistence within a single Availability Zone</span>. On the other hand, <span class='pbg danger'>EFS is designed for scalable file-level storage</span>. Your choice between the two should be based on your specific use case and requirements. Understanding these differences is crucial for optimizing your AWS storage strategy and ensuring the best performance and cost-efficiency for your applications.</p>
+<h2 id="Apache-Parquet"><a href="#Apache-Parquet" class="headerlink" title="Apache Parquet"></a>Apache Parquet</h2><p><code>Apache Parquet</code> 是一种列式存储格式，旨在优化大型数据集的查询性能和分析处理。它将数据组织成列，从而实现高效的压缩和列级操作。Parquet 文件存储有关架构的元数据和有助于查询优化的统计信息。该格式与 Apache Hadoop 生态系统高度兼容，包括 Apache Hive、Apache Impala 和 Apache Spark 等工具。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点:"></a>特点:</h3><p><strong>列式存储</strong>：数据按列进行存储，这使得对特定列的查询效率较高。<br><strong>支持压缩</strong>：内置支持多种压缩算法，如 <code>Snappy</code>、<code>Gzip</code> 和 <code>Brotli</code>。<br><strong>支持复杂数据类型</strong>：支持嵌套数据结构，如数组、映射等。<br><strong>兼容性</strong>：广泛支持多种大数据处理框架，如 <code>Apache Spark</code>、<code>Apache Hive</code> 和 <code>AWS Athena</code>。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点:"></a>优点:</h3><p><strong>高效查询</strong>：列式存储提高了对特定列的查询性能，尤其是需要读取大量数据但只涉及少数列的情况。<br><strong>压缩率高</strong>：由于相同列的数据在一起，能够更有效地压缩。<br><strong>适用于大数据处理</strong>：优化了读取和存储性能。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h3><p><strong>写入性能</strong>：相比于行式存储，写入性能可能较差，尤其是在数据写入时需要更多的编码和压缩操作。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景:"></a>使用场景:</h3><ul>
+<li>适用于需要进行复杂分析和查询的大数据环境，如数据仓库和大数据分析系统。</li>
+<li>适合需要高压缩比和快速读取的场景。</li>
+</ul>
+<h2 id="Apache-ORC-Optimized-Row-Columnar"><a href="#Apache-ORC-Optimized-Row-Columnar" class="headerlink" title="Apache ORC (Optimized Row Columnar)"></a>Apache ORC (Optimized Row Columnar)</h2><p><code>Apache ORC</code> 是另一种专为基于 Hadoop 的大数据处理而设计的列式存储格式。它由 Apache Hive 项目开发，与其他格式相比，它提供了更好的性能和压缩能力。ORC 文件以高度优化的列式格式存储数据，可实现高效压缩、谓词下推和列级操作。</p>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点:"></a>特点:</h3><p><strong>列式存储</strong>：像 <code>Parquet</code> 一样，<code>ORC</code> 也是列式存储。<br><strong>高压缩率</strong>：ORC 提供高压缩率的支持，常用的压缩算法包括 <code>Zlib</code> 和 <code>LZ4</code>。<br><strong>内置索引</strong>：支持内置的索引和统计信息，使得读取数据时更快。<br><strong>快速读取</strong>：优化了读取性能，尤其是对于大数据量的查询。</p>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点:"></a>优点:</h3><p><strong>高效存储和压缩</strong>：通常比 Parquet 提供更高的压缩比和更快的读取速度。<br><strong>内置索引</strong>：通过索引加速了数据读取和查询。<br><strong>支持 Hive 特性</strong>：与 <code>Apache Hive</code> 兼容性较好。</p>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点:"></a>缺点:</h3><p><strong>写入性能</strong>：写入性能可能较低，尤其是在数据更新频繁的情况下。<br><strong>兼容性</strong>：虽然支持的框架多，但与某些工具和系统的兼容性可能不如 Parquet 广泛。</p>
+<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景:"></a>使用场景:</h3><ul>
+<li>适用于需要高压缩率和高效读取的大数据分析任务，尤其是在使用 <code>Apache Hive</code> 的环境中。</li>
+<li>适合进行大量的批处理和分析任务。</li>
+</ul>
+<h2 id="Apache-Avro"><a href="#Apache-Avro" class="headerlink" title="Apache Avro"></a>Apache Avro</h2><p><code>Apache Avro</code> 是一个基于行的数据序列化系统，专注于提供一种紧凑、高效且基于架构的数据序列化方法。它强调简单性并支持动态类型。Avro 以二进制格式存储数据，并在数据文件中包含架构。这种自描述功能允许轻松实现架构演变和跨不同编程语言的兼容性。</p>
+<h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点:"></a>特点:</h3><p><strong>行式存储</strong>：数据以行的形式存储，每一行都是一个完整的记录。<br><strong>支持 schema</strong>：使用 JSON 格式定义 schema，支持自描述数据。<br><strong>数据序列化</strong>：主要用于数据的序列化和反序列化，适合流数据和消息传递系统。<br><strong>支持压缩</strong>：支持多种压缩算法，如 Snappy。</p>
+<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点:"></a>优点:</h3><p><strong>高效序列化</strong>：优化了序列化和反序列化操作，适合流式处理。<br><strong>灵活的 schema 进化</strong>：允许 schema 的演进，适合需要频繁更新 schema 的场景。<br><strong>简单易用</strong>：自描述的 schema 使得数据交换变得简单。</p>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点:"></a>缺点:</h3><p><strong>查询性能</strong>：行式存储可能在读取特定列时性能较差。<br><strong>压缩率</strong>：通常不如 Parquet 和 ORC 高效。</p>
+<h3 id="使用场景-2"><a href="#使用场景-2" class="headerlink" title="使用场景:"></a>使用场景:</h3><ul>
+<li>适用于需要高效序列化和反序列化的流数据和消息传递系统，如 <code>Kafka</code>、<code>日志系统</code>等。</li>
+<li>适合需要频繁更新 <code>schema</code> 和支持 schema 演进的场景。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><code>Parquet</code> 和 <code>ORC</code> 主要用于大数据存储和分析，因其列式存储特性提供了高效的查询和压缩性能。</li>
+<li><code>Parquet</code> 适合广泛的工具和框架，尤其是在 <code>AWS Athena</code>、<code>Apache Spark</code> 等环境中。</li>
+<li><code>ORC</code> 在 <code>Hadoop</code> 和 <code>Hive</code> 环境中表现尤为出色，适合需要高压缩率和读取性能的场景。</li>
+<li><code>Avro</code> 主要用于数据的序列化和流数据处理，适合消息传递系统和需要高效序列化的应用, 适用于 <code>Kafka</code> 等流数据平台和需要高效数据交换的场景。</li>
+</ul>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/Cloud/" class="">
-              Cloud
+            <a href="/tags/Apache-Parquet/" class="">
+              Apache Parquet
             </a>
           
-            <a href="/tags/AWS/" class="">
-              AWS
+            <a href="/tags/Apache-ORC/" class="">
+              Apache ORC
+            </a>
+          
+            <a href="/tags/Apache-Avro/" class="">
+              Apache Avro
             </a>
           
         </div>
@@ -639,7 +623,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2022/09/21/aws-ebs-vs-aws-efs/" target="_blank" title="AWS EBS vs AWS EFS - Understanding the Key Differences">https://stonefishy.github.io/2022/09/21/aws-ebs-vs-aws-efs/</a>
+    <a href="/2023/10/21/data-storage-format-parquet-ocr-and-avro/" target="_blank" title="大数据存储格式之 Parquet, ORC, Avro">https://stonefishy.github.io/2023/10/21/data-storage-format-parquet-ocr-and-avro/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -661,16 +645,19 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2022/08/13/the-elastic-file-system/" class="post-nav-link">
+    <a href="/2023/09/10/what-is-bixby-capsule/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">AWS Elastic File System (EFS)：云中的弹性文件存储</div>
+        <div class="title-text">What is Bixby Capsule？How to develop it?</div>
       </div>
       
       <!-- <div class="content">
-        在Cloud时代，数据的管理和共享至关重要。AWS Elastic File System（EFS）是 Amazon W
+        
+导言
+
+在今天的数字时代，虚拟助手已经成为我们日常生活的一部分。Bixby，三星电子开发的人工智能助手，是其中一个备受
       </div> -->
     </a>
   </div>
@@ -681,17 +668,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2022/10/17/elastic-load-balancing-elb-overview/" class="post-nav-link">
+    <a href="/2024/01/03/understand-es6-symbol/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Elastic Load Balancing (ELB) Overview</div>
+        <div class="title-text">深入理解ES6中的Symbol类型</div>
       </div>
       <!-- <div class="content">
-        What is load balancing
-
-Load Balances are servers that forwa
+        在ES6（ECMAScript 2015）中引入了一种新的基本数据类型——Symbol。Symbol类型的引入丰富了Ja
       </div> -->
     </a>
   </div>
@@ -829,7 +814,7 @@ Load Balances are servers that forwa
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introductionfvytdeyj1r"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amazon%20Elastic%20Block%20Store%20(EBS)12rthw2kt9f"><span class="toc-text">Amazon Elastic Block Store (EBS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Block%20Storage27j2srpt1j0"><span class="toc-text">Block Storage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Low-Latency%20Performance85kad4pjrq4"><span class="toc-text">Low-Latency Performance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data%20Persistencesmmpgy2na6"><span class="toc-text">Data Persistence</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Availability%20and%20Redundancy2lddjiyeng8"><span class="toc-text">Availability and Redundancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost12e97gy1bke"><span class="toc-text">Cost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amazon%20Elastic%20File%20System%20(EFS)4kqvzfstzo2"><span class="toc-text">Amazon Elastic File System (EFS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#File%20Storagehmusfuur8r4"><span class="toc-text">File Storage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalability1l5qbiauq19"><span class="toc-text">Scalability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cross-AZ%20and%20Cross-Region88oswwmwnw8"><span class="toc-text">Cross-AZ and Cross-Region</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pay-as-You-Go66vr5wizn3"><span class="toc-text">Pay-as-You-Go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simplified%20Management2tqbp2f7bjy"><span class="toc-text">Simplified Management</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choosing%20Between%20EBS%20and%20EFS1cp7gfjvldb"><span class="toc-text">Choosing Between EBS and EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use%20Case1n9f9l7xrba"><span class="toc-text">Use Case</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance%20Requirements71dvzpnmeiw"><span class="toc-text">Performance Requirements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalabilityhf7zam6i9"><span class="toc-text">Scalability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Availability%20and%20Redundancy12tq99x4d9"><span class="toc-text">Availability and Redundancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost26hl1bh666v"><span class="toc-text">Cost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusiontctlqn3rq7"><span class="toc-text">Conclusion</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Parquet"><span class="toc-text">Apache Parquet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">使用场景:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-ORC-Optimized-Row-Columnar"><span class="toc-text">Apache ORC (Optimized Row Columnar)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-1"><span class="toc-text">特点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-1"><span class="toc-text">优点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-text">缺点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="toc-text">使用场景:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Avro"><span class="toc-text">Apache Avro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-2"><span class="toc-text">特点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-2"><span class="toc-text">优点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="toc-text">缺点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="toc-text">使用场景:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
