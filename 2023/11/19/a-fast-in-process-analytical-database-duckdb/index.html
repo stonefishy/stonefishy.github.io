@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Archives | Andrewsy&#39;s Space</title>
+  <title>A fast in-process analytical database - DuckDB | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -484,139 +484,645 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp')">
-  <div class="archive-header-title">
-    Archives
-  </div>
-  <div class="archive-header-desc">
-  
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
+        
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    Archives
-  </div>
-  <div class="video-header-desc">
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = 'Don&#39;t count the days, make the days count.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        A fast in-process analytical database - DuckDB
+      </span>
+    </div>
+    
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2023-11-19 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/Big-Data/" class="post-detail-header_category">
+              Big Data
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 1k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 6min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
-<!-- hash算法 -->
 
 
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><code>DuckDB</code> is a seriously powerful database, with a host of unique and amazing features that are straight from the world of academic database research. It’s a fast in-process analytical database that can handle large datasets and perform complex queries. It’s <code>free</code>, <code>open-source</code>, and written in C++ and SQL. It supports to run on Linux, macOS, Windows, and all popular hardware architectures.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/big-data/duckdb-logo.png" class="lazyload placeholder" data-srcset="/assets/images/big-data/duckdb-logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" style="width:600px;"/></div></div>
+
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>A few of key features for blazing fast OLAP query performance on large datasets (involving aggregations and joins on 100M+ rows on multiple tables), are listed below.</p>
+<ul>
+<li>Like other OLAP data warehouses, DuckDB uses <code>columnar storage</code>, which is a great fit for analytical workloads, because it allows for fast, efficient scans over large amounts of data</li>
+<li>Uses vectorized query execution, which is a technique that allows for processing large amounts of data in batches.</li>
+<li>Uses concurrent execution via threads, which allows for faster execution of queries, and is a great fit for modern multi-threaded CPUs.</li>
+<li>Offers a rich SQL dialect. It can read and write file formats such as <code>CSV</code>, <code>Excel</code>, <code>Parquet</code>, and <code>JSON</code>, to and from the <code>local file system</code> and <code>remote endpoints</code> such as S3 buckets.</li>
+<li>Supports integration with popular database such as <code>MySQL</code>, <code>PostgreSQL</code>, <code>SQLite</code>.</li>
+<li>Data can very easily move from a DuckDB table to a <code>Pandas</code> or <code>Polars</code> <code>DataFrame</code>, and <code>vice-versa</code>.</li>
+<li>It also offers connectors that allow users to directly read <code>Parquet</code> data from <code>AWS S3</code>, <code>GCS</code> and <code>Azure storage</code>.</li>
+</ul>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/big-data/duckdb-analytic-workloads.png" class="lazyload placeholder" data-srcset="/assets/images/big-data/duckdb-analytic-workloads.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="A productive DuckDB setup for large (100M+ size) analytical workloads" style="width:800px;"/></div><span class="image-caption">A productive DuckDB setup for large (100M+ size) analytical workloads</span></div>
+
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><h3 id="As-Software"><a href="#As-Software" class="headerlink" title="As Software"></a>As Software</h3><p>DuckDB can be installed on <code>Linux</code>, <code>macOS</code>, and <code>Windows</code>. It can be installed using a package manager, or by downloading the source code and building it manually. You can refer to the official documentation for installation instructions. </p>
+<h3 id="As-Library"><a href="#As-Library" class="headerlink" title="As Library"></a>As Library</h3><p><code>DuckDB</code> not only as tools or software on system. It also supports as a library that can be used in other applications, as a part of a larger application, or as a standalone database. It can be used in <code>Python</code>, <code>Node.js</code>, <code>R</code>, <code>Java</code>, <code>C++</code>, and other programming languages.</p>
+<h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install duckdb --upgrade</span><br></pre></td></tr></table></figure>
+
+<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install duckdb</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.duckdb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>duckdb_jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Supports-Various-File-Formats"><a href="#Supports-Various-File-Formats" class="headerlink" title="Supports Various File Formats"></a>Supports Various File Formats</h3><p>For the DuckDB usage, below is using <code>Python</code> as an example.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> duckdb</span><br><span class="line">duckdb.read_csv(<span class="string">&quot;example.csv&quot;</span>)                <span class="comment"># read a CSV file into a Relation</span></span><br><span class="line">duckdb.read_parquet(<span class="string">&quot;example.parquet&quot;</span>)        <span class="comment"># read a Parquet file into a Relation</span></span><br><span class="line">duckdb.read_json(<span class="string">&quot;example.json&quot;</span>)              <span class="comment"># read a JSON file into a Relation</span></span><br><span class="line"></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT * FROM &#x27;example.csv&#x27;&quot;</span>)     <span class="comment"># directly query a CSV file</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT * FROM &#x27;example.parquet&#x27;&quot;</span>) <span class="comment"># directly query a Parquet file</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT * FROM &#x27;example.json&#x27;&quot;</span>)    <span class="comment"># directly query a JSON file</span></span><br><span class="line"></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).write_parquet(<span class="string">&quot;out.parquet&quot;</span>) <span class="comment"># Write to a Parquet file</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).write_csv(<span class="string">&quot;out.csv&quot;</span>)         <span class="comment"># Write to a CSV file</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;COPY (SELECT 42) TO &#x27;out.parquet&#x27;&quot;</span>)      <span class="comment"># Copy to a Parquet file</span></span><br><span class="line"></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).fetchall()   <span class="comment"># Python objects</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).df()         <span class="comment"># Pandas DataFrame</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).pl()         <span class="comment"># Polars DataFrame</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).arrow()      <span class="comment"># Arrow Table</span></span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT 42&quot;</span>).fetchnumpy() <span class="comment"># NumPy Arrays</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Supports-Multiple-Data-Sources"><a href="#Supports-Multiple-Data-Sources" class="headerlink" title="Supports Multiple Data Sources"></a>Supports Multiple Data Sources</h3><p>It also supports various data sources, including local files, S3 buckets, and remote endpoints.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(trip_distance) <span class="keyword">FROM</span> <span class="string">&#x27;s3://yellow_tripdata_20[12]*.parquet&#x27;</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;~/local/files/file.parquet&#x27;</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;https://shell.duckdb.org/data/tpch/0_01/parquet/lineitem.parquet&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Pandas-DataFrames"><a href="#Pandas-DataFrames" class="headerlink" title="Pandas DataFrames"></a>Pandas DataFrames</h3><p>DuckDB can even treat pandas dataframes as DuckDB tables and query them directly.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> duckdb</span><br><span class="line"></span><br><span class="line">mydf = pd.DataFrame(&#123;<span class="string">&#x27;a&#x27;</span> : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;)</span><br><span class="line"><span class="built_in">print</span>(duckdb.query(<span class="string">&quot;SELECT sum(a) FROM mydf;&quot;</span>).fetchall())</span><br></pre></td></tr></table></figure>
+
+<h3 id="Retional-API"><a href="#Retional-API" class="headerlink" title="Retional API"></a>Retional API</h3><p>It also supports retional API for querying data, which allows for filtering, grouping, and aggregating data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> duckdb</span><br><span class="line">rel = duckdb.sql(<span class="string">&quot;SELECT * FROM range(1_000_000) tbl(id)&quot;</span>)</span><br><span class="line">duckdb.sql(<span class="string">&quot;SELECT sum(id) FROM rel&quot;</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># aggregate(expr, groups = &#123;&#125;)</span></span><br><span class="line">rel = duckdb.sql(<span class="string">&quot;SELECT * FROM range(1_000_000) tbl(id)&quot;</span>)</span><br><span class="line">rel.aggregate(<span class="string">&quot;id % 2 AS g, sum(id), min(id), max(id)&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># except_(rel)</span></span><br><span class="line">r1 = duckdb.sql(<span class="string">&quot;SELECT * FROM range(10) tbl(id)&quot;</span>)</span><br><span class="line">r2 = duckdb.sql(<span class="string">&quot;SELECT * FROM range(5) tbl(id)&quot;</span>)</span><br><span class="line">r1.except_(r2).show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># filter(condition)</span></span><br><span class="line">rel = duckdb.sql(<span class="string">&quot;SELECT * FROM range(1_000_000) tbl(id)&quot;</span>)</span><br><span class="line">rel.<span class="built_in">filter</span>(<span class="string">&quot;id &gt; 5&quot;</span>).limit(<span class="number">3</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># there are more operations available, refer to the documentation for more details.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Result-Output"><a href="#Result-Output" class="headerlink" title="Result Output"></a>Result Output</h3><p><code>DuckDB</code> query result output can be saved on local file system by using below methods.</p>
+<ul>
+<li>write_csv</li>
+<li>write_parquet</li>
+</ul>
+<h3 id="Persistence"><a href="#Persistence" class="headerlink" title="Persistence"></a>Persistence</h3><p>The data also can be persistent on disk as <code>*.db</code> file. The duckdb.connect(dbname) creates a connection to a persistent database. Any data written to that connection will be persisted, and can be reloaded by reconnecting to the same file, both from Python and from other DuckDB clients.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> duckdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># create a connection to a file called &#x27;file.db&#x27;</span></span><br><span class="line">con = duckdb.connect(<span class="string">&quot;file.db&quot;</span>)</span><br><span class="line"><span class="comment"># create a table and load data into it</span></span><br><span class="line">con.sql(<span class="string">&quot;CREATE TABLE test (i INTEGER)&quot;</span>)</span><br><span class="line">con.sql(<span class="string">&quot;INSERT INTO test VALUES (42)&quot;</span>)</span><br><span class="line"><span class="comment"># query the table</span></span><br><span class="line">con.table(<span class="string">&quot;test&quot;</span>).show()</span><br><span class="line"><span class="comment"># explicitly close the connection</span></span><br><span class="line">con.close()</span><br><span class="line"><span class="comment"># Note: connections also closed implicitly when they go out of scope</span></span><br></pre></td></tr></table></figure>
+
+<p>Or using context manager to automatically close the connection.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> duckdb</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> duckdb.connect(<span class="string">&quot;file.db&quot;</span>) <span class="keyword">as</span> con:</span><br><span class="line">    con.sql(<span class="string">&quot;CREATE TABLE test (i INTEGER)&quot;</span>)</span><br><span class="line">    con.sql(<span class="string">&quot;INSERT INTO test VALUES (42)&quot;</span>)</span><br><span class="line">    con.table(<span class="string">&quot;test&quot;</span>).show()</span><br><span class="line">    <span class="comment"># the context manager closes the connection automatically</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p><code>DuckDB</code> is a great database for analytical workloads, with a rich SQL dialect, fast vectorized query execution, and support for various file formats. It’s also easy to use as a library in other applications, and can be used as a standalone database. Happy to try!</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Parquet/" class="">
+              Parquet
+            </a>
+          
+            <a href="/tags/DataBase/" class="">
+              DataBase
+            </a>
+          
+            <a href="/tags/DuckDB/" class="">
+              DuckDB
+            </a>
+          
+            <a href="/tags/Python/" class="">
+              Python
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2023/11/19/a-fast-in-process-analytical-database-duckdb/" target="_blank" title="A fast in-process analytical database - DuckDB">https://stonefishy.github.io/2023/11/19/a-fast-in-process-analytical-database-duckdb/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2023/10/21/data-storage-format-parquet-ocr-and-avro/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">大数据存储格式之 Parquet, ORC, Avro</div>
+      </div>
+      
+      <!-- <div class="content">
+        数据存储格式在大数据处理和分析中起着至关重要的作用。Avro、Parquet 和 ORC（优化行列式）是 Hadoop 
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2024/01/03/understand-es6-symbol/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">深入理解ES6中的Symbol类型</div>
+      </div>
+      <!-- <div class="content">
+        在ES6（ECMAScript 2015）中引入了一种新的基本数据类型——Symbol。Symbol类型的引入丰富了Ja
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
         
         
+          <p>Stay hungry, Stay foolish</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
           
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2013">2013</a>
-            </div>
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
           
-          <li class="post-item" data-aos="fade-left">
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#As-Software"><span class="toc-text">As Software</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#As-Library"><span class="toc-text">As Library</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Python"><span class="toc-text">Python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Node-js"><span class="toc-text">Node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java"><span class="toc-text">Java</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-text">Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supports-Various-File-Formats"><span class="toc-text">Supports Various File Formats</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supports-Multiple-Data-Sources"><span class="toc-text">Supports Multiple Data Sources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pandas-DataFrames"><span class="toc-text">Pandas DataFrames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retional-API"><span class="toc-text">Retional API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Result-Output"><span class="toc-text">Result Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Persistence"><span class="toc-text">Persistence</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2013/05/11/markdonw-syntax-for-block-elements/" class="post-img " style="background-size: cover; 
+              <a href="/2024/08/16/introduce-is-distinct-from-in-sql/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">05-11</span>
+                
+                  <span class="post-date">08-16</span>
+                
               </div>
-              <a class="post-title" href="/2013/05/11/markdonw-syntax-for-block-elements/">Markdonw syntax for block elements</a>
+              <a class="post-title" href="/2024/08/16/introduce-is-distinct-from-in-sql/">SQL 中的 IS DISTINCT FROM 语法详解</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2013/04/14/what-is-markdown/" class="post-img " style="background-size: cover; 
+              <a href="/2024/08/15/what-is-lag-in-sql/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-14</span>
+                
+                  <span class="post-date">08-15</span>
+                
               </div>
-              <a class="post-title" href="/2013/04/14/what-is-markdown/">What is Markdown</a>
+              <a class="post-title" href="/2024/08/15/what-is-lag-in-sql/">详解 SQL 中的 LAG 函数</a>
             </div>
-          </li>
+          </div>
         
-      </ul>
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">08-02</span>
+                
+              </div>
+              <a class="post-title" href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/">How to query tree-structured relation data in MySQL</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">07-26</span>
+                
+              </div>
+              <a class="post-title" href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/">MySQL 8.x CTEs feature - WITH clause</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-bf6c555e7c61a57ba4a1fd95a9a32975_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">07-04</span>
+                
+              </div>
+              <a class="post-title" href="/2024/07/04/using-pulumi-to-import-the-aws-resources-of-the-other-region/">Using Pulumi to Import the AWS Resources of the Other Region</a>
+            </div>
+          </div>
+        
+      </div>
     </div>
   </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/15/">Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/14/">14</a><a class="page-number" href="/archives/page/15/">15</a><span class="page-number current">16</span>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/15/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">16 / 16</div>
-    </div>
-    
-  </div>
 
+    
   </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
