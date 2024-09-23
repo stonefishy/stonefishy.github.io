@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>AWS IAM原理以及如何使用 | Andrewsy&#39;s Space</title>
+  <title>如何维护正在运行的 Kubernetes 节点 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        AWS IAM原理以及如何使用
+        如何维护正在运行的 Kubernetes 节点
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2022-02-17 |
+          <i class="fas fa-calendar"></i> Published in：2021-06-28 |
         </span>
       
 
@@ -520,8 +520,12 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
+            <a href="/categories/DevOps/" class="post-detail-header_category">
+              DevOps
+            </a>
+          
+            <a href="/categories/DevOps/Cloud-Native/" class="post-detail-header_category">
+              Cloud Native
             </a>
           
         </span>
@@ -530,11 +534,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 619 |
+            <i class="fas fa-file-text-o"></i> Words: 1.1k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 2min |
+            <i class="fas fa-clock"></i> Reading time: 4min |
           </span>
   
           
@@ -561,34 +565,67 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>AWS Identity and Access Management（<code>IAM</code>）是Amazon Web Services（AWS）提供的身份和访问管理服务，用于安全地管理对AWS资源的访问权限。IAM使您能够精细控制用户、组、角色等实体对AWS服务和资源的访问权限，以确保安全性和合规性。</p>
-<h3 id="IAM的原理"><a href="#IAM的原理" class="headerlink" title="IAM的原理"></a>IAM的原理</h3><p>IAM基于一些核心概念：</p>
-<p><strong>用户（Users）：</strong> 代表实际的个人用户，可以分配安全凭证（如访问密钥、密码）来访问AWS资源。<br><img src="/assets/images/aws/aws-iam-users.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-iam-users.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p>
-<span id="more"></span>
-<p><strong>组（Groups）：</strong> 用于将一组用户组合在一起，并将一组权限分配给该组，从而简化权限管理。<br><img src="/assets/images/aws/aws-iam-groups.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-iam-groups.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p>
-<p><strong>角色（Roles）：</strong> 类似于用户，但不是直接分配给人，而是分配给AWS资源（例如EC2实例）。角色可以用于临时授权。<br><img src="/assets/images/aws/aws-iam-roles.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-iam-roles.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p>
-<p><strong>权限策略（Permissions Policies）：</strong><br>定义了用户、组或角色可以执行的特定操作的权限。AWS提供了许多预定义的权限策略，同时也可以创建自定义策略。<br><img src="/assets/images/aws/aws-iam-policies.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-iam-policies.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p>
-<h3 id="如何使用IAM"><a href="#如何使用IAM" class="headerlink" title="如何使用IAM"></a>如何使用IAM</h3><p><strong>创建用户和组：</strong> 在IAM中，您可以创建用户，并将用户组合成组。然后，为用户分配安全凭证和权限。</p>
-<p><strong>定义和分配权限：</strong> 您可以使用AWS提供的预定义权限策略，也可以创建自定义策略，然后将这些策略附加到用户、组或角色上，以控制他们对资源的访问。</p>
-<p><strong>使用角色：</strong> 如果您的应用程序需要访问AWS服务，可以创建角色，并将这些角色附加到您的应用程序或服务中。这样，您可以避免将敏感的凭证嵌入到应用程序代码中。</p>
-<p><strong>多因素认证（MFA）：</strong> 您可以启用多因素认证来增加账户的安全性，要求用户在登录时提供额外的身份验证信息。</p>
-<p><strong>访问审计：</strong> IAM提供了日志记录功能，可记录用户在AWS资源上执行的操作，以便进行审计和安全分析。</p>
-<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>在使用IAM时，建议采用以下最佳实践，例如：</p>
-<p><strong>最小权限原则：</strong> 为用户和角色提供所需的最小权限，以减少潜在的安全风险。</p>
-<p><strong>使用身份提供商：</strong> 将身份提供商（如企业目录）与IAM集成，以便集中管理用户和权限。</p>
-<p><strong>定期审查权限：</strong> 定期审查用户、组和角色的权限，确保权限保持最新且合规。</p>
+        <p><code>Kubernetes</code> 集群中的节点可以分为两种类型：</p>
+<ul>
+<li>主节点：主节点是 Kubernetes 集群的控制节点，负责管理集群的控制平面组件，如 API 服务器、调度器、控制器管理器等。</li>
+<li>工作节点：工作节点是 Kubernetes 集群的工作节点，负责运行容器化的应用。</li>
+</ul>
+<p>当节点出现故障时，集群会自动将其从工作节点中移除，并将其上的容器调度到其他节点上。我们可以通过命令<code>kubectl get nodes</code>查看集群中所有节点的状态。</p>
+<p>但是有些情况下，我们需要维护正在运行的节点，比如：升级节点的内核或操作系统， 修复节点上的软件包等等。这种情况下，为了不影响正在节点上运行的应用，在应用无感知的情况下，我们需要对节点进行维护。主要通过使用以下三个命令来实现：</p>
+<ul>
+<li><code>kubectl cordon &lt;node-name&gt;</code>：将节点标记为不可调度。</li>
+<li><code>kubectl drain &lt;node-name&gt;</code>：将节点上的工作负载转移到其他节点上。</li>
+<li><code>kubectl uncordon &lt;node-name&gt;</code>：将节点标记为可调度。</li>
+</ul>
+<p>我们这里用minikube来做示例，假设我们要维护正在运行的minikube节点。首先，查看节点的状态。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes -o wide</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-maintain-node.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-maintain-node.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes Get Nodes"/></div><span class="image-caption">Kubernetes Get Nodes</span></div>
+<p>我们可以看到，minikube节点的状态是<code>Ready</code>，即节点处于正常状态。</p>
+<h2 id="kubectl-cordon"><a href="#kubectl-cordon" class="headerlink" title="kubectl cordon"></a>kubectl cordon</h2><p><code>kubectl cordon</code>的作用是将节点标记为不可调度。这意味着不会在该节点上调度新的Pod，但现有的Pod将继续运行。当我们准备对节点进行维护或升级时，可以使用此命令，暂时不想驱逐任何现有的Pod。</p>
+<p>此时，我们通过此命令将节点标记为不可调度：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl cordon minikube</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-maintain-cordon.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-maintain-cordon.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes Cordon Node"/></div><span class="image-caption">Kubernetes Cordon Node</span></div>
+<p>再次查看节点状态时，发现节点状态从<code>Ready</code>变成了<code>Ready,SchedulingDisabled</code>。这意味着节点已经被标记为不可调度，但是其中已调度的Pods仍然可以正常运行。</p>
+<h2 id="kubectl-drain"><a href="#kubectl-drain" class="headerlink" title="kubectl drain"></a>kubectl drain</h2><p><code>kubectl drain</code>的作用是安全地从节点中驱逐所有<code>Pod</code>, 该命令将首先将节点标记为不可调度（cordon），然后尝试驱逐其上的所有Pod，确保它们被终止或重新调度到其他节点（如果它们是副本集、部署或其他控制器的一部分）, 特别适用于应用更新或进行硬件维护时。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl drain minikube</span><br></pre></td></tr></table></figure>
+
+<p>如何节点上有daemonset和local storage使用，直接执行上述的命令时会出现如下错误.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: unable to drain node &quot;minikube&quot; due to error:[cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/kube-proxy-jsdtq,</span><br><span class="line">cannot delete Pods with local storage (use --delete-emptydir-data to override): kube-system/metrics-server-c74bf77d6-9wpx5]</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-maintain-drain-failure.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-maintain-drain-failure.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes Drain Node Error"/></div><span class="image-caption">Kubernetes Drain Node Error</span></div>
+
+<p>此时，我们需要使用<code>--ignore-daemonsets</code>参数来忽略daemonset，并使用<code>--delete-emptydir-data</code>参数来删除节点上的local storage。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl drain minikube --ignore-daemonsets --delete-emptydir-data</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-maintain-drain-success.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-maintain-drain-success.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes Drain Node Success"/></div><span class="image-caption">Kubernetes Drain Node Success</span></div>
+
+<p>此时，节点上的所有Pod都已被驱逐，但节点仍然处于<code>Ready,SchedulingDisabled</code>状态。 查看Pods的运行状态，Pods的状态已经从Running变成了Pending状态。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-maintain-drain-status.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-maintain-drain-status.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes Drain Node Status"/></div><span class="image-caption">Kubernetes Drain Node Status</span></div>
+
+<p>在这个步骤之后，我们就可以对节点进行维护，比如升级内核或操作系统，修复软件包等。当维护完成后，我们就可以通过命令<code>kubectl uncordon</code>将节点标记为可调度，允许新的Pod在其上进行调度。</p>
+<h2 id="kubectl-uncordon"><a href="#kubectl-uncordon" class="headerlink" title="kubectl uncordon"></a>kubectl uncordon</h2><p><code>kubectl uncordon</code>的作用是将先前已被标记为不可调度的节点重新标记为可调度，允许新的Pod在其上进行调度。这意味着在该节点上可以调度新的Pod。当维护完成后，可以使用此命令将节点标记为可调度。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl uncordon minikube</span><br></pre></td></tr></table></figure>
+
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/k8s/k8s-maintain-uncordon.png" class="lazyload placeholder" data-srcset="/assets/images/k8s/k8s-maintain-uncordon.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Kubernetes Uncordon Node"/></div><span class="image-caption">Kubernetes Uncordon Node</span></div>
+
+<p>从上面可以看出，节点已经恢复成了<code>Ready</code>状态，可以正常调度Pod。并且Pod的状态也从<code>Pending</code>变成了<code>Running</code>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上述三个命令，我们可以对正在运行的Kubernetes节点进行维护。首先，我们通过命令<code>kubectl cordon</code>将节点标记为不可调度，然后通过命令<code>kubectl drain</code>将节点上的工作负载转移到其他节点上。最后，我们通过命令<code>kubectl uncordon</code>将节点标记为可调度，允许新的Pod在其上进行调度。这样，我们就可以在不影响正在运行的应用的情况下，对节点进行维护。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/Cloud/" class="">
-              Cloud
+            <a href="/tags/Cloud-Native/" class="">
+              Cloud Native
             </a>
           
-            <a href="/tags/AWS/" class="">
-              AWS
+            <a href="/tags/Kubernetes/" class="">
+              Kubernetes
             </a>
           
         </div>
@@ -602,7 +639,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" target="_blank" title="AWS IAM原理以及如何使用">https://stonefishy.github.io/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/</a>
+    <a href="/2021/06/28/how-to-maintan-the-running-node-in-kubernetes/" target="_blank" title="如何维护正在运行的 Kubernetes 节点">https://stonefishy.github.io/2021/06/28/how-to-maintan-the-running-node-in-kubernetes/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -624,18 +661,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2021/06/28/how-to-maintan-the-running-node-in-kubernetes/" class="post-nav-link">
+    <a href="/2021/06/09/kubernetes-expose-service/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">如何维护正在运行的 Kubernetes 节点</div>
+        <div class="title-text">Kubernetes 暴露 Service 给外部访问</div>
       </div>
       
       <!-- <div class="content">
-        Kubernetes 集群中的节点可以分为两种类型：
-
-主节点：主节点是 Kubernetes 集群的控制节点，负责管理
+        在现代的容器化应用部署中，Kubernetes 已经成为了一个不可或缺的工具。它提供了一种高效的方式来管理和编排容器化的
       </div> -->
     </a>
   </div>
@@ -646,15 +681,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2022/03/02/aws-ec2de-xiang-xi-jie-shao-he-ji-fei-mo-shi/" class="post-nav-link">
+    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">AWS EC2的主要特点和工作方式以及计费模式</div>
+        <div class="title-text">AWS IAM原理以及如何使用</div>
       </div>
       <!-- <div class="content">
-        Amazon Elastic Compute Cloud（Amazon EC2）是Amazon Web Services
+        AWS Identity and Access Management（IAM）是Amazon Web Services（
       </div> -->
     </a>
   </div>
@@ -792,7 +827,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IAM%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">IAM的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8IAM"><span class="toc-text">如何使用IAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">最佳实践</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#kubectl-cordon"><span class="toc-text">kubectl cordon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kubectl-drain"><span class="toc-text">kubectl drain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kubectl-uncordon"><span class="toc-text">kubectl uncordon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
