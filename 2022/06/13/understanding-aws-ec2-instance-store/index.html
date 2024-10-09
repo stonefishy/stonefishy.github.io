@@ -562,27 +562,27 @@
     <article class="post post-detail">
       <div class="post-content">
         <p>Amazon Web Services (AWS) 的弹性Cloud实例（EC2）为用户提供了多种存储选项，其中之一是实例存储(<code>Instance Store</code>)，也被称为本地实例存储或瞬态存储。本文将深入研究 AWS EC2 实例存储，包括其定义、特点、使用场景以及最佳实践。</p>
-<h2 class="bamboo-h " id="什么是 EC2 实例存储？3cfdxp56w7w">什么是 EC2 实例存储？</h2><br/>
+<h2 class="bamboo-h " id="什么是 EC2 实例存储？5qlmzb6acrs">什么是 EC2 实例存储？</h2><br/>
 
 <div class="note info"><p>EC2 实例存储是 EC2 实例上提供的临时、本地存储选项。这些存储卷是物理存储设备（如硬盘驱动器）的一部分，直接连接到宿主实例，而不是通过网络进行访问。实例存储通常提供了非常高的性能，适用于需要低延迟和高吞吐量的工作负载。</p></div>
 <p><img src="/assets/images/aws/aws-ec2-instancestore-iops.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-ec2-instancestore-iops.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="AWS EC2 Instance Store IOPS"></p>
-<h2 class="bamboo-h " id="实例存储的特点4753xnvhito">实例存储的特点</h2><br/>
+<h2 class="bamboo-h " id="实例存储的特点638rhmavqr4">实例存储的特点</h2><br/>
 
 <p><strong>临时性</strong>：实例存储是临时的，与 EC2 实例的生命周期紧密相连。当 EC2 实例停止、终止或失败时，存储中的数据将不再可用。</p>
 <p><strong>高性能</strong>：实例存储通常提供非常高的 I&#x2F;O 性能，适用于需要大量读写操作的应用程序，如数据库缓存或临时计算。</p>
 <p><strong>低延迟</strong>：由于实例存储直接连接到宿主实例，因此具有非常低的访问延迟，适用于对速度要求极高的工作负载。</p>
 <p><strong>不同于 Amazon EBS</strong>：<wavy>, 与 Amazon Elastic Block Store（EBS）不同，实例存储不需要预配，也没有额外的费用，但缺乏 EBS 提供的持久性和数据备份功能。</wavy></p>
-<h2 class="bamboo-h " id="使用场景49djcvzqsl4">使用场景</h2><br/>
+<h2 class="bamboo-h " id="使用场景4kujmt089t8">使用场景</h2><br/>
 
 <p><strong>缓存层</strong>：实例存储适用于临时数据，如缓存层。通过将缓存存储在实例存储上，可以提高读取速度和降低后端存储负担。</p>
 <p><strong>临时计算</strong>：对于需要执行大规模数据处理的任务，实例存储可以用作临时工作空间，以加速计算过程。</p>
 <p><strong>日志存储</strong>：对于需要快速记录大量日志数据的应用程序，实例存储可以提供高性能的日志存储解决方案。</p>
-<h2 class="bamboo-h " id="最佳实践2lcg4wifc94">最佳实践</h2><br/>
+<h2 class="bamboo-h " id="最佳实践1fibo6lmhyp">最佳实践</h2><br/>
 
 <p><strong>备份重要数据</strong>：由于实例存储是临时性的，重要数据需要备份到持久性存储（如 Amazon EBS 或 Amazon S3）以防止数据丢失。</p>
 <p><strong>了解生命周期</strong>：在使用实例存储时，了解 EC2 实例的生命周期非常重要。确保存储中的数据不会在实例终止时丢失。</p>
 <p><strong>监控性能</strong>：实例存储通常提供高性能，但仍然需要监控其性能以确保正常运行。</p>
-<h2 class="bamboo-h " id="总结15dkj4ya1bd">总结</h2><br/>
+<h2 class="bamboo-h " id="总结1yw254r16zl">总结</h2><br/>
 
 <span class='pbg danger'>AWS EC2 实例存储是一种适用于需要高性能和低延迟的临时数据存储的选择。尽管它不适用于持久性数据存储，但在特定场景下，如缓存、临时计算和日志存储，它可以提供卓越的性能和效率</span>。使用实例存储时，请谨记存储临时性质，并采取适当的备份和监控措施，以确保数据的可用性和完整性。
       </div>
@@ -797,7 +797,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%20EC2%20%E5%AE%9E%E4%BE%8B%E5%AD%98%E5%82%A8%EF%BC%9F3cfdxp56w7w"><span class="toc-text">什么是 EC2 实例存储？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%AD%98%E5%82%A8%E7%9A%84%E7%89%B9%E7%82%B94753xnvhito"><span class="toc-text">实例存储的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF49djcvzqsl4"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B52lcg4wifc94"><span class="toc-text">最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%9315dkj4ya1bd"><span class="toc-text">总结</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%20EC2%20%E5%AE%9E%E4%BE%8B%E5%AD%98%E5%82%A8%EF%BC%9F5qlmzb6acrs"><span class="toc-text">什么是 EC2 实例存储？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%AD%98%E5%82%A8%E7%9A%84%E7%89%B9%E7%82%B9638rhmavqr4"><span class="toc-text">实例存储的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF4kujmt089t8"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B51fibo6lmhyp"><span class="toc-text">最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%931yw254r16zl"><span class="toc-text">总结</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -823,6 +823,27 @@
       <!-- hash算法 -->
       
       <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">10-09</span>
+                
+              </div>
+              <a class="post-title" href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/">AWS Glue Iceberg tables schema can&#39;t be updated with Pulumi</a>
+            </div>
+          </div>
         
           <div class="aside-list-item">
             
@@ -905,27 +926,6 @@
                 
               </div>
               <a class="post-title" href="/2024/08/15/what-is-lag-in-sql/">详解 SQL 中的 LAG 函数</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">08-02</span>
-                
-              </div>
-              <a class="post-title" href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/">How to query tree-structured relation data in MySQL</a>
             </div>
           </div>
         
