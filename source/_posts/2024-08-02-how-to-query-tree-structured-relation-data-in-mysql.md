@@ -2,7 +2,7 @@
 title: How to query tree-structured relation data in MySQL
 date: 2024-08-02 10:08:52
 tags: [MySQL]
-categories: DataBase
+categories: Database
 ---
 
 To query hierarchical relational data in `MySQL`, `recursive Common Table Expressions (CTEs)` are typically used. However, MySQL did not support recursive CTEs before version 8.0, so in earlier versions, `self-joins` are commonly used to handle such queries. Below is an example using a self-join, assuming we have a table employees that contains information about employees and their manager IDs (manager_id).
