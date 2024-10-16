@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Category: DataBase | Andrewsy&#39;s Space</title>
+  <title>The useEffect of React Runs Twice in Development Mode. | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -485,216 +485,605 @@
 </header>
         <!-- 内容区域 -->
         
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-categoryDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="category-header"  style="background-image:url('/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp')">
-  <div class="category-header-title">
-    Category
-  </div>
-  <div class="category-header-desc">
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        The useEffect of React Runs Twice in Development Mode.
+      </span>
+    </div>
     
-      <span class="title" id="category-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#category-header-desc';
-    const type = 'categoryDetail';
-    let desc = 'Believe you can, and you&#39;re halfway there.'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2024-10-16 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/Frontend/" class="post-detail-header_category">
+              Frontend
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 547 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 3min |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
 
-<div class="category">
-  <div class="category-name">
-    <div class="name" style="background-color: #FFF;">DataBase Category</div>
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>Have you noticed that your <code>useEffect</code> hook of <code>React</code> runs twice when the page first loads in development mode? This occurs because since <code>React 18</code>, it can be confusing, especially for new developers. Let’s explore why this happens and what it means.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/react/react-hook-useEffect.png" class="lazyload placeholder" data-srcset="/assets/images/react/react-hook-useEffect.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="React Hook useEffect" style="width:800px;"/></div><span class="image-caption">React Hook useEffect</span></div>
+
+<h2 id="What-is-useEffect"><a href="#What-is-useEffect" class="headerlink" title="What is useEffect?"></a>What is <code>useEffect</code>?</h2><p><code>useEffect</code> is a hook that allows you to perform side effects in your components. Side effects can be things like <strong>fetching data</strong>, <strong>subscribing to events</strong>, or <strong>changing the DOM</strong>. This hook takes two arguments:</p>
+<ol>
+<li>A function to run your side effect.</li>
+<li>An optional array of dependencies that tells React when to run the effect again.</li>
+</ol>
+<p>Here’s a simple example of useEffect in action:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ExampleComponent</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Effect has been executed&#x27;</span>);</span><br><span class="line">    <span class="comment">// Side effect logic here</span></span><br><span class="line">  &#125;, [count]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>You clicked &#123;count&#125; times<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count + 1)&#125;&gt;Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In above code, the log ‘Effect has been executed’ will be printed to the console twice when the component is first render on development mode.</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/react/react-useEffect-runs-twice.png" class="lazyload placeholder" data-srcset="/assets/images/react/react-useEffect-runs-twice.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="React useEffect runs twice in development mode"/></div><span class="image-caption">React useEffect runs twice in development mode</span></div>
+
+
+<h2 id="Why-Does-useEffect-Run-Twice-in-Development-Mode"><a href="#Why-Does-useEffect-Run-Twice-in-Development-Mode" class="headerlink" title="Why Does useEffect Run Twice in Development Mode?"></a>Why Does useEffect Run Twice in Development Mode?</h2><p>When you run your React app in development mode, you might see that the useEffect runs twice when the component loads for the first time. This can be confusing, especially for new developers.</p>
+<h3 id="Reasons-for-the-Double-Execution"><a href="#Reasons-for-the-Double-Execution" class="headerlink" title="Reasons for the Double Execution"></a>Reasons for the Double Execution</h3><p><strong>Strict Mode:</strong> This behavior is part of React’s <code>Strict Mode</code>. It purposely runs certain lifecycle methods and hooks like useEffect twice during development. This helps check if your code can handle side effects correctly.</p>
+<p><strong>Testing Effects:</strong> By running the effect two times, React tests if your side effects can handle being called multiple times without causing bugs. This helps catch problems early.</p>
+<h3 id="What-Happens-in-Production"><a href="#What-Happens-in-Production" class="headerlink" title="What Happens in Production?"></a>What Happens in Production?</h3><span class='pbg danger'>The double call only happens in development mode. When you make your app for production</span>
+
+<h2 id="How-to-Handle-the-Double-Execution"><a href="#How-to-Handle-the-Double-Execution" class="headerlink" title="How to Handle the Double Execution"></a>How to Handle the Double Execution</h2><p>Here are some tips for dealing with the double execution of useEffect:</p>
+<p><strong>Be Careful with State Updates</strong>: If your effect updates state, make sure it’s safe to run the effect multiple times without causing issues.</p>
+<p><strong>Use Cleanup Functions</strong>: Always return a cleanup function from your useEffect to free up resources and avoid memory issues.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Your side effect code here</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// Cleanup code here</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;, [dependencies]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Test Your Effects</strong>: Use the extra invocation to ensure that your effects work correctly.</p>
+<h2 id="Disable-Strict-Mode"><a href="#Disable-Strict-Mode" class="headerlink" title="Disable Strict Mode"></a>Disable Strict Mode</h2><p>It is not recommend this way, but if you want to disable Strict Mode, in <code>React 18</code> you can disable Strict Mode by removing the <code>&lt;React.StrictMode&gt;</code> tag from the return statement in your root component.</p>
+<p>In <code>Next.js</code>, you can disable Strict Mode by setting the following parameter in <code>next.config.js</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">reactStrictMode</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><span class='pbg green'>Seeing useEffect run twice in development mode can be surprising</span> Understanding this behavior and preparing your code for it will allow you to use React hooks effectively and build better applications.
+
+<p>Even though this might seem confusing at first, it’s an important part of the React development experience. Happy coding!</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/JavaScript/" class="">
+              JavaScript
+            </a>
+          
+            <a href="/tags/React/" class="">
+              React
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/" target="_blank" title="The useEffect of React Runs Twice in Development Mode.">https://stonefishy.github.io/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">AWS Glue Iceberg tables schema can&#39;t be updated with Pulumi</div>
+      </div>
+      
+      <!-- <div class="content">
+        ContextRecently, we’re planing to use Pulumi to manage all c
+      </div> -->
+    </a>
   </div>
-  <!-- 每一篇文章卡片 -->
-  <!-- hash算法 -->
 
-<section class="posts">
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2024-08-02</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/">How to query tree-structured relation data in MySQL</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
 
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
 
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
 </div>
 
+    
+    
 
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            To query hierarchical relational data in MySQL, recursive Common Table Expressions (CTEs) are typically used. However, M
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2024/08/02/how-to-query-tree-structured-relation-data-in-mysql/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
   
     
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2024-07-26</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/">MySQL 8.x CTEs feature - WITH clause</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            MySQL Common Table Expressions (CTEs) are a powerful feature introduced in MySQL 8.0. CTEs are a type of MySQL 8.0 that 
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2024/07/26/mysql-8-x-ctes-feature-with-clause/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
+      <section class="widget side_blogger">
+  <div class='content'>
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2020-01-31</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2020/01/31/mysql-master-slave/">MySQL主从同步详解与应用场景</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
+        
+        
+          <p>Stay hungry, Stay foolish</p>
 
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2020/01/31/mysql-master-slave/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
             </a>
-          </div>
-          <div class="post-content">
-            引言在大型数据库应用中，数据同步和备份是至关重要的。MySQL主从同步是一种常用的数据同步机制，它能够确保多个数据库服务器之间的数据保持一致。本文将详细介绍MySQL主从同步的运行原理以及常见的应用场景。
-主从同步的运行原理1. 主从架构M
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2020/01/31/mysql-master-slave/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
+          
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
       </div>
-      <div class="post-img">
-        <a href="/2020/01/31/mysql-master-slave/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
+    
+  </div>
 </section>
-</div>
-<div class="w-70">
+
+    
   
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-useEffect"><span class="toc-text">What is useEffect?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Does-useEffect-Run-Twice-in-Development-Mode"><span class="toc-text">Why Does useEffect Run Twice in Development Mode?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reasons-for-the-Double-Execution"><span class="toc-text">Reasons for the Double Execution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-Happens-in-Production"><span class="toc-text">What Happens in Production?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-Handle-the-Double-Execution"><span class="toc-text">How to Handle the Double Execution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disable-Strict-Mode"><span class="toc-text">Disable Strict Mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
 </div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">10-16</span>
+                
+              </div>
+              <a class="post-title" href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/">The useEffect of React Runs Twice in Development Mode.</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">10-09</span>
+                
+              </div>
+              <a class="post-title" href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/">AWS Glue Iceberg tables schema can&#39;t be updated with Pulumi</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/09/19/user-survey-feedback-sentiment-analysis-base-on-aws-cloud-solution/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">09-19</span>
+                
+              </div>
+              <a class="post-title" href="/2024/09/19/user-survey-feedback-sentiment-analysis-base-on-aws-cloud-solution/">User Survey Feedback Sentiment Analysis Base on AWS Cloud Solution</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/09/10/aws-s3-event-replacing-space-with-character-sign-in-object-key-name/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">09-10</span>
+                
+              </div>
+              <a class="post-title" href="/2024/09/10/aws-s3-event-replacing-space-with-character-sign-in-object-key-name/">How to Fix AWS S3 Event Replacing Space With &#39;+&#39; Character Sign in Object Key Name</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/08/16/introduce-is-distinct-from-in-sql/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">08-16</span>
+                
+              </div>
+              <a class="post-title" href="/2024/08/16/introduce-is-distinct-from-in-sql/">SQL 中的 IS DISTINCT FROM 语法详解</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
