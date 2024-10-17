@@ -1,7 +1,7 @@
 ---
 title: Kubernetes - 现代容器编排平台
 date: 2021-01-03 15:24:38
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

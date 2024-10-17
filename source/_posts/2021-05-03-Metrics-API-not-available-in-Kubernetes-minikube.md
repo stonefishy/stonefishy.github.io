@@ -1,7 +1,7 @@
 ---
 title: Metrics API not available in Kubernetes minikube
 date: 2021-05-03 16:57:20
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

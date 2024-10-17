@@ -1,7 +1,7 @@
 ---
 title: Kubernetes 暴露 Service 给外部访问
 date: 2021-06-09 11:13:36
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 如何维护正在运行的 Kubernetes 节点
 date: 2021-06-28 10:02:01
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

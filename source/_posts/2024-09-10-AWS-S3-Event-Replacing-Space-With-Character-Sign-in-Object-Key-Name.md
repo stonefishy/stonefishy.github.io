@@ -30,7 +30,7 @@ s3_client = boto3.client('s3')
 
 # Example key with spaces
 object_key = "2023 2nd quarter QE survey raw data.xlsx"
-encoded_key = urllib.parse.quote(key_with_spaces)
+encoded_key = urllib.parse.quote(object_key)
 
 # Upload the object
 s3_client.upload_file("/tmp/2023 2nd quarter QE survey raw data.xlsx", "my-bucket-name", encoded_key)

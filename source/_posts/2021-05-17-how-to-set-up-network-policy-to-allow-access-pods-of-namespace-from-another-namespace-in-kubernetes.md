@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Network Policy Pod之间的网络策略通信
 date: 2021-05-17 15:32:53
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Kubernetes权限管理之ServiceAccount
 date: 2021-03-22 15:48:39
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

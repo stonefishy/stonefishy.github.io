@@ -3,8 +3,6 @@ title: 深入理解ES6中的Symbol类型
 date: 2024-01-03 19:55:00
 tags: [JavaScript]
 categories: Frontend
-top: true
-swiper: true
 ---
 
 在ES6（ECMAScript 2015）中引入了一种新的基本数据类型——`Symbol`。Symbol类型的引入丰富了JavaScript语言，为开发者提供了一种独一无二的标识符。本文将深入探讨Symbol的特性、用途以及代码示例。

@@ -1,7 +1,7 @@
 ---
 title: 解决 Docker permission denied while trying to connect to the Docker daemon socket
 date: 2020-03-19 10:22:06
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Docker, Container, Cloud Native]
 ---
 

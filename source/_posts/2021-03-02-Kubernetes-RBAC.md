@@ -1,7 +1,7 @@
 ---
 title: Kubernetes之RBAC授权模型
 date: 2021-03-02 10:08:20
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

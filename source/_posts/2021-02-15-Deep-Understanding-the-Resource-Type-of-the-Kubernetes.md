@@ -1,7 +1,7 @@
 ---
 title: 深入理解 Kubernetes 中的常见资源类型
 date: 2021-02-15 09:23:25
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 

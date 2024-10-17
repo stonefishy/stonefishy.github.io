@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Deployment 的伸缩性
 date: 2021-04-12 10:11:09
-categories: [DevOps, Cloud Native]
+categories: [DevOps]
 tags: [Kubernetes, Cloud Native]
 ---
 
