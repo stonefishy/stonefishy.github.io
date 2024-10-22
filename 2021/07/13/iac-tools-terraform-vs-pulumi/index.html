@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Migrate a legacy application to AWS Cloud | Andrewsy&#39;s Space</title>
+  <title>浅谈IaC工具Terraform vs Pulumi | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Migrate a legacy application to AWS Cloud
+        浅谈IaC工具Terraform vs Pulumi
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2024-03-13 |
+          <i class="fas fa-calendar"></i> Published in：2021-07-13 |
         </span>
       
 
@@ -520,8 +520,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
+            <a href="/categories/DevOps/" class="post-detail-header_category">
+              DevOps
             </a>
           
         </span>
@@ -530,11 +530,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 1.1k |
+            <i class="fas fa-file-text-o"></i> Words: 1.5k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 6min |
+            <i class="fas fa-clock"></i> Reading time: 5min |
           </span>
   
           
@@ -561,45 +561,78 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Recently, we got a requirement from the company to move the application to AWS Cloud. The company has a strong focus on security and compliance, and stack holders also want the application more reliable and scalable. The migration also need to be done as soon as possible.</p>
-<p>The application running on a local data center. The application is consists of two parts, frontend is a static website built with React and provide the user interface to user, the backend is a Python Flask application that provide the API to interact with the frontend. The backend server also contains a machine learning model algorithm that is used to process the user’s ears photo. </p>
-<p>The application main logic is that the user answer some questions and scan and upload their ears photo to the backend server from the website, the backend server will process the photo and return the suggestion result to user to recommend which headset or earphone is the best fit for them.</p>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>After analysis application technologies and architecture, base on the requirements, we did some architecture design. Below is the architecture of the application on AWS Cloud. </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/aws/aws-migrate-legacy-app-arch.png" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-migrate-legacy-app-arch.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Application Architecture on AWS Cloud"/></div><span class="image-caption">Application Architecture on AWS Cloud</span></div>
+        <p><code>基础架构即代码（Infrastructure as Code, IaC）</code>是一种管理和提供计算基础架构的方式, 它使得基础架构的创建、修改和管理变得更加高效。<code>Terraform</code>和<code>Pulumi</code>是两个流行的IaC工具, 各自具有独特的工作原理和优势。</p>
+<h2 id="Terraform"><a href="#Terraform" class="headerlink" title="Terraform"></a>Terraform</h2><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>Terraform是由<code>HashiCorp</code>开发的开源IaC工具。它使用一种<code>声明性配置语言（HashiCorp Configuration Language, HCL）</code>来定义基础架构的状态。不是完全开源的。有以下特征:</p>
+<p><strong>声明式配置</strong>: 用户通过HCL编写配置文件, 描述所需的基础架构状态。用户并不需要关心如何实现这些状态的细节。<br><strong>执行计划</strong>: 运行<code>terraform plan</code>命令时, Terraform会读取配置文件和当前的基础架构状态, 并生成一个执行计划, 指出将要执行的操作, 以使当前状态转变为期望状态。<br><strong>应用更改</strong>: 运行<code>terraform apply</code>命令后, Terraform将根据执行计划实际创建、更新或删除资源。<br><strong>状态管理</strong>: Terraform会维护一个状态文件（terraform.tfstate）, 用于记录当前基础架构的状态。此文件使Terraform能够识别哪些资源已经存在、哪些资源需要创建或更新。<br><strong>图形化依赖关系</strong>: Terraform会自动处理资源之间的依赖关系, 从而确保以正确的顺序创建和更新资源。</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p><strong>平台无关性</strong>: 支持多种云服务提供商（<code>AWS</code>、<code>Azure</code>、<code>GCP</code>等）, 用户可以使用相同的工具管理不同平台的资源。<br><strong>模块化</strong>: Terraform支持模块化, 用户可以将常用的资源配置封装成模块, 提高重用性。<br><strong>社区支持</strong>: 拥有丰富的社区和大量的第三方模块, 方便用户快速上手。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>Terraform创建AWS S3 Bucket的示例代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">provider &quot;aws&quot; &#123;</span><br><span class="line">  region = &quot;us-east-1&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resource &quot;aws_s3_bucket&quot; &quot;my_bucket&quot; &#123;</span><br><span class="line">  bucket = &quot;my-unique-bucket-name&quot;</span><br><span class="line">  acl    = &quot;private&quot;</span><br><span class="line"></span><br><span class="line">  tags = &#123;</span><br><span class="line">    Name        = &quot;My S3 Bucket&quot;</span><br><span class="line">    Environment = &quot;Dev&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>The application is hosted on AWS Cloud, major is that the frontend is served by CloudFront, the backend is served by ECS, and the user’s ears photo is stored in S3 bucket. The application is using the following AWS services:</p>
-<h4 id="AWS-S3-Bucket"><a href="#AWS-S3-Bucket" class="headerlink" title="AWS S3 Bucket"></a>AWS S3 Bucket</h4><p>Setup two s3 buckets, one is for storing the user’s ears photo, and config the object expires after 90 days. second bucket is for storing the static website files. All s3 buckets are public blocked.</p>
-<h4 id="AWS-VPC"><a href="#AWS-VPC" class="headerlink" title="AWS VPC"></a>AWS VPC</h4><p>Create a dedicate VPC for the application, and configure the subnets, route tables, and security groups. Two public subnets and two private subnets are used.</p>
-<h4 id="AWS-ECR"><a href="#AWS-ECR" class="headerlink" title="AWS ECR"></a>AWS ECR</h4><p>Use ECR to store the Docker image of the backend application. The image will be built and pushed to ECR by CI&#x2F;CD pipeline.</p>
-<h4 id="AWS-ECS"><a href="#AWS-ECS" class="headerlink" title="AWS ECS"></a>AWS ECS</h4><p>Use ECS to run the backend application as a container in private subnets, and configure the auto scaling group and load balancer. Autoscaling minimum size is 2 and maximum size is 20.</p>
-<h4 id="AWS-ALB"><a href="#AWS-ALB" class="headerlink" title="AWS ALB"></a>AWS ALB</h4><p>Create a ALB to serve the backend ECS service, and configure the listener rules to forward the traffic to the ECS service. The ALB attached the SSL certificate from ACM.</p>
-<h4 id="AWS-S3-VPC-Gateway-Endpoint"><a href="#AWS-S3-VPC-Gateway-Endpoint" class="headerlink" title="AWS S3 VPC Gateway Endpoint"></a>AWS S3 VPC Gateway Endpoint</h4><p>Use the S3 VPC Gateway Endpoint to access the s3 bucket from the backend ECS container.</p>
-<h4 id="AWS-Internet-Gateway"><a href="#AWS-Internet-Gateway" class="headerlink" title="AWS Internet Gateway"></a>AWS Internet Gateway</h4><p>The Internet Gateway to connect the VPC to the internet. Put the ALB on the two public subnets across two AZs </p>
-<h4 id="AWS-CloudWatch"><a href="#AWS-CloudWatch" class="headerlink" title="AWS CloudWatch"></a>AWS CloudWatch</h4><p>Use CloudWatch to monitor the application performance, and create alarms to notify the team when the application is not running as expected.</p>
-<h4 id="AWS-SNS"><a href="#AWS-SNS" class="headerlink" title="AWS SNS"></a>AWS SNS</h4><p>Use SNS to notify the team when the application performance is not good, and the team can take action to improve the application performance.</p>
-<h4 id="AWS-ACM"><a href="#AWS-ACM" class="headerlink" title="AWS ACM"></a>AWS ACM</h4><p>Use ACM to manage the SSL certificate for the ALB and CloudFront, the certificate is issued by the IT team. The application is served over HTTPS.</p>
-<h4 id="AWS-CloudFront"><a href="#AWS-CloudFront" class="headerlink" title="AWS CloudFront"></a>AWS CloudFront</h4><p>Use CloudFront to serve the static website files, and cache the files to improve the website loading speed. Config CloudFront to access s3 bucket by OAC. Create a another origin for the ALB.</p>
-<h4 id="AWS-Security-Group"><a href="#AWS-Security-Group" class="headerlink" title="AWS Security Group"></a>AWS Security Group</h4><p>Create a security group for the ECS container, and allow the traffic from the ALB to the ECS container. And one more security group for the ALB to allow the traffic only from AWS CloudFront prefix list.</p>
-<h4 id="AWS-IAM"><a href="#AWS-IAM" class="headerlink" title="AWS IAM"></a>AWS IAM</h4><p>Create an IAM role for the ECS container, and attach the necessary policies to the role to access the s3 bucket, ECR, and CloudWatch.</p>
-<h4 id="AWS-WAF"><a href="#AWS-WAF" class="headerlink" title="AWS WAF"></a>AWS WAF</h4><p>Use WAF to protect the application from common web exploits and attacks. This is mandatory for the company’s security policy. The security team will also review the infrastucture and do the security scan the application. The application won’t be deployed to production if the security scan failed.</p>
-<h2 id="IaC-with-Pulumi"><a href="#IaC-with-Pulumi" class="headerlink" title="IaC with Pulumi"></a>IaC with Pulumi</h2><p>Use Pulumi to manage the AWS resources, and create the infrastructure as code. The code will be checked into the source control, and for the pipeline, we’re using Bamboo pipeline as company already using Bamboo for CI&#x2F;CD. The pipeline will doing below major things.</p>
-<ol>
-<li>Build the Docker image and push to ECR.</li>
-<li>Deploy the frontend static website to CloudFront, and invalidate the cache to make the content updated for end user.</li>
-<li>Update the infrastucture by creating or updating the AWS resources by using pulumi.</li>
-</ol>
-<h2 id="Rationale"><a href="#Rationale" class="headerlink" title="Rationale"></a>Rationale</h2><p>The migration of the legacy application to AWS Cloud is a complex task, and we need to follow the best practices to make the migration successful.</p>
-<ol>
-<li>Using CloudFront and S3 bucket to host the static website and user’s ears photo is scalable and cost-effective. </li>
-<li>Using the ECS and ALB to serve the backend application is also a good choice to improve the application performance and scalability. We’re not using AWS API Gateway and AWS Lambda to serve as backend because we are requested to migrate the application to Cloud as soon as possible. Build the python <code>Flask</code> application to a docker image and push to ECR is a good practice to deploy the application to AWS Cloud in this situation.</li>
-<li>Using the VPC and security group to isolate the application and improve the security is a must. The ECS is located in private subnets, and the ALB is in public subnets, and the traffic is only allowed from AWS CloudFront prefix list to ALB, then forward traffic to ECS container.</li>
-<li>Using the ACM to manage the SSL certificate for the ALB and CloudFront is a good practice to improve the security and compliance.</li>
-<li>Using the CloudWatch to monitor the application performance and create alarms to notify the team when the application is not running as expected is a good practice to improve the application reliability.</li>
-<li>Using the IAM role to access the s3 bucket, ECR, and CloudWatch is a good practice to improve the security and control.</li>
-<li>Using the WAF to protect the application from common web exploits and attacks is a mandatory requirement for the company’s security policy.</li>
-<li>Using Pulumi to manage the AWS resources as code is a good practice to improve the automation and reliability of the migration process.</li>
-</ol>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This is just a sample of how to migrate a legacy application to AWS Cloud, and there are many other factors to consider when migrating a legacy application to AWS Cloud. The key is to follow the best practices and use the right tools to make the migration successful base on the requirements.</p>
+<h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Initialize Terraform project. This sets up the backend, downloads necessary providers, etc.</span></span><br><span class="line">terraform init</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run a Terraform plan to preview the changes that will be made to the infrastructure.</span></span><br><span class="line"><span class="comment"># This step is a dry-run that shows what will happen when you actually apply the changes.</span></span><br><span class="line">terraform plan</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply the planned changes to the infrastructure.</span></span><br><span class="line"><span class="comment"># This step will actually create, update, or delete resources to match the configuration.</span></span><br><span class="line"><span class="comment"># It will show a preview of these actions and ask for confirmation before proceeding.</span></span><br><span class="line">terraform apply</span><br><span class="line"></span><br><span class="line"><span class="comment"># Destroy the infrastructure.</span></span><br><span class="line"><span class="comment"># This step will delete all resources that were created by Terraform.</span></span><br><span class="line">terraform destroy</span><br></pre></td></tr></table></figure>
+
+<h2 id="Pulumi"><a href="#Pulumi" class="headerlink" title="Pulumi"></a>Pulumi</h2><h3 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h3><p>Pulumi是一个现代化的IaC工具, 允许用户使用多种编程语言（如<code>JavaScript</code>、<code>Python</code>、<code>Go</code>和<code>C#</code>, <code>Java</code>）或者标记语言<code>YAML</code>来定义基础架构。是完全开源的，与Terraform的声明性方法不同, Pulumi采用了<code>命令式编程模型</code>。</p>
+<p><strong>命令式编程</strong>: 用户使用编程语言编写代码, 通过构建逻辑和控制流来描述基础架构的创建过程。例如, 可以使用条件语句和循环来动态地生成资源。<br><strong>Pulumi CLI</strong>: 通过Pulumi CLI, 用户可以运行<code>pulumi up</code>命令来预览和应用更改。Pulumi会分析代码并生成执行计划。<br><strong>状态管理</strong>: Pulumi将状态存储在云中（如AWS S3）或本地, 以便跟踪基础架构的当前状态。<br><strong>实时更新</strong>: Pulumi支持实时更新, 当基础架构发生变化时, 用户可以立即看到影响, 并迅速响应。</p>
+<h3 id="优势-1"><a href="#优势-1" class="headerlink" title="优势"></a>优势</h3><p><strong>灵活性</strong>: pulumi支持多种编程语言, 允许用户使用熟悉的编程工具和库。<br><strong>可重用性</strong>: 可以通过函数和类等编程特性提高基础架构代码的可重用性和组织性。<br><strong>动态配置</strong>: 能够利用编程语言的特性, 动态生成和配置资源, 使得基础架构管理更加灵活。</p>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p>Pulumi创建AWS S3 Bucket的示例代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> aws = <span class="built_in">require</span>(<span class="string">&quot;@pulumi/aws&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个S3 Bucket</span></span><br><span class="line"><span class="keyword">const</span> bucket = <span class="keyword">new</span> aws.<span class="property">s3</span>.<span class="title class_">Bucket</span>(<span class="string">&quot;my-bucket&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">acl</span>: <span class="string">&quot;private&quot;</span>,  <span class="comment">// 设置访问控制列表</span></span><br><span class="line">    <span class="attr">tags</span>: &#123;</span><br><span class="line">        <span class="title class_">Name</span>: <span class="string">&quot;My S3 Bucket&quot;</span>,</span><br><span class="line">        <span class="title class_">Environment</span>: <span class="string">&quot;Dev&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出Bucket的名字和URL</span></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">bucketName</span> = bucket.<span class="property">id</span>;</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">bucketUrl</span> = bucket.<span class="property">websiteEndpoint</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Command-1"><a href="#Command-1" class="headerlink" title="Command"></a>Command</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a new Pulumi project</span></span><br><span class="line">pulumi new</span><br><span class="line"></span><br><span class="line"><span class="comment"># preview the changes that will be made to the infrastructure</span></span><br><span class="line">pulumi preview</span><br><span class="line"></span><br><span class="line"><span class="comment"># apply the changes to the infrastructure</span></span><br><span class="line">pulumi up</span><br><span class="line"></span><br><span class="line"><span class="comment"># destroy the infrastructure</span></span><br><span class="line">pulumi destroy</span><br></pre></td></tr></table></figure>
+
+<h2 id="Terraform与Pulumi的比较"><a href="#Terraform与Pulumi的比较" class="headerlink" title="Terraform与Pulumi的比较"></a>Terraform与Pulumi的比较</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Terraform</th>
+<th>Pulumi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>配置语言</td>
+<td>HCL（声明性）</td>
+<td>多种编程语言（命令式）</td>
+</tr>
+<tr>
+<td>学习曲线</td>
+<td>相对较低, 易于上手</td>
+<td>依赖于熟悉的编程语言, 学习曲线较高</td>
+</tr>
+<tr>
+<td>状态管理</td>
+<td>状态文件（terraform.tfstate）, 支持远程存储</td>
+<td>状态存储在云中或本地, 支持更灵活的状态管理</td>
+</tr>
+<tr>
+<td>社区与模块</td>
+<td>拥有丰富的模块和社区支持</td>
+<td>社区相对较小, 模块支持较少</td>
+</tr>
+<tr>
+<td>资源依赖管理</td>
+<td>自动处理资源之间的依赖关系</td>
+<td>需要手动管理依赖关系</td>
+</tr>
+<tr>
+<td>动态特性</td>
+<td>受限于声明性配置, 动态配置较为困难</td>
+<td>使用编程语言的特性, 支持动态生成和配置</td>
+</tr>
+<tr>
+<td>可重用性</td>
+<td>支持模块化</td>
+<td>高度可重用性, 利用编程语言特性</td>
+</tr>
+</tbody></table>
+<h3 id="选择Terraform"><a href="#选择Terraform" class="headerlink" title="选择Terraform:"></a>选择Terraform:</h3><ul>
+<li>如果团队对声明性语言（如HCL）更熟悉, 并且希望快速上手。</li>
+<li>需要丰富的社区支持和成熟的模块。</li>
+<li>对基础架构的定义不需要复杂的逻辑。</li>
+</ul>
+<h3 id="选择Pulumi"><a href="#选择Pulumi" class="headerlink" title="选择Pulumi:"></a>选择Pulumi:</h3><ul>
+<li>如果团队更熟悉编程语言, 并希望利用现有的编程技能。</li>
+<li>需要动态生成基础架构配置, 或者希望实现复杂的逻辑。</li>
+<li>希望在IaC中充分利用编程语言的特性（如函数、类、模块）。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>Terraform</code>和<code>Pulumi</code>都是强大的<code>IaC工具</code>, 各有优劣。Terraform以其简单易用和广泛的社区支持而受到欢迎, 而Pulumi则因其灵活性和对多种编程语言的支持而逐渐崭露头角。选择哪种工具可以从团队的技能、项目需求和未来的维护策略方面来综合考虑。更多详细区别可以参见<code>pulumi</code>官网对比文章<a target="_blank" rel="noopener" href="https://www.pulumi.com/docs/iac/concepts/vs/terraform/">https://www.pulumi.com/docs/iac/concepts/vs/terraform/</a></p>
 
       </div>
       <div class="post-tags-categories">
@@ -610,24 +643,8 @@
               Pulumi
             </a>
           
-            <a href="/tags/Cloud/" class="">
-              Cloud
-            </a>
-          
-            <a href="/tags/AWS/" class="">
-              AWS
-            </a>
-          
-            <a href="/tags/Python/" class="">
-              Python
-            </a>
-          
-            <a href="/tags/IaC/" class="">
-              IaC
-            </a>
-          
-            <a href="/tags/React/" class="">
-              React
+            <a href="/tags/Terraform/" class="">
+              Terraform
             </a>
           
         </div>
@@ -641,7 +658,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" target="_blank" title="Migrate a legacy application to AWS Cloud">https://stonefishy.github.io/2024/03/13/migrate-a-legacy-application-to-aws-cloud/</a>
+    <a href="/2021/07/13/iac-tools-terraform-vs-pulumi/" target="_blank" title="浅谈IaC工具Terraform vs Pulumi">https://stonefishy.github.io/2021/07/13/iac-tools-terraform-vs-pulumi/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -663,16 +680,18 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2024/02/27/importing-existing-cloud-resources-with-pulumi/" class="post-nav-link">
+    <a href="/2021/06/28/how-to-maintan-the-running-node-in-kubernetes/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">Manage the Existing Cloud Resources By Using Pulumi Import</div>
+        <div class="title-text">如何维护正在运行的 Kubernetes 节点</div>
       </div>
       
       <!-- <div class="content">
-        In many real-world scenarios, cloud infrastructure is alread
+        Kubernetes 集群中的节点可以分为两种类型：
+
+主节点：主节点是 Kubernetes 集群的控制节点，负责管理
       </div> -->
     </a>
   </div>
@@ -683,15 +702,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-nav-link">
+    <a href="/2022/02/17/aws-iamyuan-li-yi-ji-ru-he-shi-yong/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">The Points of AWS China CloudFront You Need to Notice</div>
+        <div class="title-text">AWS IAM原理以及如何使用</div>
       </div>
       <!-- <div class="content">
-        There are much difference between AWS Global and AWS China. 
+        AWS Identity and Access Management（IAM）是Amazon Web Services（
       </div> -->
     </a>
   </div>
@@ -829,7 +848,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture"><span class="toc-text">Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-S3-Bucket"><span class="toc-text">AWS S3 Bucket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-VPC"><span class="toc-text">AWS VPC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ECR"><span class="toc-text">AWS ECR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ECS"><span class="toc-text">AWS ECS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ALB"><span class="toc-text">AWS ALB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-S3-VPC-Gateway-Endpoint"><span class="toc-text">AWS S3 VPC Gateway Endpoint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Internet-Gateway"><span class="toc-text">AWS Internet Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-CloudWatch"><span class="toc-text">AWS CloudWatch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-SNS"><span class="toc-text">AWS SNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ACM"><span class="toc-text">AWS ACM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-CloudFront"><span class="toc-text">AWS CloudFront</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Security-Group"><span class="toc-text">AWS Security Group</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-IAM"><span class="toc-text">AWS IAM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-WAF"><span class="toc-text">AWS WAF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IaC-with-Pulumi"><span class="toc-text">IaC with Pulumi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rationale"><span class="toc-text">Rationale</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Terraform"><span class="toc-text">Terraform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command"><span class="toc-text">Command</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pulumi"><span class="toc-text">Pulumi</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-1"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF-1"><span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-1"><span class="toc-text">Command</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Terraform%E4%B8%8EPulumi%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">Terraform与Pulumi的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9Terraform"><span class="toc-text">选择Terraform:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9Pulumi"><span class="toc-text">选择Pulumi:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>

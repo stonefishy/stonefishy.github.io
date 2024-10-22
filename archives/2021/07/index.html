@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Migrate a legacy application to AWS Cloud | Andrewsy&#39;s Space</title>
+  <title>Archives: 2021/7 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -484,645 +484,106 @@
     
 </header>
         <!-- 内容区域 -->
-        
- <!-- prismjs 代码高亮 -->
- 
-
-
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
-
-
-  <!-- 文章详情页顶部图片和标题 -->
-
-
-
-
-<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp')">
-  <div class="post-detail-header-mask"></div>
-  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
-  
-  <div class="post-detail-header_info-box">
-    <div class="title-box">
-      <span class="title">
-        Migrate a legacy application to AWS Cloud
-      </span>
-    </div>
-    
-    
-      
-        <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2024-03-13 |
-        </span>
-      
-
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> Category：
-          
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
-            </a>
-          
-        </span>
-      
-
-      
-        <div class="post-detail-header_wordcount">
-          <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 1.1k |
-          </span>
-  
-          <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 6min |
-          </span>
-  
-          
-            <span class="reading">
-              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
-            </span>
-          
-        </div>
-      
-    
+        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
+<div class="archive-header" style="background-image:url('/medias/bg-images/v2-1998dea3bd643074760e2976f831c1dc_1440w.webp')">
+  <div class="archive-header-title">
+    Archives
   </div>
+  <div class="archive-header-desc">
   
-  
-    <script src="/js/bubble/bubble.js"></script>
-  
-</div>
-
-
-
-
-
-<div class="post-detail-content post-row" 
-  style="padding-top: 0px;">
-  <div class="main-content">
-    <article class="post post-detail">
-      <div class="post-content">
-        <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Recently, we got a requirement from the company to move the application to AWS Cloud. The company has a strong focus on security and compliance, and stack holders also want the application more reliable and scalable. The migration also need to be done as soon as possible.</p>
-<p>The application running on a local data center. The application is consists of two parts, frontend is a static website built with React and provide the user interface to user, the backend is a Python Flask application that provide the API to interact with the frontend. The backend server also contains a machine learning model algorithm that is used to process the user’s ears photo. </p>
-<p>The application main logic is that the user answer some questions and scan and upload their ears photo to the backend server from the website, the backend server will process the photo and return the suggestion result to user to recommend which headset or earphone is the best fit for them.</p>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>After analysis application technologies and architecture, base on the requirements, we did some architecture design. Below is the architecture of the application on AWS Cloud. </p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/aws/aws-migrate-legacy-app-arch.png" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-migrate-legacy-app-arch.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Application Architecture on AWS Cloud"/></div><span class="image-caption">Application Architecture on AWS Cloud</span></div>
-
-<p>The application is hosted on AWS Cloud, major is that the frontend is served by CloudFront, the backend is served by ECS, and the user’s ears photo is stored in S3 bucket. The application is using the following AWS services:</p>
-<h4 id="AWS-S3-Bucket"><a href="#AWS-S3-Bucket" class="headerlink" title="AWS S3 Bucket"></a>AWS S3 Bucket</h4><p>Setup two s3 buckets, one is for storing the user’s ears photo, and config the object expires after 90 days. second bucket is for storing the static website files. All s3 buckets are public blocked.</p>
-<h4 id="AWS-VPC"><a href="#AWS-VPC" class="headerlink" title="AWS VPC"></a>AWS VPC</h4><p>Create a dedicate VPC for the application, and configure the subnets, route tables, and security groups. Two public subnets and two private subnets are used.</p>
-<h4 id="AWS-ECR"><a href="#AWS-ECR" class="headerlink" title="AWS ECR"></a>AWS ECR</h4><p>Use ECR to store the Docker image of the backend application. The image will be built and pushed to ECR by CI&#x2F;CD pipeline.</p>
-<h4 id="AWS-ECS"><a href="#AWS-ECS" class="headerlink" title="AWS ECS"></a>AWS ECS</h4><p>Use ECS to run the backend application as a container in private subnets, and configure the auto scaling group and load balancer. Autoscaling minimum size is 2 and maximum size is 20.</p>
-<h4 id="AWS-ALB"><a href="#AWS-ALB" class="headerlink" title="AWS ALB"></a>AWS ALB</h4><p>Create a ALB to serve the backend ECS service, and configure the listener rules to forward the traffic to the ECS service. The ALB attached the SSL certificate from ACM.</p>
-<h4 id="AWS-S3-VPC-Gateway-Endpoint"><a href="#AWS-S3-VPC-Gateway-Endpoint" class="headerlink" title="AWS S3 VPC Gateway Endpoint"></a>AWS S3 VPC Gateway Endpoint</h4><p>Use the S3 VPC Gateway Endpoint to access the s3 bucket from the backend ECS container.</p>
-<h4 id="AWS-Internet-Gateway"><a href="#AWS-Internet-Gateway" class="headerlink" title="AWS Internet Gateway"></a>AWS Internet Gateway</h4><p>The Internet Gateway to connect the VPC to the internet. Put the ALB on the two public subnets across two AZs </p>
-<h4 id="AWS-CloudWatch"><a href="#AWS-CloudWatch" class="headerlink" title="AWS CloudWatch"></a>AWS CloudWatch</h4><p>Use CloudWatch to monitor the application performance, and create alarms to notify the team when the application is not running as expected.</p>
-<h4 id="AWS-SNS"><a href="#AWS-SNS" class="headerlink" title="AWS SNS"></a>AWS SNS</h4><p>Use SNS to notify the team when the application performance is not good, and the team can take action to improve the application performance.</p>
-<h4 id="AWS-ACM"><a href="#AWS-ACM" class="headerlink" title="AWS ACM"></a>AWS ACM</h4><p>Use ACM to manage the SSL certificate for the ALB and CloudFront, the certificate is issued by the IT team. The application is served over HTTPS.</p>
-<h4 id="AWS-CloudFront"><a href="#AWS-CloudFront" class="headerlink" title="AWS CloudFront"></a>AWS CloudFront</h4><p>Use CloudFront to serve the static website files, and cache the files to improve the website loading speed. Config CloudFront to access s3 bucket by OAC. Create a another origin for the ALB.</p>
-<h4 id="AWS-Security-Group"><a href="#AWS-Security-Group" class="headerlink" title="AWS Security Group"></a>AWS Security Group</h4><p>Create a security group for the ECS container, and allow the traffic from the ALB to the ECS container. And one more security group for the ALB to allow the traffic only from AWS CloudFront prefix list.</p>
-<h4 id="AWS-IAM"><a href="#AWS-IAM" class="headerlink" title="AWS IAM"></a>AWS IAM</h4><p>Create an IAM role for the ECS container, and attach the necessary policies to the role to access the s3 bucket, ECR, and CloudWatch.</p>
-<h4 id="AWS-WAF"><a href="#AWS-WAF" class="headerlink" title="AWS WAF"></a>AWS WAF</h4><p>Use WAF to protect the application from common web exploits and attacks. This is mandatory for the company’s security policy. The security team will also review the infrastucture and do the security scan the application. The application won’t be deployed to production if the security scan failed.</p>
-<h2 id="IaC-with-Pulumi"><a href="#IaC-with-Pulumi" class="headerlink" title="IaC with Pulumi"></a>IaC with Pulumi</h2><p>Use Pulumi to manage the AWS resources, and create the infrastructure as code. The code will be checked into the source control, and for the pipeline, we’re using Bamboo pipeline as company already using Bamboo for CI&#x2F;CD. The pipeline will doing below major things.</p>
-<ol>
-<li>Build the Docker image and push to ECR.</li>
-<li>Deploy the frontend static website to CloudFront, and invalidate the cache to make the content updated for end user.</li>
-<li>Update the infrastucture by creating or updating the AWS resources by using pulumi.</li>
-</ol>
-<h2 id="Rationale"><a href="#Rationale" class="headerlink" title="Rationale"></a>Rationale</h2><p>The migration of the legacy application to AWS Cloud is a complex task, and we need to follow the best practices to make the migration successful.</p>
-<ol>
-<li>Using CloudFront and S3 bucket to host the static website and user’s ears photo is scalable and cost-effective. </li>
-<li>Using the ECS and ALB to serve the backend application is also a good choice to improve the application performance and scalability. We’re not using AWS API Gateway and AWS Lambda to serve as backend because we are requested to migrate the application to Cloud as soon as possible. Build the python <code>Flask</code> application to a docker image and push to ECR is a good practice to deploy the application to AWS Cloud in this situation.</li>
-<li>Using the VPC and security group to isolate the application and improve the security is a must. The ECS is located in private subnets, and the ALB is in public subnets, and the traffic is only allowed from AWS CloudFront prefix list to ALB, then forward traffic to ECS container.</li>
-<li>Using the ACM to manage the SSL certificate for the ALB and CloudFront is a good practice to improve the security and compliance.</li>
-<li>Using the CloudWatch to monitor the application performance and create alarms to notify the team when the application is not running as expected is a good practice to improve the application reliability.</li>
-<li>Using the IAM role to access the s3 bucket, ECR, and CloudWatch is a good practice to improve the security and control.</li>
-<li>Using the WAF to protect the application from common web exploits and attacks is a mandatory requirement for the company’s security policy.</li>
-<li>Using Pulumi to manage the AWS resources as code is a good practice to improve the automation and reliability of the migration process.</li>
-</ol>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This is just a sample of how to migrate a legacy application to AWS Cloud, and there are many other factors to consider when migrating a legacy application to AWS Cloud. The key is to follow the best practices and use the right tools to make the migration successful base on the requirements.</p>
-
-      </div>
-      <div class="post-tags-categories">
-        
-        <div class="tags">
-          
-            <a href="/tags/Pulumi/" class="">
-              Pulumi
-            </a>
-          
-            <a href="/tags/Cloud/" class="">
-              Cloud
-            </a>
-          
-            <a href="/tags/AWS/" class="">
-              AWS
-            </a>
-          
-            <a href="/tags/Python/" class="">
-              Python
-            </a>
-          
-            <a href="/tags/IaC/" class="">
-              IaC
-            </a>
-          
-            <a href="/tags/React/" class="">
-              React
-            </a>
-          
-        </div>
-        
-      </div>
-      
-        <div class="copyright">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-    <strong>Author:  </strong>Andrewsy</a>
-    </li>
-    <li class="post-copyright-link">
-    <strong>Link:  </strong>
-    <a href="/2024/03/13/migrate-a-legacy-application-to-aws-cloud/" target="_blank" title="Migrate a legacy application to AWS Cloud">https://stonefishy.github.io/2024/03/13/migrate-a-legacy-application-to-aws-cloud/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>Copyright notice:   </strong>
-      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
-      reprint policy. If reproduced, please indicate source!
-    </li>
-  </ul>
-<div>
-      
-    </article>
-    <!-- 上一篇文章和下一篇文章 -->
-    
-      <!-- 文章详情页的上一页和下一页 -->
-<div class="post-nav">
-
-
-
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2024/02/27/importing-existing-cloud-resources-with-pulumi/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">Manage the Existing Cloud Resources By Using Pulumi Import</div>
-      </div>
-      
-      <!-- <div class="content">
-        In many real-world scenarios, cloud infrastructure is alread
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
-    </div>
-    <a href="/2024/04/18/the-points-of-aws-china-cloudfront-you-need-to-notice/" class="post-nav-link">
-      <div class="title">
-        Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">The Points of AWS China CloudFront You Need to Notice</div>
-      </div>
-      <!-- <div class="content">
-        There are much difference between AWS Global and AWS China. 
-      </div> -->
-    </a>
-  </div>
-
-</div>
-
-    
-    
-
-    <!-- 打赏 -->
-    
-
-    <!-- 分享 -->
-    
-      <!-- https://github.com/overtrue/share.js -->
-<!-- 文章详情页的分享 -->
-<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-
-<script src="/js/shareJs/social-share.min.js"></script>
-</script>
-
-<style>
-  .social-share {
-    margin: 20px 0;
+  <span class="title" id="archive-header-desc"></span>
+  <script>
+  function typedFn() {
+    const el = '#archive-header-desc';
+    const type = 'archive';
+    let desc = 'Don&#39;t count the days, make the days count.'
+    var typed = new Typed(el, {
+      strings: [desc],
+      startDelay: 100,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50,
+      showCursor: true
+    });
   }
-</style>
-
-
-    
-    
-    <!-- 评论 -->
-    <!-- 评论 -->
-
-  <div id="myComment">
-    
-      <div id="gitment-container"></div>
-
-    
+  typedFn();
+</script>
+  
   </div>
-
-<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
-
-
-  </div>
-
-  <!-- 目录 -->
-  <aside id='l_side'>
-  
-    
-      <section class="widget side_blogger">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img src='/medias/avatar/totoro3.webp'/>
-        </div>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Andrewsy</h2>
-        
-        
-          <p>Stay hungry, Stay foolish</p>
-
-        
-        
-          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:andrewsy@163.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/stonefishy"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
-              class="social fab fa-qq flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-  
-  
-
-  <div class="layout_sticky">    
-    
-      
-<section class="widget side_toc">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="toc-main">
-      <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture"><span class="toc-text">Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-S3-Bucket"><span class="toc-text">AWS S3 Bucket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-VPC"><span class="toc-text">AWS VPC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ECR"><span class="toc-text">AWS ECR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ECS"><span class="toc-text">AWS ECS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ALB"><span class="toc-text">AWS ALB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-S3-VPC-Gateway-Endpoint"><span class="toc-text">AWS S3 VPC Gateway Endpoint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Internet-Gateway"><span class="toc-text">AWS Internet Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-CloudWatch"><span class="toc-text">AWS CloudWatch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-SNS"><span class="toc-text">AWS SNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-ACM"><span class="toc-text">AWS ACM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-CloudFront"><span class="toc-text">AWS CloudFront</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-Security-Group"><span class="toc-text">AWS Security Group</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-IAM"><span class="toc-text">AWS IAM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWS-WAF"><span class="toc-text">AWS WAF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IaC-with-Pulumi"><span class="toc-text">IaC with Pulumi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rationale"><span class="toc-text">Rationale</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li></ol> -->
-        <div class="toc"></div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- 手机端目录按钮 -->
-<div id="toc-mobile-btn">
-  <i class="fas fa-list-ul" aria-hidden="true"></i>
+  <div class="mask-box"></div>
 </div>
 
+<div class="archive-video">
+  <video class="full-video" autoplay loop muted>
+      <source style="width: 100%;height: 100vh;" src="/">
+  </video>
+  <div class="video-header-title">
+    Archives
+  </div>
+  <div class="video-header-desc">
+  
+      <span class="title" id="archive-video-header-desc"></span>
+      <script>
+  function typedFn() {
+    const el = '#archive-video-header-desc';
+    const type = 'archive';
+    let desc = 'Don&#39;t count the days, make the days count.'
+    var typed = new Typed(el, {
+      strings: [desc],
+      startDelay: 100,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50,
+      showCursor: true
+    });
+  }
+  typedFn();
+</script>
       
-  <section class="widget side_recent_post">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
-    
-  </header>
+  </div>
+  <div class="mask-box"></div>
+</div>
+
+<!-- hash算法 -->
 
 
-    <div class='content'>
-      
-      <!-- hash算法 -->
-      
-      <div class="aside-list">
+<div class="archive-main">
+  <section class="archive">
+    <div class="archive-content">
+      <ul class="post-archive">
         
-          <div class="aside-list-item">
+        
+          
             
+            <div class="year" data-aos="zoom-in-up">
+                <div class="bullet"></div>
+                <a href="/archives/2021">2021</a>
+            </div>
+          
+          <li class="post-item" data-aos="fade-left">
             
-            
-
             <div class="post-img-box">
-              <a href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/" class="post-img " style="background-size: cover; 
+              <a href="/2021/07/13/iac-tools-terraform-vs-pulumi/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b4fed05253022f04664aa0fdc491a9dd_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                
-                  <span class="post-date">10-16</span>
-                
+                <span class="post-date">07-13</span>
               </div>
-              <a class="post-title" href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/">The useEffect of React Runs Twice in Development Mode.</a>
+              <a class="post-title" href="/2021/07/13/iac-tools-terraform-vs-pulumi/">浅谈IaC工具Terraform vs Pulumi</a>
             </div>
-          </div>
+          </li>
         
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">10-09</span>
-                
-              </div>
-              <a class="post-title" href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/">AWS Glue Iceberg tables schema can&#39;t be updated with Pulumi</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/09/19/user-survey-feedback-sentiment-analysis-base-on-aws-cloud-solution/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">09-19</span>
-                
-              </div>
-              <a class="post-title" href="/2024/09/19/user-survey-feedback-sentiment-analysis-base-on-aws-cloud-solution/">User Survey Feedback Sentiment Analysis Base on AWS Cloud Solution</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/09/10/aws-s3-event-replacing-space-with-character-sign-in-object-key-name/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">09-10</span>
-                
-              </div>
-              <a class="post-title" href="/2024/09/10/aws-s3-event-replacing-space-with-character-sign-in-object-key-name/">How to Fix AWS S3 Event Replacing Space With &#39;+&#39; Character Sign in Object Key Name</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/08/16/introduce-is-distinct-from-in-sql/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">08-16</span>
-                
-              </div>
-              <a class="post-title" href="/2024/08/16/introduce-is-distinct-from-in-sql/">SQL 中的 IS DISTINCT FROM 语法详解</a>
-            </div>
-          </div>
-        
-      </div>
+      </ul>
     </div>
   </section>
-
+  <div class="w-70">
     
   </div>
-</aside>
-
-  <!-- 图片放大 Wrap images with fancybox support -->
-  <script src="/js/wrapImage.js"></script>
 </div>
-
-<!-- 文章详情页背景图 -->
-<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
-	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
-	<transition-group tag="ul" :name="names">
-		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
-			<img :src="image" class="bg-swiper-img no-lazy">
-		</li>
-	</transition-group>
-</div>
-<script>
-	var vm = new Vue({
-		el: '#appBgSwiper',
-		data: {
-			names: '' || 'fade' || 'fade', // translate-fade fade
-			mark: 0,
-			img: [],
-			bgColor: '',
-			time: null
-		},
-		methods: {   //添加方法
-			change(i, m) {
-				if (i > m) {
-					// this.names = 'fade';
-				} else if (i < m) {
-					// this.names = 'fade';
-				} else {
-					return;
-				}
-				this.mark = i;
-			},
-			prev() {
-				// this.names = 'fade';
-				this.mark--;
-				if (this.mark === -1) {
-					this.mark = 3;
-					return
-				}
-			},
-			next() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			autoPlay() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			play() {
-				let bgImgDelay = '' || '1800'
-				let delay = parseInt(bgImgDelay) || 180000;
-				this.time = setInterval(this.autoPlay, delay);
-			},
-			enter() {
-				clearInterval(this.time);
-			},
-			leave() {
-				this.play();
-			}
-		},
-		created() {
-			this.play()
-		},
-		beforeDestroy() {
-			clearInterval(this.time);
-		},
-		mounted() {
-			let prop = '' || '';
-			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
-			if (isImg) {
-				let img = prop.split(',');
-				let configRoot = '/'
-				let arrImg = [];
-				img.forEach(el => {
-					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-					var objExp = new RegExp(Expression);
-
-					if (objExp.test(el)) {
-						// http or https
-						arrImg.push(el);
-					} else {
-						// 非http or https开头
-						// 本地文件
-						let firstStr = el.charAt(0);
-						if (firstStr == '/') {
-							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
-						}
-						el = configRoot + el;
-						arrImg.push(el);
-					}
-				})
-				this.img = arrImg;
-			} else {
-				this.bgColor = prop;
-			}
-		}
-	})
-</script>
-
-<style>
-	.bg-swiper-box {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.bg-swiper-img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-
-
-
-  <script>
-  function loadMermaid() {
-    if (document.getElementsByClassName('mermaid').length) {
-      if (window.mermaidJsLoad) mermaid.init()
-      else {
-        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
-          window.mermaidJsLoad = true
-          mermaid.initialize({
-            theme: 'default',
-          })
-          if ('true') {
-            mermaid.init();
-          }
-        })
-      }
-    }
-  };
-  document.addEventListener("DOMContentLoaded", function () {
-    loadMermaid();
-  })
-
-  document.addEventListener('pjax:complete', function () {
-    loadMermaid();
-  })
-  
-</script>
-
 
       </main>
     </div>
