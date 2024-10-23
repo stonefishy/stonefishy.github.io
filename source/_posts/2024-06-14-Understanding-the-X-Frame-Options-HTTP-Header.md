@@ -5,7 +5,6 @@ categories: Frontend
 tags: [Web]
 top: true
 swiper: true
-swiperImg: "/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp"
 ---
 
 Recently, we build a frontend website as a nginx docker image, before go live on production. We asking the security team to do the security scan for the website on stage environment. One of security issues indicates the `X-Frame-Options` HTTP header is not set properly. It will cause the website to be vulnerable to clickjacking attacks.

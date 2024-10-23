@@ -3,8 +3,6 @@ title: Using Pulumi to Import the AWS Resources of the Other Region
 date: 2024-07-04 10:27:55
 categories: Cloud
 tags: [Cloud, IaC, AWS, Pulumi, Python]
-top: true
-swiper: true
 ---
 
 ## Context
