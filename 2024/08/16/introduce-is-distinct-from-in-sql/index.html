@@ -634,7 +634,7 @@
 <h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p>在更新数据时，使用 IS DISTINCT FROM 可以确保只有在数据实际变化时才进行更新，从而避免不必要的更新操作。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> users</span><br><span class="line"><span class="keyword">SET</span> email <span class="operator">=</span> <span class="string">&#x27;new_andrewsy@email.com&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span> email <span class="keyword">IS</span> <span class="keyword">DISTINCT</span> <span class="keyword">FROM</span> <span class="string">&#x27;new_andrewsy@email.com&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p>这条查询会更新所有 email 不同于 ‘<a href="mailto:&#110;&#x65;&#119;&#95;&#97;&#x6e;&#100;&#114;&#101;&#x77;&#115;&#x79;&#x40;&#x65;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#110;&#x65;&#119;&#95;&#97;&#x6e;&#100;&#114;&#101;&#x77;&#115;&#x79;&#x40;&#x65;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>‘ 的记录，包括那些 email 为 NULL 的记录。</p>
+<p>这条查询会更新所有 email 不同于 ‘<a href="mailto:&#110;&#101;&#x77;&#95;&#97;&#110;&#x64;&#x72;&#101;&#x77;&#x73;&#x79;&#64;&#x65;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#110;&#101;&#x77;&#95;&#97;&#110;&#x64;&#x72;&#101;&#x77;&#x73;&#x79;&#64;&#x65;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a>‘ 的记录，包括那些 email 为 NULL 的记录。</p>
 <h3 id="数据比较"><a href="#数据比较" class="headerlink" title="数据比较"></a>数据比较</h3><p>在进行复杂的数据比较时，尤其是涉及到 NULL 值时，IS DISTINCT FROM 提供了更直观的比较逻辑。例如，在合并两个数据集时，可以使用此操作符来确保唯一性。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">    dataset1</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> </span><br><span class="line">    dataset2</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">    dataset1.id <span class="keyword">IS</span> <span class="keyword">DISTINCT</span> <span class="keyword">FROM</span> dataset2.id</span><br></pre></td></tr></table></figure>
 
@@ -891,6 +891,27 @@
             
 
             <div class="post-img-box">
+              <a href="/2024/10/23/intelligent-sql-generator-base-on-spring-ai-with-aws-bedrock/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">10-23</span>
+                
+              </div>
+              <a class="post-title" href="/2024/10/23/intelligent-sql-generator-base-on-spring-ai-with-aws-bedrock/">The Intelligent SQL Generator base on Spring AI with AWS Bedrock</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -966,27 +987,6 @@
                 
               </div>
               <a class="post-title" href="/2024/09/10/aws-s3-event-replacing-space-with-character-sign-in-object-key-name/">How to Fix AWS S3 Event Replacing Space With &#39;+&#39; Character Sign in Object Key Name</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/08/16/introduce-is-distinct-from-in-sql/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">08-16</span>
-                
-              </div>
-              <a class="post-title" href="/2024/08/16/introduce-is-distinct-from-in-sql/">SQL 中的 IS DISTINCT FROM 语法详解</a>
             </div>
           </div>
         
