@@ -561,57 +561,57 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 class="bamboo-h " id="Introduction22p9l89sypx">Introduction</h2><br/>
+        <h2 class="bamboo-h " id="Introduction2pnd5eynimk">Introduction</h2><br/>
 
 <p>Amazon Web Services (AWS) offers a wide range of storage solutions to cater to the diverse needs of businesses and developers. Two popular options are <code>Amazon Elastic Block Store (EBS)</code> and <code>Amazon Elastic File System (EFS)</code>. While both provide storage capabilities within the AWS ecosystem, they serve different purposes and have distinct characteristics. In this blog post, we will explore the key differences between AWS EBS and AWS EFS to help you make an informed choice for your specific use case.</p>
-<h2 class="bamboo-h " id="Amazon Elastic Block Store (EBS)5shh6d13fvg">Amazon Elastic Block Store (EBS)</h2><br/>
+<h2 class="bamboo-h " id="Amazon Elastic Block Store (EBS)iew017yjda">Amazon Elastic Block Store (EBS)</h2><br/>
 
 <div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/aws/aws-ebs-efs-1.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-ebs-efs-1.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="AWS EBS" style="width:400px;"/></div><span class="image-caption">AWS EBS</span></div>
 
 <span class='pbg warning'>Amazon Elastic Block Store (EBS) is a block-level storage service that provides durable and high-performance storage volumes that can be attached to Amazon Elastic Compute Cloud (EC2) instances.</span>.
 <p>Here are some of the main characteristics and use cases of AWS EBS.</p>
-<h4 class="bamboo-h " id="Block Storagesufhoj6hn7">Block Storage</h4><br/>
+<h4 class="bamboo-h " id="Block Storage21ipn0he4ui">Block Storage</h4><br/>
 
 <p>EBS provides block storage, which means it is best suited for scenarios where you need to store data at the block level, such as databases and applications that require direct access to disk devices.</p>
-<h4 class="bamboo-h " id="Low-Latency Performance1hmeasvnxys">Low-Latency Performance</h4><br/>
+<h4 class="bamboo-h " id="Low-Latency Performance26zr2xbc70c">Low-Latency Performance</h4><br/>
 <p> EBS volumes offer low-latency, high-throughput performance, making them ideal for I&#x2F;O-intensive workloads where rapid data access is crucial.</p>
-<h4 class="bamboo-h " id="Data Persistence2lpbt3rgmh8">Data Persistence</h4><br/>
+<h4 class="bamboo-h " id="Data Persistence4wrgtxe1zdk">Data Persistence</h4><br/>
 <p> EBS volumes are persistent, meaning the data stored on them remains intact even when the associated EC2 instance is stopped or terminated. This is useful for maintaining critical data.</p>
-<h4 class="bamboo-h " id="Availability and Redundancy1nix8645oi3">Availability and Redundancy</h4><br/>
+<h4 class="bamboo-h " id="Availability and Redundancy1v5ywv569y3">Availability and Redundancy</h4><br/>
 <p>EBS volumes can be replicated within a specific<br>Availability Zone (AZ) for redundancy, but they are not natively designed for cross-AZ or cross-region redundancy. For cross-AZ redundancy, you need to set up additional configurations.</p>
-<h4 class="bamboo-h " id="Cost1j8nur2gexi">Cost</h4><br/>
+<h4 class="bamboo-h " id="Cost2avgf8e11n1">Cost</h4><br/>
 <p>You pay for the provisioned capacity of the EBS volume, regardless of whether it is in use or not. This can make it cost-effective for certain use cases but might require careful capacity planning.</p>
-<h2 class="bamboo-h " id="Amazon Elastic File System (EFS)7pzqyw67huk">Amazon Elastic File System (EFS)</h2><br/>
+<h2 class="bamboo-h " id="Amazon Elastic File System (EFS)3tjpk8apft6">Amazon Elastic File System (EFS)</h2><br/>
 
 <div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/aws/aws-ebs-efs-2.webp" class="lazyload placeholder" data-srcset="/assets/images/aws/aws-ebs-efs-2.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="AWS EFS" style="width:400px;"/></div><span class="image-caption">AWS EFS</span></div>
 
 <span class='pbg warning'>Amazon Elastic File System (EFS) is a fully managed</span> 
 <p>Here are the key attributes and use cases of AWS EFS:</p>
-<h4 class="bamboo-h " id="File Storage258xnpas3i1">File Storage</h4><br/>
+<h4 class="bamboo-h " id="File Storage10i9igkfzmu">File Storage</h4><br/>
 
 <p>EFS offers file-level storage, making it suitable for scenarios where multiple instances need shared access to the same data, such as web applications, content management systems, and shared repositories.</p>
-<h4 class="bamboo-h " id="Scalability1pv6bhjjgrd">Scalability</h4><br/>
+<h4 class="bamboo-h " id="Scalability2bnvphzfq3z">Scalability</h4><br/>
 <p>EFS is designed to scale automatically as your storage needs grow. It can handle a dynamic number of EC2 instances concurrently, making it a great choice for applications with varying workloads.</p>
-<h4 class="bamboo-h " id="Cross-AZ and Cross-Region9m8uz1pt1y">Cross-AZ and Cross-Region</h4><br/>
+<h4 class="bamboo-h " id="Cross-AZ and Cross-Region1xpjhnsrbsf">Cross-AZ and Cross-Region</h4><br/>
 <p>EFS provides built-in redundancy and can be accessed across multiple Availability Zones and even across regions. This ensures high availability and disaster recovery capabilities.</p>
-<h4 class="bamboo-h " id="Pay-as-You-Go277x4dp02nl">Pay-as-You-Go</h4><br/>
+<h4 class="bamboo-h " id="Pay-as-You-God23ob5sot4">Pay-as-You-Go</h4><br/>
 <p>With EFS, you pay for the storage capacity you use, making it a cost-effective option for applications with fluctuating storage requirements.</p>
-<h4 class="bamboo-h " id="Simplified Management15ddx91v785">Simplified Management</h4><br/>
+<h4 class="bamboo-h " id="Simplified Management24n1ktd9opz">Simplified Management</h4><br/>
 <p>EFS takes care of the underlying infrastructure and scaling, allowing you to focus on your applications without worrying about managing storage hardware.</p>
-<h2 class="bamboo-h " id="Choosing Between EBS and EFS1lrpw6wmdyp">Choosing Between EBS and EFS</h2><br/>
+<h2 class="bamboo-h " id="Choosing Between EBS and EFSdktl0lds1z">Choosing Between EBS and EFS</h2><br/>
 
 <p>To decide between AWS EBS and AWS EFS, consider the following factors:</p>
-<h4 class="bamboo-h " id="Use Caseb6xeivr1cb4">Use Case</h4><br/>
+<h4 class="bamboo-h " id="Use Case248bjajdf2e">Use Case</h4><br/>
 <p>Determine whether your application requires block-level storage (EBS) or file-level storage (EFS).</p>
-<h4 class="bamboo-h " id="Performance Requirementsv4bv4mw40o">Performance Requirements</h4><br/> 
+<h4 class="bamboo-h " id="Performance Requirements1jb3tb29hnv">Performance Requirements</h4><br/> 
 <p>Assess your performance needs. EBS is often preferred for high-performance workloads, while EFS offers good performance for a wide range of applications.</p>
-<h4 class="bamboo-h " id="Scalability24iafoo7rrg">Scalability</h4><br/>
+<h4 class="bamboo-h " id="Scalabilityctoqm8tmccg">Scalability</h4><br/>
 <p>Consider whether your storage needs are likely to scale over time. EFS is designed for easy scalability.</p>
-<h4 class="bamboo-h " id="Availability and Redundancy1uykyfg4vtm">Availability and Redundancy</h4><br/> 
+<h4 class="bamboo-h " id="Availability and Redundancyyc3gm86bxi">Availability and Redundancy</h4><br/> 
 <p>If high availability and redundancy are crucial, EFS may be a better choice due to its built-in cross-AZ and cross-region capabilities.</p>
-<h4 class="bamboo-h " id="Coststqjbl1ecr">Cost</h4><br/> 
+<h4 class="bamboo-h " id="Cost16npbdqjh0l">Cost</h4><br/> 
 <p>Evaluate your budget and cost considerations. EBS charges are based on provisioned capacity, while EFS charges are based on actual usage.</p>
-<h2 class="bamboo-h " id="Conclusion1cbhjx8qoo1">Conclusion</h2><br/>
+<h2 class="bamboo-h " id="Conclusion9veznpswtf">Conclusion</h2><br/>
 
 <p>In summary, AWS EBS and AWS EFS are both valuable storage services within the AWS ecosystem, but they serve different purposes and have distinct characteristics. <span class='pbg danger'>EBS is ideal for block-level storage with high-performance requirements and provides data persistence within a single Availability Zone</span>. On the other hand, <span class='pbg danger'>EFS is designed for scalable file-level storage</span>. Your choice between the two should be based on your specific use case and requirements. Understanding these differences is crucial for optimizing your AWS storage strategy and ensuring the best performance and cost-efficiency for your applications.</p>
 
@@ -829,7 +829,7 @@ Load Balances are servers that forwa
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction22p9l89sypx"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amazon%20Elastic%20Block%20Store%20(EBS)5shh6d13fvg"><span class="toc-text">Amazon Elastic Block Store (EBS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Block%20Storagesufhoj6hn7"><span class="toc-text">Block Storage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Low-Latency%20Performance1hmeasvnxys"><span class="toc-text">Low-Latency Performance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data%20Persistence2lpbt3rgmh8"><span class="toc-text">Data Persistence</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Availability%20and%20Redundancy1nix8645oi3"><span class="toc-text">Availability and Redundancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost1j8nur2gexi"><span class="toc-text">Cost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amazon%20Elastic%20File%20System%20(EFS)7pzqyw67huk"><span class="toc-text">Amazon Elastic File System (EFS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#File%20Storage258xnpas3i1"><span class="toc-text">File Storage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalability1pv6bhjjgrd"><span class="toc-text">Scalability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cross-AZ%20and%20Cross-Region9m8uz1pt1y"><span class="toc-text">Cross-AZ and Cross-Region</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pay-as-You-Go277x4dp02nl"><span class="toc-text">Pay-as-You-Go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simplified%20Management15ddx91v785"><span class="toc-text">Simplified Management</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choosing%20Between%20EBS%20and%20EFS1lrpw6wmdyp"><span class="toc-text">Choosing Between EBS and EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use%20Caseb6xeivr1cb4"><span class="toc-text">Use Case</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance%20Requirementsv4bv4mw40o"><span class="toc-text">Performance Requirements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalability24iafoo7rrg"><span class="toc-text">Scalability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Availability%20and%20Redundancy1uykyfg4vtm"><span class="toc-text">Availability and Redundancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Coststqjbl1ecr"><span class="toc-text">Cost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion1cbhjx8qoo1"><span class="toc-text">Conclusion</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction2pnd5eynimk"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amazon%20Elastic%20Block%20Store%20(EBS)iew017yjda"><span class="toc-text">Amazon Elastic Block Store (EBS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Block%20Storage21ipn0he4ui"><span class="toc-text">Block Storage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Low-Latency%20Performance26zr2xbc70c"><span class="toc-text">Low-Latency Performance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data%20Persistence4wrgtxe1zdk"><span class="toc-text">Data Persistence</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Availability%20and%20Redundancy1v5ywv569y3"><span class="toc-text">Availability and Redundancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost2avgf8e11n1"><span class="toc-text">Cost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amazon%20Elastic%20File%20System%20(EFS)3tjpk8apft6"><span class="toc-text">Amazon Elastic File System (EFS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#File%20Storage10i9igkfzmu"><span class="toc-text">File Storage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalability2bnvphzfq3z"><span class="toc-text">Scalability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cross-AZ%20and%20Cross-Region1xpjhnsrbsf"><span class="toc-text">Cross-AZ and Cross-Region</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pay-as-You-God23ob5sot4"><span class="toc-text">Pay-as-You-Go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simplified%20Management24n1ktd9opz"><span class="toc-text">Simplified Management</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choosing%20Between%20EBS%20and%20EFSdktl0lds1z"><span class="toc-text">Choosing Between EBS and EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use%20Case248bjajdf2e"><span class="toc-text">Use Case</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance%20Requirements1jb3tb29hnv"><span class="toc-text">Performance Requirements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalabilityctoqm8tmccg"><span class="toc-text">Scalability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Availability%20and%20Redundancyyc3gm86bxi"><span class="toc-text">Availability and Redundancy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost16npbdqjh0l"><span class="toc-text">Cost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion9veznpswtf"><span class="toc-text">Conclusion</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -855,6 +855,27 @@ Load Balances are servers that forwa
       <!-- hash算法 -->
       
       <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/11/01/understanding-the-azure-openai-gpt-4-api-role/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">11-01</span>
+                
+              </div>
+              <a class="post-title" href="/2024/11/01/understanding-the-azure-openai-gpt-4-api-role/">Understanding the Azure OpenAI GPT-4 API Chat Role Usage</a>
+            </div>
+          </div>
         
           <div class="aside-list-item">
             
@@ -937,27 +958,6 @@ Load Balances are servers that forwa
                 
               </div>
               <a class="post-title" href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/">AWS Glue Iceberg tables schema can&#39;t be updated with Pulumi</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/09/19/user-survey-feedback-sentiment-analysis-base-on-aws-cloud-solution/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">09-19</span>
-                
-              </div>
-              <a class="post-title" href="/2024/09/19/user-survey-feedback-sentiment-analysis-base-on-aws-cloud-solution/">User Survey Feedback Sentiment Analysis Base on AWS Cloud Solution</a>
             </div>
           </div>
         
