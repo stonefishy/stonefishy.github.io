@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Pulumi - A Powerful IaC to manage the cloud infrastructure | Andrewsy&#39;s Space</title>
+  <title>理解RAG：信息检索与生成模型的结合 | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -498,21 +498,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Pulumi - A Powerful IaC to manage the cloud infrastructure
+        理解RAG：信息检索与生成模型的结合
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2024-02-11 |
+          <i class="fas fa-calendar"></i> Published in：2023-12-16 |
         </span>
       
 
@@ -520,8 +520,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> Category：
           
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
+            <a href="/categories/AI-ML/" class="post-detail-header_category">
+              AI/ML
             </a>
           
         </span>
@@ -530,11 +530,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 911 |
+            <i class="fas fa-file-text-o"></i> Words: 1.3k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 5min |
+            <i class="fas fa-clock"></i> Reading time: 4min |
           </span>
   
           
@@ -561,87 +561,59 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>To manage the application cloud infrastructure more efficiently, we can use the <code>Terraform</code> for <code>IaC(Infrastructure as Code)</code>. But today, we’re not going to talk about the Terraform, we’re going to talk about the Pulumi. A powerful IaC tool that manages the cloud infrastructure.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/pulumi/pulumi-platform.png" class="lazyload placeholder" data-srcset="/assets/images/pulumi/pulumi-platform.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Pulumi Platform"/></div><span class="image-caption">Pulumi Platform</span></div>
+        <p>在人工智能的快速发展中，如何有效地处理和生成自然语言成为了一个关键问题。近年来，<code>RAG（Retrieval-Augmented Generation）</code>系统的出现为这一挑战提供了新的解决方案。本文将深入探讨RAG的概念、出现的背景、原理以及其应用场景。</p>
+<h2 id="什么是RAG？"><a href="#什么是RAG？" class="headerlink" title="什么是RAG？"></a>什么是RAG？</h2><p><code>RAG是一种结合信息检索与生成模型的自然语言处理系统</code>。它通过从外部知识库中检索相关信息，然后利用生成模型将这些信息整合，生成高质量的文本响应。这种方法不仅增强了生成内容的准确性，还提高了上下文的相关性。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/ai-ml/rag-workflow.png" class="lazyload placeholder" data-srcset="/assets/images/ai-ml/rag-workflow.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="RAG工作流程" style="width:800px;"/></div><span class="image-caption">RAG工作流程</span></div>
 
-<p>Pulumi is an open-source <code>infrastructure as code (IaC)</code> tool that provides a powerful way to create, deploy, and manage cloud infrastructure. It is the easiest way to build and deploy infrastructure, of any architecture and on any cloud, using programming languages that you already know and love, such as <code>TypeScript</code>, <code>Python</code>, <code>Go</code>, <code>C#</code>, <code>Java</code> etc.</p>
-<p>It is a cross-platform tool that runs on <code>Windows</code>, <code>Linux</code>, and <code>macOS</code>, and supports a wide range of cloud providers, including <code>AWS</code>, <code>Azure</code>, <code>GCP</code>, <code>Kubernetes</code>, <code>Docker</code>, and more. It is also easy to use and has a simple and intuitive interface.</p>
-<p>CI&#x2F;CD integration is also supported, which means you can use Pulumi to deploy your infrastructure as part of your CI&#x2F;CD pipeline. This makes it easier to manage and update your infrastructure as your application evolves.</p>
-<h2 id="Install-Pulumi"><a href="#Install-Pulumi" class="headerlink" title="Install Pulumi"></a>Install Pulumi</h2><p>The pulumi  is a cross-platform tool that runs on Windows, Linux, and macOS. You can find and download the latest version from the official website: <a target="_blank" rel="noopener" href="https://www.pulumi.com/docs/install/versions/">https://www.pulumi.com/docs/install/versions/</a>. Follow this link to <a target="_blank" rel="noopener" href="https://www.pulumi.com/docs/install/">https://www.pulumi.com/docs/install/</a> to install the Pulumi CLI. It’s very simple to set up the Pulumi CLI on your machine.</p>
-<p>Once you installed pulumi, simply run the below command to check the version:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi version</span><br></pre></td></tr></table></figure>
+<h2 id="为什么会出现RAG？"><a href="#为什么会出现RAG？" class="headerlink" title="为什么会出现RAG？"></a>为什么会出现RAG？</h2><p>传统的生成模型，如<code>GPT</code>系列，虽然在生成自然语言文本方面表现出色，但它们通常依赖于固定的训练数据集。这意味着它们的知识是静态的，不能自动更新。此外，当面临需要特定知识或最新信息的问题时，生成模型的回答可能会不准确或过时。</p>
+<p>为了克服这些限制，RAG系统应运而生。它通过将生成模型与信息检索结合，使得系统能够动态访问和利用最新的信息，从而提高回答的质量和实用性。</p>
+<h2 id="RAG的原理"><a href="#RAG的原理" class="headerlink" title="RAG的原理"></a>RAG的原理</h2><p>RAG系统主要包括两个核心组件：信息检索模块和生成模块。</p>
+<p><strong>信息检索模块</strong>：该模块负责从一个大型文档库或知识库中检索与用户查询相关的文本片段。它通常使用向量检索、关键词匹配等技术，快速定位到与查询内容最相关的信息。</p>
+<blockquote>
+<p>向量检索：通过将文本表示为向量，计算相似度，以找到最相关的文档。常用的技术包括TF-IDF和Word Embeddings。<br>关键词匹配：使用关键词从数据库中筛选出相关文档，虽然效率较高，但可能不如向量检索全面。</p>
+</blockquote>
+<p><strong>生成模块</strong>：一旦检索到相关信息，生成模块将这些信息作为输入，结合上下文生成最终的响应。这一过程不仅保证了生成内容的流畅性和连贯性，还能融入最新的知识。生成模块利用深度学习模型（如Transformer架构）来整合检索到的信息，并生成自然流畅的文本。这一过程包括：</p>
+<blockquote>
+<p>上下文融合：生成模型在理解检索信息的基础上，结合用户的具体问题，生成具有上下文连贯性的回答。<br>多样性生成：通过调整生成策略，RAG可以生成多样的响应，避免单一回答。</p>
+</blockquote>
+<p>通过这样的组合，RAG系统能够在回答复杂问题时提供更加全面和准确的信息。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/ai-ml/rag-data-prepare-retrieval.png" class="lazyload placeholder" data-srcset="/assets/images/ai-ml/rag-data-prepare-retrieval.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="数据准备与检索增强生成" style="width:800px;"/></div><span class="image-caption">数据准备与检索增强生成</span></div>
 
-<h2 id="Create-a-new-Pulumi-project"><a href="#Create-a-new-Pulumi-project" class="headerlink" title="Create a new Pulumi project"></a>Create a new Pulumi project</h2><p>To create a new Pulumi project, you can use the <code>pulumi new</code> command. Below command is creating a new project with AWS Python template.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi new aws-python</span><br></pre></td></tr></table></figure>
-
-<p>This will create a new project with a simple AWS Python template. The project will have a <code>Pulumi.yaml</code> file, which is the configuration file for the project.</p>
-<h2 id="Configure-the-Pulumi-project"><a href="#Configure-the-Pulumi-project" class="headerlink" title="Configure the Pulumi project"></a>Configure the Pulumi project</h2><p>The <code>Pulumi.yaml</code> file is the configuration file for the project. It contains the project name and some configuration.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">my-project</span></span><br><span class="line"><span class="attr">runtime:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">python</span></span><br><span class="line">  <span class="attr">options:</span></span><br><span class="line">    <span class="attr">virtualenv:</span> <span class="string">venv</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">A</span> <span class="string">minimal</span> <span class="string">AWS</span> <span class="string">Python</span> <span class="string">Pulumi</span> <span class="string">program</span></span><br></pre></td></tr></table></figure>
-
-<p>In the above configuration, we have set the project name as <code>my-project</code>, the runtime as <code>python</code> and the virtualenv as <code>venv</code>. The description is a brief description of the project.</p>
-<h2 id="Create-a-new-stack"><a href="#Create-a-new-stack" class="headerlink" title="Create a new stack"></a>Create a new stack</h2><p>To create a new stack, you can use the <code>pulumi stack init</code> command. Below command is creating a new stack with the name <code>dev</code>.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi stack init dev</span><br></pre></td></tr></table></figure>
-
-<p>Once you created the stack, the pululmi will generate a file named <code>Pulumi.dev.yaml</code> in your project folder. You can select it using the <code>pulumi stack select</code> command.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi stack select dev</span><br></pre></td></tr></table></figure>
-
-<h2 id="Configure-the-stack"><a href="#Configure-the-stack" class="headerlink" title="Configure the stack"></a>Configure the stack</h2><p>The <code>Pulumi.dev.yaml</code> file is the configuration file for the stack.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">encryptionsalt:</span> <span class="string">v1:6YTR30z2X9tM=:v1:+fJN/nMOdJM+XjeZ:P7V9XPB9GHKE/dBuXX1uOCNGwgQztre==</span></span><br><span class="line"><span class="attr">config:</span> </span><br><span class="line">  <span class="attr">aws:region:</span> <span class="string">us-west-2</span></span><br><span class="line">  <span class="attr">aws:profile:</span> <span class="string">profile-account-1</span></span><br></pre></td></tr></table></figure>
-
-<p>In above configuration, we have set the encryption salt (this is generated), and the AWS region and profile. You can add more configuration as per your requirement.</p>
-<h2 id="Create-a-new-resource"><a href="#Create-a-new-resource" class="headerlink" title="Create a new resource"></a>Create a new resource</h2><p>To create a new resource, such as s3 bucket, you can write python code in the <code>main.py</code> file. Below is the code to create a new s3 bucket.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pulumi</span><br><span class="line"><span class="keyword">import</span> pulumi_aws <span class="keyword">as</span> aws</span><br><span class="line"></span><br><span class="line">bucket = aws.s3.Bucket(<span class="string">&quot;my-bucket&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>In the above code, we have imported the <code>aws</code> module and created a new s3 bucket resource. The <code>Bucket</code> function creates a new s3 bucket with the name <code>my-bucket</code>.</p>
-<h2 id="Preview-the-changes"><a href="#Preview-the-changes" class="headerlink" title="Preview the changes"></a>Preview the changes</h2><p>To preview the changes, you can use the <code>pulumi preview</code> command. This command will show the changes that will be applied to the infrastructure.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi preview</span><br></pre></td></tr></table></figure>
-
-<p>Below is the project currently I’m working on for <code>pululmi preview</code> showcase.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/pulumi/pulumi-preview.png" class="lazyload placeholder" data-srcset="/assets/images/pulumi/pulumi-preview.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Pulumi Preview"/></div><span class="image-caption">Pulumi Preview</span></div>
-
-<p>In above screenshot, you can see the changes that will be applied to the infrastructure. Including <code>update</code>, <code>create</code> and <code>delete</code> resources listed. You can also use the <code>--diff</code> option to show the difference between the current state and the desired state.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi preview --diff</span><br></pre></td></tr></table></figure>
-
-<h2 id="Deploy-the-infrastructure"><a href="#Deploy-the-infrastructure" class="headerlink" title="Deploy the infrastructure"></a>Deploy the infrastructure</h2><p>To deploy the infrastructure, you can use the <code>pulumi up</code> command. This command will deploy the infrastructure as per the configuration in the <code>Pulumi.yaml</code> file.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi up</span><br></pre></td></tr></table></figure>
-
-<p>This will deploy the infrastructure and show the output.</p>
-<h2 id="Check-the-status-of-the-infrastructure"><a href="#Check-the-status-of-the-infrastructure" class="headerlink" title="Check the status of the infrastructure"></a>Check the status of the infrastructure</h2><p>To check the status of the infrastructure, you can use the <code>pulumi stack</code> command. This command will show the status of the infrastructure.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi stack</span><br></pre></td></tr></table></figure>
-
-<p>This will show the status of the infrastructure. Below is the output of the <code>pulumi stack</code> command of one project I’m working.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/pulumi/pulumi-stack.png" class="lazyload placeholder" data-srcset="/assets/images/pulumi/pulumi-stack.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Pulumi Stack"/></div><span class="image-caption">Pulumi Stack</span></div>
-
-<h2 id="Destroy-the-infrastructure"><a href="#Destroy-the-infrastructure" class="headerlink" title="Destroy the infrastructure"></a>Destroy the infrastructure</h2><p>To destroy the infrastructure, you can use the <code>pulumi destroy</code> command. This command will destroy the infrastructure as per the configuration in the <code>Pulumi.yaml</code> file.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi destroy</span><br></pre></td></tr></table></figure>
-
-<p>This will destroy the infrastructure. Please be aware that this command will destroy all the resources in the stack. It’s dangerous to use this command, so use it with caution. You should know what you’re doing before using this command.</p>
-<p>There are much more features of Pulumi, but I hope this article will give you a good idea about Pulumi.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Pulumi is a powerful IaC tool that manages the cloud infrastructure. It is easy to use and has a simple and intuitive interface. It supports a wide range of cloud providers, including AWS, Azure, GCP, Kubernetes, Docker, and more. It is also easy to integrate with CI&#x2F;CD pipeline.</p>
+<h2 id="RAG的工作流程"><a href="#RAG的工作流程" class="headerlink" title="RAG的工作流程"></a>RAG的工作流程</h2><p>RAG的工作流程通常包括以下几个步骤：</p>
+<ol>
+<li>用户提出问题或请求信息。</li>
+<li>系统根据用户的查询，从知识库中检索相关信息。</li>
+<li>生成模块获取检索到的内容，并与上下文结合。</li>
+<li>最终，系统生成并输出回答，确保信息的准确性和流畅性。</li>
+</ol>
+<h2 id="RAG的优越性"><a href="#RAG的优越性" class="headerlink" title="RAG的优越性"></a>RAG的优越性</h2><p>相较于传统的生成模型，RAG系统在以下几个方面具有明显的优势：</p>
+<ol>
+<li>动态更新：RAG能够实时访问和利用最新的信息，确保生成内容的时效性。</li>
+<li>准确性提升：通过检索相关信息，RAG能够提供更为准确和上下文相关的答案。</li>
+<li>灵活性：可应用于多种场景，满足不同用户需求，适应性强。</li>
+</ol>
+<h2 id="RAG的应用场景"><a href="#RAG的应用场景" class="headerlink" title="RAG的应用场景"></a>RAG的应用场景</h2><p>RAG系统的灵活性和高效性使其在多个领域得到了广泛应用，包括但不限于：</p>
+<p><strong>问答系统</strong>：在客户支持或信息查询中，RAG可以快速检索到相关文档，提供即时和准确的回答。</p>
+<p><strong>内容生成</strong>：在新闻报道、博客文章等内容创作中，RAG能够帮助作者整合最新的信息，生成具有深度和时效性的内容。</p>
+<p><strong>教育和培训</strong>：RAG可以用于在线教育平台，提供个性化的学习建议和答案，帮助学生更好地理解复杂概念。</p>
+<p><strong>医疗领域</strong>：在医学问答系统中，RAG可以结合最新的研究文献和指南，为患者和医生提供专业的建议。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>RAG作为一种新兴的自然语言处理技术，通过结合信息检索与生成模型的优势，开辟了新的应用前景。随着技术的不断进步，RAG系统将继续在多个领域发挥重要作用，推动人机交互的进一步发展。无论是解决复杂问题，还是生成高质量内容，RAG都展示了其在智能应用中的巨大潜力。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/Pulumi/" class="">
-              Pulumi
+            <a href="/tags/AI/" class="">
+              AI
             </a>
           
-            <a href="/tags/Cloud/" class="">
-              Cloud
+            <a href="/tags/OpenAI/" class="">
+              OpenAI
             </a>
           
-            <a href="/tags/AWS/" class="">
-              AWS
-            </a>
-          
-            <a href="/tags/Python/" class="">
-              Python
-            </a>
-          
-            <a href="/tags/IaC/" class="">
-              IaC
+            <a href="/tags/RAG/" class="">
+              RAG
             </a>
           
         </div>
@@ -655,7 +627,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>Link:  </strong>
-    <a href="/2024/02/11/pulumi-a-powerful-iac-to-manage-the-cloud-infrastructure/" target="_blank" title="Pulumi - A Powerful IaC to manage the cloud infrastructure">https://stonefishy.github.io/2024/02/11/pulumi-a-powerful-iac-to-manage-the-cloud-infrastructure/</a>
+    <a href="/2023/12/16/rag-info-retrieve-and-text-generation-combination/" target="_blank" title="理解RAG：信息检索与生成模型的结合">https://stonefishy.github.io/2023/12/16/rag-info-retrieve-and-text-generation-combination/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -677,16 +649,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2024/01/25/why-redis-choose-single-thread/" class="post-nav-link">
+    <a href="/2023/11/19/a-fast-in-process-analytical-database-duckdb/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">为何Redis选择单线程而非多线程架构？</div>
+        <div class="title-text">A fast in-process analytical database - DuckDB</div>
       </div>
       
       <!-- <div class="content">
-        在现代的互联网应用中，数据存储和访问速度是至关重要的。Redis，作为一款高性能的内存数据库，以其快速的读写速度和灵活的
+        OverviewDuckDB is a seriously powerful database, with a host
       </div> -->
     </a>
   </div>
@@ -697,15 +669,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2024/02/27/importing-existing-cloud-resources-with-pulumi/" class="post-nav-link">
+    <a href="/2024/01/03/understand-es6-symbol/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Manage the Existing Cloud Resources By Using Pulumi Import</div>
+        <div class="title-text">深入理解ES6中的Symbol类型</div>
       </div>
       <!-- <div class="content">
-        In many real-world scenarios, cloud infrastructure is alread
+        在ES6（ECMAScript 2015）中引入了一种新的基本数据类型——Symbol。Symbol类型的引入丰富了Ja
       </div> -->
     </a>
   </div>
@@ -843,7 +815,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Pulumi"><span class="toc-text">Install Pulumi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-new-Pulumi-project"><span class="toc-text">Create a new Pulumi project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-the-Pulumi-project"><span class="toc-text">Configure the Pulumi project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-new-stack"><span class="toc-text">Create a new stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-the-stack"><span class="toc-text">Configure the stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-new-resource"><span class="toc-text">Create a new resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-the-changes"><span class="toc-text">Preview the changes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-the-infrastructure"><span class="toc-text">Deploy the infrastructure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-the-status-of-the-infrastructure"><span class="toc-text">Check the status of the infrastructure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Destroy-the-infrastructure"><span class="toc-text">Destroy the infrastructure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRAG%EF%BC%9F"><span class="toc-text">什么是RAG？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%87%BA%E7%8E%B0RAG%EF%BC%9F"><span class="toc-text">为什么会出现RAG？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAG%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">RAG的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAG%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">RAG的工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAG%E7%9A%84%E4%BC%98%E8%B6%8A%E6%80%A7"><span class="toc-text">RAG的优越性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAG%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">RAG的应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>

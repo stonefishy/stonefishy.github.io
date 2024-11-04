@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Pulumi - A Powerful IaC to manage the cloud infrastructure | Andrewsy&#39;s Space</title>
+  <title>Tag: RAG | Andrewsy&#39;s Space</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -485,658 +485,109 @@
 </header>
         <!-- 内容区域 -->
         
- <!-- prismjs 代码高亮 -->
- 
 
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+<div class="bg-light-floor-tagDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
-
-
-  <!-- 文章详情页顶部图片和标题 -->
-
-
-
-
-<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-9610c47f088f341cb76f066a59d6fc58_1440w.webp')">
-  <div class="post-detail-header-mask"></div>
-  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
-  
-  <div class="post-detail-header_info-box">
-    <div class="title-box">
-      <span class="title">
-        Pulumi - A Powerful IaC to manage the cloud infrastructure
-      </span>
-    </div>
-    
-    
-      
-        <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2024-02-11 |
-        </span>
-      
-
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> Category：
-          
-            <a href="/categories/Cloud/" class="post-detail-header_category">
-              Cloud
-            </a>
-          
-        </span>
-      
-
-      
-        <div class="post-detail-header_wordcount">
-          <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 911 |
-          </span>
-  
-          <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 5min |
-          </span>
-  
-          
-            <span class="reading">
-              <i class="fas fa-eye"></i> Reading：<span id="busuanzi_value_page_pv"></span>
-            </span>
-          
-        </div>
-      
-    
+<div class="tag-header" style="background-image: url('/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp');">
+  <div class="tag-header-title">
+    Tag
   </div>
+  <div class="tag-header-desc">
   
-  
-    <script src="/js/bubble/bubble.js"></script>
-  
-</div>
-
-
-
-
-
-<div class="post-detail-content post-row" 
-  style="padding-top: 0px;">
-  <div class="main-content">
-    <article class="post post-detail">
-      <div class="post-content">
-        <p>To manage the application cloud infrastructure more efficiently, we can use the <code>Terraform</code> for <code>IaC(Infrastructure as Code)</code>. But today, we’re not going to talk about the Terraform, we’re going to talk about the Pulumi. A powerful IaC tool that manages the cloud infrastructure.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/pulumi/pulumi-platform.png" class="lazyload placeholder" data-srcset="/assets/images/pulumi/pulumi-platform.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Pulumi Platform"/></div><span class="image-caption">Pulumi Platform</span></div>
-
-<p>Pulumi is an open-source <code>infrastructure as code (IaC)</code> tool that provides a powerful way to create, deploy, and manage cloud infrastructure. It is the easiest way to build and deploy infrastructure, of any architecture and on any cloud, using programming languages that you already know and love, such as <code>TypeScript</code>, <code>Python</code>, <code>Go</code>, <code>C#</code>, <code>Java</code> etc.</p>
-<p>It is a cross-platform tool that runs on <code>Windows</code>, <code>Linux</code>, and <code>macOS</code>, and supports a wide range of cloud providers, including <code>AWS</code>, <code>Azure</code>, <code>GCP</code>, <code>Kubernetes</code>, <code>Docker</code>, and more. It is also easy to use and has a simple and intuitive interface.</p>
-<p>CI&#x2F;CD integration is also supported, which means you can use Pulumi to deploy your infrastructure as part of your CI&#x2F;CD pipeline. This makes it easier to manage and update your infrastructure as your application evolves.</p>
-<h2 id="Install-Pulumi"><a href="#Install-Pulumi" class="headerlink" title="Install Pulumi"></a>Install Pulumi</h2><p>The pulumi  is a cross-platform tool that runs on Windows, Linux, and macOS. You can find and download the latest version from the official website: <a target="_blank" rel="noopener" href="https://www.pulumi.com/docs/install/versions/">https://www.pulumi.com/docs/install/versions/</a>. Follow this link to <a target="_blank" rel="noopener" href="https://www.pulumi.com/docs/install/">https://www.pulumi.com/docs/install/</a> to install the Pulumi CLI. It’s very simple to set up the Pulumi CLI on your machine.</p>
-<p>Once you installed pulumi, simply run the below command to check the version:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi version</span><br></pre></td></tr></table></figure>
-
-<h2 id="Create-a-new-Pulumi-project"><a href="#Create-a-new-Pulumi-project" class="headerlink" title="Create a new Pulumi project"></a>Create a new Pulumi project</h2><p>To create a new Pulumi project, you can use the <code>pulumi new</code> command. Below command is creating a new project with AWS Python template.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi new aws-python</span><br></pre></td></tr></table></figure>
-
-<p>This will create a new project with a simple AWS Python template. The project will have a <code>Pulumi.yaml</code> file, which is the configuration file for the project.</p>
-<h2 id="Configure-the-Pulumi-project"><a href="#Configure-the-Pulumi-project" class="headerlink" title="Configure the Pulumi project"></a>Configure the Pulumi project</h2><p>The <code>Pulumi.yaml</code> file is the configuration file for the project. It contains the project name and some configuration.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">my-project</span></span><br><span class="line"><span class="attr">runtime:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">python</span></span><br><span class="line">  <span class="attr">options:</span></span><br><span class="line">    <span class="attr">virtualenv:</span> <span class="string">venv</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">A</span> <span class="string">minimal</span> <span class="string">AWS</span> <span class="string">Python</span> <span class="string">Pulumi</span> <span class="string">program</span></span><br></pre></td></tr></table></figure>
-
-<p>In the above configuration, we have set the project name as <code>my-project</code>, the runtime as <code>python</code> and the virtualenv as <code>venv</code>. The description is a brief description of the project.</p>
-<h2 id="Create-a-new-stack"><a href="#Create-a-new-stack" class="headerlink" title="Create a new stack"></a>Create a new stack</h2><p>To create a new stack, you can use the <code>pulumi stack init</code> command. Below command is creating a new stack with the name <code>dev</code>.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi stack init dev</span><br></pre></td></tr></table></figure>
-
-<p>Once you created the stack, the pululmi will generate a file named <code>Pulumi.dev.yaml</code> in your project folder. You can select it using the <code>pulumi stack select</code> command.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi stack select dev</span><br></pre></td></tr></table></figure>
-
-<h2 id="Configure-the-stack"><a href="#Configure-the-stack" class="headerlink" title="Configure the stack"></a>Configure the stack</h2><p>The <code>Pulumi.dev.yaml</code> file is the configuration file for the stack.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">encryptionsalt:</span> <span class="string">v1:6YTR30z2X9tM=:v1:+fJN/nMOdJM+XjeZ:P7V9XPB9GHKE/dBuXX1uOCNGwgQztre==</span></span><br><span class="line"><span class="attr">config:</span> </span><br><span class="line">  <span class="attr">aws:region:</span> <span class="string">us-west-2</span></span><br><span class="line">  <span class="attr">aws:profile:</span> <span class="string">profile-account-1</span></span><br></pre></td></tr></table></figure>
-
-<p>In above configuration, we have set the encryption salt (this is generated), and the AWS region and profile. You can add more configuration as per your requirement.</p>
-<h2 id="Create-a-new-resource"><a href="#Create-a-new-resource" class="headerlink" title="Create a new resource"></a>Create a new resource</h2><p>To create a new resource, such as s3 bucket, you can write python code in the <code>main.py</code> file. Below is the code to create a new s3 bucket.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pulumi</span><br><span class="line"><span class="keyword">import</span> pulumi_aws <span class="keyword">as</span> aws</span><br><span class="line"></span><br><span class="line">bucket = aws.s3.Bucket(<span class="string">&quot;my-bucket&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>In the above code, we have imported the <code>aws</code> module and created a new s3 bucket resource. The <code>Bucket</code> function creates a new s3 bucket with the name <code>my-bucket</code>.</p>
-<h2 id="Preview-the-changes"><a href="#Preview-the-changes" class="headerlink" title="Preview the changes"></a>Preview the changes</h2><p>To preview the changes, you can use the <code>pulumi preview</code> command. This command will show the changes that will be applied to the infrastructure.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi preview</span><br></pre></td></tr></table></figure>
-
-<p>Below is the project currently I’m working on for <code>pululmi preview</code> showcase.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/pulumi/pulumi-preview.png" class="lazyload placeholder" data-srcset="/assets/images/pulumi/pulumi-preview.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Pulumi Preview"/></div><span class="image-caption">Pulumi Preview</span></div>
-
-<p>In above screenshot, you can see the changes that will be applied to the infrastructure. Including <code>update</code>, <code>create</code> and <code>delete</code> resources listed. You can also use the <code>--diff</code> option to show the difference between the current state and the desired state.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi preview --diff</span><br></pre></td></tr></table></figure>
-
-<h2 id="Deploy-the-infrastructure"><a href="#Deploy-the-infrastructure" class="headerlink" title="Deploy the infrastructure"></a>Deploy the infrastructure</h2><p>To deploy the infrastructure, you can use the <code>pulumi up</code> command. This command will deploy the infrastructure as per the configuration in the <code>Pulumi.yaml</code> file.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi up</span><br></pre></td></tr></table></figure>
-
-<p>This will deploy the infrastructure and show the output.</p>
-<h2 id="Check-the-status-of-the-infrastructure"><a href="#Check-the-status-of-the-infrastructure" class="headerlink" title="Check the status of the infrastructure"></a>Check the status of the infrastructure</h2><p>To check the status of the infrastructure, you can use the <code>pulumi stack</code> command. This command will show the status of the infrastructure.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi stack</span><br></pre></td></tr></table></figure>
-
-<p>This will show the status of the infrastructure. Below is the output of the <code>pulumi stack</code> command of one project I’m working.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/pulumi/pulumi-stack.png" class="lazyload placeholder" data-srcset="/assets/images/pulumi/pulumi-stack.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Pulumi Stack"/></div><span class="image-caption">Pulumi Stack</span></div>
-
-<h2 id="Destroy-the-infrastructure"><a href="#Destroy-the-infrastructure" class="headerlink" title="Destroy the infrastructure"></a>Destroy the infrastructure</h2><p>To destroy the infrastructure, you can use the <code>pulumi destroy</code> command. This command will destroy the infrastructure as per the configuration in the <code>Pulumi.yaml</code> file.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pulumi destroy</span><br></pre></td></tr></table></figure>
-
-<p>This will destroy the infrastructure. Please be aware that this command will destroy all the resources in the stack. It’s dangerous to use this command, so use it with caution. You should know what you’re doing before using this command.</p>
-<p>There are much more features of Pulumi, but I hope this article will give you a good idea about Pulumi.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Pulumi is a powerful IaC tool that manages the cloud infrastructure. It is easy to use and has a simple and intuitive interface. It supports a wide range of cloud providers, including AWS, Azure, GCP, Kubernetes, Docker, and more. It is also easy to integrate with CI&#x2F;CD pipeline.</p>
-
-      </div>
-      <div class="post-tags-categories">
-        
-        <div class="tags">
-          
-            <a href="/tags/Pulumi/" class="">
-              Pulumi
-            </a>
-          
-            <a href="/tags/Cloud/" class="">
-              Cloud
-            </a>
-          
-            <a href="/tags/AWS/" class="">
-              AWS
-            </a>
-          
-            <a href="/tags/Python/" class="">
-              Python
-            </a>
-          
-            <a href="/tags/IaC/" class="">
-              IaC
-            </a>
-          
-        </div>
-        
-      </div>
-      
-        <div class="copyright">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-    <strong>Author:  </strong>Andrewsy</a>
-    </li>
-    <li class="post-copyright-link">
-    <strong>Link:  </strong>
-    <a href="/2024/02/11/pulumi-a-powerful-iac-to-manage-the-cloud-infrastructure/" target="_blank" title="Pulumi - A Powerful IaC to manage the cloud infrastructure">https://stonefishy.github.io/2024/02/11/pulumi-a-powerful-iac-to-manage-the-cloud-infrastructure/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>Copyright notice:   </strong>
-      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
-      reprint policy. If reproduced, please indicate source!
-    </li>
-  </ul>
-<div>
-      
-    </article>
-    <!-- 上一篇文章和下一篇文章 -->
-    
-      <!-- 文章详情页的上一页和下一页 -->
-<div class="post-nav">
-
-
-
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2024/01/25/why-redis-choose-single-thread/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">为何Redis选择单线程而非多线程架构？</div>
-      </div>
-      
-      <!-- <div class="content">
-        在现代的互联网应用中，数据存储和访问速度是至关重要的。Redis，作为一款高性能的内存数据库，以其快速的读写速度和灵活的
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
-    </div>
-    <a href="/2024/02/27/importing-existing-cloud-resources-with-pulumi/" class="post-nav-link">
-      <div class="title">
-        Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Manage the Existing Cloud Resources By Using Pulumi Import</div>
-      </div>
-      <!-- <div class="content">
-        In many real-world scenarios, cloud infrastructure is alread
-      </div> -->
-    </a>
-  </div>
-
-</div>
-
-    
-    
-
-    <!-- 打赏 -->
-    
-
-    <!-- 分享 -->
-    
-      <!-- https://github.com/overtrue/share.js -->
-<!-- 文章详情页的分享 -->
-<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-
-<script src="/js/shareJs/social-share.min.js"></script>
-</script>
-
-<style>
-  .social-share {
-    margin: 20px 0;
+    <span class="title" id="tag-header-desc"></span>
+    <script>
+  function typedFn() {
+    const el = '#tag-header-desc';
+    const type = 'tagDetail';
+    let desc = 'Don&#39;t watch the clock; do what it does. Keep going.'
+    var typed = new Typed(el, {
+      strings: [desc],
+      startDelay: 100,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50,
+      showCursor: true
+    });
   }
-</style>
-
-
-    
-    
-    <!-- 评论 -->
-    <!-- 评论 -->
-
-  <div id="myComment">
-    
-      <div id="gitment-container"></div>
-
+  typedFn();
+</script>
     
   </div>
+  <div class="mask-box"></div>
+</div>
 
-<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
 
 
+<div class="tag">
+  <div class="tag-name">
+    <div class="name" style="background-color: #D5F5E3;">RAG Tag</div>
   </div>
+  <!-- 每一篇文章卡片 -->
+  <!-- hash算法 -->
 
-  <!-- 目录 -->
-  <aside id='l_side'>
+<section class="posts">
   
     
-      <section class="widget side_blogger">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img src='/medias/avatar/totoro3.webp'/>
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-12-16</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/12/16/rag-info-retrieve-and-text-generation-combination/">理解RAG：信息检索与生成模型的结合</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenAI/" rel="tag">OpenAI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RAG/" rel="tag">RAG</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/AI-ML/">AI/ML</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/12/16/rag-info-retrieve-and-text-generation-combination/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            在人工智能的快速发展中，如何有效地处理和生成自然语言成为了一个关键问题。近年来，RAG（Retrieval-Augmented Generation）系统的出现为这一挑战提供了新的解决方案。本文将深入探讨RAG的概念、出现的背景、原理以及其
+          </div>
         </div>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Andrewsy</h2>
-        
-        
-          <p>Stay hungry, Stay foolish</p>
-
-        
-        
-          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
+        <div class="post-more">
+          <a href="/2023/12/16/rag-info-retrieve-and-text-generation-combination/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
       </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:andrewsy@163.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/stonefishy"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
-              class="social fab fa-qq flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
+      <div class="post-img">
+        <a href="/2023/12/16/rag-info-retrieve-and-text-generation-combination/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5dfab6525ec92b4caf3f09e1ee72a23b_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
       </div>
-    
-  </div>
+    </article>
+  
 </section>
-
-    
-  
-  
-  
-
-  <div class="layout_sticky">    
-    
-      
-<section class="widget side_toc">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="toc-main">
-      <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Pulumi"><span class="toc-text">Install Pulumi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-new-Pulumi-project"><span class="toc-text">Create a new Pulumi project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-the-Pulumi-project"><span class="toc-text">Configure the Pulumi project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-new-stack"><span class="toc-text">Create a new stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-the-stack"><span class="toc-text">Configure the stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-new-resource"><span class="toc-text">Create a new resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-the-changes"><span class="toc-text">Preview the changes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-the-infrastructure"><span class="toc-text">Deploy the infrastructure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-the-status-of-the-infrastructure"><span class="toc-text">Check the status of the infrastructure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Destroy-the-infrastructure"><span class="toc-text">Destroy the infrastructure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol> -->
-        <div class="toc"></div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- 手机端目录按钮 -->
-<div id="toc-mobile-btn">
-  <i class="fas fa-list-ul" aria-hidden="true"></i>
 </div>
 
-      
-  <section class="widget side_recent_post">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      
-      <!-- hash算法 -->
-      
-      <div class="aside-list">
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/11/01/understanding-the-azure-openai-gpt-4-api-role/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">11-01</span>
-                
-              </div>
-              <a class="post-title" href="/2024/11/01/understanding-the-azure-openai-gpt-4-api-role/">Understanding the Azure OpenAI GPT-4 API Chat Role Usage</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/10/29/data-analysis-chart-by-generative-ai/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">10-29</span>
-                
-              </div>
-              <a class="post-title" href="/2024/10/29/data-analysis-chart-by-generative-ai/">Data Analysis Chart by Generative AI</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/10/23/intelligent-sql-generator-base-on-spring-ai-with-aws-bedrock/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">10-23</span>
-                
-              </div>
-              <a class="post-title" href="/2024/10/23/intelligent-sql-generator-base-on-spring-ai-with-aws-bedrock/">The Intelligent SQL Generator base on Spring AI with AWS Bedrock</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">10-16</span>
-                
-              </div>
-              <a class="post-title" href="/2024/10/16/the-useeffect-of-react-runs-twice-in-development-mode/">The useEffect of React Runs Twice in Development Mode.</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">10-09</span>
-                
-              </div>
-              <a class="post-title" href="/2024/10/09/aws-glue-iceberg-tables-schema-can-t-be-updated-with-pulumi/">AWS Glue Iceberg tables schema can&#39;t be updated with Pulumi</a>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-  </section>
-
-    
-  </div>
-</aside>
-
-  <!-- 图片放大 Wrap images with fancybox support -->
-  <script src="/js/wrapImage.js"></script>
-</div>
-
-<!-- 文章详情页背景图 -->
-<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
-	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
-	<transition-group tag="ul" :name="names">
-		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
-			<img :src="image" class="bg-swiper-img no-lazy">
-		</li>
-	</transition-group>
-</div>
-<script>
-	var vm = new Vue({
-		el: '#appBgSwiper',
-		data: {
-			names: '' || 'fade' || 'fade', // translate-fade fade
-			mark: 0,
-			img: [],
-			bgColor: '',
-			time: null
-		},
-		methods: {   //添加方法
-			change(i, m) {
-				if (i > m) {
-					// this.names = 'fade';
-				} else if (i < m) {
-					// this.names = 'fade';
-				} else {
-					return;
-				}
-				this.mark = i;
-			},
-			prev() {
-				// this.names = 'fade';
-				this.mark--;
-				if (this.mark === -1) {
-					this.mark = 3;
-					return
-				}
-			},
-			next() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			autoPlay() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			play() {
-				let bgImgDelay = '' || '1800'
-				let delay = parseInt(bgImgDelay) || 180000;
-				this.time = setInterval(this.autoPlay, delay);
-			},
-			enter() {
-				clearInterval(this.time);
-			},
-			leave() {
-				this.play();
-			}
-		},
-		created() {
-			this.play()
-		},
-		beforeDestroy() {
-			clearInterval(this.time);
-		},
-		mounted() {
-			let prop = '' || '';
-			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
-			if (isImg) {
-				let img = prop.split(',');
-				let configRoot = '/'
-				let arrImg = [];
-				img.forEach(el => {
-					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-					var objExp = new RegExp(Expression);
-
-					if (objExp.test(el)) {
-						// http or https
-						arrImg.push(el);
-					} else {
-						// 非http or https开头
-						// 本地文件
-						let firstStr = el.charAt(0);
-						if (firstStr == '/') {
-							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
-						}
-						el = configRoot + el;
-						arrImg.push(el);
-					}
-				})
-				this.img = arrImg;
-			} else {
-				this.bgColor = prop;
-			}
-		}
-	})
-</script>
-
-<style>
-	.bg-swiper-box {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.bg-swiper-img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-
-
-
-  <script>
-  function loadMermaid() {
-    if (document.getElementsByClassName('mermaid').length) {
-      if (window.mermaidJsLoad) mermaid.init()
-      else {
-        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
-          window.mermaidJsLoad = true
-          mermaid.initialize({
-            theme: 'default',
-          })
-          if ('true') {
-            mermaid.init();
-          }
-        })
-      }
-    }
-  };
-  document.addEventListener("DOMContentLoaded", function () {
-    loadMermaid();
-  })
-
-  document.addEventListener('pjax:complete', function () {
-    loadMermaid();
-  })
+<div class="w-70">
   
-</script>
-
+</div>
 
       </main>
     </div>
