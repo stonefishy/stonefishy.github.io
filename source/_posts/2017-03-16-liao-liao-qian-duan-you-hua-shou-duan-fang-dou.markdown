@@ -5,7 +5,6 @@ date: 2017-03-16 16:29:09 +0800
 comments: true
 categories: Frontend
 tags: [JavaScript]
-top: true
 swiper: true
 swiperImg: "/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp"
 swiperDesc: "防抖（Debouncing）是一种常用的优化技术，用于处理频繁触发的事件，如浏览器窗口的resize、input输入等。防抖的目标是在事件被触发后，等待一段时间，只执行一次事件处理函数，以避免频繁的重复操作。"
