@@ -3,8 +3,6 @@ title: The Points of AWS China CloudFront You Need to Notice
 date: 2024-04-18 10:16:54
 categories: Cloud
 tags: [Cloud, AWS]
-top: true
-swiper: true
 ---
 
 There are much difference between AWS Global and AWS China. The background of this blog is that I'm responsible for migrating the aws global application to aws china. The application already go lived on AWS Global. The application is  collecting the user inforamtion and for business logic. The business wants this application to serve China customer. Due to the application regulation,  the application needs to deployed in AWS China and store the user information in AWS China.

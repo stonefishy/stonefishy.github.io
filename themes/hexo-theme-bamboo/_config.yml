@@ -233,7 +233,7 @@ fancybox:
 
 # 统计网站访问数量
 busuanzi:
-  on: true
+  on: false
 
 # 标签页和分类页中，显示这个标签或者分类在文章中出现的次数
 show_count: true
