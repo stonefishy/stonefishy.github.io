@@ -1,7 +1,7 @@
 ---
 title: 详解数据分析中的方差，标准差和异常值的使用
-date: 2024-11-15 11:22:27
-tags: [Data Analysis, Math]
+date: 2020-09-03 11:22:27
+tags: [Data Analysis, Math, Python]
 categories: Data Analysis
 ---
 

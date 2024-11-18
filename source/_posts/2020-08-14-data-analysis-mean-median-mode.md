@@ -1,7 +1,7 @@
 ---
 title: 数据分析中的均值、中央値与众数
 date: 2020-08-14 09:50:21
-tags: [Data Analysis, Math]
+tags: [Data Analysis, Math, Python]
 categories: Data Analysis
 ---
 
