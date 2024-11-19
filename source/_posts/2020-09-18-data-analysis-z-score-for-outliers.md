@@ -1,5 +1,5 @@
 ---
-title: data-analysis-z-score-for-outliers
+title: 理解数据分析中的Z-score（标准分数）
 date: 2020-09-18 17:21:51
 tags: [Data Analysis, Math, Python]
 categories: Data Analysis
