@@ -1,6 +1,7 @@
 ---
 title: 浅谈物联网IoT中常见的消息传输协议MQTT
 date: 2024-12-30 15:02:06
+categories: 中间件
 tags: [MQTT, IoT]
 ---
 
