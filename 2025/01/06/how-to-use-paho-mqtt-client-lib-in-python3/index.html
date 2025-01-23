@@ -570,17 +570,17 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">connect_mqtt</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">on_connect</span>(<span class="params">client, userdata, flags, reason_code, properties</span>):</span><br><span class="line">        <span class="keyword">if</span> reason_code == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Connected to MQTT Broker!&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Failed to connect, return code %d\n&quot;</span>, reason_code)</span><br><span class="line">    client = mqtt_client.Client(client_id=client_id, callback_api_version=mqtt_client.CallbackAPIVersion.VERSION2)</span><br><span class="line"></span><br><span class="line">    client.on_connect = on_connect</span><br><span class="line">    client.connect(broker, port)</span><br><span class="line">    <span class="keyword">return</span> client</span><br></pre></td></tr></table></figure>
 
 <p>When execute the <code>connect_mqtt()</code> function, it will return a <code>Client</code> instance that is connected to the MQTT broker, and printed the connection status.</p>
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/mqtt/mqtt-connected.png" class="lazyload placeholder" data-srcset="/assets/images/mqtt/mqtt-connected.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MQTT Connected to Broker" style="width:800px;"/></div><span class="image-caption">MQTT Connected to Broker</span></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/mqtt/mqtt-connected.png" class="lazyload placeholder" data-srcset="/assets/images/mqtt/mqtt-connected.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MQTT Connected to Broker"/></div><span class="image-caption">MQTT Connected to Broker</span></div>
 
 <h2 id="Publish-Messages-to-MQTT-Topics"><a href="#Publish-Messages-to-MQTT-Topics" class="headerlink" title="Publish Messages to MQTT Topics"></a>Publish Messages to MQTT Topics</h2><p>publish messages to MQTT topics, let’s create a <code>publish()</code> function that will publish a message to the specified topic every second. Using <code>client.publish()</code> method, we can publish a message to the specified topic.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">publish</span>(<span class="params">client</span>):</span><br><span class="line">    msg_count = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        msg = <span class="string">f&quot;messages: test <span class="subst">&#123;msg_count&#125;</span>&quot;</span></span><br><span class="line">        result = client.publish(topic, msg)</span><br><span class="line">        status = result[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> status == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Send `<span class="subst">&#123;msg&#125;</span>` to topic `<span class="subst">&#123;topic&#125;</span>`&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Failed to send message to topic <span class="subst">&#123;topic&#125;</span>&quot;</span>)</span><br><span class="line">        msg_count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> msg_count &gt; <span class="number">5</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/mqtt/mqtt-publish.png" class="lazyload placeholder" data-srcset="/assets/images/mqtt/mqtt-publish.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MQTT Publish Message" style="width:800px;"/></div><span class="image-caption">MQTT Publish Message</span></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/mqtt/mqtt-publish.png" class="lazyload placeholder" data-srcset="/assets/images/mqtt/mqtt-publish.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MQTT Publish Message"/></div><span class="image-caption">MQTT Publish Message</span></div>
 
 <h2 id="Subscribe-to-MQTT-Topics"><a href="#Subscribe-to-MQTT-Topics" class="headerlink" title="Subscribe to MQTT Topics"></a>Subscribe to MQTT Topics</h2><p>To subscribe to MQTT topics, we can call the <code>subscribe()</code> method of the <code>Client</code> instance. We can define a callback function that will be called when a message is received on a subscribed topic. The callback function <code>on_message()</code> will be called when a message is received on the subscribed topic.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">subscribe</span>(<span class="params">client: mqtt_client</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">client, userdata, msg</span>):</span><br><span class="line">        <span class="built_in">print</span>(msg)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Received `<span class="subst">&#123;msg.payload.decode()&#125;</span>` which sent by `<span class="subst">&#123;client._client_id&#125;</span>` from `<span class="subst">&#123;msg.topic&#125;</span>` topic&quot;</span>)</span><br><span class="line"></span><br><span class="line">    client.subscribe(topic)</span><br><span class="line">    client.on_message = on_message</span><br></pre></td></tr></table></figure>
 
-<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/mqtt/mqtt-subscribe.png" class="lazyload placeholder" data-srcset="/assets/images/mqtt/mqtt-subscribe.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MQTT Subscribe Message" style="width:800px;"/></div><span class="image-caption">MQTT Subscribe Message</span></div>
+<div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/mqtt/mqtt-subscribe.png" class="lazyload placeholder" data-srcset="/assets/images/mqtt/mqtt-subscribe.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MQTT Subscribe Message"/></div><span class="image-caption">MQTT Subscribe Message</span></div>
 
 
 <h2 id="Run-the-MQTT-Client"><a href="#Run-the-MQTT-Client" class="headerlink" title="Run the MQTT Client"></a>Run the MQTT Client</h2><p>To run the MQTT client, we can use <code>loop_start()</code> method to run the client in a separate thread, <code>loop_stop()</code> method to stop the client loop. We also can call the <code>loop_forever()</code> method of the <code>Client</code> instance. This method will block the current thread and run the client indefinitely. </p>
@@ -658,6 +658,23 @@
   </div>
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2025/01/23/rag-chatbot-base-on-azure-openai/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">A RAG Chatbot base on Azure OpenAI</div>
+      </div>
+      <!-- <div class="content">
+        IntroductionIn this article, we will build a RAG (Retrieval-
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -825,6 +842,27 @@
             
 
             <div class="post-img-box">
+              <a href="/2025/01/23/rag-chatbot-base-on-azure-openai/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-23</span>
+                
+              </div>
+              <a class="post-title" href="/2025/01/23/rag-chatbot-base-on-azure-openai/">A RAG Chatbot base on Azure OpenAI</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2025/01/06/how-to-use-paho-mqtt-client-lib-in-python3/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -900,27 +938,6 @@
                 
               </div>
               <a class="post-title" href="/2024/12/19/sentry-the-developer-s-best-friend-for-error-tracking-and-performance-monitoring/">Sentry: The Developer’s Best Friend for Error Tracking and Performance Monitoring</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2024/11/12/introduction-to-langchain-make-ai-smarter-and-easy-to-use/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">11-12</span>
-                
-              </div>
-              <a class="post-title" href="/2024/11/12/introduction-to-langchain-make-ai-smarter-and-easy-to-use/">Introduction to LangChain: Make AI Smarter and Easier to use</a>
             </div>
           </div>
         
