@@ -58,7 +58,7 @@ def connect_mqtt():
 
 When execute the `connect_mqtt()` function, it will return a `Client` instance that is connected to the MQTT broker, and printed the connection status.
 
-{% image /assets/images/mqtt/mqtt-connected.png, width=800px, alt="MQTT Connected to Broker" %}
+{% image /assets/images/mqtt/mqtt-connected.png, alt="MQTT Connected to Broker" %}
 
 ## Publish Messages to MQTT Topics
 publish messages to MQTT topics, let's create a `publish()` function that will publish a message to the specified topic every second. Using `client.publish()` method, we can publish a message to the specified topic.
@@ -80,7 +80,7 @@ def publish(client):
             break
 ```
 
-{% image /assets/images/mqtt/mqtt-publish.png, width=800px, alt="MQTT Publish Message" %}
+{% image /assets/images/mqtt/mqtt-publish.png, alt="MQTT Publish Message" %}
 
 ## Subscribe to MQTT Topics
 To subscribe to MQTT topics, we can call the `subscribe()` method of the `Client` instance. We can define a callback function that will be called when a message is received on a subscribed topic. The callback function `on_message()` will be called when a message is received on the subscribed topic.
@@ -95,7 +95,7 @@ def subscribe(client: mqtt_client):
     client.on_message = on_message
 ```
 
-{% image /assets/images/mqtt/mqtt-subscribe.png, width=800px, alt="MQTT Subscribe Message" %}
+{% image /assets/images/mqtt/mqtt-subscribe.png, alt="MQTT Subscribe Message" %}
 
 
 ## Run the MQTT Client

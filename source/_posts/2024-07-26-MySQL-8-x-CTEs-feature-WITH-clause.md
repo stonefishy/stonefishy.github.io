@@ -3,7 +3,6 @@ title: MySQL 8.x CTEs feature - WITH clause
 date: 2024-07-26 09:19:59
 tags: [MySQL]
 categories: Database
-top: true
 swiper: true
 swiperImg: "/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp"
 ---
