@@ -3,8 +3,6 @@ title: What is Prompt Engineering? Best Practices and Examples
 date: 2024-11-05 14:08:09
 tags: [AI, OpenAI, GPT-3, GPT-4, Prompt Engineering]
 categories: AI/ML
-top: true
-swiper: true
 ---
 
 As artificial intelligence (AI) models, especially large language models (LLMs) like OpenAI's GPT series, have become increasingly sophisticated, a new role has emerged in the AI ecosystem: `the Prompt Engineer`. The term might sound technical or niche, but it’s actually pivotal to leveraging AI models effectively. Whether you’re interacting with AI in your personal or professional life, the quality of the interaction largely depends on how well the prompt is designed. This article will explore what a prompt engineer does, the best practices for writing effective prompts, and provide examples comparing outputs with and without a prompt engineer’s expertise.

@@ -2,12 +2,12 @@
 title: Running DeepSeek-R1 locally for free
 date: 2025-02-07 10:16:27
 categories: AI/ML
-tags: [AI, DeepSeek]
+tags: [AI, Ollama, DeepSeek]
+top: true
+swiper: true
 ---
 
-## Introduction
-
-{% image  /assets/images/ai-ml/deepseek-logo.png, width="800px", alt="DeepSeek" %}
+{% image  /assets/images/ai-ml/deepseek-logo.png, width="800px" %}
 
 The `DeepSeek` recently is very popular. The application download is on topest of the app store globally. The deepseek has several models, like `deepseek-r1`, `deepseek-coder` and `deepseek-v3` models etc. It's all open source and free to use.
 
@@ -20,7 +20,7 @@ Here we will run the `deepseek-r1` model locally. It's very easy and setup it qu
 ## Ollama download and installation
 The first step is to download the `Ollama` and install it on your local machine. It supports Windows, Linux and MacOS. You can download the latest version from the official website. https://ollama.com/
 
-{% image  /assets/images/ai-ml/ollama.png, width="800px", alt="Ollama" %}
+{% image  /assets/images/ai-ml/ollama.png, width="600px", alt="Ollama" %}
 
 After download and install it, you can check the version or commands from terminal or command-line.
 
