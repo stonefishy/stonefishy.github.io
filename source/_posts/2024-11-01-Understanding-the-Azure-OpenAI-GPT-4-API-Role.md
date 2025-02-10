@@ -4,7 +4,6 @@ description: In this article, we will explore the role of the Azure OpenAI GPT-4
 date: 2024-11-01 10:34:01
 tags: [AI, Azure, OpenAI, GPT-4]
 categories: AI/ML
-top: true
 ---
 
 `Azure OpenAI` is a service provided by Microsoft that integrates OpenAI's advanced language models into the Azure cloud platform. It allows developers to access and use OpenAI's capabilities, such as natural language processing, code generation, and more, through Azure's infrastructure.
