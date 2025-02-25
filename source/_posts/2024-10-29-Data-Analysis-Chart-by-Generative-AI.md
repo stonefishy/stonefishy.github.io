@@ -3,6 +3,8 @@ title: Data Analysis Chart by Generative AI
 date: 2024-10-29 14:18:48
 tags: [AI, AWS, Python, SQL]
 categories: AI/ML
+top: true
+swiper: true
 ---
 
 In data analysis, we often need to create charts to visualize the data by using BI tools, such as `Tableau`, `Power BI`, `AWS Quicksight`, or `Qlik Sense`. These tools allow us to create interactive and visually appealing charts, which can help us to identify patterns and trends in the data.

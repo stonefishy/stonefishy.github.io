@@ -1,5 +1,5 @@
 ---
-title: Understanding the X-Frame-Options HTTP Header
+title: Web Security - Understanding the X-Frame-Options HTTP Header
 date: 2024-06-14 14:36:28
 categories: Frontend
 tags: [Web]
