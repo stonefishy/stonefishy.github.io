@@ -622,7 +622,7 @@ site_footer:
     #   url: https://github.com/stonefishy
     - icon: fab fa-qq
       url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=782022428
-  copyright: 'Copyright © 2013 - 2024 Andrewsy'
+  copyright: 'Copyright © 2013 - 2025 Andrewsy'
   custom: # 根据需要自行取消注释，label: 'markdown格式'，会在下面继续增加内容
     # - label: '<br>'
     # - label: '[Hello World](http://baidu.com)'
