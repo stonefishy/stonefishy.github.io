@@ -1,5 +1,5 @@
 ---
-title: RAG Chatbot - Converting PDF Document to Vector
+title: Conversational RAG Chatbot - Converting PDF Document to Vector
 date: 2025-02-24 16:27:50
 categories: AI/ML
 tags: [AI, OpenAI, Python, FAISS, Langchain, Chatbot, RAG]
@@ -271,5 +271,5 @@ merge_faiss_files("./faiss_files", INDEX_NAME)
 
 {% image /assets/images/ai-ml/faiss-wix-merged-index.png %}
 
-Next step, we will build a WiX chatbot which loading this `FAISS` index and passing the question and retrieving the relevant documents from the index. For the entire code, you can check the github https://github.com/stonefishy/WiX5-chatbot to see the entire code.
+Next step, we will build a WiX chatbot which loading this `FAISS` index and passing the question and retrieving the relevant documents from the index. For the entire code, you can check the github [GitHub repository](https://github.com/stonefishy/converstional-rag-chatbot) to see the entire code.
 
