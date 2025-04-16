@@ -563,7 +563,7 @@
       <div class="post-content">
         <p>在数据分析中，我们常常会用到<strong>均值</strong>（<code>Mean</code>）、<strong>中央値</strong>（<code>Median</code>）和<strong>众数</strong>（<code>Mode</code>）这三个基本的统计量。这些统计量能够帮助我们更好地理解数据集的分布情况，发现数据中的趋势以及进行数据清洗和处理。</p>
 <h2 id="均值（Mean）"><a href="#均值（Mean）" class="headerlink" title="均值（Mean）"></a>均值（Mean）</h2><p><strong>均值</strong>是最常见的集中趋势指标，通常被称为“<code>平均数</code>”。它是所有数据点加总之后除以数据点的个数。计算公式如下：</p>
-<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.798ex;" xmlns="http://www.w3.org/2000/svg" width="15.293ex" height="3.167ex" role="img" focusable="false" viewBox="0 -1047.1 6759.4 1399.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-1-TEX-SO-2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"></path><path id="MJX-1-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtext"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">均</text><text data-variant="normal" transform="translate(1000,0) scale(1,-1)" font-size="884px" font-family="serif">值</text></g><g data-mml-node="mo" transform="translate(2277.8,0)"><use data-c="3D" xlink:href="#MJX-1-TEX-N-3D"></use></g><g data-mml-node="mfrac" transform="translate(3333.6,0)"><g data-mml-node="mrow" transform="translate(220,516.8) scale(0.707)"><g data-mml-node="mo"><use data-c="2211" xlink:href="#MJX-1-TEX-SO-2211"></use></g><g data-mml-node="mtext" transform="translate(1222.7,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text><text data-variant="normal" transform="translate(1000,0) scale(1,-1)" font-size="884px" font-family="serif">据</text><text data-variant="normal" transform="translate(2000,0) scale(1,-1)" font-size="884px" font-family="serif">值</text></g></g><g data-mml-node="mi" transform="translate(1500.8,-345) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-1-TEX-I-1D45B"></use></g><rect width="3185.9" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>
+<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.798ex;" xmlns="http://www.w3.org/2000/svg" width="15.293ex" height="3.167ex" role="img" focusable="false" viewBox="0 -1047.1 6759.4 1399.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-2-TEX-SO-2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"></path><path id="MJX-2-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtext"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">均</text><text data-variant="normal" transform="translate(1000,0) scale(1,-1)" font-size="884px" font-family="serif">值</text></g><g data-mml-node="mo" transform="translate(2277.8,0)"><use data-c="3D" xlink:href="#MJX-2-TEX-N-3D"></use></g><g data-mml-node="mfrac" transform="translate(3333.6,0)"><g data-mml-node="mrow" transform="translate(220,516.8) scale(0.707)"><g data-mml-node="mo"><use data-c="2211" xlink:href="#MJX-2-TEX-SO-2211"></use></g><g data-mml-node="mtext" transform="translate(1222.7,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text><text data-variant="normal" transform="translate(1000,0) scale(1,-1)" font-size="884px" font-family="serif">据</text><text data-variant="normal" transform="translate(2000,0) scale(1,-1)" font-size="884px" font-family="serif">值</text></g></g><g data-mml-node="mi" transform="translate(1500.8,-345) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-2-TEX-I-1D45B"></use></g><rect width="3185.9" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>
 
 <p>直白一点就是：</p>
 <blockquote>
@@ -873,6 +873,27 @@
             
 
             <div class="post-img-box">
+              <a href="/2025/04/16/supercharge-your-python-project-with-uv-the-lightning-fast-package-manager/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-16</span>
+                
+              </div>
+              <a class="post-title" href="/2025/04/16/supercharge-your-python-project-with-uv-the-lightning-fast-package-manager/">Supercharge Your Python project with UV: The Lightning-Fast Package Manager</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2025/04/11/switching-tomcat-with-jetty-in-spring-boot-easily/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -948,27 +969,6 @@
                 
               </div>
               <a class="post-title" href="/2025/02/27/conversational-rag-chatbot-build-a-chatbot-with-langchain/">Conversational RAG Chatbot - Build a Chatbot with LangChain and Chainlit</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2025/02/24/conversational-rag-chatbot-converting-pdf-document-to-vector/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">02-24</span>
-                
-              </div>
-              <a class="post-title" href="/2025/02/24/conversational-rag-chatbot-converting-pdf-document-to-vector/">Conversational RAG Chatbot - Converting PDF Document to Vector</a>
             </div>
           </div>
         

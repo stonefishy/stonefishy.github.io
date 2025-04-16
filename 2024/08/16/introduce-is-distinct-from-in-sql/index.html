@@ -634,7 +634,7 @@
 <h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p>在更新数据时，使用 IS DISTINCT FROM 可以确保只有在数据实际变化时才进行更新，从而避免不必要的更新操作。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> users</span><br><span class="line"><span class="keyword">SET</span> email <span class="operator">=</span> <span class="string">&#x27;new_andrewsy@email.com&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span> email <span class="keyword">IS</span> <span class="keyword">DISTINCT</span> <span class="keyword">FROM</span> <span class="string">&#x27;new_andrewsy@email.com&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p>这条查询会更新所有 email 不同于 ‘<a href="mailto:&#x6e;&#x65;&#x77;&#x5f;&#97;&#x6e;&#x64;&#114;&#x65;&#119;&#x73;&#x79;&#x40;&#101;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x6e;&#x65;&#x77;&#x5f;&#97;&#x6e;&#x64;&#114;&#x65;&#119;&#x73;&#x79;&#x40;&#101;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>‘ 的记录，包括那些 email 为 NULL 的记录。</p>
+<p>这条查询会更新所有 email 不同于 ‘<a href="mailto:&#110;&#101;&#119;&#x5f;&#97;&#110;&#x64;&#114;&#101;&#119;&#115;&#121;&#64;&#x65;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#110;&#101;&#119;&#x5f;&#97;&#110;&#x64;&#114;&#101;&#119;&#115;&#121;&#64;&#x65;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>‘ 的记录，包括那些 email 为 NULL 的记录。</p>
 <h3 id="数据比较"><a href="#数据比较" class="headerlink" title="数据比较"></a>数据比较</h3><p>在进行复杂的数据比较时，尤其是涉及到 NULL 值时，IS DISTINCT FROM 提供了更直观的比较逻辑。例如，在合并两个数据集时，可以使用此操作符来确保唯一性。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">    dataset1</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> </span><br><span class="line">    dataset2</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">    dataset1.id <span class="keyword">IS</span> <span class="keyword">DISTINCT</span> <span class="keyword">FROM</span> dataset2.id</span><br></pre></td></tr></table></figure>
 
@@ -891,6 +891,27 @@
             
 
             <div class="post-img-box">
+              <a href="/2025/04/16/supercharge-your-python-project-with-uv-the-lightning-fast-package-manager/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-16</span>
+                
+              </div>
+              <a class="post-title" href="/2025/04/16/supercharge-your-python-project-with-uv-the-lightning-fast-package-manager/">Supercharge Your Python project with UV: The Lightning-Fast Package Manager</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2025/04/11/switching-tomcat-with-jetty-in-spring-boot-easily/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -966,27 +987,6 @@
                 
               </div>
               <a class="post-title" href="/2025/02/27/conversational-rag-chatbot-build-a-chatbot-with-langchain/">Conversational RAG Chatbot - Build a Chatbot with LangChain and Chainlit</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2025/02/24/conversational-rag-chatbot-converting-pdf-document-to-vector/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">02-24</span>
-                
-              </div>
-              <a class="post-title" href="/2025/02/24/conversational-rag-chatbot-converting-pdf-document-to-vector/">Conversational RAG Chatbot - Converting PDF Document to Vector</a>
             </div>
           </div>
         
