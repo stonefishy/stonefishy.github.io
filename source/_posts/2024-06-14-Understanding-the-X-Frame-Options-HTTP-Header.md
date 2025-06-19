@@ -3,8 +3,6 @@ title: Web Security - Understanding the X-Frame-Options HTTP Header
 date: 2024-06-14 14:36:28
 categories: Frontend
 tags: [Web]
-top: true
-swiper: true
 ---
 
 Recently, we build a frontend website as a nginx docker image, before go live on production. We asking the security team to do the security scan for the website on stage environment. One of security issues indicates the `X-Frame-Options` HTTP header is not set properly. It will cause the website to be vulnerable to clickjacking attacks.
