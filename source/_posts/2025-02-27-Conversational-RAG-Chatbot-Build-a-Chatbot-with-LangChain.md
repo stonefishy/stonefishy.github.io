@@ -98,7 +98,7 @@ async def main(message: cl.Message):
 
 The starter page screenshot like below:
 
-{% image /assets/images/ai-ml/chainlit-chatbot-starter-page.png %, alt="Chainlit Chatbot Starter Page" %}
+{% image /assets/images/ai-ml/chainlit-chatbot-starter-page.png, alt="Chainlit Chatbot Starter Page" %}
 
 You can also customize the theme, or do some changes in UI. 
 

@@ -3,7 +3,6 @@ title: 构建JavaScript生成器：探索无穷可能的世界
 date: 2024-01-19 21:30:44
 tags: [JavaScript]
 categories: Frontend
-swiper: true
 ---
 
 JavaScript作为一种强大而灵活的编程语言，为开发者提供了丰富的工具和功能。其中，生成器（`Generators`）是一项引人注目的特性，它们可以帮助我们在编写异步代码时更加轻松地管理流程和状态。本文将深入探讨JavaScript生成器的基本概念，并提供一些实用的代码示例，让我们一同踏入生成器的神奇世界。
