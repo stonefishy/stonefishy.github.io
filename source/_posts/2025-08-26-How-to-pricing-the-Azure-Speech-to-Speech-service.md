@@ -2,7 +2,7 @@
 title: How to pricing the Azure Speech to Speech service
 date: 2025-08-26 10:28:50
 categories: AI/ML
-tags: [AI, Azure]
+tags: [AI, Azure, Cloud]
 ---
 
 In previous blog [Speech Translator Based on Azure Speech Service](https://stonefishy.github.io/2025/06/19/speech-translator-base-on-azure-speech-service/), we talked about the architecture and implementation details of a speech translation service using Azure's Speech API. In this blog, we will focus on the pricing aspects of the Azure Speech to Speech service.

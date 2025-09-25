@@ -2,7 +2,7 @@
 title: Using LangGraph to create AI Agentic system.
 date: 2025-08-15 10:41:13
 categories: AI/ML
-tags: [AI, LangGraph, Azure OpenAI, Python]
+tags: [AI, LangGraph, Azure, Azure OpenAI, Python]
 ---
 In the world of AI, creating systems that can autonomously perform tasks and make decisions is a fascinating challenge. `LangGraph,` a framework designed for building AI agents, provides a powerful way to create such systems. In this blog post, we will explore how to use `LangGraph` to create an AI agentic system.
 

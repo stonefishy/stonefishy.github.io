@@ -5,7 +5,7 @@ tags: [Spring, Spring AI, AI, AWS, Java, SQL]
 categories: AI/ML
 top: true
 swiper: true
-swiperImg: "/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp"
+swiperImg: "/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp"
 ---
 
 The generative AI is a type of artificial intelligence (AI) that can learn from data and generate new data. In this article, we will discuss how to build an intelligent SQL generator using `Spring AI` and `AWS Bedrock`. For example, the application able to provide the data sql to us after we input the natural language questions, and we can query the data by using the sql, even display the chart base on data queried.

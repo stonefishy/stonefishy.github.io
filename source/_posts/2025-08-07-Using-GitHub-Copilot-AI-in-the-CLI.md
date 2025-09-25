@@ -2,7 +2,7 @@
 title: Using GitHub Copilot AI in the CLI
 date: 2025-08-07 15:39:52
 categories: AI/ML
-tags: [AI, GitHub, Copilot, CLI]
+tags: [AI, GitHub Copilot, CLI]
 ---
 
 The `GitHub Copilot` is a tool that can help you write code faster and more efficiently. It can suggest code completions based on your code context and can help you write better code. But it is also can be used in the `command line interface (CLI)` like `bash`, `zsh`, `PowerShell` as well.
