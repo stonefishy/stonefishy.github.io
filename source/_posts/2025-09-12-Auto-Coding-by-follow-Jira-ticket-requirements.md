@@ -4,7 +4,6 @@ date: 2025-09-12 16:03:15
 categories: AI/ML
 tags: [AI, MCP, Github Copilot]
 swiper: true
-top: true
 swiperImg: "/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp"
 ---
 
