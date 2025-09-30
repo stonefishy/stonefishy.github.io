@@ -1,5 +1,5 @@
 ---
-title: Building a Jira Ticket Developer Agent with GitHub Copilot
+title: Building a Jira Ticket Developer AI Agent with GitHub Copilot
 date: 2025-09-28 16:03:15
 categories: AI/ML
 tags: [AI, AI Agents, GitHub Copilot, MCP, React, Typescript, Javascript]
