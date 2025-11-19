@@ -520,6 +520,9 @@
       
         
         
+      
+        
+        
           
           <swiper-slide>
             <div class="item swiper-lazy" data-background="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" style=" background-size: 300000px; 
@@ -1963,6 +1966,61 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2015-09-23</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2015/09/23/the-initialization-of-the-angular-ngmodel/">The initialization of the angular ngModel</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJs/" rel="tag">AngularJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2015/09/23/the-initialization-of-the-angular-ngmodel/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <p>Recently, I’ve encoutered a weird problem in the project, it’s about the value of the ngModel. Let me explain the problem. see the code</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../bower_components/bootstrap/dist/css/bootstrap.min.css&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../../bower_components/angular/angular.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../../js/ngModel.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">&quot;ModelApp&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;page-header&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;text-center&quot;</span>&gt;</span>ng-model initialize example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel panel-danger&quot;</span> <span class="attr">ng-controller</span>=<span class="string">&quot;ModelController1&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel-heading&quot;</span>&gt;</span>the angular model without initialize:<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel-body&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;myInput1&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;myModel1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;A&quot;</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;&quot;</span>&gt;</span> -&gt; This input tag bundles the ngModel which name is &#x27;myModel1&#x27;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">input</span> <span class="attr">disabled</span>=<span class="string">&quot;true&quot;</span> <span class="attr">id</span>=<span class="string">&quot;displayModelValue1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;myModel1&#125;&#125;&quot;</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;&quot;</span>&gt;</span> -&gt; This input tag displays the value of the above ngModel<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2015/09/23/the-initialization-of-the-angular-ngmodel/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2015/09/23/the-initialization-of-the-angular-ngmodel/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-5c062983ace7db9601880019190fb5a8_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
             <span class="post-time">2015-09-15</span>
           </div>
           <div class="post-title">
@@ -2011,7 +2069,7 @@ end
         </div>
         <div class="post-more">
           <a href="/2015/09/15/ruby-practice-10/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2024,7 +2082,7 @@ end
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2076,7 +2134,7 @@ end
         </div>
         <div class="post-more">
           <a href="/2015/09/09/ruby-practice-9/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2089,7 +2147,7 @@ end
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2137,7 +2195,7 @@ value1 = value1 op value2
         </div>
         <div class="post-more">
           <a href="/2015/09/06/ruby-practice-8/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2150,7 +2208,7 @@ value1 = value1 op value2
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2199,7 +2257,7 @@ value1 = value1 op value2
         </div>
         <div class="post-more">
           <a href="/2015/09/01/ruby-practice-7/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2212,7 +2270,7 @@ value1 = value1 op value2
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2256,7 +2314,7 @@ value1 = value1 op value2
         </div>
         <div class="post-more">
           <a href="/2015/08/25/ruby-practice-6/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2269,7 +2327,7 @@ value1 = value1 op value2
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2318,7 +2376,7 @@ end
         </div>
         <div class="post-more">
           <a href="/2015/08/24/ruby-practice-5/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2331,7 +2389,7 @@ end
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2377,7 +2435,7 @@ end
         </div>
         <div class="post-more">
           <a href="/2015/08/17/ruby-practice-4/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2390,7 +2448,7 @@ end
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2434,7 +2492,7 @@ end
         </div>
         <div class="post-more">
           <a href="/2015/08/14/ruby-practice-3/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2447,7 +2505,7 @@ end
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2491,7 +2549,7 @@ end
         </div>
         <div class="post-more">
           <a href="/2015/08/13/ruby-practice-2/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2499,62 +2557,6 @@ end
         <a href="/2015/08/13/ruby-practice-2/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2015-08-12</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2015/08/12/ruby-practice-1/">Ruby修炼之道(1)</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/Backend/">Backend</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2015/08/12/ruby-practice-1/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <img src="/assets/images/legacy/ruby-logo.png" class="lazyload placeholder" data-srcset="/assets/images/legacy/ruby-logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" class=" lazyload placeholder" width="50" height="50">**Ruby**是一门脚本语言，由日本人松本行弘发明，旨在让开发人员用更简洁的方式快乐的编程。他的语法类似Python脚本语言，比较优雅，而且还提供了一些丰富强大的类库。Ruby的意思是**红宝石**.
-
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p><em>脚本语言</em><br>即动态语言，和其他脚本语言一样，无需编译即可直接运行，而C#、C++和Java等需要通过编译然后才能运行。Ruby减少了开发者的开发流程。</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2015/08/12/ruby-practice-1/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2015/08/12/ruby-practice-1/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
       </div>
     </article>
@@ -2680,7 +2682,7 @@ end
             <li><a class="flat-box"
               title="/categories/AI-ML/" href="/categories/AI-ML/"
               id="categoriesAI-ML"
-              ><div class='name'>AI/ML</div><div class='badge'>(37)</div></a></li>
+              ><div class='name'>AI/ML</div><div class='badge'>(38)</div></a></li>
           
             <li><a class="flat-box"
               title="/categories/Backend/" href="/categories/Backend/"
@@ -2780,7 +2782,7 @@ end
 
 
     <div class='content'>
-    <a href="/tags/AI/" style="font-size: 24px; color: #555">AI</a> <a href="/tags/AI-Agents/" style="font-size: 14px; color: #999">AI Agents</a> <a href="/tags/AWS/" style="font-size: 23.47px; color: #595959">AWS</a> <a href="/tags/AWS-Lambda/" style="font-size: 14px; color: #999">AWS Lambda</a> <a href="/tags/AWS-S3/" style="font-size: 14px; color: #999">AWS S3</a> <a href="/tags/Airbyte/" style="font-size: 14px; color: #999">Airbyte</a> <a href="/tags/Android/" style="font-size: 15.05px; color: #929292">Android</a> <a href="/tags/AngularJs/" style="font-size: 14.53px; color: #959595">AngularJs</a> <a href="/tags/Apache-Avro/" style="font-size: 14px; color: #999">Apache Avro</a> <a href="/tags/Apache-ORC/" style="font-size: 14px; color: #999">Apache ORC</a> <a href="/tags/Apache-Parquet/" style="font-size: 14px; color: #999">Apache Parquet</a> <a href="/tags/Automation-Testing/" style="font-size: 14px; color: #999">Automation Testing</a> <a href="/tags/Azure/" style="font-size: 16.63px; color: #878787">Azure</a> <a href="/tags/Azure-OpenAI/" style="font-size: 14px; color: #999">Azure OpenAI</a> <a href="/tags/BI/" style="font-size: 14.53px; color: #959595">BI</a> <a href="/tags/Big-Data/" style="font-size: 17.16px; color: #848484">Big Data</a> <a href="/tags/BigQuery/" style="font-size: 14px; color: #999">BigQuery</a> <a href="/tags/Bixby/" style="font-size: 14px; color: #999">Bixby</a> <a href="/tags/Bracket/" style="font-size: 14px; color: #999">Bracket</a> <a href="/tags/CLI/" style="font-size: 14px; color: #999">CLI</a> <a href="/tags/CSS/" style="font-size: 15.05px; color: #929292">CSS</a> <a href="/tags/Chainlit-Chatbot/" style="font-size: 14px; color: #999">Chainlit Chatbot</a> <a href="/tags/Chatbot/" style="font-size: 15.58px; color: #8e8e8e">Chatbot</a> <a href="/tags/Cloud/" style="font-size: 22.42px; color: #606060">Cloud</a> <a href="/tags/Cloud-Native/" style="font-size: 18.74px; color: #797979">Cloud Native</a> <a href="/tags/CoffeeScript/" style="font-size: 14px; color: #999">CoffeeScript</a> <a href="/tags/Collaboration/" style="font-size: 14px; color: #999">Collaboration</a> <a href="/tags/Container/" style="font-size: 14px; color: #999">Container</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/Cucumber/" style="font-size: 14px; color: #999">Cucumber</a> <a href="/tags/Data-Analysis/" style="font-size: 16.11px; color: #8b8b8b">Data Analysis</a> <a href="/tags/Data-Engineering/" style="font-size: 14px; color: #999">Data Engineering</a> <a href="/tags/Data-Lake/" style="font-size: 14px; color: #999">Data Lake</a> <a href="/tags/Data-Warehouse/" style="font-size: 14px; color: #999">Data Warehouse</a> <a href="/tags/DataBase/" style="font-size: 14px; color: #999">DataBase</a> <a href="/tags/Dataset/" style="font-size: 14px; color: #999">Dataset</a> <a href="/tags/DeepSeek/" style="font-size: 14.53px; color: #959595">DeepSeek</a> <a href="/tags/Docker/" style="font-size: 15.05px; color: #929292">Docker</a> <a href="/tags/DuckDB/" style="font-size: 14px; color: #999">DuckDB</a> <a href="/tags/ETL/" style="font-size: 14px; color: #999">ETL</a> <a href="/tags/FAISS/" style="font-size: 15.05px; color: #929292">FAISS</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Flink/" style="font-size: 14px; color: #999">Flink</a> <a href="/tags/GCP/" style="font-size: 14px; color: #999">GCP</a> <a href="/tags/GPT-3/" style="font-size: 14px; color: #999">GPT-3</a> <a href="/tags/GPT-4/" style="font-size: 14.53px; color: #959595">GPT-4</a> <a href="/tags/Gemma/" style="font-size: 14px; color: #999">Gemma</a> <a href="/tags/Generative-AI/" style="font-size: 14px; color: #999">Generative AI</a> <a href="/tags/Git/" style="font-size: 20.32px; color: #6e6e6e">Git</a> <a href="/tags/GitHub/" style="font-size: 14px; color: #999">GitHub</a> <a href="/tags/GitHub-Copilot/" style="font-size: 15.05px; color: #929292">GitHub Copilot</a> <a href="/tags/Github-Copilot/" style="font-size: 14.53px; color: #959595">Github Copilot</a> <a href="/tags/Goose/" style="font-size: 14.53px; color: #959595">Goose</a> <a href="/tags/Guard/" style="font-size: 14px; color: #999">Guard</a> <a href="/tags/Guava/" style="font-size: 16.11px; color: #8b8b8b">Guava</a> <a href="/tags/HTML/" style="font-size: 14px; color: #999">HTML</a> <a href="/tags/HTML5/" style="font-size: 15.05px; color: #929292">HTML5</a> <a href="/tags/IE/" style="font-size: 15.05px; color: #929292">IE</a> <a href="/tags/IETester/" style="font-size: 14px; color: #999">IETester</a> <a href="/tags/IaC/" style="font-size: 16.11px; color: #8b8b8b">IaC</a> <a href="/tags/Iceberg/" style="font-size: 14px; color: #999">Iceberg</a> <a href="/tags/Installer/" style="font-size: 14px; color: #999">Installer</a> <a href="/tags/IoT/" style="font-size: 15.05px; color: #929292">IoT</a> <a href="/tags/JAX/" style="font-size: 14px; color: #999">JAX</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/Java/" style="font-size: 22.95px; color: #5c5c5c">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.26px; color: #757575">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 14px; color: #999">Javascript</a> <a href="/tags/Jetty/" style="font-size: 14.53px; color: #959595">Jetty</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Keras/" style="font-size: 18.74px; color: #797979">Keras</a> <a href="/tags/Kubernetes/" style="font-size: 18.21px; color: #7c7c7c">Kubernetes</a> <a href="/tags/LangChain/" style="font-size: 14.53px; color: #959595">LangChain</a> <a href="/tags/LangGraph/" style="font-size: 14px; color: #999">LangGraph</a> <a href="/tags/Langchain/" style="font-size: 14.53px; color: #959595">Langchain</a> <a href="/tags/LiveReload/" style="font-size: 14px; color: #999">LiveReload</a> <a href="/tags/MCP/" style="font-size: 16.11px; color: #8b8b8b">MCP</a> <a href="/tags/MQ/" style="font-size: 14px; color: #999">MQ</a> <a href="/tags/MQTT/" style="font-size: 15.05px; color: #929292">MQTT</a> <a href="/tags/MVC/" style="font-size: 14px; color: #999">MVC</a> <a href="/tags/MVP/" style="font-size: 14px; color: #999">MVP</a> <a href="/tags/MVVM/" style="font-size: 14px; color: #999">MVVM</a> <a href="/tags/MacOS/" style="font-size: 14.53px; color: #959595">MacOS</a> <a href="/tags/Machine-Learning/" style="font-size: 19.79px; color: #727272">Machine Learning</a> <a href="/tags/Markdown/" style="font-size: 16.11px; color: #8b8b8b">Markdown</a> <a href="/tags/Math/" style="font-size: 16.11px; color: #8b8b8b">Math</a> <a href="/tags/Microservice/" style="font-size: 14px; color: #999">Microservice</a> <a href="/tags/Msi/" style="font-size: 14px; color: #999">Msi</a> <a href="/tags/MySQL/" style="font-size: 16.11px; color: #8b8b8b">MySQL</a> <a href="/tags/NLP/" style="font-size: 17.68px; color: #808080">NLP</a> <a href="/tags/Next-js/" style="font-size: 14.53px; color: #959595">Next.js</a> <a href="/tags/Nginx/" style="font-size: 14px; color: #999">Nginx</a> <a href="/tags/Ollama/" style="font-size: 14.53px; color: #959595">Ollama</a> <a href="/tags/Open-WebUI/" style="font-size: 14px; color: #999">Open-WebUI</a> <a href="/tags/OpenAI/" style="font-size: 17.16px; color: #848484">OpenAI</a> <a href="/tags/PDF/" style="font-size: 14px; color: #999">PDF</a> <a href="/tags/Parquet/" style="font-size: 14.53px; color: #959595">Parquet</a> <a href="/tags/Playwright/" style="font-size: 14px; color: #999">Playwright</a> <a href="/tags/Prompt-Engineering/" style="font-size: 14px; color: #999">Prompt Engineering</a> <a href="/tags/Pulumi/" style="font-size: 16.63px; color: #878787">Pulumi</a> <a href="/tags/PyTorch/" style="font-size: 14px; color: #999">PyTorch</a> <a href="/tags/Python/" style="font-size: 21.89px; color: #636363">Python</a> <a href="/tags/RAG/" style="font-size: 15.58px; color: #8e8e8e">RAG</a> <a href="/tags/React/" style="font-size: 16.63px; color: #878787">React</a> <a href="/tags/Redis/" style="font-size: 14.53px; color: #959595">Redis</a> <a href="/tags/Ruby/" style="font-size: 21.37px; color: #676767">Ruby</a> <a href="/tags/SOLID/" style="font-size: 14px; color: #999">SOLID</a> <a href="/tags/SQL/" style="font-size: 15.58px; color: #8e8e8e">SQL</a> <a href="/tags/Sentiment-Analysis/" style="font-size: 17.68px; color: #808080">Sentiment Analysis</a> <a href="/tags/Sentry/" style="font-size: 14.53px; color: #959595">Sentry</a> <a href="/tags/Service-Mesh/" style="font-size: 14px; color: #999">Service Mesh</a> <a href="/tags/SoftSkill/" style="font-size: 14px; color: #999">SoftSkill</a> <a href="/tags/Spark/" style="font-size: 14px; color: #999">Spark</a> <a href="/tags/Spring/" style="font-size: 20.84px; color: #6a6a6a">Spring</a> <a href="/tags/Spring-AI/" style="font-size: 14px; color: #999">Spring AI</a> <a href="/tags/Spring-Boot/" style="font-size: 14.53px; color: #959595">Spring Boot</a> <a href="/tags/Streamlit/" style="font-size: 14px; color: #999">Streamlit</a> <a href="/tags/Sublime-Text/" style="font-size: 15.05px; color: #929292">Sublime Text</a> <a href="/tags/Tailwind/" style="font-size: 14px; color: #999">Tailwind</a> <a href="/tags/TensorFlow/" style="font-size: 15.05px; color: #929292">TensorFlow</a> <a href="/tags/Tensorflow/" style="font-size: 17.16px; color: #848484">Tensorflow</a> <a href="/tags/Terraform/" style="font-size: 14px; color: #999">Terraform</a> <a href="/tags/Tomcat/" style="font-size: 14.53px; color: #959595">Tomcat</a> <a href="/tags/Tool/" style="font-size: 17.68px; color: #808080">Tool</a> <a href="/tags/Tools/" style="font-size: 14.53px; color: #959595">Tools</a> <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/Typescript/" style="font-size: 14px; color: #999">Typescript</a> <a href="/tags/UV/" style="font-size: 14px; color: #999">UV</a> <a href="/tags/VSCode/" style="font-size: 14px; color: #999">VSCode</a> <a href="/tags/Virtual-Machine/" style="font-size: 14px; color: #999">Virtual Machine</a> <a href="/tags/Web/" style="font-size: 14px; color: #999">Web</a> <a href="/tags/Web-Design/" style="font-size: 14px; color: #999">Web Design</a> <a href="/tags/Wix/" style="font-size: 14px; color: #999">Wix</a> <a href="/tags/iTerm2/" style="font-size: 14px; color: #999">iTerm2</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">单例模式</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15.05px; color: #929292">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15.05px; color: #929292">算法</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 14px; color: #999">资源</a> <a href="/tags/%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87/" style="font-size: 14px; color: #999">高清图片</a>
+    <a href="/tags/AI/" style="font-size: 24px; color: #555">AI</a> <a href="/tags/AI-Agents/" style="font-size: 14px; color: #999">AI Agents</a> <a href="/tags/AWS/" style="font-size: 23.47px; color: #595959">AWS</a> <a href="/tags/AWS-Lambda/" style="font-size: 14px; color: #999">AWS Lambda</a> <a href="/tags/AWS-S3/" style="font-size: 14px; color: #999">AWS S3</a> <a href="/tags/Airbyte/" style="font-size: 14px; color: #999">Airbyte</a> <a href="/tags/Android/" style="font-size: 15.05px; color: #929292">Android</a> <a href="/tags/AngularJs/" style="font-size: 14.53px; color: #959595">AngularJs</a> <a href="/tags/Apache-Avro/" style="font-size: 14px; color: #999">Apache Avro</a> <a href="/tags/Apache-ORC/" style="font-size: 14px; color: #999">Apache ORC</a> <a href="/tags/Apache-Parquet/" style="font-size: 14px; color: #999">Apache Parquet</a> <a href="/tags/Automation-Testing/" style="font-size: 14px; color: #999">Automation Testing</a> <a href="/tags/Azure/" style="font-size: 16.63px; color: #878787">Azure</a> <a href="/tags/Azure-OpenAI/" style="font-size: 14px; color: #999">Azure OpenAI</a> <a href="/tags/BI/" style="font-size: 14.53px; color: #959595">BI</a> <a href="/tags/Big-Data/" style="font-size: 17.16px; color: #848484">Big Data</a> <a href="/tags/BigQuery/" style="font-size: 14px; color: #999">BigQuery</a> <a href="/tags/Bixby/" style="font-size: 14px; color: #999">Bixby</a> <a href="/tags/Bracket/" style="font-size: 14px; color: #999">Bracket</a> <a href="/tags/CLI/" style="font-size: 14px; color: #999">CLI</a> <a href="/tags/CSS/" style="font-size: 15.05px; color: #929292">CSS</a> <a href="/tags/Chainlit-Chatbot/" style="font-size: 14px; color: #999">Chainlit Chatbot</a> <a href="/tags/Chatbot/" style="font-size: 15.58px; color: #8e8e8e">Chatbot</a> <a href="/tags/Cloud/" style="font-size: 22.42px; color: #606060">Cloud</a> <a href="/tags/Cloud-Native/" style="font-size: 18.74px; color: #797979">Cloud Native</a> <a href="/tags/CoffeeScript/" style="font-size: 14px; color: #999">CoffeeScript</a> <a href="/tags/Collaboration/" style="font-size: 14px; color: #999">Collaboration</a> <a href="/tags/Container/" style="font-size: 14px; color: #999">Container</a> <a href="/tags/Cookie/" style="font-size: 14px; color: #999">Cookie</a> <a href="/tags/Cucumber/" style="font-size: 14px; color: #999">Cucumber</a> <a href="/tags/Data-Analysis/" style="font-size: 16.11px; color: #8b8b8b">Data Analysis</a> <a href="/tags/Data-Engineering/" style="font-size: 14px; color: #999">Data Engineering</a> <a href="/tags/Data-Lake/" style="font-size: 14px; color: #999">Data Lake</a> <a href="/tags/Data-Warehouse/" style="font-size: 14px; color: #999">Data Warehouse</a> <a href="/tags/DataBase/" style="font-size: 14px; color: #999">DataBase</a> <a href="/tags/Dataset/" style="font-size: 14px; color: #999">Dataset</a> <a href="/tags/DeepSeek/" style="font-size: 14.53px; color: #959595">DeepSeek</a> <a href="/tags/Docker/" style="font-size: 15.05px; color: #929292">Docker</a> <a href="/tags/DuckDB/" style="font-size: 14px; color: #999">DuckDB</a> <a href="/tags/ETL/" style="font-size: 14px; color: #999">ETL</a> <a href="/tags/FAISS/" style="font-size: 15.05px; color: #929292">FAISS</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Flink/" style="font-size: 14px; color: #999">Flink</a> <a href="/tags/GCP/" style="font-size: 14px; color: #999">GCP</a> <a href="/tags/GPT-3/" style="font-size: 14px; color: #999">GPT-3</a> <a href="/tags/GPT-4/" style="font-size: 14.53px; color: #959595">GPT-4</a> <a href="/tags/Gemma/" style="font-size: 14px; color: #999">Gemma</a> <a href="/tags/Generative-AI/" style="font-size: 14px; color: #999">Generative AI</a> <a href="/tags/Git/" style="font-size: 20.32px; color: #6e6e6e">Git</a> <a href="/tags/GitHub/" style="font-size: 14px; color: #999">GitHub</a> <a href="/tags/GitHub-Copilot/" style="font-size: 15.05px; color: #929292">GitHub Copilot</a> <a href="/tags/Github-Copilot/" style="font-size: 14.53px; color: #959595">Github Copilot</a> <a href="/tags/Goose/" style="font-size: 14.53px; color: #959595">Goose</a> <a href="/tags/Guard/" style="font-size: 14px; color: #999">Guard</a> <a href="/tags/Guava/" style="font-size: 16.11px; color: #8b8b8b">Guava</a> <a href="/tags/HTML/" style="font-size: 14px; color: #999">HTML</a> <a href="/tags/HTML5/" style="font-size: 15.05px; color: #929292">HTML5</a> <a href="/tags/IE/" style="font-size: 15.05px; color: #929292">IE</a> <a href="/tags/IETester/" style="font-size: 14px; color: #999">IETester</a> <a href="/tags/IaC/" style="font-size: 16.11px; color: #8b8b8b">IaC</a> <a href="/tags/Iceberg/" style="font-size: 14px; color: #999">Iceberg</a> <a href="/tags/Installer/" style="font-size: 14px; color: #999">Installer</a> <a href="/tags/IoT/" style="font-size: 15.05px; color: #929292">IoT</a> <a href="/tags/JAX/" style="font-size: 14px; color: #999">JAX</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/Java/" style="font-size: 22.95px; color: #5c5c5c">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.26px; color: #757575">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 14px; color: #999">Javascript</a> <a href="/tags/Jetty/" style="font-size: 14.53px; color: #959595">Jetty</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Keras/" style="font-size: 18.74px; color: #797979">Keras</a> <a href="/tags/Kubernetes/" style="font-size: 18.21px; color: #7c7c7c">Kubernetes</a> <a href="/tags/LLM/" style="font-size: 14px; color: #999">LLM</a> <a href="/tags/LangChain/" style="font-size: 14.53px; color: #959595">LangChain</a> <a href="/tags/LangGraph/" style="font-size: 14px; color: #999">LangGraph</a> <a href="/tags/Langchain/" style="font-size: 14.53px; color: #959595">Langchain</a> <a href="/tags/LiveReload/" style="font-size: 14px; color: #999">LiveReload</a> <a href="/tags/MCP/" style="font-size: 16.11px; color: #8b8b8b">MCP</a> <a href="/tags/MQ/" style="font-size: 14px; color: #999">MQ</a> <a href="/tags/MQTT/" style="font-size: 15.05px; color: #929292">MQTT</a> <a href="/tags/MVC/" style="font-size: 14px; color: #999">MVC</a> <a href="/tags/MVP/" style="font-size: 14px; color: #999">MVP</a> <a href="/tags/MVVM/" style="font-size: 14px; color: #999">MVVM</a> <a href="/tags/MacOS/" style="font-size: 14.53px; color: #959595">MacOS</a> <a href="/tags/Machine-Learning/" style="font-size: 19.79px; color: #727272">Machine Learning</a> <a href="/tags/Markdown/" style="font-size: 16.63px; color: #878787">Markdown</a> <a href="/tags/Math/" style="font-size: 16.11px; color: #8b8b8b">Math</a> <a href="/tags/Microservice/" style="font-size: 14px; color: #999">Microservice</a> <a href="/tags/Msi/" style="font-size: 14px; color: #999">Msi</a> <a href="/tags/MySQL/" style="font-size: 16.11px; color: #8b8b8b">MySQL</a> <a href="/tags/NLP/" style="font-size: 17.68px; color: #808080">NLP</a> <a href="/tags/Next-js/" style="font-size: 14.53px; color: #959595">Next.js</a> <a href="/tags/Nginx/" style="font-size: 14px; color: #999">Nginx</a> <a href="/tags/Ollama/" style="font-size: 14.53px; color: #959595">Ollama</a> <a href="/tags/Open-WebUI/" style="font-size: 14px; color: #999">Open-WebUI</a> <a href="/tags/OpenAI/" style="font-size: 17.16px; color: #848484">OpenAI</a> <a href="/tags/PDF/" style="font-size: 14.53px; color: #959595">PDF</a> <a href="/tags/Parquet/" style="font-size: 14.53px; color: #959595">Parquet</a> <a href="/tags/Playwright/" style="font-size: 14px; color: #999">Playwright</a> <a href="/tags/Prompt-Engineering/" style="font-size: 14px; color: #999">Prompt Engineering</a> <a href="/tags/Pulumi/" style="font-size: 16.63px; color: #878787">Pulumi</a> <a href="/tags/PyTorch/" style="font-size: 14px; color: #999">PyTorch</a> <a href="/tags/Python/" style="font-size: 21.89px; color: #636363">Python</a> <a href="/tags/RAG/" style="font-size: 16.11px; color: #8b8b8b">RAG</a> <a href="/tags/React/" style="font-size: 16.63px; color: #878787">React</a> <a href="/tags/Redis/" style="font-size: 14.53px; color: #959595">Redis</a> <a href="/tags/Ruby/" style="font-size: 21.37px; color: #676767">Ruby</a> <a href="/tags/SOLID/" style="font-size: 14px; color: #999">SOLID</a> <a href="/tags/SQL/" style="font-size: 15.58px; color: #8e8e8e">SQL</a> <a href="/tags/Sentiment-Analysis/" style="font-size: 17.68px; color: #808080">Sentiment Analysis</a> <a href="/tags/Sentry/" style="font-size: 14.53px; color: #959595">Sentry</a> <a href="/tags/Service-Mesh/" style="font-size: 14px; color: #999">Service Mesh</a> <a href="/tags/SoftSkill/" style="font-size: 14px; color: #999">SoftSkill</a> <a href="/tags/Spark/" style="font-size: 14px; color: #999">Spark</a> <a href="/tags/Spring/" style="font-size: 20.84px; color: #6a6a6a">Spring</a> <a href="/tags/Spring-AI/" style="font-size: 14px; color: #999">Spring AI</a> <a href="/tags/Spring-Boot/" style="font-size: 14.53px; color: #959595">Spring Boot</a> <a href="/tags/Streamlit/" style="font-size: 14px; color: #999">Streamlit</a> <a href="/tags/Sublime-Text/" style="font-size: 15.05px; color: #929292">Sublime Text</a> <a href="/tags/Tailwind/" style="font-size: 14px; color: #999">Tailwind</a> <a href="/tags/TensorFlow/" style="font-size: 15.05px; color: #929292">TensorFlow</a> <a href="/tags/Tensorflow/" style="font-size: 17.16px; color: #848484">Tensorflow</a> <a href="/tags/Terraform/" style="font-size: 14px; color: #999">Terraform</a> <a href="/tags/Tomcat/" style="font-size: 14.53px; color: #959595">Tomcat</a> <a href="/tags/Tool/" style="font-size: 17.68px; color: #808080">Tool</a> <a href="/tags/Tools/" style="font-size: 14.53px; color: #959595">Tools</a> <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/Typescript/" style="font-size: 14px; color: #999">Typescript</a> <a href="/tags/UV/" style="font-size: 14px; color: #999">UV</a> <a href="/tags/VSCode/" style="font-size: 14px; color: #999">VSCode</a> <a href="/tags/Virtual-Machine/" style="font-size: 14px; color: #999">Virtual Machine</a> <a href="/tags/Web/" style="font-size: 14px; color: #999">Web</a> <a href="/tags/Web-Design/" style="font-size: 14px; color: #999">Web Design</a> <a href="/tags/Wix/" style="font-size: 14px; color: #999">Wix</a> <a href="/tags/iTerm2/" style="font-size: 14px; color: #999">iTerm2</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">单例模式</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15.05px; color: #929292">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15.05px; color: #929292">算法</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 14px; color: #999">资源</a> <a href="/tags/%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87/" style="font-size: 14px; color: #999">高清图片</a>
     </div>
 </section>
 
@@ -2820,6 +2822,27 @@ end
                 
               </div>
               <a class="post-title" href="/2025/11/18/a-universe-data-integration-tool-airbyte/">A Universe Data Integration Tool - Airbyte</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2025/11/05/several-ways-to-extracting-pdf-content-to-markdown-for-llm-rag/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">11-05</span>
+                
+              </div>
+              <a class="post-title" href="/2025/11/05/several-ways-to-extracting-pdf-content-to-markdown-for-llm-rag/">Serveral Ways to Extracting PDF content to Markdown for LLM &amp; RAG</a>
             </div>
           </div>
         
@@ -2886,27 +2909,6 @@ end
             </div>
           </div>
         
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2025/09/25/building-an-mcp-server-for-automated-diagnosis-simulator-management/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">09-25</span>
-                
-              </div>
-              <a class="post-title" href="/2025/09/25/building-an-mcp-server-for-automated-diagnosis-simulator-management/">Building an MCP Server for Automated Diagnosis Simulator Management</a>
-            </div>
-          </div>
-        
       </div>
     </div>
   </section>
@@ -2914,7 +2916,7 @@ end
       
   <section class="widget side_archives">
     
-    <header><a style="color: null" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>Archives</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">November 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">October 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">September 2025</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">August 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">May 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">April 2025</span><span class="card-archive-list-count">4</span></a></li></ul></div>
+    <header><a style="color: null" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>Archives</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">November 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">October 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">September 2025</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">August 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">May 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">April 2025</span><span class="card-archive-list-count">4</span></a></li></ul></div>
   </section>
 
       <section class="widget side_webinfo">
@@ -2931,7 +2933,7 @@ end
       
         <div class="webinfo-item">
           <div>Articles: </div>
-          <div>203 Chapter</div>
+          <div>204 Chapter</div>
         </div>
       
 
@@ -2953,7 +2955,7 @@ end
       
         <div class="webinfo-item">
           <div>Total words:</div>
-          <div>174.7k Count</div>
+          <div>175.4k Count</div>
         </div>
       
 
@@ -2979,8 +2981,8 @@ end
         <div class="webinfo-item">
           <div>Last activity: </div>
           
-            <div id="last-update" style="display: none;">Tue Nov 18 2025 09:29:32 GMT+0000 (Coordinated Universal Time)</div>
-            <div id="last-update-show">2025-11-18 </div>
+            <div id="last-update" style="display: none;">Wed Nov 19 2025 06:45:31 GMT+0000 (Coordinated Universal Time)</div>
+            <div id="last-update-show">2025-11-19 </div>
           
         </div>
         
@@ -3030,7 +3032,7 @@ end
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2025-11-18 ';
+            document.getElementById('last-update-show').innerHTML = '2025-11-19 ';
           }
         </script>
         
