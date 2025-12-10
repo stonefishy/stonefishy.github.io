@@ -634,7 +634,7 @@
 <h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p>在更新数据时，使用 IS DISTINCT FROM 可以确保只有在数据实际变化时才进行更新，从而避免不必要的更新操作。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> users</span><br><span class="line"><span class="keyword">SET</span> email <span class="operator">=</span> <span class="string">&#x27;new_andrewsy@email.com&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span> email <span class="keyword">IS</span> <span class="keyword">DISTINCT</span> <span class="keyword">FROM</span> <span class="string">&#x27;new_andrewsy@email.com&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p>这条查询会更新所有 email 不同于 ‘<a href="mailto:&#x6e;&#101;&#x77;&#x5f;&#x61;&#110;&#100;&#114;&#x65;&#x77;&#x73;&#x79;&#64;&#101;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;">&#x6e;&#101;&#x77;&#x5f;&#x61;&#110;&#100;&#114;&#x65;&#x77;&#x73;&#x79;&#64;&#101;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a>‘ 的记录，包括那些 email 为 NULL 的记录。</p>
+<p>这条查询会更新所有 email 不同于 ‘<a href="mailto:&#x6e;&#101;&#119;&#x5f;&#97;&#x6e;&#100;&#114;&#x65;&#x77;&#x73;&#x79;&#x40;&#101;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x6e;&#101;&#119;&#x5f;&#97;&#x6e;&#100;&#114;&#x65;&#x77;&#x73;&#x79;&#x40;&#101;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>‘ 的记录，包括那些 email 为 NULL 的记录。</p>
 <h3 id="数据比较"><a href="#数据比较" class="headerlink" title="数据比较"></a>数据比较</h3><p>在进行复杂的数据比较时，尤其是涉及到 NULL 值时，IS DISTINCT FROM 提供了更直观的比较逻辑。例如，在合并两个数据集时，可以使用此操作符来确保唯一性。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">    dataset1</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> </span><br><span class="line">    dataset2</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">    dataset1.id <span class="keyword">IS</span> <span class="keyword">DISTINCT</span> <span class="keyword">FROM</span> dataset2.id</span><br></pre></td></tr></table></figure>
 
@@ -891,6 +891,27 @@
             
 
             <div class="post-img-box">
+              <a href="/2025/12/06/exploring-java-21-new-features/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">12-06</span>
+                
+              </div>
+              <a class="post-title" href="/2025/12/06/exploring-java-21-new-features/">Exploring Java 21 New Features</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2025/11/18/a-universe-data-integration-tool-airbyte/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -966,27 +987,6 @@
                 
               </div>
               <a class="post-title" href="/2025/09/30/automating-testing-with-playwright-mcp-ai-browser-control/">Automation Testing with Playwright MCP AI Browser Control</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2025/09/28/a-jira-ticket-developer-agent-base-on-github-copilot-custom-chat-mode/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">09-28</span>
-                
-              </div>
-              <a class="post-title" href="/2025/09/28/a-jira-ticket-developer-agent-base-on-github-copilot-custom-chat-mode/">Building a Jira Ticket Developer AI Agent with GitHub Copilot</a>
             </div>
           </div>
         

@@ -523,6 +523,9 @@
       
         
         
+      
+        
+        
           
           <swiper-slide>
             <div class="item swiper-lazy" data-background="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" style=" background-size: 300000px; 
@@ -1966,6 +1969,64 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2015-12-28</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2015/12/28/ruby-practice-18/">Ruby修炼之道(18)</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/Backend/">Backend</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2015/12/28/ruby-practice-18/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <h4 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h4><p>Ruby程序在启动后会预先分配3个<strong>IO</strong>对象:<br>标准输入 - 预定义常量(<strong>STDIN</strong>), 全局变量(<strong>$stdin</strong>)<br>标准输出 - 预定义常量(<strong>STDOUT</strong>), 全局变量(<strong>$stdout</strong>)<br>标准错误输出 - 预定义常量(<strong>STDERR</strong>), 全局变量(<strong>$stderr</strong>)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$stdout</span>.print <span class="string">&quot;output something from $stdout\n&quot;</span></span><br><span class="line"><span class="variable constant_">STDERR</span>.print <span class="string">&quot;output something from $stderr\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>IO对象是否与控制台关联，我们可以通过**tty?**方法来判断。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="variable">$stdin</span>.tty?</span><br><span class="line">  print <span class="string">&quot;stdin is a tty&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  print <span class="string">&quot;stdin is not a tty&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2015/12/28/ruby-practice-18/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2015/12/28/ruby-practice-18/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-604a15cef201cf177943af2d915eb2e7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
             <span class="post-time">2015-12-17</span>
           </div>
           <div class="post-title">
@@ -2004,7 +2065,7 @@
         </div>
         <div class="post-more">
           <a href="/2015/12/17/ruby-practice-17/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2017,7 +2078,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2059,7 +2120,7 @@
         </div>
         <div class="post-more">
           <a href="/2015/12/05/using-nginx-in-mac-os-x/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2072,7 +2133,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2113,7 +2174,7 @@
         </div>
         <div class="post-more">
           <a href="/2015/11/22/code-review-with-pull-request/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2126,7 +2187,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2172,7 +2233,7 @@
         </div>
         <div class="post-more">
           <a href="/2015/11/18/ruby-practice-16/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2185,7 +2246,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2229,7 +2290,7 @@
         </div>
         <div class="post-more">
           <a href="/2015/11/17/ruby-practice-15/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2242,7 +2303,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2284,7 +2345,7 @@
         </div>
         <div class="post-more">
           <a href="/2015/11/12/ruby-practice-14/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2297,7 +2358,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2347,7 +2408,7 @@ Tasks: TOP =&gt; preview
         </div>
         <div class="post-more">
           <a href="/2015/11/11/how-to-make-the-octopress-adapt-os-x-ei-capitan/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2360,7 +2421,7 @@ Tasks: TOP =&gt; preview
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2404,7 +2465,7 @@ Tasks: TOP =&gt; preview
         </div>
         <div class="post-more">
           <a href="/2015/10/26/ruby-practice-13/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2417,7 +2478,7 @@ Tasks: TOP =&gt; preview
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2460,7 +2521,7 @@ Tasks: TOP =&gt; preview
         </div>
         <div class="post-more">
           <a href="/2015/10/13/ruby-practice-12/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2468,61 +2529,6 @@ Tasks: TOP =&gt; preview
         <a href="/2015/10/13/ruby-practice-12/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2015-09-28</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2015/09/28/ruby-practice-11/">Ruby修炼之道(11)</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/Backend/">Backend</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2015/09/28/ruby-practice-11/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>Ruby中所有表现数据的类型都称为数值类，他们都是<strong>Numeric</strong>的子类。起详尽的类继承结构如下：</p>
-<p><img src="/assets/images/legacy/numeric-inheritance.png" class="lazyload placeholder" data-srcset="/assets/images/legacy/numeric-inheritance.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="assets/images/legacy/numberic-inheritance.png"></p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2015/09/28/ruby-practice-11/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2015/09/28/ruby-practice-11/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-f94047ce45907e0966a681089835c04d_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
       </div>
     </article>
@@ -2653,7 +2659,7 @@ Tasks: TOP =&gt; preview
             <li><a class="flat-box"
               title="/categories/Backend/" href="/categories/Backend/"
               id="categoriesBackend"
-              ><div class='name'>Backend</div><div class='badge'>(46)</div></a></li>
+              ><div class='name'>Backend</div><div class='badge'>(47)</div></a></li>
           
             <li><a class="flat-box"
               title="/categories/Big-Data/" href="/categories/Big-Data/"
@@ -2776,6 +2782,27 @@ Tasks: TOP =&gt; preview
             
 
             <div class="post-img-box">
+              <a href="/2025/12/06/exploring-java-21-new-features/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">12-06</span>
+                
+              </div>
+              <a class="post-title" href="/2025/12/06/exploring-java-21-new-features/">Exploring Java 21 New Features</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2025/11/18/a-universe-data-integration-tool-airbyte/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -2854,27 +2881,6 @@ Tasks: TOP =&gt; preview
             </div>
           </div>
         
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2025/09/28/a-jira-ticket-developer-agent-base-on-github-copilot-custom-chat-mode/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-154228684029ae0c2183f65a9568c310_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">09-28</span>
-                
-              </div>
-              <a class="post-title" href="/2025/09/28/a-jira-ticket-developer-agent-base-on-github-copilot-custom-chat-mode/">Building a Jira Ticket Developer AI Agent with GitHub Copilot</a>
-            </div>
-          </div>
-        
       </div>
     </div>
   </section>
@@ -2882,7 +2888,7 @@ Tasks: TOP =&gt; preview
       
   <section class="widget side_archives">
     
-    <header><a style="color: null" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>Archives</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">November 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">October 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">September 2025</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">August 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">May 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">April 2025</span><span class="card-archive-list-count">4</span></a></li></ul></div>
+    <header><a style="color: null" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>Archives</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">December 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">November 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">October 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">September 2025</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">August 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">May 2025</span><span class="card-archive-list-count">2</span></a></li></ul></div>
   </section>
 
       <section class="widget side_webinfo">
@@ -2899,7 +2905,7 @@ Tasks: TOP =&gt; preview
       
         <div class="webinfo-item">
           <div>Articles: </div>
-          <div>204 Chapter</div>
+          <div>205 Chapter</div>
         </div>
       
 
@@ -2921,7 +2927,7 @@ Tasks: TOP =&gt; preview
       
         <div class="webinfo-item">
           <div>Total words:</div>
-          <div>175.4k Count</div>
+          <div>176.9k Count</div>
         </div>
       
 
@@ -2947,8 +2953,8 @@ Tasks: TOP =&gt; preview
         <div class="webinfo-item">
           <div>Last activity: </div>
           
-            <div id="last-update" style="display: none;">Wed Nov 19 2025 06:45:31 GMT+0000 (Coordinated Universal Time)</div>
-            <div id="last-update-show">2025-11-19 </div>
+            <div id="last-update" style="display: none;">Wed Dec 10 2025 06:18:29 GMT+0000 (Coordinated Universal Time)</div>
+            <div id="last-update-show">2025-12-10 </div>
           
         </div>
         
@@ -2998,7 +3004,7 @@ Tasks: TOP =&gt; preview
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2025-11-19 ';
+            document.getElementById('last-update-show').innerHTML = '2025-12-10 ';
           }
         </script>
         
