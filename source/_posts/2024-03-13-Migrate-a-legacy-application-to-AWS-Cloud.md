@@ -1,7 +1,7 @@
 ---
 title: Migrate a legacy application to AWS Cloud
 date: 2024-03-13 14:20:44
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, IaC, AWS, Pulumi, Python, React]
 ---
 

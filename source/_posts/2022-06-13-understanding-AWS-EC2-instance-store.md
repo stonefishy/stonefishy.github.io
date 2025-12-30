@@ -1,7 +1,7 @@
 ---
 title: Understanding AWS EC2 Instance Store
 date: 2022-06-13 21:08:54
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

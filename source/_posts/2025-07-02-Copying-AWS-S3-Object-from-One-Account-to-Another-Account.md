@@ -1,7 +1,7 @@
 ---
 title: Copying AWS S3 Object from One Account to Another Account.
 date: 2025-07-02 10:32:54
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

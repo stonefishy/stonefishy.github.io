@@ -1,7 +1,7 @@
 ---
 title: Pulumi - A Powerful IaC to manage the cloud infrastructure
 date: 2024-02-11 15:12:13
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, IaC, AWS, Pulumi, Python]
 ---
 

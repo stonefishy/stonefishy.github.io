@@ -1,7 +1,7 @@
 ---
 title: What is AWS EBS and how to use it
 date: 2022-05-01 15:09:49
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

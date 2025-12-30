@@ -2,7 +2,7 @@
 title: How to Fix AWS S3 Event Replacing Space With '+' Character Sign in Object Key Name
 date: 2024-09-10 09:22:34
 tags: [Cloud, AWS, AWS S3, AWS Lambda, Python]
-categories: Cloud
+categories: Cloud Native
 ---
 
 The issue with AWS S3 Event notifications is that it replaces spaces with '+' character sign in the object key name. This can cause issues when trying to access the object in S3. It will occurs `NoSuchKey` error if not handling this issue properly.

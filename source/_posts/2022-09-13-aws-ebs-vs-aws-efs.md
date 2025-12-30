@@ -1,7 +1,7 @@
 ---
 title: AWS EBS vs AWS EFS - Understanding the Key Differences
 date: 2022-09-21 18:39:28
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

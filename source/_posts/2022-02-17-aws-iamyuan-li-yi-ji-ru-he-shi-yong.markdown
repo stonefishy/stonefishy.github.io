@@ -3,7 +3,7 @@
 title: "AWS IAM原理以及如何使用"
 date: 2022-02-17 23:22:57 +0800
 comments: true
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

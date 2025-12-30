@@ -1,7 +1,7 @@
 ---
 title: AWS Auto Scaling Group - 实现弹性自动扩展的技术指南
 date: 2022-11-15 22:27:54
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

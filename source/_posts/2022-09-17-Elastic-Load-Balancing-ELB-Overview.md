@@ -1,7 +1,7 @@
 ---
 title: Elastic Load Balancing (ELB) Overview
 date: 2022-10-17 16:01:25
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

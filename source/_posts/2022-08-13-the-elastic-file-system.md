@@ -1,7 +1,7 @@
 ---
 title: AWS Elastic File System (EFS)：云中的弹性文件存储
 date: 2022-08-13 21:39:36
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: User Survey Feedback Sentiment Analysis Base on AWS Cloud Solution
 date: 2024-09-19 14:00:33
-categories: Cloud
+categories: Cloud Native
 tags: [AWS, Machine Learning, Sentiment Analysis, Python]
 ---
 

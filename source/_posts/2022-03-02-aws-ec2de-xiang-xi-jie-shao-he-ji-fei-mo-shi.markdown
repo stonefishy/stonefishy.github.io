@@ -3,7 +3,7 @@
 title: "AWS EC2的主要特点和工作方式以及计费模式"
 date: 2022-03-02 11:28:07 +0800
 comments: true
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

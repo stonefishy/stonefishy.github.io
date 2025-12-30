@@ -3,7 +3,7 @@
 title: "什么是AWS EC2 Hibernation"
 date: 2022-04-08 17:00:59 +0800
 comments: true
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

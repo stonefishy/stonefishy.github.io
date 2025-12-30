@@ -1,7 +1,7 @@
 ---
 title: AWS Glue Iceberg tables schema can't be updated with Pulumi
 date: 2024-10-09 09:46:22
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, IaC, AWS, Pulumi, Python]
 ---
 

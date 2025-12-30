@@ -1,7 +1,7 @@
 ---
 title: 'Elastic Load Balancer: CLB, ALB, NLB and GWLB'
 date: 2022-10-21 20:23:06
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 

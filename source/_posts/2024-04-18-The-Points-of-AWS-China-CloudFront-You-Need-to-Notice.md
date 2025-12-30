@@ -1,7 +1,7 @@
 ---
 title: The Points of AWS China CloudFront You Need to Notice
 date: 2024-04-18 10:16:54
-categories: Cloud
+categories: Cloud Native
 tags: [Cloud, AWS]
 ---
 
