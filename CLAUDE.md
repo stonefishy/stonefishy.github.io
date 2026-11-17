@@ -1,99 +1,43 @@
-# CLAUDE.md — stonefishy.github.io
+# Claude instructions: stonefishy.github.io
 
-## Project overview
+## Shared project guide
 
-Personal tech blog built with **Hexo 6** using the `hexo-theme-bamboo` theme. Deployed to GitHub Pages at `https://stonefishy.github.io`. The blog covers software engineering, cloud-native, DevOps, AI tooling, and related topics.
+@AGENTS.md
 
-## Common commands
+[AGENTS.md](./AGENTS.md) is the authoritative shared guide for this repository.
+Read it before making changes. It defines the source layout, npm commands,
+post metadata, content conventions, validation, and deployment boundaries.
+If your client does not support the import above, open that file explicitly.
 
-```bash
-# Start local dev server (http://localhost:4000)
-npm run server
+Keep repository-wide instructions in `AGENTS.md` rather than duplicating them
+here. This file is only the Claude entry point and any future Claude-specific
+guidance; it does not override the shared guide.
 
-# Generate static files into public/
-npm run build
+## Main task: author posts with Hexo
 
-# Clean generated files
-npm run clean
+This is an existing blog site. A request to write a blog normally means creating
+and writing a post, not running `hexo init` or building a new site.
 
-# Deploy to GitHub Pages
-npm run deploy
-```
+Follow the complete authoring workflow in [AGENTS.md](./AGENTS.md):
 
-## Repository structure
+1. Run `npx hexo new post "Post Title" --slug post-title`.
+2. Open the generated Markdown file reported by Hexo. Complete its title, date,
+   single category, and inline tags array.
+3. Write the full English post with an introduction, `<!--more-->`, practical
+   examples, and topic-appropriate sections. Add images using Hexo image tags.
+4. Preview with `npm run server`, then validate with `npm run build`.
+5. Report the created post and validation results; do not deploy automatically.
 
-```
-_config.yml          # Main Hexo config (site title, theme, plugins)
-_config.landscape.yml
-package.json
-scaffolds/           # Post/page/draft templates
-source/
-  _posts/            # All published blog posts (Markdown)
-  assets/            # Static assets (images, etc.)
-  medias/
-  categories/
-  tags/
-themes/
-  hexo-theme-bamboo/ # Active theme
-public/              # Generated output (do not edit manually)
-```
+For unpublished work, use the shared guide's `hexo new draft`, draft-preview,
+and `hexo publish` instructions. Publishing a draft locally does not deploy it.
 
-## Writing posts
+## Quick guardrails
 
-### File naming
-
-Posts follow the pattern: `YYYY-MM-DD-Title-With-Hyphens.md`
-
-Example: `2025-12-30-Using-Azure-Policy-Evaluate-the-Resource-Compliance.md`
-
-### Frontmatter format
-
-```yaml
----
-title: Human-readable title
-date: YYYY-MM-DD HH:mm:ss
-tags: [Tag1, Tag2, Tag3]
-categories: Category Name
----
-```
-
-- `tags` is a YAML list
-- `categories` is a single string (not a list)
-- Date is set at creation time and not changed after publishing
-
-### Content conventions
-
-- Write in English
-- Use `##` for top-level sections (not `#`, which is reserved for the title)
-- Images use the Hexo tag: `{% image /assets/images/subdir/image.png, alt="Alt text" %}`
-- Keep posts focused on a single topic with practical, example-driven content
-- Code blocks use fenced Markdown with language identifiers
-
-### Creating a new post
-
-```bash
-hexo new post "Your Post Title"
-```
-
-This uses `scaffolds/post.md` as the template and generates the file with today's date prefix.
-
-## Plugins installed
-
-| Plugin | Purpose |
-|---|---|
-| hexo-generator-search | Site search (`search.xml`) |
-| hexo-generator-feed | RSS feed |
-| hexo-permalink-pinyin | Pinyin transliteration in URLs |
-| hexo-math | KaTeX / MathJax support |
-| hexo-wordcount | Word count display |
-| hexo-deployer-git | `hexo deploy` to GitHub Pages |
-
-## Theme
-
-**hexo-theme-bamboo** — located in `themes/hexo-theme-bamboo/`. Do not edit theme files unless specifically working on theme customization. Theme-level config is managed inside the theme directory or via `_config.yml` overrides.
-
-## Notes
-
-- `public/` is generated output — never edit it directly; changes will be overwritten on next build.
-- `db.json` is Hexo's internal cache — do not commit it if avoidable.
-- The site uses `permalink: :year/:month/:day/:title/` — changing a post's filename or title changes its URL.
+- This is a Hexo static blog. Edit posts in `source/_posts/`, not generated HTML.
+- Never hand-edit or commit `public/`, `db.json`, or `node_modules/`.
+- Preserve existing publication dates, filenames, and titles unless the user
+  explicitly requests a change.
+- Modify `themes/hexo-theme-bamboo/` only for requested theme work.
+- Use `npm run build` for content/configuration/theme validation. There is no
+  root test or lint script. Agent-documentation-only edits do not need a build.
+- Do not deploy, push, or commit without an explicit request.
