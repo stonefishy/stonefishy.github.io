@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>From Idea to Working Project with a Multi-Agent Team | Andrewsy&#39;s Space</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" rel="stylesheet">
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script defer src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+    
+    <!-- 依赖于jquery和vue -->
+    
+        <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
+    
+
+    
+        <script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Andrewsy's Space" type="application/atom+xml">
+</head>
+
+  
+  <!-- 预加载动画 -->
+  <!-- 页面预加载动画 -->
+
+  
+    <div class="preloader_4" id="loader">
+  <div class="loader-wrapper">
+    <div class="loader">
+      <div class="loader loader-inner"></div>
+    </div>
+  </div>
+</div>
+  
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+</script>
+
+  <body>
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (src) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://unpkg.com/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header  " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+      <h3 class="drawer-box-head_title">Andrewsy&#39;s Space</h3>
+      <h5 class="drawer-box-head_desc">Stay Hungry,Stay Foolish</h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">Home</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/archives" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">Archives</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">Categories</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/tags" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">Tags</span>
+                </a>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/stonefishy">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+        <div class="avatar">
+          <img src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+        </div>
+      
+      <a href="/" class="logo">Andrewsy&#39;s Space</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="Home">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">Home</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/archives" class="menu-item-link" title="Archives">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">Archives</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="Categories">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">Categories</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/tags" class="menu-item-link" title="Tags">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">Tags</span>
+                </a>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">Search</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="Please enter keywords"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/stonefishy" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script defer src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        From Idea to Working Project with a Multi-Agent Team
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2026-10-24 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> Category：
+          
+            <a href="/categories/AI/" class="post-detail-header_category">
+              AI
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 3.1k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 19min
+          </span>
+  
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>“Build a reminder app” sounds like a straightforward request. But before writing a component, someone needs to decide what happens when the page closes, whether reminders survive a refresh, and how to prove a notification actually reached the desktop.</p>
+<p>These are different kinds of work. In this example, I used a team of custom agents in GitHub Copilot: <strong>Analyst, PM, UX-Designer, PO, Architect, Dev, and QA</strong>, coordinated by a <strong>Project Orchestrator</strong>. The resulting project is <strong>Moment</strong>, a personal reminder web app.</p>
+<p>This post explains how the team is organized, how an idea moves between roles, and what the reminder app demonstrates. The important part is not having eight conversations at once. It is giving each agent a bounded responsibility, passing explicit artifacts between them, and keeping the user in control of decisions.</p>
+<span id="more"></span>
+
+<h2 id="What-Makes-This-an-Agent-Team"><a href="#What-Makes-This-an-Agent-Team" class="headerlink" title="What Makes This an Agent Team?"></a>What Makes This an Agent Team?</h2><p>A custom agent combines instructions with the tools available in its execution environment. A skill supplies a reusable workflow that an agent can load. In this setup, the specialist agent files are small entry points into installed BMAD skills; the orchestrator supplies the coordination rules.</p>
+<p>The distinction matters:</p>
+<ul>
+<li><strong>A role</strong> says who owns a task.</li>
+<li><strong>A skill</strong> explains how that role performs its work.</li>
+<li><strong>An artifact</strong> preserves the result outside a conversation.</li>
+<li><strong>The orchestrator</strong> manages dependencies, approvals, and the next handoff.</li>
+<li><strong>The user</strong> approves scope, resolves material decisions, and accepts delivery.</li>
+</ul>
+<p>This is not a permanent group chat with shared hidden memory. Specialists receive self-contained assignments through native subagent delegation and return their results to the orchestrator. Context has to be handed over deliberately.</p>
+<p>The default flow in my orchestrator is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Idea</span><br><span class="line">  -&gt; Analyst: brief</span><br><span class="line">  -&gt; user review</span><br><span class="line">  -&gt; PM: product requirements</span><br><span class="line">  -&gt; user review</span><br><span class="line">  -&gt; UX-Designer ---------+</span><br><span class="line">     Architect ----------+  parallel only when independent</span><br><span class="line">  -&gt; user review of both outputs and conflict resolution</span><br><span class="line">  -&gt; PO: epics, stories, acceptance criteria</span><br><span class="line">  -&gt; user review</span><br><span class="line">  -&gt; Dev: one approved story + focused checks</span><br><span class="line">  -&gt; user review; repeat for the next ready story</span><br><span class="line">  -&gt; QA: automated coverage of working features</span><br><span class="line">  -&gt; user review</span><br><span class="line">  -&gt; Orchestrator: acceptance evidence</span><br><span class="line">  -&gt; final user acceptance</span><br></pre></td></tr></table></figure>
+
+<p>An existing project does not need to repeat every stage. A well-specified bug can go directly to Dev. A prototype with unresolved requirements should not.</p>
+<h2 id="Give-Each-Agent-a-Clear-Boundary"><a href="#Give-Each-Agent-a-Clear-Boundary" class="headerlink" title="Give Each Agent a Clear Boundary"></a>Give Each Agent a Clear Boundary</h2><p>The agents in this setup have the following responsibilities:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Main responsibility</th>
+<th>Useful deliverable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Analyst</td>
+<td>Clarify the problem, users, assumptions, and unknowns</td>
+<td>A brief with open questions separated from confirmed facts</td>
+</tr>
+<tr>
+<td>PM</td>
+<td>Define outcomes, priorities, scope, and exclusions</td>
+<td>A product requirements document, or PRD</td>
+</tr>
+<tr>
+<td>UX-Designer</td>
+<td>Define appearance, journeys, interactions, and states</td>
+<td><code>DESIGN.md</code>, <code>EXPERIENCE.md</code>, and a prototype where useful</td>
+</tr>
+<tr>
+<td>Architect</td>
+<td>Define boundaries, contracts, technical constraints, and trade-offs</td>
+<td>An architecture document that constrains implementation</td>
+</tr>
+<tr>
+<td>PO</td>
+<td>Turn approved inputs into implementable work</td>
+<td>Epics and stories with acceptance criteria and dependencies</td>
+</tr>
+<tr>
+<td>Dev</td>
+<td>Implement approved work and verify the change</td>
+<td>Working code, appropriate unit&#x2F;integration tests, and exact check results</td>
+</tr>
+<tr>
+<td>QA</td>
+<td>Add end-to-end or API coverage for existing working features</td>
+<td>Automated scenarios, results, and remaining coverage gaps</td>
+</tr>
+<tr>
+<td>Project Orchestrator</td>
+<td>Maintain continuity and coordinate approved handoffs</td>
+<td>Progress, decisions, conflicts, and acceptance evidence</td>
+</tr>
+</tbody></table>
+<p>PM and PO are not interchangeable here. PM answers “What should this product achieve?” PO answers “What is the next implementable piece, and how will we know it works?”</p>
+<p>Likewise, Dev does not hand all testing to QA. Dev verifies the behavior being introduced. QA adds broader user-journey or API coverage once the feature works. Defects go back to Dev through an approved handoff.</p>
+<h2 id="Configure-the-Agents-in-Copilot"><a href="#Configure-the-Agents-in-Copilot" class="headerlink" title="Configure the Agents in Copilot"></a>Configure the Agents in Copilot</h2><h3 id="Agent-files-and-prerequisites"><a href="#Agent-files-and-prerequisites" class="headerlink" title="Agent files and prerequisites"></a>Agent files and prerequisites</h3><p>My agents are stored in the user-level Copilot agents folder. On Windows, you can inspect that location with:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-ChildItem</span> <span class="string">&quot;<span class="variable">$HOME</span>\.copilot\agents&quot;</span> <span class="literal">-Filter</span> <span class="string">&quot;*.agent.md&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The relevant files are:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Analyst.agent.md</span><br><span class="line">PM.agent.md</span><br><span class="line">UX-Designer.agent.md</span><br><span class="line">Architect.agent.md</span><br><span class="line">PO.agent.md</span><br><span class="line">Dev.agent.md</span><br><span class="line">QA.agent.md</span><br><span class="line">Project-Orchestrator.agent.md</span><br></pre></td></tr></table></figure>
+
+<p>For agents shared with a repository, VS Code also supports the workspace location <code>.github/agents</code>. Locations, supported fields, and tool names depend on the selected harness; check the current <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference">custom agent file reference</a>.</p>
+<p>Before trying the workflow, you need:</p>
+<ul>
+<li>A working GitHub Copilot environment with the custom agents visible.</li>
+<li>Native subagent delegation available in the selected session.</li>
+<li>The BMAD skills referenced by the specialist agents installed and readable.</li>
+<li>The project’s required BMAD configuration, set up with your approval.</li>
+<li>Project build and test tools available to the roles that need them.</li>
+</ul>
+<p>An agent file is not an installer. Copying a wrapper that refers to a missing skill does not create that capability.</p>
+<h3 id="A-specialist-entry-point"><a href="#A-specialist-entry-point" class="headerlink" title="A specialist entry point"></a>A specialist entry point</h3><p>The following is a shortened, portable example of the pattern used by the Dev agent, not a complete BMAD installation:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: Dev</span><br><span class="line">description: Implement approved stories and report verified code changes.</span><br><span class="line"><span class="section">user-invocable: true</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">Load the installed bmad-agent-dev skill before implementation.</span><br><span class="line">Resolve it from the actual installation on this machine.</span><br><span class="line">If the skill or required project setup is missing, report the blocker.</span><br><span class="line"></span><br><span class="line">Follow project instructions and the approved story.</span><br><span class="line">Report changed behavior, exact checks, results, and remaining gaps.</span><br><span class="line">Do not commit, push, create branches, or deploy unless requested.</span><br></pre></td></tr></table></figure>
+
+<p>The actual local wrappers identify the installed skill location explicitly. Adapt that location rather than copying another developer’s absolute path.</p>
+<p>I have omitted model and tool fields from this example deliberately. Configure tool access for your harness and verify that the running agent can perform its assigned work; a role name alone does not grant capabilities. See VS Code’s <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/agent-customization/custom-agents">custom agent guide</a> for creation and verification steps.</p>
+<h3 id="The-orchestrator’s-essential-instructions"><a href="#The-orchestrator’s-essential-instructions" class="headerlink" title="The orchestrator’s essential instructions"></a>The orchestrator’s essential instructions</h3><p>The orchestrator is more than “ask the other agents to build an app.” Its key rules can be summarized as:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: Project Orchestrator</span><br><span class="line">description: Coordinate approved specialist work from idea to acceptance.</span><br><span class="line"><span class="section">user-invocable: true</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">Use the existing Analyst, PM, UX-Designer, Architect, PO, Dev, and QA agents.</span><br><span class="line">Delegate through the current harness&#x27;s native subagent mechanism.</span><br><span class="line">If delegation is unavailable, report it; never simulate an agent call.</span><br><span class="line"></span><br><span class="line">Give each task its workspace, approved inputs, constraints,</span><br><span class="line">allowed edits, expected output, checks, and stopping condition.</span><br><span class="line"></span><br><span class="line">After every result:</span><br><span class="line"><span class="bullet">-</span> Explain what was delivered and what remains uncertain.</span><br><span class="line"><span class="bullet">-</span> Propose the exact next bounded task.</span><br><span class="line"><span class="bullet">-</span> Wait for explicit user approval before dependent work.</span><br><span class="line"></span><br><span class="line">Run independent UX and architecture work concurrently only when supported.</span><br><span class="line">Reconcile conflicts before handing their outputs to PO.</span><br><span class="line">Maintain the project&#x27;s progress record and approval history.</span><br><span class="line">Do not infer completion from an agent saying &quot;done.&quot;</span><br></pre></td></tr></table></figure>
+
+<p>This is a design sketch of the inspected configuration. It is not a claim that Markdown instructions enforce permissions mechanically. Tool restrictions, runtime behavior, and human review still matter.</p>
+<p>The local orchestrator uses native delegation rather than depending on editor-specific handoff buttons. Do not assume a <code>handoffs</code> or <code>agents</code> configuration from another harness is portable; the <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference#_harness-compatibility">harness compatibility reference</a> explains the differences.</p>
+<h2 id="Start-with-an-Idea-Not-a-Giant-Implementation-Prompt"><a href="#Start-with-an-Idea-Not-a-Giant-Implementation-Prompt" class="headerlink" title="Start with an Idea, Not a Giant Implementation Prompt"></a>Start with an Idea, Not a Giant Implementation Prompt</h2><p>For a reminder app like Moment, a useful starting prompt would be:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Use the Project Orchestrator workflow in the current reminder-app workspace.</span><br><span class="line"></span><br><span class="line">I want a personal desktop web app for birthdays, monthly bills,</span><br><span class="line">and reminders such as drinking water every hour.</span><br><span class="line"></span><br><span class="line">The app should run while its page is open and stop creating reminders</span><br><span class="line">when the page closes.</span><br><span class="line"></span><br><span class="line">Start with Analyst. Separate confirmed requirements from assumptions.</span><br><span class="line">Return the brief and open questions for my review.</span><br><span class="line">Do not begin implementation or deployment.</span><br></pre></td></tr></table></figure>
+
+<p>The prompts in this post are reusable examples, not transcripts of the original development session.</p>
+<p>The reminder app’s initial brief illustrates why discovery helps. It recorded the page-close behavior as confirmed, while persistence, notification presentation, and several recurrence rules were still assumptions.</p>
+<p>Those questions have architectural consequences:</p>
+<ul>
+<li>Does “stop” mean stop new notifications, or remove old notifications from the operating system too?</li>
+<li>Should reopening replay reminders missed while closed?</li>
+<li>Does a monthly reminder on the 31st move to the last day of a shorter month?</li>
+<li>Can two tabs both run the scheduler?</li>
+<li>Does browser permission mean the user actually saw a notification?</li>
+</ul>
+<p>If these questions remain implicit, different agents can produce individually reasonable but incompatible answers.</p>
+<h3 id="Review-the-decision-then-authorize-the-next-step"><a href="#Review-the-decision-then-authorize-the-next-step" class="headerlink" title="Review the decision, then authorize the next step"></a>Review the decision, then authorize the next step</h3><p>An approval should identify both the accepted result and the next task. For example:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Approve the brief with these decisions:</span><br><span class="line">- Keep saved reminders after reopening.</span><br><span class="line">- Do not replay reminders missed while the page was closed.</span><br><span class="line">- No accounts, cloud sync, or background push in this version.</span><br><span class="line"></span><br><span class="line">Proceed to PM for the requirements document only.</span><br><span class="line">Return it for review before design starts.</span><br></pre></td></tr></table></figure>
+
+<p>The orchestrator’s default is a review gate after each result, not unattended execution of the whole pipeline. If a batch is desired, authorize its scope and limits explicitly. Moment’s later implementation plan records a user-approved batch for the remaining MVP work; that was a specific decision, not an assumption that all future work was authorized.</p>
+<h2 id="Use-Artifacts-as-the-Handoff-Contract"><a href="#Use-Artifacts-as-the-Handoff-Contract" class="headerlink" title="Use Artifacts as the Handoff Contract"></a>Use Artifacts as the Handoff Contract</h2><p>The reminder project preserves its planning and implementation evidence under this structure:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">reminder-app/</span><br><span class="line">  _bmad-output/</span><br><span class="line">    initiative-reminder-app/</span><br><span class="line">      brief-reminder-app/</span><br><span class="line">        brief-reminder-app.md</span><br><span class="line">      scope-decisions.md</span><br><span class="line">      initiative-reminder-app.md</span><br><span class="line">      ux-reminder-app/</span><br><span class="line">        DESIGN.md</span><br><span class="line">        EXPERIENCE.md</span><br><span class="line">        mockups/</span><br><span class="line">      architecture-reminder-app/</span><br><span class="line">        architecture-reminder-app.md</span><br><span class="line">        solution-design.md</span><br><span class="line">      tickets/</span><br><span class="line">      plan-remaining-mvp.md</span><br><span class="line">  src/</span><br><span class="line">    app/</span><br><span class="line">    domain/</span><br><span class="line">    infrastructure/</span><br><span class="line">    ui/</span><br><span class="line">    styles/</span><br><span class="line">  tests/</span><br></pre></td></tr></table></figure>
+
+<p>These are inspected project artifacts, not a universal directory convention. The formal initiative contains requirements R1-R14, constraints, and completion conditions. The architecture maps decisions back to those requirements. The tickets and shared implementation plan connect the approved scope to delivery.</p>
+<p>The intended workflow includes a PM requirements stage; this example’s durable formal requirements are in the initiative and scope-decision artifacts. A standalone file named <code>PRD.md</code> is not necessary to explain the evidence, and should not be invented.</p>
+<p>For a new project, a handoff should be explicit enough that the recipient can work without the previous conversation:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Role: Dev</span><br><span class="line">Workspace: the confirmed reminder-app project root</span><br><span class="line">Task: implement the approved interval-reminder story only</span><br><span class="line"></span><br><span class="line">Inputs:</span><br><span class="line">- latest approved requirements and scope decisions</span><br><span class="line">- approved architecture and UX documents</span><br><span class="line">- the story&#x27;s acceptance criteria</span><br><span class="line"></span><br><span class="line">Constraints:</span><br><span class="line">- reminders are owned by the open page</span><br><span class="line">- persist successfully before reporting Save success</span><br><span class="line">- reopening must not replay missed reminders</span><br><span class="line">- no backend, push service, or deployment</span><br><span class="line"></span><br><span class="line">Return:</span><br><span class="line">- changed behavior and files</span><br><span class="line">- exact validation commands and results</span><br><span class="line">- unresolved issues</span><br><span class="line"></span><br><span class="line">Stop after this story. Do not start the next story.</span><br></pre></td></tr></table></figure>
+
+<p>After interruption, the orchestrator should resume from recorded approvals and verified artifacts. A file’s existence, or even a <code>final</code> label in one document, does not prove that every dependent decision has been approved.</p>
+<h2 id="The-Example-Project-Moment"><a href="#The-Example-Project-Moment" class="headerlink" title="The Example Project: Moment"></a>The Example Project: Moment</h2><p>Moment is a Chinese-language, desktop-first reminder workspace built with React, TypeScript, and Vite. Its local persistence uses IndexedDB through <code>idb</code>; recurrence calculations use <code>@js-temporal/polyfill</code>.</p>
+<p>The working app supports:</p>
+<ul>
+<li>Date reminders with one-time, monthly, or yearly recurrence.</li>
+<li>Daily interval reminders within a configured time window.</li>
+<li>Advance reminders and a preview of the actual reminder time.</li>
+<li>Editing, pausing, resuming, deleting, searching, and filtering.</li>
+<li>Local persistence without an account or cloud synchronization.</li>
+<li>Explicit notification permission and failure states.</li>
+<li>A single running page, with additional pages kept read-only.</li>
+</ul>
+<p>The screenshots below were captured from the actual local application for this article, using fictional reminders in a fresh browser session. They are not images of the earlier UX prototype, and they contain no personal reminder data.</p>
+<h3 id="The-workspace-design-carried-into-implementation"><a href="#The-workspace-design-carried-into-implementation" class="headerlink" title="The workspace: design carried into implementation"></a>The workspace: design carried into implementation</h3><div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/multi-agent-project/moment-workspace.png" class="lazyload placeholder" data-srcset="/assets/images/multi-agent-project/moment-workspace.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Moment reminder workspace with fictional water bill and birthday reminders" style="width:1100px;"/></div><span class="image-caption">Moment reminder workspace with fictional water bill and birthday reminders</span></div>
+
+<p>The dark workspace, lime primary action, next-reminder card, and status labels follow the design direction preserved in the UX artifacts. The screenshot shows two active reminders and one paused reminder.</p>
+<p>Notice the operational information as well as the styling: the page says reminders stop after closing, system notifications are not yet authorized, and data belongs to the current browser and site. Those are product boundaries made visible in the interface.</p>
+<p>For this capture, the fictional reminders were created through the UI, the birthday reminder was paused, and the page was reloaded. The records and paused state remained visible.</p>
+<h3 id="The-editor-a-requirement-becomes-visible-behavior"><a href="#The-editor-a-requirement-becomes-visible-behavior" class="headerlink" title="The editor: a requirement becomes visible behavior"></a>The editor: a requirement becomes visible behavior</h3><div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/multi-agent-project/moment-reminder-editor.png" class="lazyload placeholder" data-srcset="/assets/images/multi-agent-project/moment-reminder-editor.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Moment monthly reminder editor showing recurrence advance minutes and actual reminder preview" style="width:1000px;"/></div><span class="image-caption">Moment monthly reminder editor showing recurrence advance minutes and actual reminder preview</span></div>
+
+<p>The monthly bill is configured for 09:00 with a 30-minute advance. Its actual reminder preview is therefore 08:30. This is a useful acceptance check because the editor, list, and scheduler must agree on one calculation.</p>
+<p>The architecture requires a shared recurrence engine rather than separate UI and scheduler implementations. It also makes first-release limitations explicit: monthly recurrence supports days 1-28, yearly February 29 recurrence is excluded, and interval windows do not cross midnight.</p>
+<p>These are scoped product decisions, not general limitations of React or browser reminders.</p>
+<h3 id="A-second-page-architecture-is-more-than-a-diagram"><a href="#A-second-page-architecture-is-more-than-a-diagram" class="headerlink" title="A second page: architecture is more than a diagram"></a>A second page: architecture is more than a diagram</h3><div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="/assets/images/multi-agent-project/moment-readonly-tab.png" class="lazyload placeholder" data-srcset="/assets/images/multi-agent-project/moment-readonly-tab.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="A second Moment page in read-only mode while another page owns the running session" style="width:1100px;"/></div><span class="image-caption">A second Moment page in read-only mode while another page owns the running session</span></div>
+
+<p>This screenshot was captured by opening a second page in the same browser context while the first page remained open.</p>
+<p>The second page displays the “already running in another page” state and disables editing. The architecture uses an exclusive same-origin Web Lock so two pages do not both edit and issue reminders. The read-only page offers an explicit retry rather than silently taking over.</p>
+<p>That connects several roles: Architect defines ownership, UX explains the state, PO makes it testable, Dev implements it, and browser coverage checks the interaction.</p>
+<h3 id="One-rule-traced-from-idea-to-test"><a href="#One-rule-traced-from-idea-to-test" class="headerlink" title="One rule traced from idea to test"></a>One rule traced from idea to test</h3><p>Consider “remind me to drink water every hour”:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Concrete result in this example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Discovery</td>
+<td>A daily interval reminder is needed, but start&#x2F;end semantics need confirmation</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>A positive interval, valid daily window, pause&#x2F;resume behavior, and no replay are explicit</td>
+</tr>
+<tr>
+<td>UX</td>
+<td>The editor explains when the first reminder occurs and previews the next one</td>
+</tr>
+<tr>
+<td>Architecture</td>
+<td>One pure recurrence engine serves preview, list, and due-time checks</td>
+</tr>
+<tr>
+<td>Story acceptance</td>
+<td>For 09:00-18:00 with a 60-minute interval, reminders occur at 10:00 through 17:00</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>Check excluded endpoints, invalid windows, pause&#x2F;resume, persistence, and page lifecycle</td>
+</tr>
+</tbody></table>
+<p>For this rule, 09:00 is the anchor, not the first reminder, and 18:00 is excluded. Without that contract, a plausible implementation could still be wrong.</p>
+<h2 id="Parallelize-Independent-Work-Not-Every-Role"><a href="#Parallelize-Independent-Work-Not-Every-Role" class="headerlink" title="Parallelize Independent Work, Not Every Role"></a>Parallelize Independent Work, Not Every Role</h2><p>UX and architecture are natural candidates for parallel work after requirements approval. Both consume the same scope, but produce different artifacts:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Approved requirements</span><br><span class="line">  +-&gt; UX: layout, interaction, accessibility, visible states</span><br><span class="line">  +-&gt; Architecture: lifecycle, storage, time model, ownership</span><br><span class="line">Join: resolve conflicts and approve both before story preparation</span><br></pre></td></tr></table></figure>
+
+<p>The join is essential. The reminder artifacts record a concrete reconciliation: earlier page-only notification assumptions were updated to support system notifications while the page is alive, without introducing closed-page push.</p>
+<p>That decision affects the architecture, permission UI, acceptance criteria, implementation, and tests. The orchestrator must propagate it rather than letting each role continue with an older interpretation.</p>
+<p>Not every task can run concurrently. Two agents editing the same application state module are likely to create integration work. QA coverage that depends on an unfinished UI contract should wait. If the harness cannot execute tasks concurrently, run them sequentially and say so.</p>
+<p>For Moment, the approved remaining-MVP plan explicitly used one implementation lane. A multi-agent team does not require multiple agents writing code simultaneously.</p>
+<h2 id="Separate-Working-Code-from-Final-Acceptance"><a href="#Separate-Working-Code-from-Final-Acceptance" class="headerlink" title="Separate Working Code from Final Acceptance"></a>Separate Working Code from Final Acceptance</h2><p>The app’s recorded implementation evidence includes the following results from its October 23, 2026 local verification:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Recorded result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lint and TypeScript checks</td>
+<td>Passed</td>
+</tr>
+<tr>
+<td>Unit tests</td>
+<td>61 passed across 8 files</td>
+</tr>
+<tr>
+<td>Development-server browser suite</td>
+<td>20 passed</td>
+</tr>
+<tr>
+<td>Production-build browser suite</td>
+<td>20 passed</td>
+</tr>
+<tr>
+<td>Separate real back&#x2F;forward-cache restoration test</td>
+<td>1 passed</td>
+</tr>
+<tr>
+<td>Production build</td>
+<td>Passed</td>
+</tr>
+</tbody></table>
+<p>These figures come from the project’s shared implementation plan; they were <strong>not rerun as part of writing this article</strong>. The fresh browser walkthrough for the screenshots checked creation, pause persistence after reload, the editor, and the second-page read-only state. It was not a replacement for the full suite.</p>
+<p>The distinction is especially important for notifications. A successful <code>Notification()</code> call, or a mocked API assertion, does not prove that Windows displayed a banner.</p>
+<p>The project README records an initial user-observed Chrome notification success, but the complete R14 acceptance requirement remains outstanding: record the actual Windows Chrome and Edge versions and observe three consecutive reminders in each target browser within the agreed 60-second foreground window, without duplicates.</p>
+<p>The architecture also acknowledges that claiming an occurrence before presenting it can lose a notification if the page crashes between those operations. Deduplication is not a guarantee of exactly-once delivery or that a user read it.</p>
+<p>So the accurate conclusion is: Moment has a working implementation and recorded automated evidence, with final target-browser notification acceptance still pending. “The last agent finished” is not a sufficient completion criterion.</p>
+<h3 id="Run-the-example-locally"><a href="#Run-the-example-locally" class="headerlink" title="Run the example locally"></a>Run the example locally</h3><p>From the existing reminder-app checkout, the project documents:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm ci</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>Its configured manual-preview address is <code>http://localhost:5175</code>, with strict port binding. Reuse the same origin when checking saved data: changing the hostname or port gives the browser a different storage and permission boundary.</p>
+<p>For an existing installation with dependencies already present, start with <code>npm run dev</code>. The example’s validation commands include:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm run lint</span><br><span class="line">npm run typecheck</span><br><span class="line">npm test <span class="literal">--</span> <span class="literal">--run</span></span><br><span class="line">npm run build</span><br><span class="line">npm run test:e2e <span class="literal">--</span> <span class="literal">--workers</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>Use the project’s README and lockfile for its environment requirements. Its automated browser tests use the separate <code>localhost:5174</code> origin to avoid touching manual-use data. Do not stop another project’s server or reuse a personal browser profile just to run a demo.</p>
+<p>Static hosting does not turn this application into a background reminder service. Closing the running page stops new reminders; reopening retains local records but skips missed occurrences. Deployment is a separate authorized operation, not an automatic consequence of successful tests.</p>
+<h2 id="Practical-Lessons-for-Your-Own-Agent-Team"><a href="#Practical-Lessons-for-Your-Own-Agent-Team" class="headerlink" title="Practical Lessons for Your Own Agent Team"></a>Practical Lessons for Your Own Agent Team</h2><p>Start with fewer roles if the task is small, but keep the same discipline:</p>
+<ol>
+<li><strong>Approve behavior before implementation.</strong> Unanswered product questions do not disappear when several agents are involved.</li>
+<li><strong>Pass exact artifacts and revisions.</strong> Avoid handoffs that only say “use the previous agent’s output.”</li>
+<li><strong>Give every delegation a stopping condition.</strong> Otherwise one role may continue into another role’s unapproved work.</li>
+<li><strong>Reconcile parallel results.</strong> Shared inputs do not guarantee compatible outputs.</li>
+<li><strong>Keep one owner for progress and integration.</strong> The orchestrator coordinates; specialists own bounded deliverables.</li>
+<li><strong>Ask for evidence, not completion language.</strong> Record commands, results, observed behavior, and what remains unverified.</li>
+</ol>
+<p>The trade-off is real: extra artifacts, review gates, and agent calls consume time and context. For a small typo fix, this workflow would be excessive. For an idea with uncertain behavior, UI decisions, browser constraints, and acceptance requirements, the structure helps prevent an attractive demo from being mistaken for a finished product.</p>
+<p>Moment makes the central lesson concrete: <strong>an agent team works through explicit contracts and verified handoffs, not through the number of agents you launch.</strong></p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/AI/" class="">
+              AI
+            </a>
+          
+            <a href="/tags/GitHub-Copilot/" class="">
+              GitHub Copilot
+            </a>
+          
+            <a href="/tags/AI-Agents/" class="">
+              AI Agents
+            </a>
+          
+            <a href="/tags/Playwright/" class="">
+              Playwright
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>Author:  </strong>Andrewsy</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>Link:  </strong>
+    <a href="/2026/10/24/from-idea-to-working-project-with-a-multi-agent-team/" target="_blank" title="From Idea to Working Project with a Multi-Agent Team">https://stonefishy.github.io/2026/10/24/from-idea-to-working-project-with-a-multi-agent-team/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2026/01/18/a-comparative-analysis-of-international-ai-large-language-models/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">A Comparative Analysis of International AI Large Language Models</div>
+      </div>
+      
+      <!-- <div class="content">
+        The rise of large language models has fundamentally reshaped
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2026/11/17/aws-emulator-testing-aws-applications-locally/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">AWS Emulator - Testing AWS Applications Locally Without a Cloud Account</div>
+      </div>
+      <!-- <div class="content">
+        Testing an application that calls AWS APIs often means choos
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img src='/medias/avatar/totoro3.webp'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Andrewsy</h2>
+        
+        
+          <p>Stay hungry, Stay foolish</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Andrewsy's Space</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:andrewsy@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/stonefishy"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">Article Structure</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-Makes-This-an-Agent-Team"><span class="toc-text">What Makes This an Agent Team?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Give-Each-Agent-a-Clear-Boundary"><span class="toc-text">Give Each Agent a Clear Boundary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-the-Agents-in-Copilot"><span class="toc-text">Configure the Agents in Copilot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent-files-and-prerequisites"><span class="toc-text">Agent files and prerequisites</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-specialist-entry-point"><span class="toc-text">A specialist entry point</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-orchestrator%E2%80%99s-essential-instructions"><span class="toc-text">The orchestrator’s essential instructions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Start-with-an-Idea-Not-a-Giant-Implementation-Prompt"><span class="toc-text">Start with an Idea, Not a Giant Implementation Prompt</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Review-the-decision-then-authorize-the-next-step"><span class="toc-text">Review the decision, then authorize the next step</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Artifacts-as-the-Handoff-Contract"><span class="toc-text">Use Artifacts as the Handoff Contract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Example-Project-Moment"><span class="toc-text">The Example Project: Moment</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-workspace-design-carried-into-implementation"><span class="toc-text">The workspace: design carried into implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-editor-a-requirement-becomes-visible-behavior"><span class="toc-text">The editor: a requirement becomes visible behavior</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-second-page-architecture-is-more-than-a-diagram"><span class="toc-text">A second page: architecture is more than a diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#One-rule-traced-from-idea-to-test"><span class="toc-text">One rule traced from idea to test</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parallelize-Independent-Work-Not-Every-Role"><span class="toc-text">Parallelize Independent Work, Not Every Role</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Separate-Working-Code-from-Final-Acceptance"><span class="toc-text">Separate Working Code from Final Acceptance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-the-example-locally"><span class="toc-text">Run the example locally</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Practical-Lessons-for-Your-Own-Agent-Team"><span class="toc-text">Practical Lessons for Your Own Agent Team</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>Recent Blogs</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2026/11/17/aws-emulator-testing-aws-applications-locally/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">11-17</span>
+                
+              </div>
+              <a class="post-title" href="/2026/11/17/aws-emulator-testing-aws-applications-locally/">AWS Emulator - Testing AWS Applications Locally Without a Cloud Account</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2026/10/24/from-idea-to-working-project-with-a-multi-agent-team/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">10-24</span>
+                
+              </div>
+              <a class="post-title" href="/2026/10/24/from-idea-to-working-project-with-a-multi-agent-team/">From Idea to Working Project with a Multi-Agent Team</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2026/01/18/a-comparative-analysis-of-international-ai-large-language-models/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-2f39b553d8a370cb137031f8ca798a56_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-18</span>
+                
+              </div>
+              <a class="post-title" href="/2026/01/18/a-comparative-analysis-of-international-ai-large-language-models/">A Comparative Analysis of International AI Large Language Models</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2025/12/30/using-azure-policy-evaluate-the-resource-compliance/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-121618e14ad58dcedf8637127087ff27_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">12-30</span>
+                
+              </div>
+              <a class="post-title" href="/2025/12/30/using-azure-policy-evaluate-the-resource-compliance/">Using Azure Policy to Evaluate Resource Compliance</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2025/12/06/exploring-java-21-new-features/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" class="lazyload placeholder" data-srcset="/medias/bg-images/v2-36e669406e3b17fcb8a2ded46b88bf37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">12-06</span>
+                
+              </div>
+              <a class="post-title" href="/2025/12/06/exploring-java-21-new-features/">Exploring Java 21 New Features</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '1800'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = '' || 'rgba(24, 35, 44, 0.8)';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
+  
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+              
+                <a href="/atom.xml" class="social">
+                  
+                    <i class="fas fa-rss" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="mailto:andrewsy@163.com" class="social">
+                  
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=782022428" class="social">
+                  
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2013 - 2025 Andrewsy</p>
+
+          </div>
+        
+      
+        
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+      <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
+<style>
+.aplayer .aplayer-lrc p {
+  
+  display: none;
+  
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px !important;
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
+  
+  font-size: 15px;
+  color: #42b983;
+}
+
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
+}
+
+
+</style>
+<meting-js  
+  class=""
+  server="netease"
+  type="playlist"
+  id="8062553743"
+  fixed='true'
+  autoplay='false'
+  theme='#42b983'
+  loop='all'
+  order='random'
+  preload='auto'
+  volume='0.7'
+  list-folded='true'
+>
+</meting-js>
+
+<!-- <style>
+  #aplayer {
+    position: fixed;
+    left: 0;
+    bottom: 300px;
+  }
+</style> -->
+<script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<!-- <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.css">
+
+<script>
+  var headerEl = 'h1, h2, h3, h4, h5, h6',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -70,
+    // headingsOffset: -($(window).height() * 0.4 - 45),
+    headingsOffset: -($(window).height() * 0.4 - 70),
+    // positionFixedSelector: '.toc-main',
+    // positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    orderedList: true,
+    collapseDepth: 20,
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 150) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('side_toc')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  /* .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  } */
+</style>
+ 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 渲染远程json加载的图片标签(getPhotoOnline)里的内容 -->
+<script>
+  function loadPhotoOnlineJS() {
+    if ($(".post-detail").find(".getJsonPhoto-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/getPhotoOnline/index.js');
+  };
+  $(function () {
+    loadPhotoOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getPhotoJson == "undefined") {
+      loadPhotoOnlineJS();
+    }
+  })
+</script>
+
+<!-- 渲染远程json加载的talk标签(getTalkOnline)里的内容 -->
+<script>
+  function loadTalkOnlineJS() {
+    if ($(".post-detail").find(".getJsonTalk-api").length == 0) {
+      return;
+    } 
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/waterfall.js/1.0.2/waterfall.min.js'); // 瀑布流插件，https://raphamorim.io/waterfall.js/
+    loadScript('/js/getTalkOnline/index.js');
+  };
+  $(function () {
+    loadTalkOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getTalkJson == "undefined") {
+      loadTalkOnlineJS();
+    }
+  })
+</script>
+
+<!-- 渲染远程json加载的site-card标签(getSiteOnline)里的内容 -->
+<script>
+  function loadSiteOnlineJS() {
+    if ($(".post-detail").find(".getJsonSite-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/getSiteOnline/index.js');
+  };
+  $(function () {
+    loadSiteOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getSiteJson == "undefined") {
+      loadSiteOnlineJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://unpkg.com/v-plugs-ayu/lib/ayu.css">
+  <script src="https://unpkg.com/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = 'Copy';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "Success",
+            content: "Copied",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://unpkg.com/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+
+    <script type="text/javascript">
+  loadScript("https://unpkg.com/scrollreveal@4.0.6/dist/scrollreveal.min.js")
+  function pjax_scrollrebeal() {
+    ScrollReveal().reveal('.reveal', {
+      distance: '120px',
+      duration: '400',
+      interval: '30',
+      scale: '1',
+      origin: 'bottom', // 动画开始的方向
+      easing: 'ease'
+    });
+  }
+  $(function () {
+    var checkScrollReveal = setInterval(function () {
+      if ($("#safearea").css("display") != "block") return
+      if (typeof ScrollReveal == "undefined") return
+      clearInterval(checkScrollReveal)
+      pjax_scrollrebeal();
+    }, 100)
+  });
+  document.addEventListener('pjax:complete', function () {
+    pjax_scrollrebeal();
+  })
+</script>
+   
+
+<!-- 评论所需js -->
+
+  
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = 'github-dark';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', 'stonefishy/stonefishy.github.io')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+
+
+
+
+<!-- 轮播图标签 -->
+<script>
+  var bambooSwiperTag = {};
+  function load_swiper() {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    loadCSS("https://unpkg.com/swiper@6/swiper-bundle.min.css")
+    loadScript("https://unpkg.com/swiper@6/swiper-bundle.min.js").then(() => {
+      pjax_swiper();
+    });
+  }
+
+  load_swiper();
+
+  function pjax_swiper() {
+    bambooSwiperTag.swiper = new Swiper('.post-swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      centeredSlides: true,
+      loop: true,
+      autoplay: true ? {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      } : false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on:{
+        init: function(){
+          swiperAnimateCache(this); //隐藏动画元素 
+          swiperAnimate(this); //初始化完成开始动画
+        }, 
+        slideChangeTransitionEnd: function(){ 
+          swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+          //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
+        } 
+      }
+    });
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    if (typeof bambooSwiperTag.swiper === "undefined") {
+      load_swiper();
+    } else {
+      pjax_swiper();
+    }
+  });
+</script>
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>
