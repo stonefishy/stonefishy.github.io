@@ -1,7 +1,7 @@
 ---
 title: Conversational RAG Chatbot - Converting PDF Document to Vector
 date: 2025-02-24 16:27:50
-categories: AI/ML
+categories: AI
 tags: [AI, OpenAI, Python, FAISS, Langchain, Chatbot, RAG]
 ---
 

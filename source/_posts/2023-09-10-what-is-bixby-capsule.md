@@ -1,7 +1,7 @@
 ---
 title: What is Bixby Capsule？How to develop it?
 date: 2023-09-10 20:24:58
-categories: AI/ML
+categories: AI
 tags: [AI, Bixby]
 ---
 

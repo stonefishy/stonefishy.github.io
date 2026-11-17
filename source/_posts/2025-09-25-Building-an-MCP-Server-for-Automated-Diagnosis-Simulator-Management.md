@@ -1,7 +1,7 @@
 ---
 title: Building an MCP Server for Automated Diagnosis Simulator Management
 date: 2025-09-25 11:30:06
-categories: AI/ML
+categories: AI
 tags: [AI, MCP, Python, Docker, AWS, Cloud, Github Copilot, Goose]
 top: true
 swiper: true

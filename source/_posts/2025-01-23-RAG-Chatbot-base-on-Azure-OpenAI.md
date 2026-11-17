@@ -1,7 +1,7 @@
 ---
 title: A RAG Chatbot base on Azure OpenAI
 date: 2025-01-23 11:31:28
-categories: AI/ML
+categories: AI
 tags: [AI, Azure, Chatbot, OpenAI, Python, LangChain, Streamlit, FAISS, RAG]
 ---
 

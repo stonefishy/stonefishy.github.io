@@ -1,7 +1,7 @@
 ---
 title: Keras3.0 - A Multi-framework Machine Learning Library
 date: 2024-06-25 10:12:36
-categories: AI/ML
+categories: AI
 tags: [AI, Machine Learning, Keras, TensorFlow, PyTorch, JAX]
 ---
 

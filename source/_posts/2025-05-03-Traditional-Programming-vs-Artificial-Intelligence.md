@@ -1,7 +1,7 @@
 ---
 title: Traditional Programming vs Artificial Intelligence
 date: 2025-05-03 15:56:55
-categories: AI/ML
+categories: AI
 tags: [AI]
 ---
 

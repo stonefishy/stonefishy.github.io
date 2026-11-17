@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Sentiment Analysis - Load Model & Predict
 date: 2023-05-02 15:29:58
-categories: AI/ML
+categories: AI
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis, AWS]
 ---
 

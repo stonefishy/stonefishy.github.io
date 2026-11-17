@@ -1,7 +1,7 @@
 ---
 title: Create your own OpenAI endpoints in Azure Cloud.
 date: 2025-03-14 15:17:59
-categories: AI/ML
+categories: AI
 tags: [AI, OpenAI, Azure, Cloud]
 ---
 

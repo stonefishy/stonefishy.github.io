@@ -1,7 +1,7 @@
 ---
 title: Automation Testing with Playwright MCP AI Browser Control
 date: 2025-09-30 16:03:15
-categories: AI/ML
+categories: AI
 tags: [AI, MCP, Playwright, Automation Testing, GitHub Copilot, Goose]
 swiperImg: "/medias/bg-images/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp"
 ---

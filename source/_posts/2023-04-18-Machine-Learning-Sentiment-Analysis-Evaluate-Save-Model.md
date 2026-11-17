@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Sentiment Analysis - Evaluate & Save Model
 date: 2023-04-18 09:59:07
-categories: AI/ML
+categories: AI
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis]
 ---
 

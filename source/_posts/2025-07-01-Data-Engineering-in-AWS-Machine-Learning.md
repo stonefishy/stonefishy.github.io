@@ -1,7 +1,7 @@
 ---
 title: Data Engineering in AWS Machine Learning
 date: 2025-07-01 10:11:13
-categories: AI/ML
+categories: AI
 tags: [AWS, AI, Machine Learning, Data Engineering]
 ---
 

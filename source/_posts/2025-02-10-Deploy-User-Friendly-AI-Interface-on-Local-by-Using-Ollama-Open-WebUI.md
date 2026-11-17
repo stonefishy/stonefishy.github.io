@@ -1,7 +1,7 @@
 ---
 title: Deploy User Friendly AI Interface Chatbot on Local by Using Ollama + Open-WebUI.
 date: 2025-02-10 09:55:11
-categories: AI/ML
+categories: AI
 tags: [AI, Ollama, DeepSeek, Gemma, Open-WebUI, Chatbot]
 swiper: true
 ---

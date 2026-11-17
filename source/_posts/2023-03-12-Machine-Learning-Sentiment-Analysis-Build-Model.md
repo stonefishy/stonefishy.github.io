@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Sentiment Analysis - Build Model
 date: 2023-03-12 17:06:02
-categories: AI/ML
+categories: AI
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: The Data Engineering and the Basics of a Machine Learning Pipeline
 date: 2025-08-13 10:40:55
-categories: AI/ML
+categories: AI
 tags: [AI, Machine Learning, Big Data]
 ---
 

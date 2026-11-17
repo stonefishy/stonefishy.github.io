@@ -1,7 +1,7 @@
 ---
 title: Speech Translator base on Azure Speech Service
 date: 2025-06-19 15:14:38
-categories: AI/ML
+categories: AI
 tags: [AI, Cloud, Azure, Next.js, React, JavaScript, Tailwind]
 swiper: true
 top: true

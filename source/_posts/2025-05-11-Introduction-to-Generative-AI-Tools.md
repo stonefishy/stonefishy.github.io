@@ -1,7 +1,7 @@
 ---
 title: Introduction to Generative AI Tools
 date: 2025-05-11 15:27:34
-categories: AI/ML
+categories: AI
 tags: [AI, Generative AI, Tools]
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: How to pricing the Azure Speech to Speech service
 date: 2025-08-26 10:28:50
-categories: AI/ML
+categories: AI
 tags: [AI, Azure, Cloud]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Serveral Ways to Extracting PDF content to Markdown for LLM & RAG
 date: 2025-11-05 10:31:42
-categories: AI/ML
+categories: AI
 tags: [AI, PDF, Markdown, LLM, RAG]
 ---
 

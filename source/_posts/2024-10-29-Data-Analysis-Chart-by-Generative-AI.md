@@ -2,7 +2,7 @@
 title: Data Analysis Chart by Generative AI
 date: 2024-10-29 14:18:48
 tags: [AI, AWS, Python, SQL]
-categories: AI/ML
+categories: AI
 top: true
 swiper: true
 ---

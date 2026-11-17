@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Sentiment Analysis - Train Model
 date: 2023-04-02 10:00:25
-categories: AI/ML
+categories: AI
 tags: [AI, NLP, Machine Learning, Tensorflow, Keras, Sentiment Analysis]
 ---
 

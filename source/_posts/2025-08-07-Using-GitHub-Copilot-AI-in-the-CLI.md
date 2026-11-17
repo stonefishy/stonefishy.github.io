@@ -1,7 +1,7 @@
 ---
 title: Using GitHub Copilot AI in the CLI
 date: 2025-08-07 15:39:52
-categories: AI/ML
+categories: AI
 tags: [AI, GitHub Copilot, CLI]
 ---
 

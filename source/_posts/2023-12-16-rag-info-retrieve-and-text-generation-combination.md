@@ -2,7 +2,7 @@
 title: 理解RAG：信息检索与生成模型的结合
 date: 2023-12-16 16:18:12
 tags: [AI, OpenAI, RAG]
-categories: AI/ML
+categories: AI
 ---
 
 在人工智能的快速发展中，如何有效地处理和生成自然语言成为了一个关键问题。近年来，`RAG（Retrieval-Augmented Generation）`系统的出现为这一挑战提供了新的解决方案。本文将深入探讨RAG的概念、出现的背景、原理以及其应用场景。

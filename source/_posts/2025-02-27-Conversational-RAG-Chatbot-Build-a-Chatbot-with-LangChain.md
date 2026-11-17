@@ -1,7 +1,7 @@
 ---
 title: Conversational RAG Chatbot - Build a Chatbot with LangChain and Chainlit
 date: 2025-02-27 15:33:13
-categories: AI/ML
+categories: AI
 tags: [AI, OpenAI, Python, FAISS, Langchain, Chainlit Chatbot, RAG]
 top: true
 swiper: true

@@ -1,7 +1,7 @@
 ---
 title: Understanding the Model Context Protocol (MCP)
 date: 2025-04-21 10:38:42
-categories: AI/ML
+categories: AI
 tags: [AI, MCP, Chatbot]
 ---
 

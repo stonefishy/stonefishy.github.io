@@ -1,7 +1,7 @@
 ---
 title: Running DeepSeek-R1 locally for free
 date: 2025-02-07 10:16:27
-categories: AI/ML
+categories: AI
 tags: [AI, Ollama, DeepSeek]
 ---
 

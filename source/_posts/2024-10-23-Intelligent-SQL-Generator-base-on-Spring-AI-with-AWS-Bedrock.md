@@ -2,7 +2,7 @@
 title: The Intelligent SQL Generator base on Spring AI with AWS Bedrock
 date: 2024-10-23 15:01:12
 tags: [Spring, Spring AI, AI, AWS, Java, SQL]
-categories: AI/ML
+categories: AI
 top: true
 swiper: true
 swiperImg: "/medias/bg-images/v2-d61b1af36a619fec1b32775d75f4900d_1440w.webp"
